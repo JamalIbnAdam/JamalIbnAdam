@@ -368,6 +368,10 @@
                     class="nav-btn text-sm md:text-lg pb-2 text-white/60">
                     📚 المكتبة والتوثيق
                 </button>
+                <button onclick="switchTab('author')" id="tab-author"
+                    class="nav-btn text-sm md:text-lg pb-2 text-white/60">
+                    👤 جمال ابن آدم (J.S. Adam)
+                </button>
             </div>
         </div>
     </header>
@@ -705,6 +709,66 @@
 
         </div>
 
+        <!-- ================= TAB 4: AUTHOR ================= -->
+        <div id="view-author" class="hidden animate-fade-up">
+            <div class="space-y-8">
+
+                <!-- Header Card -->
+                <div
+                    class="bg-gradient-to-r from-slate-900 to-slate-800 text-white p-8 rounded-xl shadow-lg border border-slate-700">
+                    <h2 class="text-3xl md:text-4xl font-bold serif-font mb-4">القناة الرسمية: جمال ابن آدم</h2>
+                    <p class="text-slate-100 leading-8 text-lg">
+                        مرحباً بكم في القناة الرسمية للمفكر 'جمال ابن آدم' (المعروف عالمياً باسم J.S. Adam). هذه القناة
+                        توثيق لرحلة إنسانية عميقة انتقلت من ظلمات الابتلاء إلى نور الحكمة. نقدم لكم الفن الهادف في أرقى
+                        صوره: أناشيد روحانية بدون موسيقى (Acapella)، قصائد في مكارم الأخلاق، وخواطر مستلهمة من تجربة
+                        واقعية قاسية بين الحياة والموت، تكللت بالشفاء والعودة بقلبٍ جديد.
+                    </p>
+                </div>
+
+                <!-- YouTube Embed -->
+                <div class="flex flex-col items-center">
+                    <h3 class="text-2xl font-bold mb-6 text-slate-800 serif-font">قائمة التشغيل الرسمية</h3>
+                    <div class="w-full aspect-video rounded-xl overflow-hidden shadow-lg border border-slate-200">
+                        <iframe width="100%" height="100%"
+                            src="https://www.youtube.com/embed/videoseries?list=PLx2j-W6hDiG6a9AAPBQgCRjG_t1Ge--dl"
+                            title="قناة جمال ابن آدم" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen></iframe>
+                    </div>
+                </div>
+
+                <!-- Books Section -->
+                <div class="bg-white p-8 rounded-xl shadow-md border border-slate-100">
+                    <h3 class="text-2xl font-bold mb-6 text-slate-800 serif-font">المؤلفات العالمية (Global
+                        Publications)</h3>
+                    <p class="text-slate-700 leading-8 mb-6">
+                        📚 كتبنا (متوفرة حالياً بالإنجليزية عبر دار Andrew Tips):
+                    </p>
+                    <div class="space-y-4 mb-6 text-slate-700 leading-8">
+                        <p>
+                            <strong>Breaths of Hope:</strong> مذكرات النجاة من العناية المركزة التي ألهمت قصائد هذه
+                            القناة.
+                        </p>
+                        <p>
+                            <strong>The Crypto Mentor:</strong> الكتاب الذي يشرح 'السبب المالي' الذي سخر الله لإنقاذ
+                            الكاتب.
+                        </p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="https://www.andrewtips.com" target="_blank" rel="noopener noreferrer"
+                            class="px-6 py-3 bg-slate-900 text-white rounded-lg font-bold hover:bg-slate-800 transition text-center">
+                            زيارة الموقع الرسمي للكتب
+                        </a>
+                        <a href="https://www.youtube.com/@AndrewTipsOfficial" target="_blank" rel="noopener noreferrer"
+                            class="px-6 py-3 bg-white border-2 border-slate-900 text-slate-900 rounded-lg font-bold hover:bg-slate-50 transition text-center">
+                            قناة Andrew Tips الرسمية
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
     </main>
 
     <!-- === FOOTER === -->
@@ -904,7 +968,7 @@
 
         // --- TAB SYSTEM ---
         function switchTab(tabId) {
-            ['tree', 'figures', 'library'].forEach(id => {
+            ['tree', 'figures', 'library', 'author'].forEach(id => {
                 document.getElementById(`view-${id}`).classList.add('hidden');
                 document.getElementById(`tab-${id}`).classList.remove('active', 'text-white/90');
                 document.getElementById(`tab-${id}`).classList.add('text-white/60');
