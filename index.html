@@ -365,7 +365,7 @@
                         <span id="modalDate" class="text-sm font-mono">التاريخ</span>
                     </div>
                 </div>
-                <button onclick="closeModal()" class="text-white/60 hover:text-white transition bg-black/10 hover:bg-black/20 rounded-full p-2">
+                <button id="modalCloseButton" onclick="closeModal()" class="text-white/60 hover:text-white transition bg-black/10 hover:bg-black/20 rounded-full p-2">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
                 </button>
             </div>
@@ -605,7 +605,18 @@
             return names[type];
         }
 
-        // --- EXTRA UX: CLOSE MODAL BY BACKDROP CLICK & ESCAPE ---
+        // --- EXTRA UX: CLOSE MODAL BY BACKDROP CLICK, ESCAPE, AND X BUTTON ---
+        // Ensure the X button always closes the modal
+        const closeButton = document.getElementById('modalCloseButton');
+        if (closeButton) {
+            closeButton.addEventListener('click', (e) => {
+                e.stopPropagation(); // prevent any parent handlers from interfering
+                if (!modal.classList.contains('hidden')) {
+                    closeModal();
+                }
+            });
+        }
+
         // Close when clicking on the dark background
         backdrop.addEventListener('click', () => {
             // Only close if modal is currently visible
