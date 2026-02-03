@@ -605,6 +605,22 @@
             return names[type];
         }
 
+        // --- EXTRA UX: CLOSE MODAL BY BACKDROP CLICK & ESCAPE ---
+        // Close when clicking on the dark background
+        backdrop.addEventListener('click', () => {
+            // Only close if modal is currently visible
+            if (!modal.classList.contains('hidden')) {
+                closeModal();
+            }
+        });
+
+        // Close when pressing the Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                closeModal();
+            }
+        });
+
         // Initialize
         renderTimeline();
 
