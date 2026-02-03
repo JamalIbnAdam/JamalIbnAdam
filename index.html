@@ -99,6 +99,117 @@
         .nav-btn.active::after { width: 80%; }
         .nav-btn:hover { color: var(--color-gold); }
 
+        /* --- Family Branches under Fadl (52+) --- */
+        .tree-section-title {
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            background: #1e293b;
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .tree-root {
+            text-align: center;
+            margin: 24px 0;
+            position: relative;
+        }
+        .tree-root::before {
+            content: '';
+            position: absolute;
+            top: -24px;
+            left: 50%;
+            height: 20px;
+            width: 3px;
+            background: #cbd5e1;
+            transform: translateX(-50%);
+        }
+        
+        .fadl-node {
+            background: #16a34a;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 999px;
+            display: inline-block;
+            font-weight: 700;
+            font-size: 1rem;
+            box-shadow: 0 6px 18px rgba(22, 163, 74, 0.35);
+            border: 2px solid #15803d;
+        }
+
+        .branches-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 3px solid #e2e8f0;
+            position: relative;
+            padding-bottom: 20px;
+        }
+        .branches-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            height: 18px;
+            width: 3px;
+            background: #e2e8f0;
+            transform: translateX(-50%);
+        }
+
+        .branch-card {
+            flex: 1;
+            min-width: 260px;
+            max-width: 320px;
+            background: #ffffff;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+            border-top: 5px solid #cbd5e1;
+            border-inline-start: 1px solid #e2e8f0;
+        }
+
+        .branch-header {
+            padding: 12px 14px;
+            text-align: center;
+            font-weight: 700;
+            color: #f9fafb;
+            font-size: 0.95rem;
+        }
+        .branch-body {
+            padding: 12px 14px 14px 14px;
+            font-size: 0.9rem;
+        }
+        
+        .sub-group {
+            margin-bottom: 10px;
+            border-bottom: 1px dashed #e5e7eb;
+            padding-bottom: 6px;
+        }
+        .sub-group:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .sub-group h4 {
+            margin: 0 0 4px 0;
+            color: #0f172a;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+        .sub-group ul {
+            margin: 0;
+            padding-right: 18px;
+            color: #4b5563;
+        }
+        .sub-group li {
+            margin-bottom: 3px;
+        }
+
         /* --- Book Cover Mockup --- */
         .book-spine {
             background: linear-gradient(90deg, #2c3e50 0%, #34495e 10%, #2c3e50 15%, #2c3e50 100%);
@@ -198,6 +309,114 @@
                 <div id="noResults" class="hidden text-center py-12">
                     <div class="text-4xl mb-2">🍂</div>
                     <p class="text-slate-400">لا توجد نتائج تطابق بحثك</p>
+                </div>
+            </div>
+
+            <!-- Branches from Fadl (under main tree) -->
+            <div id="new-branches" class="tree-section-title">
+                🔻  تفرع البطون من الجد (فضل بن عبد الله سبال العين) 🔻
+            </div>
+
+            <div class="tree-root">
+                <div class="fadl-node">
+                    52. فـضـل بن عبد الله<br>
+                    <span style="font-size:0.8rem; font-weight:400;">(الاسم الذي تتفرع منه البطون)</span>
+                </div>
+            </div>
+
+            <div class="branches-wrapper">
+                <!-- (2) أولاد أبوبكر بن إسماعيل - أشكدة -->
+                <div class="branch-card" style="border-top-color: #3498db;">
+                    <div class="branch-header" style="background: #3498db;">
+                        (2) أولاد أبوبكر بن إسماعيل<br>
+                        <span style="font-size:0.8rem; font-weight:400;">أشكدة</span>
+                    </div>
+                    <div class="branch-body">
+                        <div class="sub-group">
+                            <h4>أولاد الفقيه إسماعيل:</h4>
+                            <ul>
+                                <li>أولاد حمد</li>
+                                <li>أولاد محمد</li>
+                                <li>أولاد طاهر</li>
+                            </ul>
+                        </div>
+                        <div class="sub-group">
+                            <h4>أولاد قاسم:</h4>
+                            <ul>
+                                <li>أولاد نور الدين</li>
+                                <li>أولاد الحاج إبراهيم (بيت فضل)</li>
+                            </ul>
+                        </div>
+                        <div class="sub-group">
+                            <h4>أولاد محمد:</h4>
+                            <ul>
+                                <li>أولاد الرشيد</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- (3) أولاد بلقاسم بن إسماعيل - دبدب -->
+                <div class="branch-card" style="border-top-color: #e67e22;">
+                    <div class="branch-header" style="background: #e67e22;">
+                        (3) أولاد بلقاسم بن إسماعيل<br>
+                        <span style="font-size:0.8rem; font-weight:400;">دبدب</span>
+                    </div>
+                    <div class="branch-body">
+                        <div class="sub-group">
+                            <h4>الفروع:</h4>
+                            <ul>
+                                <li>أولاد الأخضري</li>
+                                <li>أولاد يوسف</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- (4) أولاد قاسم - زاوية براك + الفروع الجانبية -->
+                <div class="branch-card" style="border-top-color: #9b59b6;">
+                    <div class="branch-header" style="background: #9b59b6;">
+                        (4) أولاد قاسم<br>
+                        <span style="font-size:0.8rem; font-weight:400;">زاوية براك</span>
+                    </div>
+                    <div class="branch-body">
+                        <div class="sub-group">
+                            <h4>اللقب:</h4>
+                            <ul>
+                                <li>بيت القاضي الرشيد</li>
+                            </ul>
+                        </div>
+                        <div class="sub-group" style="background:#f9fafb; padding:6px 8px; border-radius:8px;">
+                            <h4>الفروع الجانبية:</h4>
+                            <ul>
+                                <li><strong>العثامنة:</strong> البرادنة أبناء بدر الدين (زاوية براك)</li>
+                                <li><strong>أولاد عبد الواحد:</strong> العلاونة والفقهاء (القرضة وزاوية براك)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- (1) أولاد سالم بن يوسف - آقار (العائلات الخمس) -->
+                <div class="branch-card" style="border-top-color: #c0392b; box-shadow: 0 10px 24px rgba(0,0,0,0.18);">
+                    <div class="branch-header" style="background: #c0392b;">
+                        (1) أولاد سالم بن يوسف<br>
+                        <span style="font-size:0.8rem; font-weight:400;">آقار (العائلات الخمس)</span>
+                    </div>
+                    <div class="branch-body">
+                        <div class="sub-group">
+                            <h4>البطون الخمسة:</h4>
+                            <ul>
+                                <li><strong>السوالم</strong></li>
+                                <li>الكداوي</li>
+                                <li>العلاوي</li>
+                                <li>البكور</li>
+                                <li>الوسفى</li>
+                            </ul>
+                        </div>
+                        <div style="text-align:center; font-size:0.8rem; color:#b91c1c; margin-top:6px; font-weight:bold;">
+                         
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -464,9 +683,7 @@
             { name: "50. عمر (الجداوي)", type: "epoch-4", date: "900-940 هـ", badge: "لقب محقق", src: "الوثيقة العائلية", logic: "توثيق المسار", story: "لقب (الجداوي) هو الوثيقة الدامغة التي تثبت رحلة العودة العكسية: الأندلس -> المغرب -> جدة (الحجاز) -> ثم الدخول إلى ليبيا. جاور بمكة فترة ثم انتقل لفزان." },
 
             // Epoch 5: Libya Foundation
-            { name: "51. عبد الله سبال العين", type: "epoch-5", date: "940-990 هـ", badge: "وثيقة استفتاء", src: "كتاب الأنصار في وادي الشاطئ", logic: "الجد المؤسس", story: "الرجل الصالح الذي (أجرى الماء بيده) بكرامة من الله. أسس زاوية براك، وحصلت ذريته على إعفاء ضريبي من دولة أولاد محمد لمكانتهم كمرابطين (أهل علم)." },
-            { name: "52. يوسف بن عبد الله", type: "epoch-5", date: "990-1040 هـ", badge: "تسلسلي", src: "كتاب الأنصار", logic: "تثبيت الدعائم", story: "حافظ على الوقف واستمر في التدريس بالزاوية." },
-            { name: "53. سالم بن يوسف", type: "epoch-5", date: "1040-1090 هـ", badge: "أثر مادي", src: "ضريح في آقار", logic: "الجد الجامع", story: "جد فرع آقار، وضريحه معروف ومزار، وتلتقي عنده مشجرات الفروع الحالية." }
+            { name: "51. عبد الله سبال العين", type: "epoch-5", date: "940-990 هـ", badge: "وثيقة استفتاء", src: "كتاب الأنصار في وادي الشاطئ", logic: "الجد المؤسس", story: "الرجل الصالح الذي (أجرى الماء بيده) بكرامة من الله. أسس زاوية براك، وحصلت ذريته على إعفاء ضريبي من دولة أولاد محمد لمكانتهم كمرابطين (أهل علم)." }
         ];
 
         // --- RENDER LOGIC ---
