@@ -40,6 +40,60 @@
             font-family: 'Amiri', serif;
         }
 
+        .poem-font {
+            font-family: 'Amiri', serif;
+        }
+
+        .poem-card {
+            background: #fdfaf1;
+            border: 2px solid #e2d1a6;
+            box-shadow: 0 12px 30px rgba(50, 41, 20, 0.12);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .poem-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(195, 160, 100, 0.12) 1px, transparent 1px);
+            background-size: 28px 28px;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .poem-section {
+            position: relative;
+            z-index: 1;
+        }
+
+        .poem-line {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: 1.05rem;
+            line-height: 2.2rem;
+            color: #3f2f17;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .poem-line .verse-part {
+            white-space: nowrap;
+        }
+
+        .poem-line .verse-divider {
+            color: #a68b5b;
+            font-weight: 700;
+        }
+
+        .poem-image {
+            border: 2px solid #e2d1a6;
+            background: #fffaf0;
+        }
+
         /* --- Animations --- */
         @keyframes fadeInUp {
             from {
@@ -434,6 +488,66 @@
             background: #f1f5f9;
             color: #0f172a;
         }
+
+        /* --- Mobile & Direction Fixes --- */
+        @media (max-width: 640px) {
+            body {
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+            }
+
+            h1 {
+                font-size: 1.5rem !important;
+            }
+
+            .branches-wrapper {
+                flex-direction: column !important;
+                align-items: center !important;
+            }
+
+            .branch-card {
+                width: 100% !important;
+                max-width: none !important;
+            }
+
+            .nav-tabs-container {
+                display: flex;
+                overflow-x: auto;
+                white-space: nowrap;
+                -webkit-overflow-scrolling: touch;
+                gap: 15px;
+                padding-bottom: 10px;
+            }
+
+            .filter-btn {
+                flex-shrink: 0;
+                font-size: 0.7rem !important;
+            }
+
+            .poem-line {
+                flex-direction: column;
+                gap: 4px;
+                text-align: center;
+            }
+
+            .poem-line .verse-part {
+                white-space: normal;
+            }
+
+            .poem-line .verse-divider {
+                display: none;
+            }
+        }
+
+        .ltr-mode .timeline-line {
+            right: auto;
+            left: 23px;
+        }
+
+        .ltr-mode .sub-group ul {
+            padding-right: 0;
+            padding-left: 18px;
+        }
     </style>
 </head>
 
@@ -480,20 +594,22 @@
             </div>
 
             <!-- Navigation Tabs -->
-            <div class="flex justify-center md:justify-start gap-8 mt-8 border-b border-white/10 pb-1">
+            <div class="nav-tabs-container no-scrollbar border-b border-white/10 mt-8">
                 <button onclick="switchTab('tree')" id="tab-tree"
-                    class="nav-btn active text-sm md:text-lg pb-2 text-white/90" data-i18n="tab_tree">
+                    class="nav-btn active text-sm md:text-lg px-4 pb-2 text-white/90" data-i18n="tab_tree">
                 </button>
                 <button onclick="switchTab('figures')" id="tab-figures"
-                    class="nav-btn text-sm md:text-lg pb-2 text-white/60" data-i18n="tab_figures">
+                    class="nav-btn text-sm md:text-lg px-4 pb-2 text-white/60" data-i18n="tab_figures">
                 </button>
                 <button onclick="switchTab('library')" id="tab-library"
-                    class="nav-btn text-sm md:text-lg pb-2 text-white/60" data-i18n="tab_library">
+                    class="nav-btn text-sm md:text-lg px-4 pb-2 text-white/60" data-i18n="tab_library">
+                </button>
+                <button onclick="switchTab('poem')" id="tab-poem"
+                    class="nav-btn text-sm md:text-lg px-4 pb-2 text-white/60" data-i18n="tab_poem">
                 </button>
                 <button onclick="switchTab('author')" id="tab-author"
-                    class="nav-btn text-sm md:text-lg pb-2 text-white/60" data-i18n="tab_author">
+                    class="nav-btn text-sm md:text-lg px-4 pb-2 text-white/60" data-i18n="tab_author">
                 </button>
-
             </div>
         </div>
     </header>
@@ -767,7 +883,70 @@
 
         </div>
 
-        <!-- ================= TAB 4: AUTHOR ================= -->
+        <!-- ================= TAB 4: POEM ================= -->
+        <div id="view-poem" class="hidden animate-fade-up">
+            <div class="poem-card rounded-2xl p-6 md:p-10 mb-8">
+                <div class="poem-section text-center mb-8">
+                    <div class="text-3xl mb-3">📜</div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-[#4a2f0a] poem-font" data-i18n="poem_main_title">
+                    </h2>
+                    <p class="mt-4 text-sm md:text-base text-[#5b4631] leading-relaxed max-w-3xl mx-auto"
+                        data-i18n="poem_intro"></p>
+                </div>
+
+                <div class="poem-section space-y-8">
+                    <div>
+                        <h3 class="text-xl md:text-2xl font-bold text-[#4a2f0a] poem-font mb-4"
+                            data-i18n="poem_ch1_title"></h3>
+                        <div class="poem-font" data-i18n-lines="poem_ch1_body"></div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl md:text-2xl font-bold text-[#4a2f0a] poem-font mb-4"
+                            data-i18n="poem_ch2_title"></h3>
+                        <div class="poem-font" data-i18n-lines="poem_ch2_body"></div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-[1.4fr_0.6fr] gap-6 items-center">
+                        <div>
+                            <h3 class="text-xl md:text-2xl font-bold text-[#4a2f0a] poem-font mb-4"
+                                data-i18n="poem_ch3_title"></h3>
+                            <div class="poem-font" data-i18n-lines="poem_ch3_body"></div>
+                        </div>
+                        <div class="poem-image rounded-xl p-4 text-center shadow-sm">
+                            <div class="text-5xl mb-3">🕌</div>
+                            <div class="text-xs uppercase tracking-widest text-[#a68b5b] mb-1">Placeholder</div>
+                            <div class="text-sm font-semibold text-[#4a2f0a]" data-i18n="poem_ch3_image_alt"></div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-[0.6fr_1.4fr] gap-6 items-center">
+                        <div class="poem-image rounded-xl p-4 text-center shadow-sm">
+                            <div class="text-5xl mb-3">🌴</div>
+                            <div class="text-xs uppercase tracking-widest text-[#a68b5b] mb-1">Placeholder</div>
+                            <div class="text-sm font-semibold text-[#4a2f0a]" data-i18n="poem_ch4_image_alt"></div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl md:text-2xl font-bold text-[#4a2f0a] poem-font mb-4"
+                                data-i18n="poem_ch4_title"></h3>
+                            <div class="poem-font" data-i18n-lines="poem_ch4_body"></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl md:text-2xl font-bold text-[#4a2f0a] poem-font mb-4"
+                            data-i18n="poem_ch5_title"></h3>
+                        <div class="poem-font" data-i18n-lines="poem_ch5_body"></div>
+                    </div>
+
+                    <div class="mt-6 text-center">
+                        <p class="poem-font text-base md:text-lg text-[#4a2f0a]" data-i18n="poem_conclusion"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= TAB 5: AUTHOR ================= -->
         <div id="view-author" class="hidden animate-fade-up">
             <div class="space-y-8">
 

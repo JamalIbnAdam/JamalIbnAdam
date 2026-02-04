@@ -39,12 +39,31 @@ function getLang() {
     return (getData().meta?.lang || 'ar').toLowerCase();
 }
 
-function applyDirection() {
-    const { meta } = getData();
-    const dir = meta?.dir || 'rtl';
+function initializeUI() {
+    const data = getData();
+    const dir = data.meta?.dir || 'rtl';
+    const lang = data.meta?.lang || 'ar';
+
+    htmlRoot.setAttribute('lang', lang);
     htmlRoot.setAttribute('dir', dir);
-    htmlRoot.setAttribute('lang', meta?.lang || 'ar');
     document.body.style.direction = dir;
+
+    if (dir === 'rtl') {
+        document.body.classList.remove('ltr-mode');
+        document.body.classList.add('rtl-mode');
+    } else {
+        document.body.classList.remove('rtl-mode');
+        document.body.classList.add('ltr-mode');
+    }
+
+    const flexContainers = document.querySelectorAll('.flex-row-responsive');
+    flexContainers.forEach((container) => {
+        if (dir === 'rtl') {
+            container.style.flexDirection = 'row-reverse';
+        } else {
+            container.style.flexDirection = 'row';
+        }
+    });
 }
 
 function getEpochName(type) {
@@ -89,6 +108,40 @@ function applyTranslations() {
         if (typeof value === 'string') {
             el.setAttribute('alt', value);
         }
+    });
+}
+
+function renderPoemSections() {
+    const { translations = {} } = getData();
+    document.querySelectorAll('[data-i18n-lines]').forEach((container) => {
+        const key = container.getAttribute('data-i18n-lines');
+        if (!key) return;
+        const value = translations[key];
+        if (!value) {
+            container.innerHTML = '';
+            return;
+        }
+
+        const lines = Array.isArray(value) ? value : [value];
+        container.innerHTML = '';
+
+        lines.forEach((line) => {
+            const lineEl = document.createElement('p');
+            lineEl.className = 'poem-line';
+            if (typeof line === 'string' && line.includes('...')) {
+                const parts = line.split('...');
+                const first = parts.shift()?.trim() || '';
+                const second = parts.join('...').trim();
+                lineEl.innerHTML = `
+                    <span class="verse-part">${first}</span>
+                    <span class="verse-divider">…</span>
+                    <span class="verse-part">${second}</span>
+                `;
+            } else {
+                lineEl.textContent = line;
+            }
+            container.appendChild(lineEl);
+        });
     });
 }
 
@@ -204,7 +257,7 @@ function closeModal() {
 }
 
 function switchTab(tabId) {
-    ['tree', 'figures', 'library', 'author'].forEach((id) => {
+    ['tree', 'figures', 'library', 'poem', 'author'].forEach((id) => {
         document.getElementById(`view-${id}`).classList.add('hidden');
         document.getElementById(`tab-${id}`).classList.remove('active', 'text-white/90');
         document.getElementById(`tab-${id}`).classList.add('text-white/60');
@@ -271,8 +324,9 @@ function loadLanguageScript(langCode) {
     script.id = 'family-tree-data';
     script.src = `data/data_${langCode}.js?t=${Date.now()}`;
     script.onload = () => {
-        applyDirection();
+        initializeUI();
         applyTranslations();
+        renderPoemSections();
         updateSearchPlaceholder();
         renderTimeline();
         restoreAnchorState();
@@ -327,8 +381,9 @@ document.querySelectorAll('.lang-option').forEach((button) => {
     });
 });
 
-applyDirection();
+initializeUI();
 applyTranslations();
+renderPoemSections();
 updateSearchPlaceholder();
 renderTimeline();
 
