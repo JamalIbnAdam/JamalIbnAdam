@@ -311,11 +311,13 @@
             box-shadow: inset 2px 0 5px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.3);
         }
 
-        /* --- ULTIMATE TRANSLATION FIX (MOBILE FIRST) --- */
-
-        /* 1. NUCLEAR HIDE for Google Bar */
+        /* --- 1. GOOGLE BAR KILLER (CSS LAYER) --- */
         .goog-te-banner-frame.skiptranslate,
-        .goog-te-banner-frame {
+        .goog-te-banner-frame,
+        .goog-te-balloon-frame,
+        #goog-gt-tt,
+        .goog-tooltip,
+        .goog-text-highlight {
             display: none !important;
             visibility: hidden !important;
             height: 0 !important;
@@ -329,66 +331,87 @@
             position: static !important;
         }
 
-        /* 2. Hide Google Tooltips/Popups */
-        .goog-tooltip,
-        .goog-tooltip:hover,
-        .goog-text-highlight {
-            display: none !important;
-            box-shadow: none !important;
+        /* --- 2. FLOATING LANGUAGE FAB (MOBILE FRIENDLY) --- */
+        .floating-lang-wrapper {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column-reverse;
+            align-items: center;
+            gap: 10px;
         }
 
-        /* 3. Header Dropdown Container */
-        .header-lang-container {
+        /* The Main Toggle Button */
+        .lang-toggle-btn {
+            width: 50px;
+            height: 50px;
+            background: #0f172a;
+            border: 2px solid #fbbf24;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
             display: flex;
             align-items: center;
-            background: rgba(255, 255, 255, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 8px;
-            padding: 2px 8px;
-            margin-left: auto;
-            height: 34px;
-            position: relative;
-            z-index: 1001;
+            justify-content: center;
+            font-size: 24px;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .globe-icon {
-            font-size: 14px;
-            margin-right: 6px;
-            filter: brightness(0) invert(1);
+        .lang-toggle-btn:hover {
+            transform: scale(1.1);
         }
 
-        .native-lang-select {
+        /* The Hidden Menu (Expands Upwards) */
+        .lang-menu {
+            background: white;
+            padding: 10px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            margin-bottom: 10px;
+        }
+
+        /* Show menu when active */
+        .floating-lang-wrapper.active .lang-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Language Options */
+        .lang-option {
             background: transparent;
             border: none;
-            color: white;
-            font-family: inherit;
-            font-size: 13px;
-            font-weight: 500;
+            padding: 8px 12px;
+            width: 100%;
+            text-align: left;
             cursor: pointer;
-            outline: none;
-            max-width: 110px;
+            font-weight: 600;
+            color: #334155;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            white-space: nowrap;
         }
 
-        .native-lang-select option {
-            background: #333;
-            color: white;
+        .lang-option:hover {
+            background: #f1f5f9;
+            color: #0f172a;
         }
 
-        /* 4. MOBILE LAYOUT FIX */
-        @media (max-width: 768px) {
-            .header-lang-container {
-                position: absolute;
-                top: 15px;
-                left: 15px;
-                margin: 0;
-                background: rgba(0, 0, 0, 0.6);
-                border: 1px solid rgba(255, 255, 255, 0.2);
-            }
-
-            header {
-                position: relative;
-                padding-top: 10px;
-            }
+        /* Flag Icons */
+        .flag-icon {
+            font-size: 18px;
         }
     </style>
 </head>
@@ -453,19 +476,6 @@
                     👤 جمال ابن آدم (J.S. Adam)
                 </button>
 
-                <div class="header-lang-container">
-                    <span class="globe-icon">�</span>
-                    <select class="native-lang-select" onchange="applyTranslation(this.value)">
-                        <option value="">Language</option>
-                        <option value="ar">العربية</option>
-                        <option value="en">English</option>
-                        <option value="tr">Türkçe</option>
-                        <option value="fr">Français</option>
-                        <option value="de">Deutsch</option>
-                        <option value="pl">Polski</option>
-                    </select>
-                </div>
-                <div id="google_translate_element" style="display:none;"></div>
             </div>
         </div>
     </header>
@@ -1231,7 +1241,39 @@
 
     </script>
 
+    <div class="floating-lang-wrapper" id="langFab">
+        <div class="lang-menu">
+            <button class="lang-option" onclick="selectLang('ar')"><span class="flag-icon">🇦🇪</span> العربية</button>
+            <button class="lang-option" onclick="selectLang('en')"><span class="flag-icon">🇺🇸</span> English</button>
+            <button class="lang-option" onclick="selectLang('tr')"><span class="flag-icon">🇹🇷</span> Türkçe</button>
+            <button class="lang-option" onclick="selectLang('pl')"><span class="flag-icon">🇵🇱</span> Polski</button>
+            <button class="lang-option" onclick="selectLang('fr')"><span class="flag-icon">🇫🇷</span> Français</button>
+            <button class="lang-option" onclick="selectLang('de')"><span class="flag-icon">🇩🇪</span> Deutsch</button>
+        </div>
+
+        <div class="lang-toggle-btn" onclick="toggleLangMenu()">
+            🌍
+        </div>
+    </div>
+
+    <div id="google_translate_element" style="display:none;"></div>
+
     <script type="text/javascript">
+        // 1. Toggle the Menu
+        function toggleLangMenu() {
+            document.getElementById('langFab').classList.toggle('active');
+        }
+
+        // 2. Select Language & Set Cookie
+        function selectLang(langCode) {
+            const domain = window.location.hostname;
+            document.cookie = `googtrans=/ar/${langCode}; path=/; domain=${domain}`;
+            document.cookie = `googtrans=/ar/${langCode}; path=/;`;
+
+            window.location.reload();
+        }
+
+        // 3. Initialize Google (Hidden)
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({
                 pageLanguage: 'ar',
@@ -1239,15 +1281,20 @@
             }, 'google_translate_element');
         }
 
-        function applyTranslation(langCode) {
-            if (!langCode) return;
+        // --- 4. THE BAR KILLER (MutationObserver) ---
+        const observer = new MutationObserver(() => {
+            if (document.body.style.top !== "0px" && document.body.style.top !== "") {
+                document.body.style.setProperty('top', '0px', 'important');
+                document.body.style.setProperty('position', 'static', 'important');
+            }
 
-            const domain = window.location.hostname;
-            document.cookie = `googtrans=/ar/${langCode}; path=/; domain=${domain}`;
-            document.cookie = `googtrans=/ar/${langCode}; path=/;`;
+            const banner = document.querySelector('.goog-te-banner-frame');
+            if (banner) {
+                banner.style.setProperty('display', 'none', 'important');
+            }
+        });
 
-            window.location.reload();
-        }
+        observer.observe(document.body, { attributes: true, childList: true, subtree: true });
     </script>
     <script type="text/javascript"
         src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
