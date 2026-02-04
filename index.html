@@ -1156,6 +1156,7 @@
             gap: 10px;
             border: 1px solid #e2e8f0;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .lang-switch-wrapper:hover {
@@ -1168,6 +1169,24 @@
             font-size: 24px;
             margin-right: 5px;
             animation: spin-slow 10s linear infinite;
+        }
+
+        /* Language Selector */
+        .lang-selector {
+            font-family: inherit;
+            font-weight: bold;
+            color: #475569;
+            background: transparent;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        .lang-selector:hover {
+            background: #f3f4f6;
         }
 
         /* Hide Google's ugly top bar */
@@ -1189,6 +1208,7 @@
             color: #475569 !important;
             cursor: pointer !important;
             padding-right: 20px;
+            font-size: 14px;
         }
 
         @keyframes spin-slow {
@@ -1202,19 +1222,53 @@
         }
     </style>
 
-    <div class="lang-switch-wrapper">
+    <div class="lang-switch-wrapper" onclick="toggleLanguageMenu()">
         <div class="lang-icon">🌍</div>
-        <div id="google_element_render"></div>
+        <select id="language-selector" class="lang-selector" onchange="translatePage(this.value)">
+            <option value="ar">العربية</option>
+            <option value="en">English</option>
+            <option value="fr">Français</option>
+            <option value="de">Deutsch</option>
+            <option value="tr">Türkçe</option>
+            <option value="pl">Polski</option>
+        </select>
     </div>
 
     <script type="text/javascript">
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({
                 pageLanguage: 'ar',
-                includedLanguages: 'ar,en,fr,de,tr,pl', // Arabic, English, French, German, Turkish, Polish
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-                autoDisplay: false
-            }, 'google_element_render');
+                includedLanguages: 'ar,en,fr,de,tr,pl',
+                autoDisplay: false,
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+
+        // This function triggers the hidden Google widget
+        function translatePage(lang) {
+            var frame = document.querySelector('.goog-te-combo');
+            if (!frame) {
+                // If the widget isn't fully loaded yet, try again in 500ms
+                setTimeout(function () { translatePage(lang) }, 500);
+                return;
+            }
+
+            frame.value = lang;
+            frame.dispatchEvent(new Event('change'));
+
+            // Optional: Force LTR for non-Arabic languages
+            if (lang !== 'ar' && lang !== '') {
+                document.body.style.direction = 'ltr';
+                document.body.style.textAlign = 'left';
+            } else {
+                document.body.style.direction = 'rtl';
+                document.body.style.textAlign = 'right';
+            }
+        }
+
+        function toggleLanguageMenu() {
+            var selector = document.getElementById('language-selector');
+            selector.focus();
         }
 
         // Script Loader
