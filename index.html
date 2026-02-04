@@ -310,6 +310,101 @@
             background: linear-gradient(90deg, #2c3e50 0%, #34495e 10%, #2c3e50 15%, #2c3e50 100%);
             box-shadow: inset 2px 0 5px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.3);
         }
+
+        /* ================================================== */
+        /* 🚀 PROFESSIONAL TRANSLATION STYLES (NO BANNER)     */
+        /* ================================================== */
+
+        /* 1. FORCE HIDE Google Top Bar & Frame */
+        .goog-te-banner-frame.skiptranslate {
+            display: none !important;
+            visibility: hidden !important;
+            height: 0 !important;
+        }
+
+        body {
+            top: 0px !important;
+            position: static !important;
+        }
+
+        /* 2. Hide Original Widget Elements */
+        #google_translate_element2,
+        .goog-te-balloon-frame,
+        .goog-tooltip,
+        .goog-text-highlight {
+            display: none !important;
+        }
+
+        font {
+            background-color: transparent !important;
+            box-shadow: none !important;
+        }
+
+        /* 3. Native Header Dropdown Styling */
+        .header-lang-select-container {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            /* Glass effect */
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 50px;
+            /* Pill shape */
+            padding: 4px 12px;
+            margin-left: 15px;
+            /* Spacing from other links */
+            height: 36px;
+            transition: all 0.3s ease;
+        }
+
+        .header-lang-select-container:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: #ffffff;
+        }
+
+        .globe-icon {
+            font-size: 1rem;
+            margin-right: 6px;
+            filter: grayscale(100%) brightness(200%);
+            /* Whitish icon */
+        }
+
+        .header-lang-select {
+            background: transparent;
+            border: none;
+            color: #fff;
+            /* White Text */
+            font-family: inherit;
+            font-weight: 500;
+            font-size: 0.85rem;
+            cursor: pointer;
+            outline: none;
+            appearance: none;
+            /* Remove default arrow */
+            min-width: 130px;
+        }
+
+        .header-lang-select option {
+            background: #0f172a;
+            /* Dark Blue Theme */
+            color: white;
+            padding: 8px;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .header-lang-select-container {
+                margin: 10px auto;
+                width: 100%;
+                /* Full width on mobile */
+                justify-content: center;
+                background: rgba(0, 0, 0, 0.3);
+            }
+
+            .header-lang-select {
+                text-align: center;
+                width: 100%;
+            }
+        }
     </style>
 </head>
 
@@ -372,6 +467,20 @@
                     class="nav-btn text-sm md:text-lg pb-2 text-white/60">
                     👤 جمال ابن آدم (J.S. Adam)
                 </button>
+
+                <!-- Language Selector -->
+                <div class="header-lang-select-container">
+                    <span class="globe-icon">🌍</span>
+                    <select class="header-lang-select" onchange="doGTranslate(this);">
+                        <option value="">Language / اللغة</option>
+                        <option value="ar|ar">🇦🇪 العربية (Original)</option>
+                        <option value="ar|en">🇺🇸 English</option>
+                        <option value="ar|tr">🇹🇷 Türkçe</option>
+                        <option value="ar|fr">🇫🇷 Français</option>
+                        <option value="ar|de">🇩🇪 Deutsch</option>
+                        <option value="ar|pl">🇵🇱 Polski</option>
+                    </select>
+                </div>
             </div>
         </div>
     </header>
@@ -1137,137 +1246,38 @@
 
     </script>
 
-    <!-- Google Translate Floating Widget -->
+    <!-- Google Translate Hidden Widget -->
     <div id="google_translate_element2" style="display:none;"></div>
 
-    <style>
-        /* Floating Button Container */
-        .lang-switch-wrapper {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            z-index: 9999;
-            background: white;
-            padding: 10px;
-            border-radius: 50px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border: 1px solid #e2e8f0;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .lang-switch-wrapper:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-        }
-
-        /* Icon */
-        .lang-icon {
-            font-size: 24px;
-            margin-right: 5px;
-            animation: spin-slow 10s linear infinite;
-        }
-
-        /* Language Selector */
-        .lang-selector {
-            font-family: inherit;
-            font-weight: bold;
-            color: #475569;
-            background: transparent;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 14px;
-        }
-
-        .lang-selector:hover {
-            background: #f3f4f6;
-        }
-
-        /* Hide Google's ugly top bar */
-        .goog-te-banner-frame.skiptranslate {
-            display: none !important;
-        }
-
-        body {
-            top: 0px !important;
-        }
-
-        /* Customize the Dropdown */
-        .goog-te-combo {
-            border: none !important;
-            outline: none !important;
-            background: transparent !important;
-            font-family: inherit !important;
-            font-weight: bold !important;
-            color: #475569 !important;
-            cursor: pointer !important;
-            padding-right: 20px;
-            font-size: 14px;
-        }
-
-        @keyframes spin-slow {
-            from {
-                transform: rotate(0deg);
-            }
-
-            to {
-                transform: rotate(360deg);
-            }
-        }
-    </style>
-
-    <div class="lang-switch-wrapper" onclick="toggleLanguageMenu()">
-        <div class="lang-icon">🌍</div>
-        <select id="language-selector" class="lang-selector" onchange="doGTranslate(this)">
-            <option value="ar|ar">العربية</option>
-            <option value="ar|en">English</option>
-            <option value="ar|fr">Français</option>
-            <option value="ar|de">Deutsch</option>
-            <option value="ar|tr">Türkçe</option>
-            <option value="ar|pl">Polski</option>
-        </select>
-    </div>
-
     <script type="text/javascript">
-        // 1. Initialize Google Translate
+        // 1. Initialize Google Translate (Hidden Mode)
         function googleTranslateElementInit2() {
             new google.translate.TranslateElement({
                 pageLanguage: 'ar',
-                autoDisplay: false
+                autoDisplay: false // Prevents the banner from appearing automatically
             }, 'google_translate_element2');
         }
 
-        // 2. The Logic to switch language
+        // 2. Cookie-Based Language Switcher
         function doGTranslate(selectField) {
             if (selectField.value) {
-                var lang = selectField.value.split('|')[1];
+                var langPair = selectField.value;
+                var targetLang = langPair.split('|')[1];
 
-                // Set the "googtrans" cookie which Google Translate checks
+                // Set the Google Cookie manually
                 var d = new Date();
-                d.setTime(d.getTime() + (30 * 24 * 60 * 60 * 1000)); // 30 Days
+                d.setTime(d.getTime() + (30 * 24 * 60 * 60 * 1000)); // Expires in 30 days
                 var expires = "expires=" + d.toUTCString();
 
-                // Set cookie for root path and domain
-                document.cookie = "googtrans=/ar/" + lang + "; " + expires + "; path=/";
-                document.cookie = "googtrans=/ar/" + lang + "; " + expires + "; path=/; domain=" + document.domain;
+                // Force cookie for root path
+                document.cookie = "googtrans=/ar/" + targetLang + "; " + expires + "; path=/";
 
-                // Reload to apply translation
+                // Reload page to apply translation cleanly
                 window.location.reload();
             }
         }
 
-        function toggleLanguageMenu() {
-            var selector = document.getElementById('language-selector');
-            selector.focus();
-        }
-
-        // 3. Load the Script
+        // 3. Load Google Script
         (function () {
             var gtScript = document.createElement('script');
             gtScript.type = 'text/javascript';
