@@ -17,53 +17,17 @@
         rel="stylesheet">
 
     <style>
-        /* --- General Theme & Typography --- */
+        /* --- 1. CORE & ANIMATIONS (Restored) --- */
         :root {
             --color-gold: #d4af37;
-            --color-gold-light: #f3e5ab;
-            --color-slate-dark: #1e293b;
             --color-paper: #fdfbf7;
-        }
-
-        html,
-        body {
-            width: 100%;
-            max-width: 100%;
-            overflow-x: hidden;
         }
 
         body {
             font-family: 'Noto Kufi Arabic', sans-serif;
             background-color: var(--color-paper);
-            color: #333;
-            background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
-            background-size: 24px 24px;
-        }
-
-        main,
-        header,
-        footer {
             overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        p,
-        h1,
-        h2,
-        h3,
-        h4 {
-            word-wrap: break-word;
-            overflow-wrap: anywhere;
-            hyphens: auto;
-        }
-
-        .flex {
-            flex-wrap: wrap;
+            /* Prevent horizontal scroll */
         }
 
         h1,
@@ -73,61 +37,7 @@
             font-family: 'Amiri', serif;
         }
 
-        .poem-font {
-            font-family: 'Amiri', serif;
-        }
-
-        .poem-card {
-            background: #fdfaf1;
-            border: 2px solid #e2d1a6;
-            box-shadow: 0 12px 30px rgba(50, 41, 20, 0.12);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .poem-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: radial-gradient(rgba(195, 160, 100, 0.12) 1px, transparent 1px);
-            background-size: 28px 28px;
-            opacity: 0.6;
-            pointer-events: none;
-        }
-
-        .poem-section {
-            position: relative;
-            z-index: 1;
-        }
-
-        .poem-line {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            font-size: 1.05rem;
-            line-height: 2.2rem;
-            color: #3f2f17;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-
-        .poem-line .verse-part {
-            white-space: nowrap;
-        }
-
-        .poem-line .verse-divider {
-            color: #a68b5b;
-            font-weight: 700;
-        }
-
-        .poem-image {
-            border: 2px solid #e2d1a6;
-            background: #fffaf0;
-        }
-
-        /* --- Animations --- */
+        /* Restore Fade Animation (Critical for content visibility) */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -144,359 +54,37 @@
             animation: fadeInUp 0.5s ease-out forwards;
         }
 
-        /* --- Custom Scrollbar --- */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
-        }
-
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-
-        /* --- Epoch Colors (Subtle & Professional) --- */
-        .epoch-1-border {
-            border-color: #8D6E63;
-        }
-
-        .epoch-2-border {
-            border-color: #4CAF50;
-        }
-
-        .epoch-3-border {
-            border-color: #C62828;
-        }
-
-        .epoch-4-border {
-            border-color: #7E57C2;
-        }
-
-        .epoch-5-border {
-            border-color: #1976D2;
-        }
-
-        .epoch-1-text {
-            color: #5D4037;
-        }
-
-        .epoch-2-text {
-            color: #2E7D32;
-        }
-
-        .epoch-3-text {
-            color: #C62828;
-        }
-
-        .epoch-4-text {
-            color: #512DA8;
-        }
-
-        .epoch-5-text {
-            color: #0D47A1;
-        }
-
-        .badge-verified {
-            background-color: #ecfdf5;
-            color: #065f46;
-            border: 1px solid #a7f3d0;
-        }
-
-        .badge-historical {
-            background-color: #f8fafc;
-            color: #475569;
-            border: 1px solid #e2e8f0;
-        }
-
-        /* --- Timeline Specifics --- */
-        .timeline-line {
-            position: absolute;
-            right: 23px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, #cbd5e1 0%, #cbd5e1 100%);
-            z-index: 0;
-        }
-
-        /* --- Tab System --- */
-        .nav-btn {
-            position: relative;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .nav-btn::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background-color: var(--color-gold);
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
-
-        .nav-btn.active {
-            color: var(--color-slate-dark);
-            font-weight: 700;
-        }
-
-        .nav-btn.active::after {
-            width: 80%;
-        }
-
-        .nav-btn:hover {
-            color: var(--color-gold);
-        }
-
-        /* --- Family Branches under Fadl (52+) --- */
-        .tree-section-title {
-            text-align: center;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            background: #1e293b;
-            color: white;
-            padding: 10px;
-            border-radius: 8px;
-            font-size: 1rem;
-        }
-
-        .tree-root {
-            text-align: center;
-            margin: 24px 0;
-            position: relative;
-        }
-
-        .tree-root::before {
-            content: '';
-            position: absolute;
-            top: -24px;
-            left: 50%;
-            height: 20px;
-            width: 3px;
-            background: #cbd5e1;
-            transform: translateX(-50%);
-        }
-
-        .fadl-node {
-            background: #16a34a;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 999px;
-            display: inline-block;
-            font-weight: 700;
-            font-size: 1rem;
-            box-shadow: 0 6px 18px rgba(22, 163, 74, 0.35);
-            border: 2px solid #15803d;
-        }
-
-        .branches-wrapper {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 16px;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 3px solid #e2e8f0;
-            position: relative;
-            padding-bottom: 20px;
-        }
-
-        .branches-wrapper::before {
-            content: '';
-            position: absolute;
-            top: -18px;
-            left: 50%;
-            height: 18px;
-            width: 3px;
-            background: #e2e8f0;
-            transform: translateX(-50%);
-        }
-
-        .branch-card {
-            flex: 1;
-            min-width: 260px;
-            max-width: 320px;
-            background: #ffffff;
-            border-radius: 14px;
-            overflow: hidden;
-            box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
-            border-top: 5px solid #cbd5e1;
-            border-inline-start: 1px solid #e2e8f0;
-        }
-
-        .branch-header {
-            padding: 12px 14px;
-            text-align: center;
-            font-weight: 700;
-            color: #f9fafb;
-            font-size: 0.95rem;
-        }
-
-        .branch-body {
-            padding: 12px 14px 14px 14px;
-            font-size: 0.9rem;
-        }
-
-        .sub-group {
-            margin-bottom: 10px;
-            border-bottom: 1px dashed #e5e7eb;
-            padding-bottom: 6px;
-        }
-
-        .sub-group:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-
-        .sub-group h4 {
-            margin: 0 0 4px 0;
-            color: #0f172a;
-            font-size: 0.9rem;
-            font-weight: 700;
-        }
-
-        .sub-group ul {
-            margin: 0;
-            padding-right: 18px;
-            color: #4b5563;
-        }
-
-        .sub-group li {
-            margin-bottom: 3px;
-        }
-
-        .contact-section {
-            background: linear-gradient(135deg, #0f172a 0%, #111827 100%);
-            border: 1px solid #334155;
-        }
-
-        .contact-input {
-            background: #0b1220;
-            border: 1px solid #334155;
-            color: #f8fafc;
-        }
-
-        .contact-input::placeholder {
-            color: #94a3b8;
-        }
-
-        .contact-label {
-            display: block;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 6px;
-            color: #e2e8f0;
-        }
-
-        /* --- Book Cover Mockup --- */
-        .book-spine {
-            background: linear-gradient(90deg, #2c3e50 0%, #34495e 10%, #2c3e50 15%, #2c3e50 100%);
-            box-shadow: inset 2px 0 5px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        /* --- 1. LOADING CURTAIN (Professional Transition) --- */
-        #lang-loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #0f172a;
-            z-index: 100000;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease;
-        }
-
-        #lang-loader.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 4px solid rgba(255, 255, 255, 0.1);
-            border-top: 4px solid #fbbf24;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-bottom: 15px;
-        }
-
-        .loading-text {
-            color: #fbbf24;
-            font-family: serif;
-            font-size: 1.2rem;
-            letter-spacing: 1px;
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* Floating Wrapper - Fixed to viewport */
+        /* --- 2. FLOATING LANGUAGE BUTTON (Fixed) --- */
         .floating-lang-wrapper {
             position: fixed;
-            bottom: 25px;
+            bottom: 30px;
             left: 25px;
-            /* Default for LTR */
-            z-index: 9999;
+            /* LTR Default */
+            z-index: 10000;
+            /* High z-index to sit on top */
             display: flex;
             flex-direction: column-reverse;
             /* Menu opens UPWARDS */
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
-        /* RTL Support: Move button to right if Arabic */
+        /* RTL Position */
         html[dir="rtl"] .floating-lang-wrapper {
             left: auto;
             right: 25px;
         }
 
-        /* The Main Toggle Button */
         .lang-toggle-btn {
-            width: 56px;
-            height: 56px;
+            width: 55px;
+            height: 55px;
             background: #0f172a;
             border: 2px solid #d4af37;
-            /* Gold */
             border-radius: 50%;
             color: white;
             font-size: 24px;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -507,202 +95,119 @@
             transform: scale(0.95);
         }
 
-        /* The Menu (Hidden by default, pops up) */
         .lang-menu {
             background: white;
             padding: 8px;
             border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             display: flex;
             flex-direction: column;
-            gap: 6px;
-            margin-bottom: 10px;
-            /* Space between button and menu */
-
-            /* Animation State */
+            gap: 5px;
+            /* Hidden State */
             opacity: 0;
             visibility: hidden;
-            transform: translateY(20px) scale(0.9);
-            transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transform: translateY(10px);
+            transition: all 0.2s ease;
         }
 
-        /* Active State */
         .floating-lang-wrapper.active .lang-menu {
             opacity: 1;
             visibility: visible;
-            transform: translateY(0) scale(1);
+            transform: translateY(0);
         }
 
         .lang-option {
-            background: transparent;
+            background: none;
             border: none;
-            padding: 10px 16px;
-            width: 100%;
+            padding: 8px 12px;
             text-align: left;
+            width: 100%;
             cursor: pointer;
             font-weight: 600;
-            color: #334155;
-            border-radius: 8px;
             display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 15px;
-            white-space: nowrap;
+            gap: 8px;
+            border-radius: 6px;
         }
 
         .lang-option:hover {
-            background: #f1f5f9;
-            color: #0f172a;
+            background-color: #f1f5f9;
         }
 
-        .ltr-mode .timeline-line {
-            right: auto;
-            left: 23px;
-        }
+        /* --- 3. MOBILE RESPONSIVENESS (App Feel) --- */
+        @media (max-width: 768px) {
 
-        .ltr-mode .text-right,
-        .ltr-mode .md\:text-right {
-            text-align: left !important;
-        }
-
-        .ltr-mode .sub-group ul {
-            padding-right: 0;
-            padding-left: 18px;
-        }
-
-        /* --- Mobile & Direction Fixes --- */
-        @media (max-width: 640px) {
-            body {
-                font-size: 16px;
-                word-wrap: break-word;
-                overflow-wrap: anywhere;
-            }
-
-            .flex {
-                flex-direction: column;
-            }
-
-            h1 {
-                font-size: 1.5rem !important;
-            }
-
-            .nav-tabs-container {
-                display: flex;
-                overflow-x: auto;
-                white-space: nowrap;
-                -webkit-overflow-scrolling: touch;
-                gap: 12px;
-                padding-bottom: 10px;
-            }
-
-            .nav-btn {
-                font-size: 0.75rem !important;
-                padding-left: 12px !important;
-                padding-right: 12px !important;
-                white-space: nowrap;
-            }
-
-            .filter-btn {
-                flex-shrink: 0;
-                font-size: 0.7rem !important;
-            }
-
-            .poem-line {
-                flex-direction: column;
-                gap: 4px;
-                text-align: center;
-            }
-
-            .poem-line .verse-part {
-                white-space: normal;
-            }
-
-            .poem-line .verse-divider {
-                display: none;
-            }
-        }
-
-        /* --- GLOBAL MOBILE RESET (ALL LANGUAGES) --- */
-        @media screen and (max-width: 768px) {
-
-            html,
-            body {
-                width: 100% !important;
-                min-width: 100% !important;
-                max-width: 100vw !important;
-                overflow-x: hidden !important;
-                margin: 0 !important;
-                padding: 0 !important;
-                font-size: 16px !important;
-            }
-
-            main,
+            /* Force Containers to fit screen */
             .container,
-            #view-tree,
-            #view-figures,
-            #view-library,
-            #view-author,
-            #view-poem {
+            main {
                 width: 100% !important;
-                max-width: 100% !important;
                 padding-left: 16px !important;
                 padding-right: 16px !important;
-                box-sizing: border-box !important;
+                max-width: 100vw !important;
             }
 
-            .flex,
-            .flex-row,
-            .flex-row-responsive,
-            .grid,
-            .branches-wrapper {
-                display: flex !important;
-                flex-direction: column !important;
-                width: 100% !important;
+            /* Prevent Text Cut-off */
+            h1,
+            h2,
+            p {
+                word-wrap: break-word;
+                overflow-wrap: anywhere;
+                white-space: normal !important;
             }
 
-            .branch-card,
-            .figure-card,
-            .poem-container {
-                width: 100% !important;
-                min-width: 0 !important;
-                margin-bottom: 16px !important;
-            }
-
-            .figures-grid {
-                display: flex !important;
-                flex-direction: column !important;
-            }
-
-            .figures-grid>div {
-                width: 100% !important;
-            }
-
-            .contact-input,
-            .contact-section input,
-            .contact-section textarea,
-            .contact-section button {
-                width: 100% !important;
-                min-height: 48px !important;
-            }
-
+            /* Header Text Sizing */
             h1 {
-                font-size: 24px !important;
+                font-size: 1.5rem !important;
                 line-height: 1.4 !important;
             }
 
-            h2 {
-                font-size: 20px !important;
+            /* Stack Flex Containers Vertically */
+            .flex-row-responsive,
+            .branches-wrapper,
+            .figures-grid,
+            .stats-grid {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 16px !important;
             }
 
-            p,
-            li,
-            span {
-                font-size: 16px !important;
+            /* Cards Full Width */
+            .branch-card,
+            .figure-card,
+            .poem-card {
+                width: 100% !important;
+                max-width: none !important;
             }
 
-            .floating-lang-wrapper {
-                bottom: 80px;
+            /* Navigation Tabs (Scrollable) */
+            .nav-tabs-container {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 5px;
             }
+
+            .nav-btn {
+                white-space: nowrap;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* --- 4. DATA LOADER --- */
+        #lang-loader {
+            position: fixed;
+            inset: 0;
+            background: #0f172a;
+            z-index: 50000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        #lang-loader.visible {
+            opacity: 1;
+            pointer-events: all;
         }
     </style>
 </head>
