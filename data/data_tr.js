@@ -160,12 +160,20 @@ window.FamilyTreeData = {
         btn_visit_youtube: "Resmi Andrew Tips Kanalı",
 
         // Contact Section
-        contact_header: "Cemal ile İletişime Geçin",
-        contact_name_placeholder: "Adınız",
-        contact_email_placeholder: "E-posta adresiniz",
-        contact_message_placeholder: "Mesajınızı yazın...",
+        contact_header: "Cemal İbn Adem ile İletişim",
+        contact_name_label: "Ad Soyad",
+        contact_email_label: "E-posta Adresi",
+        contact_message_label: "Mesajınız",
+        btn_send: "Mesajı Gönder",
+        form_success_title: "Mesaj Gönderildi",
+        form_success_message:
+            "Bizimle iletişime geçtiğiniz için teşekkür ederiz. Mesajınızı aldık ve en kısa sürede size geri döneceğiz.",
+        contact_name_placeholder: "Ad Soyad",
+        contact_email_placeholder: "E-posta Adresi",
+        contact_message_placeholder: "Mesajınız",
         btn_send_message: "Mesajı Gönder",
-        form_success_feedback: "Mesajınız alınmıştır. En kısa sürede size dönüş yapılacaktır.",
+        form_success_feedback:
+            "Bizimle iletişime geçtiğiniz için teşekkür ederiz. Mesajınızı aldık ve en kısa sürede size geri döneceğiz.",
 
         // Footer
         footer_rights: "© 2026 jamalibnadam.com - Al-Sabal Al-Ain Belgesel Kaydı - Tüm Hakları Saklıdır.",

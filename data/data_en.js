@@ -172,13 +172,20 @@ window.FamilyTreeData = {
         btn_visit_youtube: "Official Andrew Tips Channel",
 
         // Contact Section
-        contact_header: "Contact Jamal",
-        contact_name_placeholder: "Your name",
-        contact_email_placeholder: "Your email address",
-        contact_message_placeholder: "Write your message here...",
+        contact_header: "Contact Jamal Ibn Adam",
+        contact_name_label: "Full Name",
+        contact_email_label: "Email Address",
+        contact_message_label: "Your Message",
+        btn_send: "Send Message",
+        form_success_title: "Message Sent",
+        form_success_message:
+            "Thank you for reaching out. We have received your message and will get back to you soon.",
+        contact_name_placeholder: "Full Name",
+        contact_email_placeholder: "Email Address",
+        contact_message_placeholder: "Your Message",
         btn_send_message: "Send Message",
         form_success_feedback:
-            "Thank you for reaching out. Your message has been received, and I will respond as soon as possible.",
+            "Thank you for reaching out. We have received your message and will get back to you soon.",
 
         // Footer
         footer_rights: "© 2026 jamalibnadam.com - The Documented Record of Al-Sabal Al-Ain - All Rights Reserved.",
