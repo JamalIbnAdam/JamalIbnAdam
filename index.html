@@ -311,15 +311,17 @@
             box-shadow: inset 2px 0 5px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.3);
         }
 
-        /* ================================================== */
-        /* 🚀 PROFESSIONAL TRANSLATION STYLES (NO BANNER)     */
-        /* ================================================== */
+        /* --- ULTIMATE TRANSLATION FIX (MOBILE FIRST) --- */
 
-        /* 1. FORCE HIDE Google Top Bar & Frame */
-        .goog-te-banner-frame.skiptranslate {
+        /* 1. NUCLEAR HIDE for Google Bar */
+        .goog-te-banner-frame.skiptranslate,
+        .goog-te-banner-frame {
             display: none !important;
             visibility: hidden !important;
             height: 0 !important;
+            width: 0 !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
         }
 
         body {
@@ -327,82 +329,65 @@
             position: static !important;
         }
 
-        /* 2. Hide Original Widget Elements */
-        #google_translate_element2,
-        .goog-te-balloon-frame,
+        /* 2. Hide Google Tooltips/Popups */
         .goog-tooltip,
+        .goog-tooltip:hover,
         .goog-text-highlight {
             display: none !important;
-        }
-
-        font {
-            background-color: transparent !important;
             box-shadow: none !important;
         }
 
-        /* 3. Native Header Dropdown Styling */
-        .header-lang-select-container {
+        /* 3. Header Dropdown Container */
+        .header-lang-container {
             display: flex;
             align-items: center;
-            background: rgba(255, 255, 255, 0.1);
-            /* Glass effect */
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            border-radius: 50px;
-            /* Pill shape */
-            padding: 4px 12px;
-            margin-left: 15px;
-            /* Spacing from other links */
-            height: 36px;
-            transition: all 0.3s ease;
-        }
-
-        .header-lang-select-container:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: #ffffff;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            padding: 2px 8px;
+            margin-left: auto;
+            height: 34px;
+            position: relative;
+            z-index: 1001;
         }
 
         .globe-icon {
-            font-size: 1rem;
+            font-size: 14px;
             margin-right: 6px;
-            filter: grayscale(100%) brightness(200%);
-            /* Whitish icon */
+            filter: brightness(0) invert(1);
         }
 
-        .header-lang-select {
+        .native-lang-select {
             background: transparent;
             border: none;
-            color: #fff;
-            /* White Text */
+            color: white;
             font-family: inherit;
+            font-size: 13px;
             font-weight: 500;
-            font-size: 0.85rem;
             cursor: pointer;
             outline: none;
-            appearance: none;
-            /* Remove default arrow */
-            min-width: 130px;
+            max-width: 110px;
         }
 
-        .header-lang-select option {
-            background: #0f172a;
-            /* Dark Blue Theme */
+        .native-lang-select option {
+            background: #333;
             color: white;
-            padding: 8px;
         }
 
-        /* Mobile Responsiveness */
+        /* 4. MOBILE LAYOUT FIX */
         @media (max-width: 768px) {
-            .header-lang-select-container {
-                margin: 10px auto;
-                width: 100%;
-                /* Full width on mobile */
-                justify-content: center;
-                background: rgba(0, 0, 0, 0.3);
+            .header-lang-container {
+                position: absolute;
+                top: 15px;
+                left: 15px;
+                margin: 0;
+                background: rgba(0, 0, 0, 0.6);
+                border: 1px solid rgba(255, 255, 255, 0.2);
             }
 
-            .header-lang-select {
-                text-align: center;
-                width: 100%;
+            header {
+                position: relative;
+                padding-top: 10px;
             }
         }
     </style>
@@ -468,19 +453,19 @@
                     👤 جمال ابن آدم (J.S. Adam)
                 </button>
 
-                <!-- Language Selector -->
-                <div class="header-lang-select-container">
-                    <span class="globe-icon">🌍</span>
-                    <select class="header-lang-select" onchange="doGTranslate(this);">
-                        <option value="">Language / اللغة</option>
-                        <option value="ar|ar">🇦🇪 العربية (Original)</option>
-                        <option value="ar|en">🇺🇸 English</option>
-                        <option value="ar|tr">🇹🇷 Türkçe</option>
-                        <option value="ar|fr">🇫🇷 Français</option>
-                        <option value="ar|de">🇩🇪 Deutsch</option>
-                        <option value="ar|pl">🇵🇱 Polski</option>
+                <div class="header-lang-container">
+                    <span class="globe-icon">�</span>
+                    <select class="native-lang-select" onchange="applyTranslation(this.value)">
+                        <option value="">Language</option>
+                        <option value="ar">العربية</option>
+                        <option value="en">English</option>
+                        <option value="tr">Türkçe</option>
+                        <option value="fr">Français</option>
+                        <option value="de">Deutsch</option>
+                        <option value="pl">Polski</option>
                     </select>
                 </div>
+                <div id="google_translate_element" style="display:none;"></div>
             </div>
         </div>
     </header>
@@ -1246,46 +1231,26 @@
 
     </script>
 
-    <!-- Google Translate Hidden Widget -->
-    <div id="google_translate_element2" style="display:none;"></div>
-
     <script type="text/javascript">
-        // 1. Initialize Google Translate (Hidden Mode)
-        function googleTranslateElementInit2() {
+        function googleTranslateElementInit() {
             new google.translate.TranslateElement({
                 pageLanguage: 'ar',
-                autoDisplay: false // Prevents the banner from appearing automatically
-            }, 'google_translate_element2');
+                autoDisplay: false
+            }, 'google_translate_element');
         }
 
-        // 2. Cookie-Based Language Switcher
-        function doGTranslate(selectField) {
-            if (selectField.value) {
-                var langPair = selectField.value;
-                var targetLang = langPair.split('|')[1];
+        function applyTranslation(langCode) {
+            if (!langCode) return;
 
-                // Set the Google Cookie manually
-                var d = new Date();
-                d.setTime(d.getTime() + (30 * 24 * 60 * 60 * 1000)); // Expires in 30 days
-                var expires = "expires=" + d.toUTCString();
+            const domain = window.location.hostname;
+            document.cookie = `googtrans=/ar/${langCode}; path=/; domain=${domain}`;
+            document.cookie = `googtrans=/ar/${langCode}; path=/;`;
 
-                // Force cookie for root path
-                document.cookie = "googtrans=/ar/" + targetLang + "; " + expires + "; path=/";
-
-                // Reload page to apply translation cleanly
-                window.location.reload();
-            }
+            window.location.reload();
         }
-
-        // 3. Load Google Script
-        (function () {
-            var gtScript = document.createElement('script');
-            gtScript.type = 'text/javascript';
-            gtScript.async = true;
-            gtScript.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2';
-            document.body.appendChild(gtScript);
-        })();
     </script>
+    <script type="text/javascript"
+        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 
 </html>
