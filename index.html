@@ -1284,16 +1284,20 @@
 
     </script>
 
+    <div id="lang-loader">
+        <div class="spinner"></div>
+        <div class="loading-text">Updating Language...</div>
+    </div>
+
     <div class="floating-lang-wrapper" id="langFab">
         <div class="lang-menu">
-            <button class="lang-option" onclick="selectLang('ar')"><span class="flag-icon">🇦🇪</span> العربية</button>
-            <button class="lang-option" onclick="selectLang('en')"><span class="flag-icon">🇺🇸</span> English</button>
-            <button class="lang-option" onclick="selectLang('tr')"><span class="flag-icon">🇹🇷</span> Türkçe</button>
-            <button class="lang-option" onclick="selectLang('pl')"><span class="flag-icon">🇵🇱</span> Polski</button>
-            <button class="lang-option" onclick="selectLang('fr')"><span class="flag-icon">🇫🇷</span> Français</button>
-            <button class="lang-option" onclick="selectLang('de')"><span class="flag-icon">🇩🇪</span> Deutsch</button>
+            <button class="lang-option" onclick="changeLanguage('ar')"><span>��</span> العربية</button>
+            <button class="lang-option" onclick="changeLanguage('en')"><span>🇺🇸</span> English</button>
+            <button class="lang-option" onclick="changeLanguage('tr')"><span>🇹🇷</span> Türkçe</button>
+            <button class="lang-option" onclick="changeLanguage('fr')"><span>��</span> Français</button>
+            <button class="lang-option" onclick="changeLanguage('de')"><span>��</span> Deutsch</button>
+            <button class="lang-option" onclick="changeLanguage('pl')"><span>��</span> Polski</button>
         </div>
-
         <div class="lang-toggle-btn" onclick="toggleLangMenu()">
             🌍
         </div>
@@ -1302,21 +1306,35 @@
     <div id="google_translate_element" style="display:none;"></div>
 
     <script type="text/javascript">
-        // 1. Toggle the Menu
+        // 1. Toggle Menu
         function toggleLangMenu() {
             document.getElementById('langFab').classList.toggle('active');
         }
 
-        // 2. Select Language & Set Cookie
-        function selectLang(langCode) {
-            const domain = window.location.hostname;
-            document.cookie = `googtrans=/ar/${langCode}; path=/; domain=${domain}`;
-            document.cookie = `googtrans=/ar/${langCode}; path=/;`;
+        // 2. Close if clicked outside
+        document.addEventListener('click', function (e) {
+            if (!document.getElementById('langFab').contains(e.target)) {
+                document.getElementById('langFab').classList.remove('active');
+            }
+        });
 
-            window.location.reload();
+        // 3. SMART CHANGE LANGUAGE (With Loading Curtain)
+        function changeLanguage(langCode) {
+            // A. Show Loading Curtain immediately
+            document.getElementById('lang-loader').classList.add('visible');
+
+            // B. Set Cookies (Wait 300ms for visual smoothness)
+            setTimeout(() => {
+                const domain = window.location.hostname;
+                document.cookie = `googtrans=/ar/${langCode}; path=/; domain=${domain}`;
+                document.cookie = `googtrans=/ar/${langCode}; path=/;`;
+
+                // C. Reload Page
+                window.location.reload();
+            }, 300);
         }
 
-        // 3. Initialize Google (Hidden)
+        // 4. Initialize Google (Silent)
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({
                 pageLanguage: 'ar',
@@ -1324,21 +1342,24 @@
             }, 'google_translate_element');
         }
 
-        // --- 4. THE BAR KILLER (MutationObserver) ---
+        // 5. THE GUARD DOG (MutationObserver)
+        // Prevents Google from pushing the page down
         const observer = new MutationObserver(() => {
-            if (document.body.style.top !== "0px" && document.body.style.top !== "") {
-                document.body.style.setProperty('top', '0px', 'important');
-                document.body.style.setProperty('position', 'static', 'important');
-            }
-
+            const html = document.documentElement;
+            const body = document.body;
             const banner = document.querySelector('.goog-te-banner-frame');
-            if (banner) {
-                banner.style.setProperty('display', 'none', 'important');
-            }
+
+            // Lock HTML & Body to top
+            if (html.style.top !== '0px') html.style.setProperty('top', '0px', 'important');
+            if (body.style.top !== '0px') body.style.setProperty('top', '0px', 'important');
+
+            // Hide Banner
+            if (banner) banner.style.setProperty('display', 'none', 'important');
         });
 
-        observer.observe(document.body, { attributes: true, childList: true, subtree: true });
+        observer.observe(document.documentElement, { attributes: true, childList: true, subtree: true });
     </script>
+
     <script type="text/javascript"
         src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
