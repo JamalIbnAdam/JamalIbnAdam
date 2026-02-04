@@ -54,6 +54,7 @@ window.FamilyTreeData = {
         ],
         poem_conclusion:
             "🤲 Conclusion & Loyalty: O Lord, preserve the Ansar in every land, and send prayers upon Muhammad ﷺ who ennobled our lineage.",
+        poem_credits: "✍️ Lyrics: Jamal Ibn Adam (AI Assisted) | 🎵 Exclusive YouTube Nasheed",
         poem_ch3_image_alt: "Munidhir Al-Ifriqi - placeholder portrait",
         poem_ch4_image_alt: "South Palms - placeholder landscape",
 

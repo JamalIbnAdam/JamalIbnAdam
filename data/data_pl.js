@@ -50,6 +50,7 @@ window.FamilyTreeData = {
         ],
         poem_conclusion:
             "🤲 Zakończenie i Wierność: Boże, zachowaj Ansarów i obdarz błogosławieństwem Proroka ﷺ.",
+        poem_credits: "✍️ Tekst: Jamal Ibn Adam (wspomagany AI) | 🎵 Ekskluzywny Nasheed na YouTube",
         poem_ch3_image_alt: "Munidhir al-Ifriqi - szkic portretu",
         poem_ch4_image_alt: "Południowe palmy - szkic krajobrazu",
 

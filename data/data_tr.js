@@ -50,6 +50,7 @@ window.FamilyTreeData = {
         ],
         poem_conclusion:
             "🤲 Sonuç ve Sadakat: Allah'ım Ensar'ı muhafaza eyle, Peygamberimiz ﷺ'e salat ve selam olsun.",
+        poem_credits: "✍️ Sözler: Cemal İbn Adem (Yapay Zeka Destekli) | 🎵 Özel YouTube İlahi",
         poem_ch3_image_alt: "Munidhir el-İfriki - yer tutucu portre",
         poem_ch4_image_alt: "Güney hurmalıkları - yer tutucu manzara",
 
