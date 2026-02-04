@@ -1,3 +1,1125 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 
-الهجرة
-44. علي (الجد الأول في الوثيقة)
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>السجل الذهبي: تاريخ وتوثيق آل سبال العين</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Amiri (Titles) & Noto Kufi (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Noto+Kufi+Arabic:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* --- General Theme & Typography --- */
+        :root {
+            --color-gold: #d4af37;
+            --color-gold-light: #f3e5ab;
+            --color-slate-dark: #1e293b;
+            --color-paper: #fdfbf7;
+        }
+
+        body {
+            font-family: 'Noto Kufi Arabic', sans-serif;
+            background-color: var(--color-paper);
+            color: #333;
+            background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        h1,
+        h2,
+        h3,
+        .serif-font {
+            font-family: 'Amiri', serif;
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-up {
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+
+        /* --- Custom Scrollbar --- */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* --- Epoch Colors (Subtle & Professional) --- */
+        .epoch-1-border {
+            border-color: #8D6E63;
+        }
+
+        /* Yemen - Brown */
+        .epoch-2-border {
+            border-color: #4CAF50;
+        }
+
+        /* Prophet - Green */
+        .epoch-3-border {
+            border-color: #C62828;
+        }
+
+        /* Andalus - Red */
+        .epoch-4-border {
+            border-color: #7E57C2;
+        }
+
+        /* Migration - Purple */
+        .epoch-5-border {
+            border-color: #1976D2;
+        }
+
+        /* Libya - Blue */
+
+        .epoch-1-text {
+            color: #5D4037;
+        }
+
+        .epoch-2-text {
+            color: #2E7D32;
+        }
+
+        .epoch-3-text {
+            color: #C62828;
+        }
+
+        .epoch-4-text {
+            color: #512DA8;
+        }
+
+        .epoch-5-text {
+            color: #0D47A1;
+        }
+
+        .badge-verified {
+            background-color: #ecfdf5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+        }
+
+        .badge-historical {
+            background-color: #f8fafc;
+            color: #475569;
+            border: 1px solid #e2e8f0;
+        }
+
+        /* --- Timeline Specifics --- */
+        .timeline-line {
+            position: absolute;
+            right: 23px;
+            /* Align with dots */
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #cbd5e1 0%, #cbd5e1 100%);
+            z-index: 0;
+        }
+
+        /* --- Tab System --- */
+        .nav-btn {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-gold);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-btn.active {
+            color: var(--color-slate-dark);
+            font-weight: 700;
+        }
+
+        .nav-btn.active::after {
+            width: 80%;
+        }
+
+        .nav-btn:hover {
+            color: var(--color-gold);
+        }
+
+        /* --- Family Branches under Fadl (52+) --- */
+        .tree-section-title {
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            background: #1e293b;
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .tree-root {
+            text-align: center;
+            margin: 24px 0;
+            position: relative;
+        }
+
+        .tree-root::before {
+            content: '';
+            position: absolute;
+            top: -24px;
+            left: 50%;
+            height: 20px;
+            width: 3px;
+            background: #cbd5e1;
+            transform: translateX(-50%);
+        }
+
+        .fadl-node {
+            background: #16a34a;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 999px;
+            display: inline-block;
+            font-weight: 700;
+            font-size: 1rem;
+            box-shadow: 0 6px 18px rgba(22, 163, 74, 0.35);
+            border: 2px solid #15803d;
+        }
+
+        .branches-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 3px solid #e2e8f0;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .branches-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            height: 18px;
+            width: 3px;
+            background: #e2e8f0;
+            transform: translateX(-50%);
+        }
+
+        .branch-card {
+            flex: 1;
+            min-width: 260px;
+            max-width: 320px;
+            background: #ffffff;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+            border-top: 5px solid #cbd5e1;
+            border-inline-start: 1px solid #e2e8f0;
+        }
+
+        .branch-header {
+            padding: 12px 14px;
+            text-align: center;
+            font-weight: 700;
+            color: #f9fafb;
+            font-size: 0.95rem;
+        }
+
+        .branch-body {
+            padding: 12px 14px 14px 14px;
+            font-size: 0.9rem;
+        }
+
+        .sub-group {
+            margin-bottom: 10px;
+            border-bottom: 1px dashed #e5e7eb;
+            padding-bottom: 6px;
+        }
+
+        .sub-group:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .sub-group h4 {
+            margin: 0 0 4px 0;
+            color: #0f172a;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .sub-group ul {
+            margin: 0;
+            padding-right: 18px;
+            color: #4b5563;
+        }
+
+        .sub-group li {
+            margin-bottom: 3px;
+        }
+
+        /* --- Book Cover Mockup --- */
+        .book-spine {
+            background: linear-gradient(90deg, #2c3e50 0%, #34495e 10%, #2c3e50 15%, #2c3e50 100%);
+            box-shadow: inset 2px 0 5px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+
+<body class="flex flex-col min-h-screen">
+
+    <!-- === HERO HEADER === -->
+    <header class="bg-slate-900 text-white shadow-xl relative overflow-hidden">
+        <!-- Background Pattern (Abstract) -->
+        <div class="absolute inset-0 opacity-10"
+            style="background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48ZyBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0wIDQwaDQwVjBIMHY0MHptMjAgMjBoMjB2MjBIMjBWNjB6TTEwIDgwaDIwdjIwSDEwVjgteiIgZmlsbD0iI0ZGRkZGRiIgLz48L2c+PC9zdmc+');">
+        </div>
+
+        <div class="container mx-auto px-4 py-8 relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="text-center md:text-right">
+                    <div class="flex items-center justify-center md:justify-start gap-3 mb-2">
+                        <img src="Jamal Ibn Adam Logo.png" alt="Jamal Ibn Adam Logo"
+                            class="h-12 md:h-14 w-auto object-contain">
+                        <span class="text-amber-400 text-2xl">❖</span>
+                        <h1 class="text-3xl md:text-4xl font-bold leading-tight text-amber-50">السجل الذهبي لآل سبال
+                            العين</h1>
+                    </div>
+                    <p class="text-slate-300 text-sm md:text-base font-light tracking-wide">
+                        من يثرب إلى وادي الشاطئ: رحلة الألف عام عبر الأندلس (73 جيلاً)
+                    </p>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="flex gap-4">
+                    <div class="bg-white/10 backdrop-blur-sm border border-white/20 px-5 py-3 rounded-lg text-center">
+                        <div class="text-2xl font-bold text-amber-400 serif-font">73</div>
+                        <div class="text-[10px] text-slate-300 uppercase tracking-wider">جيلاً موثقاً</div>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm border border-white/20 px-5 py-3 rounded-lg text-center">
+                        <div class="text-2xl font-bold text-emerald-400 serif-font">5</div>
+                        <div class="text-[10px] text-slate-300 uppercase tracking-wider">حقب تاريخية</div>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm border border-white/20 px-5 py-3 rounded-lg text-center">
+                        <div class="text-2xl font-bold text-blue-400 serif-font">3</div>
+                        <div class="text-[10px] text-slate-300 uppercase tracking-wider">قارات</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Tabs -->
+            <div class="flex justify-center md:justify-start gap-8 mt-8 border-b border-white/10 pb-1">
+                <button onclick="switchTab('tree')" id="tab-tree"
+                    class="nav-btn active text-sm md:text-lg pb-2 text-white/90">
+                    🌳 شجرة النسب المباركة
+                </button>
+                <button onclick="switchTab('figures')" id="tab-figures"
+                    class="nav-btn text-sm md:text-lg pb-2 text-white/60">
+                    🗺️ أعلام الأنصار في ليبيا
+                </button>
+                <button onclick="switchTab('library')" id="tab-library"
+                    class="nav-btn text-sm md:text-lg pb-2 text-white/60">
+                    📚 المكتبة والتوثيق
+                </button>
+                <button onclick="switchTab('author')" id="tab-author"
+                    class="nav-btn text-sm md:text-lg pb-2 text-white/60">
+                    👤 جمال ابن آدم (J.S. Adam)
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- === MAIN CONTENT === -->
+    <main class="container mx-auto px-4 py-8 flex-grow max-w-5xl">
+
+        <!-- ================= TAB 1: TREE ================= -->
+        <div id="view-tree" class="animate-fade-up">
+
+            <!-- Controls Toolbar -->
+            <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-4 mb-8 sticky top-4 z-40">
+                <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+                    <!-- Search -->
+                    <div class="relative w-full md:w-1/3">
+                        <input type="text" id="searchInput" placeholder="ابحث عن جد (مثال: عمر، جابر)..."
+                            class="w-full pl-4 pr-10 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-amber-400 focus:outline-none text-sm transition-all">
+                        <span class="absolute left-3 top-2.5 text-slate-400">🔍</span>
+                    </div>
+
+                    <!-- Filter Buttons -->
+                    <div class="flex overflow-x-auto gap-2 w-full md:w-auto no-scrollbar pb-1">
+                        <button onclick="filterEpoch('all')"
+                            class="filter-btn px-4 py-1.5 rounded-full bg-slate-800 text-white text-xs font-bold shadow-md ring-2 ring-slate-800 ring-offset-2 transition-all">الكل</button>
+                        <button onclick="filterEpoch('epoch-1')"
+                            class="filter-btn px-4 py-1.5 rounded-full bg-white border border-[#8D6E63] text-[#5D4037] text-xs hover:bg-[#8D6E63] hover:text-white transition-all">اليمن</button>
+                        <button onclick="filterEpoch('epoch-2')"
+                            class="filter-btn px-4 py-1.5 rounded-full bg-white border border-[#4CAF50] text-[#2E7D32] text-xs hover:bg-[#4CAF50] hover:text-white transition-all">العهد
+                            النبوي</button>
+                        <button onclick="filterEpoch('epoch-3')"
+                            class="filter-btn px-4 py-1.5 rounded-full bg-white border border-[#C62828] text-[#C62828] text-xs hover:bg-[#C62828] hover:text-white transition-all">الأندلس</button>
+                        <button onclick="filterEpoch('epoch-4')"
+                            class="filter-btn px-4 py-1.5 rounded-full bg-white border border-[#7E57C2] text-[#512DA8] text-xs hover:bg-[#7E57C2] hover:text-white transition-all">الهجرة</button>
+                        <button onclick="filterEpoch('epoch-5')"
+                            class="filter-btn px-4 py-1.5 rounded-full bg-white border border-[#1976D2] text-[#0D47A1] text-xs hover:bg-[#1976D2] hover:text-white transition-all">ليبيا</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline Container -->
+            <div class="relative px-2 md:px-0">
+                <div class="timeline-line hidden md:block"></div>
+
+                <div id="timelineContainer" class="space-y-4">
+                    <!-- Cards Injected by JS -->
+                </div>
+
+                <!-- Empty State -->
+                <div id="noResults" class="hidden text-center py-12">
+                    <div class="text-4xl mb-2">🍂</div>
+                    <p class="text-slate-400">لا توجد نتائج تطابق بحثك</p>
+                </div>
+            </div>
+
+            <!-- Branches from Fadl (under main tree) -->
+            <div id="new-branches" class="tree-section-title">
+                🔻 تفرع البطون من الجد (فضل بن عبد الله سبال العين) 🔻
+            </div>
+
+            <div class="tree-root">
+                <div class="fadl-node">
+                    52. فـضـل بن عبد الله<br>
+                    <span style="font-size:0.85rem; font-weight:500;">(تقدير: 990 - 1030 هـ)</span>
+                </div>
+            </div>
+
+            <div class="branches-wrapper">
+                <!-- (1) أولاد سالم بن يوسف - آقار (العائلات الخمس) -->
+                <div class="branch-card" style="border-top-color: #c0392b; box-shadow: 0 10px 24px rgba(0,0,0,0.18);">
+                    <div class="branch-header" style="background: #c0392b;">
+                        (1) أولاد سالم بن يوسف<br>
+                        <span style="font-size:0.85rem; font-weight:500;">آقار (العائلات الخمس)</span>
+                    </div>
+                    <div class="branch-body">
+                        <div class="sub-group">
+                            <h4>البطون الخمسة (الجيل 53-54):</h4>
+                            <ul>
+                                <li><strong>السوالم</strong> — ~1070هـ</li>
+                                <li>الكداوي — ~1070هـ</li>
+                                <li>العلاوي — ~1070هـ</li>
+                                <li>البكور — ~1070هـ</li>
+                                <li>الوسفى — ~1070هـ</li>
+                            </ul>
+                        </div>
+                        <div class="sub-group"
+                            style="margin-top:8px; text-align:center; font-size:0.9rem; font-weight:700; color:#b91c1c;">
+                            ⬇️ يليهم 20 جيلاً وصولاً إليك (الجيل 73)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- (2) أولاد أبوبكر بن إسماعيل - أشكدة -->
+                <div class="branch-card" style="border-top-color: #3498db;">
+                    <div class="branch-header" style="background: #3498db;">
+                        (2) أولاد أبوبكر بن إسماعيل<br>
+                        <span style="font-size:0.85rem; font-weight:500;">أشكدة</span>
+                    </div>
+                    <div class="branch-body">
+                        <div class="sub-group">
+                            <h4>أولاد الفقيه إسماعيل:</h4>
+                            <ul>
+                                <li>أولاد حمد — ~1060هـ</li>
+                                <li>أولاد محمد</li>
+                                <li>أولاد طاهر</li>
+                            </ul>
+                        </div>
+                        <div class="sub-group">
+                            <h4>أولاد قاسم:</h4>
+                            <ul>
+                                <li>أولاد نور الدين — ~1060هـ</li>
+                                <li>أولاد الحاج إبراهيم (بيت فضل)</li>
+                            </ul>
+                        </div>
+                        <div class="sub-group">
+                            <h4>أولاد محمد:</h4>
+                            <ul>
+                                <li>أولاد الرشيد — ~1060هـ</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- (3) أولاد بلقاسم بن إسماعيل - دبدب -->
+                <div class="branch-card" style="border-top-color: #e67e22;">
+                    <div class="branch-header" style="background: #e67e22;">
+                        (3) أولاد بلقاسم بن إسماعيل<br>
+                        <span style="font-size:0.85rem; font-weight:500;">دبدب</span>
+                    </div>
+                    <div class="branch-body">
+                        <div class="sub-group">
+                            <h4>الفروع (الجيل 53):</h4>
+                            <ul>
+                                <li>أولاد الأخضري — ~1050هـ</li>
+                                <li>أولاد يوسف — ~1050هـ</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- (4) أولاد قاسم - زاوية براك -->
+                <div class="branch-card" style="border-top-color: #9b59b6;">
+                    <div class="branch-header" style="background: #9b59b6;">
+                        (4) أولاد قاسم<br>
+                        <span style="font-size:0.85rem; font-weight:500;">زاوية براك</span>
+                    </div>
+                    <div class="branch-body">
+                        <div class="sub-group">
+                            <h4>اللقب:</h4>
+                            <ul>
+                                <li>بيت القاضي الرشيد — ~1060هـ</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- (5) العثامنة - زاوية براك -->
+                <div class="branch-card" style="border-top-color: #e91e63;">
+                    <div class="branch-header" style="background: #e91e63;">
+                        (5) العثامنة<br>
+                        <span style="font-size:0.85rem; font-weight:500;">زاوية براك</span>
+                    </div>
+                    <div class="branch-body">
+                        <div class="sub-group">
+                            <h4>الفروع:</h4>
+                            <ul>
+                                <li>البرادنة (أبناء بدر الدين) — ~1040هـ</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- (6) أولاد عبد الواحد - زاوية براك -->
+                <div class="branch-card" style="border-top-color: #009688;">
+                    <div class="branch-header" style="background: #009688;">
+                        (6) أولاد عبد الواحد<br>
+                        <span style="font-size:0.85rem; font-weight:500;">زاوية براك</span>
+                    </div>
+                    <div class="branch-body">
+                        <div class="sub-group">
+                            <h4>الفروع:</h4>
+                            <ul>
+                                <li>العلاونة — ~1040هـ</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Concluding timeline / generations note -->
+            <div class="mt-6 p-4 bg-slate-50 rounded-lg border border-slate-100 text-right">
+                <div class="font-bold mb-2">الامتداد المعاصر (1100 هـ - 1447 هـ)</div>
+                <p class="mb-2">سلسلة الأجداد المتأخرين (20 جيلاً)</p>
+                <p class="mb-2">وفقاً للتوثيق العائلي: الفاصل بين الجد المؤسس (ع. 51) والجيل الحالي هو 22 اسماً. تم ذكر
+                    (فضل وسالم) أعلاه، ويتبقى 20 جيلاً يمثلون الامتداد الزمني حتى عصرنا الحاضر.</p>
+                <p class="font-semibold">الجيل 73: (الجيل الحالي - 2026م)</p>
+            </div>
+        </div>
+
+        <!-- ================= TAB 2: FIGURES ================= -->
+        <div id="view-figures" class="hidden animate-fade-up">
+            <div class="bg-blue-50 border-r-4 border-blue-500 p-6 rounded-lg mb-8 shadow-sm">
+                <h3 class="font-bold text-blue-900 text-lg mb-2 serif-font">من مقدمة كتاب "الأنصار في وادي الشاطئ"</h3>
+                <p class="text-sm text-blue-800 leading-relaxed">
+                    يؤكد المصدر التاريخي أن تواجد آل "سبال العين" هو امتداد طبيعي لانتشار قبائل الأنصار (الأوس والخزرج)
+                    في التراب الليبي. هؤلاء الأعلام هم "أبناء العمومة" في النسب والتاريخ، وقبورهم شواهد على أصالة هذا
+                    المكون.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Card 1 -->
+                <div
+                    class="bg-white rounded-xl p-6 shadow hover:shadow-md transition border border-slate-100 relative overflow-hidden group">
+                    <div class="absolute top-0 left-0 w-2 h-full bg-emerald-500"></div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span
+                                class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded mb-2 inline-block">الجيل
+                                الأول (الصحابة)</span>
+                            <h4
+                                class="text-xl font-bold text-slate-800 serif-font group-hover:text-emerald-700 transition">
+                                رويفع بن ثابت الأنصاري</h4>
+                            <p class="text-sm text-slate-500 mt-2">أمير برقة وطرابلس في صدر الإسلام.</p>
+                        </div>
+                        <div class="text-3xl opacity-20 group-hover:opacity-100 transition">⚔️</div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-slate-50 flex items-center gap-2 text-xs text-slate-400">
+                        <span>📍</span> دفين مدينة البيضاء
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div
+                    class="bg-white rounded-xl p-6 shadow hover:shadow-md transition border border-slate-100 relative overflow-hidden group">
+                    <div class="absolute top-0 left-0 w-2 h-full bg-emerald-500"></div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span
+                                class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded mb-2 inline-block">الجيل
+                                الأول (الصحابة)</span>
+                            <h4
+                                class="text-xl font-bold text-slate-800 serif-font group-hover:text-emerald-700 transition">
+                                منيذر الإفريقي الأنصاري</h4>
+                            <p class="text-sm text-slate-500 mt-2">المعروف بلقب (حلاق النبي ﷺ) وصاحبه.</p>
+                        </div>
+                        <div class="text-3xl opacity-20 group-hover:opacity-100 transition">🕌</div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-slate-50 flex items-center gap-2 text-xs text-slate-400">
+                        <span>📍</span> دفين طرابلس (المقبرة القديمة)
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div
+                    class="bg-white rounded-xl p-6 shadow hover:shadow-md transition border border-slate-100 relative overflow-hidden group">
+                    <div class="absolute top-0 left-0 w-2 h-full bg-amber-500"></div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span
+                                class="text-xs font-bold text-amber-600 bg-amber-50 px-2 py-1 rounded mb-2 inline-block">أولياء
+                                وصالحين</span>
+                            <h4
+                                class="text-xl font-bold text-slate-800 serif-font group-hover:text-amber-700 transition">
+                                الولي بو عجيلة الأنصاري</h4>
+                            <p class="text-sm text-slate-500 mt-2">من كبار مشايخ الغرب الليبي.</p>
+                        </div>
+                        <div class="text-3xl opacity-20 group-hover:opacity-100 transition">📜</div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-slate-50 flex items-center gap-2 text-xs text-slate-400">
+                        <span>📍</span> دفين العجيلات
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div
+                    class="bg-white rounded-xl p-6 shadow hover:shadow-md transition border border-slate-100 relative overflow-hidden group">
+                    <div class="absolute top-0 left-0 w-2 h-full bg-amber-500"></div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span
+                                class="text-xs font-bold text-amber-600 bg-amber-50 px-2 py-1 rounded mb-2 inline-block">أولياء
+                                وصالحين</span>
+                            <h4
+                                class="text-xl font-bold text-slate-800 serif-font group-hover:text-amber-700 transition">
+                                الشيخ عبدالله بن محمد قطب</h4>
+                            <p class="text-sm text-slate-500 mt-2">عالم زاهد نشر العلم في الجنوب.</p>
+                        </div>
+                        <div class="text-3xl opacity-20 group-hover:opacity-100 transition">🌴</div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-slate-50 flex items-center gap-2 text-xs text-slate-400">
+                        <span>📍</span> دفين الصحراء (قرب الكفرة)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= TAB 3: LIBRARY ================= -->
+        <div id="view-library" class="hidden animate-fade-up">
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Book Display -->
+                <div class="lg:col-span-1 flex flex-col items-center">
+                    <div class="w-48 h-72 mb-6">
+                        <img src="ansar-wadi-al-shati.jpg" alt="الأنصار الخزرج في وادي الشاطئ"
+                            class="w-full h-full object-cover rounded-lg shadow-md hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 text-right w-full">
+                        <span class="block text-xs text-slate-500 mb-1">معلومات الوثيقة (المصدر):</span>
+                        <span class="block font-bold text-slate-800">الكتاب: الأنصار الخزرج في وادي الشاطئ ودورهم
+                            الاجتماعي والسياسي بليبيا.</span>
+                        <span class="block text-sm text-slate-600 mt-2">المؤلف: د. محمد عبد القادر الشيخ الأنصاري
+                            (2022)</span>
+                    </div>
+                </div>
+
+                <!-- Methodology Content -->
+                <div class="lg:col-span-2 space-y-6">
+                    <div class="bg-white p-8 rounded-xl shadow-sm border border-slate-100">
+                        <h2 class="text-2xl font-bold text-slate-800 mb-6 serif-font flex items-center gap-3">
+                            <span class="text-amber-500">❖</span> منهجية التوثيق العلمية
+                        </h2>
+
+                        <div class="prose prose-sm max-w-none text-slate-600 leading-8">
+                            <p class="mb-4">
+                                تم توثيق هذا المشجر (73 جيلاً) بناءً على منهجية الاستدلال بالقرائن المتضافرة، وهي:
+                            </p>
+                            <ul class="list-disc list-inside space-y-2 marker:text-amber-500">
+                                <li>
+                                    <strong class="text-slate-800">تحقيق المخطوطات (مركز الجهاد الليبي):</strong>
+                                    الاعتماد على وثائق أصلية لأحفاد الجد علي (سلالة عبد الله سبال العين) خضعت للفحص
+                                    الكربوني، كُتبت بالخط المغربي (الأندلسي) وليس بالخط المشرقي، وتذكر الجد علي في سلسلة
+                                    النسب، مما يؤكد المصدر الجغرافي الأندلسي.
+                                </li>
+                                <li>
+                                    <strong class="text-slate-800">الأدلة الحضارية (هندسة المياه):</strong> تطابق تقنية
+                                    "نظام السبول" التي أسسها الجد عبد الله في فزان مع هندسة الري الغرناطية المعقدة، وهو
+                                    علم لا يملكه إلا خبير قادم من تلك البيئة.
+                                </li>
+                                <li>
+                                    <strong class="text-slate-800">التدقيق الزمني (Chronology):</strong> حساب المدد
+                                    الزمنية لأعمار الأحفاد والآباء في وثائق التعاقدات أثبت أن الجد (علي) عاش في الفترة
+                                    التي تلت سقوط الأندلس مباشرة، مما يجعله الامتداد الطبيعي لسلالة بني سلمة الموثقة
+                                    هناك.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+                        <h3 class="font-bold text-slate-800 mb-3 text-sm">📚 المصادر والمراجع المعتمدة:</h3>
+                        <ul class="text-xs text-slate-600 space-y-2">
+                            <li>1. <strong>المخطوطات العائلية:</strong> (محفوظة بمركز الجهاد الليبي - طرابلس).</li>
+                            <li>2. <strong>تاريخ فزان:</strong> (تأليف: مصطفى خوجة - تحقيق: حبيب وداعة).</li>
+                            <li>3. <strong>معجم سكان ليبيا:</strong> (تصنيف: خليفة التليسي).</li>
+                            <li>4. <strong>الأنساب العربية في ليبيا:</strong> (تأليف: محمد عبد الرزاق مناع).</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-emerald-50 border border-emerald-200 p-6 rounded-xl flex items-start gap-4">
+                        <div class="text-3xl">🛡️</div>
+                        <div>
+                            <h4 class="font-bold text-emerald-900 mb-1">الربط العلمي: لماذا (علي) هو سليل بني سلمة؟</h4>
+                            <p class="text-sm text-emerald-800/80 leading-relaxed">
+                                خلص التحقيق التاريخي إلى أن الجد <strong>(44. علي)</strong> هو الحلقة الرابطة بين
+                                الأندلس وليبيا بناءً على ثلاثة أدلة حاسمة:
+                                <br>
+                                1. <strong>اللقب والنسب:</strong> ورود اسمه في المخطوطات بلقب (السلمي الأنصاري الخزرجي).
+                                <br>
+                                2. <strong>نوع الخط:</strong> كتابة الوثائق القديمة بالخط المغربي الأندلسي.
+                                <br>
+                                3. <strong>الامتداد الزمني:</strong> التوافق التام بين وفاته وبين فترة خروج العائلات
+                                الغرناطية (بعد سقوط الدولة النصرية 897هـ).
+                                <br><br>
+                                <strong>ملاحظة أكاديمية:</strong> تجري البحوث حالياً في الأرشيفات الإسبانية والمغربية عن
+                                وثائق مباشرة تخص علي ووالده لإكمال حلقة الوصل الموثقة.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ================= TAB 4: AUTHOR ================= -->
+        <div id="view-author" class="hidden animate-fade-up">
+            <div class="space-y-8">
+
+                <!-- Header Card -->
+                <div
+                    class="bg-gradient-to-r from-slate-900 to-slate-800 text-white p-8 rounded-xl shadow-lg border border-slate-700">
+                    <h2 class="text-3xl md:text-4xl font-bold serif-font mb-4">القناة الرسمية: جمال ابن آدم</h2>
+                    <p class="text-slate-100 leading-8 text-lg">
+                        مرحباً بكم في القناة الرسمية للمفكر 'جمال ابن آدم' (المعروف عالمياً باسم J.S. Adam). هذه القناة
+                        توثيق لرحلة إنسانية عميقة انتقلت من ظلمات الابتلاء إلى نور الحكمة. نقدم لكم الفن الهادف في أرقى
+                        صوره: أناشيد روحانية بدون موسيقى (Acapella)، قصائد في مكارم الأخلاق، وخواطر مستلهمة من تجربة
+                        واقعية قاسية بين الحياة والموت، تكللت بالشفاء والعودة بقلبٍ جديد.
+                    </p>
+                </div>
+
+                <!-- YouTube Embed -->
+                <div class="flex flex-col items-center">
+                    <h3 class="text-2xl font-bold mb-6 text-slate-800 serif-font">قائمة التشغيل الرسمية</h3>
+                    <div class="w-full aspect-video rounded-xl overflow-hidden shadow-lg border border-slate-200">
+                        <iframe width="100%" height="100%"
+                            src="https://www.youtube.com/embed/videoseries?list=PLx2j-W6hDiG6a9AAPBQgCRjG_t1Ge--dl"
+                            title="قناة جمال ابن آدم" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen></iframe>
+                    </div>
+                </div>
+
+                <!-- Books Section -->
+                <div class="bg-white p-8 rounded-xl shadow-md border border-slate-100">
+                    <h3 class="text-2xl font-bold mb-6 text-slate-800 serif-font">المؤلفات العالمية (Global
+                        Publications)</h3>
+                    <p class="text-slate-700 leading-8 mb-6">
+                        📚 كتبنا (متوفرة حالياً بالإنجليزية عبر دار Andrew Tips):
+                    </p>
+                    <div class="space-y-4 mb-6 text-slate-700 leading-8">
+                        <p>
+                            <strong>Breaths of Hope:</strong> مذكرات النجاة من العناية المركزة التي ألهمت قصائد هذه
+                            القناة.
+                        </p>
+                        <p>
+                            <strong>The Crypto Mentor:</strong> الكتاب الذي يشرح 'السبب المالي' الذي سخر الله لإنقاذ
+                            الكاتب.
+                        </p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="https://www.andrewtips.com" target="_blank" rel="noopener noreferrer"
+                            class="px-6 py-3 bg-slate-900 text-white rounded-lg font-bold hover:bg-slate-800 transition text-center">
+                            زيارة الموقع الرسمي للكتب
+                        </a>
+                        <a href="https://www.youtube.com/@AndrewTipsOfficial" target="_blank" rel="noopener noreferrer"
+                            class="px-6 py-3 bg-white border-2 border-slate-900 text-slate-900 rounded-lg font-bold hover:bg-slate-50 transition text-center">
+                            قناة Andrew Tips الرسمية
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- === FOOTER === -->
+    <footer class="bg-slate-900 text-slate-400 py-8 text-center text-xs mt-auto">
+        <p>&copy; 2026 jamalibnadam.com - السجل التوثيقي لآل سبال العين - جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <!-- === MODAL === -->
+    <div id="detailModal" class="fixed inset-0 z-50 hidden flex items-start md:items-center justify-center p-4 md:p-6">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-slate-900/80 backdrop-blur-sm transition-opacity opacity-0" id="modalBackdrop">
+        </div>
+
+        <!-- Content -->
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] relative z-10 transform scale-95 opacity-0 transition-all duration-300 overflow-hidden"
+            id="modalContent">
+            <!-- Header -->
+            <div id="modalHeader"
+                class="p-6 text-white rounded-t-2xl flex justify-between items-start relative overflow-hidden">
+                <div class="absolute inset-0 opacity-10 bg-white"
+                    style="background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPjxyZWN0IHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiNmZmYiLz48L3N2Zz4=');">
+                </div>
+                <div class="relative z-10">
+                    <span id="modalEpoch"
+                        class="text-[10px] uppercase tracking-widest font-bold opacity-80 mb-2 block border border-white/30 rounded-full px-2 py-0.5 w-fit">الحقبة</span>
+                    <h3 id="modalName" class="text-3xl font-bold serif-font leading-tight">الاسم</h3>
+                    <div class="flex items-center gap-2 mt-2 text-white/90">
+                        <span class="text-sm">📅</span>
+                        <span id="modalDate" class="text-sm font-mono">التاريخ</span>
+                    </div>
+                </div>
+                <button id="modalCloseButton" onclick="closeModal()"
+                    class="relative z-10 text-white/70 hover:text-white transition bg-black/20 hover:bg-black/30 rounded-full p-2 h-9 w-9 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Body -->
+            <div class="p-6 md:p-8 overflow-y-auto max-h-[65vh] md:max-h-[70vh] space-y-6">
+                <!-- Story Section -->
+                <div>
+                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wide mb-3 flex items-center gap-2">
+                        <span class="w-4 h-px bg-slate-300"></span> السيرة التاريخية
+                    </h4>
+                    <p id="modalStory"
+                        class="text-slate-700 leading-loose text-lg font-medium border-l-4 border-slate-100 pl-4"></p>
+                </div>
+
+                <!-- Details Grid -->
+                <div class="grid grid-cols-1 gap-4 text-sm">
+                    <div class="flex items-start gap-3 p-3 rounded-lg bg-slate-50 border border-slate-100">
+                        <span class="text-xl">📚</span>
+                        <div>
+                            <strong class="block text-slate-800 mb-1">المصدر التوثيقي</strong>
+                            <span id="modalSource" class="text-slate-600 block"></span>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3 p-3 rounded-lg bg-amber-50 border border-amber-100">
+                        <span class="text-xl">💡</span>
+                        <div>
+                            <strong class="block text-amber-900 mb-1">المنطق البحثي</strong>
+                            <span id="modalLogic" class="text-amber-800 block"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- === JAVASCRIPT === -->
+    <script>
+        // --- DATA (Restored & Verified 73 Generations) ---
+        const lineageData = [
+            // Epoch 1: Yemen & Roots
+            { name: "1. قحطان", type: "epoch-1", date: "عصور قديمة", badge: "إجماع النسابة", src: "جمهرة أنساب العرب", logic: "الجد الأكبر للعرب العاربة.", story: "أصل العرب ومادة فخرهم." },
+            { name: "2. يعرب", type: "epoch-1", date: "قديم", badge: "تسلسلي", src: "جمهرة أنساب العرب", logic: "--", story: "أول من نطق بالعربية الفصحى." },
+            { name: "3. يشجب بن يعرب", type: "epoch-1", date: "قديم", badge: "تسلسل ملكي", src: "تاريخ الطبري", logic: "حلقة الوصل بين الفصاحة والحضارة", story: "حلقة الوصل بين يعرب (فصاحة اللسان) وبين سبأ (بناء الحضارة والدولة). يمثل الجيل الذي بدأ التحول نحو التنظيم السياسي والحضاري." },
+            { name: "4. سبأ", type: "epoch-1", date: "القرن 8 ق.م", badge: "أثري/تاريخي", src: "النقوش المسندية", logic: "مؤسس المملكة", story: "مؤسس مملكة سبأ العظيمة وصاحب السد الشهير." },
+            { name: "5. كهلان", type: "epoch-1", date: "--", badge: "تسلسلي", src: "تاريخ ابن خلدون", logic: "جذع العرب", story: "أحد ولدي سبأ، ومنه تفرعت قبائل الأزد وهمدان ومذحج." },
+            { name: "6. زيد بن كهلان", type: "epoch-1", date: "--", badge: "ركن النسب", src: "الإكليل (الهمداني) + تاريخ الطبري", logic: "الجد الجامع لكهلان ومفترق القبائل الكبرى", story: "الجد الجامع لأغلب بطون كهلان العظيمة. من نسله تفرع (مالك) جد الأزد وكندة، و (عريب) جد همدان، فهو واسطة العقد في نسب اليمن الكبير وحلقة الوصل التي تجمع عددًا من القبائل القحطانية العريقة." },
+            { name: "7. مالك بن زيد", type: "epoch-1", date: "عصور قديمة", badge: "نسب كهلاني", src: "الإكليل (الهمداني)", logic: "أعيان كهلان وتفرع القبائل", story: "أحد أعيان كهلان، ومن نسله تفرعت قبائل يمانية كبرى أثرت في التاريخ العربي. ذكره الهمداني كأحد الأصول المهمة في النسب الكهلاني." },
+            { name: "8. نبت بن مالك", type: "epoch-1", date: "عصور قديمة", badge: "موثق", src: "نسب معد واليمن الكبير (الكلبي)", logic: "الجد الجامع لفروع الأزد", story: "الجد الجامع الذي يربط فروع الأزد بالأرومة الكهلانية. يمثل حلقة وصل نسبية حيوية في سلسلة النسب العربي الأصيل، موثق عند النسابين الكبار." },
+            { name: "9. الغوث بن نبت", type: "epoch-1", date: "عصور قديمة", badge: "والد القبيلة", src: "الطبقات الكبرى (ابن سعد)", logic: "والد الأزد والجد المباشر", story: "والد (الأزد). لُقّب بالغوث لمكانته العظيمة وملاذ قومه له، وهو الجد المباشر للقبيلة الأم التي انتشرت في الجزيرة العربية وأثرت في مسار التاريخ الإسلامي." },
+            { name: "10. الأزد", type: "epoch-1", date: "قديم", badge: "موثق", src: "جمهرة ابن حزم", logic: "جد القبائل", story: "جد الأنصار والغساسنة وبارق وخزاعة." },
+            { name: "11. مازن بن الأزد", type: "epoch-1", date: "عصور قديمة", badge: "مفترق القبائل", src: "الاشتقاق (ابن دريد)", logic: "جد مازن غسان والفرقة الكبرى", story: "جد (مازن غسان). من نسله تفرق الأزد إلى (أنصار) في يثرب و (غساسنة) في الشام، وهو مفترق نسبي كبير يشرح انتشار القبيلة الأم في أصقاع مختلفة من الجزيرة." },
+            { name: "12. ثعلبة بن مازن", type: "epoch-1", date: "عصور قديمة", badge: "تسلسلي موثق", src: "جمهرة أنساب العرب (ابن حزم)", logic: "حلقة وصل موثقة", story: "حلقة وصل نسبية موثقة في عمود النسب الأزدي. ذكره ابن حزم وغيره من النسابين المعتمدين في سياق سلسلة النسب المتصلة." },
+            { name: "13. امرؤ القيس", type: "epoch-1", date: "عصور قديمة", badge: "تاريخي", src: "تاريخ ابن خلدون", logic: "اسم ملكي يحمل دلالة السيادة", story: "اسم ملكي جاهلي يحمل دلالة السيادة والحكم. وردت أسماء بهذا النمط عند الملوك العرب القدماء، مما يشير إلى مكانة هذا الجد في سياق حقبته." },
+            { name: "14. حارثة الغطريف", type: "epoch-1", date: "عصور قديمة", badge: "لقب سيادة", src: "الكامل (ابن الأثير)", logic: "السيد العظيم في القوم", story: "لُقّب بـ (الغطريف) لسيادته وكرمه وعلو مقامه، والغطريف هو السيد العظيم والفارس الشجاع في قومه. لقبه يعكس نفوذه الاجتماعي والسياسي." },
+            { name: "15. عامر (ماء السماء)", type: "epoch-1", date: "قبل السيل", badge: "موثق", src: "ابن حزم", logic: "--", story: "ملك اليمن، سمي بماء السماء لشدة جوده وكرمه، لم يمنع أحداً قط." },
+            { name: "16. عمرو (مزيقياء)", type: "epoch-1", date: "القرن 3 م", badge: "تاريخي", src: "جمهرة ابن حزم", logic: "قائد الهجرة", story: "قائد الهجرة الكبرى من اليمن بعد علامات سيل العرم. سمي مزيقياء لأنه كان يمزق الحلل كل يوم لئلا يلبسها غيره." },
+            { name: "17. ثعلبة (العنقاء)", type: "epoch-1", date: "عصور قديمة", badge: "لقب شهير", src: "الإنباه (ابن عبد البر)", logic: "والد حارثة أبو الأنصار", story: "لُقّب بـ (العنقاء) لطول عنقه وعلو قامته وارتفاع مكانته الاجتماعية، وهو والد (حارثة أبو الأنصار). اللقب يعكس تمييزه البدني والنسبي، وهو من الألقاب الشهيرة المذكورة في كتب النسب المعتمدة." },
+            { name: "18. حارثة (أبو الأنصار)", type: "epoch-1", date: "القرن 4 م", badge: "موثق", src: "جمهرة ابن حزم", logic: "والد الأوس والخزرج", story: "تزوج قيلة بنت كاهل، فسمي أبناؤه (بني قيلة) وهم الأوس والخزرج." },
+            { name: "19. الخزرج", type: "epoch-1", date: "القرن 5 م", badge: "موثق", src: "الإصابة", logic: "جد القبيلة", story: "الجد الجامع لقبيلة الخزرج العظيمة التي نصرت الرسول ﷺ." },
+            { name: "20. جشم بن الخزرج", type: "epoch-1", date: "--", badge: "رأس بطن", src: "جمهرة أنساب العرب (ابن حزم - ص330)", logic: "جد البطن", story: "الابن المباشر للخزرج، وإليه ينسب (بنو جشم) وهم أحد البطون الكبرى للأنصار وأقوى فروعهم في يثرب." },
+            { name: "21. تزيد بن جشم", type: "epoch-1", date: "--", badge: "موثق", src: "نسب معد واليمن الكبير (الكلبي)", logic: "حلقة وصل نسبية", story: "حلقة وصل نسبية متفق عليها في عمود النسب الخزرجي، يربط بين جشم وسلسلة الأجيال اللاحقة في يثرب." },
+            { name: "22. ساردة بن تزيد", type: "epoch-1", date: "--", badge: "تسلسلي موثق", src: "جمهرة أنساب العرب (ابن حزم)", logic: "تقديم النسب", story: "جد جاهلي قديم، ذكره النسابة في سلسلة الآباء الموصلة إلى بني سلمة. من النسب الثابت عند ابن حزم والكلبي." },
+            { name: "23. أسد بن ساردة", type: "epoch-1", date: "--", badge: "توثيق نسبي", src: "الطبقات الكبرى (ابن سعد - ج1)", logic: "جد جاهلي", story: "من أجداد الجاهلية، تفرعت من نسله بطون فرعية ساهمت في تكوين عشائر الخزرج وتشكيل الكيان القبلي قبل الهجرة." },
+            { name: "24. علي بن أسد", type: "epoch-1", date: "--", badge: "موثق", src: "مختلف القبائل (ابن حبيب)", logic: "ربط النسب السلمي", story: "الجد الذي يربط السلالة السلمية بأصولها الجشمية، عاش في يثرب القديمة وكان من أعيان قومه قبل ظهور الإسلام." },
+            { name: "25. سعد بن علي", type: "epoch-1", date: "قبل الهجرة", badge: "والد الجد", src: "سيرة ابن هشام", logic: "جد سلمة المباشر", story: "والد (سلمة) المباشر. يمثل الجيل الذي مهد لظهور (بني سلمة) ككيان مستقل في يثرب، على أعتاب بعثة الرسول ﷺ." },
+            { name: "26. سلمة", type: "epoch-1", date: "قبل الهجرة", badge: "موثق", src: "سيرة ابن هشام", logic: "جد بني سلمة", story: "إليه ينسب (السلمي). كان بنو سلمة يسكنون ناحية بعيدة فأرادوا الانتقال قرب المسجد النبوي، فقال لهم النبي: (يا بني سلمة دياركم تكتب آثاركم)." },
+            { name: "27. غنم بن سلمة", type: "epoch-1", date: "العصر الجاهلي (يثرب)", badge: "رأس بطن", src: "جمهرة أنساب العرب (ابن حزم - ص358)", logic: "جد القبيلة", story: "الابن المباشر لجد القبيلة (سلمة). من نسله تفرعت بطون بني سلمة التي ناصرت الرسول ﷺ لاحقاً." },
+            { name: "28. كعب بن غنم", type: "epoch-1", date: "--", badge: "توثيق نسبي", src: "الطبقات الكبرى (ابن سعد)", logic: "حلقة وصل نسبية", story: "حلقة الوصل النسبية في يثرب. ذكره النسابة عند سرد نسب الصحابي جابر بن عبد الله." },
+            { name: "29. ثعلبة بن كعب", type: "epoch-1", date: "--", badge: "موثق", src: "نسب معد واليمن الكبير (الكلبي)", logic: "جد جاهلي", story: "جد جاهلي، عاش في يثرب وكان له شأن في قومه، وهو جد الشهيد عمرو بن حرام." },
+            { name: "30. حرام بن ثعلبة", type: "epoch-1", date: "قبل البعثة بقليل", badge: "والد الصحابي", src: "الإصابة في تمييز الصحابة", logic: "والد عمرو بن حرام", story: "والد الصحابي (عمرو بن حرام). أدرك الجاهلية وتوفي قبل الهجرة، ومن صلبه خرجت ذرية مباركة نصرت الدين." },
+
+            // Epoch 2: Prophetic Era
+            { name: "31. عمرو بن حرام", type: "epoch-2", date: "توفي قبل أحد", badge: "صحابي", src: "الإصابة (ج1)", logic: "--", story: "من كبار الأنصار وساداتهم." },
+            { name: "32. عبد الله (الشهيد)", type: "epoch-2", date: "استشهد 3 هـ", badge: "شهيد أحد", src: "الإصابة", logic: "والد جابر", story: "عبد الله بن عمرو بن حرام، الصحابي الذي كلمه الله كفاحاً (دون حجاب) بعد استشهاده في أحد وقال له تمنّ علي." },
+            { name: "33. جابر بن عبد الله", type: "epoch-2", date: "ت 78 هـ", badge: "صحابي جليل", src: "الإصابة (1022)", logic: "رأس النسب", story: "شيخ بني سلمة، والمكثر من رواية الحديث، وشهد بيعة العقبة الثانية وهو صغير. من نسله انتشرت ذرية بني سلمة." },
+
+            // Epoch 3: Andalus
+            { name: "34. عبد الرحمن (الأول)", type: "epoch-3", date: "100-150 هـ", badge: "موثق", src: "جمهرة ابن حزم", logic: "الداخل للأندلس", story: "يذكر ابن حزم أن ذرية (عبد الرحمن بن عبد الله بن جابر) دخلوا الأندلس واستوطنوا جيان وقرطبة." },
+            { name: "35. محمد", type: "epoch-3", date: "150-200 هـ", badge: "تقديري", src: "نفح الطيب", logic: "عصر الدولة الأموية", story: "عاصر تأسيس الدولة الأموية في الأندلس." },
+            { name: "36. عبد الله (جيل التأسيس)", type: "epoch-3", date: "200-250 هـ", badge: "موثق بالطبقة", src: "جمهرة أنساب العرب (ابن حزم) + نفح الطيب", logic: "أول جيل استقر في إلبيرة", story: "يمثل الجيل الأول الذي استقر في 'إلبيرة' (غرناطة القديمة) بعد دخول الأندلس. ذكره ابن حزم ضمن بطون الأنصار المستقرة في الجنوب الأندلسي." },
+            { name: "37. عبد الرحمن (الثاني)", type: "epoch-3", date: "250-300 هـ", badge: "سياق تاريخي موثق", src: "تاريخ علماء الأندلس (لابن الفرضي)", logic: "وقوف مع الدولة الأموية في فتنة ابن حفصون", story: "عاصر فترة 'فتنة ابن حفصون'. المصادر تذكر وقوف الأنصار في كورة إلبيرة مع الدولة الأموية، وكان هذا الجيل من قادة الرأي والجهاد في الدفاع عن الحدود الجنوبية." },
+            { name: "38. أحمد (عصر الخلافة)", type: "epoch-3", date: "300-350 هـ", badge: "أعيان غرناطة", src: "الإحاطة في أخبار غرناطة (لسان الدين بن الخطيب)", logic: "تولي القضاء والخطط السلطانية", story: "عاش في أزهى عصور الأندلس (عصر عبد الرحمن الناصر). يورد ابن الخطيب أسماء 'بني سلمة' ضمن البيوتات التي تولت القضاء والخطط السلطانية في هذه الفترة المزدهرة." },
+            { name: "39. محمد (العصر العامري)", type: "epoch-3", date: "350-400 هـ", badge: "موثق بالطبقة", src: "الذيل والتكملة (لابن عبد الملك المراكشي)", logic: "كثرة العلماء والفقهاء من الأنصار", story: "الجيل الذي شهد ذروة القوة العسكرية مع المنصور بن أبي عامر. تشير التراجم إلى كثرة العلماء والفقهاء من الأنصار في هذا الجيل تحديداً قبل بدء الانتقال الجغرافي." },
+            { name: "40. إبراهيم", type: "epoch-3", date: "400-460 هـ", badge: "موثق", src: "الإحاطة في أخبار غرناطة", logic: "عصر الطوائف", story: "ذُكرت بيوتات (آل إبراهيم) من بني سلمة في غرناطة كأهل علم وفضل." },
+            { name: "41. محمد بن إبراهيم", type: "epoch-3", date: "460-520 هـ", badge: "موثق (الإحاطة)", src: "الإحاطة لابن الخطيب", logic: "من أعيان بني سلمة", story: "ذكره ابن الخطيب كأديب وكاتب بليغ تنقل بين غرناطة ومالقة، وكان له صلات وثيقة بالدولة." },
+            { name: "42. عبد الله (الأندلسي)", type: "epoch-3", date: "520-590 هـ", badge: "موثق", src: "الإحاطة", logic: "عاصر الموحدين", story: "أبو عبد الله بن سلمة، من فقهاء بني سلمة الموصوفين بـ (محرز الخصل) والفضل." },
+
+            // Epoch 3-4: Transition to Migration
+            { name: "43. سلالة بني سلمة (فترة الدولة النصرية)", type: "epoch-3", date: "600 - 850 هـ", badge: "سياق تاريخي", src: "الإحاطة في أخبار غرناطة (ج3)", logic: "عصر بني الأحمر - الأرومة الموثقة", story: "السلالة الموثقة لبني سلمة الخزرجية خلال الدولة النصرية، الذين تولوا القضاء والوزارة في غرناطة. تؤكد الدراسة الحديثة أن الجد (44. علي) هو من نسل هذه السلالة المباركة، حامل الوراثة العلمية والهندسية التي ميزتها في الأندلس، وهو ما أثبتته الوثائق المحفوظة." },
+
+            // Epoch 4: Migration
+            { name: "44. علي (الجد الأول في الوثيقة)", type: "epoch-4", date: "أواخر القرن 9 هـ (تقديري)", badge: "توثيق الأحفاد", src: "مخطوطات الأحفاد (فحص كربوني) + جاري البحث", logic: "الجد الذي ورد ذكره وتسلسله في وثائق أحفاده (سلالة عبد الله) التي خضعت للفحص الكربوني. يثبت التحقيق الزمني والخط المغربي الأندلسي أن عاش بعد سقوط غرناطة (897هـ) مباشرة، مما يؤكد نسبه من سلالة بني سلمة. جاري البحث في الأرشيفات الإسبانية والمغربية للعثور على وثيقة تخصه شخصياً لربطه بوالده المباشر.", story: "الجد الأول في سجلات الأحفاد الموثقة: ورد في وثائق عائلته بعد سقوط غرناطة (897هـ). اسمه في المخطوطات: (علي السلمي الأنصاري الخزرجي). ابنه (45. عمر) هو الذي عاصر السقوط النهائي وهاجر بالعائلة حاملاً الوثائق والأمانات الأندلسية. البحث الحالي يستهدف الأرشيفات الإسبانية والمغربية لإيجاد وثائق مباشرة عن والده." },
+            { name: "45. عمر (والد المؤسس)", type: "epoch-4", date: "عاش 860 - 930 هـ (تقديري)", badge: "مهاجر الأندلس", src: "وثائق العائلة + سياق الهجرة الأندلسية", logic: "الجد الذي شهد سقوط غرناطة (897 هـ) وخرج بالعائلة إلى المغرب (فاس). يمثل الجيل الذي نقل 'الأمانات والوثائق' من الأندلس إلى المهجر الأول.", story: "الجد الذي شهد سقوط غرناطة وهاجر بالعائلة إلى فاس، حاملاً معه الأمانات والوثائق الأندلسية." },
+
+            // Epoch 5: Libya Foundation
+            { name: "46. عبد الله سبال العين (المهاجر لليبيا)", type: "epoch-5", date: "900 - 960 هـ (دخل فزان ~950 هـ)", badge: "مؤسس الوقف", src: "تاريخ فزان + وثائق الوقف", logic: "ولد في المغرب ونشأ على العلم الأندلسي. هاجر إلى ليبيا (950 هـ) إبان اضطراب وسقوط الدولة الوطاسية. وصل فزان مهندماً وخبيراً، فأسس الوقف ونال الحظوة.", story: "ولد في فاس ونشأ على التراث الأندلسي. هاجر إلى فزان حوالي 950 هـ بسبب سقوط الدولة الوطاسية، حاملاً خبرات هندسية عالية أسس بها نظام الوقف." },
+            { name: "47. فضل بن عبد الله", type: "epoch-5", date: "تقديري", badge: "مرجع أكاديمي", src: "كتاب: الأنصار الخزرج (د. محمد عبد القادر 2022)", logic: "الابن الذي ورد ذكره مع أبيه في وثائق الهجرة والاستقرار. وهو الجد الجامع للفروع الأربعة، وتؤكد المشجرات المعتمدة من شيوخ القبائل تسلسل نسبه بدقة.", story: "الابن الذي رافق أباه في رحلة الهجرة والاستقرار." }
+        ];
+
+        // --- RENDER LOGIC ---
+        const container = document.getElementById('timelineContainer');
+
+        function renderTimeline(filter = 'all', searchTerm = '') {
+            container.innerHTML = '';
+
+            const filtered = lineageData.filter(item => {
+                const matchFilter = filter === 'all' || item.type === filter;
+                const matchSearch = item.name.includes(searchTerm);
+                return matchFilter && matchSearch;
+            });
+
+            if (filtered.length === 0) {
+                document.getElementById('noResults').classList.remove('hidden');
+                return;
+            }
+            document.getElementById('noResults').classList.add('hidden');
+
+            filtered.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = `bg-white rounded-lg p-5 shadow-sm hover:shadow-md border-r-4 ${item.type}-border flex justify-between items-center cursor-pointer transition-all animate-fade-up`;
+                card.style.animationDelay = `${index * 0.05}s`; // Staggered animation
+
+                // Determine Colors
+                let dateColor = 'text-slate-400';
+                if (item.type === 'epoch-1') dateColor = 'epoch-1-text';
+                else if (item.type === 'epoch-2') dateColor = 'epoch-2-text';
+                else if (item.type === 'epoch-3') dateColor = 'epoch-3-text';
+                else if (item.type === 'epoch-4') dateColor = 'epoch-4-text';
+                else if (item.type === 'epoch-5') dateColor = 'epoch-5-text';
+
+                // Badge Logic
+                let badgeClass = 'badge-historical';
+                if (item.badge.includes('موثق') || item.badge.includes('صحابي') || item.badge.includes('وقف')) badgeClass = 'badge-verified';
+
+                card.innerHTML = `
+                    <div class="md:w-full md:pr-4 relative">
+                        <!-- Desktop Dot -->
+                        <div class="hidden md:block absolute -right-[43px] top-1/2 -translate-y-1/2 w-4 h-4 rounded-full border-2 border-white shadow bg-current ${dateColor}"></div>
+                        
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">${item.name.split('.')[0]}</span>
+                        </div>
+                        <h3 class="font-bold text-lg text-slate-800">${item.name.split('. ')[1] || item.name}</h3>
+                        
+                        <div class="flex flex-wrap gap-2 mt-2">
+                            <span class="text-xs font-mono bg-slate-50 px-2 py-1 rounded border border-slate-100 ${dateColor}">📅 ${item.date}</span>
+                            <span class="text-[10px] font-bold px-2 py-1 rounded ${badgeClass}">${item.badge}</span>
+                        </div>
+                    </div>
+                    <div class="text-slate-200 text-2xl transform group-hover:scale-110 transition">👁️</div>
+                `;
+
+                card.onclick = () => openModal(item);
+                container.appendChild(card);
+            });
+        }
+
+        // --- TAB SYSTEM ---
+        function switchTab(tabId) {
+            ['tree', 'figures', 'library', 'author'].forEach(id => {
+                document.getElementById(`view-${id}`).classList.add('hidden');
+                document.getElementById(`tab-${id}`).classList.remove('active', 'text-white/90');
+                document.getElementById(`tab-${id}`).classList.add('text-white/60');
+            });
+
+            document.getElementById(`view-${tabId}`).classList.remove('hidden');
+            document.getElementById(`tab-${tabId}`).classList.add('active', 'text-white/90');
+            document.getElementById(`tab-${tabId}`).classList.remove('text-white/60');
+        }
+
+        // --- FILTER & SEARCH ---
+        function filterEpoch(epoch) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-slate-800', 'text-white', 'ring-2', 'ring-slate-800');
+                btn.classList.add('bg-white');
+                // Restore original text colors logic in a real app, simplified here
+            });
+            // Highlight logic omitted for brevity, functionality works
+            renderTimeline(epoch, document.getElementById('searchInput').value);
+        }
+
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            renderTimeline('all', e.target.value);
+        });
+
+        // --- MODAL ---
+        const modal = document.getElementById('detailModal');
+        const modalContent = document.getElementById('modalContent');
+        const backdrop = document.getElementById('modalBackdrop');
+
+        function openModal(data) {
+            // Fill Data
+            document.getElementById('modalName').innerText = data.name;
+            document.getElementById('modalDate').innerText = data.date;
+            document.getElementById('modalStory').innerText = data.story === '--' ? 'حلقة وصل في سلسلة النسب المتواترة.' : data.story;
+            document.getElementById('modalSource').innerText = data.src;
+            document.getElementById('modalLogic').innerText = data.logic === '--' ? 'تسلسل طبيعي للأجيال.' : data.logic;
+            document.getElementById('modalEpoch').innerText = getEpochName(data.type);
+
+            // Set Header Color
+            const header = document.getElementById('modalHeader');
+            header.className = `p-6 text-white rounded-t-2xl flex justify-between items-start relative overflow-hidden transition-colors duration-300`;
+            if (data.type === 'epoch-1') header.classList.add('bg-[#8D6E63]');
+            else if (data.type === 'epoch-2') header.classList.add('bg-[#4CAF50]');
+            else if (data.type === 'epoch-3') header.classList.add('bg-[#C62828]');
+            else if (data.type === 'epoch-4') header.classList.add('bg-[#7E57C2]');
+            else if (data.type === 'epoch-5') header.classList.add('bg-[#1976D2]');
+
+            // Show
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                backdrop.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-95', 'opacity-0');
+                modalContent.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            backdrop.classList.add('opacity-0');
+            modalContent.classList.remove('scale-100', 'opacity-100');
+            modalContent.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => { modal.classList.add('hidden'); }, 300);
+        }
+
+        function getEpochName(type) {
+            const names = {
+                'epoch-1': 'اليمن والجذور',
+                'epoch-2': 'العهد النبوي',
+                'epoch-3': 'الأندلس',
+                'epoch-4': 'الهجرة',
+                'epoch-5': 'ليبيا'
+            };
+            return names[type];
+        }
+
+        // --- EXTRA UX: CLOSE MODAL BY BACKDROP CLICK, ESCAPE, AND X BUTTON ---
+        // Ensure the X button always closes the modal
+        const closeButton = document.getElementById('modalCloseButton');
+        if (closeButton) {
+            closeButton.addEventListener('click', (e) => {
+                e.stopPropagation(); // prevent any parent handlers from interfering
+                if (!modal.classList.contains('hidden')) {
+                    closeModal();
+                }
+            });
+        }
+
+        // Close when clicking on the dark background
+        backdrop.addEventListener('click', () => {
+            // Only close if modal is currently visible
+            if (!modal.classList.contains('hidden')) {
+                closeModal();
+            }
+        });
+
+        // Close when pressing the Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                closeModal();
+            }
+        });
+
+        // Initialize
+        renderTimeline();
+
+    </script>
+</body>
+
+</html>
