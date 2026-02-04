@@ -163,6 +163,15 @@ window.FamilyTreeData = {
         btn_visit_books: "Odwiedź Oficjalną Stronę Książek",
         btn_visit_youtube: "Oficjalny Kanał Andrew Tips",
 
+        // Contact Section
+        contact_header: "Skontaktuj się z Jamalem",
+        contact_name_placeholder: "Twoje imię",
+        contact_email_placeholder: "Twój adres e-mail",
+        contact_message_placeholder: "Napisz wiadomość...",
+        btn_send_message: "Wyślij wiadomość",
+        form_success_feedback:
+            "Dziękuję za kontakt. Twoja wiadomość została odebrana — odpowiem najszybciej jak to możliwe.",
+
         // Footer
         footer_rights: "© 2026 jamalibnadam.com - Udokumentowany Rejestr Al-Sabal Al-Ain - Wszelkie Prawa Zastrzeżone.",
 

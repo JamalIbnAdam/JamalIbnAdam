@@ -171,6 +171,15 @@ window.FamilyTreeData = {
         btn_visit_books: "Visit Official Books Website",
         btn_visit_youtube: "Official Andrew Tips Channel",
 
+        // Contact Section
+        contact_header: "Contact Jamal",
+        contact_name_placeholder: "Your name",
+        contact_email_placeholder: "Your email address",
+        contact_message_placeholder: "Write your message here...",
+        btn_send_message: "Send Message",
+        form_success_feedback:
+            "Thank you for reaching out. Your message has been received, and I will respond as soon as possible.",
+
         // Footer
         footer_rights: "© 2026 jamalibnadam.com - The Documented Record of Al-Sabal Al-Ain - All Rights Reserved.",
 

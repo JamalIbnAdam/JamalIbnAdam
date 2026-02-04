@@ -159,6 +159,14 @@ window.FamilyTreeData = {
         btn_visit_books: "Resmi Kitap Sitesini Ziyaret Et",
         btn_visit_youtube: "Resmi Andrew Tips Kanalı",
 
+        // Contact Section
+        contact_header: "Cemal ile İletişime Geçin",
+        contact_name_placeholder: "Adınız",
+        contact_email_placeholder: "E-posta adresiniz",
+        contact_message_placeholder: "Mesajınızı yazın...",
+        btn_send_message: "Mesajı Gönder",
+        form_success_feedback: "Mesajınız alınmıştır. En kısa sürede size dönüş yapılacaktır.",
+
         // Footer
         footer_rights: "© 2026 jamalibnadam.com - Al-Sabal Al-Ain Belgesel Kaydı - Tüm Hakları Saklıdır.",
 

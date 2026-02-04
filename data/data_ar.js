@@ -241,6 +241,14 @@ window.FamilyTreeData = {
         btn_visit_books: "زيارة الموقع الرسمي للكتب",
         btn_visit_youtube: "قناة Andrew Tips الرسمية",
 
+        // Contact Section
+        contact_header: "تواصل مع جمال",
+        contact_name_placeholder: "الاسم الكامل",
+        contact_email_placeholder: "البريد الإلكتروني",
+        contact_message_placeholder: "اكتب رسالتك هنا...",
+        btn_send_message: "إرسال الرسالة",
+        form_success_feedback: "شكرًا لتواصلك. تم استلام رسالتك وسأرد عليك في أقرب وقت ممكن.",
+
         // Footer
         footer_rights: "© 2026 jamalibnadam.com - السجل التوثيقي لآل سبال العين - جميع الحقوق محفوظة.",
 
