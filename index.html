@@ -1138,7 +1138,7 @@
     </script>
 
     <!-- Google Translate Floating Widget -->
-    <div id="google_translate_element" style="display:none;"></div>
+    <div id="google_translate_element2" style="display:none;"></div>
 
     <style>
         /* Floating Button Container */
@@ -1224,45 +1224,41 @@
 
     <div class="lang-switch-wrapper" onclick="toggleLanguageMenu()">
         <div class="lang-icon">🌍</div>
-        <select id="language-selector" class="lang-selector" onchange="translatePage(this.value)">
-            <option value="ar">العربية</option>
-            <option value="en">English</option>
-            <option value="fr">Français</option>
-            <option value="de">Deutsch</option>
-            <option value="tr">Türkçe</option>
-            <option value="pl">Polski</option>
+        <select id="language-selector" class="lang-selector" onchange="doGTranslate(this)">
+            <option value="ar|ar">العربية</option>
+            <option value="ar|en">English</option>
+            <option value="ar|fr">Français</option>
+            <option value="ar|de">Deutsch</option>
+            <option value="ar|tr">Türkçe</option>
+            <option value="ar|pl">Polski</option>
         </select>
     </div>
 
     <script type="text/javascript">
-        function googleTranslateElementInit() {
+        // 1. Initialize Google Translate
+        function googleTranslateElementInit2() {
             new google.translate.TranslateElement({
                 pageLanguage: 'ar',
-                includedLanguages: 'ar,en,fr,de,tr,pl',
-                autoDisplay: false,
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-            }, 'google_translate_element');
+                autoDisplay: false
+            }, 'google_translate_element2');
         }
 
-        // This function triggers the hidden Google widget
-        function translatePage(lang) {
-            var frame = document.querySelector('.goog-te-combo');
-            if (!frame) {
-                // If the widget isn't fully loaded yet, try again in 500ms
-                setTimeout(function () { translatePage(lang) }, 500);
-                return;
-            }
+        // 2. The Logic to switch language
+        function doGTranslate(selectField) {
+            if (selectField.value) {
+                var lang = selectField.value.split('|')[1];
 
-            frame.value = lang;
-            frame.dispatchEvent(new Event('change'));
+                // Set the "googtrans" cookie which Google Translate checks
+                var d = new Date();
+                d.setTime(d.getTime() + (30 * 24 * 60 * 60 * 1000)); // 30 Days
+                var expires = "expires=" + d.toUTCString();
 
-            // Optional: Force LTR for non-Arabic languages
-            if (lang !== 'ar' && lang !== '') {
-                document.body.style.direction = 'ltr';
-                document.body.style.textAlign = 'left';
-            } else {
-                document.body.style.direction = 'rtl';
-                document.body.style.textAlign = 'right';
+                // Set cookie for root path and domain
+                document.cookie = "googtrans=/ar/" + lang + "; " + expires + "; path=/";
+                document.cookie = "googtrans=/ar/" + lang + "; " + expires + "; path=/; domain=" + document.domain;
+
+                // Reload to apply translation
+                window.location.reload();
             }
         }
 
@@ -1271,13 +1267,13 @@
             selector.focus();
         }
 
-        // Script Loader
+        // 3. Load the Script
         (function () {
-            var googleTranslateScript = document.createElement('script');
-            googleTranslateScript.type = 'text/javascript';
-            googleTranslateScript.async = true;
-            googleTranslateScript.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(googleTranslateScript);
+            var gtScript = document.createElement('script');
+            gtScript.type = 'text/javascript';
+            gtScript.async = true;
+            gtScript.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2';
+            document.body.appendChild(gtScript);
         })();
     </script>
 </body>
