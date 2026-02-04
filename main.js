@@ -14,6 +14,8 @@ const modalEpoch = document.getElementById('modalEpoch');
 const langLoader = document.getElementById('lang-loader');
 const langFab = document.getElementById('langFab');
 const htmlRoot = document.documentElement;
+const contactForm = document.getElementById('contactForm');
+const contactSuccess = document.getElementById('contactSuccess');
 
 const state = {
     filter: 'all',
@@ -380,6 +382,34 @@ document.querySelectorAll('.lang-option').forEach((button) => {
         }
     });
 });
+
+if (contactForm) {
+    contactForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        if (contactSuccess) {
+            contactSuccess.classList.add('hidden');
+        }
+
+        try {
+            const response = await fetch(contactForm.action, {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json'
+                },
+                body: new FormData(contactForm)
+            });
+
+            if (response.ok) {
+                contactForm.reset();
+                contactSuccess?.classList.remove('hidden');
+            } else {
+                console.error('Form submission failed', response.statusText);
+            }
+        } catch (error) {
+            console.error('Form submission error', error);
+        }
+    });
+}
 
 initializeUI();
 applyTranslations();
