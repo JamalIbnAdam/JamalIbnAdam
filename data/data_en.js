@@ -16,7 +16,46 @@ window.FamilyTreeData = {
         tab_tree: "🌳 The Blessed Family Tree",
         tab_figures: "🗺️ Ansar Figures in Libya",
         tab_library: "📚 Library & Documentation",
+        tab_poem: "📜 The Ansar Epic",
         tab_author: "👤 Jamal Ibn Adam (J.S. Adam)",
+
+        // --- POEM TAB ---
+        poem_main_title: "The Ansar Epic in the Land of Libya",
+        poem_intro:
+            "This manuscript-style epic traces the Ansar lineage from the cradle of Arabia in Yemen, to supporting the Prophet ﷺ in Madinah, through the blessed conquests, and the settlement of lineages in the pure land of Libya.",
+        poem_ch1_title: "🛡️ Chapter I: Origins and Homeland (Yemen & Madinah)",
+        poem_ch1_body: [
+            "From Ma'rib and the Azd roots, the Ansar rose as noble tribes of faith.",
+            "After the great flood, the Aws and Khazraj migrated to Yathrib and embraced the light of Islam.",
+            "Their loyalty to the Prophet ﷺ became the cornerstone of their legacy."
+        ],
+        poem_ch2_title: "⚔️ Chapter II: Conquests and Glory",
+        poem_ch2_body: [
+            "The Ansar marched with the early companions at Yarmuk and beyond.",
+            "They carried the Qur'an westward, building mosques and communities in al-Andalus.",
+            "Cities like Toledo and Granada echoed with the call to unity and worship."
+        ],
+        poem_ch3_title: "🕌 Chapter III: The Proof of Precedence (Tripoli & Barqa)",
+        poem_ch3_body: [
+            "Tripoli and Barqa testify to the early Ansar presence in Libya.",
+            "Companions such as Munidhir al-Ifriqi and Ruwayfi ibn Thabit rest in its soil.",
+            "These landmarks affirm the ancestral roots established since the first conquests."
+        ],
+        poem_ch4_title: "🌴 Chapter IV: The Tree of فضل (Six Branches)",
+        poem_ch4_body: [
+            "From Abdullah Sabal al-Ain grew the line of Fadl and the six main branches.",
+            "Agar, Ashkedah, Dabdab, Brak, and the families of Uthman, Qasim, Abu Bakr, Salem, and Abdul Wahid shaped the legacy.",
+            "Their honor is preserved across generations in Wadi Al-Shatii."
+        ],
+        poem_ch5_title: "🤝 Chapter V: Support and Sanctuary",
+        poem_ch5_body: [
+            "The Ansar remain a people of courage, solidarity, and protection of neighbors.",
+            "Their response to calls for aid is rooted in faith, generosity, and honor."
+        ],
+        poem_conclusion:
+            "🤲 Conclusion & Loyalty: O Lord, preserve the Ansar in every land, and send prayers upon Muhammad ﷺ who ennobled our lineage.",
+        poem_ch3_image_alt: "Munidhir Al-Ifriqi - placeholder portrait",
+        poem_ch4_image_alt: "South Palms - placeholder landscape",
 
         // Search & Filters
         search_placeholder: "Search for ancestor (e.g., Omar, Jaber)...",

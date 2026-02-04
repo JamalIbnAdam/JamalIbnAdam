@@ -16,7 +16,42 @@ window.FamilyTreeData = {
         tab_tree: "🌳 Mübarek Soy Ağacı",
         tab_figures: "🗺️ Libyadaki Ensar Şahsiyetleri",
         tab_library: "📚 Kütüphane ve Belgeleme",
+        tab_poem: "📜 Ensar Destanı",
         tab_author: "👤 Cemal İbn Adem (J.S. Adam)",
+
+        // --- POEM TAB ---
+        poem_main_title: "Libya Topraklarında Ensar Destanı",
+        poem_intro:
+            "Bu el yazması üslubundaki anlatım, Ensar soyunun Yemen'den Medine'ye, fetihlere ve Libya'daki yerleşime uzanan tarihî serüvenini özetler.",
+        poem_ch1_title: "🛡️ Bölüm I: Köken ve Yurt (Yemen & Medine)",
+        poem_ch1_body: [
+            "Ensar, Ma'rib ve Ezd köklerinden doğarak Yesrib'de İslam nuruyla birleşti.",
+            "Evs ve Hazrec kabileleri Peygamber ﷺ'e destek vererek örnek bir sadakat gösterdi."
+        ],
+        poem_ch2_title: "⚔️ Bölüm II: Fetihler ve İhtişam",
+        poem_ch2_body: [
+            "Ensar, Yermük'ten Endülüs'e kadar fetihlerde ön saflarda yer aldı.",
+            "Batı beldelerinde camiler inşa ederek ilim ve birliği yaydı."
+        ],
+        poem_ch3_title: "🕌 Bölüm III: Öncelik Şahidi (Trablus & Berka)",
+        poem_ch3_body: [
+            "Trablus ve Berka, Ensar'ın Libya'daki erken izlerini taşıyan şehirlere tanıklık eder.",
+            "Munidhir el-İfriki ve Ruwayfi bin Thabit gibi sahabiler bu topraklarda metfundur."
+        ],
+        poem_ch4_title: "🌴 Bölüm IV: Fazl'ın Şeceresi (Altı Kol)",
+        poem_ch4_body: [
+            "Abdullah Sebal el-Ayn'dan Fadl'ın soyuna ve altı ana kola ulaşıldı.",
+            "Agar, Aşkeda, Dabdab, Brak ve Osman, Kasım, Ebubekir, Salim, Abdülvahid aileleri bu mirası şekillendirdi."
+        ],
+        poem_ch5_title: "🤝 Bölüm V: Yardım ve Himaye",
+        poem_ch5_body: [
+            "Ensar, cesaret, komşuluk ve dayanışma ruhuyla tanınır.",
+            "Zor zamanlarda yardıma koşmak onların geleneğidir."
+        ],
+        poem_conclusion:
+            "🤲 Sonuç ve Sadakat: Allah'ım Ensar'ı muhafaza eyle, Peygamberimiz ﷺ'e salat ve selam olsun.",
+        poem_ch3_image_alt: "Munidhir el-İfriki - yer tutucu portre",
+        poem_ch4_image_alt: "Güney hurmalıkları - yer tutucu manzara",
 
         // Search & Filters
         search_placeholder: "Ata ara (örn: Ömer, Cabir)...",

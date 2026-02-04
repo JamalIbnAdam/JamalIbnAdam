@@ -16,7 +16,42 @@ window.FamilyTreeData = {
         tab_tree: "🌳 Drzewo Genealogiczne",
         tab_figures: "🗺️ Postacie Ansar w Libii",
         tab_library: "📚 Biblioteka i Dokumentacja",
+        tab_poem: "📜 Epos Ansarów",
         tab_author: "👤 Jamal Ibn Adam (J.S. Adam)",
+
+        // --- POEM TAB ---
+        poem_main_title: "Epos Ansarów w ziemi Libii",
+        poem_intro:
+            "Ten manuskryptowy opis streszcza dzieje Ansarów od Jemenu, przez Medynę, aż po podboje i osiedlenie rodów w Libii.",
+        poem_ch1_title: "🛡️ Rozdział I: Początki i Ojczyzna (Jemen i Medyna)",
+        poem_ch1_body: [
+            "Ansarowie wywodzą się z Ma'rib i plemion Azd, a w Jatrib przyjęli światło islamu.",
+            "Aws i Khazradż wsparli Proroka ﷺ, tworząc fundament ich tożsamości."
+        ],
+        poem_ch2_title: "⚔️ Rozdział II: Podboje i Chwała",
+        poem_ch2_body: [
+            "Ansarowie uczestniczyli w zwycięstwach od Jarmuku po Andaluzję.",
+            "Na zachodzie zakładali meczety i wspólnoty, niosąc jedność i wiarę."
+        ],
+        poem_ch3_title: "🕌 Rozdział III: Świadectwo Pierwszeństwa (Trypolis i Barka)",
+        poem_ch3_body: [
+            "Trypolis i Barka świadczą o wczesnej obecności Ansarów w Libii.",
+            "Towarzysze, tacy jak Munidhir al-Ifriqi i Ruwayfi ibn Thabit, spoczywają w tej ziemi."
+        ],
+        poem_ch4_title: "🌴 Rozdział IV: Drzewo Fadla (Sześć gałęzi)",
+        poem_ch4_body: [
+            "Od Abdullaha Sabal al-Ain wyrosła linia Fadla i sześć głównych gałęzi.",
+            "Agar, Ashkedah, Dabdab, Brak oraz rody Usmana, Kasima, Abu Bakra, Salema i Abd al-Wahida ukształtowały dziedzictwo.",
+        ],
+        poem_ch5_title: "🤝 Rozdział V: Pomoc i Schronienie",
+        poem_ch5_body: [
+            "Ansarowie są znani z odwagi, solidarności i ochrony sąsiadów.",
+            "Odpowiadają na wezwania pomocy zgodnie z etosem wiary."
+        ],
+        poem_conclusion:
+            "🤲 Zakończenie i Wierność: Boże, zachowaj Ansarów i obdarz błogosławieństwem Proroka ﷺ.",
+        poem_ch3_image_alt: "Munidhir al-Ifriqi - szkic portretu",
+        poem_ch4_image_alt: "Południowe palmy - szkic krajobrazu",
 
         // Search & Filters
         search_placeholder: "Szukaj przodka (np. Omar, Jaber)...",
