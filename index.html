@@ -941,11 +941,27 @@
             { name: "41. محمد بن إبراهيم", type: "epoch-3", date: "460-520 هـ", badge: "موثق (الإحاطة)", src: "الإحاطة لابن الخطيب", logic: "من أعيان بني سلمة", story: "ذكره ابن الخطيب كأديب وكاتب بليغ تنقل بين غرناطة ومالقة، وكان له صلات وثيقة بالدولة." },
             { name: "42. عبد الله (الأندلسي)", type: "epoch-3", date: "520-590 هـ", badge: "موثق", src: "الإحاطة", logic: "عاصر الموحدين", story: "أبو عبد الله بن سلمة، من فقهاء بني سلمة الموصوفين بـ (محرز الخصل) والفضل." },
 
-            // Epoch 3-4: Transition to Migration
-            { name: "43. سلالة بني سلمة (فترة الدولة النصرية)", type: "epoch-3", date: "600 - 850 هـ", badge: "سياق تاريخي", src: "الإحاطة في أخبار غرناطة (ج3)", logic: "عصر بني الأحمر - الأرومة الموثقة", story: "السلالة الموثقة لبني سلمة الخزرجية خلال الدولة النصرية، الذين تولوا القضاء والوزارة في غرناطة. تؤكد الدراسة الحديثة أن الجد (44. علي) هو من نسل هذه السلالة المباركة، حامل الوراثة العلمية والهندسية التي ميزتها في الأندلس، وهو ما أثبتته الوثائق المحفوظة." },
+            // 43. The Dynasty Era (The Context)
+            {
+                name: "43. سلالة أعيان بني سلمة (الدولة النصرية)",
+                type: "epoch-3",
+                date: "600 - 850 هـ",
+                badge: "الأصل التاريخي",
+                src: "الإحاطة في أخبار غرناطة",
+                logic: "الحاضنة الزمنية التي عاش فيها بنو سلمة في غرناطة. من رحم هذه السلالة وعمارتها خرج الجد (علي).",
+                story: "الحاضنة الزمنية التي عاش فيها بنو سلمة في غرناطة. من رحم هذه السلالة وعمارتها خرج الجد (علي)."
+            },
 
-            // Epoch 4: Migration
-            { name: "44. علي (الجد الأول في الوثيقة)", type: "epoch-4", date: "أواخر القرن 9 هـ (تقديري)", badge: "توثيق الأحفاد", src: "مخطوطات الأحفاد (فحص كربوني) + جاري البحث", logic: "الجد الذي ورد ذكره وتسلسله في وثائق أحفاده (سلالة عبد الله) التي خضعت للفحص الكربوني. يثبت التحقيق الزمني والخط المغربي الأندلسي أن عاش بعد سقوط غرناطة (897هـ) مباشرة، مما يؤكد نسبه من سلالة بني سلمة. جاري البحث في الأرشيفات الإسبانية والمغربية للعثور على وثيقة تخصه شخصياً لربطه بوالده المباشر.", story: "الجد الأول في سجلات الأحفاد الموثقة: ورد في وثائق عائلته بعد سقوط غرناطة (897هـ). اسمه في المخطوطات: (علي السلمي الأنصاري الخزرجي). ابنه (45. عمر) هو الذي عاصر السقوط النهائي وهاجر بالعائلة. البحث الحالي يستهدف الأرشيفات الإسبانية والمغربية لإيجاد وثائق مباشرة عن والده." },
+            // 44. Ali (The Last Andalusian Ancestor)
+            {
+                name: "44. علي (الجد الأول الموثق)",
+                type: "epoch-3",
+                date: "عاش ~840 - 900 هـ",
+                badge: "خواتيم الأندلس",
+                src: "مخطوطات الأحفاد + الاستقراء التاريخي",
+                logic: "الجد المثبت في وثائق العائلة. تشير القرائن الزمنية أنه أدرك سقوط غرناطة وهو شيخ كبير، فالأرجح أنه توفي في الأندلس أو استشهد في محنتها، بينما حمل ابنه (عمر) لواء الهجرة.",
+                story: "الجد المثبت في وثائق العائلة. تشير القرائن الزمنية أنه أدرك سقوط غرناطة وهو شيخ كبير، فالأرجح أنه توفي في الأندلس أو استشهد في محنتها، بينما حمل ابنه (عمر) لواء الهجرة."
+            },
             { name: "45. عمر (والد المؤسس)", type: "epoch-4", date: "عاش 860 - 930 هـ (تقديري)", badge: "مهاجر الأندلس", src: "وثائق العائلة + سياق الهجرة الأندلسية", logic: "الجد الذي شهد سقوط غرناطة (897 هـ) وخرج بالعائلة إلى المغرب (فاس). يمثل الجيل الذي ‏خرج من الأندلس إلى المهجر الأول.", story: "الجد الذي شهد سقوط غرناطة وهاجر بالعائلة إلى فاس." },
 
             // Epoch 5: Libya Foundation
@@ -1119,6 +1135,96 @@
         // Initialize
         renderTimeline();
 
+    </script>
+
+    <!-- Google Translate Floating Widget -->
+    <div id="google_translate_element" style="display:none;"></div>
+
+    <style>
+        /* Floating Button Container */
+        .lang-switch-wrapper {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 9999;
+            background: white;
+            padding: 10px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .lang-switch-wrapper:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Icon */
+        .lang-icon {
+            font-size: 24px;
+            margin-right: 5px;
+            animation: spin-slow 10s linear infinite;
+        }
+
+        /* Hide Google's ugly top bar */
+        .goog-te-banner-frame.skiptranslate {
+            display: none !important;
+        }
+
+        body {
+            top: 0px !important;
+        }
+
+        /* Customize the Dropdown */
+        .goog-te-combo {
+            border: none !important;
+            outline: none !important;
+            background: transparent !important;
+            font-family: inherit !important;
+            font-weight: bold !important;
+            color: #475569 !important;
+            cursor: pointer !important;
+            padding-right: 20px;
+        }
+
+        @keyframes spin-slow {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+
+    <div class="lang-switch-wrapper">
+        <div class="lang-icon">🌍</div>
+        <div id="google_element_render"></div>
+    </div>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'ar',
+                includedLanguages: 'ar,en,fr,de,tr,pl', // Arabic, English, French, German, Turkish, Polish
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_element_render');
+        }
+
+        // Script Loader
+        (function () {
+            var googleTranslateScript = document.createElement('script');
+            googleTranslateScript.type = 'text/javascript';
+            googleTranslateScript.async = true;
+            googleTranslateScript.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(googleTranslateScript);
+        })();
     </script>
 </body>
 
