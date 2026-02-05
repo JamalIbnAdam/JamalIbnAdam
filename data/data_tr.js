@@ -66,7 +66,7 @@ window.FamilyTreeData = {
 
         // Tree Section
         fadl_branch_title: "🔻 Fadl bin Abdullah Sabal Al-Ain'in Kolları 🔻",
-        fadl_node: "52. Fadl bin Abdullah<br><span style=\"font-size:0.85rem; font-weight:500;\">(Tahmini: 990 - 1030 H <span class=\"gregorian-date\">(1582 - 1621 AD)</span>)</span>",
+        fadl_node: "52. Fadl ibn Abdullah ibn Umar ibn Ali Al-Sulami Al-Jaddawi Al-Khazraji<br><span style='font-size:0.85rem; font-weight:500;'>(942 H - 1000 H (Miras Belgesi 1002 H))</span>",
         modern_era_title: "Modern Uzantı (H. 1100 - H. 1447 <span class=\"gregorian-date\">(1689 - 2026 AD)</span>)",
         modern_era_lineage: "Geç dönem atalar zinciri (20 nesil)",
         modern_era_detail:
@@ -105,7 +105,7 @@ window.FamilyTreeData = {
         // --- FADL BRANCHES (The 6 Cards) ---
         branch_1_title: "(1) Salim bin Yusuf Çocukları",
         branch_1_subtitle: "Agar (Beş Aile)",
-        branch_1_desc: "Beş Oymak (53-54. Nesil): Savalim, Kadavi, Allavi, Bakur, Vasfa (~H. 1070 <span class=\"gregorian-date\">(1660 AD)</span>).",
+        branch_1_desc: "Beş Oymak (53-54. Nesil): Savalim, Kadavi, Allavi, Bakur, Vasfa (H. 11. yüzyıl).",
 
         branch_2_title: "(2) Ebubekir bin İsmail Çocukları",
         branch_2_subtitle: "Aşkeda",
@@ -113,19 +113,18 @@ window.FamilyTreeData = {
 
         branch_3_title: "(3) Belkasım Çocukları",
         branch_3_subtitle: "Dabdab",
-        branch_3_desc: "Kollar (53. Nesil): Evlad El-Ahdari, Evlad Yusuf (~H. 1050 <span class=\"gregorian-date\">(1641 AD)</span>).",
+        branch_3_desc: "Kollar (53. Nesil): Evlad El-Ahdari, Evlad Yusuf (H. 11. yüzyıl).",
 
         branch_4_title: "(4) Kasım Çocukları",
         branch_4_subtitle: "Zaviye Brak",
-        branch_4_desc: "Unvan: Kadı El-Raşid Evi (~H. 1060 <span class=\"gregorian-date\">(1650 AD)</span>).",
+        branch_4_desc: "Unvan: Kadı El-Raşid Evi (H. 11. yüzyıl).",
 
         branch_5_title: "(5) El-Atamne",
         branch_5_subtitle: "Zaviye Brak",
-        branch_5_desc: "Kollar: El-Baradne (Bedreddin'in oğulları ~H. 1040 <span class=\"gregorian-date\">(1631 AD)</span>).",
-
+        branch_5_desc: "Kollar: El-Baradne (Bedreddin'in oğulları, H. 11. yüzyıl).",
         branch_6_title: "(6) Abdulvahid Çocukları",
         branch_6_subtitle: "Zaviye Brak",
-        branch_6_desc: "Kollar: El-Alavne (~H. 1040 <span class=\"gregorian-date\">(1631 AD)</span>).",
+        branch_6_desc: "Kollar: El-Alavne (H. 11. yüzyıl).",
 
         // --- LIBRARY DETAILS ---
         library_book_alt: "Vadi El-Şati'de Ensar Hazrec",
@@ -138,13 +137,13 @@ window.FamilyTreeData = {
         lib_point_1: "<strong>El Yazması Doğrulaması:</strong> Dede Ali'nin soyundan gelenlerin orijinal belgelerine dayanılmıştır.",
         lib_point_2: "<strong>Medeniyet Kanıtı:</strong> Dede Abdullah tarafından kurulan 'Sebul' su sistemi, Gırnata sulama mühendisliği ile eşleşmektedir.",
         lib_point_3: "<strong>Kronoloji:</strong> Hesaplanan zaman dilimleri, Dede Ali'nin Endülüs'ün düşüşünden hemen sonra yaşadığını doğrulamaktadır.",
-        library_source_1: "1. <strong>Aile el yazmaları:</strong> (Libya Cihad Merkezi - Trablus'ta muhafaza edilir).",
+        library_source_1: "1. <strong>Aile el yazmalar:</strong> (Libya Cihad Merkezi - Trablus'ta muhafaza edilir).",
         library_source_2: "2. <strong>Fizan Tarihi:</strong> (Yazar: Mustafa Khawjah - Editör: Habib Wada'ah).",
         library_source_3: "3. <strong>Libya Nüfus Sözlüğü:</strong> (Derleyen: Halife et-Tlissi).",
         library_source_4: "4. <strong>Libya'daki Arap Soykütükleri:</strong> (Yazar: Muhammed Abd el-Rezzak Manaa).",
         lib_logic_title: "Bilimsel Bağlantı: Ali neden Beni Seleme soyundandır?",
         lib_logic_text:
-            "1. <strong>Unvan:</strong> El yazmalarında adı 'El-Sülemi El-Ensari' olarak geçmektedir.<br>2. <strong>Yazı:</strong> Eski belgeler Endülüs yazısıyla yazılmıştır.<br>3. <strong>Zaman Çizelgesi:</strong> Gırnata ailelerinin göçüyle tam uyum (H. 897 sonrası <span class=\"gregorian-date\">(1492 AD)</span>).",
+            "1. <strong>Unvan:</strong> El yazmalarında adı 'El-Sülemi El-Ensari' olarak geçmektedir.<br>2. <strong>Yazı:</strong> Eski belgeler Endülüs yazısıyla yazılmıştır.<br>3. <strong>Zaman Çizelgesi:</strong> Gırnata ailelerinin göçüyle tam uyum (H. 897 sonrası <span class='gregorian-date'>(1492 AD)</span>).",
 
         // --- AUTHOR SECTION ---
         author_channel_title: "Resmi Kanal: Cemal İbn Adem",
@@ -657,13 +656,14 @@ window.FamilyTreeData = {
         },
         {
             id: "p_047",
-            name: "47. Fadl ibn Abdullah",
+            name: "47. Fadl ibn Abdullah ibn Umar ibn Ali Al-Sulami Al-Jaddawi Al-Khazraji",
             type: "epoch-5",
-            date: "Tahmini",
+            date: "942 H - 1000 H (Miras Belgesi 1002 H)",
             badge: "Akademik kaynak",
             src: "Al-Ansar al-Khazraj (Dr. Muhammad Abd al-Qadir, 2022)",
             logic: "Göç belgelerinde babasıyla birlikte anılır; dört kolun atasıdır.",
-            story: "Göç ve yerleşim sırasında babasıyla birlikte yolculuk eden oğuldur."
+            story:
+                "Göç ve yerleşim sırasında babasıyla birlikte yolculuk eden oğuldur. Ölümü, 1002 H tarihli karbon testli miras paylaşım belgesine dayanarak yaklaşık 1000 H olarak doğrulanmıştır."
         }
     ],
     links: []

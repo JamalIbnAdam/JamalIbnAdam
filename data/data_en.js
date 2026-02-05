@@ -70,7 +70,7 @@ window.FamilyTreeData = {
 
         // Tree Section
         fadl_branch_title: "🔻 Branches of Fadl bin Abdullah Sabal Al-Ain 🔻",
-        fadl_node: "52. Fadl bin Abdullah<br><span style=\"font-size:0.85rem; font-weight:500;\">(Estimated: 990 - 1030 AH <span class=\"gregorian-date\">(1582 - 1621 AD)</span>)</span>",
+        fadl_node: "52. Fadl ibn Abdullah ibn Umar ibn Ali Al-Sulami Al-Jaddawi Al-Khazraji<br><span style=\"font-size:0.85rem; font-weight:500;\">(942 AH - 1000 AH (Inheritance Doc 1002 AH))</span>",
         modern_era_title: "Modern Extension (1100 AH - 1447 AH <span class=\"gregorian-date\">(1689 - 2026 AD)</span>)",
         modern_era_lineage: "Late ancestors chain (20 generations)",
         modern_era_detail:
@@ -110,28 +110,28 @@ window.FamilyTreeData = {
         branch_1_title: "(1) Children of Salem bin Yusuf",
         branch_1_subtitle: "Agar (The Five Families)",
         branch_1_desc:
-            "The Five Clans (Gen 53-54): Al-Sawalim, Al-Kadawi, Al-Allawi, Al-Bakoor, Al-Wasfa (~1070 AH <span class=\"gregorian-date\">(1660 AD)</span>). Followed by 20 generations down to you.",
+            "The Five Clans (Gen 53-54): Al-Sawalim, Al-Kadawi, Al-Allawi, Al-Bakoor, Al-Wasfa (11th Century AH). Followed by 20 generations down to you.",
 
         branch_2_title: "(2) Children of Abu Bakr bin Ismail",
         branch_2_subtitle: "Ashkedah",
         branch_2_desc:
-            "Children of Faqih Ismail (Hamad, Mohammed, Tahir) and Children of Qasim (Nour al-Din, Hajj Ibrahim).",
+            "Children of Faqih Ismail (Hamad, Mohammed, Tahir) and Children of Qasim (Nour al-Din, Hajj Ibrahim). Era: 11th Century AH.",
 
         branch_3_title: "(3) Children of Belqasim",
         branch_3_subtitle: "Dabdab",
-        branch_3_desc: "Branches (Gen 53): Awlad Al-Akhdari, Awlad Yusuf (~1050 AH <span class=\"gregorian-date\">(1641 AD)</span>).",
+        branch_3_desc: "Branches (Gen 53): Awlad Al-Akhdari, Awlad Yusuf (11th Century AH).",
 
         branch_4_title: "(4) Children of Qasim",
         branch_4_subtitle: "Zawiyat Brak",
-        branch_4_desc: "Title: House of Judge Al-Rashid (~1060 AH <span class=\"gregorian-date\">(1650 AD)</span>).",
+        branch_4_desc: "Title: House of Judge Al-Rashid (11th Century AH).",
 
         branch_5_title: "(5) Al-Athamnah",
         branch_5_subtitle: "Zawiyat Brak",
-        branch_5_desc: "Branches: Al-Baradnah (Sons of Badr al-Din ~1040 AH <span class=\"gregorian-date\">(1631 AD)</span>).",
+        branch_5_desc: "Branches: Al-Baradnah (Sons of Badr al-Din, 11th Century AH).",
 
         branch_6_title: "(6) Children of Abdul Wahid",
         branch_6_subtitle: "Zawiyat Brak",
-        branch_6_desc: "Branches: Al-Alawneh (~1040 AH <span class=\"gregorian-date\">(1631 AD)</span>).",
+        branch_6_desc: "Branches: Al-Alawneh (11th Century AH).",
 
         // --- LIBRARY DETAILS ---
         library_book_alt: "Al-Ansar Al-Khazraj in Wadi Al-Shatii",
@@ -671,13 +671,14 @@ window.FamilyTreeData = {
         },
         {
             id: "p_047",
-            name: "47. Fadl ibn Abdullah",
+            name: "47. Fadl ibn Abdullah ibn Umar ibn Ali Al-Sulami Al-Jaddawi Al-Khazraji",
             type: "epoch-5",
-            date: "Estimated",
+            date: "942 AH - 1000 AH (Inheritance Doc 1002 AH)",
             badge: "Academic reference",
             src: "Al-Ansar al-Khazraj (Dr. Muhammad Abd al-Qadir, 2022)",
             logic: "Mentioned with his father in migration documents; the ancestor of the four branches.",
-            story: "The son who traveled with his father during migration and settlement."
+            story:
+                "The son who traveled with his father during migration and settlement. Death confirmed around 1000 AH based on a carbon-dated inheritance division document dated 1002 AH."
         }
     ],
     links: []

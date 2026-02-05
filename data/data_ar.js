@@ -76,7 +76,7 @@ window.FamilyTreeData = {
         // Tree Section
         fadl_branch_title: "🔻 تفرع البطون من الجد (فضل بن عبد الله سبال العين) 🔻",
         fadl_node:
-            "52. فـضـل بن عبد الله<br><span style=\"font-size:0.85rem; font-weight:500;\">(تقدير: 990 - 1030 هـ <span class=\"gregorian-date\">(1582 - 1621 م)</span>)</span>",
+            "52. فضل بن عبد الله بن عمر بن علي السلمي الجداوي الخزرجي<br><span style=\"font-size:0.85rem; font-weight:500;\">(942 هـ - 1000 هـ (وثيقة ميراث مؤرخة 1002 هـ))</span>",
         modern_era_title: "الامتداد المعاصر (1100 هـ - 1447 هـ <span class=\"gregorian-date\">(1689 - 2026 م)</span>)",
         modern_era_lineage: "سلسلة الأجداد المتأخرين (20 جيلاً)",
         modern_era_detail:
@@ -119,11 +119,11 @@ window.FamilyTreeData = {
             <div class="sub-group">
                 <h4>البطون الخمسة (الجيل 53-54):</h4>
                 <ul>
-                    <li><strong>السوالم</strong> — ~1070هـ <span class=\"gregorian-date\">(1660 م)</span></li>
-                    <li>الكداوي — ~1070هـ <span class=\"gregorian-date\">(1660 م)</span></li>
-                    <li>العلاوي — ~1070هـ <span class=\"gregorian-date\">(1660 م)</span></li>
-                    <li>البكور — ~1070هـ <span class=\"gregorian-date\">(1660 م)</span></li>
-                    <li>الوسفى — ~1070هـ <span class=\"gregorian-date\">(1660 م)</span></li>
+                    <li><strong>السوالم</strong> — القرن الحادي عشر الهجري</li>
+                    <li>الكداوي — القرن الحادي عشر الهجري</li>
+                    <li>العلاوي — القرن الحادي عشر الهجري</li>
+                    <li>البكور — القرن الحادي عشر الهجري</li>
+                    <li>الوسفى — القرن الحادي عشر الهجري</li>
                 </ul>
             </div>
             <div class="sub-group" style="margin-top:8px; text-align:center; font-size:0.9rem; font-weight:700; color:#b91c1c;">
@@ -137,7 +137,7 @@ window.FamilyTreeData = {
             <div class="sub-group">
                 <h4>أولاد الفقيه إسماعيل:</h4>
                 <ul>
-                    <li>أولاد حمد — ~1060هـ <span class=\"gregorian-date\">(1650 م)</span></li>
+                    <li>أولاد حمد — القرن الحادي عشر الهجري</li>
                     <li>أولاد محمد</li>
                     <li>أولاد طاهر</li>
                 </ul>
@@ -145,14 +145,14 @@ window.FamilyTreeData = {
             <div class="sub-group">
                 <h4>أولاد قاسم:</h4>
                 <ul>
-                    <li>أولاد نور الدين — ~1060هـ <span class=\"gregorian-date\">(1650 م)</span></li>
+                    <li>أولاد نور الدين — القرن الحادي عشر الهجري</li>
                     <li>أولاد الحاج إبراهيم (بيت فضل)</li>
                 </ul>
             </div>
             <div class="sub-group">
                 <h4>أولاد محمد:</h4>
                 <ul>
-                    <li>أولاد الرشيد — ~1060هـ <span class=\"gregorian-date\">(1650 م)</span></li>
+                    <li>أولاد الرشيد — القرن الحادي عشر الهجري</li>
                 </ul>
             </div>
         `,
@@ -163,8 +163,8 @@ window.FamilyTreeData = {
             <div class="sub-group">
                 <h4>الفروع (الجيل 53):</h4>
                 <ul>
-                    <li>أولاد الأخضري — ~1050هـ <span class=\"gregorian-date\">(1641 م)</span></li>
-                    <li>أولاد يوسف — ~1050هـ <span class=\"gregorian-date\">(1641 م)</span></li>
+                    <li>أولاد الأخضري — القرن الحادي عشر الهجري</li>
+                    <li>أولاد يوسف — القرن الحادي عشر الهجري</li>
                 </ul>
             </div>
         `,
@@ -175,7 +175,7 @@ window.FamilyTreeData = {
             <div class="sub-group">
                 <h4>اللقب:</h4>
                 <ul>
-                    <li>بيت القاضي الرشيد — ~1060هـ <span class=\"gregorian-date\">(1650 م)</span></li>
+                    <li>بيت القاضي الرشيد — القرن الحادي عشر الهجري</li>
                 </ul>
             </div>
         `,
@@ -186,7 +186,7 @@ window.FamilyTreeData = {
             <div class="sub-group">
                 <h4>الفروع:</h4>
                 <ul>
-                    <li>البرادنة (أبناء بدر الدين) — ~1040هـ <span class=\"gregorian-date\">(1631 م)</span></li>
+                    <li>البرادنة (أبناء بدر الدين) — القرن الحادي عشر الهجري</li>
                 </ul>
             </div>
         `,
@@ -197,7 +197,7 @@ window.FamilyTreeData = {
             <div class="sub-group">
                 <h4>الفروع:</h4>
                 <ul>
-                    <li>العلاونة — ~1040هـ <span class=\"gregorian-date\">(1631 م)</span></li>
+                    <li>العلاونة — القرن الحادي عشر الهجري</li>
                 </ul>
             </div>
         `,
@@ -739,13 +739,14 @@ window.FamilyTreeData = {
         },
         {
             id: "p_047",
-            name: "47. فضل بن عبد الله",
+            name: "47. فضل بن عبد الله بن عمر بن علي السلمي الجداوي الخزرجي",
             type: "epoch-5",
-            date: "تقديري",
+            date: "942 هـ - 1000 هـ (وثيقة ميراث مؤرخة 1002 هـ)",
             badge: "مرجع أكاديمي",
             src: "كتاب: الأنصار الخزرج (د. محمد عبد القادر 2022)",
             logic: "الابن الذي ورد ذكره مع أبيه في وثائق الهجرة والاستقرار. وهو الجد الجامع للفروع الأربعة، وتؤكد المشجرات المعتمدة من شيوخ القبائل تسلسل نسبه بدقة.",
-            story: "الابن الذي رافق أباه في رحلة الهجرة والاستقرار."
+            story:
+                "الابن الذي رافق أباه في رحلة الهجرة والاستقرار. تأكدت وفاته في حدود الألف هجري بناءً على وثيقة تقسيم ميراث موثقة كربونياً بتاريخ 1002 هـ."
         }
     ],
     links: []

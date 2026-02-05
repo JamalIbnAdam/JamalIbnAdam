@@ -66,7 +66,7 @@ window.FamilyTreeData = {
 
         // Tree Section
         fadl_branch_title: "🔻 Gałęzie Fadla bin Abdullaha Sabal Al-Ain 🔻",
-        fadl_node: "52. Fadl bin Abdullah<br><span style=\"font-size:0.85rem; font-weight:500;\">(Szacunkowo: 990 - 1030 AH <span class=\"gregorian-date\">(1582 - 1621 AD)</span>)</span>",
+        fadl_node: "52. Fadl ibn Abdullah ibn Umar ibn Ali Al-Sulami Al-Jaddawi Al-Khazraji<br><span style='font-size:0.85rem; font-weight:500;'>(942 AH - 1000 AH (Dokument Spadkowy 1002 AH))</span>",
         modern_era_title: "Współczesne Rozszerzenie (1100 AH - 1447 AH <span class=\"gregorian-date\">(1689 - 2026 AD)</span>)",
         modern_era_lineage: "Łańcuch późnych przodków (20 pokoleń)",
         modern_era_detail:
@@ -105,7 +105,7 @@ window.FamilyTreeData = {
         // --- FADL BRANCHES (The 6 Cards) ---
         branch_1_title: "(1) Dzieci Salema bin Yusufa",
         branch_1_subtitle: "Agar (Pięć Rodzin)",
-        branch_1_desc: "Pięć Klanów (Gen 53-54): Al-Sawalim, Al-Kadawi, Al-Allawi, Al-Bakoor, Al-Wasfa (~1070 AH <span class=\"gregorian-date\">(1660 AD)</span>).",
+        branch_1_desc: "Pięć Klanów (Gen 53-54): Al-Sawalim, Al-Kadawi, Al-Allawi, Al-Bakoor, Al-Wasfa (XI wiek AH).",
 
         branch_2_title: "(2) Dzieci Abu Bakra bin Ismaila",
         branch_2_subtitle: "Ashkedah",
@@ -113,19 +113,19 @@ window.FamilyTreeData = {
 
         branch_3_title: "(3) Dzieci Belqasima",
         branch_3_subtitle: "Dabdab",
-        branch_3_desc: "Gałęzie (Gen 53): Awlad Al-Akhdari, Awlad Yusuf (~1050 AH <span class=\"gregorian-date\">(1641 AD)</span>).",
+        branch_3_desc: "Gałęzie (Gen 53): Awlad Al-Akhdari, Awlad Yusuf (XI wiek AH).",
 
         branch_4_title: "(4) Dzieci Qasima",
         branch_4_subtitle: "Zawiyat Brak",
-        branch_4_desc: "Tytuł: Dom Sędziego Al-Rashida (~1060 AH <span class=\"gregorian-date\">(1650 AD)</span>).",
+        branch_4_desc: "Tytuł: Dom Sędziego Al-Rashida (XI wiek AH).",
 
         branch_5_title: "(5) Al-Athamnah",
         branch_5_subtitle: "Zawiyat Brak",
-        branch_5_desc: "Gałęzie: Al-Baradnah (Synowie Badr al-Dina ~1040 AH <span class=\"gregorian-date\">(1631 AD)</span>).",
+        branch_5_desc: "Gałęzie: Al-Baradnah (Synowie Badr al-Dina, XI wiek AH).",
 
         branch_6_title: "(6) Dzieci Abdula Wahida",
         branch_6_subtitle: "Zawiyat Brak",
-        branch_6_desc: "Gałęzie: Al-Alawneh (~1040 AH <span class=\"gregorian-date\">(1631 AD)</span>).",
+        branch_6_desc: "Gałęzie: Al-Alawneh (XI wiek AH).",
 
         // --- LIBRARY DETAILS ---
         library_book_alt: "Ansar Khazraj w Wadi Al-Shatii",
@@ -147,7 +147,7 @@ window.FamilyTreeData = {
         library_source_4: "4. <strong>Arabskie Genealogie w Libii:</strong> (Autor: Mohammed Abd al-Razzaq Manaa).",
         lib_logic_title: "Naukowe Połączenie: Dlaczego (Ali) jest potomkiem Banu Salma?",
         lib_logic_text:
-            "1. <strong>Tytuł:</strong> Jego imię pojawia się w rękopisach jako 'Al-Sulami Al-Ansari'.<br>2. <strong>Pismo:</strong> Stare dokumenty napisane pismem andaluzyjskim.<br>3. <strong>Oś Czasu:</strong> Idealne dopasowanie do exodusu rodzin z Granady (po 897 AH <span class=\"gregorian-date\">(1492 AD)</span>).",
+            "1. <strong>Tytuł:</strong> Jego imię pojawia się w rękopisach jako 'Al-Sulami Al-Ansari'.<br>2. <strong>Pismo:</strong> Stare dokumenty napisane pismem andaluzyjskim.<br>3. <strong>Oś Czasu:</strong> Idealne dopasowanie do exodusu rodzin z Granady (po 897 AH <span class='gregorian-date'>(1492 AD)</span>).",
 
         // --- AUTHOR SECTION ---
         author_channel_title: "Oficjalny Kanał: Jamal Ibn Adam",
@@ -663,13 +663,14 @@ window.FamilyTreeData = {
         },
         {
             id: "p_047",
-            name: "47. Fadl ibn Abdullah",
+            name: "47. Fadl ibn Abdullah ibn Umar ibn Ali Al-Sulami Al-Jaddawi Al-Khazraji",
             type: "epoch-5",
-            date: "Szacunkowy",
+            date: "942 AH - 1000 AH (Dokument Spadkowy 1002 AH)",
             badge: "Źródło akademickie",
             src: "Al-Ansar al-Khazraj (Dr. Muhammad Abd al-Qadir, 2022)",
             logic: "Wspomniany wraz z ojcem w dokumentach migracyjnych; przodek czterech gałęzi.",
-            story: "Syn, który podróżował z ojcem podczas migracji i osiedlenia."
+            story:
+                "Syn, który podróżował z ojcem podczas migracji i osiedlenia. Śmierć potwierdzona około 1000 AH na podstawie datowanego radiowęglowo dokumentu podziału spadku z 1002 AH."
         }
     ],
     links: []
