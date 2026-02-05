@@ -203,473 +203,473 @@ window.FamilyTreeData = {
             id: "p_001",
             name: "1. Qahtan",
             type: "epoch-1",
-            date: "Ancient",
-            badge: "Genealogists' consensus",
+            date: "Starożytność",
+            badge: "Konsensus genealogów",
             src: "Jamharat Ansab al-Arab",
-            logic: "The great ancestor of the pure Arabs.",
-            story: "The origin of the Arabs and their pride."
+            logic: "Wielki przodek czystych Arabów.",
+            story: "Początek Arabów i ich duma."
         },
         {
             id: "p_002",
             name: "2. Ya'rub",
             type: "epoch-1",
-            date: "Ancient",
-            badge: "Sequential",
+            date: "Starożytność",
+            badge: "Sekwencyjny",
             src: "Jamharat Ansab al-Arab",
             logic: "--",
-            story: "The first to speak classical Arabic."
+            story: "Pierwszy, który mówił klasycznym arabskim."
         },
         {
             id: "p_003",
             name: "3. Yashjub ibn Ya'rub",
             type: "epoch-1",
-            date: "Ancient",
-            badge: "Royal lineage",
+            date: "Starożytność",
+            badge: "Linia królewska",
             src: "Tarikh al-Tabari",
-            logic: "Bridge between eloquence and civilization",
-            story: "The bridge between Ya'rub (eloquence) and Saba' (state building), representing the generation that moved toward organized governance and civilization."
+            logic: "Pomost między elokwencją a cywilizacją",
+            story: "Pomost między Ya'rubem (elokwencja) a Saba (budowa państwa), reprezentujący pokolenie, które zwróciło się ku zorganizowanemu zarządzaniu i cywilizacji."
         },
         {
             id: "p_004",
             name: "4. Saba'",
             type: "epoch-1",
-            date: "8th century BCE",
-            badge: "Archaeological/Historical",
+            date: "VIII w. p.n.e.",
+            badge: "Archeologiczno-historyczny",
             src: "Musnad inscriptions",
-            logic: "Founder of the kingdom",
-            story: "Founder of the great Kingdom of Saba' and its famous dam."
+            logic: "Założyciel królestwa",
+            story: "Założyciel wielkiego Królestwa Saby i jego słynnej tamy."
         },
         {
             id: "p_005",
             name: "5. Kahlan",
             type: "epoch-1",
             date: "--",
-            badge: "Sequential",
+            badge: "Sekwencyjny",
             src: "Ibn Khaldun",
-            logic: "Trunk of the Arabs",
-            story: "One of Saba's two sons, ancestor of al-Azd, Hamdan, and Madhhij."
+            logic: "Pień Arabów",
+            story: "Jeden z dwóch synów Saby; przodek Azd, Hamdanu i Madhhidżu."
         },
         {
             id: "p_006",
             name: "6. Zayd ibn Kahlan",
             type: "epoch-1",
             date: "--",
-            badge: "Pillar of lineage",
+            badge: "Filary rodu",
             src: "Al-Iklil (Al-Hamdani) + Tarikh al-Tabari",
-            logic: "The unifier and branch point of major tribes",
-            story: "The unifier of most Kahlan branches. From him came Malik (ancestor of al-Azd and Kinda) and Arib (ancestor of Hamdan), making him a key link in the great Yemeni lineage."
+            logic: "Jednoczyciel i punkt rozgałęzienia wielkich plemion",
+            story: "Zjednoczył większość gałęzi Kahlana. Od niego pochodzą Malik (przodek Azd i Kindy) oraz Arib (przodek Hamdanu), co czyni go kluczowym ogniwem wielkiej linii jemeńskiej."
         },
         {
             id: "p_007",
             name: "7. Malik ibn Zayd",
             type: "epoch-1",
-            date: "Ancient",
-            badge: "Kahlan lineage",
+            date: "Starożytność",
+            badge: "Linia Kahlana",
             src: "Al-Iklil (Al-Hamdani)",
-            logic: "Kahlan notable and tribal branches",
-            story: "A prominent Kahlan figure; from his line sprang major Yemeni tribes that shaped Arab history."
+            logic: "Znaczący Kahlan i gałęzie plemienne",
+            story: "Wybitna postać Kahlana; z jego rodu wywodzą się wielkie plemiona jemeńskie, które ukształtowały historię Arabów."
         },
         {
             id: "p_008",
             name: "8. Nabit ibn Malik",
             type: "epoch-1",
-            date: "Ancient",
-            badge: "Documented",
+            date: "Starożytność",
+            badge: "Udokumentowany",
             src: "Nasab Ma'add wa al-Yaman al-Kabir (Al-Kalbi)",
-            logic: "Ancestor of al-Azd branches",
-            story: "The ancestor who links al-Azd branches to their Kahlan roots, a vital link in the Arab lineage."
+            logic: "Przodek gałęzi Azd",
+            story: "Przodek łączący gałęzie Azd z ich korzeniami Kahlana; kluczowe ogniwo w rodowodzie arabskim."
         },
         {
             id: "p_009",
             name: "9. Al-Ghawth ibn Nabit",
             type: "epoch-1",
-            date: "Ancient",
-            badge: "Father of the tribe",
+            date: "Starożytność",
+            badge: "Ojciec plemienia",
             src: "Al-Tabaqat al-Kubra (Ibn Sa'd)",
-            logic: "Father of al-Azd and the direct ancestor",
-            story: "The father of al-Azd. He was called al-Ghawth for his stature and leadership, the direct ancestor of the tribe that spread across Arabia."
+            logic: "Ojciec Azd i bezpośredni przodek",
+            story: "Ojciec Azd. Nazywano go al-Ghawth ze względu na jego postawę i przywództwo; bezpośredni przodek plemienia, które rozprzestrzeniło się po Arabii."
         },
         {
             id: "p_010",
             name: "10. Al-Azd",
             type: "epoch-1",
-            date: "Ancient",
-            badge: "Documented",
+            date: "Starożytność",
+            badge: "Udokumentowany",
             src: "Jamharat Ibn Hazm",
-            logic: "Ancestor of tribes",
-            story: "Ancestor of the Ansar, Ghassanids, Bariq, and Khuza'a."
+            logic: "Przodek plemion",
+            story: "Przodek Ansarów, Ghassanidów, Bariq i Khuza'a."
         },
         {
             id: "p_011",
             name: "11. Mazin ibn al-Azd",
             type: "epoch-1",
-            date: "Ancient",
-            badge: "Branching point",
+            date: "Starożytność",
+            badge: "Punkt rozgałęzienia",
             src: "Al-Ishtiqaq (Ibn Durayd)",
-            logic: "Ancestor of Mazin Ghassan and a major split",
-            story: "From his line, al-Azd split into the Ansar in Yathrib and the Ghassanids in the Levant."
+            logic: "Przodek Mazin Gassan i wielkie rozszczepienie",
+            story: "Z jego linii Azd rozdzielił się na Ansarów w Jatrib i Ghassanidów w Lewancie."
         },
         {
             id: "p_012",
             name: "12. Tha'labah ibn Mazin",
             type: "epoch-1",
-            date: "Ancient",
-            badge: "Documented sequence",
+            date: "Starożytność",
+            badge: "Udokumentowana sekwencja",
             src: "Jamharat Ansab al-Arab (Ibn Hazm)",
-            logic: "Documented link",
-            story: "A documented link in the Azd lineage, cited by major genealogists."
+            logic: "Udokumentowane ogniwo",
+            story: "Udokumentowane ogniwo w linii Azd, przywoływane przez głównych genealogów."
         },
         {
             id: "p_013",
             name: "13. Imru' al-Qays",
             type: "epoch-1",
-            date: "Ancient",
-            badge: "Historical",
+            date: "Starożytność",
+            badge: "Historyczny",
             src: "Tarikh Ibn Khaldun",
-            logic: "Royal name and authority",
-            story: "A royal-era name indicating authority and status."
+            logic: "Imię królewskie i autorytet",
+            story: "Imię z epoki królewskiej wskazujące na autorytet i status."
         },
         {
             id: "p_014",
             name: "14. Harithah al-Ghutruf",
             type: "epoch-1",
-            date: "Ancient",
-            badge: "Title of leadership",
+            date: "Starożytność",
+            badge: "Tytuł przywództwa",
             src: "Al-Kamil (Ibn al-Athir)",
-            logic: "The great leader among his people",
-            story: "Known as al-Ghutruf for his nobility and stature; the term denotes a great leader and warrior."
+            logic: "Wielki przywódca wśród swego ludu",
+            story: "Znany jako al-Ghutruf z powodu szlachetności i postawy; termin ten oznacza wielkiego przywódcę i wojownika."
         },
         {
             id: "p_015",
             name: "15. Amir (Ma' al-Sama')",
             type: "epoch-1",
-            date: "Before the flood",
-            badge: "Documented",
+            date: "Przed potopem",
+            badge: "Udokumentowany",
             src: "Ibn Hazm",
             logic: "--",
-            story: "A Yemeni king famed for generosity, nicknamed "
-                + "'Water of the sky'."
+            story: "Jemeński król słynący z hojności, nazywany "
+                + "'Wodą nieba'."
         },
         {
             id: "p_016",
             name: "16. Amr (Muzayqiya)",
             type: "epoch-1",
-            date: "3rd century CE",
-            badge: "Historical",
+            date: "III w. n.e.",
+            badge: "Historyczny",
             src: "Jamharat Ibn Hazm",
-            logic: "Leader of the migration",
-            story: "Led the great migration from Yemen after the signs of the dam collapse."
+            logic: "Przywódca migracji",
+            story: "Poprowadził wielką migrację z Jemenu po znakach upadku tamy."
         },
         {
             id: "p_017",
             name: "17. Tha'labah (Al-'Anqa')",
             type: "epoch-1",
-            date: "Ancient",
-            badge: "Famous title",
+            date: "Starożytność",
+            badge: "Słynny tytuł",
             src: "Al-Inbah (Ibn Abd al-Barr)",
-            logic: "Father of Harithah, father of the Ansar",
-            story: "Nicknamed "
-                + "'Al-'Anqa'' for his stature; father of Harithah, the ancestor of the Ansar."
+            logic: "Ojciec Harithaha, ojciec Ansarów",
+            story: "Noszący przydomek "
+                + "'Al-'Anqa'' ze względu na swą postawę; ojciec Harithaha, przodka Ansarów."
         },
         {
             id: "p_018",
-            name: "18. Harithah (Father of the Ansar)",
+            name: "18. Harithah (Ojciec Ansarów)",
             type: "epoch-1",
-            date: "4th century CE",
-            badge: "Documented",
+            date: "IV w. n.e.",
+            badge: "Udokumentowany",
             src: "Jamharat Ibn Hazm",
-            logic: "Father of al-Aws and al-Khazraj",
-            story: "He married Qaylah bint Kahil; their children were al-Aws and al-Khazraj."
+            logic: "Ojciec Aws i Khazradża",
+            story: "Poślubił Qaylah bint Kahil; ich dziećmi byli Aws i Khazradż."
         },
         {
             id: "p_019",
             name: "19. Al-Khazraj",
             type: "epoch-1",
-            date: "5th century CE",
-            badge: "Documented",
+            date: "V w. n.e.",
+            badge: "Udokumentowany",
             src: "Al-Isabah",
-            logic: "Tribal ancestor",
-            story: "The tribal ancestor of the great Khazraj tribe that supported the Prophet ﷺ."
+            logic: "Przodek plemienny",
+            story: "Plemienny przodek wielkiego plemienia Khazradż, które wsparło Proroka ﷺ."
         },
         {
             id: "p_020",
             name: "20. Jusham ibn al-Khazraj",
             type: "epoch-1",
             date: "--",
-            badge: "Clan head",
+            badge: "Głowa klanu",
             src: "Jamharat Ansab al-Arab (Ibn Hazm - p330)",
-            logic: "Clan ancestor",
-            story: "The direct son of al-Khazraj, progenitor of Banu Jusham."
+            logic: "Przodek klanu",
+            story: "Bezpośredni syn al-Khazradża, protoplasta Banu Jusham."
         },
         {
             id: "p_021",
             name: "21. Tazid ibn Jusham",
             type: "epoch-1",
             date: "--",
-            badge: "Documented",
+            badge: "Udokumentowany",
             src: "Nasab Ma'add wa al-Yaman al-Kabir (Al-Kalbi)",
-            logic: "Lineage link",
-            story: "A documented link in the Khazraj lineage."
+            logic: "Ogniwo rodowodowe",
+            story: "Udokumentowane ogniwo w rodzie Khazradża."
         },
         {
             id: "p_022",
             name: "22. Sardah ibn Tazid",
             type: "epoch-1",
             date: "--",
-            badge: "Documented sequence",
+            badge: "Udokumentowana sekwencja",
             src: "Jamharat Ansab al-Arab (Ibn Hazm)",
-            logic: "Lineage link",
-            story: "An early ancestor in the chain leading to Banu Salimah."
+            logic: "Ogniwo rodowodowe",
+            story: "Wczesny przodek w łańcuchu prowadzącym do Banu Salimah."
         },
         {
             id: "p_023",
             name: "23. Asad ibn Sardah",
             type: "epoch-1",
             date: "--",
-            badge: "Documented lineage",
+            badge: "Udokumentowana linia",
             src: "Al-Tabaqat al-Kubra (Ibn Sa'd - vol 1)",
-            logic: "Pre-Islamic ancestor",
-            story: "A pre-Islamic ancestor whose descendants formed sub-clans in Yathrib."
+            logic: "Przodek przedislamski",
+            story: "Przodek sprzed islamu, którego potomkowie utworzyli podklany w Jatrib."
         },
         {
             id: "p_024",
             name: "24. Ali ibn Asad",
             type: "epoch-1",
             date: "--",
-            badge: "Documented",
+            badge: "Udokumentowany",
             src: "Mukhtalif al-Qaba'il (Ibn Habib)",
-            logic: "Lineage link",
-            story: "A key link connecting the Salimi lineage to its Jushami roots."
+            logic: "Ogniwo rodowodowe",
+            story: "Kluczowe ogniwo łączące linię Salimi z korzeniami Jushami."
         },
         {
             id: "p_025",
             name: "25. Sa'd ibn Ali",
             type: "epoch-1",
-            date: "Before Hijrah",
-            badge: "Father of the ancestor",
+            date: "Przed Hidżrą",
+            badge: "Ojciec przodka",
             src: "Sirat Ibn Hisham",
-            logic: "Direct ancestor of Salimah",
-            story: "The father of Salimah, paving the way for Banu Salimah's prominence."
+            logic: "Bezpośredni przodek Salimah",
+            story: "Ojciec Salimah, torujący drogę do znaczenia Banu Salimah."
         },
         {
             id: "p_026",
             name: "26. Salimah",
             type: "epoch-1",
-            date: "Before Hijrah",
-            badge: "Documented",
+            date: "Przed Hidżrą",
+            badge: "Udokumentowany",
             src: "Sirat Ibn Hisham",
-            logic: "Ancestor of Banu Salimah",
-            story: "Banu Salimah wished to move closer to the Prophet's mosque; he told them their footsteps were recorded."
+            logic: "Przodek Banu Salimah",
+            story: "Banu Salimah pragnęli przenieść się bliżej meczetu Proroka; powiedział im, że ich kroki są zapisywane."
         },
         {
             id: "p_027",
             name: "27. Ghanm ibn Salimah",
             type: "epoch-1",
-            date: "Pre-Islamic Yathrib",
-            badge: "Clan head",
+            date: "Jatrib przed islamem",
+            badge: "Głowa klanu",
             src: "Jamharat Ansab al-Arab (Ibn Hazm - p358)",
-            logic: "Clan ancestor",
-            story: "Direct son of Salimah; from his line came Banu Salimah."
+            logic: "Przodek klanu",
+            story: "Bezpośredni syn Salimah; z jego linii wywodzi się Banu Salimah."
         },
         {
             id: "p_028",
             name: "28. Ka'b ibn Ghanm",
             type: "epoch-1",
             date: "--",
-            badge: "Documented lineage",
+            badge: "Udokumentowana linia",
             src: "Al-Tabaqat al-Kubra (Ibn Sa'd)",
-            logic: "Lineage link",
-            story: "A link in the chain cited in the lineage of Jabir ibn Abdullah."
+            logic: "Ogniwo rodowodowe",
+            story: "Ogniwo w łańcuchu przywoływanym w rodowodzie Jabira ibn Abdullaha."
         },
         {
             id: "p_029",
             name: "29. Tha'labah ibn Ka'b",
             type: "epoch-1",
             date: "--",
-            badge: "Documented",
+            badge: "Udokumentowany",
             src: "Nasab Ma'add wa al-Yaman al-Kabir (Al-Kalbi)",
-            logic: "Pre-Islamic ancestor",
-            story: "A pre-Islamic ancestor who lived in Yathrib."
+            logic: "Przodek przedislamski",
+            story: "Przodek sprzed islamu, który żył w Jatrib."
         },
         {
             id: "p_030",
             name: "30. Haram ibn Tha'labah",
             type: "epoch-1",
-            date: "Just before the Prophetic mission",
-            badge: "Father of a Companion",
+            date: "Tuż przed misją prorocką",
+            badge: "Ojciec towarzysza",
             src: "Al-Isabah fi Tamyiz al-Sahabah",
-            logic: "Father of Amr ibn Haram",
-            story: "The father of the Companion Amr ibn Haram, who died before the Hijrah."
+            logic: "Ojciec Amra ibn Harama",
+            story: "Ojciec towarzysza Amra ibn Harama, który zmarł przed Hidżrą."
         },
         {
             id: "p_031",
             name: "31. Amr ibn Haram",
             type: "epoch-2",
-            date: "Died before Uhud",
-            badge: "Companion",
+            date: "Zmarł przed Uhud",
+            badge: "Towarzysz",
             src: "Al-Isabah (vol 1)",
             logic: "--",
-            story: "A senior leader among the Ansar."
+            story: "Starszy przywódca wśród Ansarów."
         },
         {
             id: "p_032",
-            name: "32. Abdullah (the Martyr)",
+            name: "32. Abdullah (Męczennik)",
             type: "epoch-2",
-            date: "Martyred 3 AH",
-            badge: "Martyr of Uhud",
+            date: "Męczennik 3 AH",
+            badge: "Męczennik Uhud",
             src: "Al-Isabah",
-            logic: "Father of Jabir",
-            story: "Abdullah ibn Amr ibn Haram; God spoke to him directly after he was martyred at Uhud."
+            logic: "Ojciec Jabira",
+            story: "Abdullah ibn Amr ibn Haram; Bóg przemówił do niego bezpośrednio po tym, jak poległ w Uhud."
         },
         {
             id: "p_033",
             name: "33. Jabir ibn Abdullah",
             type: "epoch-2",
-            date: "Died 78 AH",
-            badge: "Great Companion",
+            date: "Zmarł 78 AH",
+            badge: "Wielki towarzysz",
             src: "Al-Isabah (1022)",
-            logic: "Lineage head",
-            story: "Leader of Banu Salimah and prolific hadith narrator."
+            logic: "Głowa linii",
+            story: "Przywódca Banu Salimah i płodny narrator hadisów."
         },
         {
             id: "p_034",
-            name: "34. Abd al-Rahman (the first)",
+            name: "34. Abd al-Rahman (pierwszy)",
             type: "epoch-3",
             date: "100-150 AH",
-            badge: "Documented",
+            badge: "Udokumentowany",
             src: "Jamharat Ibn Hazm",
-            logic: "Entered al-Andalus",
-            story: "Ibn Hazm notes that the descendants of Abd al-Rahman entered al-Andalus and settled in Jaen and Cordoba."
+            logic: "Wszedł do al-Andalus",
+            story: "Ibn Hazm odnotowuje, że potomkowie Abd al-Rahmana weszli do al-Andalus i osiedlili się w Jaen i Kordobie."
         },
         {
             id: "p_035",
             name: "35. Muhammad",
             type: "epoch-3",
             date: "150-200 AH",
-            badge: "Estimated",
+            badge: "Szacunkowy",
             src: "Nafh al-Tib",
-            logic: "Umayyad era",
-            story: "Lived during the Umayyad foundation era in al-Andalus."
+            logic: "Era Umajjadów",
+            story: "Żył w okresie założenia Umajjadów w al-Andalus."
         },
         {
             id: "p_036",
-            name: "36. Abdullah (founding generation)",
+            name: "36. Abdullah (pokolenie założycielskie)",
             type: "epoch-3",
             date: "200-250 AH",
-            badge: "Documented by class",
+            badge: "Udokumentowany przez klasę",
             src: "Jamharat Ibn Hazm + Nafh al-Tib",
-            logic: "First generation settled in Ilbira",
-            story: "Represents the first generation to settle in Ilbira (old Granada) after entering al-Andalus."
+            logic: "Pierwsze pokolenie osiadłe w Ilbira",
+            story: "Reprezentuje pierwsze pokolenie, które osiadło w Ilbirze (starej Granadzie) po wejściu do al-Andalus."
         },
         {
             id: "p_037",
-            name: "37. Abd al-Rahman (the second)",
+            name: "37. Abd al-Rahman (drugi)",
             type: "epoch-3",
             date: "250-300 AH",
-            badge: "Documented historical context",
+            badge: "Udokumentowany kontekst historyczny",
             src: "Tarikh Ulama al-Andalus (Ibn al-Faradi)",
-            logic: "Stood with the Umayyads during the Ibn Hafsun revolt",
-            story: "Lived during the Ibn Hafsun revolt; the Ansar of Ilbira supported the Umayyads."
+            logic: "Stał po stronie Umajjadów podczas buntu Ibn Hafsuna",
+            story: "Żył w czasie buntu Ibn Hafsuna; Ansarowie z Ilbiry wspierali Umajjadów."
         },
         {
             id: "p_038",
-            name: "38. Ahmad (Caliphate era)",
+            name: "38. Ahmad (era kalifatu)",
             type: "epoch-3",
             date: "300-350 AH",
-            badge: "Notables of Granada",
+            badge: "Notable Granady",
             src: "Al-Ihatah fi Akhbar Gharnatah (Ibn al-Khatib)",
-            logic: "Held judicial and administrative positions",
-            story: "Lived during the golden age under Abd al-Rahman al-Nasir; Banu Salimah held judicial roles."
+            logic: "Pełnił funkcje sądowe i administracyjne",
+            story: "Żył w złotym wieku za Abd al-Rahmana al-Nasira; Banu Salimah pełnili role sądowe."
         },
         {
             id: "p_039",
-            name: "39. Muhammad (the 'Amiri era)",
+            name: "39. Muhammad (era 'Amiri)",
             type: "epoch-3",
             date: "350-400 AH",
-            badge: "Documented by class",
+            badge: "Udokumentowany przez klasę",
             src: "Al-Dhayl wa al-Takmilah (Ibn Abd al-Malik al-Marrakushi)",
-            logic: "Many scholars among the Ansar",
-            story: "The generation that saw the military zenith under al-Mansur ibn Abi Amir."
+            logic: "Wśród Ansarów było wielu uczonych",
+            story: "Pokolenie, które widziało wojskowy szczyt pod rządami al-Mansura ibn Abi Amira."
         },
         {
             id: "p_040",
             name: "40. Ibrahim",
             type: "epoch-3",
             date: "400-460 AH",
-            badge: "Documented",
+            badge: "Udokumentowany",
             src: "Al-Ihatah fi Akhbar Gharnatah",
-            logic: "Taifa era",
-            story: "Banu Salimah households were known for knowledge and virtue in Granada."
+            logic: "Okres taif",
+            story: "Domy Banu Salimah w Granadzie słynęły z wiedzy i cnoty."
         },
         {
             id: "p_041",
             name: "41. Muhammad ibn Ibrahim",
             type: "epoch-3",
             date: "460-520 AH",
-            badge: "Documented",
+            badge: "Udokumentowany",
             src: "Al-Ihatah (Ibn al-Khatib)",
-            logic: "Notable of Banu Salimah",
-            story: "Noted as an eloquent writer who traveled between Granada and Malaga."
+            logic: "Znakomity Banu Salimah",
+            story: "Odnotowany jako elokwentny pisarz podróżujący między Granadą a Malagą."
         },
         {
             id: "p_042",
-            name: "42. Abdullah (Andalusi)",
+            name: "42. Abdullah (Andaluzyjski)",
             type: "epoch-3",
             date: "520-590 AH",
-            badge: "Documented",
+            badge: "Udokumentowany",
             src: "Al-Ihatah",
-            logic: "Lived during the Almohads",
-            story: "A jurist of Banu Salimah described as accomplished and virtuous."
+            logic: "Żył w czasach Almohadów",
+            story: "Prawnik Banu Salimah opisywany jako biegły i cnotliwy."
         },
         {
             id: "p_043",
-            name: "43. Banu Salimah notable lineage (Nasrid era)",
+            name: "43. Znamienita linia Banu Salimah (era Nasrydów)",
             type: "epoch-3",
             date: "600 - 850 AH",
-            badge: "Historical origin",
+            badge: "Historyczne pochodzenie",
             src: "Al-Ihatah fi Akhbar Gharnatah",
-            logic: "The temporal context in which Banu Salimah lived in Granada; from this lineage came Ali.",
-            story: "The temporal context in which Banu Salimah lived in Granada; from this lineage came Ali."
+            logic: "Kontekst czasowy życia Banu Salimah w Granadzie; z tej linii pochodzi Ali.",
+            story: "Kontekst czasowy życia Banu Salimah w Granadzie; z tej linii pochodzi Ali."
         },
         {
             id: "p_044",
-            name: "44. Ali (the first documented ancestor)",
+            name: "44. Ali (pierwszy udokumentowany przodek)",
             type: "epoch-3",
             date: "~840 - 900 AH",
-            badge: "End of al-Andalus",
+            badge: "Koniec al-Andalus",
             src: "Family manuscripts + historical inference",
-            logic: "The documented ancestor in family records; he likely witnessed Granada's fall while his son Umar led the migration.",
-            story: "The documented ancestor in family records; he likely witnessed Granada's fall while his son Umar led the migration."
+            logic: "Udokumentowany przodek w zapisach rodzinnych; mógł być świadkiem upadku Granady, gdy jego syn Umar prowadził migrację.",
+            story: "Udokumentowany przodek w zapisach rodzinnych; mógł być świadkiem upadku Granady, gdy jego syn Umar prowadził migrację."
         },
         {
             id: "p_045",
-            name: "45. Umar (father of the founder)",
+            name: "45. Umar (ojciec założyciela)",
             type: "epoch-4",
-            date: "860 - 930 AH (estimated)",
-            badge: "Andalusian مهاجر",
+            date: "860 - 930 AH (szacunkowo)",
+            badge: "Andaluzyjski مهاجر",
             src: "Family documents + Andalusian migration context",
-            logic: "Witnessed Granada's fall (897 AH) and moved the family to Fez.",
-            story: "Witnessed Granada's fall and migrated with the family to Fez."
+            logic: "Był świadkiem upadku Granady (897 AH) i przeniósł rodzinę do Fezu.",
+            story: "Był świadkiem upadku Granady i migrował z rodziną do Fezu."
         },
         {
             id: "p_046",
-            name: "46. Abdullah Sibal al-Ayn (migrated to Libya)",
+            name: "46. Abdullah Sibal al-Ayn (migracja do Libii)",
             type: "epoch-5",
-            date: "900 - 960 AH (entered Fezzan ~950 AH)",
-            badge: "Waqf founder",
+            date: "900 - 960 AH (wejście do Fezzanu ~950 AH)",
+            badge: "Założyciel wakfu",
             src: "Tarikh Fezzan + waqf documents",
-            logic: "Born in Morocco, migrated to Libya around 950 AH, and established the waqf.",
-            story: "Born in Fez and carried Andalusian expertise to Fezzan, establishing the waqf system."
+            logic: "Urodzony w Maroku, migrował do Libii około 950 AH i ustanowił wakf.",
+            story: "Urodzony w Fezie, przeniósł andaluzyjskie doświadczenie do Fezzanu, ustanawiając system wakfu."
         },
         {
             id: "p_047",
             name: "47. Fadl ibn Abdullah",
             type: "epoch-5",
-            date: "Estimated",
-            badge: "Academic reference",
+            date: "Szacunkowy",
+            badge: "Źródło akademickie",
             src: "Al-Ansar al-Khazraj (Dr. Muhammad Abd al-Qadir, 2022)",
-            logic: "Mentioned with his father in migration documents; the ancestor of the four branches.",
-            story: "The son who traveled with his father during migration and settlement."
+            logic: "Wspomniany wraz z ojcem w dokumentach migracyjnych; przodek czterech gałęzi.",
+            story: "Syn, który podróżował z ojcem podczas migracji i osiedlenia."
         }
     ],
     links: []
