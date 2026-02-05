@@ -226,7 +226,7 @@ function renderTimeline() {
 function openModal(data) {
     const { translations = {} } = getData();
     modalName.innerText = data.name;
-    modalDate.innerText = data.date;
+    modalDate.innerHTML = data.date;
     modalStory.innerText =
         data.story === '--' ? translations.modal_story_fallback || 'حلقة وصل في سلسلة النسب المتواترة.' : data.story;
     modalSource.innerText = data.src;
