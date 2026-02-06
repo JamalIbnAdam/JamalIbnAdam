@@ -376,12 +376,28 @@ function switchTab(tabId) {
     document.getElementById(`tab-${tabId}`).classList.remove('text-white/60');
 }
 
-function filterEpoch(epoch) {
-    document.querySelectorAll('.filter-btn').forEach((btn) => {
-        btn.classList.remove('bg-slate-800', 'text-white', 'ring-2', 'ring-slate-800');
-        btn.classList.add('bg-white');
+function filterTimeline(filterKey, btn) {
+    const epochMap = {
+        'all': 'all',
+        'yemen': 'epoch-1',
+        'prophet': 'epoch-2',
+        'andalus': 'epoch-3',
+        'migration': 'epoch-4',
+        'libya': 'epoch-5'
+    };
+
+    state.filter = epochMap[filterKey] || filterKey;
+
+    document.querySelectorAll('.tab-btn').forEach((button) => {
+        button.classList.remove('active', 'bg-amber-500', 'text-white', 'shadow-lg', 'shadow-amber-500/20');
+        button.classList.add('bg-slate-800/50', 'text-slate-400', 'hover:bg-slate-700', 'border', 'border-slate-700/50');
     });
-    state.filter = epoch;
+
+    if (btn) {
+        btn.classList.remove('bg-slate-800/50', 'text-slate-400', 'hover:bg-slate-700', 'border', 'border-slate-700/50');
+        btn.classList.add('active', 'bg-amber-500', 'text-white', 'shadow-lg', 'shadow-amber-500/20');
+    }
+
     renderTimeline();
 }
 
@@ -593,7 +609,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 window.switchTab = switchTab;
-window.filterEpoch = filterEpoch;
+window.filterTimeline = filterTimeline;
 window.toggleLangMenu = toggleLangMenu;
 window.closeModal = closeModal;
 window.openModal = openModal;
