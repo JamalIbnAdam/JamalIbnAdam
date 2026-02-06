@@ -125,90 +125,7 @@
             animation: fadeInUp 0.5s ease-out forwards;
         }
 
-        /* --- 2. FLOATING LANGUAGE BUTTON (Fixed) --- */
-        .floating-lang-wrapper {
-            position: fixed;
-            bottom: 30px;
-            left: 25px;
-            /* LTR Default */
-            z-index: 10000;
-            /* High z-index to sit on top */
-            display: flex;
-            flex-direction: column-reverse;
-            /* Menu opens UPWARDS */
-            align-items: center;
-            gap: 10px;
-        }
-
-        /* RTL Position */
-        html[dir="rtl"] .floating-lang-wrapper {
-            left: auto;
-            right: 25px;
-        }
-
-        .lang-toggle-btn {
-            width: 55px;
-            height: 55px;
-            background: #0f172a;
-            border: 2px solid #d4af37;
-            border-radius: 50%;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.2s, opacity 0.2s;
-            opacity: 0.8;
-        }
-
-        .lang-toggle-btn:hover,
-        .lang-toggle-btn:active {
-            opacity: 1;
-        }
-
-        .lang-toggle-btn:active {
-            transform: scale(0.95);
-        }
-
-        .lang-menu {
-            background: white;
-            padding: 8px;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            /* Hidden State */
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-            transition: all 0.2s ease;
-        }
-
-        .floating-lang-wrapper.active .lang-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .lang-option {
-            background: none;
-            border: none;
-            padding: 8px 12px;
-            text-align: left;
-            width: 100%;
-            cursor: pointer;
-            font-weight: 600;
-            display: flex;
-            gap: 8px;
-            border-radius: 6px;
-        }
-
-        .lang-option:hover {
-            background-color: #f1f5f9;
-        }
+        /* --- 2. FLOATING LANGUAGE BUTTON REMOVED --- */
 
         /* --- 3. MOBILE RESPONSIVENESS (App Feel) --- */
         @media (max-width: 768px) {
@@ -358,43 +275,66 @@
             style="background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48ZyBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0wIDQwaDQwVjBIMHY0MHptMjAgMjBoMjB2MjBIMjBWNjB6TTEwIDgwaDIwdjIwSDEwVjgteiIgZmlsbD0iI0ZGRkZGRiIgLz48L2c+PC9zdmc+');">
         </div>
 
-        <div class="container mx-auto px-4 py-8 relative z-10">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-                <div class="text-center md:text-right">
-                    <div class="flex items-center justify-center md:justify-start gap-3 mb-2">
-                        <img src="Jamal Ibn Adam Logo.png" alt="Jamal Ibn Adam Logo" width="56" height="56"
-                            fetchpriority="high" class="h-12 md:h-14 w-auto object-contain">
-                        <span class="text-amber-400 text-2xl">❖</span>
-                        <h1 class="text-3xl md:text-4xl font-bold leading-tight text-amber-50" data-i18n="header_title">
-                            The Golden Record of Al-Sabal Al-Ain
-                        </h1>
-                    </div>
-                    <p class="text-slate-300 text-sm md:text-base font-light tracking-wide" data-i18n="header_subtitle">
-                        From Yathrib to Wadi Al-Shatii: A 1000-Year Journey (73 Generations)
-                    </p>
-                </div>
+        <div
+            class="container mx-auto px-4 py-6 flex flex-col md:flex-row items-center justify-between gap-4 relative z-30">
 
-                <!-- Quick Stats -->
-                <div class="flex gap-4">
-                    <div class="bg-white/10 backdrop-blur-sm border border-white/20 px-5 py-3 rounded-lg text-center">
-                        <div class="text-2xl font-bold text-amber-400 serif-font">73</div>
-                        <div class="text-[10px] text-slate-300 uppercase tracking-wider" data-i18n="stat_generations">
-                        </div>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-sm border border-white/20 px-5 py-3 rounded-lg text-center">
-                        <div class="text-2xl font-bold text-emerald-400 serif-font">5</div>
-                        <div class="text-[10px] text-slate-300 uppercase tracking-wider" data-i18n="stat_eras"></div>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-sm border border-white/20 px-5 py-3 rounded-lg text-center">
-                        <div class="text-2xl font-bold text-blue-400 serif-font">3</div>
-                        <div class="text-[10px] text-slate-300 uppercase tracking-wider" data-i18n="stat_continents">
-                        </div>
+            <div class="absolute top-2 right-2 md:static md:order-3">
+                <div class="relative">
+                    <select id="lang-select" onchange="changeLanguage(this.value)"
+                        class="appearance-none bg-slate-800/50 text-amber-50 border border-white/10 rounded-lg py-1 px-3 pr-8 text-xs md:text-sm focus:outline-none focus:border-amber-500 cursor-pointer backdrop-blur-md">
+                        <option value="ar">🇸🇦 العربية</option>
+                        <option value="en">🇺🇸 English</option>
+                        <option value="tr">🇹🇷 Türkçe</option>
+                        <option value="pl">🇵🇱 Polski</option>
+                        <option value="es">🇪🇸 Español</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-white/50">
+                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                        </svg>
                     </div>
                 </div>
             </div>
 
+            <div
+                class="flex flex-col md:flex-row items-center gap-4 md:gap-6 text-center md:text-left md:order-1 flex-1">
+                <img src="Jamal Ibn Adam Logo.png" alt="Jamal Ibn Adam Logo" width="64" height="64"
+                    class="h-16 w-16 md:h-20 md:w-20 object-contain drop-shadow-2xl">
+
+                <div>
+                    <h1 class="text-2xl md:text-4xl font-bold leading-tight text-amber-50 drop-shadow-md"
+                        data-i18n="header_title">
+                        السجل الذهبي لآل سبال العين
+                    </h1>
+                    <p class="text-slate-300 text-xs md:text-base font-light tracking-wide mt-1"
+                        data-i18n="header_subtitle">
+                        من يثرب إلى وادي الشاطئ: رحلة الألف عام (73 جيلاً)
+                    </p>
+                </div>
+            </div>
+
+            <div class="hidden md:flex gap-3 md:order-2">
+                <div class="bg-white/10 backdrop-blur-sm border border-white/20 px-5 py-3 rounded-lg text-center">
+                    <div class="text-2xl font-bold text-amber-400 serif-font">73</div>
+                    <div class="text-[10px] text-slate-300 uppercase tracking-wider" data-i18n="stat_generations">
+                    </div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm border border-white/20 px-5 py-3 rounded-lg text-center">
+                    <div class="text-2xl font-bold text-emerald-400 serif-font">5</div>
+                    <div class="text-[10px] text-slate-300 uppercase tracking-wider" data-i18n="stat_eras"></div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm border border-white/20 px-5 py-3 rounded-lg text-center">
+                    <div class="text-2xl font-bold text-blue-400 serif-font">3</div>
+                    <div class="text-[10px] text-slate-300 uppercase tracking-wider" data-i18n="stat_continents">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mx-auto px-4">
             <!-- Navigation Tabs -->
-            <div class="nav-tabs-container no-scrollbar border-b border-white/10 mt-8">
+            <div
+                class="nav-tabs-container sticky top-0 z-40 bg-slate-900/95 backdrop-blur no-scrollbar border-b border-white/10 mt-8">
                 <button onclick="switchTab('tree')" id="tab-tree"
                     class="nav-btn active text-sm md:text-lg px-4 pb-2 text-white/90" data-i18n="tab_tree">
                     🌳 The Blessed Family Tree
@@ -537,8 +477,8 @@
 
             <div class="branches-wrapper">
                 <!-- (1) أولاد سالم بن يوسف - آقار (العائلات الخمس) -->
-                <div class="branch-card" style="border-top-color: #c0392b; box-shadow: 0 10px 24px rgba(0,0,0,0.18);">
-                    <div class="branch-header text-white" style="background: #c0392b;">
+                <div class="branch-card" style="border-top-color: #991b1b; box-shadow: 0 10px 24px rgba(0,0,0,0.18);">
+                    <div class="branch-header text-white font-bold" style="background: #991b1b;">
                         <h3 style="display:inline; font-size:inherit;" data-i18n="branch_1_title"></h3><br>
                         <span style="font-size:0.85rem; font-weight:500;" data-i18n="branch_1_subtitle"></span>
                     </div>
@@ -564,8 +504,8 @@
                 </div>
 
                 <!-- (4) أولاد قاسم - زاوية براك -->
-                <div class="branch-card" style="border-top-color: #9b59b6;">
-                    <div class="branch-header text-white" style="background: #9b59b6;">
+                <div class="branch-card" style="border-top-color: #7e22ce;">
+                    <div class="branch-header text-white font-bold" style="background: #7e22ce;">
                         <h3 style="display:inline; font-size:inherit;" data-i18n="branch_4_title"></h3><br>
                         <span style="font-size:0.85rem; font-weight:500;" data-i18n="branch_4_subtitle"></span>
                     </div>
@@ -582,8 +522,8 @@
                 </div>
 
                 <!-- (6) أولاد عبد الواحد - زاوية براك -->
-                <div class="branch-card" style="border-top-color: #009688;">
-                    <div class="branch-header text-white" style="background: #009688;">
+                <div class="branch-card" style="border-top-color: #15803d;">
+                    <div class="branch-header text-white font-bold" style="background: #15803d;">
                         <h3 style="display:inline; font-size:inherit;" data-i18n="branch_6_title"></h3><br>
                         <span style="font-size:0.85rem; font-weight:500;" data-i18n="branch_6_subtitle"></span>
                     </div>
@@ -1042,20 +982,7 @@
         <div class="loading-text" data-i18n="lang_loading"></div>
     </div>
 
-    <div class="floating-lang-wrapper" id="langFab">
-        <div class="lang-menu">
-            <button class="lang-option" data-lang="ar"><span>🇸🇦</span> العربية</button>
-            <button class="lang-option" data-lang="en"><span>🇺🇸</span> English</button>
-            <button class="lang-option" data-lang="es"><span>🇪🇸</span> Español</button>
-            <button class="lang-option" data-lang="tr"><span>🇹🇷</span> Türkçe</button>
-            <button class="lang-option" data-lang="pl"><span>🇵🇱</span> Polski</button>
-        </div>
-        <div class="lang-toggle-btn" onclick="toggleLangMenu()">
-            🌍
-        </div>
-    </div>
-
-    <script src="main.js"></script>
+    <script src="main.js" defer></script>
 </body>
 
 </html>

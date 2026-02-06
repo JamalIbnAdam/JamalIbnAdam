@@ -12,7 +12,6 @@ const modalSource = document.getElementById('modalSource');
 const modalLogic = document.getElementById('modalLogic');
 const modalEpoch = document.getElementById('modalEpoch');
 const langLoader = document.getElementById('lang-loader');
-const langFab = document.getElementById('langFab');
 const htmlRoot = document.documentElement;
 const contactForm = document.getElementById('contactForm');
 const contactSuccess = document.getElementById('contactSuccess');
@@ -69,6 +68,8 @@ function initializeUI() {
             container.style.flexDirection = 'row';
         }
     });
+
+    updateLanguageSelect(lang);
 }
 
 function getEpochName(type) {
@@ -401,8 +402,26 @@ function filterTimeline(filterKey, btn) {
     renderTimeline();
 }
 
-function toggleLangMenu() {
-    langFab.classList.toggle('active');
+async function changeLanguage(langCode) {
+    if (langCode === getLang()) return;
+
+    captureAnchorState();
+    langLoader.classList.add('visible');
+    try {
+        await loadLanguageScript(langCode);
+        await initializeWebsite(langCode);
+    } catch (error) {
+        console.error('Language switch failed:', error);
+    } finally {
+        langLoader.classList.remove('visible');
+    }
+}
+
+function updateLanguageSelect(lang) {
+    const select = document.getElementById('lang-select');
+    if (select) {
+        select.value = lang;
+    }
 }
 
 function captureAnchorState() {
@@ -491,12 +510,6 @@ function resolveInitialLanguage() {
     return 'ar';
 }
 
-document.addEventListener('click', (event) => {
-    if (langFab && !langFab.contains(event.target)) {
-        langFab.classList.remove('active');
-    }
-});
-
 document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
         if (!modal.classList.contains('hidden')) {
@@ -538,24 +551,6 @@ if (docCloseButton) {
 searchInput?.addEventListener('input', (event) => {
     state.searchTerm = event.target.value || '';
     renderTimeline();
-});
-
-document.querySelectorAll('.lang-option').forEach((button) => {
-    button.addEventListener('click', async () => {
-        const lang = button.getAttribute('data-lang');
-        if (lang && lang !== getLang()) {
-            captureAnchorState();
-            langLoader.classList.add('visible');
-            try {
-                await loadLanguageScript(lang);
-                await initializeWebsite(lang);
-            } catch (error) {
-                console.error('Language switch failed:', error);
-            } finally {
-                langLoader.classList.remove('visible');
-            }
-        }
-    });
 });
 
 if (contactForm) {
@@ -610,7 +605,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 window.switchTab = switchTab;
 window.filterTimeline = filterTimeline;
-window.toggleLangMenu = toggleLangMenu;
+window.changeLanguage = changeLanguage;
 window.closeModal = closeModal;
 window.openModal = openModal;
 window.openDocModal = openDocModal;
