@@ -561,8 +561,8 @@
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <!-- Book Display -->
-                <div class="lg:col-span-1 flex flex-col items-center">
-                    <div class="w-48 h-72 mb-6">
+                <div class="lg:col-span-1 flex flex-col items-center gap-6">
+                    <div class="w-48 h-72">
                         <img src="ansar-wadi-al-shati.jpg" alt="" data-i18n-alt="library_book_alt"
                             class="w-full h-full object-cover rounded-lg shadow-md hover:scale-105 transition duration-500">
                     </div>
@@ -570,6 +570,18 @@
                         <span class="block text-xs text-slate-500 mb-1" data-i18n="library_doc_label"></span>
                         <span class="block font-bold text-slate-800" data-i18n="lib_book_info"></span>
                         <span class="block text-sm text-slate-600 mt-2" data-i18n="library_author"></span>
+                    </div>
+
+                    <div onclick="showDocumentModal('wathiqat-bay-brak-1002h-fadl-sabbal-alain.jpg', 'doc_1002_title', 'doc_1002_transcription')"
+                        class="w-full bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition cursor-pointer overflow-hidden">
+                        <div class="w-full h-48">
+                            <img src="wathiqat-bay-brak-1002h-fadl-sabbal-alain.jpg" alt=""
+                                class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-4 text-right space-y-2">
+                            <h4 class="font-bold text-slate-800" data-i18n="doc_1002_title"></h4>
+                            <p class="text-sm text-slate-600" data-i18n="doc_1002_desc"></p>
+                        </div>
                     </div>
                 </div>
 
@@ -784,7 +796,7 @@
                         data-i18n="modal_epoch_label"></span>
                     <h3 id="modalName" class="text-3xl font-bold serif-font leading-tight" data-i18n="modal_name_label">
                     </h3>
-                    <div class="flex items-center gap-2 mt-2 text-white/90">
+                    <div id="modalDateRow" class="flex items-center gap-2 mt-2 text-white/90">
                         <span class="text-sm">📅</span>
                         <span id="modalDate" class="text-sm font-mono" data-i18n="modal_date_label"></span>
                     </div>
@@ -800,31 +812,46 @@
             </div>
 
             <!-- Body -->
-            <div class="p-6 md:p-8 overflow-y-auto max-h-[65vh] md:max-h-[70vh] space-y-6">
-                <!-- Story Section -->
-                <div>
-                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wide mb-3 flex items-center gap-2"
-                        data-i18n="modal_story_label">
-                        <span class="w-4 h-px bg-slate-300"></span>
-                    </h4>
-                    <p id="modalStory"
-                        class="text-slate-700 leading-loose text-lg font-medium border-l-4 border-slate-100 pl-4"></p>
-                </div>
+            <div id="modalBody" class="p-6 md:p-8 overflow-y-auto max-h-[65vh] md:max-h-[70vh] space-y-6">
+                <div id="modalDefaultBody" class="space-y-6">
+                    <!-- Story Section -->
+                    <div>
+                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wide mb-3 flex items-center gap-2"
+                            data-i18n="modal_story_label">
+                            <span class="w-4 h-px bg-slate-300"></span>
+                        </h4>
+                        <p id="modalStory"
+                            class="text-slate-700 leading-loose text-lg font-medium border-l-4 border-slate-100 pl-4">
+                        </p>
+                    </div>
 
-                <!-- Details Grid -->
-                <div class="grid grid-cols-1 gap-4 text-sm">
-                    <div class="flex items-start gap-3 p-3 rounded-lg bg-slate-50 border border-slate-100">
-                        <span class="text-xl">📚</span>
-                        <div>
-                            <strong class="block text-slate-800 mb-1" data-i18n="modal_source_label"></strong>
-                            <span id="modalSource" class="text-slate-600 block"></span>
+                    <!-- Details Grid -->
+                    <div class="grid grid-cols-1 gap-4 text-sm">
+                        <div class="flex items-start gap-3 p-3 rounded-lg bg-slate-50 border border-slate-100">
+                            <span class="text-xl">📚</span>
+                            <div>
+                                <strong class="block text-slate-800 mb-1" data-i18n="modal_source_label"></strong>
+                                <span id="modalSource" class="text-slate-600 block"></span>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 p-3 rounded-lg bg-amber-50 border border-amber-100">
+                            <span class="text-xl">💡</span>
+                            <div>
+                                <strong class="block text-amber-900 mb-1" data-i18n="modal_logic_label"></strong>
+                                <span id="modalLogic" class="text-amber-800 block"></span>
+                            </div>
                         </div>
                     </div>
-                    <div class="flex items-start gap-3 p-3 rounded-lg bg-amber-50 border border-amber-100">
-                        <span class="text-xl">💡</span>
-                        <div>
-                            <strong class="block text-amber-900 mb-1" data-i18n="modal_logic_label"></strong>
-                            <span id="modalLogic" class="text-amber-800 block"></span>
+                </div>
+
+                <div id="modalDocBody" class="hidden space-y-6">
+                    <div class="bg-white rounded-xl border border-amber-100 shadow-sm overflow-hidden">
+                        <img id="modalDocImage" src="" alt="" class="w-full h-auto object-contain" loading="lazy">
+                    </div>
+                    <div class="bg-white border border-slate-200 rounded-xl p-5">
+                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wide mb-3">Transcription</h4>
+                        <div class="max-h-[40vh] overflow-y-auto pr-2">
+                            <p id="modalDocTranscription" class="text-slate-700 leading-loose text-base md:text-lg"></p>
                         </div>
                     </div>
                 </div>

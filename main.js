@@ -206,7 +206,7 @@ function renderTimeline() {
 
         const docButton = item.doc_img
             ? `
-        <button onclick="event.stopPropagation(); openDocModal(${JSON.stringify(item.doc_img)}, ${JSON.stringify(item.doc_title)}, ${JSON.stringify(item.doc_transcription)})"
+        <button onclick="event.stopPropagation(); showDocumentModal('${item.doc_img}', '${item.doc_title}', '${item.doc_desc_key}')"
             class="mt-3 w-full py-1 px-3 bg-[#d4af37]/10 border border-[#d4af37] text-[#8d6e63] text-xs font-bold rounded hover:bg-[#d4af37] hover:text-white transition flex items-center justify-center gap-2">
             <span>📜</span> <span>${getData().translations?.btn_view_doc || 'View Document 1002 AH'}</span>
         </button>
@@ -236,6 +236,17 @@ function renderTimeline() {
 
 function openModal(data) {
     const { translations = {} } = getData();
+    const modalDocBody = document.getElementById('modalDocBody');
+    const modalDefaultBody = document.getElementById('modalDefaultBody');
+    const modalDocImage = document.getElementById('modalDocImage');
+    const modalDocTranscription = document.getElementById('modalDocTranscription');
+    const modalDateRow = document.getElementById('modalDateRow');
+    if (modalDefaultBody) modalDefaultBody.classList.remove('hidden');
+    if (modalDocBody) modalDocBody.classList.add('hidden');
+    if (modalDocImage) modalDocImage.src = '';
+    if (modalDocTranscription) modalDocTranscription.innerText = '';
+    if (modalDateRow) modalDateRow.classList.remove('hidden');
+
     modalName.innerText = data.name;
     modalDate.innerHTML = data.date;
     modalStory.innerText =
@@ -267,6 +278,42 @@ function closeModal() {
     modalContent.classList.remove('scale-100', 'opacity-100');
     modalContent.classList.add('scale-95', 'opacity-0');
     setTimeout(() => modal.classList.add('hidden'), 300);
+}
+
+function showDocumentModal(img, titleKey, transcriptionKey) {
+    const { translations = {} } = getData();
+    const modalDocBody = document.getElementById('modalDocBody');
+    const modalDefaultBody = document.getElementById('modalDefaultBody');
+    const modalDocImage = document.getElementById('modalDocImage');
+    const modalDocTranscription = document.getElementById('modalDocTranscription');
+    const modalDateRow = document.getElementById('modalDateRow');
+
+    if (!modalDocBody || !modalDefaultBody || !modalDocImage || !modalDocTranscription) {
+        return;
+    }
+
+    modalDocImage.src = img || '';
+    const resolvedTitle = translations[titleKey] || titleKey || '';
+    const resolvedTranscription = translations[transcriptionKey] || transcriptionKey || '';
+    modalName.innerText = resolvedTitle;
+    if (modalDateRow) modalDateRow.classList.add('hidden');
+    modalStory.innerText = '';
+    modalSource.innerText = '';
+    modalLogic.innerText = '';
+    modalDocTranscription.innerText = resolvedTranscription;
+
+    modalHeader.className =
+        'p-6 text-white rounded-t-2xl flex justify-between items-start relative overflow-hidden transition-colors duration-300';
+    modalHeader.classList.add('bg-[#d4af37]');
+    modalDefaultBody.classList.add('hidden');
+    modalDocBody.classList.remove('hidden');
+
+    modal.classList.remove('hidden');
+    setTimeout(() => {
+        modalBackdrop.classList.remove('opacity-0');
+        modalContent.classList.remove('scale-95', 'opacity-0');
+        modalContent.classList.add('scale-100', 'opacity-100');
+    }, 10);
 }
 
 function openDocModal(img, title, desc) {
@@ -521,4 +568,5 @@ window.toggleLangMenu = toggleLangMenu;
 window.closeModal = closeModal;
 window.openModal = openModal;
 window.openDocModal = openDocModal;
+window.showDocumentModal = showDocumentModal;
 window.closeDocModal = closeDocModal;
