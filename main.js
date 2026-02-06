@@ -204,6 +204,15 @@ function renderTimeline() {
             : 'absolute -left-[43px]';
         const contentPadding = isRtl ? 'md:pr-4' : 'md:pl-4';
 
+        const docButton = item.doc_img
+            ? `
+        <button onclick="event.stopPropagation(); openDocModal(${JSON.stringify(item.doc_img)}, ${JSON.stringify(item.doc_title)}, ${JSON.stringify(item.doc_transcription)})"
+            class="mt-3 w-full py-1 px-3 bg-[#d4af37]/10 border border-[#d4af37] text-[#8d6e63] text-xs font-bold rounded hover:bg-[#d4af37] hover:text-white transition flex items-center justify-center gap-2">
+            <span>📜</span> <span>${getData().translations?.btn_view_doc || 'View Document 1002 AH'}</span>
+        </button>
+      `
+            : '';
+
         card.innerHTML = `
       <div class="md:w-full ${contentPadding} relative">
         <div class="hidden md:block ${dotPosition} top-1/2 -translate-y-1/2 w-4 h-4 rounded-full border-2 border-white shadow bg-current ${dateColor}"></div>
@@ -215,6 +224,7 @@ function renderTimeline() {
           <span class="text-xs font-mono bg-slate-50 px-2 py-1 rounded border border-slate-100 ${dateColor}">📅 ${item.date}</span>
           <span class="text-[10px] font-bold px-2 py-1 rounded ${badgeClass}">${badgeText}</span>
         </div>
+        ${docButton}
       </div>
       <div class="text-slate-200 text-2xl transform group-hover:scale-110 transition">👁️</div>
     `;
@@ -257,6 +267,41 @@ function closeModal() {
     modalContent.classList.remove('scale-100', 'opacity-100');
     modalContent.classList.add('scale-95', 'opacity-0');
     setTimeout(() => modal.classList.add('hidden'), 300);
+}
+
+function openDocModal(img, title, desc) {
+    const docModal = document.getElementById('docModal');
+    const docBackdrop = document.getElementById('docBackdrop');
+    const docContent = document.getElementById('docContent');
+    const docTitle = document.getElementById('docTitle');
+    const docImage = document.getElementById('docImage');
+    const docDesc = document.getElementById('docDesc');
+
+    if (!docModal || !docBackdrop || !docContent || !docTitle || !docImage || !docDesc) return;
+
+    docTitle.innerText = title || '';
+    docImage.src = img || '';
+    docDesc.innerText = desc || '';
+
+    docModal.classList.remove('hidden');
+    setTimeout(() => {
+        docBackdrop.classList.remove('opacity-0');
+        docContent.classList.remove('scale-95', 'opacity-0');
+        docContent.classList.add('scale-100', 'opacity-100');
+    }, 10);
+}
+
+function closeDocModal() {
+    const docModal = document.getElementById('docModal');
+    const docBackdrop = document.getElementById('docBackdrop');
+    const docContent = document.getElementById('docContent');
+
+    if (!docModal || !docBackdrop || !docContent) return;
+
+    docBackdrop.classList.add('opacity-0');
+    docContent.classList.remove('scale-100', 'opacity-100');
+    docContent.classList.add('scale-95', 'opacity-0');
+    setTimeout(() => docModal.classList.add('hidden'), 300);
 }
 
 function switchTab(tabId) {
@@ -378,8 +423,14 @@ document.addEventListener('click', (event) => {
 });
 
 document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
-        closeModal();
+    if (event.key === 'Escape') {
+        if (!modal.classList.contains('hidden')) {
+            closeModal();
+        }
+        const docModal = document.getElementById('docModal');
+        if (docModal && !docModal.classList.contains('hidden')) {
+            closeDocModal();
+        }
     }
 });
 
@@ -387,11 +438,25 @@ modalBackdrop?.addEventListener('click', () => {
     if (!modal.classList.contains('hidden')) closeModal();
 });
 
+const docBackdrop = document.getElementById('docBackdrop');
+docBackdrop?.addEventListener('click', () => {
+    const docModal = document.getElementById('docModal');
+    if (docModal && !docModal.classList.contains('hidden')) closeDocModal();
+});
+
 const closeButton = document.getElementById('modalCloseButton');
 if (closeButton) {
     closeButton.addEventListener('click', (event) => {
         event.stopPropagation();
         if (!modal.classList.contains('hidden')) closeModal();
+    });
+}
+
+const docCloseButton = document.getElementById('docCloseButton');
+if (docCloseButton) {
+    docCloseButton.addEventListener('click', (event) => {
+        event.stopPropagation();
+        closeDocModal();
     });
 }
 
@@ -455,3 +520,5 @@ window.filterEpoch = filterEpoch;
 window.toggleLangMenu = toggleLangMenu;
 window.closeModal = closeModal;
 window.openModal = openModal;
+window.openDocModal = openDocModal;
+window.closeDocModal = closeDocModal;
