@@ -11,6 +11,12 @@ window.FamilyTreeData = {
         stat_generations: "جيلاً موثقاً",
         stat_eras: "حقب تاريخية",
         stat_continents: "قارات",
+        stat_continents_val: "3",
+        stat_continents_label: "قارات",
+        stat_eras_val: "5",
+        stat_eras_label: "حقب تاريخية",
+        stat_generations_val: "73",
+        stat_generations_label: "جيلاً",
 
         // Tabs
         tab_tree: "🌳 شجرة النسب المباركة",

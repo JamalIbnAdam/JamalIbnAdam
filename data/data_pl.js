@@ -11,6 +11,12 @@ window.FamilyTreeData = {
         stat_generations: "Pokoleń",
         stat_eras: "Epoki Historyczne",
         stat_continents: "Kontynenty",
+        stat_continents_val: "3",
+        stat_continents_label: "Kontynenty",
+        stat_eras_val: "5",
+        stat_eras_label: "Epoki Historyczne",
+        stat_generations_val: "73",
+        stat_generations_label: "Pokoleń",
 
         // Tabs
         tab_tree: "🌳 Drzewo Genealogiczne",

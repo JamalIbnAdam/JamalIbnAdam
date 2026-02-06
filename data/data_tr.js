@@ -11,6 +11,12 @@ window.FamilyTreeData = {
         stat_generations: "Nesil",
         stat_eras: "Tarihi Dönem",
         stat_continents: "Kıta",
+        stat_continents_val: "3",
+        stat_continents_label: "Kıta",
+        stat_eras_val: "5",
+        stat_eras_label: "Tarihi Dönem",
+        stat_generations_val: "73",
+        stat_generations_label: "Nesil",
 
         // Tabs
         tab_tree: "🌳 Mübarek Soy Ağacı",

@@ -11,6 +11,12 @@ window.FamilyTreeData = {
         stat_generations: "Generations",
         stat_eras: "Historical Eras",
         stat_continents: "Continents",
+        stat_continents_val: "3",
+        stat_continents_label: "Continents",
+        stat_eras_val: "5",
+        stat_eras_label: "Eras",
+        stat_generations_val: "73",
+        stat_generations_label: "Generations",
 
         // Tabs
         tab_tree: "🌳 The Blessed Family Tree",

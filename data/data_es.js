@@ -11,6 +11,12 @@ window.FamilyTreeData = {
         stat_generations: "Generaciones",
         stat_eras: "Épocas históricas",
         stat_continents: "Continentes",
+        stat_continents_val: "3",
+        stat_continents_label: "Continentes",
+        stat_eras_val: "5",
+        stat_eras_label: "Épocas históricas",
+        stat_generations_val: "73",
+        stat_generations_label: "Generaciones",
 
         // Tabs
         tab_tree: "🌳 El linaje bendito",
