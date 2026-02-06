@@ -94,10 +94,16 @@
             --color-paper: #fdfbf7;
         }
 
+        html,
+        body {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100%;
+        }
+
         body {
             font-family: 'Noto Kufi Arabic', sans-serif;
             background-color: var(--color-paper);
-            overflow-x: hidden;
             /* Prevent horizontal scroll */
         }
 
@@ -278,6 +284,7 @@
         <div class="container mx-auto px-4 py-6 relative">
 
             <div class="absolute top-0 ltr:right-0 rtl:left-0 mt-2 mx-4 z-50">
+                <label for="lang-select" class="sr-only">Select Language</label>
                 <select id="lang-select" onchange="changeLanguage(this.value)" aria-label="Select Language"
                     class="appearance-none bg-slate-800/80 backdrop-blur-md text-amber-50 text-xs font-bold border border-white/10 rounded-lg py-1.5 px-3 pr-8 focus:outline-none focus:border-amber-500 cursor-pointer shadow-lg hover:bg-slate-700 transition-all">
                     <option value="ar">🇸🇦 العربية</option>
@@ -375,43 +382,47 @@
                     </div>
 
                     <!-- Filter Buttons -->
-                    <div
-                        class="nav-tabs-container no-scrollbar border-b border-white/10 mb-8 overflow-x-auto flex flex-nowrap gap-2 pb-2">
-                        <button
-                            class="tab-btn active flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-amber-500 text-white shadow-lg shadow-amber-500/20"
-                            onclick="filterTimeline('all', this)">
-                            <span>🔍</span> <span data-i18n="filter_all">All</span>
-                        </button>
+                    <div class="sticky top-0 z-40 bg-slate-900/95 backdrop-blur border-b border-white/5 shadow-lg">
+                        <div class="container mx-auto px-4 py-3">
+                            <div class="flex items-center gap-3 overflow-x-auto no-scrollbar snap-x touch-pan-x w-full">
 
-                        <button
-                            class="tab-btn flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-slate-800/50 text-slate-400 hover:bg-slate-700 border border-slate-700/50"
-                            onclick="filterTimeline('yemen', this)">
-                            <span>🇾🇪</span> <span data-i18n="filter_yemen">Yemen</span>
-                        </button>
+                                <button
+                                    class="tab-btn active flex-shrink-0 snap-start flex items-center gap-2 px-5 py-2 rounded-full text-xs font-bold transition-all bg-amber-600 text-white shadow-lg border border-amber-500"
+                                    onclick="filterTimeline('all', this)">
+                                    <span>🔍</span> <span data-i18n="filter_all">All</span>
+                                </button>
 
-                        <button
-                            class="tab-btn flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-slate-800/50 text-slate-400 hover:bg-slate-700 border border-slate-700/50"
-                            onclick="filterTimeline('prophet', this)">
-                            <span>🕌</span> <span data-i18n="filter_prophet">Prophetic Era</span>
-                        </button>
+                                <button
+                                    class="tab-btn flex-shrink-0 snap-start flex items-center gap-2 px-5 py-2 rounded-full text-xs font-bold transition-all bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700"
+                                    onclick="filterTimeline('yemen', this)">
+                                    <span>🇾🇪</span> <span data-i18n="filter_yemen">Yemen</span>
+                                </button>
 
-                        <button
-                            class="tab-btn flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-slate-800/50 text-slate-400 hover:bg-slate-700 border border-slate-700/50"
-                            onclick="filterTimeline('andalus', this)">
-                            <span>🏰</span> <span data-i18n="filter_andalus">Andalus</span>
-                        </button>
+                                <button
+                                    class="tab-btn flex-shrink-0 snap-start flex items-center gap-2 px-5 py-2 rounded-full text-xs font-bold transition-all bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700"
+                                    onclick="filterTimeline('prophet', this)">
+                                    <span>🕌</span> <span data-i18n="filter_prophet">Prophetic Era</span>
+                                </button>
 
-                        <button
-                            class="tab-btn flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-slate-800/50 text-slate-400 hover:bg-slate-700 border border-slate-700/50"
-                            onclick="filterTimeline('migration', this)">
-                            <span>⛵</span> <span data-i18n="filter_migration">Migration</span>
-                        </button>
+                                <button
+                                    class="tab-btn flex-shrink-0 snap-start flex items-center gap-2 px-5 py-2 rounded-full text-xs font-bold transition-all bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700"
+                                    onclick="filterTimeline('andalus', this)">
+                                    <span>🏰</span> <span data-i18n="filter_andalus">Andalus</span>
+                                </button>
 
-                        <button
-                            class="tab-btn flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-slate-800/50 text-slate-400 hover:bg-slate-700 border border-slate-700/50"
-                            onclick="filterTimeline('libya', this)">
-                            <span>🇱🇾</span> <span data-i18n="filter_libya">Libya</span>
-                        </button>
+                                <button
+                                    class="tab-btn flex-shrink-0 snap-start flex items-center gap-2 px-5 py-2 rounded-full text-xs font-bold transition-all bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700"
+                                    onclick="filterTimeline('migration', this)">
+                                    <span>⛵</span> <span data-i18n="filter_migration">Migration</span>
+                                </button>
+
+                                <button
+                                    class="tab-btn flex-shrink-0 snap-start flex items-center gap-2 px-5 py-2 rounded-full text-xs font-bold transition-all bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700"
+                                    onclick="filterTimeline('libya', this)">
+                                    <span>🇱🇾</span> <span data-i18n="filter_libya">Libya</span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
