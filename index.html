@@ -91,7 +91,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: transform 0.2s;
+            transition: transform 0.2s, opacity 0.2s;
+            opacity: 0.8;
+        }
+
+        .lang-toggle-btn:hover,
+        .lang-toggle-btn:active {
+            opacity: 1;
         }
 
         .lang-toggle-btn:active {
@@ -191,6 +197,11 @@
             .nav-btn {
                 white-space: nowrap;
                 font-size: 0.9rem;
+            }
+
+            body,
+            main {
+                padding-bottom: 100px !important;
             }
         }
 
@@ -830,6 +841,7 @@
         <div class="lang-menu">
             <button class="lang-option" data-lang="ar"><span>🇸🇦</span> العربية</button>
             <button class="lang-option" data-lang="en"><span>🇺🇸</span> English</button>
+            <button class="lang-option" data-lang="es"><span>🇪🇸</span> Español</button>
             <button class="lang-option" data-lang="tr"><span>🇹🇷</span> Türkçe</button>
             <button class="lang-option" data-lang="pl"><span>🇵🇱</span> Polski</button>
         </div>
@@ -839,6 +851,7 @@
     </div>
 
     <script id="family-tree-data" src="data/data_ar.js"></script>
+    <script src="data/data_es.js"></script>
     <script src="main.js"></script>
 </body>
 

@@ -16,6 +16,7 @@ const langFab = document.getElementById('langFab');
 const htmlRoot = document.documentElement;
 const contactForm = document.getElementById('contactForm');
 const contactSuccess = document.getElementById('contactSuccess');
+const languageStorageKey = 'preferredLanguage';
 
 const state = {
     filter: 'all',
@@ -26,11 +27,11 @@ const state = {
 };
 
 const epochNames = {
-    'epoch-1': { ar: 'اليمن والجذور', en: 'Yemen & Origins' },
-    'epoch-2': { ar: 'العهد النبوي', en: 'Prophetic Era' },
-    'epoch-3': { ar: 'الأندلس', en: 'Al-Andalus' },
-    'epoch-4': { ar: 'الهجرة', en: 'Migration' },
-    'epoch-5': { ar: 'ليبيا', en: 'Libya' }
+    'epoch-1': { ar: 'اليمن والجذور', en: 'Yemen & Origins', es: 'Yemen y orígenes' },
+    'epoch-2': { ar: 'العهد النبوي', en: 'Prophetic Era', es: 'Época profética' },
+    'epoch-3': { ar: 'الأندلس', en: 'Al-Andalus', es: 'Al-Ándalus' },
+    'epoch-4': { ar: 'الهجرة', en: 'Migration', es: 'Migración' },
+    'epoch-5': { ar: 'ليبيا', en: 'Libya', es: 'Libia' }
 };
 
 function getData() {
@@ -326,6 +327,11 @@ function loadLanguageScript(langCode) {
     script.id = 'family-tree-data';
     script.src = `data/data_${langCode}.js?t=${Date.now()}`;
     script.onload = () => {
+        try {
+            localStorage.setItem(languageStorageKey, langCode);
+        } catch (error) {
+            console.warn('Unable to save language preference', error);
+        }
         initializeUI();
         applyTranslations();
         renderPoemSections();
@@ -343,6 +349,26 @@ function loadLanguageScript(langCode) {
         langLoader.classList.remove('visible');
     };
     document.body.appendChild(script);
+}
+
+function resolveInitialLanguage() {
+    let savedLanguage = null;
+    try {
+        savedLanguage = localStorage.getItem(languageStorageKey);
+    } catch (error) {
+        console.warn('Unable to read language preference', error);
+    }
+
+    if (savedLanguage) {
+        return savedLanguage;
+    }
+
+    const browserLanguage = (navigator.language || '').toLowerCase();
+    if (browserLanguage.startsWith('pl')) return 'pl';
+    if (browserLanguage.startsWith('tr')) return 'tr';
+    if (browserLanguage.startsWith('es')) return 'es';
+    if (browserLanguage.startsWith('en')) return 'en';
+    return 'ar';
 }
 
 document.addEventListener('click', (event) => {
@@ -411,11 +437,18 @@ if (contactForm) {
     });
 }
 
-initializeUI();
-applyTranslations();
-renderPoemSections();
-updateSearchPlaceholder();
-renderTimeline();
+document.addEventListener('DOMContentLoaded', () => {
+    const initialLanguage = resolveInitialLanguage();
+    if (initialLanguage !== getLang()) {
+        loadLanguageScript(initialLanguage);
+    } else {
+        initializeUI();
+        applyTranslations();
+        renderPoemSections();
+        updateSearchPlaceholder();
+        renderTimeline();
+    }
+});
 
 window.switchTab = switchTab;
 window.filterEpoch = filterEpoch;
