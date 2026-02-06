@@ -586,6 +586,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     let currentLang = resolveInitialLanguage();
     if (!['ar', 'en', 'tr', 'pl', 'es'].includes(currentLang)) currentLang = 'ar';
 
+    // Set the dropdown value to match current language
+    const langSelect = document.getElementById('lang-select');
+    if (langSelect) langSelect.value = currentLang;
+
     // 2. Show Loading Spinner
     langLoader.classList.add('visible');
 
