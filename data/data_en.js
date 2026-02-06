@@ -200,6 +200,7 @@ window.FamilyTreeData = {
         modal_logic_label: "Research Logic",
         modal_story_fallback: "A connecting link in the inherited lineage.",
         modal_logic_fallback: "A natural sequence of generations.",
+        btn_view_doc: "View Document 1002 AH",
 
         // Language UI
         lang_loading: "Updating Language...",
@@ -678,7 +679,11 @@ window.FamilyTreeData = {
             src: "Al-Ansar al-Khazraj (Dr. Muhammad Abd al-Qadir, 2022)",
             logic: "Mentioned with his father in migration documents; the ancestor of the four branches.",
             story:
-                "The son who traveled with his father during migration and settlement. Death confirmed around 1000 AH based on a carbon-dated inheritance division document dated 1002 AH."
+                "The son who traveled with his father during migration and settlement. Death confirmed around 1000 AH based on a carbon-dated inheritance division document dated 1002 AH.",
+            doc_img: "wathiqat-bay-brak-1002h-fadl-sabbal-alain.jpg",
+            doc_title: "Purchase Deed in Brak - 1002 AH",
+            doc_transcription:
+                "Historical deed dated 1002 AH confirming the family's presence in Brak, listing names and properties (Palms and Land)."
         }
     ],
     links: []

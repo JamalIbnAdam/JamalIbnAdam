@@ -192,6 +192,7 @@ window.FamilyTreeData = {
         modal_logic_label: "Logika badań",
         modal_story_fallback: "Łączące ogniwo w odziedziczonej linii.",
         modal_logic_fallback: "Naturalna sekwencja pokoleń.",
+        btn_view_doc: "Zobacz dokument 1002 AH",
 
         // Language UI
         lang_loading: "Aktualizowanie języka...",
@@ -670,7 +671,11 @@ window.FamilyTreeData = {
             src: "Al-Ansar al-Khazraj (Dr. Muhammad Abd al-Qadir, 2022)",
             logic: "Wspomniany wraz z ojcem w dokumentach migracyjnych; przodek czterech gałęzi.",
             story:
-                "Syn, który podróżował z ojcem podczas migracji i osiedlenia. Śmierć potwierdzona około 1000 AH na podstawie datowanego radiowęglowo dokumentu podziału spadku z 1002 AH."
+                "Syn, który podróżował z ojcem podczas migracji i osiedlenia. Śmierć potwierdzona około 1000 AH na podstawie datowanego radiowęglowo dokumentu podziału spadku z 1002 AH.",
+            doc_img: "wathiqat-bay-brak-1002h-fadl-sabbal-alain.jpg",
+            doc_title: "Purchase Deed in Brak - 1002 AH",
+            doc_transcription:
+                "Historical deed dated 1002 AH confirming the family's presence in Brak, listing names and properties (Palms and Land)."
         }
     ],
     links: []
