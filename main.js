@@ -422,39 +422,37 @@ function restoreAnchorState() {
 }
 
 function loadLanguageScript(langCode) {
-    captureAnchorState();
-    langLoader.classList.add('visible');
+    return new Promise((resolve, reject) => {
+        const existing = document.getElementById('family-tree-data');
+        if (existing) existing.remove();
 
-    const existing = document.getElementById('family-tree-data');
-    if (existing) existing.remove();
+        const script = document.createElement('script');
+        script.id = 'family-tree-data';
+        script.src = `data/data_${langCode}.js?t=${Date.now()}`;
+        script.onload = resolve;
+        script.onerror = reject;
+        document.body.appendChild(script);
+    });
+}
 
-    const script = document.createElement('script');
-    script.id = 'family-tree-data';
-    script.src = `data/data_${langCode}.js?t=${Date.now()}`;
-    script.onload = () => {
-        try {
-            localStorage.setItem(languageStorageKey, langCode);
-        } catch (error) {
-            console.warn('Unable to save language preference', error);
-        }
-        initializeUI();
-        applyTranslations();
-        renderPoemSections();
-        updateSearchPlaceholder();
-        renderTimeline().then(() => {
-            restoreAnchorState();
-            if (state.modalOpenId) {
-                const node = getData().nodes.find((item) => item.id === state.modalOpenId);
-                if (node) openModal(node);
-            }
-            langLoader.classList.remove('visible');
-        });
-    };
-    script.onerror = () => {
-        console.error('Failed to load language data:', langCode);
-        langLoader.classList.remove('visible');
-    };
-    document.body.appendChild(script);
+async function initializeWebsite(langCode) {
+    try {
+        localStorage.setItem(languageStorageKey, langCode);
+    } catch (error) {
+        console.warn('Unable to save language preference', error);
+    }
+
+    initializeUI();
+    applyTranslations();
+    renderPoemSections();
+    updateSearchPlaceholder();
+    await renderTimeline();
+
+    restoreAnchorState();
+    if (state.modalOpenId) {
+        const node = getData().nodes.find((item) => item.id === state.modalOpenId);
+        if (node) openModal(node);
+    }
 }
 
 function resolveInitialLanguage() {
@@ -527,10 +525,19 @@ searchInput?.addEventListener('input', (event) => {
 });
 
 document.querySelectorAll('.lang-option').forEach((button) => {
-    button.addEventListener('click', () => {
+    button.addEventListener('click', async () => {
         const lang = button.getAttribute('data-lang');
         if (lang && lang !== getLang()) {
-            loadLanguageScript(lang);
+            captureAnchorState();
+            langLoader.classList.add('visible');
+            try {
+                await loadLanguageScript(lang);
+                await initializeWebsite(lang);
+            } catch (error) {
+                console.error('Language switch failed:', error);
+            } finally {
+                langLoader.classList.remove('visible');
+            }
         }
     });
 });
@@ -563,16 +570,25 @@ if (contactForm) {
     });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const initialLanguage = resolveInitialLanguage();
-    if (initialLanguage !== getLang()) {
-        loadLanguageScript(initialLanguage);
-    } else {
-        initializeUI();
-        applyTranslations();
-        renderPoemSections();
-        updateSearchPlaceholder();
-        renderTimeline();
+document.addEventListener('DOMContentLoaded', async () => {
+    // 1. Detect Language
+    let currentLang = resolveInitialLanguage();
+    if (!['ar', 'en', 'tr', 'pl', 'es'].includes(currentLang)) currentLang = 'ar';
+
+    // 2. Show Loading Spinner
+    langLoader.classList.add('visible');
+
+    try {
+        // 3. Load ONLY the needed data file
+        await loadLanguageScript(currentLang);
+
+        // 4. Initialize App
+        await initializeWebsite(currentLang);
+    } catch (error) {
+        console.error("Initialization failed", error);
+    } finally {
+        // 5. Hide Spinner
+        langLoader.classList.remove('visible');
     }
 });
 
