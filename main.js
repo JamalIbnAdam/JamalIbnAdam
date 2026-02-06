@@ -26,6 +26,8 @@ const state = {
     scrollTop: 0
 };
 
+let renderRafId = null;
+
 const epochNames = {
     'epoch-1': { ar: 'اليمن والجذور', en: 'Yemen & Origins', es: 'Yemen y orígenes' },
     'epoch-2': { ar: 'العهد النبوي', en: 'Prophetic Era', es: 'Época profética' },
@@ -156,81 +158,92 @@ function updateSearchPlaceholder() {
 }
 
 function renderTimeline() {
-    const { nodes } = getData();
-    timelineContainer.innerHTML = '';
+    return new Promise((resolve) => {
+        if (renderRafId) cancelAnimationFrame(renderRafId);
 
-    const filtered = nodes.filter((item) => {
-        const matchFilter = state.filter === 'all' || item.type === state.filter;
-        const matchSearch = state.searchTerm
-            ? item.name.toLowerCase().includes(state.searchTerm.toLowerCase())
-            : true;
-        return matchFilter && matchSearch;
-    });
+        renderRafId = requestAnimationFrame(() => {
+            const { nodes } = getData();
+            timelineContainer.innerHTML = '';
 
-    if (filtered.length === 0) {
-        noResults.classList.remove('hidden');
-        return;
-    }
-    noResults.classList.add('hidden');
+            const filtered = nodes.filter((item) => {
+                const matchFilter = state.filter === 'all' || item.type === state.filter;
+                const matchSearch = state.searchTerm
+                    ? item.name.toLowerCase().includes(state.searchTerm.toLowerCase())
+                    : true;
+                return matchFilter && matchSearch;
+            });
 
-    const isRtl = (getData().meta?.dir || 'rtl') === 'rtl';
+            if (filtered.length === 0) {
+                noResults.classList.remove('hidden');
+                resolve();
+                return;
+            }
+            noResults.classList.add('hidden');
 
-    filtered.forEach((item, index) => {
-        const card = document.createElement('div');
-        card.className = `bg-white rounded-lg p-5 shadow-sm hover:shadow-md border-r-4 ${item.type}-border flex justify-between items-center cursor-pointer transition-all animate-fade-up`;
-        card.style.animationDelay = `${index * 0.05}s`;
-        card.dataset.nodeId = item.id;
+            const isRtl = (getData().meta?.dir || 'rtl') === 'rtl';
+            const fragment = document.createDocumentFragment();
 
-        let dateColor = 'text-slate-400';
-        if (item.type === 'epoch-1') dateColor = 'epoch-1-text';
-        else if (item.type === 'epoch-2') dateColor = 'epoch-2-text';
-        else if (item.type === 'epoch-3') dateColor = 'epoch-3-text';
-        else if (item.type === 'epoch-4') dateColor = 'epoch-4-text';
-        else if (item.type === 'epoch-5') dateColor = 'epoch-5-text';
+            filtered.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = `bg-white rounded-lg p-5 shadow-sm hover:shadow-md border-r-4 ${item.type}-border flex justify-between items-center cursor-pointer transition-all animate-fade-up`;
+                card.style.animationDelay = `${index * 0.05}s`;
+                card.dataset.nodeId = item.id;
 
-        const badgeText = item.badge || '';
-        let badgeClass = 'badge-historical';
-        if (
-            badgeText.includes('موثق') ||
-            badgeText.includes('صحابي') ||
-            badgeText.includes('وقف') ||
-            badgeText.toLowerCase().includes('documented')
-        ) {
-            badgeClass = 'badge-verified';
-        }
+                let dateColor = 'text-slate-400';
+                if (item.type === 'epoch-1') dateColor = 'epoch-1-text';
+                else if (item.type === 'epoch-2') dateColor = 'epoch-2-text';
+                else if (item.type === 'epoch-3') dateColor = 'epoch-3-text';
+                else if (item.type === 'epoch-4') dateColor = 'epoch-4-text';
+                else if (item.type === 'epoch-5') dateColor = 'epoch-5-text';
 
-        const dotPosition = isRtl
-            ? 'absolute -right-[43px]'
-            : 'absolute -left-[43px]';
-        const contentPadding = isRtl ? 'md:pr-4' : 'md:pl-4';
+                const badgeText = item.badge || '';
+                let badgeClass = 'badge-historical';
+                if (
+                    badgeText.includes('موثق') ||
+                    badgeText.includes('صحابي') ||
+                    badgeText.includes('وقف') ||
+                    badgeText.toLowerCase().includes('documented')
+                ) {
+                    badgeClass = 'badge-verified';
+                }
 
-        const docButton = item.doc_img
-            ? `
-        <button onclick="event.stopPropagation(); showDocumentModal('${item.doc_img}', '${item.doc_title}', '${item.doc_desc_key}')"
-            class="mt-3 w-full py-1 px-3 bg-[#d4af37]/10 border border-[#d4af37] text-[#8d6e63] text-xs font-bold rounded hover:bg-[#d4af37] hover:text-white transition flex items-center justify-center gap-2">
-            <span>📜</span> <span>${getData().translations?.btn_view_doc || 'View Document 1002 AH'}</span>
-        </button>
-      `
-            : '';
+                const dotPosition = isRtl
+                    ? 'absolute -right-[43px]'
+                    : 'absolute -left-[43px]';
+                const contentPadding = isRtl ? 'md:pr-4' : 'md:pl-4';
 
-        card.innerHTML = `
-      <div class="md:w-full ${contentPadding} relative">
-        <div class="hidden md:block ${dotPosition} top-1/2 -translate-y-1/2 w-4 h-4 rounded-full border-2 border-white shadow bg-current ${dateColor}"></div>
-        <div class="flex items-center gap-2 mb-1">
-          <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">${item.name.split('.')[0]}</span>
-        </div>
-        <h3 class="font-bold text-lg text-slate-800">${item.name.split('. ')[1] || item.name}</h3>
-        <div class="flex flex-wrap gap-2 mt-2">
-          <span class="text-xs font-mono bg-slate-50 px-2 py-1 rounded border border-slate-100 ${dateColor}">📅 ${item.date}</span>
-          <span class="text-[10px] font-bold px-2 py-1 rounded ${badgeClass}">${badgeText}</span>
-        </div>
-        ${docButton}
-      </div>
-      <div class="text-slate-200 text-2xl transform group-hover:scale-110 transition">👁️</div>
-    `;
+                const docButton = item.doc_img
+                    ? `
+            <button onclick="event.stopPropagation(); showDocumentModal('${item.doc_img}', '${item.doc_title}', '${item.doc_desc_key}')"
+                class="mt-3 w-full py-1 px-3 bg-[#d4af37]/10 border border-[#d4af37] text-[#8d6e63] text-xs font-bold rounded hover:bg-[#d4af37] hover:text-white transition flex items-center justify-center gap-2">
+                <span>📜</span> <span>${getData().translations?.btn_view_doc || 'View Document 1002 AH'}</span>
+            </button>
+          `
+                    : '';
 
-        card.addEventListener('click', () => openModal(item));
-        timelineContainer.appendChild(card);
+                card.innerHTML = `
+          <div class="md:w-full ${contentPadding} relative">
+            <div class="hidden md:block ${dotPosition} top-1/2 -translate-y-1/2 w-4 h-4 rounded-full border-2 border-white shadow bg-current ${dateColor}"></div>
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">${item.name.split('.')[0]}</span>
+            </div>
+            <h3 class="font-bold text-lg text-slate-800">${item.name.split('. ')[1] || item.name}</h3>
+            <div class="flex flex-wrap gap-2 mt-2">
+              <span class="text-xs font-mono bg-slate-50 px-2 py-1 rounded border border-slate-100 ${dateColor}">📅 ${item.date}</span>
+              <span class="text-[10px] font-bold px-2 py-1 rounded ${badgeClass}">${badgeText}</span>
+            </div>
+            ${docButton}
+          </div>
+          <div class="text-slate-200 text-2xl transform group-hover:scale-110 transition">👁️</div>
+        `;
+
+                card.addEventListener('click', () => openModal(item));
+                fragment.appendChild(card);
+            });
+
+            timelineContainer.appendChild(fragment);
+            resolve();
+        });
     });
 }
 
@@ -428,13 +441,14 @@ function loadLanguageScript(langCode) {
         applyTranslations();
         renderPoemSections();
         updateSearchPlaceholder();
-        renderTimeline();
-        restoreAnchorState();
-        if (state.modalOpenId) {
-            const node = getData().nodes.find((item) => item.id === state.modalOpenId);
-            if (node) openModal(node);
-        }
-        langLoader.classList.remove('visible');
+        renderTimeline().then(() => {
+            restoreAnchorState();
+            if (state.modalOpenId) {
+                const node = getData().nodes.find((item) => item.id === state.modalOpenId);
+                if (node) openModal(node);
+            }
+            langLoader.classList.remove('visible');
+        });
     };
     script.onerror = () => {
         console.error('Failed to load language data:', langCode);
