@@ -193,6 +193,7 @@ window.FamilyTreeData = {
         modal_story_fallback: "Łączące ogniwo w odziedziczonej linii.",
         modal_logic_fallback: "Naturalna sekwencja pokoleń.",
         btn_view_doc: "Zobacz dokument 1002 AH",
+        doc_1002_desc: "Rzadki akt sprzedaży datowany na 1002 AH. Użyty jako główne odniesienie do określenia daty śmierci Fadla ibn Abdullaha.",
 
         // Language UI
         lang_loading: "Aktualizowanie języka...",
@@ -674,6 +675,7 @@ window.FamilyTreeData = {
                 "Syn, który podróżował z ojcem podczas migracji i osiedlenia. Śmierć potwierdzona około 1000 AH na podstawie datowanego radiowęglowo dokumentu podziału spadku z 1002 AH.",
             doc_img: "wathiqat-bay-brak-1002h-fadl-sabbal-alain.jpg",
             doc_title: "Purchase Deed in Brak - 1002 AH",
+            doc_desc_key: "doc_1002_desc",
             doc_transcription:
                 "Historical deed dated 1002 AH confirming the family's presence in Brak, listing names and properties (Palms and Land)."
         }

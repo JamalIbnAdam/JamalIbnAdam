@@ -201,6 +201,7 @@ window.FamilyTreeData = {
         modal_story_fallback: "A connecting link in the inherited lineage.",
         modal_logic_fallback: "A natural sequence of generations.",
         btn_view_doc: "View Document 1002 AH",
+        doc_1002_desc: "Rare sales deed dated 1002 AH. Used as the primary reference to determine the death era of Fadl ibn Abdullah and confirm his timeline at the turn of the 11th Hijri century.",
 
         // Language UI
         lang_loading: "Updating Language...",
@@ -682,6 +683,7 @@ window.FamilyTreeData = {
                 "The son who traveled with his father during migration and settlement. Death confirmed around 1000 AH based on a carbon-dated inheritance division document dated 1002 AH.",
             doc_img: "wathiqat-bay-brak-1002h-fadl-sabbal-alain.jpg",
             doc_title: "Purchase Deed in Brak - 1002 AH",
+            doc_desc_key: "doc_1002_desc",
             doc_transcription:
                 "Historical deed dated 1002 AH confirming the family's presence in Brak, listing names and properties (Palms and Land)."
         }

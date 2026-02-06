@@ -188,6 +188,7 @@ window.FamilyTreeData = {
         modal_story_fallback: "Miras alınan silsilede bir bağ.",
         modal_logic_fallback: "Nesillerin doğal bir sıralaması.",
         btn_view_doc: "Belgeyi Görüntüle 1002 H",
+        doc_1002_desc: "1002 H tarihli nadir satış senedi. Fadl bin Abdullah'ın ölüm tarihini belirlemek için birincil kanıt olarak kullanılmıştır.",
 
         // Language UI
         lang_loading: "Dil güncelleniyor...",
@@ -667,6 +668,7 @@ window.FamilyTreeData = {
                 "Göç ve yerleşim sırasında babasıyla birlikte yolculuk eden oğuldur. Ölümü, 1002 H tarihli karbon testli miras paylaşım belgesine dayanarak yaklaşık 1000 H olarak doğrulanmıştır.",
             doc_img: "wathiqat-bay-brak-1002h-fadl-sabbal-alain.jpg",
             doc_title: "Purchase Deed in Brak - 1002 AH",
+            doc_desc_key: "doc_1002_desc",
             doc_transcription:
                 "Historical deed dated 1002 AH confirming the family's presence in Brak, listing names and properties (Palms and Land)."
         }
