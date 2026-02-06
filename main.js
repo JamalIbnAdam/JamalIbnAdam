@@ -570,3 +570,23 @@ window.openModal = openModal;
 window.openDocModal = openDocModal;
 window.showDocumentModal = showDocumentModal;
 window.closeDocModal = closeDocModal;
+
+function loadYoutubeVideo(wrapper) {
+    const container = wrapper.querySelector('.youtube-container');
+    if (!container) return;
+
+    if (container.querySelector('iframe')) return;
+
+    const iframe = document.createElement('iframe');
+    iframe.width = "100%";
+    iframe.height = "100%";
+    iframe.src = "https://www.youtube.com/embed/videoseries?list=PLx2j-W6hDiG6a9AAPBQgCRjG_t1Ge--dl&autoplay=1";
+    iframe.title = "YouTube video player";
+    iframe.frameBorder = "0";
+    iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+    iframe.allowFullscreen = true;
+
+    container.appendChild(iframe);
+    container.classList.remove('hidden');
+}
+window.loadYoutubeVideo = loadYoutubeVideo;
