@@ -390,13 +390,13 @@ function filterTimeline(filterKey, btn) {
     state.filter = epochMap[filterKey] || filterKey;
 
     document.querySelectorAll('.tab-btn').forEach((button) => {
-        button.classList.remove('active', 'bg-amber-500', 'text-white', 'shadow-lg', 'shadow-amber-500/20');
+        button.classList.remove('active', 'bg-amber-700', 'text-white', 'shadow-lg', 'shadow-amber-700/20');
         button.classList.add('bg-slate-800/50', 'text-slate-400', 'hover:bg-slate-700', 'border', 'border-slate-700/50');
     });
 
     if (btn) {
         btn.classList.remove('bg-slate-800/50', 'text-slate-400', 'hover:bg-slate-700', 'border', 'border-slate-700/50');
-        btn.classList.add('active', 'bg-amber-500', 'text-white', 'shadow-lg', 'shadow-amber-500/20');
+        btn.classList.add('active', 'bg-amber-700', 'text-white', 'shadow-lg', 'shadow-amber-700/20');
     }
 
     renderTimeline();
@@ -483,11 +483,15 @@ async function initializeWebsite(langCode) {
     updateSearchPlaceholder();
     await renderTimeline();
 
-    restoreAnchorState();
-    if (state.modalOpenId) {
-        const node = getData().nodes.find((item) => item.id === state.modalOpenId);
-        if (node) openModal(node);
-    }
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            restoreAnchorState();
+            if (state.modalOpenId) {
+                const node = getData().nodes.find((item) => item.id === state.modalOpenId);
+                if (node) openModal(node);
+            }
+        });
+    });
 }
 
 function resolveInitialLanguage() {

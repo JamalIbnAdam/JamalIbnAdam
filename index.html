@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://cdn.tailwindcss.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -87,192 +86,7 @@
     }
     </script>
 
-    <link rel="preload" href="https://cdn.tailwindcss.com" as="script">
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <style>
-        /* --- 1. CORE & ANIMATIONS (Restored) --- */
-        :root {
-            --color-gold: #d4af37;
-            --color-paper: #fdfbf7;
-        }
-
-        html,
-        body {
-            overflow-x: hidden;
-            width: 100%;
-            max-width: 100%;
-        }
-
-        body {
-            font-family: 'Noto Kufi Arabic', sans-serif;
-            background-color: var(--color-paper);
-            /* Prevent horizontal scroll */
-        }
-
-        h1,
-        h2,
-        h3,
-        .serif-font {
-            font-family: 'Amiri', serif;
-        }
-
-        /* Restore Fade Animation (Critical for content visibility) */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-fade-up {
-            animation: fadeInUp 0.5s ease-out forwards;
-        }
-
-        /* --- 2. FLOATING LANGUAGE BUTTON REMOVED --- */
-
-        /* --- 3. MOBILE RESPONSIVENESS (App Feel) --- */
-        @media (max-width: 768px) {
-
-            /* Force Containers to fit screen */
-            .container,
-            main {
-                width: 100% !important;
-                padding-left: 16px !important;
-                padding-right: 16px !important;
-                max-width: 100vw !important;
-            }
-
-            /* Prevent Text Cut-off */
-            h1,
-            h2,
-            p {
-                word-wrap: break-word;
-                overflow-wrap: anywhere;
-                white-space: normal !important;
-            }
-
-            /* Header Text Sizing */
-            h1 {
-                font-size: 1.5rem !important;
-                line-height: 1.4 !important;
-            }
-
-            /* Stack Flex Containers Vertically */
-            .flex-row-responsive,
-            .branches-wrapper,
-            .figures-grid,
-            .stats-grid {
-                display: flex !important;
-                flex-direction: column !important;
-                gap: 16px !important;
-            }
-
-            /* Cards Full Width */
-            .branch-card,
-            .figure-card,
-            .poem-card {
-                width: 100% !important;
-                max-width: none !important;
-            }
-
-            /* Navigation Tabs (Scrollable) */
-            .nav-tabs-container {
-                justify-content: flex-start;
-                overflow-x: auto;
-                padding-bottom: 5px;
-            }
-
-            .nav-btn {
-                white-space: nowrap;
-                font-size: 0.9rem;
-            }
-
-            body,
-            main {
-                padding-bottom: 100px !important;
-            }
-        }
-
-        /* --- 4. DATA LOADER --- */
-        #lang-loader {
-            position: fixed;
-            inset: 0;
-            background: #0f172a;
-            z-index: 50000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.3s;
-            pointer-events: none;
-            opacity: 0;
-        }
-
-        #lang-loader.visible {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        .gregorian-date {
-            font-weight: 500;
-            color: rgba(51, 65, 85, 0.7);
-            white-space: nowrap;
-        }
-
-        html[dir="rtl"] .gregorian-date {
-            font-family: 'Noto Kufi Arabic', sans-serif;
-        }
-
-        /* --- ACCESSIBILITY: TIMELINE TEXT BOOST --- */
-        /* Target the Timeline Container specifically to not affect the header */
-
-        /* 1. The Ancestor Name (e.g., Qahtan, Fadl) */
-        #timelineContainer h3,
-        #timelineContainer .font-bold.text-slate-800 {
-            font-size: 1.25rem !important;
-            /* Increased to ~20px */
-            line-height: 1.6 !important;
-            margin-bottom: 6px !important;
-            color: #1e293b !important;
-            /* Ensure high contrast dark slate */
-        }
-
-        /* 2. The Date/Era Text */
-        #timelineContainer .text-slate-500,
-        #timelineContainer .font-mono {
-            font-size: 0.95rem !important;
-            /* Increased to ~15px */
-            color: #475569 !important;
-            /* Slightly darker for better readability */
-        }
-
-        /* 3. The Badge (Source/Consensus) */
-        #timelineContainer .badge-verified,
-        #timelineContainer .badge-historical {
-            font-size: 0.85rem !important;
-            /* Increased to ~13.5px */
-            padding: 4px 10px !important;
-            font-weight: 700 !important;
-        }
-
-        /* 4. Mobile Specific Tweaks (<768px) */
-        @media (max-width: 768px) {
-            #timelineContainer h3 {
-                font-size: 1.3rem !important;
-                /* Even larger on mobile for easy reading */
-            }
-
-            /* Add breathing room between cards */
-            #timelineContainer>div {
-                margin-bottom: 20px !important;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="flex flex-col min-h-screen">
@@ -389,7 +203,7 @@
                             <div class="flex items-center gap-3 overflow-x-auto no-scrollbar snap-x touch-pan-x w-full">
 
                                 <button
-                                    class="tab-btn active flex-shrink-0 snap-start flex items-center gap-2 px-5 py-2 rounded-full text-xs font-bold transition-all bg-amber-600 text-white shadow-lg border border-amber-500"
+                                    class="tab-btn active flex-shrink-0 snap-start flex items-center gap-2 px-5 py-2 rounded-full text-xs font-bold transition-all bg-amber-700 text-white shadow-lg border border-amber-600"
                                     onclick="filterTimeline('all', this)">
                                     <span>🔍</span> <span data-i18n="filter_all">All</span>
                                 </button>
@@ -433,6 +247,7 @@
             <div class="relative px-2 md:px-0">
                 <div class="timeline-line hidden md:block"></div>
 
+                <h2 class="sr-only">Timeline</h2>
                 <div id="timelineContainer" class="space-y-4">
                     <div class="bg-white rounded-xl p-4 shadow border border-slate-100 animate-pulse">
                         <div class="flex items-center gap-4">
