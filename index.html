@@ -687,8 +687,64 @@
     </main>
 
     <!-- === FOOTER === -->
-    <footer class="bg-slate-900 text-slate-400 py-8 text-center text-xs mt-auto">
-        <p data-i18n="footer_rights"></p>
+    <footer
+        class="bg-slate-900 text-slate-400 py-12 text-center text-sm mt-auto border-t border-slate-800 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-5"
+            style="background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48ZyBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0wIDQwaDQwVjBIMHY0MHptMjAgMjBoMjB2MjBIMjBWNjB6TTEwIDgwaDIwdjIwSDEwVjgteiIgZmlsbD0iI0ZGRkZGRiIgLz48L2c+PC9zdmc+');">
+        </div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-8">
+                <div class="flex items-center gap-3">
+                    <img src="logo.webp" alt="Logo"
+                        class="h-10 w-10 opacity-80 grayscale hover:grayscale-0 transition duration-300">
+                    <div class="text-left rtl:text-right">
+                        <h4 class="font-bold text-slate-200">Jamal Ibn Adam</h4>
+                        <p class="text-xs text-slate-500">The Golden Record Project</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <a href="#"
+                        class="p-2 bg-slate-800 rounded-full hover:bg-slate-700 transition text-slate-400 hover:text-white"
+                        aria-label="Twitter">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z">
+                            </path>
+                        </svg>
+                    </a>
+                    <a href="#"
+                        class="p-2 bg-slate-800 rounded-full hover:bg-slate-700 transition text-slate-400 hover:text-white"
+                        aria-label="YouTube">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M23.5 6.14a3 3 0 00-2.12-2.12C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.52A3 3 0 00.5 6.14C0 8 0 12 0 12s0 4 .52 5.86a3 3 0 002.12 2.12c1.88.52 9.38.52 9.38.52s7.5 0 9.38-.52a3 3 0 002.12-2.12C24 16 24 12 24 12s0-4-.52-5.86zM9.54 15.57V8.43L15.82 12l-6.28 3.57z">
+                            </path>
+                        </svg>
+                    </a>
+                    <a href="#"
+                        class="p-2 bg-slate-800 rounded-full hover:bg-slate-700 transition text-slate-400 hover:text-white"
+                        aria-label="Email">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z">
+                            </path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div
+                class="border-t border-slate-800/50 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+                <p data-i18n="footer_rights"></p>
+                <div class="flex gap-4">
+                    <a href="#" class="hover:text-slate-300 transition">Privacy Policy</a>
+                    <span class="text-slate-700">•</span>
+                    <a href="#" class="hover:text-slate-300 transition">Terms of Use</a>
+                    <span class="text-slate-700">•</span>
+                    <a href="#" class="hover:text-slate-300 transition">Sitemap</a>
+                </div>
+            </div>
+        </div>
     </footer>
 
     <!-- === MODAL === -->

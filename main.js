@@ -366,15 +366,34 @@ function closeDocModal() {
 }
 
 function switchTab(tabId) {
-    ['tree', 'figures', 'library', 'poem', 'author'].forEach((id) => {
-        document.getElementById(`view-${id}`).classList.add('hidden');
-        document.getElementById(`tab-${id}`).classList.remove('active', 'text-white/90');
-        document.getElementById(`tab-${id}`).classList.add('text-white/60');
+    const tabs = ['tree', 'figures', 'library', 'poem', 'author'];
+    const currentTab = tabs.find(id => !document.getElementById(`view-${id}`).classList.contains('hidden'));
+
+    if (currentTab === tabId) return;
+
+    tabs.forEach((id) => {
+        const view = document.getElementById(`view-${id}`);
+        const btn = document.getElementById(`tab-${id}`);
+
+        if (id === tabId) {
+            // Activate new tab
+            view.classList.remove('hidden');
+            view.classList.add('animate-fade-up');
+            btn.classList.add('active', 'text-white/90');
+            btn.classList.remove('text-white/60');
+        } else {
+            // Deactivate others
+            view.classList.add('hidden');
+            view.classList.remove('animate-fade-up');
+            btn.classList.remove('active', 'text-white/90');
+            btn.classList.add('text-white/60');
+        }
     });
 
-    document.getElementById(`view-${tabId}`).classList.remove('hidden');
-    document.getElementById(`tab-${tabId}`).classList.add('active', 'text-white/90');
-    document.getElementById(`tab-${tabId}`).classList.remove('text-white/60');
+    // Scroll to top if needed
+    if (window.scrollY > 300) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 }
 
 function filterTimeline(filterKey, btn) {
@@ -399,7 +418,31 @@ function filterTimeline(filterKey, btn) {
         btn.classList.add('active', 'bg-amber-700', 'text-white', 'shadow-lg', 'shadow-amber-700/20');
     }
 
-    renderTimeline();
+    renderTimeline().then(() => {
+        setupIntersectionObserver();
+    });
+}
+
+function setupIntersectionObserver() {
+    const options = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('opacity-100', 'translate-y-0');
+                entry.target.classList.remove('opacity-0', 'translate-y-4');
+            }
+        });
+    }, options);
+
+    document.querySelectorAll('.animate-fade-up').forEach(el => {
+        el.classList.add('opacity-0', 'translate-y-4', 'transition-all', 'duration-700', 'ease-out');
+        observer.observe(el);
+    });
 }
 
 async function changeLanguage(langCode) {
