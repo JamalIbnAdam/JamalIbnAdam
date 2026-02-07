@@ -463,7 +463,7 @@ function loadLanguageScript(langCode) {
 
         const script = document.createElement('script');
         script.id = 'family-tree-data';
-        script.src = `data/data_${langCode}.min.js?t=${Date.now()}`;
+        script.src = `data/data_${langCode}.js?t=${Date.now()}`;
         script.onload = resolve;
         script.onerror = reject;
         document.body.appendChild(script);
