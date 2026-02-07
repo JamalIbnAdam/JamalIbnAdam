@@ -679,7 +679,7 @@ window.FamilyTreeData = {
             logic: "Wspomniany wraz z ojcem w dokumentach migracyjnych; przodek czterech gałęzi.",
             story:
                 "Syn, który podróżował z ojcem podczas migracji i osiedlenia. Śmierć potwierdzona około 1000 AH na podstawie datowanego radiowęglowo dokumentu podziału spadku z 1002 AH.",
-            doc_img: "wathiqat-bay-brak-1002h-fadl-sabbal-alain.jpg",
+            doc_img: "wathiqat-bay-brak-1002h-fadl-sabbal-alain.webp",
             doc_title: "Purchase Deed in Brak - 1002 AH",
             doc_desc_key: "doc_1002_desc",
             doc_transcription:

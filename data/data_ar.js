@@ -755,7 +755,7 @@ window.FamilyTreeData = {
             logic: "الابن الذي ورد ذكره مع أبيه في وثائق الهجرة والاستقرار. وهو الجد الجامع للفروع الأربعة، وتؤكد المشجرات المعتمدة من شيوخ القبائل تسلسل نسبه بدقة.",
             story:
                 "الابن الذي رافق أباه في رحلة الهجرة والاستقرار. تأكدت وفاته في حدود الألف هجري بناءً على وثيقة تقسيم ميراث موثقة كربونياً بتاريخ 1002 هـ.",
-            doc_img: "wathiqat-bay-brak-1002h-fadl-sabbal-alain.jpg",
+            doc_img: "wathiqat-bay-brak-1002h-fadl-sabbal-alain.webp",
             doc_title: "وثيقة شراء وتوثيق في براك - 1002 هـ",
             doc_desc_key: "doc_1002_desc",
             doc_transcription:

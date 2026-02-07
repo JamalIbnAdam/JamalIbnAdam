@@ -688,7 +688,7 @@ window.FamilyTreeData = {
             logic: "Mencionado con su padre en documentos de migración; el antepasado de las cuatro ramas.",
             story:
                 "El hijo que viajó con su padre durante la migración y el asentamiento. Se confirmó su fallecimiento alrededor del 1000 AH mediante un documento de partición de herencia fechado en 1002 AH.",
-            doc_img: "wathiqat-bay-brak-1002h-fadl-sabbal-alain.jpg",
+            doc_img: "wathiqat-bay-brak-1002h-fadl-sabbal-alain.webp",
             doc_title: "Purchase Deed in Brak - 1002 AH",
             doc_transcription:
                 "Historical deed dated 1002 AH confirming the family's presence in Brak, listing names and properties (Palms and Land)."
