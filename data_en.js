@@ -687,7 +687,7 @@ window.FamilyTreeData = {
             logic: "Mentioned with his father in migration documents; the ancestor of the four branches.",
             story:
                 "The son who traveled with his father during migration and settlement. Death confirmed around 1000 AH based on a carbon-dated inheritance division document dated 1002 AH.",
-            doc_img: "wathiqat-bay-brak-1002h-fadl-sabbal-alain.webp",
+            doc_img: "wathiqat-bay-brak-1002h-fadl-sabbal-alain.jpg",
             doc_title: "Purchase Deed in Brak - 1002 AH",
             doc_desc_key: "doc_1002_desc",
             doc_transcription:
