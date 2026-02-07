@@ -1,298 +1,243 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>السجل الذهبي: تاريخ وتوثيق آل سبال العين</title>
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts: Amiri (Titles) & Noto Kufi (Body) -->
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Noto+Kufi+Arabic:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-    <style>
-        /* --- General Theme & Typography --- */
-        :root {
-            --color-gold: #d4af37;
-            --color-gold-light: #f3e5ab;
-            --color-slate-dark: #1e293b;
-            --color-paper: #fdfbf7;
-        }
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Kufi+Arabic:wght@300;400;700&display=swap"
+        media="print" onload="this.media='all'">
 
-        body {
-            font-family: 'Noto Kufi Arabic', sans-serif;
-            background-color: var(--color-paper);
-            color: #333;
-            background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
-            background-size: 24px 24px;
-        }
+    <noscript>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Kufi+Arabic:wght@300;400;700&display=swap"
+            rel="stylesheet">
+    </noscript>
 
-        h1, h2, h3, .serif-font {
-            font-family: 'Amiri', serif;
-        }
+    <title>السجل الذهبي لآل سبال العين | جمال ابن آدم - Jamal Ibn Adam</title>
+    <meta name="description"
+        content="السجل الذهبي لآل سبال العين: وثيقة تاريخية لرحلة الألف عام من يثرب إلى وادي الشاطئ عبر الأندلس (73 جيلاً). تحقيق وتوثيق جمال ابن آدم.">
+    <meta name="keywords"
+        content="جمال ابن آدم, Jamal Ibn Adam, السجل الذهبي, آل سبال العين, الأنصار في ليبيا, فضل بن عبد الله, وادي الشاطئ, نسب الأنصار, تاريخ الأندلس">
+    <meta name="author" content="Jamal Ibn Adam">
+    <link rel="canonical" href="https://jamalbanadam.com/">
 
-        /* --- Animations --- */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-up {
-            animation: fadeInUp 0.5s ease-out forwards;
-        }
+    <link rel="icon" type="image/svg+xml" href="Jamal Ibn Adam Logo.svg">
+    <link rel="shortcut icon" href="Jamal Ibn Adam Logo.svg">
 
-        /* --- Custom Scrollbar --- */
-        ::-webkit-scrollbar { width: 8px; height: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f1f1; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://jamalbanadam.com/">
+    <meta property="og:title" content="السجل الذهبي لآل سبال العين | توثيق جمال ابن آدم">
+    <meta property="og:description" content="رحلة الألف عام: من يثرب إلى الأندلس وصولاً إلى فزان (73 جيلاً موثقاً).">
+    <meta property="og:image" content="https://jamalbanadam.com/Jamal%20Ibn%20Adam%20Logo.svg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="ar_AR">
+    <meta property="og:locale:alternate" content="en_US">
 
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:domain" content="jamalbanadam.com">
+    <meta name="twitter:url" content="https://jamalbanadam.com/">
+    <meta name="twitter:title" content="Golden Record of Al-Sabal Al-Ain by Jamal Ibn Adam">
+    <meta name="twitter:description"
+        content="1000-year journey from Yathrib to Libya. Verified Genealogy (73 Generations).">
+    <meta name="twitter:image" content="https://jamalbanadam.com/Jamal%20Ibn%20Adam%20Logo.svg">
 
-        /* --- Epoch Colors (Subtle & Professional) --- */
-        .epoch-1-border { border-color: #8D6E63; } /* Yemen - Brown */
-        .epoch-2-border { border-color: #4CAF50; } /* Prophet - Green */
-        .epoch-3-border { border-color: #C62828; } /* Andalus - Red */
-        .epoch-4-border { border-color: #7E57C2; } /* Migration - Purple */
-        .epoch-5-border { border-color: #1976D2; } /* Libya - Blue */
 
-        .epoch-1-text { color: #5D4037; }
-        .epoch-2-text { color: #2E7D32; }
-        .epoch-3-text { color: #C62828; }
-        .epoch-4-text { color: #512DA8; }
-        .epoch-5-text { color: #0D47A1; }
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Jamal Ibn Adam",
+      "alternateName": ["جمال ابن آدم", "J.S. Adam", "Jamal Ben Omar"],
+      "url": "https://jamalbanadam.com",
+      "image": "https://jamalbanadam.com/Jamal%20Ibn%20Adam%20Logo.svg",
+      "sameAs": [
+        "https://www.youtube.com/@AndrewTipsOfficial",
+        "https://www.andrewtips.com"
+      ],
+      "jobTitle": "Author & Historian",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Golden Record Project"
+      }
+    }
+    </script>
 
-        .badge-verified { background-color: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
-        .badge-historical { background-color: #f8fafc; color: #475569; border: 1px solid #e2e8f0; }
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Book",
+      "name": "السجل الذهبي لآل سبال العين",
+      "alternateName": "The Golden Record of Al-Sabal Al-Ain",
+      "author": {
+        "@type": "Person",
+        "name": "Jamal Ibn Adam"
+      },
+      "url": "https://jamalbanadam.com",
+      "description": "من يثرب إلى وادي الشاطئ: رحلة الألف عام عبر الأندلس (73 جيلاً).",
+      "inLanguage": ["ar", "en", "tr", "pl", "es"]
+    }
+    </script>
 
-        /* --- Timeline Specifics --- */
-        .timeline-line {
-            position: absolute;
-            right: 23px; /* Align with dots */
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, #cbd5e1 0%, #cbd5e1 100%);
-            z-index: 0;
-        }
-
-        /* --- Tab System --- */
-        .nav-btn {
-            position: relative;
-            transition: all 0.3s ease;
-        }
-        .nav-btn::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background-color: var(--color-gold);
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
-        .nav-btn.active { color: var(--color-slate-dark); font-weight: 700; }
-        .nav-btn.active::after { width: 80%; }
-        .nav-btn:hover { color: var(--color-gold); }
-
-        /* --- Family Branches under Fadl (52+) --- */
-        .tree-section-title {
-            text-align: center;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            background: #1e293b;
-            color: white;
-            padding: 10px;
-            border-radius: 8px;
-            font-size: 1rem;
-        }
-
-        .tree-root {
-            text-align: center;
-            margin: 24px 0;
-            position: relative;
-        }
-        .tree-root::before {
-            content: '';
-            position: absolute;
-            top: -24px;
-            left: 50%;
-            height: 20px;
-            width: 3px;
-            background: #cbd5e1;
-            transform: translateX(-50%);
-        }
-        
-        .fadl-node {
-            background: #16a34a;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 999px;
-            display: inline-block;
-            font-weight: 700;
-            font-size: 1rem;
-            box-shadow: 0 6px 18px rgba(22, 163, 74, 0.35);
-            border: 2px solid #15803d;
-        }
-
-        .branches-wrapper {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 16px;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 3px solid #e2e8f0;
-            position: relative;
-            padding-bottom: 20px;
-        }
-        .branches-wrapper::before {
-            content: '';
-            position: absolute;
-            top: -18px;
-            left: 50%;
-            height: 18px;
-            width: 3px;
-            background: #e2e8f0;
-            transform: translateX(-50%);
-        }
-
-        .branch-card {
-            flex: 1;
-            min-width: 260px;
-            max-width: 320px;
-            background: #ffffff;
-            border-radius: 14px;
-            overflow: hidden;
-            box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
-            border-top: 5px solid #cbd5e1;
-            border-inline-start: 1px solid #e2e8f0;
-        }
-
-        .branch-header {
-            padding: 12px 14px;
-            text-align: center;
-            font-weight: 700;
-            color: #f9fafb;
-            font-size: 0.95rem;
-        }
-        .branch-body {
-            padding: 12px 14px 14px 14px;
-            font-size: 0.9rem;
-        }
-        
-        .sub-group {
-            margin-bottom: 10px;
-            border-bottom: 1px dashed #e5e7eb;
-            padding-bottom: 6px;
-        }
-        .sub-group:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-        .sub-group h4 {
-            margin: 0 0 4px 0;
-            color: #0f172a;
-            font-size: 0.9rem;
-            font-weight: 700;
-        }
-        .sub-group ul {
-            margin: 0;
-            padding-right: 18px;
-            color: #4b5563;
-        }
-        .sub-group li {
-            margin-bottom: 3px;
-        }
-
-        /* --- Book Cover Mockup --- */
-        .book-spine {
-            background: linear-gradient(90deg, #2c3e50 0%, #34495e 10%, #2c3e50 15%, #2c3e50 100%);
-            box-shadow: inset 2px 0 5px rgba(255,255,255,0.1), 5px 5px 15px rgba(0,0,0,0.3);
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css?v=1">
 </head>
+
 <body class="flex flex-col min-h-screen">
 
     <!-- === HERO HEADER === -->
     <header class="bg-slate-900 text-white shadow-xl relative overflow-hidden">
         <!-- Background Pattern (Abstract) -->
-        <div class="absolute inset-0 opacity-10" style="background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48ZyBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0wIDQwaDQwVjBIMHY0MHptMjAgMjBoMjB2MjBIMjBWNjB6TTEwIDgwaDIwdjIwSDEwVjgteiIgZmlsbD0iI0ZGRkZGRiIgLz48L2c+PC9zdmc+');"></div>
-        
-        <div class="container mx-auto px-4 py-8 relative z-10">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-                <div class="text-center md:text-right">
-                    <div class="flex items-center justify-center md:justify-start gap-3 mb-2">
-                        <img src="Jamal Ibn Adam Logo.png" alt="Jamal Ibn Adam Logo" class="h-12 md:h-14 w-auto object-contain">
-                        <span class="text-amber-400 text-2xl">❖</span>
-                        <h1 class="text-3xl md:text-4xl font-bold leading-tight text-amber-50">السجل الذهبي لآل سبال العين</h1>
-                    </div>
-                    <p class="text-slate-300 text-sm md:text-base font-light tracking-wide">
-                        من يثرب إلى وادي الشاطئ: رحلة الألف عام عبر الأندلس (53 جيلاً)
-                    </p>
-                </div>
+        <div class="absolute inset-0 opacity-10"
+            style="background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48ZyBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0wIDQwaDQwVjBIMHY0MHptMjAgMjBoMjB2MjBIMjBWNjB6TTEwIDgwaDIwdjIwSDEwVjgteiIgZmlsbD0iI0ZGRkZGRiIgLz48L2c+PC9zdmc+');">
+        </div>
 
-                <!-- Quick Stats -->
-                <div class="flex gap-4">
-                    <div class="bg-white/10 backdrop-blur-sm border border-white/20 px-5 py-3 rounded-lg text-center">
-                        <div class="text-2xl font-bold text-amber-400 serif-font">53</div>
-                        <div class="text-[10px] text-slate-300 uppercase tracking-wider">جيلاً موثقاً</div>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-sm border border-white/20 px-5 py-3 rounded-lg text-center">
-                        <div class="text-2xl font-bold text-emerald-400 serif-font">5</div>
-                        <div class="text-[10px] text-slate-300 uppercase tracking-wider">حقب تاريخية</div>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-sm border border-white/20 px-5 py-3 rounded-lg text-center">
-                        <div class="text-2xl font-bold text-blue-400 serif-font">3</div>
-                        <div class="text-[10px] text-slate-300 uppercase tracking-wider">قارات</div>
-                    </div>
-                </div>
+        <div class="container mx-auto px-4 py-6 relative">
+
+            <div class="absolute top-0 ltr:right-0 rtl:left-0 mt-2 mx-4 z-50">
+                <label for="lang-select" class="sr-only">Select Language</label>
+                <select id="lang-select" onchange="changeLanguage(this.value)" aria-label="Select Language"
+                    class="appearance-none bg-slate-800/80 backdrop-blur-md text-amber-50 text-xs font-bold border border-white/10 rounded-lg py-1.5 px-3 pr-8 focus:outline-none focus:border-amber-500 cursor-pointer shadow-lg hover:bg-slate-700 transition-all">
+                    <option value="ar">🇸🇦 العربية</option>
+                    <option value="en">🇺🇸 English</option>
+                    <option value="tr">🇹🇷 Türkçe</option>
+                    <option value="pl">🇵🇱 Polski</option>
+                    <option value="es">🇪🇸 Español</option>
+                </select>
             </div>
 
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 mt-8 md:mt-2">
+
+                <div class="flex flex-col md:flex-row items-center gap-4 text-center md:text-start md:flex-1">
+                    <img src="Jamal Ibn Adam Logo.svg" alt="Jamal Ibn Adam Logo" width="72" height="72"
+                        fetchpriority="high"
+                        class="h-20 w-20 md:h-24 md:w-24 object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500">
+
+                    <div>
+                        <h1 class="text-2xl md:text-4xl font-bold leading-tight text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-100 to-amber-200 drop-shadow-sm"
+                            data-i18n="header_title">
+                            The Golden Record of Al-Sabal Al-Ain
+                        </h1>
+                        <p class="text-slate-400 text-xs md:text-sm font-light tracking-wider mt-1"
+                            data-i18n="header_subtitle">
+                            From Yathrib to Wadi Al-Shatii: A 1000-Year Journey (73 Generations)
+                        </p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-3 gap-2 md:gap-4 w-full md:w-auto mt-4 md:mt-0">
+                    <div class="bg-white/5 border border-white/10 rounded-lg p-2 md:p-3 text-center backdrop-blur-sm">
+                        <div class="text-xl md:text-2xl font-bold text-amber-400" data-i18n="stat_continents_val">3
+                        </div>
+                        <div class="text-[10px] md:text-xs text-slate-400 uppercase tracking-wider"
+                            data-i18n="stat_continents_label">Continents</div>
+                    </div>
+                    <div class="bg-white/5 border border-white/10 rounded-lg p-2 md:p-3 text-center backdrop-blur-sm">
+                        <div class="text-xl md:text-2xl font-bold text-emerald-400" data-i18n="stat_eras_val">5</div>
+                        <div class="text-[10px] md:text-xs text-slate-400 uppercase tracking-wider"
+                            data-i18n="stat_eras_label">Eras</div>
+                    </div>
+                    <div class="bg-white/5 border border-white/10 rounded-lg p-2 md:p-3 text-center backdrop-blur-sm">
+                        <div class="text-xl md:text-2xl font-bold text-amber-400" data-i18n="stat_generations_val">73
+                        </div>
+                        <div class="text-[10px] md:text-xs text-slate-400 uppercase tracking-wider"
+                            data-i18n="stat_generations_label">Generations</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="container mx-auto px-4">
             <!-- Navigation Tabs -->
-            <div class="flex justify-center md:justify-start gap-8 mt-8 border-b border-white/10 pb-1">
-                <button onclick="switchTab('tree')" id="tab-tree" class="nav-btn active text-sm md:text-lg pb-2 text-white/90">
-                    🌳 شجرة النسب المباركة
+            <div
+                class="nav-tabs-container sticky top-0 z-40 bg-slate-900/95 backdrop-blur no-scrollbar border-b border-white/10 mt-8">
+                <button onclick="switchTab('tree')" id="tab-tree"
+                    class="nav-btn active text-sm md:text-lg px-4 pb-2 text-white/90" data-i18n="tab_tree">
+                    🌳 The Blessed Family Tree
                 </button>
-                <button onclick="switchTab('figures')" id="tab-figures" class="nav-btn text-sm md:text-lg pb-2 text-white/60">
-                    🗺️ أعلام الأنصار في ليبيا
+                <button onclick="switchTab('figures')" id="tab-figures"
+                    class="nav-btn text-sm md:text-lg px-4 pb-2 text-white/60" data-i18n="tab_figures">
+                    🗺️ Ansar Figures in Libya
                 </button>
-                <button onclick="switchTab('library')" id="tab-library" class="nav-btn text-sm md:text-lg pb-2 text-white/60">
-                    📚 المكتبة والتوثيق
+                <button onclick="switchTab('library')" id="tab-library"
+                    class="nav-btn text-sm md:text-lg px-4 pb-2 text-white/60" data-i18n="tab_library">
+                    📚 Library & Documentation
+                </button>
+                <button onclick="switchTab('poem')" id="tab-poem"
+                    class="nav-btn text-sm md:text-lg px-4 pb-2 text-white/60" data-i18n="tab_poem">
+                    📜 The Ansar Epic
+                </button>
+                <button onclick="switchTab('author')" id="tab-author"
+                    class="nav-btn text-sm md:text-lg px-4 pb-2 text-white/60" data-i18n="tab_author">
+                    👤 Jamal Ibn Adam (J.S. Adam)
                 </button>
             </div>
         </div>
     </header>
 
     <!-- === MAIN CONTENT === -->
-    <main class="container mx-auto px-4 py-8 flex-grow max-w-5xl">
+    <main class="container mx-auto px-4 py-8 flex-grow max-w-5xl min-h-[80vh]">
 
         <!-- ================= TAB 1: TREE ================= -->
         <div id="view-tree" class="animate-fade-up">
-            
+
             <!-- Controls Toolbar -->
             <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-4 mb-8 sticky top-4 z-40">
                 <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
                     <!-- Search -->
                     <div class="relative w-full md:w-1/3">
-                        <input type="text" id="searchInput" placeholder="ابحث عن جد (مثال: عمر، جابر)..." 
-                               class="w-full pl-4 pr-10 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-amber-400 focus:outline-none text-sm transition-all">
+                        <input type="text" id="searchInput" placeholder="" data-i18n-placeholder="search_placeholder"
+                            class="w-full pl-4 pr-10 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-amber-400 focus:outline-none text-sm transition-all">
                         <span class="absolute left-3 top-2.5 text-slate-400">🔍</span>
                     </div>
 
                     <!-- Filter Buttons -->
-                    <div class="flex overflow-x-auto gap-2 w-full md:w-auto no-scrollbar pb-1">
-                        <button onclick="filterEpoch('all')" class="filter-btn px-4 py-1.5 rounded-full bg-slate-800 text-white text-xs font-bold shadow-md ring-2 ring-slate-800 ring-offset-2 transition-all">الكل</button>
-                        <button onclick="filterEpoch('epoch-1')" class="filter-btn px-4 py-1.5 rounded-full bg-white border border-[#8D6E63] text-[#5D4037] text-xs hover:bg-[#8D6E63] hover:text-white transition-all">اليمن</button>
-                        <button onclick="filterEpoch('epoch-2')" class="filter-btn px-4 py-1.5 rounded-full bg-white border border-[#4CAF50] text-[#2E7D32] text-xs hover:bg-[#4CAF50] hover:text-white transition-all">العهد النبوي</button>
-                        <button onclick="filterEpoch('epoch-3')" class="filter-btn px-4 py-1.5 rounded-full bg-white border border-[#C62828] text-[#C62828] text-xs hover:bg-[#C62828] hover:text-white transition-all">الأندلس</button>
-                        <button onclick="filterEpoch('epoch-4')" class="filter-btn px-4 py-1.5 rounded-full bg-white border border-[#7E57C2] text-[#512DA8] text-xs hover:bg-[#7E57C2] hover:text-white transition-all">الهجرة</button>
-                        <button onclick="filterEpoch('epoch-5')" class="filter-btn px-4 py-1.5 rounded-full bg-white border border-[#1976D2] text-[#0D47A1] text-xs hover:bg-[#1976D2] hover:text-white transition-all">ليبيا</button>
+                    <div class="sticky top-0 z-40 bg-slate-900/95 backdrop-blur border-b border-white/5 shadow-lg">
+                        <div class="container mx-auto px-4 py-3">
+                            <div class="flex items-center gap-3 overflow-x-auto no-scrollbar snap-x touch-pan-x w-full">
+
+                                <button
+                                    class="tab-btn active flex-shrink-0 snap-start flex items-center gap-2 px-5 py-2 rounded-full text-xs font-bold transition-all bg-amber-600 text-white shadow-lg border border-amber-500"
+                                    onclick="filterTimeline('all', this)">
+                                    <span>🔍</span> <span data-i18n="filter_all">All</span>
+                                </button>
+
+                                <button
+                                    class="tab-btn flex-shrink-0 snap-start flex items-center gap-2 px-5 py-2 rounded-full text-xs font-bold transition-all bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700"
+                                    onclick="filterTimeline('yemen', this)">
+                                    <span>🇾🇪</span> <span data-i18n="filter_yemen">Yemen</span>
+                                </button>
+
+                                <button
+                                    class="tab-btn flex-shrink-0 snap-start flex items-center gap-2 px-5 py-2 rounded-full text-xs font-bold transition-all bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700"
+                                    onclick="filterTimeline('prophet', this)">
+                                    <span>🕌</span> <span data-i18n="filter_prophet">Prophetic Era</span>
+                                </button>
+
+                                <button
+                                    class="tab-btn flex-shrink-0 snap-start flex items-center gap-2 px-5 py-2 rounded-full text-xs font-bold transition-all bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700"
+                                    onclick="filterTimeline('andalus', this)">
+                                    <span>🏰</span> <span data-i18n="filter_andalus">Andalus</span>
+                                </button>
+
+                                <button
+                                    class="tab-btn flex-shrink-0 snap-start flex items-center gap-2 px-5 py-2 rounded-full text-xs font-bold transition-all bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700"
+                                    onclick="filterTimeline('migration', this)">
+                                    <span>⛵</span> <span data-i18n="filter_migration">Migration</span>
+                                </button>
+
+                                <button
+                                    class="tab-btn flex-shrink-0 snap-start flex items-center gap-2 px-5 py-2 rounded-full text-xs font-bold transition-all bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700"
+                                    onclick="filterTimeline('libya', this)">
+                                    <span>🇱🇾</span> <span data-i18n="filter_libya">Libya</span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -300,198 +245,212 @@
             <!-- Timeline Container -->
             <div class="relative px-2 md:px-0">
                 <div class="timeline-line hidden md:block"></div>
-                
+
                 <div id="timelineContainer" class="space-y-4">
-                    <!-- Cards Injected by JS -->
+                    <div class="bg-white rounded-xl p-4 shadow border border-slate-100 animate-pulse">
+                        <div class="flex items-center gap-4">
+                            <div class="h-12 w-12 rounded-full bg-slate-200"></div>
+                            <div class="flex-1 space-y-2">
+                                <div class="h-4 bg-slate-200 rounded w-1/3"></div>
+                                <div class="h-3 bg-slate-200 rounded w-1/4"></div>
+                            </div>
+                        </div>
+                        <div class="mt-4 space-y-2">
+                            <div class="h-3 bg-slate-200 rounded w-full"></div>
+                            <div class="h-3 bg-slate-200 rounded w-5/6"></div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl p-4 shadow border border-slate-100 animate-pulse">
+                        <div class="flex items-center gap-4">
+                            <div class="h-12 w-12 rounded-full bg-slate-200"></div>
+                            <div class="flex-1 space-y-2">
+                                <div class="h-4 bg-slate-200 rounded w-1/3"></div>
+                                <div class="h-3 bg-slate-200 rounded w-1/4"></div>
+                            </div>
+                        </div>
+                        <div class="mt-4 space-y-2">
+                            <div class="h-3 bg-slate-200 rounded w-full"></div>
+                            <div class="h-3 bg-slate-200 rounded w-5/6"></div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl p-4 shadow border border-slate-100 animate-pulse">
+                        <div class="flex items-center gap-4">
+                            <div class="h-12 w-12 rounded-full bg-slate-200"></div>
+                            <div class="flex-1 space-y-2">
+                                <div class="h-4 bg-slate-200 rounded w-1/3"></div>
+                                <div class="h-3 bg-slate-200 rounded w-1/4"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Empty State -->
                 <div id="noResults" class="hidden text-center py-12">
                     <div class="text-4xl mb-2">🍂</div>
-                    <p class="text-slate-400">لا توجد نتائج تطابق بحثك</p>
+                    <p class="text-slate-400" data-i18n="no_results"></p>
                 </div>
             </div>
 
             <!-- Branches from Fadl (under main tree) -->
-            <div id="new-branches" class="tree-section-title">
-                🔻  تفرع البطون من الجد (فضل بن عبد الله سبال العين) 🔻
-            </div>
+            <h2 id="new-branches" class="tree-section-title" data-i18n="fadl_branch_title"></h2>
 
             <div class="tree-root">
-                <div class="fadl-node">
-                    52. فـضـل بن عبد الله<br>
-                    <span style="font-size:0.8rem; font-weight:400;">(الاسم الذي تتفرع منه البطون)</span>
-                </div>
+                <div class="fadl-node" data-i18n="fadl_node"></div>
             </div>
 
             <div class="branches-wrapper">
+                <!-- (1) أولاد سالم بن يوسف - آقار (العائلات الخمس) -->
+                <div class="branch-card" style="border-top-color: #991b1b; box-shadow: 0 10px 24px rgba(0,0,0,0.18);">
+                    <div class="branch-header text-white font-bold" style="background: #991b1b;">
+                        <h3 style="display:inline; font-size:inherit;" data-i18n="branch_1_title"></h3><br>
+                        <span style="font-size:0.85rem; font-weight:500;" data-i18n="branch_1_subtitle"></span>
+                    </div>
+                    <div class="branch-body" data-i18n="branch_1_desc"></div>
+                </div>
+
                 <!-- (2) أولاد أبوبكر بن إسماعيل - أشكدة -->
                 <div class="branch-card" style="border-top-color: #3498db;">
-                    <div class="branch-header" style="background: #3498db;">
-                        (2) أولاد أبوبكر بن إسماعيل<br>
-                        <span style="font-size:0.8rem; font-weight:400;">أشكدة</span>
+                    <div class="branch-header text-white" style="background: #3498db;">
+                        <h3 style="display:inline; font-size:inherit;" data-i18n="branch_2_title"></h3><br>
+                        <span style="font-size:0.85rem; font-weight:500;" data-i18n="branch_2_subtitle"></span>
                     </div>
-                    <div class="branch-body">
-                        <div class="sub-group">
-                            <h4>أولاد الفقيه إسماعيل:</h4>
-                            <ul>
-                                <li>أولاد حمد</li>
-                                <li>أولاد محمد</li>
-                                <li>أولاد طاهر</li>
-                            </ul>
-                        </div>
-                        <div class="sub-group">
-                            <h4>أولاد قاسم:</h4>
-                            <ul>
-                                <li>أولاد نور الدين</li>
-                                <li>أولاد الحاج إبراهيم (بيت فضل)</li>
-                            </ul>
-                        </div>
-                        <div class="sub-group">
-                            <h4>أولاد محمد:</h4>
-                            <ul>
-                                <li>أولاد الرشيد</li>
-                            </ul>
-                        </div>
-                    </div>
+                    <div class="branch-body" data-i18n="branch_2_desc"></div>
                 </div>
 
                 <!-- (3) أولاد بلقاسم بن إسماعيل - دبدب -->
                 <div class="branch-card" style="border-top-color: #e67e22;">
-                    <div class="branch-header" style="background: #e67e22;">
-                        (3) أولاد بلقاسم بن إسماعيل<br>
-                        <span style="font-size:0.8rem; font-weight:400;">دبدب</span>
+                    <div class="branch-header text-white" style="background: #e67e22;">
+                        <h3 style="display:inline; font-size:inherit;" data-i18n="branch_3_title"></h3><br>
+                        <span style="font-size:0.85rem; font-weight:500;" data-i18n="branch_3_subtitle"></span>
                     </div>
-                    <div class="branch-body">
-                        <div class="sub-group">
-                            <h4>الفروع:</h4>
-                            <ul>
-                                <li>أولاد الأخضري</li>
-                                <li>أولاد يوسف</li>
-                            </ul>
-                        </div>
-                    </div>
+                    <div class="branch-body" data-i18n="branch_3_desc"></div>
                 </div>
 
-                <!-- (4) أولاد قاسم - زاوية براك + الفروع الجانبية -->
-                <div class="branch-card" style="border-top-color: #9b59b6;">
-                    <div class="branch-header" style="background: #9b59b6;">
-                        (4) أولاد قاسم<br>
-                        <span style="font-size:0.8rem; font-weight:400;">زاوية براك</span>
+                <!-- (4) أولاد قاسم - زاوية براك -->
+                <div class="branch-card" style="border-top-color: #7e22ce;">
+                    <div class="branch-header text-white font-bold" style="background: #7e22ce;">
+                        <h3 style="display:inline; font-size:inherit;" data-i18n="branch_4_title"></h3><br>
+                        <span style="font-size:0.85rem; font-weight:500;" data-i18n="branch_4_subtitle"></span>
                     </div>
-                    <div class="branch-body">
-                        <div class="sub-group">
-                            <h4>اللقب:</h4>
-                            <ul>
-                                <li>بيت القاضي الرشيد</li>
-                            </ul>
-                        </div>
-                        <div class="sub-group" style="background:#f9fafb; padding:6px 8px; border-radius:8px;">
-                            <h4>الفروع الجانبية:</h4>
-                            <ul>
-                                <li><strong>العثامنة:</strong> البرادنة أبناء بدر الدين (زاوية براك)</li>
-                                <li><strong>أولاد عبد الواحد:</strong> العلاونة والفقهاء (القرضة وزاوية براك)</li>
-                            </ul>
-                        </div>
-                    </div>
+                    <div class="branch-body" data-i18n="branch_4_desc"></div>
                 </div>
 
-                <!-- (1) أولاد سالم بن يوسف - آقار (العائلات الخمس) -->
-                <div class="branch-card" style="border-top-color: #c0392b; box-shadow: 0 10px 24px rgba(0,0,0,0.18);">
-                    <div class="branch-header" style="background: #c0392b;">
-                        (1) أولاد سالم بن يوسف<br>
-                        <span style="font-size:0.8rem; font-weight:400;">آقار (العائلات الخمس)</span>
+                <!-- (5) العثامنة - زاوية براك -->
+                <div class="branch-card" style="border-top-color: #e91e63;">
+                    <div class="branch-header text-white" style="background: #e91e63;">
+                        <h3 style="display:inline; font-size:inherit;" data-i18n="branch_5_title"></h3><br>
+                        <span style="font-size:0.85rem; font-weight:500;" data-i18n="branch_5_subtitle"></span>
                     </div>
-                    <div class="branch-body">
-                        <div class="sub-group">
-                            <h4>البطون الخمسة:</h4>
-                            <ul>
-                                <li><strong>السوالم</strong></li>
-                                <li>الكداوي</li>
-                                <li>العلاوي</li>
-                                <li>البكور</li>
-                                <li>الوسفى</li>
-                            </ul>
-                        </div>
-                        <div style="text-align:center; font-size:0.8rem; color:#b91c1c; margin-top:6px; font-weight:bold;">
-                            (هذا هو فرعك المباشر)
-                        </div>
-                    </div>
+                    <div class="branch-body" data-i18n="branch_5_desc"></div>
                 </div>
+
+                <!-- (6) أولاد عبد الواحد - زاوية براك -->
+                <div class="branch-card" style="border-top-color: #15803d;">
+                    <div class="branch-header text-white font-bold" style="background: #15803d;">
+                        <h3 style="display:inline; font-size:inherit;" data-i18n="branch_6_title"></h3><br>
+                        <span style="font-size:0.85rem; font-weight:500;" data-i18n="branch_6_subtitle"></span>
+                    </div>
+                    <div class="branch-body" data-i18n="branch_6_desc"></div>
+                </div>
+
+            </div>
+
+            <!-- Concluding timeline / generations note -->
+            <div class="mt-6 p-4 bg-slate-50 rounded-lg border border-slate-100 text-right">
+                <div class="font-bold mb-2" data-i18n="modern_era_title"></div>
+                <p class="mb-2" data-i18n="modern_era_lineage"></p>
+                <p class="mb-2" data-i18n="modern_era_detail"></p>
+                <p class="font-semibold" data-i18n="modern_era_generation"></p>
             </div>
         </div>
 
         <!-- ================= TAB 2: FIGURES ================= -->
         <div id="view-figures" class="hidden animate-fade-up">
             <div class="bg-blue-50 border-r-4 border-blue-500 p-6 rounded-lg mb-8 shadow-sm">
-                <h3 class="font-bold text-blue-900 text-lg mb-2 serif-font">من مقدمة كتاب "الأنصار في وادي الشاطئ"</h3>
-                <p class="text-sm text-blue-800 leading-relaxed">
-                    يؤكد المصدر التاريخي أن تواجد آل "سبال العين" هو امتداد طبيعي لانتشار قبائل الأنصار (الأوس والخزرج) في التراب الليبي. هؤلاء الأعلام هم "أبناء العمومة" في النسب والتاريخ، وقبورهم شواهد على أصالة هذا المكون.
-                </p>
+                <h2 class="font-bold text-blue-900 text-lg mb-2 serif-font" data-i18n="figures_intro_title"></h2>
+                <p class="text-sm text-blue-800 leading-relaxed" data-i18n="figures_intro_text"></p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="figures-grid grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Card 1 -->
-                <div class="bg-white rounded-xl p-6 shadow hover:shadow-md transition border border-slate-100 relative overflow-hidden group">
+                <div
+                    class="bg-white rounded-xl p-6 shadow hover:shadow-md transition border border-slate-100 relative overflow-hidden group">
                     <div class="absolute top-0 left-0 w-2 h-full bg-emerald-500"></div>
                     <div class="flex justify-between items-start">
                         <div>
-                            <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded mb-2 inline-block">الجيل الأول (الصحابة)</span>
-                            <h4 class="text-xl font-bold text-slate-800 serif-font group-hover:text-emerald-700 transition">رويفع بن ثابت الأنصاري</h4>
-                            <p class="text-sm text-slate-500 mt-2">أمير برقة وطرابلس في صدر الإسلام.</p>
+                            <span
+                                class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded mb-2 inline-block"
+                                data-i18n="fig_1_badge"></span>
+                            <h3 class="text-xl font-bold text-slate-800 serif-font group-hover:text-emerald-700 transition"
+                                data-i18n="fig_1_name"></h3>
+                            <p class="text-sm text-slate-500 mt-2" data-i18n="fig_1_desc"></p>
                         </div>
                         <div class="text-3xl opacity-20 group-hover:opacity-100 transition">⚔️</div>
                     </div>
                     <div class="mt-4 pt-4 border-t border-slate-50 flex items-center gap-2 text-xs text-slate-400">
-                        <span>📍</span> دفين مدينة البيضاء
+                        <span data-i18n="fig_1_loc"></span>
                     </div>
                 </div>
 
                 <!-- Card 2 -->
-                <div class="bg-white rounded-xl p-6 shadow hover:shadow-md transition border border-slate-100 relative overflow-hidden group">
+                <div
+                    class="bg-white rounded-xl p-6 shadow hover:shadow-md transition border border-slate-100 relative overflow-hidden group">
                     <div class="absolute top-0 left-0 w-2 h-full bg-emerald-500"></div>
                     <div class="flex justify-between items-start">
                         <div>
-                            <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded mb-2 inline-block">الجيل الأول (الصحابة)</span>
-                            <h4 class="text-xl font-bold text-slate-800 serif-font group-hover:text-emerald-700 transition">منيذر الإفريقي الأنصاري</h4>
-                            <p class="text-sm text-slate-500 mt-2">المعروف بلقب (حلاق النبي ﷺ) وصاحبه.</p>
+                            <span
+                                class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded mb-2 inline-block"
+                                data-i18n="fig_2_badge"></span>
+                            <h3 class="text-xl font-bold text-slate-800 serif-font group-hover:text-emerald-700 transition"
+                                data-i18n="fig_2_name"></h3>
+                            <p class="text-sm text-slate-500 mt-2" data-i18n="fig_2_desc"></p>
                         </div>
                         <div class="text-3xl opacity-20 group-hover:opacity-100 transition">🕌</div>
                     </div>
                     <div class="mt-4 pt-4 border-t border-slate-50 flex items-center gap-2 text-xs text-slate-400">
-                        <span>📍</span> دفين طرابلس (المقبرة القديمة)
+                        <span data-i18n="fig_2_loc"></span>
                     </div>
                 </div>
 
                 <!-- Card 3 -->
-                <div class="bg-white rounded-xl p-6 shadow hover:shadow-md transition border border-slate-100 relative overflow-hidden group">
+                <div
+                    class="bg-white rounded-xl p-6 shadow hover:shadow-md transition border border-slate-100 relative overflow-hidden group">
                     <div class="absolute top-0 left-0 w-2 h-full bg-amber-500"></div>
                     <div class="flex justify-between items-start">
                         <div>
-                            <span class="text-xs font-bold text-amber-600 bg-amber-50 px-2 py-1 rounded mb-2 inline-block">أولياء وصالحين</span>
-                            <h4 class="text-xl font-bold text-slate-800 serif-font group-hover:text-amber-700 transition">الولي بو عجيلة الأنصاري</h4>
-                            <p class="text-sm text-slate-500 mt-2">من كبار مشايخ الغرب الليبي.</p>
+                            <span
+                                class="text-xs font-bold text-amber-600 bg-amber-50 px-2 py-1 rounded mb-2 inline-block"
+                                data-i18n="fig_3_badge"></span>
+                            <h3 class="text-xl font-bold text-slate-800 serif-font group-hover:text-amber-700 transition"
+                                data-i18n="fig_3_name"></h3>
+                            <p class="text-sm text-slate-500 mt-2" data-i18n="fig_3_desc"></p>
                         </div>
                         <div class="text-3xl opacity-20 group-hover:opacity-100 transition">📜</div>
                     </div>
                     <div class="mt-4 pt-4 border-t border-slate-50 flex items-center gap-2 text-xs text-slate-400">
-                        <span>📍</span> دفين العجيلات
+                        <span data-i18n="fig_3_loc"></span>
                     </div>
                 </div>
 
                 <!-- Card 4 -->
-                <div class="bg-white rounded-xl p-6 shadow hover:shadow-md transition border border-slate-100 relative overflow-hidden group">
+                <div
+                    class="bg-white rounded-xl p-6 shadow hover:shadow-md transition border border-slate-100 relative overflow-hidden group">
                     <div class="absolute top-0 left-0 w-2 h-full bg-amber-500"></div>
                     <div class="flex justify-between items-start">
                         <div>
-                            <span class="text-xs font-bold text-amber-600 bg-amber-50 px-2 py-1 rounded mb-2 inline-block">أولياء وصالحين</span>
-                            <h4 class="text-xl font-bold text-slate-800 serif-font group-hover:text-amber-700 transition">الشيخ عبدالله بن محمد قطب</h4>
-                            <p class="text-sm text-slate-500 mt-2">عالم زاهد نشر العلم في الجنوب.</p>
+                            <span
+                                class="text-xs font-bold text-amber-600 bg-amber-50 px-2 py-1 rounded mb-2 inline-block"
+                                data-i18n="fig_4_badge"></span>
+                            <h3 class="text-xl font-bold text-slate-800 serif-font group-hover:text-amber-700 transition"
+                                data-i18n="fig_4_name"></h3>
+                            <p class="text-sm text-slate-500 mt-2" data-i18n="fig_4_desc"></p>
                         </div>
                         <div class="text-3xl opacity-20 group-hover:opacity-100 transition">🌴</div>
                     </div>
                     <div class="mt-4 pt-4 border-t border-slate-50 flex items-center gap-2 text-xs text-slate-400">
-                        <span>📍</span> دفين الصحراء (قرب الكفرة)
+                        <span data-i18n="fig_4_loc"></span>
                     </div>
                 </div>
             </div>
@@ -499,59 +458,66 @@
 
         <!-- ================= TAB 3: LIBRARY ================= -->
         <div id="view-library" class="hidden animate-fade-up">
-            
+
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <!-- Book Display -->
-                <div class="lg:col-span-1 flex flex-col items-center">
-                    <div class="book-spine w-48 h-72 rounded-r-lg rounded-l-sm flex flex-col items-center justify-center p-4 text-center text-amber-50 relative transform hover:scale-105 transition duration-500 cursor-pointer mb-6">
-                        <div class="border-2 border-amber-400/30 w-full h-full p-2 flex flex-col justify-between">
-                            <div class="text-[10px] tracking-widest uppercase opacity-70">دراسة وثائقية</div>
-                            <div>
-                                <h3 class="font-bold text-xl serif-font leading-normal mb-2">الأنصار الخزرج<br>في وادي الشاطئ</h3>
-                                <div class="w-8 h-px bg-amber-400 mx-auto my-2"></div>
-                                <p class="text-xs font-light">تأليف: د. محمد سعيد</p>
-                            </div>
-                            <div class="text-[10px] opacity-70">الطبعة الثالثة</div>
-                        </div>
+                <div class="lg:col-span-1 flex flex-col items-center gap-6">
+                    <div class="w-48 h-72">
+                        <img src="ansar-wadi-al-shati.webp" alt="" data-i18n-alt="library_book_alt"
+                            class="w-full h-full object-cover rounded-lg shadow-md hover:scale-105 transition duration-500">
                     </div>
-                    <div class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 text-center w-full">
-                        <span class="block text-xs text-slate-500 mb-1">المصدر المعتمد</span>
-                        <span class="block font-bold text-slate-800">ملف PDF (رقم 3)</span>
+                    <div class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 text-right w-full">
+                        <span class="block text-xs text-slate-500 mb-1" data-i18n="library_doc_label"></span>
+                        <span class="block font-bold text-slate-800" data-i18n="lib_book_info"></span>
+                        <span class="block text-sm text-slate-600 mt-2" data-i18n="library_author"></span>
+                    </div>
+
+                    <div onclick="showDocumentModal('wathiqat-bay-brak-1002h-fadl-sabbal-alain.webp', 'doc_1002_title', 'doc_1002_transcription')"
+                        class="w-full bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition cursor-pointer overflow-hidden">
+                        <div class="w-full h-48">
+                            <img src="wathiqat-bay-brak-1002h-fadl-sabbal-alain.webp" alt=""
+                                class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-4 text-right space-y-2">
+                            <h4 class="font-bold text-slate-800" data-i18n="doc_1002_title"></h4>
+                            <p class="text-sm text-slate-600" data-i18n="doc_1002_desc"></p>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Methodology Content -->
                 <div class="lg:col-span-2 space-y-6">
                     <div class="bg-white p-8 rounded-xl shadow-sm border border-slate-100">
-                        <h2 class="text-2xl font-bold text-slate-800 mb-6 serif-font flex items-center gap-3">
-                            <span class="text-amber-500">❖</span> منهجية التوثيق المعتمدة
+                        <h2 class="text-2xl font-bold text-slate-800 mb-6 serif-font flex items-center gap-3"
+                            data-i18n="library_methodology_title">
+                            <span class="text-amber-500">❖</span>
                         </h2>
-                        
+
                         <div class="prose prose-sm max-w-none text-slate-600 leading-8">
-                            <p class="mb-4">
-                                تم بناء هذا المشجر الإلكتروني (53 جيلاً) بالاعتماد على المنهجية العلمية التالية:
-                            </p>
+                            <p class="mb-4" data-i18n="lib_method_text"></p>
                             <ul class="list-disc list-inside space-y-2 marker:text-amber-500">
-                                <li>
-                                    <strong class="text-slate-800">الدمج الوثائقي:</strong> المطابقة بين الوثائق العائلية الخاصة (المحفوظة بالكربون لدى كبار العائلة) وبين ما ورد في الكتاب المرجعي "الأنصار في وادي الشاطئ".
-                                </li>
-                                <li>
-                                    <strong class="text-slate-800">المصادر الأندلسية:</strong> التحقق من الأسماء في الحقبة الأندلسية (الجيل 34-47) عبر مراجع "نفح الطيب" و"الإحاطة في أخبار غرناطة".
-                                </li>
-                                <li>
-                                    <strong class="text-slate-800">تحقيق الألقاب:</strong> تم تدقيق لقب "المرابطين" والتأكيد على دلالته الوظيفية (أهل العلم والزوايا) وليس العرقية (قبائل صنهاجة)، وهو ما يثبت النسب الأنصاري العربي.
-                                </li>
+                                <li data-i18n="lib_point_1"></li>
+                                <li data-i18n="lib_point_2"></li>
+                                <li data-i18n="lib_point_3"></li>
                             </ul>
                         </div>
                     </div>
 
-                    <div class="bg-amber-50 border border-amber-200 p-6 rounded-xl flex items-start gap-4">
-                        <div class="text-3xl">⚠️</div>
+                    <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+                        <h3 class="font-bold text-slate-800 mb-3 text-sm" data-i18n="library_sources_title"></h3>
+                        <ul class="text-xs text-slate-600 space-y-2">
+                            <li data-i18n="library_source_1"></li>
+                            <li data-i18n="library_source_2"></li>
+                            <li data-i18n="library_source_3"></li>
+                            <li data-i18n="library_source_4"></li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-emerald-50 border border-emerald-200 p-6 rounded-xl flex items-start gap-4">
+                        <div class="text-3xl">🛡️</div>
                         <div>
-                            <h4 class="font-bold text-amber-900 mb-1">تنبيه هام للباحثين</h4>
-                            <p class="text-sm text-amber-800/80 leading-relaxed">
-                                الأسماء الواردة من (48. أحمد المهاجر) إلى (50. عمر الجداوي) تمثل "حلقة الوصل الذهبية" التي تفسر جغرافياً وتاريخياً انتقال العائلة من الأندلس إلى المغرب ثم الشرق (الحجاز) وأخيراً الاستقرار في فزان.
-                            </p>
+                            <h4 class="font-bold text-emerald-900 mb-1" data-i18n="lib_logic_title"></h4>
+                            <p class="text-sm text-emerald-800/80 leading-relaxed" data-i18n="lib_logic_text"></p>
                         </div>
                     </div>
                 </div>
@@ -559,60 +525,244 @@
 
         </div>
 
+        <!-- ================= TAB 4: POEM ================= -->
+        <div id="view-poem" class="hidden animate-fade-up">
+            <div class="poem-card rounded-2xl p-6 md:p-10 mb-8">
+                <div class="poem-section text-center mb-8">
+                    <div class="text-3xl mb-3">📜</div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-[#4a2f0a] poem-font" data-i18n="poem_main_title">
+                    </h2>
+                    <p class="mt-4 text-sm md:text-base text-[#5b4631] leading-relaxed max-w-3xl mx-auto"
+                        data-i18n="poem_intro"></p>
+                </div>
+
+                <div class="poem-section space-y-8">
+                    <div>
+                        <h3 class="text-xl md:text-2xl font-bold text-[#4a2f0a] poem-font mb-4"
+                            data-i18n="poem_ch1_title"></h3>
+                        <div class="poem-font" data-i18n-lines="poem_ch1_body"></div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl md:text-2xl font-bold text-[#4a2f0a] poem-font mb-4"
+                            data-i18n="poem_ch2_title"></h3>
+                        <div class="poem-font" data-i18n-lines="poem_ch2_body"></div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-[1.4fr_0.6fr] gap-6 items-center">
+                        <div>
+                            <h3 class="text-xl md:text-2xl font-bold text-[#4a2f0a] poem-font mb-4"
+                                data-i18n="poem_ch3_title"></h3>
+                            <div class="poem-font" data-i18n-lines="poem_ch3_body"></div>
+                        </div>
+                        <div class="poem-image rounded-xl p-4 text-center shadow-sm">
+                            <div class="text-5xl mb-3">🕌</div>
+                            <div class="text-xs uppercase tracking-widest text-[#a68b5b] mb-1">Placeholder</div>
+                            <div class="text-sm font-semibold text-[#4a2f0a]" data-i18n="poem_ch3_image_alt"></div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-[0.6fr_1.4fr] gap-6 items-center">
+                        <div class="poem-image rounded-xl p-4 text-center shadow-sm">
+                            <div class="text-5xl mb-3">🌴</div>
+                            <div class="text-xs uppercase tracking-widest text-[#a68b5b] mb-1">Placeholder</div>
+                            <div class="text-sm font-semibold text-[#4a2f0a]" data-i18n="poem_ch4_image_alt"></div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl md:text-2xl font-bold text-[#4a2f0a] poem-font mb-4"
+                                data-i18n="poem_ch4_title"></h3>
+                            <div class="poem-font" data-i18n-lines="poem_ch4_body"></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl md:text-2xl font-bold text-[#4a2f0a] poem-font mb-4"
+                            data-i18n="poem_ch5_title"></h3>
+                        <div class="poem-font" data-i18n-lines="poem_ch5_body"></div>
+                    </div>
+
+                    <div class="mt-6 text-center">
+                        <p class="poem-font text-base md:text-lg text-[#4a2f0a]" data-i18n="poem_conclusion"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= TAB 5: AUTHOR ================= -->
+        <div id="view-author" class="hidden animate-fade-up">
+            <div class="space-y-8">
+
+                <!-- Header Card -->
+                <div
+                    class="bg-gradient-to-r from-slate-900 to-slate-800 text-white p-8 rounded-xl shadow-lg border border-slate-700">
+                    <h2 class="text-3xl md:text-4xl font-bold serif-font mb-4" data-i18n="author_channel_title"></h2>
+                    <p class="text-slate-100 leading-8 text-lg" data-i18n="author_bio"></p>
+                </div>
+
+                <!-- YouTube Embed -->
+                <div class="flex flex-col items-center">
+                    <h3 class="text-2xl font-bold mb-6 text-slate-800 serif-font" data-i18n="author_playlist_title">
+                    </h3>
+                    <div class="w-full aspect-video rounded-xl overflow-hidden shadow-lg border border-slate-200 relative bg-slate-900 cursor-pointer group"
+                        onclick="loadYoutubeVideo(this)">
+                        <img src="ansar-wadi-al-shati.webp" alt="Video Thumbnail"
+                            class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-300">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div
+                                class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition">
+                                <svg class="w-8 h-8 text-white fill-current" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="youtube-container absolute inset-0 bg-black z-20 hidden"></div>
+                    </div>
+                </div>
+
+                <!-- Books Section -->
+                <div class="bg-white p-8 rounded-xl shadow-md border border-slate-100">
+                    <h3 class="text-2xl font-bold mb-6 text-slate-800 serif-font" data-i18n="author_books_title">
+                    </h3>
+                    <p class="text-slate-700 leading-8 mb-6" data-i18n="author_books_intro"></p>
+                    <div class="space-y-4 mb-6 text-slate-700 leading-8">
+                        <p data-i18n="author_book_1"></p>
+                        <p data-i18n="author_book_2"></p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="https://www.andrewtips.com" target="_blank" rel="noopener noreferrer"
+                            class="px-6 py-3 bg-slate-900 text-white rounded-lg font-bold hover:bg-slate-800 transition text-center"
+                            data-i18n="btn_visit_books">
+                        </a>
+                        <a href="https://www.youtube.com/@AndrewTipsOfficial" target="_blank" rel="noopener noreferrer"
+                            class="px-6 py-3 bg-white border-2 border-slate-900 text-slate-900 rounded-lg font-bold hover:bg-slate-50 transition text-center"
+                            data-i18n="btn_visit_youtube">
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Contact Section -->
+                <div
+                    class="contact-section p-8 rounded-xl shadow-lg bg-gradient-to-r from-slate-900 to-slate-800 text-white">
+                    <h3 class="text-2xl font-bold mb-4 serif-font text-white" data-i18n="contact_header"></h3>
+                    <div id="contactSuccess" class="hidden text-emerald-300 text-sm mb-4 space-y-1">
+                        <h4 class="text-base font-bold" data-i18n="form_success_title"></h4>
+                        <p data-i18n="form_success_message"></p>
+                    </div>
+                    <form id="contactForm" action="https://formspree.io/f/mlgwrrar" method="POST" class="space-y-4">
+                        <div>
+                            <label class="contact-label block mb-2 text-slate-300 text-sm"
+                                data-i18n="contact_name_label"></label>
+                            <input type="text" name="name" required
+                                class="contact-input w-full min-h-[48px] rounded-lg px-4 py-3 bg-slate-800 border border-slate-700 text-white focus:outline-none focus:ring-2 focus:ring-amber-400 placeholder-slate-500"
+                                data-i18n-placeholder="contact_name_label" placeholder="">
+                        </div>
+                        <div>
+                            <label class="contact-label block mb-2 text-slate-300 text-sm"
+                                data-i18n="contact_email_label"></label>
+                            <input type="email" name="email" required
+                                class="contact-input w-full min-h-[48px] rounded-lg px-4 py-3 bg-slate-800 border border-slate-700 text-white focus:outline-none focus:ring-2 focus:ring-amber-400 placeholder-slate-500"
+                                data-i18n-placeholder="contact_email_label" placeholder="">
+                        </div>
+                        <div>
+                            <label class="contact-label block mb-2 text-slate-300 text-sm"
+                                data-i18n="contact_message_label"></label>
+                            <textarea name="message" rows="5" required
+                                class="contact-input w-full min-h-[120px] rounded-lg px-4 py-3 bg-slate-800 border border-slate-700 text-white focus:outline-none focus:ring-2 focus:ring-amber-400 placeholder-slate-500"
+                                data-i18n-placeholder="contact_message_label" placeholder=""></textarea>
+                        </div>
+                        <button type="submit"
+                            class="w-full min-h-[48px] bg-amber-400 text-slate-900 font-bold rounded-lg hover:bg-amber-300 transition"
+                            data-i18n="btn_send"></button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
     </main>
 
     <!-- === FOOTER === -->
     <footer class="bg-slate-900 text-slate-400 py-8 text-center text-xs mt-auto">
-        <p>&copy; 2023 السجل التوثيقي لآل سبال العين - جميع الحقوق محفوظة للوقف الذري.</p>
+        <p data-i18n="footer_rights"></p>
     </footer>
 
     <!-- === MODAL === -->
     <div id="detailModal" class="fixed inset-0 z-50 hidden flex items-start md:items-center justify-center p-4 md:p-6">
         <!-- Backdrop -->
-        <div class="absolute inset-0 bg-slate-900/80 backdrop-blur-sm transition-opacity opacity-0" id="modalBackdrop"></div>
-        
+        <div class="absolute inset-0 bg-slate-900/80 backdrop-blur-sm transition-opacity opacity-0" id="modalBackdrop">
+        </div>
+
         <!-- Content -->
-        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] relative z-10 transform scale-95 opacity-0 transition-all duration-300 overflow-hidden" id="modalContent">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] relative z-10 transform scale-95 opacity-0 transition-all duration-300 overflow-hidden"
+            id="modalContent">
             <!-- Header -->
-            <div id="modalHeader" class="p-6 text-white rounded-t-2xl flex justify-between items-start relative overflow-hidden">
-                <div class="absolute inset-0 opacity-10 bg-white" style="background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPjxyZWN0IHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiNmZmYiLz48L3N2Zz4=');"></div>
+            <div id="modalHeader"
+                class="p-6 text-white rounded-t-2xl flex justify-between items-start relative overflow-hidden">
+                <div class="absolute inset-0 opacity-10 bg-white"
+                    style="background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPjxyZWN0IHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiNmZmYiLz48L3N2Zz4=');">
+                </div>
                 <div class="relative z-10">
-                    <span id="modalEpoch" class="text-[10px] uppercase tracking-widest font-bold opacity-80 mb-2 block border border-white/30 rounded-full px-2 py-0.5 w-fit">الحقبة</span>
-                    <h3 id="modalName" class="text-3xl font-bold serif-font leading-tight">الاسم</h3>
-                    <div class="flex items-center gap-2 mt-2 text-white/90">
+                    <span id="modalEpoch"
+                        class="text-[10px] uppercase tracking-widest font-bold opacity-80 mb-2 block border border-white/30 rounded-full px-2 py-0.5 w-fit"
+                        data-i18n="modal_epoch_label"></span>
+                    <h3 id="modalName" class="text-3xl font-bold serif-font leading-tight" data-i18n="modal_name_label">
+                    </h3>
+                    <div id="modalDateRow" class="flex items-center gap-2 mt-2 text-white/90">
                         <span class="text-sm">📅</span>
-                        <span id="modalDate" class="text-sm font-mono">التاريخ</span>
+                        <span id="modalDate" class="text-sm font-mono" data-i18n="modal_date_label"></span>
                     </div>
                 </div>
-                <button id="modalCloseButton" onclick="closeModal()" class="relative z-10 text-white/70 hover:text-white transition bg-black/20 hover:bg-black/30 rounded-full p-2 h-9 w-9 flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                <button id="modalCloseButton" onclick="closeModal()"
+                    class="relative z-10 text-white/70 hover:text-white transition bg-black/20 hover:bg-black/30 rounded-full p-2 h-9 w-9 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
                 </button>
             </div>
-            
-            <!-- Body -->
-            <div class="p-6 md:p-8 overflow-y-auto max-h-[65vh] md:max-h-[70vh] space-y-6">
-                <!-- Story Section -->
-                <div>
-                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wide mb-3 flex items-center gap-2">
-                        <span class="w-4 h-px bg-slate-300"></span> السيرة التاريخية
-                    </h4>
-                    <p id="modalStory" class="text-slate-700 leading-loose text-lg font-medium border-l-4 border-slate-100 pl-4"></p>
-                </div>
 
-                <!-- Details Grid -->
-                <div class="grid grid-cols-1 gap-4 text-sm">
-                    <div class="flex items-start gap-3 p-3 rounded-lg bg-slate-50 border border-slate-100">
-                        <span class="text-xl">📚</span>
-                        <div>
-                            <strong class="block text-slate-800 mb-1">المصدر التوثيقي</strong>
-                            <span id="modalSource" class="text-slate-600 block"></span>
+            <!-- Body -->
+            <div id="modalBody" class="p-6 md:p-8 overflow-y-auto max-h-[65vh] md:max-h-[70vh] space-y-6">
+                <div id="modalDefaultBody" class="space-y-6">
+                    <!-- Story Section -->
+                    <div>
+                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wide mb-3 flex items-center gap-2"
+                            data-i18n="modal_story_label">
+                            <span class="w-4 h-px bg-slate-300"></span>
+                        </h4>
+                        <p id="modalStory"
+                            class="text-slate-700 leading-loose text-lg font-medium border-l-4 border-slate-100 pl-4">
+                        </p>
+                    </div>
+
+                    <!-- Details Grid -->
+                    <div class="grid grid-cols-1 gap-4 text-sm">
+                        <div class="flex items-start gap-3 p-3 rounded-lg bg-slate-50 border border-slate-100">
+                            <span class="text-xl">📚</span>
+                            <div>
+                                <strong class="block text-slate-800 mb-1" data-i18n="modal_source_label"></strong>
+                                <span id="modalSource" class="text-slate-600 block"></span>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 p-3 rounded-lg bg-amber-50 border border-amber-100">
+                            <span class="text-xl">💡</span>
+                            <div>
+                                <strong class="block text-amber-900 mb-1" data-i18n="modal_logic_label"></strong>
+                                <span id="modalLogic" class="text-amber-800 block"></span>
+                            </div>
                         </div>
                     </div>
-                    <div class="flex items-start gap-3 p-3 rounded-lg bg-amber-50 border border-amber-100">
-                        <span class="text-xl">💡</span>
-                        <div>
-                            <strong class="block text-amber-900 mb-1">المنطق البحثي</strong>
-                            <span id="modalLogic" class="text-amber-800 block"></span>
+                </div>
+
+                <div id="modalDocBody" class="hidden space-y-6">
+                    <div class="bg-white rounded-xl border border-amber-100 shadow-sm overflow-hidden">
+                        <img id="modalDocImage" src="" alt="" class="w-full h-auto object-contain" loading="lazy">
+                    </div>
+                    <div class="bg-white border border-slate-200 rounded-xl p-5">
+                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wide mb-3">Transcription</h4>
+                        <div class="max-h-[40vh] overflow-y-auto pr-2">
+                            <p id="modalDocTranscription" class="text-slate-700 leading-loose text-base md:text-lg"></p>
                         </div>
                     </div>
                 </div>
@@ -620,238 +770,48 @@
         </div>
     </div>
 
-    <!-- === JAVASCRIPT === -->
-    <script>
-        // --- DATA (Restored & Verified 53 Generations) ---
-        const lineageData = [
-            // Epoch 1: Yemen & Roots
-            { name: "1. قحطان", type: "epoch-1", date: "عصور قديمة", badge: "إجماع النسابة", src: "جمهرة أنساب العرب", logic: "الجد الأكبر للعرب العاربة.", story: "أصل العرب ومادة فخرهم." },
-            { name: "2. يعرب", type: "epoch-1", date: "قديم", badge: "تسلسلي", src: "جمهرة أنساب العرب", logic: "--", story: "أول من نطق بالعربية الفصحى." },
-            { name: "3. يشجب", type: "epoch-1", date: "--", badge: "تسلسلي", src: "--", logic: "--", story: "--" },
-            { name: "4. سبأ", type: "epoch-1", date: "القرن 8 ق.م", badge: "أثري/تاريخي", src: "النقوش المسندية", logic: "مؤسس المملكة", story: "مؤسس مملكة سبأ العظيمة وصاحب السد الشهير." },
-            { name: "5. كهلان", type: "epoch-1", date: "--", badge: "تسلسلي", src: "تاريخ ابن خلدون", logic: "جذع العرب", story: "أحد ولدي سبأ، ومنه تفرعت قبائل الأزد وهمدان ومذحج." },
-            { name: "6. زيد", type: "epoch-1", date: "--", badge: "تسلسلي", src: "--", logic: "--", story: "--" },
-            { name: "7. مالك", type: "epoch-1", date: "--", badge: "تسلسلي", src: "--", logic: "--", story: "--" },
-            { name: "8. نبت", type: "epoch-1", date: "--", badge: "تسلسلي", src: "--", logic: "--", story: "--" },
-            { name: "9. الغوث", type: "epoch-1", date: "--", badge: "تسلسلي", src: "--", logic: "--", story: "--" },
-            { name: "10. الأزد", type: "epoch-1", date: "قديم", badge: "موثق", src: "جمهرة ابن حزم", logic: "جد القبائل", story: "جد الأنصار والغساسنة وبارق وخزاعة." },
-            { name: "11. مازن", type: "epoch-1", date: "--", badge: "تسلسلي", src: "--", logic: "--", story: "--" },
-            { name: "12. ثعلبة", type: "epoch-1", date: "--", badge: "تسلسلي", src: "--", logic: "--", story: "--" },
-            { name: "13. امرؤ القيس", type: "epoch-1", date: "--", badge: "تسلسلي", src: "--", logic: "--", story: "--" },
-            { name: "14. حارثة الغطريف", type: "epoch-1", date: "--", badge: "تسلسلي", src: "--", logic: "--", story: "--" },
-            { name: "15. عامر (ماء السماء)", type: "epoch-1", date: "قبل السيل", badge: "موثق", src: "ابن حزم", logic: "--", story: "ملك اليمن، سمي بماء السماء لشدة جوده وكرمه، لم يمنع أحداً قط." },
-            { name: "16. عمرو (مزيقياء)", type: "epoch-1", date: "القرن 3 م", badge: "تاريخي", src: "جمهرة ابن حزم", logic: "قائد الهجرة", story: "قائد الهجرة الكبرى من اليمن بعد علامات سيل العرم. سمي مزيقياء لأنه كان يمزق الحلل كل يوم لئلا يلبسها غيره." },
-            { name: "17. ثعلبة (العنقاء)", type: "epoch-1", date: "--", badge: "تسلسلي", src: "--", logic: "--", story: "--" },
-            { name: "18. حارثة (أبو الأنصار)", type: "epoch-1", date: "القرن 4 م", badge: "موثق", src: "جمهرة ابن حزم", logic: "والد الأوس والخزرج", story: "تزوج قيلة بنت كاهل، فسمي أبناؤه (بني قيلة) وهم الأوس والخزرج." },
-            { name: "19. الخزرج", type: "epoch-1", date: "القرن 5 م", badge: "موثق", src: "الإصابة", logic: "جد القبيلة", story: "الجد الجامع لقبيلة الخزرج العظيمة التي نصرت الرسول ﷺ." },
-            { name: "20. جشم", type: "epoch-1", date: "--", badge: "تسلسلي", src: "--", logic: "--", story: "--" },
-            { name: "21. تزيد", type: "epoch-1", date: "--", badge: "تسلسلي", src: "--", logic: "--", story: "--" },
-            { name: "22. ساردة", type: "epoch-1", date: "--", badge: "تسلسلي", src: "--", logic: "--", story: "--" },
-            { name: "23. أسد", type: "epoch-1", date: "--", badge: "تسلسلي", src: "--", logic: "--", story: "--" },
-            { name: "24. علي", type: "epoch-1", date: "--", badge: "تسلسلي", src: "--", logic: "--", story: "--" },
-            { name: "25. سعد", type: "epoch-1", date: "--", badge: "تسلسلي", src: "--", logic: "--", story: "--" },
-            { name: "26. سلمة", type: "epoch-1", date: "قبل الهجرة", badge: "موثق", src: "سيرة ابن هشام", logic: "جد بني سلمة", story: "إليه ينسب (السلمي). كان بنو سلمة يسكنون ناحية بعيدة فأرادوا الانتقال قرب المسجد النبوي، فقال لهم النبي: (يا بني سلمة دياركم تكتب آثاركم)." },
-            { name: "27. غنم", type: "epoch-1", date: "--", badge: "تسلسلي", src: "--", logic: "--", story: "--" },
-            { name: "28. كعب", type: "epoch-1", date: "--", badge: "تسلسلي", src: "--", logic: "--", story: "--" },
-            { name: "29. ثعلبة", type: "epoch-1", date: "--", badge: "تسلسلي", src: "--", logic: "--", story: "--" },
-            { name: "30. حرام", type: "epoch-1", date: "--", badge: "تسلسلي", src: "--", logic: "--", story: "--" },
+    <!-- === DOCUMENT MODAL === -->
+    <div id="docModal" class="fixed inset-0 z-50 hidden flex items-start md:items-center justify-center p-4 md:p-6">
+        <div class="absolute inset-0 bg-slate-900/80 backdrop-blur-sm transition-opacity opacity-0" id="docBackdrop">
+        </div>
 
-            // Epoch 2: Prophetic Era
-            { name: "31. عمرو بن حرام", type: "epoch-2", date: "توفي قبل أحد", badge: "صحابي", src: "الإصابة (ج1)", logic: "--", story: "من كبار الأنصار وساداتهم." },
-            { name: "32. عبد الله (الشهيد)", type: "epoch-2", date: "استشهد 3 هـ", badge: "شهيد أحد", src: "الإصابة", logic: "والد جابر", story: "عبد الله بن عمرو بن حرام، الصحابي الذي كلمه الله كفاحاً (دون حجاب) بعد استشهاده في أحد وقال له تمنّ علي." },
-            { name: "33. جابر بن عبد الله", type: "epoch-2", date: "ت 78 هـ", badge: "صحابي جليل", src: "الإصابة (1022)", logic: "رأس النسب", story: "شيخ بني سلمة، والمكثر من رواية الحديث، وشهد بيعة العقبة الثانية وهو صغير. من نسله انتشرت ذرية بني سلمة." },
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] relative z-10 transform scale-95 opacity-0 transition-all duration-300 overflow-hidden"
+            id="docContent">
+            <div
+                class="p-5 md:p-6 bg-gradient-to-r from-[#8d6e63] to-[#d4af37] text-white flex justify-between items-start">
+                <div>
+                    <span class="text-[10px] uppercase tracking-widest font-bold opacity-80 mb-2 block">📜
+                        Manuscript</span>
+                    <h3 id="docTitle" class="text-2xl md:text-3xl font-bold serif-font leading-tight"></h3>
+                </div>
+                <button id="docCloseButton" onclick="closeDocModal()"
+                    class="text-white/80 hover:text-white transition bg-black/20 hover:bg-black/30 rounded-full p-2 h-9 w-9 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
 
-            // Epoch 3: Andalus
-            { name: "34. عبد الرحمن (الأول)", type: "epoch-3", date: "100-150 هـ", badge: "موثق", src: "جمهرة ابن حزم", logic: "الداخل للأندلس", story: "يذكر ابن حزم أن ذرية (عبد الرحمن بن عبد الله بن جابر) دخلوا الأندلس واستوطنوا جيان وقرطبة." },
-            { name: "35. محمد", type: "epoch-3", date: "150-200 هـ", badge: "تقديري", src: "نفح الطيب", logic: "عصر الدولة الأموية", story: "عاصر تأسيس الدولة الأموية في الأندلس." },
-            { name: "36. عبد الله", type: "epoch-3", date: "200-250 هـ", badge: "تسلسلي", src: "--", logic: "--", story: "--" },
-            { name: "37. عبد الرحمن (الثاني)", type: "epoch-3", date: "250-300 هـ", badge: "تسلسلي", src: "--", logic: "--", story: "--" },
-            { name: "38. أحمد", type: "epoch-3", date: "300-350 هـ", badge: "تسلسلي", src: "--", logic: "عصر الخلافة", story: "عاصر أوج الخلافة الأموية وعصر عبد الرحمن الناصر." },
-            { name: "39. محمد", type: "epoch-3", date: "350-400 هـ", badge: "تسلسلي", src: "--", logic: "عصر العامريين", story: "--" },
-            { name: "40. إبراهيم", type: "epoch-3", date: "400-460 هـ", badge: "موثق", src: "الإحاطة في أخبار غرناطة", logic: "عصر الطوائف", story: "ذُكرت بيوتات (آل إبراهيم) من بني سلمة في غرناطة كأهل علم وفضل." },
-            { name: "41. محمد بن إبراهيم", type: "epoch-3", date: "460-520 هـ", badge: "موثق (الإحاطة)", src: "الإحاطة لابن الخطيب", logic: "من أعيان بني سلمة", story: "ذكره ابن الخطيب كأديب وكاتب بليغ تنقل بين غرناطة ومالقة، وكان له صلات وثيقة بالدولة." },
-            { name: "42. عبد الله (الأندلسي)", type: "epoch-3", date: "520-590 هـ", badge: "موثق", src: "الإحاطة", logic: "عاصر الموحدين", story: "أبو عبد الله بن سلمة، من فقهاء بني سلمة الموصوفين بـ (محرز الخصل) والفضل." },
-            { name: "43. سليمان", type: "epoch-3", date: "590-650 هـ", badge: "موثق", src: "الذيل والتكملة", logic: "شهد العقاب", story: "عاصر موقعة العقاب وسقوط قرطبة، وانحاز مع الأنصار إلى مملكة غرناطة (آخر المعاقل)." },
-            { name: "44. إسماعيل", type: "epoch-3", date: "650-700 هـ", badge: "تسلسلي", src: "المصادر الأندلسية", logic: "العصر النصري", story: "عاش في كنف الدولة النصرية بغرناطة." },
-            { name: "45. يحيى", type: "epoch-3", date: "700-740 هـ", badge: "تسلسلي", src: "--", logic: "--", story: "--" },
-            { name: "46. القاسم", type: "epoch-3", date: "740-780 هـ", badge: "تسلسلي", src: "--", logic: "--", story: "--" },
-            { name: "47. عبد الرحمن", type: "epoch-3", date: "780-820 هـ", badge: "تسلسلي", src: "--", logic: "--", story: "--" },
+            <div class="p-5 md:p-6 overflow-y-auto max-h-[70vh] space-y-6 bg-[#fdfbf7]">
+                <div class="bg-white rounded-xl border border-amber-100 shadow-sm overflow-hidden">
+                    <img id="docImage" src="" alt="" class="w-full h-auto object-contain" loading="lazy">
+                </div>
+                <div class="bg-white border border-slate-200 rounded-xl p-5">
+                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wide mb-3">Transcription</h4>
+                    <p id="docDesc" class="text-slate-700 leading-loose text-base md:text-lg"></p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-            // Epoch 4: Migration
-            { name: "48. أحمد (المهاجر)", type: "epoch-4", date: "820-860 هـ", badge: "سياق تاريخي", src: "وثائق العائلة", logic: "جيل ما قبل السقوط", story: "الجد الذي أدرك خطورة الوضع المتدهور في غرناطة وبدأ التجهيز للخروج الآمن نحو المغرب (فاس) قبل السقوط النهائي." },
-            { name: "49. علي (نزيل فاس)", type: "epoch-4", date: "860-900 هـ", badge: "وثيقة محلية", src: "مشجرة العائلة", logic: "الاستقرار المؤقت", story: "استقر في فاس بالمغرب لفترة، ومن نسله تفرع المهاجرون للشرق." },
-            { name: "50. عمر (الجداوي)", type: "epoch-4", date: "900-940 هـ", badge: "لقب محقق", src: "الوثيقة العائلية", logic: "توثيق المسار", story: "لقب (الجداوي) هو الوثيقة الدامغة التي تثبت رحلة العودة العكسية: الأندلس -> المغرب -> جدة (الحجاز) -> ثم الدخول إلى ليبيا. جاور بمكة فترة ثم انتقل لفزان." },
+    <div id="lang-loader">
+        <div class="spinner"></div>
+        <div class="loading-text" data-i18n="lang_loading"></div>
+    </div>
 
-            // Epoch 5: Libya Foundation
-            { name: "51. عبد الله سبال العين", type: "epoch-5", date: "940-990 هـ", badge: "وثيقة استفتاء", src: "كتاب الأنصار في وادي الشاطئ", logic: "الجد المؤسس", story: "الرجل الصالح الذي (أجرى الماء بيده) بكرامة من الله. أسس زاوية براك، وحصلت ذريته على إعفاء ضريبي من دولة أولاد محمد لمكانتهم كمرابطين (أهل علم)." }
-        ];
-
-        // --- RENDER LOGIC ---
-        const container = document.getElementById('timelineContainer');
-        
-        function renderTimeline(filter = 'all', searchTerm = '') {
-            container.innerHTML = '';
-            
-            const filtered = lineageData.filter(item => {
-                const matchFilter = filter === 'all' || item.type === filter;
-                const matchSearch = item.name.includes(searchTerm);
-                return matchFilter && matchSearch;
-            });
-
-            if(filtered.length === 0) {
-                document.getElementById('noResults').classList.remove('hidden');
-                return;
-            }
-            document.getElementById('noResults').classList.add('hidden');
-
-            filtered.forEach((item, index) => {
-                const card = document.createElement('div');
-                card.className = `bg-white rounded-lg p-5 shadow-sm hover:shadow-md border-r-4 ${item.type}-border flex justify-between items-center cursor-pointer transition-all animate-fade-up`;
-                card.style.animationDelay = `${index * 0.05}s`; // Staggered animation
-                
-                // Determine Colors
-                let dateColor = 'text-slate-400';
-                if(item.type === 'epoch-1') dateColor = 'epoch-1-text';
-                else if(item.type === 'epoch-2') dateColor = 'epoch-2-text';
-                else if(item.type === 'epoch-3') dateColor = 'epoch-3-text';
-                else if(item.type === 'epoch-4') dateColor = 'epoch-4-text';
-                else if(item.type === 'epoch-5') dateColor = 'epoch-5-text';
-
-                // Badge Logic
-                let badgeClass = 'badge-historical';
-                if(item.badge.includes('موثق') || item.badge.includes('صحابي') || item.badge.includes('وقف')) badgeClass = 'badge-verified';
-
-                card.innerHTML = `
-                    <div class="md:w-full md:pr-4 relative">
-                        <!-- Desktop Dot -->
-                        <div class="hidden md:block absolute -right-[43px] top-1/2 -translate-y-1/2 w-4 h-4 rounded-full border-2 border-white shadow bg-current ${dateColor}"></div>
-                        
-                        <div class="flex items-center gap-2 mb-1">
-                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">${item.name.split('.')[0]}</span>
-                        </div>
-                        <h3 class="font-bold text-lg text-slate-800">${item.name.split('. ')[1] || item.name}</h3>
-                        
-                        <div class="flex flex-wrap gap-2 mt-2">
-                            <span class="text-xs font-mono bg-slate-50 px-2 py-1 rounded border border-slate-100 ${dateColor}">📅 ${item.date}</span>
-                            <span class="text-[10px] font-bold px-2 py-1 rounded ${badgeClass}">${item.badge}</span>
-                        </div>
-                    </div>
-                    <div class="text-slate-200 text-2xl transform group-hover:scale-110 transition">👁️</div>
-                `;
-                
-                card.onclick = () => openModal(item);
-                container.appendChild(card);
-            });
-        }
-
-        // --- TAB SYSTEM ---
-        function switchTab(tabId) {
-            ['tree', 'figures', 'library'].forEach(id => {
-                document.getElementById(`view-${id}`).classList.add('hidden');
-                document.getElementById(`tab-${id}`).classList.remove('active', 'text-white/90');
-                document.getElementById(`tab-${id}`).classList.add('text-white/60');
-            });
-            
-            document.getElementById(`view-${tabId}`).classList.remove('hidden');
-            document.getElementById(`tab-${tabId}`).classList.add('active', 'text-white/90');
-            document.getElementById(`tab-${tabId}`).classList.remove('text-white/60');
-        }
-
-        // --- FILTER & SEARCH ---
-        function filterEpoch(epoch) {
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.remove('bg-slate-800', 'text-white', 'ring-2', 'ring-slate-800');
-                btn.classList.add('bg-white'); 
-                // Restore original text colors logic in a real app, simplified here
-            });
-            // Highlight logic omitted for brevity, functionality works
-            renderTimeline(epoch, document.getElementById('searchInput').value);
-        }
-
-        document.getElementById('searchInput').addEventListener('input', (e) => {
-            renderTimeline('all', e.target.value);
-        });
-
-        // --- MODAL ---
-        const modal = document.getElementById('detailModal');
-        const modalContent = document.getElementById('modalContent');
-        const backdrop = document.getElementById('modalBackdrop');
-
-        function openModal(data) {
-            // Fill Data
-            document.getElementById('modalName').innerText = data.name;
-            document.getElementById('modalDate').innerText = data.date;
-            document.getElementById('modalStory').innerText = data.story === '--' ? 'حلقة وصل في سلسلة النسب المتواترة.' : data.story;
-            document.getElementById('modalSource').innerText = data.src;
-            document.getElementById('modalLogic').innerText = data.logic === '--' ? 'تسلسل طبيعي للأجيال.' : data.logic;
-            document.getElementById('modalEpoch').innerText = getEpochName(data.type);
-
-            // Set Header Color
-            const header = document.getElementById('modalHeader');
-            header.className = `p-6 text-white rounded-t-2xl flex justify-between items-start relative overflow-hidden transition-colors duration-300`;
-            if(data.type === 'epoch-1') header.classList.add('bg-[#8D6E63]');
-            else if(data.type === 'epoch-2') header.classList.add('bg-[#4CAF50]');
-            else if(data.type === 'epoch-3') header.classList.add('bg-[#C62828]');
-            else if(data.type === 'epoch-4') header.classList.add('bg-[#7E57C2]');
-            else if(data.type === 'epoch-5') header.classList.add('bg-[#1976D2]');
-
-            // Show
-            modal.classList.remove('hidden');
-            setTimeout(() => {
-                backdrop.classList.remove('opacity-0');
-                modalContent.classList.remove('scale-95', 'opacity-0');
-                modalContent.classList.add('scale-100', 'opacity-100');
-            }, 10);
-        }
-
-        function closeModal() {
-            backdrop.classList.add('opacity-0');
-            modalContent.classList.remove('scale-100', 'opacity-100');
-            modalContent.classList.add('scale-95', 'opacity-0');
-            setTimeout(() => { modal.classList.add('hidden'); }, 300);
-        }
-
-        function getEpochName(type) {
-            const names = {
-                'epoch-1': 'اليمن والجذور',
-                'epoch-2': 'العهد النبوي',
-                'epoch-3': 'الأندلس',
-                'epoch-4': 'الهجرة',
-                'epoch-5': 'ليبيا'
-            };
-            return names[type];
-        }
-
-        // --- EXTRA UX: CLOSE MODAL BY BACKDROP CLICK, ESCAPE, AND X BUTTON ---
-        // Ensure the X button always closes the modal
-        const closeButton = document.getElementById('modalCloseButton');
-        if (closeButton) {
-            closeButton.addEventListener('click', (e) => {
-                e.stopPropagation(); // prevent any parent handlers from interfering
-                if (!modal.classList.contains('hidden')) {
-                    closeModal();
-                }
-            });
-        }
-
-        // Close when clicking on the dark background
-        backdrop.addEventListener('click', () => {
-            // Only close if modal is currently visible
-            if (!modal.classList.contains('hidden')) {
-                closeModal();
-            }
-        });
-
-        // Close when pressing the Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
-                closeModal();
-            }
-        });
-
-        // Initialize
-        renderTimeline();
-
-    </script>
+    <script src="main.min.js?v=1" defer></script>
 </body>
+
 </html>
