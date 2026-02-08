@@ -209,6 +209,16 @@ window.FamilyTreeData = {
         btn_view_doc: "View Document 1002 AH",
         doc_1002_desc: "Rare sales deed dated 1002 AH. Used as the primary reference to determine the death era of Fadl ibn Abdullah and confirm his timeline at the turn of the 11th Hijri century.",
 
+        // Share
+        share_title: "Share with others",
+        share_copy_link: "Copy Link",
+        share_whatsapp: "WhatsApp",
+        share_telegram: "Telegram",
+        share_twitter: "X (Twitter)",
+        share_facebook: "Facebook",
+        share_native: "Share via...",
+        share_success: "Link copied to clipboard!",
+
         // Language UI
         lang_loading: "Updating Language...",
         lang_ar: "🇸🇦 Arabic",

@@ -210,6 +210,16 @@ window.FamilyTreeData = {
         modal_logic_fallback: "Una secuencia natural de generaciones.",
         btn_view_doc: "Ver documento 1002 AH",
 
+        // Share
+        share_title: "Compartir con otros",
+        share_copy_link: "Copiar enlace",
+        share_whatsapp: "WhatsApp",
+        share_telegram: "Telegram",
+        share_twitter: "X (Twitter)",
+        share_facebook: "Facebook",
+        share_native: "Compartir vía...",
+        share_success: "¡Enlace copiado!",
+
         // Language UI
         lang_loading: "Actualizando idioma...",
         lang_ar: "🇸🇦 Árabe",

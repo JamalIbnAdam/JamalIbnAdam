@@ -652,6 +652,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         // 5. Hide Spinner
         langLoader.classList.remove('visible');
     }
+
+    if (navigator.share) {
+        const nativeBtn = document.getElementById('nativeShareBtn');
+        if (nativeBtn) nativeBtn.classList.remove('hidden');
+    }
 });
 
 window.switchTab = switchTab;
@@ -682,3 +687,52 @@ function loadYoutubeVideo(wrapper) {
     container.classList.remove('hidden');
 }
 window.loadYoutubeVideo = loadYoutubeVideo;
+
+window.shareTo = function (platform) {
+    const url = encodeURIComponent(window.location.href);
+    const title = encodeURIComponent(document.title);
+    const text = encodeURIComponent(document.querySelector('meta[name="description"]')?.content || document.title);
+    let shareUrl = '';
+
+    switch (platform) {
+        case 'whatsapp':
+            shareUrl = `https://wa.me/?text=${text}%20${url}`;
+            break;
+        case 'telegram':
+            shareUrl = `https://t.me/share/url?url=${url}&text=${text}`;
+            break;
+        case 'twitter':
+            shareUrl = `https://x.com/intent/tweet?text=${text}&url=${url}`;
+            break;
+        case 'facebook':
+            shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+            break;
+        case 'copy':
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                const successMsg = document.getElementById('shareSuccess');
+                if (successMsg) {
+                    successMsg.classList.remove('hidden', 'opacity-0');
+                    setTimeout(() => {
+                        successMsg.classList.add('opacity-0');
+                        setTimeout(() => successMsg.classList.add('hidden'), 300);
+                    }, 2000);
+                }
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+            return;
+        case 'native':
+            if (navigator.share) {
+                navigator.share({
+                    title: document.title,
+                    text: document.querySelector('meta[name="description"]')?.content,
+                    url: window.location.href,
+                }).catch((error) => console.log('Error sharing', error));
+            }
+            return;
+    }
+
+    if (shareUrl) {
+        window.open(shareUrl, '_blank', 'width=600,height=400');
+    }
+};
