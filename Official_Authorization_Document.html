@@ -5,6 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>وثيقة تفويض - أحفاد سيدي عبدالله سبال العين الأنصاري</title>
+
+    <!-- إعدادات تطبيق الويب التقدمي (PWA) -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="Official_Authorization_Document_optimized.png">
+    <meta name="theme-color" content="#1a237e">
+
     <!-- استدعاء خطوط عربية فخمة -->
     <link
         href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Aref+Ruqaa:wght@400;700&display=swap"
@@ -297,6 +303,10 @@
         .print-btn-container {
             margin-top: 20px;
             text-align: center;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
         }
 
         .btn-print {
@@ -324,6 +334,16 @@
 
         .btn-print i {
             font-size: 20px;
+        }
+
+        /* زر التثبيت - لون ذهبي */
+        #install-btn {
+            background-color: var(--gold-color);
+            border-color: var(--primary-color);
+        }
+
+        #install-btn:hover {
+            background-color: #b08d4d;
         }
 
         /* أنماط شاشة القفل */
@@ -620,8 +640,12 @@
             </div>
         </div>
 
-        <!-- زر الطباعة العائم -->
+        <!-- زر الطباعة والتثبيت -->
         <div class="print-btn-container">
+            <button id="install-btn" class="btn-print" style="display: none;">
+                <i class="fas fa-download"></i>
+                تثبيت التطبيق
+            </button>
             <button class="btn-print" onclick="window.print()">
                 <i class="fas fa-print"></i>
                 طباعة / حفظ كـ PDF
@@ -631,6 +655,7 @@
     </div>
 
     <script>
+        // منطق التحقق من كلمة المرور
         function checkPassword() {
             const password = document.getElementById('password-input').value;
             // كلمة المرور الافتراضية: 123456
@@ -662,6 +687,35 @@
                 checkPassword();
             }
         }
+
+        // منطق تثبيت التطبيق (PWA)
+        let deferredPrompt;
+        const installBtn = document.getElementById('install-btn');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // منع ظهور الرسالة التلقائية في المتصفحات القديمة
+            e.preventDefault();
+            // حفظ الحدث لاستخدامه لاحقاً
+            deferredPrompt = e;
+            // إظهار زر التثبيت
+            installBtn.style.display = 'inline-flex';
+        });
+
+        installBtn.addEventListener('click', (e) => {
+            // إخفاء الزر بعد النقر
+            installBtn.style.display = 'none';
+            // إظهار نافذة التثبيت
+            deferredPrompt.prompt();
+            // انتظار رد المستخدم
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('User accepted the A2HS prompt');
+                } else {
+                    console.log('User dismissed the A2HS prompt');
+                }
+                deferredPrompt = null;
+            });
+        });
     </script>
 
 </body>

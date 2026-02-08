@@ -1,0 +1,20 @@
+{
+    "name": "وثيقة تفويض",
+    "short_name": "وثيقة تفويض",
+    "start_url": "Official_Authorization_Document.html",
+    "display": "standalone",
+    "background_color": "#fdfbf7",
+    "theme_color": "#1a237e",
+    "icons": [
+        {
+            "src": "Official_Authorization_Document_optimized.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "Official_Authorization_Document_optimized.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
