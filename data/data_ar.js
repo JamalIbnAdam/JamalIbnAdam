@@ -248,6 +248,7 @@ window.FamilyTreeData = {
         btn_visit_books: "زيارة الموقع الرسمي للكتب",
         btn_visit_youtube: "قناة Andrew Tips الرسمية",
         btn_install: "تثبيت التطبيق",
+        install_instructions: "لتثبيت التطبيق على الكمبيوتر، انقر على أيقونة التثبيت (+) في شريط العنوان بالأعلى.",
 
         // Contact Section
         contact_header: "تواصل مع جمال ابن آدم",

@@ -954,31 +954,50 @@
         let deferredPrompt;
         const installBtn = document.getElementById('install-btn');
 
+        // Check if app is already installed
+        const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
+
+        // Force show button for desktop users (if not already installed)
+        if (!isStandalone) {
+            installBtn.classList.remove('hidden');
+            installBtn.classList.add('flex');
+        }
+
         window.addEventListener('beforeinstallprompt', (e) => {
             // Prevent Chrome 67 and earlier from automatically showing the prompt
             e.preventDefault();
             // Stash the event so it can be triggered later.
             deferredPrompt = e;
-            // Update UI to notify the user they can add to home screen
+            // Ensure button is visible
             installBtn.classList.remove('hidden');
             installBtn.classList.add('flex');
         });
 
         installBtn.addEventListener('click', (e) => {
-            // hide our user interface that shows our A2HS button
-            installBtn.classList.add('hidden');
-            installBtn.classList.remove('flex');
-            // Show the prompt
-            deferredPrompt.prompt();
-            // Wait for the user to respond to the prompt
-            deferredPrompt.userChoice.then((choiceResult) => {
-                if (choiceResult.outcome === 'accepted') {
-                    console.log('User accepted the A2HS prompt');
-                } else {
-                    console.log('User dismissed the A2HS prompt');
-                }
-                deferredPrompt = null;
-            });
+            if (deferredPrompt) {
+                // Show the native prompt
+                deferredPrompt.prompt();
+                // Wait for the user to respond to the prompt
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted the A2HS prompt');
+                        installBtn.classList.add('hidden'); // Hide after install
+                    } else {
+                        console.log('User dismissed the A2HS prompt');
+                    }
+                    deferredPrompt = null;
+                });
+            } else {
+                // Fallback for Desktop/Unsupported browsers
+                // Fetch localized instruction
+                const currentLang = document.documentElement.lang || 'ar';
+                const instructionText = window.FamilyTreeData?.translations?.install_instructions ||
+                    (currentLang === 'ar'
+                        ? "لتثبيت التطبيق على الكمبيوتر، انقر على أيقونة التثبيت (+) في شريط العنوان بالأعلى."
+                        : "To install on your computer, click the install icon (+) in the address bar above.");
+
+                alert(instructionText);
+            }
         });
     </script>
 </body>

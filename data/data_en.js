@@ -178,6 +178,7 @@ window.FamilyTreeData = {
         btn_visit_books: "Visit Official Books Website",
         btn_visit_youtube: "Official Andrew Tips Channel",
         btn_install: "Install App",
+        install_instructions: "To install on your computer, click the install icon (+) in the address bar above.",
 
         // Contact Section
         contact_header: "Contact Jamal Ibn Adam",
