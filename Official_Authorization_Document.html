@@ -34,13 +34,18 @@
             margin: 0;
             padding: 20px;
             font-family: 'Amiri', serif;
+            min-height: 100vh;
+        }
+
+        /* حاوية التخطيط العام */
+        .document-wrapper {
             display: flex;
             justify-content: center;
             flex-direction: column;
             align-items: center;
-            min-height: 100vh;
             gap: 30px;
             /* مسافة بين الصفحات في العرض */
+            width: 100%;
         }
 
         /* حاوية ورقة A4 */
@@ -321,13 +326,90 @@
             font-size: 20px;
         }
 
-        /* إعدادات الطباعة الدقيقة */
+        /* أنماط شاشة القفل */
+        #login-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #222;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .login-box {
+            background: var(--paper-color);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+            text-align: center;
+            border: 4px double var(--primary-color);
+            outline: 2px solid var(--gold-color);
+            outline-offset: -10px;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .login-box h2 {
+            color: var(--primary-color);
+            font-family: 'Amiri', serif;
+            margin-top: 0;
+            font-size: 28px;
+            border-bottom: 2px solid var(--gold-color);
+            display: inline-block;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .login-box input {
+            width: 100%;
+            padding: 12px;
+            margin: 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 18px;
+            text-align: center;
+            font-family: sans-serif;
+            background: white;
+        }
+
+        .login-box button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Amiri', serif;
+            width: 100%;
+            transition: all 0.3s ease;
+            border: 1px solid var(--gold-color);
+        }
+
+        .login-box button:hover {
+            background-color: #283593;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* إخفاء شاشة القفل عند الطباعة إذا كانت مفتوحة (أو محتواها) */
         @media print {
             body {
                 background-color: white;
                 margin: 0;
                 padding: 0;
                 display: block;
+            }
+
+            .document-wrapper {
+                display: block !important;
+                /* إجبار ظهور المحتوى عند الطباعة إذا كان مخفياً خطأً، ولكن JS هو المتحكم */
+                width: 100%;
+                gap: 0;
             }
 
             .page {
@@ -342,9 +424,10 @@
                 border: none;
             }
 
-            /* إخفاء زر الطباعة عند الطباعة الفعلية */
+            /* إخفاء زر الطباعة وشاشة القفل عند الطباعة الفعلية */
             .print-btn-container,
-            .no-print {
+            .no-print,
+            #login-overlay {
                 display: none !important;
             }
 
@@ -359,176 +442,227 @@
 
 <body>
 
-    <!-- الصفحة الأولى: البيانات والتفويض -->
-    <div class="page" id="page1">
-        <!-- الخلفية الأمنية -->
-        <div class="security-background"></div>
-
-        <!-- علامة مائية نصية في الخلفية -->
-        <div class="watermark-text">نسخة أصلية - أحفاد سيدي عبدالله</div>
-
-        <!-- الزوايا الزخرفية -->
-        <div class="corner top-right"></div>
-        <div class="corner top-left"></div>
-        <div class="corner bottom-right"></div>
-        <div class="corner bottom-left"></div>
-
-        <div class="ornate-border">
-
-            <!-- الرأس -->
-            <header class="header">
-                <div class="basmala">بسم الله الرحمن الرحيم</div>
-                <div class="logo-container">
-                    <!-- تحديث الشعار كما طلب المستخدم -->
-                    <img src="Official_Authorization_Document_optimized.png" alt="شعار العائلة" class="logo-img"
-                        onerror="this.src='https://placehold.co/150x150/1a237e/c5a059?text=Logo'">
-                </div>
-                <div class="title-main">وثيقة تفويض وتمثيل</div>
-                <div class="title-sub">أحفاد سيدي عبدالله سبال العين الأنصاري</div>
-            </header>
-
-            <!-- المحتوى -->
-            <div class="content">
-
-                <div class="section-title">أولاً: بيانات المفوض له (الممثل)</div>
-                <div class="form-row">
-                    <span style="min-width: 40px;">الاسم:</span>
-                    <div class="field">......................................................................</div>
-                    <span style="min-width: 40px;">العمر:</span>
-                    <div class="field" style="max-width: 80px;">.........</div>
-                </div>
-                <div class="form-row">
-                    <span>رقم الإثبات الشخصي:</span>
-                    <div class="field">......................................................................</div>
-                </div>
-
-                <div class="section-title">ثانياً: نص التفويض الرسمي</div>
-                <div class="legal-text">
-                    نحن الموقعون أدناه، أعضاء بيت / عائلة <span class="highlight">(
-                        ........................................ )</span>، وبكامل إرادتنا وأهليتنا القانونية والشرعية،
-                    نفوض بموجب هذه الوثيقة الرسمية السيد المذكور أعلاه لتمثيل بيتنا وعائلتنا في <span
-                        class="highlight">مجلس العائلة والقبيلة</span>.
-                    <br><br>
-                    وهذا تفويض منا له بالمشاركة في الاجتماعات والملتقيات الرسمية وغير الرسمية، والمساهمة في اتخاذ
-                    القرارات ومناقشة المواضيع بما يخدم مصالح بيتنا والعائلة. ويعد تمثيله نافذاً، ومعترفاً به داخلياً
-                    وشرعياً أمام جميع أعضاء البيت وكافة الجهات ذات الصلة.
-                </div>
-
-            </div>
-
-            <!-- التذييل للصفحة الأولى -->
-            <footer class="footer">
-                <p>يتبع في الصفحة التالية...</p>
-                <p>أحفاد سيدي عبدالله سبال العين الأنصاري - وثيقة رسمية محفوظة الحقوق</p>
-            </footer>
-
+    <!-- شاشة القفل -->
+    <div id="login-overlay">
+        <div class="login-box">
+            <h2>الدخول إلى الوثيقة</h2>
+            <p style="color: #666; margin-bottom: 20px;">الوثيقة محمية. الرجاء إدخال كلمة المرور للمتابعة.</p>
+            <input type="password" id="password-input" placeholder="كلمة المرور" onkeypress="handleEnter(event)">
+            <button onclick="checkPassword()">عرض الوثيقة</button>
+            <p id="error-message" style="color: #d32f2f; display: none; margin-top: 15px; font-weight: bold;">كلمة
+                المرور غير صحيحة</p>
         </div>
     </div>
 
-    <!-- الصفحة الثانية: التوقيعات -->
-    <div class="page" id="page2">
-        <!-- الخلفية الأمنية -->
-        <div class="security-background"></div>
+    <!-- حاوية المحتوى المخفية -->
+    <div id="document-content" class="document-wrapper" style="display: none;">
 
-        <!-- علامة مائية نصية في الخلفية -->
-        <div class="watermark-text">نسخة أصلية - أحفاد سيدي عبدالله</div>
+        <!-- الصفحة الأولى: البيانات والتفويض -->
+        <div class="page" id="page1">
+            <!-- الخلفية الأمنية -->
+            <div class="security-background"></div>
 
-        <!-- الزوايا الزخرفية -->
-        <div class="corner top-right"></div>
-        <div class="corner top-left"></div>
-        <div class="corner bottom-right"></div>
-        <div class="corner bottom-left"></div>
+            <!-- علامة مائية نصية في الخلفية -->
+            <div class="watermark-text">نسخة أصلية - أحفاد سيدي عبدالله</div>
 
-        <div class="ornate-border">
+            <!-- الزوايا الزخرفية -->
+            <div class="corner top-right"></div>
+            <div class="corner top-left"></div>
+            <div class="corner bottom-right"></div>
+            <div class="corner bottom-left"></div>
 
-            <!-- رأس مختصر للصفحة الثانية -->
-            <header class="header">
-                <div class="basmala">بسم الله الرحمن الرحيم</div>
-                <div class="title-main" style="font-size: 22px;">تابع: وثيقة تفويض وتمثيل</div>
-                <div class="title-sub">أحفاد سيدي عبدالله سبال العين الأنصاري</div>
-            </header>
+            <div class="ornate-border">
 
-            <!-- المحتوى -->
-            <div class="content">
+                <!-- الرأس -->
+                <header class="header">
+                    <div class="basmala">بسم الله الرحمن الرحيم</div>
+                    <div class="logo-container">
+                        <!-- تحديث الشعار كما طلب المستخدم -->
+                        <img src="Official_Authorization_Document_optimized.png" alt="شعار العائلة" class="logo-img"
+                            onerror="this.src='https://placehold.co/150x150/1a237e/c5a059?text=Logo'">
+                    </div>
+                    <div class="title-main">وثيقة تفويض وتمثيل</div>
+                    <div class="title-sub">أحفاد سيدي عبدالله سبال العين الأنصاري</div>
+                </header>
 
-                <div class="section-title">ثالثاً: مصادقة وتوقيع مفوضي البيت</div>
-                <div class="signatures-grid">
-                    <!-- خانة توقيع 1 -->
-                    <div class="sig-box">
-                        <div class="sig-header">
-                            <span>الاسم: ..............................</span>
-                        </div>
-                        <div class="sig-placeholder">التوقيع / البصمة</div>
+                <!-- المحتوى -->
+                <div class="content">
+
+                    <div class="section-title">أولاً: بيانات المفوض له (الممثل)</div>
+                    <div class="form-row">
+                        <span style="min-width: 40px;">الاسم:</span>
+                        <div class="field">......................................................................</div>
+                        <span style="min-width: 40px;">العمر:</span>
+                        <div class="field" style="max-width: 80px;">.........</div>
                     </div>
-                    <!-- خانة توقيع 2 -->
-                    <div class="sig-box">
-                        <div class="sig-header">
-                            <span>الاسم: ..............................</span>
-                        </div>
-                        <div class="sig-placeholder">التوقيع / البصمة</div>
+                    <div class="form-row">
+                        <span>رقم الإثبات الشخصي:</span>
+                        <div class="field">......................................................................</div>
                     </div>
-                    <!-- خانة توقيع 3 -->
-                    <div class="sig-box">
-                        <div class="sig-header">
-                            <span>الاسم: ..............................</span>
-                        </div>
-                        <div class="sig-placeholder">التوقيع / البصمة</div>
+
+                    <div class="section-title">ثانياً: نص التفويض الرسمي</div>
+                    <div class="legal-text">
+                        نحن الموقعون أدناه، أعضاء بيت / عائلة <span class="highlight">(
+                            ........................................ )</span>، وبكامل إرادتنا وأهليتنا القانونية
+                        والشرعية، نفوض بموجب هذه الوثيقة الرسمية السيد المذكور أعلاه لتمثيل بيتنا وعائلتنا في <span
+                            class="highlight">مجلس العائلة والقبيلة</span>.
+                        <br><br>
+                        وهذا تفويض منا له بالمشاركة في الاجتماعات والملتقيات الرسمية وغير الرسمية، والمساهمة في اتخاذ
+                        القرارات ومناقشة المواضيع بما يخدم مصالح بيتنا والعائلة. ويعد تمثيله نافذاً، ومعترفاً به داخلياً
+                        وشرعياً أمام جميع أعضاء البيت وكافة الجهات ذات الصلة.
                     </div>
-                    <!-- خانة توقيع 4 -->
-                    <div class="sig-box">
-                        <div class="sig-header">
-                            <span>الاسم: ..............................</span>
+
+                </div>
+
+                <!-- التذييل للصفحة الأولى -->
+                <footer class="footer">
+                    <p>يتبع في الصفحة التالية...</p>
+                    <p>أحفاد سيدي عبدالله سبال العين الأنصاري - وثيقة رسمية محفوظة الحقوق</p>
+                </footer>
+
+            </div>
+        </div>
+
+        <!-- الصفحة الثانية: التوقيعات -->
+        <div class="page" id="page2">
+            <!-- الخلفية الأمنية -->
+            <div class="security-background"></div>
+
+            <!-- علامة مائية نصية في الخلفية -->
+            <div class="watermark-text">نسخة أصلية - أحفاد سيدي عبدالله</div>
+
+            <!-- الزوايا الزخرفية -->
+            <div class="corner top-right"></div>
+            <div class="corner top-left"></div>
+            <div class="corner bottom-right"></div>
+            <div class="corner bottom-left"></div>
+
+            <div class="ornate-border">
+
+                <!-- رأس مختصر للصفحة الثانية -->
+                <header class="header">
+                    <div class="basmala">بسم الله الرحمن الرحيم</div>
+                    <div class="title-main" style="font-size: 22px;">تابع: وثيقة تفويض وتمثيل</div>
+                    <div class="title-sub">أحفاد سيدي عبدالله سبال العين الأنصاري</div>
+                </header>
+
+                <!-- المحتوى -->
+                <div class="content">
+
+                    <div class="section-title">ثالثاً: مصادقة وتوقيع مفوضي البيت</div>
+                    <div class="signatures-grid">
+                        <!-- خانة توقيع 1 -->
+                        <div class="sig-box">
+                            <div class="sig-header">
+                                <span>الاسم: ..............................</span>
+                            </div>
+                            <div class="sig-placeholder">التوقيع / البصمة</div>
                         </div>
-                        <div class="sig-placeholder">التوقيع / البصمة</div>
-                    </div>
-                    <!-- خانة توقيع 5 -->
-                    <div class="sig-box">
-                        <div class="sig-header">
-                            <span>الاسم: ..............................</span>
+                        <!-- خانة توقيع 2 -->
+                        <div class="sig-box">
+                            <div class="sig-header">
+                                <span>الاسم: ..............................</span>
+                            </div>
+                            <div class="sig-placeholder">التوقيع / البصمة</div>
                         </div>
-                        <div class="sig-placeholder">التوقيع / البصمة</div>
-                    </div>
-                    <!-- خانة توقيع 6 -->
-                    <div class="sig-box">
-                        <div class="sig-header">
-                            <span>الاسم: ..............................</span>
+                        <!-- خانة توقيع 3 -->
+                        <div class="sig-box">
+                            <div class="sig-header">
+                                <span>الاسم: ..............................</span>
+                            </div>
+                            <div class="sig-placeholder">التوقيع / البصمة</div>
                         </div>
-                        <div class="sig-placeholder">التوقيع / البصمة</div>
-                    </div>
-                    <!-- خانة توقيع 7 (إضافية) -->
-                    <div class="sig-box">
-                        <div class="sig-header">
-                            <span>الاسم: ..............................</span>
+                        <!-- خانة توقيع 4 -->
+                        <div class="sig-box">
+                            <div class="sig-header">
+                                <span>الاسم: ..............................</span>
+                            </div>
+                            <div class="sig-placeholder">التوقيع / البصمة</div>
                         </div>
-                        <div class="sig-placeholder">التوقيع / البصمة</div>
-                    </div>
-                    <!-- خانة توقيع 8 (إضافية) -->
-                    <div class="sig-box">
-                        <div class="sig-header">
-                            <span>الاسم: ..............................</span>
+                        <!-- خانة توقيع 5 -->
+                        <div class="sig-box">
+                            <div class="sig-header">
+                                <span>الاسم: ..............................</span>
+                            </div>
+                            <div class="sig-placeholder">التوقيع / البصمة</div>
                         </div>
-                        <div class="sig-placeholder">التوقيع / البصمة</div>
+                        <!-- خانة توقيع 6 -->
+                        <div class="sig-box">
+                            <div class="sig-header">
+                                <span>الاسم: ..............................</span>
+                            </div>
+                            <div class="sig-placeholder">التوقيع / البصمة</div>
+                        </div>
+                        <!-- خانة توقيع 7 (إضافية) -->
+                        <div class="sig-box">
+                            <div class="sig-header">
+                                <span>الاسم: ..............................</span>
+                            </div>
+                            <div class="sig-placeholder">التوقيع / البصمة</div>
+                        </div>
+                        <!-- خانة توقيع 8 (إضافية) -->
+                        <div class="sig-box">
+                            <div class="sig-header">
+                                <span>الاسم: ..............................</span>
+                            </div>
+                            <div class="sig-placeholder">التوقيع / البصمة</div>
+                        </div>
                     </div>
                 </div>
+
+                <!-- التذييل النهائي -->
+                <footer class="footer">
+                    <p>حررت هذه الوثيقة بتاريخ: ...... / ...... / ............ هـ | الموافق: ...... / ...... /
+                        ............ م</p>
+                    <p>أحفاد سيدي عبدالله سبال العين الأنصاري - وثيقة رسمية محفوظة الحقوق</p>
+                </footer>
+
             </div>
-
-            <!-- التذييل النهائي -->
-            <footer class="footer">
-                <p>حررت هذه الوثيقة بتاريخ: ...... / ...... / ............ هـ | الموافق: ...... / ...... / ............
-                    م</p>
-                <p>أحفاد سيدي عبدالله سبال العين الأنصاري - وثيقة رسمية محفوظة الحقوق</p>
-            </footer>
-
         </div>
+
+        <!-- زر الطباعة العائم -->
+        <div class="print-btn-container">
+            <button class="btn-print" onclick="window.print()">
+                <i class="fas fa-print"></i>
+                طباعة / حفظ كـ PDF
+            </button>
+        </div>
+
     </div>
 
-    <!-- زر الطباعة العائم -->
-    <div class="print-btn-container">
-        <button class="btn-print" onclick="window.print()">
-            <i class="fas fa-print"></i>
-            طباعة / حفظ كـ PDF
-        </button>
-    </div>
+    <script>
+        function checkPassword() {
+            const password = document.getElementById('password-input').value;
+            // كلمة المرور الافتراضية: 123456
+            if (password === '123456') {
+                document.getElementById('login-overlay').style.display = 'none';
+                document.getElementById('document-content').style.display = 'flex';
+                document.getElementById('password-input').value = '';
+                document.getElementById('error-message').style.display = 'none';
+            } else {
+                const errorMsg = document.getElementById('error-message');
+                errorMsg.style.display = 'block';
+                // هز الصندوق عند الخطأ
+                const loginBox = document.querySelector('.login-box');
+                loginBox.animate([
+                    { transform: 'translateX(0)' },
+                    { transform: 'translateX(-10px)' },
+                    { transform: 'translateX(10px)' },
+                    { transform: 'translateX(-10px)' },
+                    { transform: 'translateX(0)' }
+                ], {
+                    duration: 300,
+                    iterations: 1
+                });
+            }
+        }
+
+        function handleEnter(e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        }
+    </script>
 
 </body>
 
