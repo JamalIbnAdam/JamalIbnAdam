@@ -9,6 +9,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Aref+Ruqaa:wght@400;700&display=swap"
         rel="stylesheet">
+    <!-- أيقونة للطباعة -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
         :root {
@@ -23,32 +25,40 @@
 
         * {
             box-sizing: border-box;
-            -webkit-print-color-adjust: exact;
-            print-color-adjust: exact;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
         }
 
         body {
-            background-color: #555;
+            background-color: #333;
             margin: 0;
             padding: 20px;
             font-family: 'Amiri', serif;
             display: flex;
             justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            gap: 30px;
+            /* مسافة بين الصفحات في العرض */
         }
 
         /* حاوية ورقة A4 */
         .page {
             width: 210mm;
-            min-height: 297mm;
+            height: 297mm;
+            /* ارتفاع ثابت لـ A4 */
             background-color: var(--paper-color);
             position: relative;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-            padding: 40px;
-            /* هامش خارجي للإطار */
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+            padding: 15mm;
+            /* هامش داخلي للورقة */
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* الخلفية الأمنية (الزخرفة) */
+        /* الخلفية الأمنية (الزخرفة - Guilloche Pattern Simulation) */
         .security-background {
             position: absolute;
             top: 0;
@@ -56,59 +66,61 @@
             width: 100%;
             height: 100%;
             background-image:
-                radial-gradient(circle at center, transparent 30%, rgba(197, 160, 89, 0.03) 70%),
-                repeating-linear-gradient(45deg, rgba(197, 160, 89, 0.05) 0px, rgba(197, 160, 89, 0.05) 1px, transparent 1px, transparent 10px),
-                repeating-linear-gradient(-45deg, rgba(197, 160, 89, 0.05) 0px, rgba(197, 160, 89, 0.05) 1px, transparent 1px, transparent 10px);
+                radial-gradient(circle at center, transparent 30%, rgba(197, 160, 89, 0.04) 70%),
+                repeating-linear-gradient(45deg, rgba(197, 160, 89, 0.08) 0px, rgba(197, 160, 89, 0.08) 1px, transparent 1px, transparent 8px),
+                repeating-linear-gradient(-45deg, rgba(197, 160, 89, 0.08) 0px, rgba(197, 160, 89, 0.08) 1px, transparent 1px, transparent 8px);
             z-index: 0;
             pointer-events: none;
         }
 
         /* الإطار الزخرفي المعقد */
         .ornate-border {
-            border: 3px solid var(--primary-color);
+            border: 4px double var(--primary-color);
             outline: 2px solid var(--gold-color);
-            outline-offset: 4px;
+            outline-offset: 5px;
             height: 100%;
             position: relative;
             z-index: 1;
-            padding: 30px;
+            padding: 25px;
             display: flex;
             flex-direction: column;
+            background: rgba(255, 255, 255, 0.4);
+            /* شفافية خفيفة لزيادة وضوح النص */
         }
 
         /* زوايا الإطار */
         .corner {
             position: absolute;
-            width: 50px;
-            height: 50px;
-            border: 5px solid var(--gold-color);
+            width: 60px;
+            height: 60px;
+            border: 6px double var(--gold-color);
             z-index: 2;
         }
 
         .top-right {
-            top: 10px;
-            right: 10px;
+            top: 12px;
+            right: 12px;
             border-bottom: none;
             border-left: none;
         }
 
         .top-left {
-            top: 10px;
-            left: 10px;
+            top: 12px;
+            left: 12px;
             border-bottom: none;
             border-right: none;
         }
 
         .bottom-right {
-            bottom: 10px;
-            right: 10px;
+            bottom: 12px;
+            right: 12px;
             border-top: none;
             border-left: none;
         }
 
         .bottom-left {
-            bottom: 10px;
-            left: 10px;
+            bottom: 12px;
+            left: 12px;
             border-top: none;
             border-right: none;
         }
@@ -116,19 +128,20 @@
         /* رأس الصفحة */
         .header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             position: relative;
         }
 
         .logo-container {
-            width: 140px;
-            height: 140px;
-            margin: 0 auto 15px;
+            width: 130px;
+            height: 130px;
+            margin: 0 auto 10px;
             border-radius: 50%;
-            border: 2px solid var(--gold-color);
+            border: 3px solid var(--gold-color);
             padding: 3px;
             background: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
         }
 
         .logo-img {
@@ -140,26 +153,27 @@
 
         .basmala {
             font-family: 'Aref Ruqaa', serif;
-            font-size: 18px;
-            color: #666;
-            margin-bottom: 10px;
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 8px;
         }
 
         .title-main {
-            font-size: 28px;
+            font-size: 26px;
             color: var(--primary-color);
-            font-weight: bold;
+            font-weight: 700;
             margin: 5px 0;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0;
             border-bottom: 2px solid var(--gold-color);
             display: inline-block;
             padding-bottom: 5px;
+            text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.1);
         }
 
         .title-sub {
             font-size: 18px;
-            color: var(--gold-color);
+            color: #8a6d3b;
             margin-top: 5px;
             font-weight: bold;
         }
@@ -168,112 +182,176 @@
         .content {
             flex-grow: 1;
             text-align: justify;
-            line-height: 1.8;
-            font-size: 16px;
+            line-height: 1.6;
+            font-size: 15px;
+            position: relative;
+        }
+
+        .watermark-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 80px;
+            color: rgba(26, 35, 126, 0.03);
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: -1;
+            font-weight: bold;
         }
 
         .section-title {
             background-color: var(--primary-color);
             color: white;
-            padding: 5px 15px;
-            font-size: 14px;
-            border-radius: 20px;
+            padding: 4px 15px;
+            font-size: 13px;
+            border-radius: 15px;
             display: inline-block;
-            margin: 15px 0 10px 0;
+            margin: 12px 0 8px 0;
             border: 1px solid var(--gold-color);
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .form-row {
             display: flex;
-            gap: 20px;
-            margin-bottom: 10px;
+            gap: 15px;
+            margin-bottom: 8px;
+            align-items: baseline;
         }
 
         .field {
             flex: 1;
-            border-bottom: 1px dotted #999;
-            padding-bottom: 2px;
+            border-bottom: 1px dotted #777;
+            padding-bottom: 0px;
             position: relative;
             font-weight: bold;
-            color: #000;
-        }
-
-        .field::after {
-            content: '';
-            /* يمكن استبداله ببيانات فعلية */
+            color: #222;
+            height: 24px;
         }
 
         .legal-text {
-            font-size: 17px;
-            margin: 20px 0;
+            font-size: 16px;
+            margin: 15px 0;
             padding: 15px;
-            background-color: rgba(197, 160, 89, 0.1);
-            border-right: 4px solid var(--primary-color);
+            background-color: rgba(197, 160, 89, 0.08);
+            border-right: 3px solid var(--primary-color);
             border-radius: 4px;
+            line-height: 1.9;
         }
 
         .highlight {
             color: var(--primary-color);
             font-weight: bold;
+            font-family: 'Aref Ruqaa', serif;
         }
 
         /* جدول التوقيعات */
         .signatures-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-top: 20px;
+            gap: 12px;
+            margin-top: 15px;
         }
 
         .sig-box {
-            border: 1px solid #ccc;
-            padding: 10px;
-            border-radius: 5px;
-            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid #d4c5a3;
+            padding: 8px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.6);
+            height: 85px;
         }
 
         .sig-header {
-            font-size: 12px;
+            font-size: 11px;
             color: #666;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             border-bottom: 1px solid #eee;
-            padding-bottom: 5px;
+            padding-bottom: 3px;
+            display: flex;
+            justify-content: space-between;
         }
 
-        .sig-line {
-            border-bottom: 1px dotted #000;
-            height: 20px;
+        .sig-placeholder {
+            font-size: 10px;
+            color: #bbb;
+            text-align: center;
             margin-top: 10px;
         }
 
         /* التذييل */
         .footer {
             text-align: center;
-            margin-top: 30px;
-            font-size: 12px;
+            margin-top: auto;
+            font-size: 11px;
             color: #888;
             border-top: 1px solid var(--gold-color);
-            padding-top: 10px;
+            padding-top: 8px;
         }
 
-        /* إعدادات الطباعة */
+        /* زر الطباعة */
+        .print-btn-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .btn-print {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 18px;
+            font-family: 'Amiri', serif;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 2px solid var(--gold-color);
+        }
+
+        .btn-print:hover {
+            transform: translateY(-2px);
+            background-color: #283593;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .btn-print i {
+            font-size: 20px;
+        }
+
+        /* إعدادات الطباعة الدقيقة */
         @media print {
             body {
                 background-color: white;
                 margin: 0;
                 padding: 0;
+                display: block;
             }
 
             .page {
                 box-shadow: none;
+                margin: 0;
                 width: 100%;
-                height: 100%;
+                height: 100vh;
+                /* ملء الصفحة */
                 page-break-after: always;
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+                border: none;
             }
 
-            /* إخفاء أي عناصر تحكم بالمتصفح */
+            /* إخفاء زر الطباعة عند الطباعة الفعلية */
+            .print-btn-container,
             .no-print {
-                display: none;
+                display: none !important;
+            }
+
+            @page {
+                size: A4;
+                margin: 0;
+                /* إلغاء هوامش المتصفح الافتراضية */
             }
         }
     </style>
@@ -281,9 +359,13 @@
 
 <body>
 
-    <div class="page">
+    <!-- الصفحة الأولى: البيانات والتفويض -->
+    <div class="page" id="page1">
         <!-- الخلفية الأمنية -->
         <div class="security-background"></div>
+
+        <!-- علامة مائية نصية في الخلفية -->
+        <div class="watermark-text">نسخة أصلية - أحفاد سيدي عبدالله</div>
 
         <!-- الزوايا الزخرفية -->
         <div class="corner top-right"></div>
@@ -297,11 +379,11 @@
             <header class="header">
                 <div class="basmala">بسم الله الرحمن الرحيم</div>
                 <div class="logo-container">
-                    <!-- يرجى وضع الصورة في نفس المجلد باسم: logo.jpg -->
+                    <!-- تحديث الشعار كما طلب المستخدم -->
                     <img src="Official_Authorization_Document_optimized.png" alt="شعار العائلة" class="logo-img"
-                        width="140" height="140">
+                        onerror="this.src='https://placehold.co/150x150/1a237e/c5a059?text=Logo'">
                 </div>
-                <div class="title-main">وثيقة تفويض شرعي وعرفي</div>
+                <div class="title-main">وثيقة تفويض وتمثيل</div>
                 <div class="title-sub">أحفاد سيدي عبدالله سبال العين الأنصاري</div>
             </header>
 
@@ -310,7 +392,7 @@
 
                 <div class="section-title">أولاً: بيانات المفوض له (الممثل)</div>
                 <div class="form-row">
-                    <span style="min-width: 50px;">الاسم:</span>
+                    <span style="min-width: 40px;">الاسم:</span>
                     <div class="field">......................................................................</div>
                     <span style="min-width: 40px;">العمر:</span>
                     <div class="field" style="max-width: 80px;">.........</div>
@@ -320,7 +402,7 @@
                     <div class="field">......................................................................</div>
                 </div>
 
-                <div class="section-title">ثانياً: نص التفويض</div>
+                <div class="section-title">ثانياً: نص التفويض الرسمي</div>
                 <div class="legal-text">
                     نحن الموقعون أدناه، أعضاء بيت / عائلة <span class="highlight">(
                         ........................................ )</span>، وبكامل إرادتنا وأهليتنا القانونية والشرعية،
@@ -332,55 +414,120 @@
                     وشرعياً أمام جميع أعضاء البيت وكافة الجهات ذات الصلة.
                 </div>
 
+            </div>
+
+            <!-- التذييل للصفحة الأولى -->
+            <footer class="footer">
+                <p>يتبع في الصفحة التالية...</p>
+                <p>أحفاد سيدي عبدالله سبال العين الأنصاري - وثيقة رسمية محفوظة الحقوق</p>
+            </footer>
+
+        </div>
+    </div>
+
+    <!-- الصفحة الثانية: التوقيعات -->
+    <div class="page" id="page2">
+        <!-- الخلفية الأمنية -->
+        <div class="security-background"></div>
+
+        <!-- علامة مائية نصية في الخلفية -->
+        <div class="watermark-text">نسخة أصلية - أحفاد سيدي عبدالله</div>
+
+        <!-- الزوايا الزخرفية -->
+        <div class="corner top-right"></div>
+        <div class="corner top-left"></div>
+        <div class="corner bottom-right"></div>
+        <div class="corner bottom-left"></div>
+
+        <div class="ornate-border">
+
+            <!-- رأس مختصر للصفحة الثانية -->
+            <header class="header">
+                <div class="basmala">بسم الله الرحمن الرحيم</div>
+                <div class="title-main" style="font-size: 22px;">تابع: وثيقة تفويض وتمثيل</div>
+                <div class="title-sub">أحفاد سيدي عبدالله سبال العين الأنصاري</div>
+            </header>
+
+            <!-- المحتوى -->
+            <div class="content">
+
                 <div class="section-title">ثالثاً: مصادقة وتوقيع مفوضي البيت</div>
                 <div class="signatures-grid">
                     <!-- خانة توقيع 1 -->
                     <div class="sig-box">
-                        <div class="sig-header">الاسم: ...........................................</div>
-                        <div>التوقيع:</div>
-                        <div class="sig-line"></div>
+                        <div class="sig-header">
+                            <span>الاسم: ..............................</span>
+                        </div>
+                        <div class="sig-placeholder">التوقيع / البصمة</div>
                     </div>
                     <!-- خانة توقيع 2 -->
                     <div class="sig-box">
-                        <div class="sig-header">الاسم: ...........................................</div>
-                        <div>التوقيع:</div>
-                        <div class="sig-line"></div>
+                        <div class="sig-header">
+                            <span>الاسم: ..............................</span>
+                        </div>
+                        <div class="sig-placeholder">التوقيع / البصمة</div>
                     </div>
                     <!-- خانة توقيع 3 -->
                     <div class="sig-box">
-                        <div class="sig-header">الاسم: ...........................................</div>
-                        <div>التوقيع:</div>
-                        <div class="sig-line"></div>
+                        <div class="sig-header">
+                            <span>الاسم: ..............................</span>
+                        </div>
+                        <div class="sig-placeholder">التوقيع / البصمة</div>
                     </div>
                     <!-- خانة توقيع 4 -->
                     <div class="sig-box">
-                        <div class="sig-header">الاسم: ...........................................</div>
-                        <div>التوقيع:</div>
-                        <div class="sig-line"></div>
+                        <div class="sig-header">
+                            <span>الاسم: ..............................</span>
+                        </div>
+                        <div class="sig-placeholder">التوقيع / البصمة</div>
                     </div>
                     <!-- خانة توقيع 5 -->
                     <div class="sig-box">
-                        <div class="sig-header">الاسم: ...........................................</div>
-                        <div>التوقيع:</div>
-                        <div class="sig-line"></div>
+                        <div class="sig-header">
+                            <span>الاسم: ..............................</span>
+                        </div>
+                        <div class="sig-placeholder">التوقيع / البصمة</div>
                     </div>
                     <!-- خانة توقيع 6 -->
                     <div class="sig-box">
-                        <div class="sig-header">الاسم: ...........................................</div>
-                        <div>التوقيع:</div>
-                        <div class="sig-line"></div>
+                        <div class="sig-header">
+                            <span>الاسم: ..............................</span>
+                        </div>
+                        <div class="sig-placeholder">التوقيع / البصمة</div>
+                    </div>
+                    <!-- خانة توقيع 7 (إضافية) -->
+                    <div class="sig-box">
+                        <div class="sig-header">
+                            <span>الاسم: ..............................</span>
+                        </div>
+                        <div class="sig-placeholder">التوقيع / البصمة</div>
+                    </div>
+                    <!-- خانة توقيع 8 (إضافية) -->
+                    <div class="sig-box">
+                        <div class="sig-header">
+                            <span>الاسم: ..............................</span>
+                        </div>
+                        <div class="sig-placeholder">التوقيع / البصمة</div>
                     </div>
                 </div>
             </div>
 
-            <!-- التذييل -->
+            <!-- التذييل النهائي -->
             <footer class="footer">
                 <p>حررت هذه الوثيقة بتاريخ: ...... / ...... / ............ هـ | الموافق: ...... / ...... / ............
                     م</p>
-                <p>أحفاد سيدي عبدالله سبال العين الأنصاري - وثيقة رسمية غير قابلة للتزوير أو الكشط</p>
+                <p>أحفاد سيدي عبدالله سبال العين الأنصاري - وثيقة رسمية محفوظة الحقوق</p>
             </footer>
 
         </div>
+    </div>
+
+    <!-- زر الطباعة العائم -->
+    <div class="print-btn-container">
+        <button class="btn-print" onclick="window.print()">
+            <i class="fas fa-print"></i>
+            طباعة / حفظ كـ PDF
+        </button>
     </div>
 
 </body>
