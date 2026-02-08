@@ -177,6 +177,7 @@ window.FamilyTreeData = {
             "<strong>The Crypto Mentor:</strong> The book explaining the financial cause God used to save the author.",
         btn_visit_books: "Visit Official Books Website",
         btn_visit_youtube: "Official Andrew Tips Channel",
+        btn_install: "Install App",
 
         // Contact Section
         contact_header: "Contact Jamal Ibn Adam",

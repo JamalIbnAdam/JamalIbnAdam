@@ -247,6 +247,7 @@ window.FamilyTreeData = {
             "<strong>The Crypto Mentor:</strong> الكتاب الذي يشرح 'السبب المالي' الذي سخر الله لإنقاذ الكاتب.",
         btn_visit_books: "زيارة الموقع الرسمي للكتب",
         btn_visit_youtube: "قناة Andrew Tips الرسمية",
+        btn_install: "تثبيت التطبيق",
 
         // Contact Section
         contact_header: "تواصل مع جمال ابن آدم",

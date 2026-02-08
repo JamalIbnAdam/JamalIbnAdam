@@ -29,6 +29,11 @@
     <link rel="shortcut icon" href="logo.webp">
     <link rel="preload" as="image" href="logo.webp">
 
+    <!-- PWA Settings -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="Official_Authorization_Document_optimized.png">
+    <meta name="theme-color" content="#0f172a">
+
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://jamalibnadam.com/">
     <meta property="og:title" content="السجل الذهبي لآل سبال العين | توثيق جمال ابن آدم">
@@ -100,7 +105,13 @@
 
         <div class="container mx-auto px-4 py-6 relative">
 
-            <div class="absolute top-0 ltr:right-0 rtl:left-0 mt-2 mx-4 z-50">
+            <div class="absolute top-0 ltr:right-0 rtl:left-0 mt-2 mx-4 z-50 flex gap-2 items-center">
+                <!-- Install App Button -->
+                <button id="install-btn"
+                    class="hidden appearance-none bg-amber-500/90 backdrop-blur-md text-slate-900 text-xs font-bold border border-amber-400 rounded-lg py-1.5 px-3 focus:outline-none cursor-pointer shadow-lg hover:bg-amber-400 transition-all items-center gap-1">
+                    <span>📲</span> <span data-i18n="btn_install">Install App</span>
+                </button>
+
                 <label for="lang-select" class="sr-only">Select Language</label>
                 <select id="lang-select" onchange="changeLanguage(this.value)" aria-label="Select Language"
                     class="appearance-none bg-slate-800/80 backdrop-blur-md text-amber-50 text-xs font-bold border border-white/10 rounded-lg py-1.5 px-3 pr-8 focus:outline-none focus:border-amber-500 cursor-pointer shadow-lg hover:bg-slate-700 transition-all">
@@ -937,6 +948,39 @@
     </div>
 
     <script src="main.js?v=1.7" defer></script>
+
+    <script>
+        // PWA Installation Logic
+        let deferredPrompt;
+        const installBtn = document.getElementById('install-btn');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevent Chrome 67 and earlier from automatically showing the prompt
+            e.preventDefault();
+            // Stash the event so it can be triggered later.
+            deferredPrompt = e;
+            // Update UI to notify the user they can add to home screen
+            installBtn.classList.remove('hidden');
+            installBtn.classList.add('flex');
+        });
+
+        installBtn.addEventListener('click', (e) => {
+            // hide our user interface that shows our A2HS button
+            installBtn.classList.add('hidden');
+            installBtn.classList.remove('flex');
+            // Show the prompt
+            deferredPrompt.prompt();
+            // Wait for the user to respond to the prompt
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('User accepted the A2HS prompt');
+                } else {
+                    console.log('User dismissed the A2HS prompt');
+                }
+                deferredPrompt = null;
+            });
+        });
+    </script>
 </body>
 
 </html>
