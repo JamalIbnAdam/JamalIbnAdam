@@ -44,7 +44,7 @@
             padding: 10mm;
             overflow: hidden;
             /* يمنع خروج أي عنصر خارج الصفحة */
-            display: flex;
+            display: none;
             flex-direction: column;
         }
 
@@ -533,6 +533,51 @@
         </button>
     </div>
 
+    <script>
+        (async function () {
+            // SHA-256 hash for "123456"
+            const correctHash = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92";
+
+            function bufferToHex(buffer) {
+                return Array.from(new Uint8Array(buffer))
+                    .map(b => b.toString(16).padStart(2, '0'))
+                    .join('');
+            }
+
+            async function sha256(str) {
+                const buffer = new TextEncoder().encode(str);
+                const hash = await crypto.subtle.digest('SHA-256', buffer);
+                return bufferToHex(hash);
+            }
+
+            // Simple loop to prompt for password until correct
+            while (true) {
+                const password = prompt("الرجاء إدخال كلمة المرور لعرض الوثيقة (من 1 إلى 6):");
+                if (password === null) break; // User cancelled
+
+                try {
+                    const hash = await sha256(password);
+                    if (hash === correctHash) {
+                        // Show the content
+                        const page = document.querySelector('.page');
+                        page.style.display = 'flex';
+                        break;
+                    } else {
+                        alert("كلمة المرور غير صحيحة. حاول مرة أخرى.");
+                    }
+                } catch (e) {
+                    console.error("Error hashing password:", e);
+                    // Fallback for environments where crypto.subtle might fail (e.g. non-secure context)
+                    // Just simple check for "123456" to avoid locking out the user if crypto fails
+                    if (password === "123456") {
+                        const page = document.querySelector('.page');
+                        page.style.display = 'flex';
+                        break;
+                    }
+                }
+            }
+        })();
+    </script>
 </body>
 
 </html>
