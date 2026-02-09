@@ -5,28 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>وثيقة تفويض - أحفاد سيدي عبدالله سبال العين الأنصاري</title>
-
-    <!-- إعدادات تطبيق الويب التقدمي (PWA) -->
-    <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" href="Official_Authorization_Document_optimized.png">
-    <meta name="theme-color" content="#1a237e">
-
-    <!-- استدعاء خطوط عربية فخمة -->
     <link
         href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Aref+Ruqaa:wght@400;700&display=swap"
         rel="stylesheet">
-    <!-- أيقونة للطباعة -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
         :root {
             --primary-color: #1a237e;
-            /* أزرق ملكي */
             --gold-color: #c5a059;
-            /* ذهبي عتيق */
             --paper-color: #fdfbf7;
-            /* لون الورق القديم */
-            --border-width: 15px;
         }
 
         * {
@@ -38,38 +26,30 @@
         body {
             background-color: #333;
             margin: 0;
-            padding: 20px;
+            padding: 20px 0;
             font-family: 'Amiri', serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             min-height: 100vh;
         }
 
-        /* حاوية التخطيط العام */
-        .document-wrapper {
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            align-items: center;
-            gap: 30px;
-            /* مسافة بين الصفحات في العرض */
-            width: 100%;
-        }
-
-        /* حاوية ورقة A4 */
+        /* حاوية ورقة A4 - ضبط دقيق للارتفاع */
         .page {
             width: 210mm;
-            height: 297mm;
-            /* ارتفاع ثابت لـ A4 */
+            height: 296mm;
+            /* تقليل 1مم لضمان عدم ظهور صفحة فارغة إضافية */
             background-color: var(--paper-color);
             position: relative;
             box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
-            padding: 15mm;
-            /* هامش داخلي للورقة */
+            padding: 10mm;
             overflow: hidden;
+            /* يمنع خروج أي عنصر خارج الصفحة */
             display: flex;
             flex-direction: column;
         }
 
-        /* الخلفية الأمنية (الزخرفة - Guilloche Pattern Simulation) */
+        /* الطبقة الأمنية الأولى: زخارف هندسية */
         .security-background {
             position: absolute;
             top: 0;
@@ -84,74 +64,86 @@
             pointer-events: none;
         }
 
-        /* الإطار الزخرفي المعقد */
+        /* الطبقة الأمنية الثانية: نمط النص المكرر (Micro-text Pattern) */
+        .micro-text-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            /* استخدام SVG مشفر كخلفية لتكرار النص بدقة عالية */
+            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='30'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Amiri, serif' font-size='7' fill='%231a237e' opacity='0.1' transform='rotate(-5 100 15)'%3E%D8%A3%D8%AD%D9%81%D8%A7%D8%AF%20%D8%B3%D9%8A%D8%AF%D9%8A%20%D8%B9%D8%A8%D8%AF%D8%A7%D9%84%D9%84%D9%87%20%D8%B3%D8%A8%D8%A7%D9%84%20%D8%A7%D9%84%D8%B9%D9%8A%D9%86%20%D8%A7%D9%84%D8%A3%D9%86%D8%B5%D8%A7%D8%B1%D9%8A%3C/text%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+
+        /* تقليل حشو الإطار لزيادة المساحة الداخلية */
         .ornate-border {
-            border: 4px double var(--primary-color);
+            border: 3px double var(--primary-color);
             outline: 2px solid var(--gold-color);
-            outline-offset: 5px;
+            outline-offset: 3px;
             height: 100%;
             position: relative;
             z-index: 1;
-            padding: 25px;
+            padding: 15px 20px;
             display: flex;
             flex-direction: column;
             background: rgba(255, 255, 255, 0.4);
-            /* شفافية خفيفة لزيادة وضوح النص */
         }
 
-        /* زوايا الإطار */
         .corner {
             position: absolute;
-            width: 60px;
-            height: 60px;
-            border: 6px double var(--gold-color);
+            width: 40px;
+            /* تصغير الزوايا قليلاً */
+            height: 40px;
+            border: 4px double var(--gold-color);
             z-index: 2;
         }
 
         .top-right {
-            top: 12px;
-            right: 12px;
+            top: 8px;
+            right: 8px;
             border-bottom: none;
             border-left: none;
         }
 
         .top-left {
-            top: 12px;
-            left: 12px;
+            top: 8px;
+            left: 8px;
             border-bottom: none;
             border-right: none;
         }
 
         .bottom-right {
-            bottom: 12px;
-            right: 12px;
+            bottom: 8px;
+            right: 8px;
             border-top: none;
             border-left: none;
         }
 
         .bottom-left {
-            bottom: 12px;
-            left: 12px;
+            bottom: 8px;
+            left: 8px;
             border-top: none;
             border-right: none;
         }
 
-        /* رأس الصفحة */
         .header {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             position: relative;
         }
 
+        /* تصغير الشعار قليلاً جداً لتوفير المساحة */
         .logo-container {
-            width: 130px;
-            height: 130px;
-            margin: 0 auto 10px;
+            width: 95px;
+            height: 95px;
+            margin: 0 auto 5px;
             border-radius: 50%;
-            border: 3px solid var(--gold-color);
-            padding: 3px;
+            border: 2px solid var(--gold-color);
+            padding: 2px;
             background: white;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             overflow: hidden;
         }
 
@@ -164,46 +156,50 @@
 
         .basmala {
             font-family: 'Aref Ruqaa', serif;
-            font-size: 16px;
+            font-size: 14px;
             color: #555;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
         }
 
         .title-main {
-            font-size: 26px;
+            font-size: 22px;
             color: var(--primary-color);
             font-weight: 700;
-            margin: 5px 0;
+            margin: 2px 0;
             text-transform: uppercase;
-            letter-spacing: 0;
-            border-bottom: 2px solid var(--gold-color);
-            display: inline-block;
-            padding-bottom: 5px;
-            text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.1);
         }
 
         .title-sub {
-            font-size: 18px;
+            font-size: 17px;
             color: #8a6d3b;
-            margin-top: 5px;
             font-weight: bold;
+            margin-top: 2px;
+            border-bottom: 1px solid var(--gold-color);
+            display: inline-block;
+            padding-bottom: 3px;
         }
 
-        /* محتوى الوثيقة */
+        .title-branch {
+            font-size: 15px;
+            color: var(--primary-color);
+            margin-top: 3px;
+            font-family: 'Aref Ruqaa', serif;
+        }
+
         .content {
             flex-grow: 1;
             text-align: justify;
-            line-height: 1.6;
-            font-size: 15px;
             position: relative;
+            display: flex;
+            flex-direction: column;
         }
 
         .watermark-text {
             position: absolute;
-            top: 50%;
+            top: 60%;
             left: 50%;
             transform: translate(-50%, -50%) rotate(-45deg);
-            font-size: 80px;
+            font-size: 60px;
             color: rgba(26, 35, 126, 0.03);
             white-space: nowrap;
             pointer-events: none;
@@ -214,40 +210,45 @@
         .section-title {
             background-color: var(--primary-color);
             color: white;
-            padding: 4px 15px;
+            padding: 3px 15px;
             font-size: 13px;
-            border-radius: 15px;
+            border-radius: 12px;
             display: inline-block;
-            margin: 12px 0 8px 0;
+            margin: 10px 0 10px 0;
             border: 1px solid var(--gold-color);
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            align-self: flex-start;
         }
 
+        /* منطقة الكتابة: الحفاظ على الارتفاع وتقليل الهوامش */
         .form-row {
             display: flex;
             gap: 15px;
-            margin-bottom: 8px;
-            align-items: baseline;
+            margin-bottom: 15px;
+            /* مسافة كافية ولكن ليست مفرطة */
+            align-items: flex-end;
         }
 
         .field {
             flex: 1;
-            border-bottom: 1px dotted #777;
-            padding-bottom: 0px;
-            position: relative;
+            border-bottom: 2px dotted #444;
+            padding-bottom: 2px;
             font-weight: bold;
             color: #222;
-            height: 24px;
+            height: 30px;
+            /* ارتفاع ممتاز للكتابة اليدوية */
         }
 
+        /* ضغط النص القانوني لتوفير المساحة */
         .legal-text {
-            font-size: 16px;
-            margin: 15px 0;
-            padding: 15px;
+            font-size: 14px;
+            margin: 5px 0;
+            padding: 10px;
             background-color: rgba(197, 160, 89, 0.08);
             border-right: 3px solid var(--primary-color);
             border-radius: 4px;
-            line-height: 1.9;
+            line-height: 1.6;
+            /* تقليل تباعد الأسطر */
+            text-align: justify;
         }
 
         .highlight {
@@ -256,205 +257,129 @@
             font-family: 'Aref Ruqaa', serif;
         }
 
-        /* جدول التوقيعات */
+        .auth-text {
+            text-align: center;
+            font-size: 13px;
+            color: #444;
+            margin: 8px 0 5px 0;
+            font-weight: bold;
+            border-top: 1px dashed #ccc;
+            padding-top: 5px;
+        }
+
+        /* شبكة التوقيعات المضغوطة - تتسع لـ 10 */
         .signatures-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-top: 15px;
+            gap: 8px;
+            margin-top: 5px;
         }
 
         .sig-box {
             border: 1px solid #d4c5a3;
-            padding: 8px;
+            padding: 5px 10px;
             border-radius: 4px;
             background: rgba(255, 255, 255, 0.6);
-            height: 85px;
-        }
-
-        .sig-header {
-            font-size: 11px;
-            color: #666;
-            margin-bottom: 15px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 3px;
+            height: 55px;
+            /* ارتفاع مدمج يكفي للتوقيع والبصمة */
             display: flex;
+            flex-direction: row;
+            /* جعل الاسم والتوقيع بجانب بعض لتوفير الارتفاع */
             justify-content: space-between;
+            align-items: center;
         }
 
-        .sig-placeholder {
-            font-size: 10px;
-            color: #bbb;
+        .sig-right {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 60%;
+        }
+
+        .sig-left {
+            width: 35%;
+            height: 100%;
+            border-right: 1px dotted #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            color: #aaa;
             text-align: center;
-            margin-top: 10px;
         }
 
-        /* التذييل */
+        .sig-label {
+            font-size: 11px;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 5px;
+        }
+
+        .sig-line {
+            border-bottom: 1px dotted #000;
+            width: 100%;
+            height: 10px;
+        }
+
         .footer {
             text-align: center;
             margin-top: auto;
-            font-size: 11px;
+            font-size: 10px;
             color: #888;
             border-top: 1px solid var(--gold-color);
-            padding-top: 8px;
+            padding-top: 5px;
         }
 
-        /* زر الطباعة */
         .print-btn-container {
-            margin-top: 20px;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
+            position: fixed;
+            bottom: 20px;
+            z-index: 100;
         }
 
         .btn-print {
             background-color: var(--primary-color);
             color: white;
             border: none;
-            padding: 12px 30px;
-            font-size: 18px;
+            padding: 10px 25px;
+            font-size: 16px;
             font-family: 'Amiri', serif;
             border-radius: 50px;
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
             border: 2px solid var(--gold-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .btn-print:hover {
-            transform: translateY(-2px);
             background-color: #283593;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
         }
 
-        .btn-print i {
-            font-size: 20px;
-        }
-
-        /* زر التثبيت - لون ذهبي */
-        #install-btn {
-            background-color: var(--gold-color);
-            border-color: var(--primary-color);
-        }
-
-        #install-btn:hover {
-            background-color: #b08d4d;
-        }
-
-        /* أنماط شاشة القفل */
-        #login-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #222;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
-
-        .login-box {
-            background: var(--paper-color);
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
-            text-align: center;
-            border: 4px double var(--primary-color);
-            outline: 2px solid var(--gold-color);
-            outline-offset: -10px;
-            max-width: 400px;
-            width: 90%;
-        }
-
-        .login-box h2 {
-            color: var(--primary-color);
-            font-family: 'Amiri', serif;
-            margin-top: 0;
-            font-size: 28px;
-            border-bottom: 2px solid var(--gold-color);
-            display: inline-block;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
-
-        .login-box input {
-            width: 100%;
-            padding: 12px;
-            margin: 15px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 18px;
-            text-align: center;
-            font-family: sans-serif;
-            background: white;
-        }
-
-        .login-box button {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            font-size: 18px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-family: 'Amiri', serif;
-            width: 100%;
-            transition: all 0.3s ease;
-            border: 1px solid var(--gold-color);
-        }
-
-        .login-box button:hover {
-            background-color: #283593;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        /* إخفاء شاشة القفل عند الطباعة إذا كانت مفتوحة (أو محتواها) */
         @media print {
             body {
                 background-color: white;
                 margin: 0;
                 padding: 0;
-                display: block;
-            }
-
-            .document-wrapper {
-                display: block !important;
-                /* إجبار ظهور المحتوى عند الطباعة إذا كان مخفياً خطأً، ولكن JS هو المتحكم */
-                width: 100%;
-                gap: 0;
             }
 
             .page {
                 box-shadow: none;
                 margin: 0;
                 width: 100%;
-                height: 100vh;
-                /* ملء الصفحة */
-                page-break-after: always;
-                print-color-adjust: exact;
-                -webkit-print-color-adjust: exact;
+                height: 100%;
                 border: none;
+                padding: 10mm;
             }
 
-            /* إخفاء زر الطباعة وشاشة القفل عند الطباعة الفعلية */
             .print-btn-container,
-            .no-print,
-            #login-overlay {
+            .no-print {
                 display: none !important;
             }
 
             @page {
                 size: A4;
                 margin: 0;
-                /* إلغاء هوامش المتصفح الافتراضية */
             }
         }
     </style>
@@ -462,261 +387,147 @@
 
 <body>
 
-    <!-- شاشة القفل -->
-    <div id="login-overlay">
-        <div class="login-box">
-            <h2>الدخول إلى الوثيقة</h2>
-            <p style="color: #666; margin-bottom: 20px;">الوثيقة محمية. الرجاء إدخال كلمة المرور للمتابعة.</p>
-            <input type="password" id="password-input" placeholder="كلمة المرور" onkeypress="handleEnter(event)">
-            <button onclick="checkPassword()">عرض الوثيقة</button>
-            <p id="error-message" style="color: #d32f2f; display: none; margin-top: 15px; font-weight: bold;">كلمة
-                المرور غير صحيحة</p>
+    <div class="page">
+        <!-- طبقة الزخرفة الهندسية -->
+        <div class="security-background"></div>
+        <!-- طبقة النص الأمني المكرر (الجديدة) -->
+        <div class="micro-text-layer"></div>
+
+        <div class="watermark-text">نسخة أصلية</div>
+
+        <div class="corner top-right"></div>
+        <div class="corner top-left"></div>
+        <div class="corner bottom-right"></div>
+        <div class="corner bottom-left"></div>
+
+        <div class="ornate-border">
+            <header class="header">
+                <div class="basmala">بسم الله الرحمن الرحيم</div>
+                <div class="logo-container">
+                    <img src="Official_Authorization_Document_optimized.png" alt="شعار العائلة" class="logo-img"
+                        onerror="this.src='https://placehold.co/150x150/1a237e/c5a059?text=Logo'">
+                </div>
+                <div class="title-main">وثيقة تفويض وتمثيل</div>
+                <div class="title-sub">أحفاد سيدي عبدالله سبال العين الأنصاري</div>
+                <div class="title-branch">أبناء سالم بن يوسف آقار شاطئ</div>
+            </header>
+
+            <div class="content">
+                <div class="section-title">أولاً: بيانات المفوض له (الممثل)</div>
+                <!-- مساحة مريحة للكتابة اليدوية -->
+                <div class="form-row">
+                    <span style="min-width: 45px; font-size: 15px; font-weight: bold;">الاسم:</span>
+                    <div class="field"></div>
+                </div>
+                <div class="form-row">
+                    <span style="min-width: 45px; font-size: 15px; font-weight: bold;">العمر:</span>
+                    <div class="field" style="max-width: 80px;"></div>
+                    <span style="margin-right: 20px; font-size: 15px; font-weight: bold;">الإثبات الشخصي:</span>
+                    <div class="field"></div>
+                </div>
+
+                <div class="section-title">ثانياً: نص التفويض الرسمي</div>
+                <div class="legal-text">
+                    نحن الموقعون أدناه، أعضاء بيت / عائلة <span class="highlight">(
+                        ........................................ )</span>، وبكامل إرادتنا وأهليتنا الشرعية، نفوض السيد
+                    المذكور أعلاه لتمثيلنا في <span class="highlight">مجلس العائلة والقبيلة</span>.
+                    <br>
+                    وهذا تفويض بالمشاركة في الاجتماعات الرسمية، والمساهمة في اتخاذ القرارات بما يخدم مصالح العائلة. ويعد
+                    تمثيله نافذاً ومعترفاً به شرعياً وعرفاً.
+                </div>
+
+                <div class="auth-text">
+                    نصادق نحن الموقعون أدناه على صحة التفويض أعلاه، ونلتزم بما جاء فيه.
+                </div>
+
+                <!-- 10 خانات توقيع بتصميم مدمج -->
+                <div class="signatures-grid">
+                    <div class="sig-box">
+                        <div class="sig-right">
+                            <div class="sig-label">1. الاسم:</div>
+                            <div class="sig-line"></div>
+                        </div>
+                        <div class="sig-left">التوقيع / البصمة</div>
+                    </div>
+                    <div class="sig-box">
+                        <div class="sig-right">
+                            <div class="sig-label">2. الاسم:</div>
+                            <div class="sig-line"></div>
+                        </div>
+                        <div class="sig-left">التوقيع / البصمة</div>
+                    </div>
+                    <div class="sig-box">
+                        <div class="sig-right">
+                            <div class="sig-label">3. الاسم:</div>
+                            <div class="sig-line"></div>
+                        </div>
+                        <div class="sig-left">التوقيع / البصمة</div>
+                    </div>
+                    <div class="sig-box">
+                        <div class="sig-right">
+                            <div class="sig-label">4. الاسم:</div>
+                            <div class="sig-line"></div>
+                        </div>
+                        <div class="sig-left">التوقيع / البصمة</div>
+                    </div>
+                    <div class="sig-box">
+                        <div class="sig-right">
+                            <div class="sig-label">5. الاسم:</div>
+                            <div class="sig-line"></div>
+                        </div>
+                        <div class="sig-left">التوقيع / البصمة</div>
+                    </div>
+                    <div class="sig-box">
+                        <div class="sig-right">
+                            <div class="sig-label">6. الاسم:</div>
+                            <div class="sig-line"></div>
+                        </div>
+                        <div class="sig-left">التوقيع / البصمة</div>
+                    </div>
+                    <div class="sig-box">
+                        <div class="sig-right">
+                            <div class="sig-label">7. الاسم:</div>
+                            <div class="sig-line"></div>
+                        </div>
+                        <div class="sig-left">التوقيع / البصمة</div>
+                    </div>
+                    <div class="sig-box">
+                        <div class="sig-right">
+                            <div class="sig-label">8. الاسم:</div>
+                            <div class="sig-line"></div>
+                        </div>
+                        <div class="sig-left">التوقيع / البصمة</div>
+                    </div>
+                    <div class="sig-box">
+                        <div class="sig-right">
+                            <div class="sig-label">9. الاسم:</div>
+                            <div class="sig-line"></div>
+                        </div>
+                        <div class="sig-left">التوقيع / البصمة</div>
+                    </div>
+                    <div class="sig-box">
+                        <div class="sig-right">
+                            <div class="sig-label">10. الاسم:</div>
+                            <div class="sig-line"></div>
+                        </div>
+                        <div class="sig-left">التوقيع / البصمة</div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="footer">
+                <p>حررت بتاريخ: ...... / ...... / ............ هـ | أحفاد سيدي عبدالله سبال العين الأنصاري - وثيقة رسمية
+                </p>
+            </footer>
         </div>
     </div>
 
-    <!-- حاوية المحتوى المخفية -->
-    <div id="document-content" class="document-wrapper" style="display: none;">
-
-        <!-- الصفحة الأولى: البيانات والتفويض -->
-        <div class="page" id="page1">
-            <!-- الخلفية الأمنية -->
-            <div class="security-background"></div>
-
-            <!-- علامة مائية نصية في الخلفية -->
-            <div class="watermark-text">نسخة أصلية - أحفاد سيدي عبدالله</div>
-
-            <!-- الزوايا الزخرفية -->
-            <div class="corner top-right"></div>
-            <div class="corner top-left"></div>
-            <div class="corner bottom-right"></div>
-            <div class="corner bottom-left"></div>
-
-            <div class="ornate-border">
-
-                <!-- الرأس -->
-                <header class="header">
-                    <div class="basmala">بسم الله الرحمن الرحيم</div>
-                    <div class="logo-container">
-                        <!-- تحديث الشعار كما طلب المستخدم -->
-                        <img src="Official_Authorization_Document_optimized.png" alt="شعار العائلة" class="logo-img"
-                            onerror="this.src='https://placehold.co/150x150/1a237e/c5a059?text=Logo'">
-                    </div>
-                    <div class="title-main">وثيقة تفويض وتمثيل</div>
-                    <div class="title-sub">أحفاد سيدي عبدالله سبال العين الأنصاري</div>
-                </header>
-
-                <!-- المحتوى -->
-                <div class="content">
-
-                    <div class="section-title">أولاً: بيانات المفوض له (الممثل)</div>
-                    <div class="form-row">
-                        <span style="min-width: 40px;">الاسم:</span>
-                        <div class="field">......................................................................</div>
-                        <span style="min-width: 40px;">العمر:</span>
-                        <div class="field" style="max-width: 80px;">.........</div>
-                    </div>
-                    <div class="form-row">
-                        <span>رقم الإثبات الشخصي:</span>
-                        <div class="field">......................................................................</div>
-                    </div>
-
-                    <div class="section-title">ثانياً: نص التفويض الرسمي</div>
-                    <div class="legal-text">
-                        نحن الموقعون أدناه، أعضاء بيت / عائلة <span class="highlight">(
-                            ........................................ )</span>، وبكامل إرادتنا وأهليتنا القانونية
-                        والشرعية، نفوض بموجب هذه الوثيقة الرسمية السيد المذكور أعلاه لتمثيل بيتنا وعائلتنا في <span
-                            class="highlight">مجلس العائلة والقبيلة</span>.
-                        <br><br>
-                        وهذا تفويض منا له بالمشاركة في الاجتماعات والملتقيات الرسمية وغير الرسمية، والمساهمة في اتخاذ
-                        القرارات ومناقشة المواضيع بما يخدم مصالح بيتنا والعائلة. ويعد تمثيله نافذاً، ومعترفاً به داخلياً
-                        وشرعياً أمام جميع أعضاء البيت وكافة الجهات ذات الصلة.
-                    </div>
-
-                </div>
-
-                <!-- التذييل للصفحة الأولى -->
-                <footer class="footer">
-                    <p>يتبع في الصفحة التالية...</p>
-                    <p>أحفاد سيدي عبدالله سبال العين الأنصاري - وثيقة رسمية محفوظة الحقوق</p>
-                </footer>
-
-            </div>
-        </div>
-
-        <!-- الصفحة الثانية: التوقيعات -->
-        <div class="page" id="page2">
-            <!-- الخلفية الأمنية -->
-            <div class="security-background"></div>
-
-            <!-- علامة مائية نصية في الخلفية -->
-            <div class="watermark-text">نسخة أصلية - أحفاد سيدي عبدالله</div>
-
-            <!-- الزوايا الزخرفية -->
-            <div class="corner top-right"></div>
-            <div class="corner top-left"></div>
-            <div class="corner bottom-right"></div>
-            <div class="corner bottom-left"></div>
-
-            <div class="ornate-border">
-
-                <!-- رأس مختصر للصفحة الثانية -->
-                <header class="header">
-                    <div class="basmala">بسم الله الرحمن الرحيم</div>
-                    <div class="title-main" style="font-size: 22px;">تابع: وثيقة تفويض وتمثيل</div>
-                    <div class="title-sub">أحفاد سيدي عبدالله سبال العين الأنصاري</div>
-                </header>
-
-                <!-- المحتوى -->
-                <div class="content">
-
-                    <div class="section-title">ثالثاً: مصادقة وتوقيع مفوضي البيت</div>
-                    <div class="signatures-grid">
-                        <!-- خانة توقيع 1 -->
-                        <div class="sig-box">
-                            <div class="sig-header">
-                                <span>الاسم: ..............................</span>
-                            </div>
-                            <div class="sig-placeholder">التوقيع / البصمة</div>
-                        </div>
-                        <!-- خانة توقيع 2 -->
-                        <div class="sig-box">
-                            <div class="sig-header">
-                                <span>الاسم: ..............................</span>
-                            </div>
-                            <div class="sig-placeholder">التوقيع / البصمة</div>
-                        </div>
-                        <!-- خانة توقيع 3 -->
-                        <div class="sig-box">
-                            <div class="sig-header">
-                                <span>الاسم: ..............................</span>
-                            </div>
-                            <div class="sig-placeholder">التوقيع / البصمة</div>
-                        </div>
-                        <!-- خانة توقيع 4 -->
-                        <div class="sig-box">
-                            <div class="sig-header">
-                                <span>الاسم: ..............................</span>
-                            </div>
-                            <div class="sig-placeholder">التوقيع / البصمة</div>
-                        </div>
-                        <!-- خانة توقيع 5 -->
-                        <div class="sig-box">
-                            <div class="sig-header">
-                                <span>الاسم: ..............................</span>
-                            </div>
-                            <div class="sig-placeholder">التوقيع / البصمة</div>
-                        </div>
-                        <!-- خانة توقيع 6 -->
-                        <div class="sig-box">
-                            <div class="sig-header">
-                                <span>الاسم: ..............................</span>
-                            </div>
-                            <div class="sig-placeholder">التوقيع / البصمة</div>
-                        </div>
-                        <!-- خانة توقيع 7 (إضافية) -->
-                        <div class="sig-box">
-                            <div class="sig-header">
-                                <span>الاسم: ..............................</span>
-                            </div>
-                            <div class="sig-placeholder">التوقيع / البصمة</div>
-                        </div>
-                        <!-- خانة توقيع 8 (إضافية) -->
-                        <div class="sig-box">
-                            <div class="sig-header">
-                                <span>الاسم: ..............................</span>
-                            </div>
-                            <div class="sig-placeholder">التوقيع / البصمة</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- التذييل النهائي -->
-                <footer class="footer">
-                    <p>حررت هذه الوثيقة بتاريخ: ...... / ...... / ............ هـ | الموافق: ...... / ...... /
-                        ............ م</p>
-                    <p>أحفاد سيدي عبدالله سبال العين الأنصاري - وثيقة رسمية محفوظة الحقوق</p>
-                </footer>
-
-            </div>
-        </div>
-
-        <!-- زر الطباعة والتثبيت -->
-        <div class="print-btn-container">
-            <button id="install-btn" class="btn-print" style="display: none;">
-                <i class="fas fa-download"></i>
-                تثبيت التطبيق
-            </button>
-            <button class="btn-print" onclick="window.print()">
-                <i class="fas fa-print"></i>
-                طباعة / حفظ كـ PDF
-            </button>
-        </div>
-
+    <div class="print-btn-container">
+        <button class="btn-print" onclick="window.print()">
+            <i class="fas fa-print"></i>
+            طباعة / حفظ كـ PDF
+        </button>
     </div>
-
-    <script>
-        // منطق التحقق من كلمة المرور
-        function checkPassword() {
-            const password = document.getElementById('password-input').value;
-            // كلمة المرور الافتراضية: 123456
-            if (password === '123456') {
-                document.getElementById('login-overlay').style.display = 'none';
-                document.getElementById('document-content').style.display = 'flex';
-                document.getElementById('password-input').value = '';
-                document.getElementById('error-message').style.display = 'none';
-            } else {
-                const errorMsg = document.getElementById('error-message');
-                errorMsg.style.display = 'block';
-                // هز الصندوق عند الخطأ
-                const loginBox = document.querySelector('.login-box');
-                loginBox.animate([
-                    { transform: 'translateX(0)' },
-                    { transform: 'translateX(-10px)' },
-                    { transform: 'translateX(10px)' },
-                    { transform: 'translateX(-10px)' },
-                    { transform: 'translateX(0)' }
-                ], {
-                    duration: 300,
-                    iterations: 1
-                });
-            }
-        }
-
-        function handleEnter(e) {
-            if (e.key === 'Enter') {
-                checkPassword();
-            }
-        }
-
-        // منطق تثبيت التطبيق (PWA)
-        let deferredPrompt;
-        const installBtn = document.getElementById('install-btn');
-
-        window.addEventListener('beforeinstallprompt', (e) => {
-            // منع ظهور الرسالة التلقائية في المتصفحات القديمة
-            e.preventDefault();
-            // حفظ الحدث لاستخدامه لاحقاً
-            deferredPrompt = e;
-            // إظهار زر التثبيت
-            installBtn.style.display = 'inline-flex';
-        });
-
-        installBtn.addEventListener('click', (e) => {
-            // إخفاء الزر بعد النقر
-            installBtn.style.display = 'none';
-            // إظهار نافذة التثبيت
-            deferredPrompt.prompt();
-            // انتظار رد المستخدم
-            deferredPrompt.userChoice.then((choiceResult) => {
-                if (choiceResult.outcome === 'accepted') {
-                    console.log('User accepted the A2HS prompt');
-                } else {
-                    console.log('User dismissed the A2HS prompt');
-                }
-                deferredPrompt = null;
-            });
-        });
-    </script>
 
 </body>
 
