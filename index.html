@@ -3,7 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="JamalIbnAdam">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -949,6 +952,12 @@
 
     <script src="main.js?v=1.7" defer></script>
 
+    <div id="install-guide"
+        style="display:none; position:fixed; bottom:0; width:100%; background:white; padding:20px; z-index:9999; border-top:2px solid #d4af37; text-align:center;">
+        <p>لتثبيت السجل على هاتفك: اضغط على زر <b>المشاركة</b> ثم <b>"إضافة إلى الشاشة الرئيسية"</b></p>
+        <button onclick="this.parentElement.style.display='none'">إغلاق</button>
+    </div>
+
     <script>
         // Register Service Worker
         if ('serviceWorker' in navigator) {
@@ -985,49 +994,15 @@
             installBtn.classList.add('flex');
         });
 
-        installBtn.addEventListener('click', (e) => {
+        function triggerInstall() {
             if (deferredPrompt) {
-                // Show the native prompt
                 deferredPrompt.prompt();
-                // Wait for the user to respond to the prompt
-                deferredPrompt.userChoice.then((choiceResult) => {
-                    if (choiceResult.outcome === 'accepted') {
-                        console.log('User accepted the A2HS prompt');
-                        installBtn.classList.add('hidden'); // Hide after install
-                    } else {
-                        console.log('User dismissed the A2HS prompt');
-                    }
-                    deferredPrompt = null;
-                });
             } else {
-                // Fallback for Desktop/Unsupported browsers
-                const currentLang = document.documentElement.lang || 'ar';
-
-                // Detect device type
-                const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-                const isAndroid = /Android/.test(navigator.userAgent);
-
-                let msg = "";
-
-                if (isIOS) {
-                    msg = currentLang === 'ar'
-                        ? "لتثبيت التطبيق على الآيفون:\n1. اضغط على زر المشاركة (Share) في الأسفل.\n2. اختر 'إضافة إلى الشاشة الرئيسية' (Add to Home Screen)."
-                        : "To install on iPhone:\n1. Tap the Share button below.\n2. Select 'Add to Home Screen'.";
-                } else if (isAndroid) {
-                    msg = currentLang === 'ar'
-                        ? "لتثبيت التطبيق على الأندرويد:\nاضغط على القائمة (⋮) ثم اختر 'تثبيت التطبيق' (Install App)."
-                        : "To install on Android:\nTap the menu (⋮) and select 'Install App'.";
-                } else {
-                    // Desktop fallback
-                    msg = window.FamilyTreeData?.translations?.install_instructions ||
-                        (currentLang === 'ar'
-                            ? "لتثبيت التطبيق على الكمبيوتر، انقر على أيقونة التثبيت (+) في شريط العنوان بالأعلى."
-                            : "To install on your computer, click the install icon (+) in the address bar above.");
-                }
-
-                alert(msg);
+                document.getElementById('install-guide').style.display = 'block';
             }
-        });
+        }
+
+        installBtn.addEventListener('click', triggerInstall);
     </script>
 </body>
 
