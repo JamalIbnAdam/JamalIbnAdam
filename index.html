@@ -108,7 +108,7 @@
             <div class="absolute top-0 ltr:right-0 rtl:left-0 mt-2 mx-4 z-50 flex gap-2 items-center">
                 <!-- Install App Button -->
                 <button id="install-btn"
-                    class="hidden appearance-none bg-amber-500/90 backdrop-blur-md text-slate-900 text-xs font-bold border border-amber-400 rounded-lg py-1.5 px-3 focus:outline-none cursor-pointer shadow-lg hover:bg-amber-400 transition-all items-center gap-1">
+                    class="hidden appearance-none bg-amber-500/90 backdrop-blur-md text-white text-xs font-bold border border-amber-400 rounded-lg py-1.5 px-3 focus:outline-none cursor-pointer shadow-lg hover:bg-amber-400 transition-all items-center gap-1">
                     <span>📲</span> <span data-i18n="btn_install">Install App</span>
                 </button>
 
@@ -950,6 +950,18 @@
     <script src="main.js?v=1.7" defer></script>
 
     <script>
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then((registration) => {
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    }, (err) => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+
         // PWA Installation Logic
         let deferredPrompt;
         const installBtn = document.getElementById('install-btn');
@@ -989,14 +1001,31 @@
                 });
             } else {
                 // Fallback for Desktop/Unsupported browsers
-                // Fetch localized instruction
                 const currentLang = document.documentElement.lang || 'ar';
-                const instructionText = window.FamilyTreeData?.translations?.install_instructions ||
-                    (currentLang === 'ar'
-                        ? "لتثبيت التطبيق على الكمبيوتر، انقر على أيقونة التثبيت (+) في شريط العنوان بالأعلى."
-                        : "To install on your computer, click the install icon (+) in the address bar above.");
 
-                alert(instructionText);
+                // Detect device type
+                const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+                const isAndroid = /Android/.test(navigator.userAgent);
+
+                let msg = "";
+
+                if (isIOS) {
+                    msg = currentLang === 'ar'
+                        ? "لتثبيت التطبيق على الآيفون:\n1. اضغط على زر المشاركة (Share) في الأسفل.\n2. اختر 'إضافة إلى الشاشة الرئيسية' (Add to Home Screen)."
+                        : "To install on iPhone:\n1. Tap the Share button below.\n2. Select 'Add to Home Screen'.";
+                } else if (isAndroid) {
+                    msg = currentLang === 'ar'
+                        ? "لتثبيت التطبيق على الأندرويد:\nاضغط على القائمة (⋮) ثم اختر 'تثبيت التطبيق' (Install App)."
+                        : "To install on Android:\nTap the menu (⋮) and select 'Install App'.";
+                } else {
+                    // Desktop fallback
+                    msg = window.FamilyTreeData?.translations?.install_instructions ||
+                        (currentLang === 'ar'
+                            ? "لتثبيت التطبيق على الكمبيوتر، انقر على أيقونة التثبيت (+) في شريط العنوان بالأعلى."
+                            : "To install on your computer, click the install icon (+) in the address bar above.");
+                }
+
+                alert(msg);
             }
         });
     </script>
