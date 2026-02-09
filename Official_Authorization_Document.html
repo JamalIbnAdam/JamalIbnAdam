@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>وثيقة تفويض - أحفاد سيدي عبدالله سبال العين ‏الخزرجي الأنصاري</title>
+    <title>وثيقة تفويض - أحفاد سيدي عبدالله سبال العين الأنصاري</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Aref+Ruqaa:wght@400;700&display=swap"
         rel="stylesheet">
@@ -410,7 +410,8 @@
             border: 2px solid var(--gold-color);
             text-align: center;
             box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-            width: 350px;
+            width: 90%;
+            max-width: 350px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -483,6 +484,7 @@
         .editable-input {
             width: 100%;
             height: 100%;
+            /* Only works well for block containers */
             background: transparent;
             border: none;
             font-family: 'Aref Ruqaa', serif;
@@ -500,9 +502,25 @@
         /* Special style for inline text inputs */
         .inline-input {
             width: 200px;
+            height: auto;
+            /* Allow natural height */
             text-align: center;
             border-bottom: 2px dotted #444;
             display: inline-block;
+            vertical-align: middle;
+            /* Align with text */
+        }
+
+        /* Prevent flexbox from squashing content */
+        .header,
+        .content,
+        .section-title,
+        .form-row,
+        .legal-text,
+        .auth-text,
+        .signatures-grid,
+        .footer {
+            flex-shrink: 0;
         }
 
         .btn-save {
@@ -550,8 +568,8 @@
                         onerror="this.src='https://placehold.co/150x150/1a237e/c5a059?text=Logo'">
                 </div>
                 <div class="title-main">وثيقة تفويض وتمثيل</div>
-                <div class="title-sub">أحفاد سيدي عبدالله سبال العين الأنصاري</div>
-                <div class="title-branch">أبناء سالم بن يوسف آقار شاطئ</div>
+                <div class="title-sub">أبناء سالم بن يوسف آقار شاطئ</div>
+                <div class="title-branch">أحفاد سيدي عبدالله سبال العين الخزرجي الأنصاري</div>
             </header>
 
             <div class="content">
@@ -797,6 +815,7 @@
                         document.getElementById('login-overlay').style.display = 'none';
                         document.querySelector('.page').style.display = 'flex';
                         loadData(); // Load saved data when logged in
+                        adjustPageScale(); // Scale for mobile
                     } else {
                         errorMsg.style.display = 'block';
                         input.value = '';
@@ -809,6 +828,7 @@
                         document.getElementById('login-overlay').style.display = 'none';
                         document.querySelector('.page').style.display = 'flex';
                         loadData();
+                        adjustPageScale(); // Scale for mobile
                     } else {
                         errorMsg.style.display = 'block';
                     }
@@ -827,7 +847,38 @@
             window.onload = function () {
                 const input = document.getElementById('password-input');
                 if (input) input.focus();
+
+                // Adjust scale if already logged in (persistence logic could be added here if session storage was used)
+                // For now, we adjust on login.
             };
+
+            // Mobile Scaling Logic
+            function adjustPageScale() {
+                const page = document.querySelector('.page');
+                if (!page || page.style.display === 'none') return;
+
+                const screenWidth = window.innerWidth;
+                const pageOriginalWidth = 794; // 210mm in pixels
+                const margin = 20;
+
+                if (screenWidth < pageOriginalWidth + margin) {
+                    const scale = (screenWidth - margin) / pageOriginalWidth;
+                    page.style.transform = `scale(${scale})`;
+                    page.style.transformOrigin = 'top center';
+
+                    // Adjust margin to remove whitespace caused by scaling
+                    const originalHeight = 1123; // 297mm in pixels
+                    const newHeight = originalHeight * scale;
+                    page.style.marginBottom = `-${originalHeight - newHeight}px`;
+
+                    // Center horizontally if needed, though transform-origin top center usually handles it with flex body
+                } else {
+                    page.style.transform = 'none';
+                    page.style.marginBottom = '0';
+                }
+            }
+
+            window.addEventListener('resize', adjustPageScale);
         })();
     </script>
 </body>
