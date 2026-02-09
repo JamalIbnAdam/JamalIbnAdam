@@ -141,9 +141,11 @@
             border-radius: 50%;
             border: 2px solid var(--gold-color);
             padding: 2px;
-            background: white;
+            background: transparent;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             overflow: hidden;
+            clip-path: circle(50% at 50% 50%);
+            /* Clip to circle forcefully */
         }
 
         .logo-img {
@@ -151,6 +153,8 @@
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
+            display: block;
+            /* Remove inline gap */
         }
 
         .basmala {
