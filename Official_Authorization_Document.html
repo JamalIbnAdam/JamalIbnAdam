@@ -478,6 +478,52 @@
         .login-btn:hover {
             background-color: #283593;
         }
+
+        /* Editable Input Styles */
+        .editable-input {
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            border: none;
+            font-family: 'Aref Ruqaa', serif;
+            font-size: 18px;
+            color: var(--primary-color);
+            text-align: right;
+            outline: none;
+            padding: 0 5px;
+        }
+
+        .editable-input:focus {
+            background-color: rgba(197, 160, 89, 0.1);
+        }
+
+        /* Special style for inline text inputs */
+        .inline-input {
+            width: 200px;
+            text-align: center;
+            border-bottom: 2px dotted #444;
+            display: inline-block;
+        }
+
+        .btn-save {
+            background-color: var(--gold-color);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            font-size: 16px;
+            font-family: 'Amiri', serif;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            border: 2px solid white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-save:hover {
+            background-color: #a08040;
+        }
     </style>
 </head>
 
@@ -513,19 +559,29 @@
                 <!-- مساحة مريحة للكتابة اليدوية -->
                 <div class="form-row">
                     <span style="min-width: 45px; font-size: 15px; font-weight: bold;">الاسم:</span>
-                    <div class="field"></div>
+                    <div class="field">
+                        <input type="text" class="editable-input" id="field-name"
+                            placeholder="................................">
+                    </div>
                 </div>
                 <div class="form-row">
                     <span style="min-width: 45px; font-size: 15px; font-weight: bold;">العمر:</span>
-                    <div class="field" style="max-width: 80px;"></div>
+                    <div class="field" style="max-width: 80px;">
+                        <input type="text" class="editable-input" id="field-age" style="text-align: center;">
+                    </div>
                     <span style="margin-right: 20px; font-size: 15px; font-weight: bold;">الإثبات الشخصي:</span>
-                    <div class="field"></div>
+                    <div class="field">
+                        <input type="text" class="editable-input" id="field-id"
+                            placeholder="................................">
+                    </div>
                 </div>
 
                 <div class="section-title">ثانياً: نص التفويض الرسمي</div>
                 <div class="legal-text">
                     نحن الموقعون أدناه، أعضاء بيت / عائلة <span class="highlight">(
-                        ........................................ )</span>، وبكامل إرادتنا وأهليتنا الشرعية، نفوض السيد
+                        <input type="text" class="editable-input inline-input" id="field-family"
+                            placeholder="........................................"> )</span>، وبكامل إرادتنا وأهليتنا
+                    الشرعية، نفوض السيد
                     المذكور أعلاه لتمثيلنا في <span class="highlight">مجلس العائلة والقبيلة</span>.
                     <br>
                     وهذا تفويض بالمشاركة في الاجتماعات الرسمية، والمساهمة في اتخاذ القرارات بما يخدم مصالح العائلة. ويعد
@@ -541,70 +597,100 @@
                     <div class="sig-box">
                         <div class="sig-right">
                             <div class="sig-label">1. الاسم:</div>
-                            <div class="sig-line"></div>
+                            <div class="sig-line">
+                                <input type="text" class="editable-input" id="sig-1"
+                                    style="height: 20px; font-size: 14px;">
+                            </div>
                         </div>
                         <div class="sig-left">التوقيع / البصمة</div>
                     </div>
                     <div class="sig-box">
                         <div class="sig-right">
                             <div class="sig-label">2. الاسم:</div>
-                            <div class="sig-line"></div>
+                            <div class="sig-line">
+                                <input type="text" class="editable-input" id="sig-2"
+                                    style="height: 20px; font-size: 14px;">
+                            </div>
                         </div>
                         <div class="sig-left">التوقيع / البصمة</div>
                     </div>
                     <div class="sig-box">
                         <div class="sig-right">
                             <div class="sig-label">3. الاسم:</div>
-                            <div class="sig-line"></div>
+                            <div class="sig-line">
+                                <input type="text" class="editable-input" id="sig-3"
+                                    style="height: 20px; font-size: 14px;">
+                            </div>
                         </div>
                         <div class="sig-left">التوقيع / البصمة</div>
                     </div>
                     <div class="sig-box">
                         <div class="sig-right">
                             <div class="sig-label">4. الاسم:</div>
-                            <div class="sig-line"></div>
+                            <div class="sig-line">
+                                <input type="text" class="editable-input" id="sig-4"
+                                    style="height: 20px; font-size: 14px;">
+                            </div>
                         </div>
                         <div class="sig-left">التوقيع / البصمة</div>
                     </div>
                     <div class="sig-box">
                         <div class="sig-right">
                             <div class="sig-label">5. الاسم:</div>
-                            <div class="sig-line"></div>
+                            <div class="sig-line">
+                                <input type="text" class="editable-input" id="sig-5"
+                                    style="height: 20px; font-size: 14px;">
+                            </div>
                         </div>
                         <div class="sig-left">التوقيع / البصمة</div>
                     </div>
                     <div class="sig-box">
                         <div class="sig-right">
                             <div class="sig-label">6. الاسم:</div>
-                            <div class="sig-line"></div>
+                            <div class="sig-line">
+                                <input type="text" class="editable-input" id="sig-6"
+                                    style="height: 20px; font-size: 14px;">
+                            </div>
                         </div>
                         <div class="sig-left">التوقيع / البصمة</div>
                     </div>
                     <div class="sig-box">
                         <div class="sig-right">
                             <div class="sig-label">7. الاسم:</div>
-                            <div class="sig-line"></div>
+                            <div class="sig-line">
+                                <input type="text" class="editable-input" id="sig-7"
+                                    style="height: 20px; font-size: 14px;">
+                            </div>
                         </div>
                         <div class="sig-left">التوقيع / البصمة</div>
                     </div>
                     <div class="sig-box">
                         <div class="sig-right">
                             <div class="sig-label">8. الاسم:</div>
-                            <div class="sig-line"></div>
+                            <div class="sig-line">
+                                <input type="text" class="editable-input" id="sig-8"
+                                    style="height: 20px; font-size: 14px;">
+                            </div>
                         </div>
                         <div class="sig-left">التوقيع / البصمة</div>
                     </div>
                     <div class="sig-box">
                         <div class="sig-right">
                             <div class="sig-label">9. الاسم:</div>
-                            <div class="sig-line"></div>
+                            <div class="sig-line">
+                                <input type="text" class="editable-input" id="sig-9"
+                                    style="height: 20px; font-size: 14px;">
+                            </div>
                         </div>
                         <div class="sig-left">التوقيع / البصمة</div>
                     </div>
                     <div class="sig-box">
                         <div class="sig-right">
                             <div class="sig-label">10. الاسم:</div>
-                            <div class="sig-line"></div>
+                            <div class="sig-line">
+                                <input type="text" class="editable-input" id="sig-10"
+                                    style="height: 20px; font-size: 14px;">
+                            </div>
                         </div>
                         <div class="sig-left">التوقيع / البصمة</div>
                     </div>
@@ -612,13 +698,26 @@
             </div>
 
             <footer class="footer">
-                <p>حررت بتاريخ: ...... / ...... / ............ هـ | أحفاد سيدي عبدالله سبال العين الأنصاري - وثيقة رسمية
+                <p>حررت بتاريخ:
+                    <input type="text" class="editable-input" id="date-day"
+                        style="width: 30px; text-align: center; display: inline-block; font-size: 14px;"
+                        placeholder="dd"> /
+                    <input type="text" class="editable-input" id="date-month"
+                        style="width: 30px; text-align: center; display: inline-block; font-size: 14px;"
+                        placeholder="mm"> /
+                    <input type="text" class="editable-input" id="date-year"
+                        style="width: 60px; text-align: center; display: inline-block; font-size: 14px;"
+                        placeholder="yyyy"> هـ | أحفاد سيدي عبدالله سبال العين الأنصاري - وثيقة رسمية
                 </p>
             </footer>
         </div>
     </div>
 
-    <div class="print-btn-container">
+    <div class="print-btn-container" style="display: flex; gap: 15px;">
+        <button class="btn-save" onclick="saveData()">
+            <i class="fas fa-save"></i>
+            حفظ البيانات
+        </button>
         <button class="btn-print" onclick="window.print()">
             <i class="fas fa-print"></i>
             طباعة / حفظ كـ PDF
@@ -661,6 +760,30 @@
                 return bufferToHex(hash);
             }
 
+            // Function to save data to LocalStorage
+            window.saveData = function () {
+                const inputs = document.querySelectorAll('.editable-input');
+                const data = {};
+                inputs.forEach(input => {
+                    if (input.id) data[input.id] = input.value;
+                });
+                localStorage.setItem('auth_doc_data', JSON.stringify(data));
+                alert('تم حفظ البيانات بنجاح! يمكنك الآن طباعة الوثيقة.');
+            };
+
+            // Function to load data from LocalStorage
+            function loadData() {
+                const data = JSON.parse(localStorage.getItem('auth_doc_data'));
+                if (data) {
+                    const inputs = document.querySelectorAll('.editable-input');
+                    inputs.forEach(input => {
+                        if (input.id && data[input.id]) {
+                            input.value = data[input.id];
+                        }
+                    });
+                }
+            }
+
             async function checkPassword() {
                 const input = document.getElementById('password-input');
                 const errorMsg = document.getElementById('error-msg');
@@ -673,6 +796,7 @@
                     if (hash === correctHash) {
                         document.getElementById('login-overlay').style.display = 'none';
                         document.querySelector('.page').style.display = 'flex';
+                        loadData(); // Load saved data when logged in
                     } else {
                         errorMsg.style.display = 'block';
                         input.value = '';
@@ -684,6 +808,7 @@
                     if (password === "123456") {
                         document.getElementById('login-overlay').style.display = 'none';
                         document.querySelector('.page').style.display = 'flex';
+                        loadData();
                     } else {
                         errorMsg.style.display = 'block';
                     }
