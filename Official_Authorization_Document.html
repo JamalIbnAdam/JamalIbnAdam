@@ -129,7 +129,7 @@
 
         .header {
             text-align: center;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             position: relative;
         }
 
@@ -217,7 +217,7 @@
             font-size: 13px;
             border-radius: 12px;
             display: inline-block;
-            margin: 10px 0 10px 0;
+            margin: 5px 0;
             border: 1px solid var(--gold-color);
             align-self: flex-start;
         }
@@ -226,7 +226,7 @@
         .form-row {
             display: flex;
             gap: 15px;
-            margin-bottom: 15px;
+            margin-bottom: 8px;
             /* مسافة كافية ولكن ليست مفرطة */
             align-items: flex-end;
         }
@@ -591,7 +591,27 @@
                     </div>
                 </div>
 
-                <div class="section-title">ثانياً: نص التفويض الرسمي</div>
+                <div class="section-title">ثانياً: بيانات نائب المفوض (الممثل البديل)</div>
+                <div class="form-row">
+                    <span style="min-width: 45px; font-size: 15px; font-weight: bold;">الاسم:</span>
+                    <div class="field">
+                        <input type="text" class="editable-input" id="field-deputy-name"
+                            placeholder="................................">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <span style="min-width: 45px; font-size: 15px; font-weight: bold;">العمر:</span>
+                    <div class="field" style="max-width: 80px;">
+                        <input type="text" class="editable-input" id="field-deputy-age" style="text-align: center;">
+                    </div>
+                    <span style="margin-right: 20px; font-size: 15px; font-weight: bold;">الإثبات الشخصي:</span>
+                    <div class="field">
+                        <input type="text" class="editable-input" id="field-deputy-id"
+                            placeholder="................................">
+                    </div>
+                </div>
+
+                <div class="section-title">ثالثاً: نص التفويض الرسمي</div>
                 <div class="legal-text">
                     نحن الموقعون أدناه، أعضاء بيت / عائلة <span class="highlight">(
                         <input type="text" class="editable-input inline-input" id="field-family"
