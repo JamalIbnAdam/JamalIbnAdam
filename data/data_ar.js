@@ -141,7 +141,7 @@ window.FamilyTreeData = {
         branch_2_subtitle: "زاوية براك",
         branch_2_desc: `
             <div class="sub-group">
-                <h4>(2-1) ابناء الاجواد بالزاويه براك</h4>
+                <h4>ابناء الاجواد بالزاويه براك</h4>
             </div>
         `,
 

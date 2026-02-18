@@ -121,7 +121,7 @@ window.FamilyTreeData = {
 
         branch_2_title: "(2) ابناء الاجواد",
         branch_2_subtitle: "زاوية براك",
-        branch_2_desc: "(2-1) ابناء الاجواد بالزاويه براك",
+        branch_2_desc: "ابناء الاجواد بالزاويه براك",
 
         branch_3_title: "(3) Hijos de Abu Bakr bin Ismail",
         branch_3_subtitle: "Ashkedah",
