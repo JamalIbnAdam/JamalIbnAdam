@@ -108,30 +108,34 @@ window.FamilyTreeData = {
         fig_4_desc: "Ascetyczny uczony, który szerzył wiedzę na południu.",
         fig_4_loc: "📍 Pochowany na pustyni (blisko Kufra)",
 
-        // --- FADL BRANCHES (The 6 Cards) ---
+        // --- FADL BRANCHES (The 7 Cards) ---
         branch_1_title: "(1) Dzieci Salema bin Yusufa",
         branch_1_subtitle: "Agar (Pięć Rodzin)",
         branch_1_desc: "Pięć Klanów (Gen 53-54): Al-Sawalim, Al-Kadawi, Al-Allawi, Al-Bakoor, Al-Wasfa (XI wiek AH).",
 
-        branch_2_title: "(2) Dzieci Abu Bakra bin Ismaila",
-        branch_2_subtitle: "Ashkedah",
-        branch_2_desc: "Dzieci Faqiha Ismaila i Dzieci Qasima.",
+        branch_2_title: "(2) ابناء الاجواد",
+        branch_2_subtitle: "زاوية براك",
+        branch_2_desc: "(2-1) ابناء الاجواد بالزاويه براك",
 
-        branch_3_title: "(3) Dzieci Belqasima",
-        branch_3_subtitle: "Dabdab",
-        branch_3_desc: "Gałęzie (Gen 53): Awlad Al-Akhdari, Awlad Yusuf (XI wiek AH).",
+        branch_3_title: "(3) Dzieci Abu Bakra bin Ismaila",
+        branch_3_subtitle: "Ashkedah",
+        branch_3_desc: "Dzieci Faqiha Ismaila i Dzieci Qasima.",
 
-        branch_4_title: "(4) Dzieci Qasima",
-        branch_4_subtitle: "Zawiyat Brak",
-        branch_4_desc: "Tytuł: Dom Sędziego Al-Rashida (XI wiek AH).",
+        branch_4_title: "(4) Dzieci Belqasima",
+        branch_4_subtitle: "Dabdab",
+        branch_4_desc: "Gałęzie (Gen 53): Awlad Al-Akhdari, Awlad Yusuf (XI wiek AH).",
 
-        branch_5_title: "(5) Al-Athamnah",
+        branch_5_title: "(5) Dzieci Qasima",
         branch_5_subtitle: "Zawiyat Brak",
-        branch_5_desc: "Gałęzie: Al-Baradnah (Synowie Badr al-Dina, XI wiek AH).",
+        branch_5_desc: "Tytuł: Dom Sędziego Al-Rashida (XI wiek AH).",
 
-        branch_6_title: "(6) Dzieci Abdula Wahida",
+        branch_6_title: "(6) Al-Athamnah",
         branch_6_subtitle: "Zawiyat Brak",
-        branch_6_desc: "Gałęzie: Al-Alawneh (XI wiek AH).",
+        branch_6_desc: "Gałęzie: Al-Baradnah (Synowie Badr al-Dina, XI wiek AH).",
+
+        branch_7_title: "(7) Dzieci Abdula Wahida",
+        branch_7_subtitle: "Zawiyat Brak",
+        branch_7_desc: "Gałęzie: Al-Alawneh (XI wiek AH).",
 
         // --- LIBRARY DETAILS ---
         library_book_alt: "Ansar Khazraj w Wadi Al-Shatii",

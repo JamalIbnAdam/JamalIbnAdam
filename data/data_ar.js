@@ -118,7 +118,7 @@ window.FamilyTreeData = {
         fig_4_desc: "عالم زاهد نشر العلم في الجنوب.",
         fig_4_loc: "📍 دفين الصحراء (قرب الكفرة)",
 
-        // --- FADL BRANCHES (The 6 Cards) ---
+        // --- FADL BRANCHES (The 7 Cards) ---
         branch_1_title: "(1) أولاد سالم بن يوسف",
         branch_1_subtitle: "آقار (العائلات الخمس)",
         branch_1_desc: `
@@ -137,9 +137,17 @@ window.FamilyTreeData = {
             </div>
         `,
 
-        branch_2_title: "(2) أولاد أبوبكر بن إسماعيل",
-        branch_2_subtitle: "أشكدة",
+        branch_2_title: "(2) ابناء الاجواد",
+        branch_2_subtitle: "زاوية براك",
         branch_2_desc: `
+            <div class="sub-group">
+                <h4>(2-1) ابناء الاجواد بالزاويه براك</h4>
+            </div>
+        `,
+
+        branch_3_title: "(3) أولاد أبوبكر بن إسماعيل",
+        branch_3_subtitle: "أشكدة",
+        branch_3_desc: `
             <div class="sub-group">
                 <h4>أولاد الفقيه إسماعيل:</h4>
                 <ul>
@@ -163,9 +171,9 @@ window.FamilyTreeData = {
             </div>
         `,
 
-        branch_3_title: "(3) أولاد بلقاسم بن إسماعيل",
-        branch_3_subtitle: "دبدب",
-        branch_3_desc: `
+        branch_4_title: "(4) أولاد بلقاسم بن إسماعيل",
+        branch_4_subtitle: "دبدب",
+        branch_4_desc: `
             <div class="sub-group">
                 <h4>الفروع (الجيل 53):</h4>
                 <ul>
@@ -175,9 +183,9 @@ window.FamilyTreeData = {
             </div>
         `,
 
-        branch_4_title: "(4) أولاد قاسم",
-        branch_4_subtitle: "زاوية براك",
-        branch_4_desc: `
+        branch_5_title: "(5) أولاد قاسم",
+        branch_5_subtitle: "زاوية براك",
+        branch_5_desc: `
             <div class="sub-group">
                 <h4>اللقب:</h4>
                 <ul>
@@ -186,9 +194,9 @@ window.FamilyTreeData = {
             </div>
         `,
 
-        branch_5_title: "(5) العثامنة",
-        branch_5_subtitle: "زاوية براك",
-        branch_5_desc: `
+        branch_6_title: "(6) العثامنة",
+        branch_6_subtitle: "زاوية براك",
+        branch_6_desc: `
             <div class="sub-group">
                 <h4>الفروع:</h4>
                 <ul>
@@ -197,9 +205,9 @@ window.FamilyTreeData = {
             </div>
         `,
 
-        branch_6_title: "(6) أولاد عبد الواحد",
-        branch_6_subtitle: "زاوية براك",
-        branch_6_desc: `
+        branch_7_title: "(7) أولاد عبد الواحد",
+        branch_7_subtitle: "زاوية براك",
+        branch_7_desc: `
             <div class="sub-group">
                 <h4>الفروع:</h4>
                 <ul>

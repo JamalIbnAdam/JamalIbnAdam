@@ -108,29 +108,34 @@ window.FamilyTreeData = {
         fig_4_desc: "Güneyde ilmi yayan zahid bir alim.",
         fig_4_loc: "📍 Kabri Çöldedir (Kufra yakınları)",
 
-        // --- FADL BRANCHES (The 6 Cards) ---
+        // --- FADL BRANCHES (The 7 Cards) ---
         branch_1_title: "(1) Salim bin Yusuf Çocukları",
         branch_1_subtitle: "Agar (Beş Aile)",
         branch_1_desc: "Beş Oymak (53-54. Nesil): Savalim, Kadavi, Allavi, Bakur, Vasfa (H. 11. yüzyıl).",
 
-        branch_2_title: "(2) Ebubekir bin İsmail Çocukları",
-        branch_2_subtitle: "Aşkeda",
-        branch_2_desc: "Fakih İsmail'in Çocukları ve Kasım'ın Çocukları.",
+        branch_2_title: "(2) ابناء الاجواد",
+        branch_2_subtitle: "زاوية براك",
+        branch_2_desc: "(2-1) ابناء الاجواد بالزاويه براك",
 
-        branch_3_title: "(3) Belkasım Çocukları",
-        branch_3_subtitle: "Dabdab",
-        branch_3_desc: "Kollar (53. Nesil): Evlad El-Ahdari, Evlad Yusuf (H. 11. yüzyıl).",
+        branch_3_title: "(3) Ebubekir bin İsmail Çocukları",
+        branch_3_subtitle: "Aşkeda",
+        branch_3_desc: "Fakih İsmail'in Çocukları ve Kasım'ın Çocukları.",
 
-        branch_4_title: "(4) Kasım Çocukları",
-        branch_4_subtitle: "Zaviye Brak",
-        branch_4_desc: "Unvan: Kadı El-Raşid Evi (H. 11. yüzyıl).",
+        branch_4_title: "(4) Belkasım Çocukları",
+        branch_4_subtitle: "Dabdab",
+        branch_4_desc: "Kollar (53. Nesil): Evlad El-Ahdari, Evlad Yusuf (H. 11. yüzyıl).",
 
-        branch_5_title: "(5) El-Atamne",
+        branch_5_title: "(5) Kasım Çocukları",
         branch_5_subtitle: "Zaviye Brak",
-        branch_5_desc: "Kollar: El-Baradne (Bedreddin'in oğulları, H. 11. yüzyıl).",
-        branch_6_title: "(6) Abdulvahid Çocukları",
+        branch_5_desc: "Unvan: Kadı El-Raşid Evi (H. 11. yüzyıl).",
+
+        branch_6_title: "(6) El-Atamne",
         branch_6_subtitle: "Zaviye Brak",
-        branch_6_desc: "Kollar: El-Alavne (H. 11. yüzyıl).",
+        branch_6_desc: "Kollar: El-Baradne (Bedreddin'in oğulları, H. 11. yüzyıl).",
+
+        branch_7_title: "(7) Abdulvahid Çocukları",
+        branch_7_subtitle: "Zaviye Brak",
+        branch_7_desc: "Kollar: El-Alavne (H. 11. yüzyıl).",
 
         // --- LIBRARY DETAILS ---
         library_book_alt: "Vadi El-Şati'de Ensar Hazrec",

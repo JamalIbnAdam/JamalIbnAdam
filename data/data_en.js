@@ -112,32 +112,36 @@ window.FamilyTreeData = {
         fig_4_desc: "An ascetic scholar who spread knowledge in the South.",
         fig_4_loc: "📍 Buried in the Desert (near Kufra)",
 
-        // --- FADL BRANCHES (The 6 Cards) ---
+        // --- FADL BRANCHES (The 7 Cards) ---
         branch_1_title: "(1) Children of Salem bin Yusuf",
         branch_1_subtitle: "Agar (The Five Families)",
         branch_1_desc:
             "The Five Clans (Gen 53-54): Al-Sawalim, Al-Kadawi, Al-Allawi, Al-Bakoor, Al-Wasfa (11th Century AH). Followed by 20 generations down to you.",
 
-        branch_2_title: "(2) Children of Abu Bakr bin Ismail",
-        branch_2_subtitle: "Ashkedah",
-        branch_2_desc:
+        branch_2_title: "(2) ابناء الاجواد",
+        branch_2_subtitle: "زاوية براك",
+        branch_2_desc: "(2-1) ابناء الاجواد بالزاويه براك",
+
+        branch_3_title: "(3) Children of Abu Bakr bin Ismail",
+        branch_3_subtitle: "Ashkedah",
+        branch_3_desc:
             "Children of Faqih Ismail (Hamad, Mohammed, Tahir) and Children of Qasim (Nour al-Din, Hajj Ibrahim). Era: 11th Century AH.",
 
-        branch_3_title: "(3) Children of Belqasim",
-        branch_3_subtitle: "Dabdab",
-        branch_3_desc: "Branches (Gen 53): Awlad Al-Akhdari, Awlad Yusuf (11th Century AH).",
+        branch_4_title: "(4) Children of Belqasim",
+        branch_4_subtitle: "Dabdab",
+        branch_4_desc: "Branches (Gen 53): Awlad Al-Akhdari, Awlad Yusuf (11th Century AH).",
 
-        branch_4_title: "(4) Children of Qasim",
-        branch_4_subtitle: "Zawiyat Brak",
-        branch_4_desc: "Title: House of Judge Al-Rashid (11th Century AH).",
-
-        branch_5_title: "(5) Al-Athamnah",
+        branch_5_title: "(5) Children of Qasim",
         branch_5_subtitle: "Zawiyat Brak",
-        branch_5_desc: "Branches: Al-Baradnah (Sons of Badr al-Din, 11th Century AH).",
+        branch_5_desc: "Title: House of Judge Al-Rashid (11th Century AH).",
 
-        branch_6_title: "(6) Children of Abdul Wahid",
+        branch_6_title: "(6) Al-Athamnah",
         branch_6_subtitle: "Zawiyat Brak",
-        branch_6_desc: "Branches: Al-Alawneh (11th Century AH).",
+        branch_6_desc: "Branches: Al-Baradnah (Sons of Badr al-Din, 11th Century AH).",
+
+        branch_7_title: "(7) Children of Abdul Wahid",
+        branch_7_subtitle: "Zawiyat Brak",
+        branch_7_desc: "Branches: Al-Alawneh (11th Century AH).",
 
         // --- LIBRARY DETAILS ---
         library_book_alt: "Al-Ansar Al-Khazraj in Wadi Al-Shatii",
