@@ -80,14 +80,14 @@ window.FamilyTreeData = {
         no_results: "لا توجد نتائج تطابق بحثك",
 
         // Tree Section
-        fadl_branch_title: "🔻 تفرع البطون من الجد (فضل بن عبد الله سبال العين) 🔻",
+        fadl_branch_title: "أولا: فضل بن عبد الله بن عمر بن علي الجداوي السلمي الخزرجي الانصاري",
         fadl_node:
-            "52. فضل بن عبد الله بن عمر بن علي السلمي الجداوي الخزرجي<br>(942 هـ - 1000 هـ (وثيقة ميراث مؤرخة 1002 هـ))",
-        modern_era_title: "الامتداد المعاصر (1100 هـ - 1447 هـ (1689 - 2026 م))",
+            "52. فضل بن عبد الله بن عمر بن علي الجداوي السلمي الخزرجي الانصاري<br>(942 هـ - 1000 هـ (وثيقة ورثة مؤرخة 1002 هـ))",
+        modern_era_title: "الامتداد المعاصر (1000 هـ - 1447 هـ (1590 - 2026 م))",
         modern_era_lineage: "سلسلة الأجداد المتأخرين (20 جيلاً)",
         modern_era_detail:
             "وفقاً للتوثيق العائلي: الفاصل بين الجد المؤسس (ع. 51) والجيل الحالي هو 22 اسماً. تم ذكر (فضل وسالم) أعلاه، ويتبقى 20 جيلاً يمثلون الامتداد الزمني حتى عصرنا الحاضر.",
-        modern_era_generation: "الجيل 73: (الجيل الحالي - 2026م)",
+        modern_era_generation: "",
 
         // --- FIGURES TAB (The 4 Cards) ---
         figures_intro_title: "من مقدمة كتاب \"الأنصار في وادي الشاطئ\"",
@@ -118,14 +118,15 @@ window.FamilyTreeData = {
         fig_4_desc: "عالم زاهد نشر العلم في الجنوب.",
         fig_4_loc: "📍 دفين الصحراء (قرب الكفرة)",
 
-        // --- FADL BRANCHES (The 7 Cards) ---
-        branch_1_title: "(1) أولاد سالم بن يوسف",
-        branch_1_subtitle: "آقار (العائلات الخمس)",
+        // --- FADL BRANCHES (5 Cards) ---
+        branch_1_title: "(1) ابناء محمد بن فضل بن عبد الله",
+        branch_1_subtitle: "",
         branch_1_desc: `
             <div class="sub-group">
-                <h4>البطون الخمسة (الجيل 53-54):</h4>
+                <h4>(1-1) أولاد سالم بن يوسف — آقار (العائلات الخمس)</h4>
+                <p><strong>البطون الخمسة (الجيل 53-54):</strong></p>
                 <ul>
-                    <li><strong>السوالم</strong> — القرن الحادي عشر الهجري</li>
+                    <li>السوالم — القرن الحادي عشر الهجري</li>
                     <li>الكداوي — القرن الحادي عشر الهجري</li>
                     <li>العلاوي — القرن الحادي عشر الهجري</li>
                     <li>البكور — القرن الحادي عشر الهجري</li>
@@ -135,57 +136,48 @@ window.FamilyTreeData = {
             <div class="sub-group" style="margin-top:8px; text-align:center; font-size:0.9rem; font-weight:700; color:#b91c1c;">
                 ⬇️ يليهم 20 جيلاً وصولاً إليك (الجيل 73)
             </div>
-        `,
-
-        branch_2_title: "(2) ابناء الاجواد",
-        branch_2_subtitle: "زاوية براك",
-        branch_2_desc: `
-            <div class="sub-group">
-                <h4>ابناء الاجواد بالزاويه براك</h4>
+            <div class="sub-group" style="margin-top:12px;">
+                <h4>(2-1) ابناء الاجواد بالزاويه براك</h4>
             </div>
         `,
 
-        branch_3_title: "(3) أولاد أبوبكر بن إسماعيل",
-        branch_3_subtitle: "أشكدة",
-        branch_3_desc: `
+        branch_2_title: "(2) ابناء ابولقاسم بن فضل بن عبد الله",
+        branch_2_subtitle: "",
+        branch_2_desc: `
             <div class="sub-group">
-                <h4>أولاد الفقيه إسماعيل:</h4>
+                <h4>(2_1) أولاد أبوبكر بن إسماعيل — أشكدة</h4>
+                <p><strong>أ) أولاد الفقيه إسماعيل — القرن الحادي عشر الهجري:</strong></p>
                 <ul>
-                    <li>أولاد حمد — القرن الحادي عشر الهجري</li>
-                    <li>أولاد محمد</li>
-                    <li>أولاد طاهر</li>
+                    <li>1 — أولاد حمد: ابناء الفتحي (الشيباني والبركولي) وابناء المجذوب</li>
+                    <li>2 — أولاد محمد: ابناء ابولقاسم (الكابو والصول) وابناء الحبيب (الطاهر والحبيب)</li>
+                    <li>3 — أولاد طاهر: (ابناء ابولضياف وابناء إبراهيم الزروق وابناء احمد الزروق)</li>
                 </ul>
             </div>
             <div class="sub-group">
-                <h4>أولاد قاسم:</h4>
+                <p><strong>ب) أولاد قاسم:</strong></p>
                 <ul>
-                    <li>أولاد نور الدين — القرن الحادي عشر الهجري</li>
+                    <li>أولاد عبد الصمد (بيت نور الدين)</li>
                     <li>أولاد الحاج إبراهيم (بيت فضل)</li>
                 </ul>
             </div>
             <div class="sub-group">
-                <h4>أولاد محمد:</h4>
+                <p><strong>ج) أولاد محمد (بالحاج) — القرن الحادي عشر الهجري:</strong></p>
                 <ul>
-                    <li>أولاد الرشيد — القرن الحادي عشر الهجري</li>
+                    <li>أولاد الرشيد</li>
                 </ul>
             </div>
-        `,
-
-        branch_4_title: "(4) أولاد بلقاسم بن إسماعيل",
-        branch_4_subtitle: "دبدب",
-        branch_4_desc: `
-            <div class="sub-group">
-                <h4>الفروع (الجيل 53):</h4>
+            <div class="sub-group" style="margin-top:12px;">
+                <h4>(2_2) أولاد بلقاسم بن إسماعيل</h4>
+                <p><strong>الفروع (الجيل 53):</strong></p>
                 <ul>
-                    <li>أولاد الأخضري — القرن الحادي عشر الهجري</li>
                     <li>أولاد يوسف — القرن الحادي عشر الهجري</li>
                 </ul>
             </div>
         `,
 
-        branch_5_title: "(5) أولاد قاسم",
-        branch_5_subtitle: "زاوية براك",
-        branch_5_desc: `
+        branch_3_title: "(3) أولاد قاسم بن فضل بن عبدالله",
+        branch_3_subtitle: "زاوية براك",
+        branch_3_desc: `
             <div class="sub-group">
                 <h4>اللقب:</h4>
                 <ul>
@@ -194,9 +186,9 @@ window.FamilyTreeData = {
             </div>
         `,
 
-        branch_6_title: "(6) العثامنة",
-        branch_6_subtitle: "زاوية براك",
-        branch_6_desc: `
+        branch_4_title: "(تانيا) العثامنة",
+        branch_4_subtitle: "زاوية براك",
+        branch_4_desc: `
             <div class="sub-group">
                 <h4>الفروع:</h4>
                 <ul>
@@ -205,9 +197,9 @@ window.FamilyTreeData = {
             </div>
         `,
 
-        branch_7_title: "(7) أولاد عبد الواحد",
-        branch_7_subtitle: "زاوية براك",
-        branch_7_desc: `
+        branch_5_title: "(تالثا) أولاد عبد الواحد",
+        branch_5_subtitle: "زاوية براك",
+        branch_5_desc: `
             <div class="sub-group">
                 <h4>الفروع:</h4>
                 <ul>

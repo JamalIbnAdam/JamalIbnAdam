@@ -24,6 +24,11 @@
     }
 }
 
+/* Hide empty concluding generation line (e.g. when Arabic omits it) */
+[data-i18n="modern_era_generation"]:empty {
+    display: none;
+}
+
 /* Custom CSS from index.html style block */
 @layer base {
     :root {
