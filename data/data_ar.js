@@ -297,6 +297,11 @@ window.FamilyTreeData = {
         lang_en: "🇺🇸 English",
 
         // Evidence tree (tree/tree.js). Person names and document text stay in Arabic.
+        tab_evidence: "شجرة الأدلة",
+        tree_cta: "شجرة الأدلة: كل اسم مربوط بوثيقته الأصلية ←",
+        tree_branch_link: "عرض هذا الفرع بالوثائق",
+        tree_page_title: "أحفاد عبد الله سبال العين الجدّاوي الأنصاري — شجرة الأدلة",
+        tree_back_home: "→ العودة إلى السجل الذهبي",
         tree_title: "شجرة آل سبال العين بالوثائق",
         tree_intro: "كل اسم في الشجرة يفتح الوثائق التي ذكرته، وشكل الحلقة يبيّن قوة الدليل على صلته بأبيه.",
         tree_aria: "شجرة آل سبال العين",
