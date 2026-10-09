@@ -103,16 +103,15 @@ $('home-theme').addEventListener('click', () => {
 });
 
 /* ---------- the three numbers, computed from the data ---------- */
+// data/stats.json is generated from tree.json and docs.json by scripts/build-stats.mjs
 function loadNumbers() {
-    Promise.all(['data/tree.json', 'data/docs.json'].map((url) => fetch(url).then((r) => (r.ok ? r.json() : Promise.reject(new Error(`${url}: HTTP ${r.status}`))))))
-        .then(([tree, docs]) => {
-            const persons = (Array.isArray(tree) ? tree : tree.persons || []).filter((p) => !p.placeholder);
-            const dated = docs.map((d) => Number(d.date_hijri)).filter((n) => Number.isFinite(n) && n > 0);
-            $('home-st-persons').textContent = persons.length;
-            $('home-st-docs').textContent = docs.length;
-            if (dated.length) $('home-st-oldest').textContent = `${Math.min(...dated)}${t('tree_ah') === 'tree_ah' ? 'هـ' : t('tree_ah')}`;
+    fetch('data/stats.json').then((r) => (r.ok ? r.json() : Promise.reject(new Error(`stats.json: HTTP ${r.status}`))))
+        .then((stats) => {
+            $('home-st-persons').textContent = stats.names;
+            $('home-st-docs').textContent = stats.documents;
+            if (stats.oldest_hijri) $('home-st-oldest').textContent = `${stats.oldest_hijri}${t('tree_ah') === 'tree_ah' ? 'هـ' : t('tree_ah')}`;
         })
-        .catch((error) => console.warn('Unable to compute the numbers', error));
+        .catch((error) => console.warn('Unable to load the numbers', error));
 }
 
 /* ---------- search: the tree page does the searching ---------- */
@@ -163,14 +162,14 @@ function renderSources() {
     });
     // a PDF is offered only when its licence allows it; otherwise the link goes to where the book is legally hosted
     const link = (b) => (b.pdf && (b.license === 'public-domain' || b.license === 'permission')
-        ? ` <a href="${esc(b.pdf)}" style="font-size: 12px; color: var(--h-gold);">${esc(t('home_src_download'))}</a>`
-        : b.url ? ` <a href="${esc(b.url)}" target="_blank" rel="noopener" style="font-size: 12px; color: var(--h-gold);">${esc(t('home_src_open'))}</a>` : '');
+        ? `<a href="${esc(b.pdf)}" style="font-size: 12px; color: var(--h-gold);">${esc(t('home_src_download'))}</a>`
+        : b.url ? `<a href="${esc(b.url)}" target="_blank" rel="noopener" style="font-size: 12px; color: var(--h-gold);">${esc(t('home_src_open'))}</a>` : '');
     $('home-sources').innerHTML = groups.map((g) => `<div style="flex: 1 1 340px; min-width: 0;">
 <h3 style="margin: 0 0 14px; padding-bottom: 10px; border-bottom: 1px solid var(--h-hair); font-family: 'Amiri', serif; font-size: 22px; color: var(--h-gold);">${esc(g.title)}</h3>
 <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px;">
 ${g.items.map((b) => `<li style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-size: 15px;">
 <span style="flex: 1 1 220px; color: var(--h-ink);">${esc((english && b.title_en) || b.title_ar)}</span>
-<span style="font-size: 12px; color: var(--h-ink2);">${esc(t('home_how_' + b.how))}${link(b)}</span>
+${link(b)}
 ${(english && b.note_en) || b.note_ar ? `<p style="flex: 1 1 100%; margin: 6px 0 0; padding: 14px 16px; border-radius: 12px; border: 1px solid var(--h-hair); font-size: 14px; line-height: 1.9; color: var(--h-ink2);">${esc((english && b.note_en) || b.note_ar)}</p>` : ''}
 </li>`).join('\n')}
 </ul>
