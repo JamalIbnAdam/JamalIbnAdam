@@ -1,4 +1,4 @@
-const CACHE_NAME = 'jamalibnadam-v4';
+const CACHE_NAME = 'jamalibnadam-v5';
 // document scans are not precached: each one is cached the first time it is viewed
 const EVIDENCE_CACHE = 'jamalibnadam-evidence';
 const EVIDENCE_PATH = '/assets/evidence/';
@@ -16,11 +16,16 @@ const ASSETS_TO_CACHE = [
     './data/data_es.js',
     './data/data_pl.js',
     './data/data_tr.js',
-    './tree/tree.css',
-    './tree/tree.js',
-    './assets/vendor/d3.v7.9.0.min.js',
-    './data/tree.json',
-    './data/docs.json'
+    './tree/'
+];
+// the evidence tree's own files are fetched only by /tree/: cached there on first use, never from the home page
+const TREE_RUNTIME = [
+    '/tree/tree.css',
+    '/tree/tree.js',
+    '/tree/page.js',
+    '/assets/vendor/d3.v7.9.0.min.js',
+    '/data/tree.json',
+    '/data/docs.json'
 ];
 
 self.addEventListener('install', (event) => {
@@ -67,10 +72,29 @@ function evidenceCacheFirst(request) {
     });
 }
 
+function treeCacheFirst(request) {
+    return caches.open(CACHE_NAME).then((cache) => {
+        return cache.match(request).then((cached) => {
+            if (cached) return cached;
+            return fetch(request).then((response) => {
+                if (response.ok) cache.put(request, response.clone());
+                return response;
+            });
+        });
+    });
+}
+
 self.addEventListener('fetch', (event) => {
-    if (event.request.method === 'GET' && new URL(event.request.url).pathname.includes(EVIDENCE_PATH)) {
-        event.respondWith(evidenceCacheFirst(event.request));
-        return;
+    const url = new URL(event.request.url);
+    if (event.request.method === 'GET' && url.origin === self.location.origin) {
+        if (url.pathname.includes(EVIDENCE_PATH)) {
+            event.respondWith(evidenceCacheFirst(event.request));
+            return;
+        }
+        if (!url.search && TREE_RUNTIME.some((path) => url.pathname.endsWith(path))) {
+            event.respondWith(treeCacheFirst(event.request));
+            return;
+        }
     }
     event.respondWith(
         caches.match(event.request)
