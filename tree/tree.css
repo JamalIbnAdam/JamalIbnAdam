@@ -1,5 +1,5 @@
-/* Evidence-based family tree (#ftree). Ported from the tree-v2 prototype.
-   Every rule is scoped to .ftree, .ft-panel or .ft-lightbox so nothing leaks into the other tabs.
+/* Evidence-based family tree (#ftree) on the dedicated page /tree/. Ported from the tree-v2 prototype.
+   Every rule is scoped to the tree's own classes; the header reuses the site's styles.css.
    A dark trunk carries the plaques of the documented root (علي → عمر → عبد الله); above the medallion
    the descendants fan out on generation rings. Evidence opens in a side panel (bottom sheet on phones). */
 .ftree, .ft-panel, .ft-lightbox {
@@ -27,7 +27,10 @@
 .ftree button, .ftree input, .ft-panel button { font: inherit; color: inherit; }
 .ftree :focus-visible, .ft-panel :focus-visible { outline: 2px solid var(--ft-accent); outline-offset: 2px; }
 
-.ftree { position: relative; margin-block: 40px 24px; }
+.ft-main { width: 100%; padding: 8px 16px 48px; }
+.ft-home { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.ft-home:hover { color: #fde68a; }
+.ftree { position: relative; margin-block: 24px; }
 @media (min-width: 1100px) {
   /* break out of the 5xl text column: the fan needs the width */
   .ftree { width: min(1360px, 100vw - 48px); margin-inline: calc(50% - min(680px, 50vw - 24px)); }
@@ -88,6 +91,7 @@
 .ft-floats > h3 { margin: 0; font-family: var(--ft-f-callig); font-weight: 700; font-size: 1.5rem; line-height: 1.5; text-align: center; }
 .ft-floats > p { margin: 0 0 12px; color: var(--ft-muted); font-size: .88rem; text-align: center; }
 .ft-fcards { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-end; gap: 14px 34px; }
+.ft-fcard.hit { outline: 2px solid var(--ft-accent); outline-offset: 8px; border-radius: 10px; }
 .ft-fcard { margin: 0; display: grid; justify-items: center; gap: 4px; max-width: 100%; }
 .ft-fcard svg { display: block; max-width: 100%; height: auto; overflow: visible; }
 .ft-fcard figcaption { font-size: .8rem; font-weight: 600; color: var(--ft-muted); text-align: center; max-width: 260px; }
@@ -235,8 +239,7 @@
   .ft-zoom { top: 8px; right: 8px; }
   .ft-zoom button { width: 34px; height: 32px; }
   .ft-credits { font-size: .72rem; }
-  /* bottom sheet: tree.js moves the panel to <body> on phones, because #view-tree keeps a transform
-     from its fade-up animation and would otherwise capture position:fixed */
+  /* bottom sheet: tree.js moves the panel to <body> on phones */
   .ft-panel { position: fixed; top: auto; left: 0; right: 0; bottom: 0; width: auto; max-height: 60%; z-index: 9000; border-inline-start: 0; border-top: 1px solid var(--ft-line); border-radius: 16px 16px 0 0; transform: translateY(104%); opacity: 1; transition: transform .28s ease; padding-bottom: env(safe-area-inset-bottom, 0px); }
   .ft-panel.open { transform: none; }
   .ft-panel .ph { padding: 6px 16px 8px; flex-wrap: wrap; }

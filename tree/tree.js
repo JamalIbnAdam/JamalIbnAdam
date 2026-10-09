@@ -1,4 +1,4 @@
-/* Evidence-based family tree for #view-tree. Ported from the tree-v2 prototype (d3 v7.9.0).
+/* Evidence-based family tree for the dedicated page /tree/. Ported from the tree-v2 prototype (d3 v7.9.0).
    Data: data/tree.json (persons) and data/docs.json (one record per document on a scanned page).
    UI strings: the tree_* keys in data/data_<lang>.js. Person names and document text stay in Arabic. */
 (() => {
@@ -8,6 +8,9 @@ const $ = id => document.getElementById(id);
 const host = $('ftree');
 if (!host || !window.d3) return;
 const d3 = window.d3;
+// this file lives in /tree/, the data and the scans at the site root
+const SITE_ROOT = new URL('../', document.currentScript.src).href;
+const asset = path => /^(?:[a-z]+:|\/)/i.test(path) ? path : SITE_ROOT + path;
 
 /* ---------- presentation config (not data) ---------- */
 const CONFIG = {
@@ -17,7 +20,15 @@ const CONFIG = {
   posterAli: 'الخزرجي الأنصاري',                 // extra words on the 1987 root plaque, not found in any document
   fanDeg: 250,
   reading1987: { boxes: [{ id: 'r87_fadl', label: 'فضل' }, { id: 'r87_hm', label: 'الحاج محمد' }] },
-  verse: ['رب هب لي من لدنك', 'ذرية طيبة', 'إنك سميع الدعاء']
+  verse: ['رب هب لي من لدنك', 'ذرية طيبة', 'إنك سميع الدعاء'],
+  // deep links from the home page's branch cards: /tree/#/b/<key>
+  branches: {
+    muhammad: { root: 'm3' },
+    belqasim: { root: 'b3' },
+    qasim: { root: 'q3' },
+    uthamna: { floats: ['ath_m', 'a_aqd_father_uthman'] },
+    abdulwahid: { floats: ['yahmad'] }
+  }
 };
 const SLOT = { med: 0, hm: 150, fd: 238, umar: 336, tulip: 462, ali: 604, note: 702 };
 const MED_R = 74;
@@ -388,6 +399,7 @@ function draw() {
   fitLabels();
   drawLegend();
   if (selected) { nodeEls.get(selected)?.g.classList.add('sel'); spineEls.get(selected)?.classList.add('sel'); }
+  markBranch();
   $('ft-zin').setAttribute('aria-label', t('tree_zoom_in')); $('ft-zin').title = t('tree_zoom_in');
   $('ft-zout').setAttribute('aria-label', t('tree_zoom_out')); $('ft-zout').title = t('tree_zoom_out');
   $('ft-zfit').setAttribute('aria-label', t('tree_zoom_fit')); $('ft-zfit').title = t('tree_zoom_fit');
@@ -555,6 +567,32 @@ $('ft-zout').onclick = () => svg.transition().duration(reduced ? 0 : 250).call(z
 $('ft-zfit').onclick = () => fit();
 $('ft-goFloat').onclick = () => floats.scrollIntoView({ block: 'start', behavior: reduced ? 'auto' : 'smooth' });
 
+/* ---------- deep links: #/b/<key> opens the page centred on that branch ---------- */
+let branchKey = null;      // the branch a deep link is showing; its marker survives redraws
+function markBranch() {
+  host.querySelectorAll('.ft-fcard.hit, .node.hit').forEach(e => e.classList.remove('hit'));
+  const b = CONFIG.branches[branchKey]; if (!b) return [];
+  if (b.floats) { const cards = b.floats.map(id => nodeEls.get(id)?.g.closest('.ft-fcard')).filter(Boolean); cards.forEach(c => c.classList.add('hit')); return cards; }
+  const n = nodeEls.get(b.root); if (n) n.g.classList.add('hit');
+  return n ? [n.g] : [];
+}
+function focusBranch(key, ms = 700) {
+  const b = CONFIG.branches[key]; if (!b) return false;
+  branchKey = key;
+  const marked = markBranch(); if (!marked.length) return false;
+  if (b.floats) { marked[0].scrollIntoView({ block: 'center', behavior: reduced || !ms ? 'auto' : 'smooth' }); return true; }
+  if (!visible()) return false;
+  let x0 = Infinity, x1 = -Infinity, y0 = Infinity, y1 = -Infinity;
+  (function walk(id) { const f = fan.get(id); if (!f) return; x0 = Math.min(x0, f.x - f.nr); x1 = Math.max(x1, f.x + f.nr); y0 = Math.min(y0, f.y - f.nr); y1 = Math.max(y1, f.y + f.nr); kids.get(id).forEach(walk); })(b.root);
+  stage.scrollIntoView({ block: 'center', behavior: 'auto' });
+  const v = viewRect(), pad = isMobile() ? 34 : 80;
+  const k = Math.min(1.6, (v.w - pad * 2) / (x1 - x0), (v.h - pad * 2) / (y1 - y0));
+  go(d3.zoomIdentity.translate(v.x + v.w / 2 - k * (x0 + x1) / 2, v.y + v.h / 2 - k * (y0 + y1) / 2).scale(k), ms);
+  return true;
+}
+function onHash() { const m = /^#\/b\/([\w-]+)$/.exec(location.hash); return m ? focusBranch(m[1]) : false; }
+window.addEventListener('hashchange', onHash);
+
 /* ---------- 1987 toggle ---------- */
 t87.addEventListener('change', () => {
   treeEl.classList.toggle('show87', t87.checked);
@@ -568,7 +606,7 @@ const level = c => { const s = String(c || ''); return s.startsWith('عالية'
 const dotsHtml = (c, title) => { const n = level(c); return c ? `<span class="conf c${n}" title="${esc(title)}">${n ? [1, 2, 3].map(i => `<i class="${i <= n ? 'on' : ''}"></i>`).join('') : ''} ${esc(c)}</span>` : ''; };
 const pageTxt = pg => pg == null || pg === '' ? '' : (typeof pg === 'number' || /^\d+$/.test(String(pg)) ? t('tree_page_book', { n: pg }) : String(pg));
 const imgHtml = (src, page) => src
-  ? `<button type="button" class="img has" data-img="${esc(src)}" aria-label="${esc(t('tree_img_zoom'))}"><img src="${esc(src)}" alt="${esc(t('tree_img_alt'))} ${esc(pageTxt(page))}" loading="lazy" decoding="async"></button>`
+  ? `<button type="button" class="img has" data-img="${esc(asset(src))}" aria-label="${esc(t('tree_img_zoom'))}"><img src="${esc(asset(src))}" alt="${esc(t('tree_img_alt'))} ${esc(pageTxt(page))}" loading="lazy" decoding="async"></button>`
   : '';
 // mandatory credits under every scan: where it was published and which archive file it came from
 function creditHtml(recs) {
@@ -763,7 +801,7 @@ let drawn = false, fitted = false, lastW = 0, lastH = 0;
 function render() {
   if (!hasStrings()) return;
   draw(); drawn = true;
-  if (!fitted && visible()) { fit(0); fitted = true; lastW = stage.clientWidth; lastH = stage.clientHeight; }
+  if (!fitted && visible()) { fit(0); fitted = true; lastW = stage.clientWidth; lastH = stage.clientHeight; requestAnimationFrame(onHash); }
   if (selected && panel.classList.contains('open')) openPerson(selected, { center: false });
 }
 render();
@@ -784,16 +822,18 @@ new ResizeObserver(() => {
     if (!drawn) return;
     const W = stage.clientWidth, H = stage.clientHeight;
     if (fitted && W === lastW && H === lastH) return;
+    const first = !fitted;
     lastW = W; lastH = H; fitted = true; fit(0);
+    if (first) requestAnimationFrame(onHash);
   }, 150);
 }).observe(stage);
 
-window.__ftree = { openPerson, centerOn, fit, fan, count: () => new Set([...host.querySelectorAll('.ft-svg [data-id]')].map(e => e.dataset.id).filter(id => !id.startsWith('r87_'))).size };
+window.__ftree = { openPerson, centerOn, fit, fan, focusBranch, count: () => new Set([...host.querySelectorAll('.ft-svg [data-id]')].map(e => e.dataset.id).filter(id => !id.startsWith('r87_'))).size };
 }
 
 /* ---------- load ---------- */
 const getJSON = url => fetch(url).then(r => { if (!r.ok) throw new Error(`${url}: HTTP ${r.status}`); return r.json(); });
-Promise.all([getJSON('data/tree.json'), getJSON('data/docs.json')])
+Promise.all([getJSON(asset('data/tree.json')), getJSON(asset('data/docs.json'))])
   .then(([tree, docs]) => init(Array.isArray(tree) ? tree : (tree.persons || []), Array.isArray(docs) ? docs : []))
   .catch(err => {
     console.error('Family tree failed to load', err);
