@@ -133,9 +133,6 @@ window.FamilyTreeData = {
                     <li>الوسفى — القرن الحادي عشر الهجري</li>
                 </ul>
             </div>
-            <div class="sub-group" style="margin-top:8px; text-align:center; font-size:0.9rem; font-weight:700; color:#b91c1c;">
-                ⬇️ يليهم 20 جيلاً وصولاً إليك (الجيل 73)
-            </div>
             <div class="sub-group" style="margin-top:12px;">
                 <h4>(2-1) ابناء الاجواد بالزاويه براك</h4>
             </div>
@@ -364,7 +361,7 @@ window.FamilyTreeData = {
         home_nav_library: "المكتبة",
         home_nav_poem: "الملحمة",
         home_nav_author: "المؤلف",
-        home_nav_sources: "المصادر",
+        home_nav_sources: "المراجع",
         home_nav_home: "الرئيسية",
         home_h1: "أحفاد عبد الله سبال العين",
         home_lede: "نسب قبيلة الأنصار في وادي الشاطئ بفزان: لُحمات تجتمع في زاوية براك وآقار وأشكدة ودبدب، وأصلها عبد الله سبال العين. كل اسم في الشجرة مربوط بوثيقته إن وُجدت، أو برواية بعض أعيان وشيوخ القبيلة إن لم توجد بعد.",
@@ -406,14 +403,9 @@ window.FamilyTreeData = {
         home_deed_credit: "أرسل صورتها د. محمد عبد القادر الشيخ الأنصاري.",
         home_deed_link: "اقرأ النص والشرح",
         home_houses_h: "بيوت الأسرة",
-        home_src_p: "الكتب التي قُرئت أو بُحث فيها لبناء هذه الشجرة، وما زال البحث مستمراً. «قُرئ كاملاً» يعني قراءة صفحة صفحة؛ «بُحث فيه» يعني بحثاً في النص الكامل عن الأسماء والألقاب.",
-        home_how_read: "قُرئ كاملاً",
-        home_how_searched: "بُحث فيه",
-        home_how_pages: "صفحات محددة",
-        home_how_via: "عبر كتاب د. محمد",
-        home_how_partial: "قُرئ جزئياً",
         home_src_download: "تنزيل PDF",
         home_src_open: "فتح المصدر",
+        home_src_h: "المراجع المستخدمة في البحث",
         home_more_h: "في الموقع أيضاً",
         home_more_1_t: "أعلام الأنصار في ليبيا",
         home_more_1_d: "صحابة وأولياء من الأنصار دُفنوا في ليبيا، من رويفع بن ثابت إلى أبي عجيلة.",

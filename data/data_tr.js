@@ -276,7 +276,7 @@ window.FamilyTreeData = {
         home_nav_library: "Library", // TODO translate
         home_nav_poem: "The epic", // TODO translate
         home_nav_author: "The author", // TODO translate
-        home_nav_sources: "Sources", // TODO translate
+        home_nav_sources: "References", // TODO translate
         home_nav_home: "Home", // TODO translate
         home_h1: "Descendants of Abdullah Sabal Al-Ain", // TODO translate
         home_lede: "The lineage of the Ansar tribe of Wadi al-Shati in Fezzan: lineages that meet in Zawiyat Brak, Aqar, Ishkeda and Dabdab, and go back to Abdullah Sabal Al-Ain. Every name in the tree is tied to its document where one exists, or to the oral account of some of the tribe's notables and elders where one does not exist yet.", // TODO translate
@@ -318,14 +318,9 @@ window.FamilyTreeData = {
         home_deed_credit: "Its image was sent by Dr. Muhammad Abd al-Qadir al-Shaykh al-Ansari.", // TODO translate
         home_deed_link: "Read the text and the explanation", // TODO translate
         home_houses_h: "The houses of the family", // TODO translate
-        home_src_p: "The books that were read or searched to build this tree; the research continues. “Read in full” means read page by page; “Searched” means a search of the full text for the names and epithets.", // TODO translate
-        home_how_read: "Read in full", // TODO translate
-        home_how_searched: "Searched", // TODO translate
-        home_how_pages: "Specific pages", // TODO translate
-        home_how_via: "Via Dr. Muhammad's book", // TODO translate
-        home_how_partial: "Read in part", // TODO translate
         home_src_download: "Download PDF", // TODO translate
         home_src_open: "Open the source", // TODO translate
+        home_src_h: "References used in the research", // TODO translate
         home_more_h: "Also on this site", // TODO translate
         home_more_1_t: "Ansar figures in Libya", // TODO translate
         home_more_1_d: "Companions and saints of the Ansar buried in Libya, from Ruwayfi ibn Thabit to Abu Ajila.", // TODO translate
