@@ -208,59 +208,99 @@ window.FamilyTreeData = {
 
         // Evidence tree (tree/tree.js). Person names and document text stay in Arabic.
         // TODO translate: the strings below are English placeholders.
-        tab_evidence: "Evidence tree", // TODO translate
+        tab_evidence: "📜 Evidence tree", // TODO translate
         tree_cta: "Evidence tree: every name linked to its original document →", // TODO translate
         tree_branch_link: "View this branch with its documents", // TODO translate
         tree_page_title: "Descendants of Abdullah Sabal Al-Ain Al-Jaddawi Al-Ansari — the evidence tree", // TODO translate
         tree_back_home: "← Back to the Golden Record", // TODO translate
-        tree_title: "The Al-Sabal Al-Ain family tree, document by document", // TODO translate
-        tree_intro: "Every name opens the documents that mention it, and the style of its ring shows how strong the evidence is for the link to the father.", // TODO translate
+        tree_h1: "The Golden Record of Al-Sabal Al-Ain", // TODO translate
+        tree_tagline: "Every name here is tied to its document", // TODO translate
+        tree_stat_persons: "names entered so far", // TODO translate
+        tree_stat_docs: "documents published so far", // TODO translate
+        tree_stat_oldest: "oldest dated document", // TODO translate
+        tree_theme: "Switch theme: dark / light", // TODO translate
+        tree_show_all: "Show the whole tree", // TODO translate
+        tree_fold_all: "Fold the branches", // TODO translate
+        tree_expand_n: "Show {n} descendants of {name}", // TODO translate
+        tree_fullscreen: "Full screen", // TODO translate
+        tree_rotate_hint: "Turn the phone sideways for a wider view", // TODO translate
+        tree_hidden_name: "A member of the family", // TODO translate
+        tree_docs_1: "📄 1 document", // TODO translate
+        tree_docs_2: "📄 2 documents", // TODO translate
+        tree_docs_few: "📄 {n} documents", // TODO translate
+        tree_docs_many: "📄 {n} documents", // TODO translate
+        tree_link_maybe: "Indication from the documents", // TODO translate
+        tree_link_trad: "Oral account of tribal elders", // TODO translate
+        tree_legend_ok: "📄 Documents", // TODO translate
+        tree_explain_ok: "A document names him with his father", // TODO translate
+        tree_explain_maybe: "A strong indication, without explicit text", // TODO translate
+        tree_explain_trad: "No document yet", // TODO translate
+        tree_legend_say: "A solid line means a document names the person together with his father. Any family that holds a document can send it so that its branch is documented.", // TODO translate
+        tree_unknown_chain: "Ancestors whose names are not known — an estimated {n}", // TODO translate
+        tree_unknown_range: "(between {min} and {max})", // TODO translate
+        tree_unknown_basis: "An ancestor whose name is not yet known.", // TODO translate
+        tree_chain_btn: "Show my chain to Abdullah Sabal Al-Ain", // TODO translate
+        tree_chain_title: "My lineage chain, with its evidence", // TODO translate
+        tree_chain_n: "{n} generations", // TODO translate
+        tree_chain_ok: "{n} of them documented", // TODO translate
+        tree_chain_maybe: "{n} by indication from the documents", // TODO translate
+        tree_chain_trad: "{n} by oral account of tribal elders", // TODO translate
+        tree_open_doc: "Open the document", // TODO translate
+        tree_img_unpublished: "The image of this document has not been published yet", // TODO translate
+        tree_have_image: "Do you have its image?", // TODO translate
+        tree_have_image_msg: "I have an image of a document concerning {name}: {ref}", // TODO translate
+        tree_add_children: "Add this person's children", // TODO translate
+        tree_add_where: "The new names will be attached here:", // TODO translate
+        tree_add_msg: "I would like to add the children of {name} (id: {id}). His chain: {chain}. Children's names: … My relation: … Contact: …", // TODO translate
+        tree_add_send: "Send the names", // TODO translate
+        tree_add_soon: "The sending form will open here soon.", // TODO translate
+        tree_add_moderation: "Nothing is published automatically: the names are checked first, then added to the tree.", // TODO translate
+        tree_needs_image: "Needs a clearer image", // TODO translate
+        tree_mark_unclear: "uncertain reading", // TODO translate
+        tree_mark_illegible: "illegible", // TODO translate
+        tree_mark_torn: "torn", // TODO translate
+        tree_prev_doc: "Previous document", // TODO translate
+        tree_next_doc: "Next document", // TODO translate
+        tree_fit_image: "Fit the image", // TODO translate
+        tree_rotate: "Rotate the image", // TODO translate
+        tree_sheet_handle: "Resize the text sheet", // TODO translate
+        tree_link_trad_short: "Oral account of tribal elders", // TODO translate
+        tree_stat_note: "This is the beginning of the collection, not its end. The tribe has far more names and documents than these; we add every name and every document once it arrives and has been verified.", // TODO translate
+        tree_base_line: "The tree of the Ansar in Wadi al-Shati, Fezzan, Libya", // TODO translate
         tree_aria: "Al-Sabal Al-Ain family tree", // TODO translate
         tree_search_placeholder: "Search for a name…", // TODO translate
         tree_search_empty: "No matching name", // TODO translate
-        tree_toggle_1987: "Show the 1987 tree reading (unproven)", // TODO translate
+        tree_toggle_1987: "Show the 1987 tree reading", // TODO translate
         tree_btn_float: "Branches not yet linked by a document", // TODO translate
         tree_float_sub: "The head of each branch here has no father named in the available documents", // TODO translate
         tree_zoom_in: "Zoom in", // TODO translate
         tree_zoom_out: "Zoom out", // TODO translate
         tree_zoom_fit: "Show the whole tree", // TODO translate
-        tree_legend_title: "Strength of the evidence for the link to the father", // TODO translate
-        tree_status_ok: "Proven", // TODO translate
-        tree_status_maybe: "Probable", // TODO translate
-        tree_status_author: "From the author's tree only", // TODO translate
-        tree_link_strong: "Strongly probable", // TODO translate
         tree_legend_hint: "Drag to move; zoom with Ctrl + wheel or with two fingers", // TODO translate
         tree_above_ali: "Above Ali: no document yet", // TODO translate
         tree_gen: "Generation {n}", // TODO translate
         tree_gen_unknown: "Generation not determined", // TODO translate
         tree_gen_zero: "Generation 0 (above Abdullah)", // TODO translate
         tree_gen_top: "Generation {n} (top of the chain)", // TODO translate
-        tree_branch: "Branch {n}", // TODO translate
         tree_poster_only: "In the 1987 poster only: “{x}”", // TODO translate
         tree_poster_title: "In the 1987 poster", // TODO translate
         tree_poster_note: "The lowest plaque on the poster reads “{name} {x}”. The last two attributions do not appear with him in any document.", // TODO translate
         tree_r87_callout_1: "The 1987 tree reading, later covered over.", // TODO translate
         tree_r87_callout_2: "No document places Fadl and al-Hajj Muhammad", // TODO translate
         tree_r87_callout_3: "between Umar and Abdullah. Tap for details.", // TODO translate
-        tree_r87_aria: "1987 reading, unproven", // TODO translate
+        tree_r87_aria: "1987 tree reading", // TODO translate
         tree_r87_eyebrow: "1987 tree reading · between Umar and Abdullah", // TODO translate
-        tree_r87_status: "Unproven", // TODO translate
         tree_r87_note: "The 1987 tree placed two boxes between Umar and Abdullah: “Fadl”, then “al-Hajj Muhammad”. Both were later covered over. That reading takes the text of the endowment (habs) copy literally. This record takes the endower to be {a4}, so the Fadl and al-Hajj Muhammad named in it are {fadl} and his son {m3}.", // TODO translate
         tree_r87_text: "Text of the endowment deed", // TODO translate
         tree_r87_link: "The link adopted here", // TODO translate
         tree_panel_label: "Documents for this name", // TODO translate
         tree_close: "Close", // TODO translate
-        tree_father: "Father", // TODO translate
         tree_father_none: "Not yet linked by a document", // TODO translate
         tree_earliest: "Earliest document", // TODO translate
         tree_ah: " AH", // TODO translate
         tree_children: "Children", // TODO translate
         tree_docs: "Documents", // TODO translate
-        tree_docs_none: "No document mentions this person. The name comes from the author's tree alone.", // TODO translate
-        tree_docs_mention: "Other documents mentioning this person", // TODO translate
-        tree_name_in_doc: "Name in the document:", // TODO translate
-        tree_doc_above: "The full text and explanation of this page are in its earlier card above.", // TODO translate
-        tree_doc_n: "Document {i} of {n} on this page", // TODO translate
+        tree_docs_none: "No document mentions this person yet.", // TODO translate
         tree_audit: "Verification notes", // TODO translate
         tree_author_version: "The author's version", // TODO translate
         tree_page_book: "p. {n} of the book", // TODO translate
@@ -273,16 +313,14 @@ window.FamilyTreeData = {
         tree_orig_vs_restored: "Original versus restored copy", // TODO translate
         tree_caption_vs_image: "The author's caption versus the image", // TODO translate
         tree_better_image: "Why a better image is needed", // TODO translate
-        tree_img_zoom: "Enlarge the document image", // TODO translate
         tree_img_alt: "Document image", // TODO translate
         tree_source: "Source", // TODO translate
         tree_owner: "Original owned by:", // TODO translate
-        tree_link_to_father: "Link to father: {s}", // TODO translate
-        tree_legend_chip: "Key to symbols", // TODO translate
+        tree_legend_chip: "How to read the tree", // TODO translate
         tree_hint_wheel: "To zoom: Ctrl + wheel", // TODO translate
         tree_hint_touch: "Use two fingers to move the tree", // TODO translate
         tree_load_error: "The tree data could not be loaded. Please reload the page.", // TODO translate
-        tree_credits: "The document images were published in the book by Dr. Muhammad Abd al-Qadir al-Shaykh al-Ansari (2022), from the files of the Libyan Center for Archives and Historical Studies (Chairman of the Board: Prof. Dr. Muhammad al-Tahir al-Jarari). According to the family's account, the documents were gathered from the elders of the Ansar families in Brak and al-Shati, attested by witnesses, and the originals were returned to their owners after being photographed. The originals belong to those families. They are published here with permission, with the source of each document cited." // TODO translate
+        tree_credits: "<p>We kindly ask the owners of the documents published here to send a clear, full-colour photo of each original, so we can verify its reading more precisely. We will add the owner's name and the «Jamal Ibn Adam» site seal to each document. The documents are published here with permission, and each one's source is cited.</p><p>With thanks to our cousins, the descendants of the venerable Shaykh Abdullah Sabal al-Ayn — may God grant him His vast mercy and join us with him in the Gardens of Bliss.</p>" // TODO translate
     },
     nodes: [
         {
@@ -754,7 +792,7 @@ window.FamilyTreeData = {
             src: "Al-Ansar al-Khazraj (Dr. Muhammad Abd al-Qadir, 2022)",
             logic: "Göç belgelerinde babasıyla birlikte anılır; dört kolun atasıdır.",
             story:
-                "Göç ve yerleşim sırasında babasıyla birlikte yolculuk eden oğuldur. Ölümü, 1002 H tarihli karbon testli miras paylaşım belgesine dayanarak yaklaşık 1000 H olarak doğrulanmıştır.",
+                "Göç ve yerleşim sırasında babasıyla birlikte yolculuk eden oğuldur. Ölümü, 1002 H tarihli miras paylaşım belgesine dayanarak yaklaşık 1000 H olarak doğrulanmıştır.",
             doc_img: "wathiqat-bay-brak-1002h-fadl-sabbal-alain.webp",
             doc_title: "Purchase Deed in Brak - 1002 AH",
             doc_desc_key: "doc_1002_desc",

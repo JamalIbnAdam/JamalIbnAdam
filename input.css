@@ -268,3 +268,51 @@ html[dir="rtl"] .gregorian-date {
         margin-bottom: 20px !important;
     }
 }
+
+/* --- PHONE: one sticky bar, one-row tabs (hand-synced into styles.css; see the note there) --- */
+@media (max-width: 767px) {
+
+    /* Tabs: a single row that scrolls sideways instead of a tall list */
+    .nav-tabs-container {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scroll-snap-type: x proximity;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .nav-tabs-container::-webkit-scrollbar {
+        display: none;
+    }
+
+    .nav-tabs-container .nav-btn {
+        flex: none;
+        scroll-snap-align: center;
+    }
+
+    /* `overflow-x: hidden` on body makes body the scroll container for sticky elements, so in some
+       browsers nothing ever sticks; `clip` hides the overflow without doing that (html still hides it). */
+    body {
+        overflow-x: clip;
+    }
+
+    /* Only the period filter bar sticks. The search card dissolves so the bar can stay
+       stuck for the whole timeline instead of only while its card is on screen. */
+    .home-search-card,
+    .home-search-row {
+        display: contents;
+    }
+
+    .home-search {
+        display: block;
+        margin-bottom: 12px;
+    }
+
+    .home-filter-bar {
+        top: 0;
+        z-index: 30;
+        margin-bottom: 24px;
+        border-radius: 12px;
+    }
+}

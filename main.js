@@ -381,6 +381,10 @@ function switchTab(tabId) {
             view.classList.add('animate-fade-up');
             btn.classList.add('active', 'text-white/90');
             btn.classList.remove('text-white/60');
+            // phones: the tabs are one scrolling row, keep the active one in view
+            if (window.matchMedia('(max-width: 767px)').matches) {
+                btn.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
+            }
         } else {
             // Deactivate others
             view.classList.add('hidden');

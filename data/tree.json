@@ -18,7 +18,9 @@
   "status": "محتمل",
   "branch": "الأصل",
   "notes": "يرد في نسخة حبس واحدة غير مؤرخة فقط. لا «السلمي» ولا «الخزرجي» ولا «الأنصاري» معه في أي وثيقة؛ قاعدة شجرة المؤلف (ص221) تكتبه «علي الجداوي الخزرجي الأنصاري». تنبيه تكرار: في شجرة المؤلف «عمر بن علي» متأخر في فرع سالم بن يوسف (ص159)، وسنة نسخ الحبس مجهولة.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "umar",
@@ -63,7 +65,9 @@
   "status": "محتمل",
   "branch": "الأصل",
   "notes": "محتمل قوي. حرفياً الحبس يجعل عمر أبا فضل («فضل بن عمر بن علي»)، ووثيقة 1186 المرمّمة تجعله أبا عبد الله («عبد الله بن عمر الجداوي»). إقحام «عبد الله» في الحبس استنتاج المؤلف.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "abdallah",
@@ -156,7 +160,9 @@
   "status": "محتمل",
   "branch": "الأصل",
   "notes": "«سبال العين» و«الجداوي» لا تجتمعان في وثيقة واحدة. الصلة بعمر محتملة (انظر عمر). ص199: الخط «الشيخ الحاج عبد الله سبال [العين]». ص208 قد تُقرأ «سبال [عين] براك».",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "fadl",
@@ -236,6 +242,15 @@
     "confidence": "منخفضة",
     "image": "assets/evidence/ansar-p158.webp",
     "source": "د. محمد عبد القادر الشيخ الأنصاري، «الأنصار الخزرج في وادي الشاطئ»، المركز الليبي للمحفوظات 2022، ص158"
+   },
+   {
+    "page": "موقع الأسرة",
+    "date": "1002",
+    "quote": "… [لورثة؟] الحاج فضل",
+    "confidence": "متوسطة",
+    "image": "assets/evidence/site-1002.webp",
+    "source": "عقد بيع في براك، 1002هـ (صورة في موقع الأسرة)",
+    "title": "عقد بيع في براك — 1002هـ"
    }
   ],
   "status": "ثابت",
@@ -245,7 +260,9 @@
    "father_per_author": "أبوه عبد الله بن عمر (بإقحام «عبد الله» في نسخة الحبس)",
    "status": "مخالف للوثيقة",
    "basis": "ص168، 215–217: الخط «فضل بن عمر بن علي الجداوي»؛ الرابط فضل←عبد الله ثابت من وثائق أخرى، لكن تعديل نص الحبس مخالف له"
-  }
+  },
+  "living": false,
+  "hidden": false
  },
  {
   "id": "m3",
@@ -322,7 +339,9 @@
   "status": "ثابت",
   "branch": "محمد بن فضل (أصل الفرعين 1 و2)",
   "notes": "المؤلف يضيف ابناً خامساً «دين الله» (وولديه محمد وعثمان) — لا وثيقة.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "f4_fadl_m",
@@ -343,7 +362,9 @@
   "status": "ثابت",
   "branch": "محمد بن فضل — فرع منقطع",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "f5_dawa",
@@ -376,7 +397,9 @@
    "father_per_author": "أبوه فضل بن محمد بن الحاج فضل (لضوة 1069)",
    "status": "محتمل",
    "basis": "ص183: الخط «ضوة ابنة الحاج فضل»؛ وثيقة 1057 تسند المطابقة"
-  }
+  },
+  "living": false,
+  "hidden": false
  },
  {
   "id": "t4_tahir",
@@ -413,7 +436,9 @@
   "status": "ثابت",
   "branch": "محمد بن فضل — فرع منقطع",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "t5_muh",
@@ -442,7 +467,9 @@
   "status": "ثابت",
   "branch": "محمد بن فضل — فرع منقطع",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "t6_belq",
@@ -471,7 +498,9 @@
   "status": "ثابت",
   "branch": "محمد بن فضل — فرع منقطع",
   "notes": "الاسم الأول غير مؤكد في القراءتين.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "ab4",
@@ -540,7 +569,9 @@
   "status": "ثابت",
   "branch": "1 سالم بن يوسف (أقار) — الأصل",
   "notes": "مطابقة «الفقيه أبو بكر» في 1043 به استنتاج (اسم يوسف + أقار).",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "y5_yusuf",
@@ -585,7 +616,9 @@
   "status": "ثابت",
   "branch": "1 سالم بن يوسف (أقار)",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "t5_tahir_ab",
@@ -606,7 +639,9 @@
   "status": "محتمل",
   "branch": "1 سالم بن يوسف (أقار)",
   "notes": "الأب «الفقيه أبو بكر» بلا نسب؛ ربطه بأبي بكر بن محمد بالمطابقة.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "mb5_mabruka",
@@ -627,7 +662,9 @@
   "status": "محتمل",
   "branch": "1 سالم بن يوسف (أقار)",
   "notes": "زوج أحمدوا بن إمجيدة.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "s6_salim",
@@ -672,7 +709,9 @@
   "status": "ثابت",
   "branch": "1 سالم بن يوسف (أقار)",
   "notes": "المؤلف: ولد نحو 1045 من بنت نعسان (رواية).",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "ms7",
@@ -709,7 +748,9 @@
   "status": "ثابت",
   "branch": "1 سالم بن يوسف (أقار)",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "sm8",
@@ -754,7 +795,9 @@
   "status": "ثابت",
   "branch": "1 سالم بن يوسف (أقار)",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "msm9",
@@ -775,7 +818,9 @@
   "status": "ثابت",
   "branch": "1 سالم بن يوسف (أقار)",
   "notes": "تكرار: «محمد بن سالم» آخر في الجيل نفسه (ابن سالم بن أبي بكر).",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "as9",
@@ -804,7 +849,9 @@
   "status": "ثابت",
   "branch": "1 سالم بن يوسف (أقار)",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "fa10",
@@ -833,7 +880,9 @@
   "status": "ثابت",
   "branch": "1 سالم بن يوسف (أقار)",
   "notes": "أبعد جيل موصول بفضل بسلسلة مكتوبة في وثيقة: عشرة أسماء متصلة حتى «عبد الله سبال العين». تدقيق النسخ: التاريخ 1229 (ص161 وقصاصة ص219)، لا 1226.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "abs7",
@@ -878,7 +927,9 @@
   "status": "ثابت",
   "branch": "1 سالم بن يوسف (أقار)",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "sab8",
@@ -907,7 +958,9 @@
   "status": "ثابت",
   "branch": "1 سالم بن يوسف (أقار)",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "ss9",
@@ -936,7 +989,9 @@
   "status": "ثابت",
   "branch": "1 سالم بن يوسف (أقار)",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "msab9",
@@ -965,7 +1020,9 @@
   "status": "ثابت",
   "branch": "1 سالم بن يوسف (أقار)",
   "notes": "تكرار مع محمد بن سالم بن محمد (1186).",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "mab8",
@@ -1002,7 +1059,9 @@
   "status": "محتمل",
   "branch": "1 سالم بن يوسف (أقار)",
   "notes": "الحلقة «بن أبي بكر بن سالم» مقروءة في النسخة المرمّمة فقط. مطابقته بمرحوم 1325 من المؤلف.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "bma9",
@@ -1031,7 +1090,9 @@
   "status": "ثابت",
   "branch": "1 سالم بن يوسف (أقار)",
   "notes": "صلته بمحمد مقروءة؛ موضع محمد نفسه محتمل.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "a_ali_m",
@@ -1068,7 +1129,9 @@
   "status": "محتمل",
   "branch": "1 سالم بن يوسف (أقار)",
   "notes": "الوثيقة «علي بن محمد» فقط؛ «بن أبي بكر بن سالم» من حاشية المؤلف. تأكيد مستقل مطبوع: «المسك والريحان» (ص235) يسوق نسب حفيده «علي بن محمد بن أبي بكر المرابطي الآقاري»، فيوافق حاشية المؤلف في وصل علي بمحمد بن أبي بكر. رُفعت الحالة إلى «محتمل». وثيقة 1186 (قصاصة ص219، النسخة المرمّمة) تكتب «علي بن محمد بن بوبكر بن سالم» صراحة.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "a_umar_ali",
@@ -1080,7 +1143,9 @@
   "status": "من شجرة المؤلف فقط",
   "branch": "1 سالم بن يوسف (أقار)",
   "notes": "لا يرد في أي وثيقة؛ حلقة من حاشية المؤلف (ص159). متجانس الاسم مع «عمر بن علي الجداوي» في الحبس.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "a_ab_umar",
@@ -1092,7 +1157,9 @@
   "status": "من شجرة المؤلف فقط",
   "branch": "1 سالم بن يوسف (أقار)",
   "notes": "حلقة من حاشية المؤلف (ص159) فقط.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "a_fahd",
@@ -1113,7 +1180,9 @@
   "status": "من شجرة المؤلف فقط",
   "branch": "1 سالم بن يوسف (أقار)",
   "notes": "الوثيقة لا تذكر إلا أباه أبا بكر؛ الموضع من المؤلف.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "a_yusuf_m",
@@ -1125,7 +1194,9 @@
   "status": "من شجرة المؤلف فقط",
   "branch": "1 سالم بن يوسف (أقار)",
   "notes": "لا يرد إلا ضمناً في «عبد الله بن يوسف».",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "a_abd_yusuf",
@@ -1162,13 +1233,16 @@
     "page": "فيسبوك: صفحة «تاريخ براك القديمة» (عن كتاب الحسناوي «دولة أولاد امحمد»، مصدر الأصل: المرحوم الأستاذ سعد العزومي)",
     "date": "أوائل القرن 13هـ",
     "quote": "من أمير المؤمنين … السلطان محمد المنتصر بن المرحوم السلطان محمد المنصور … إلى محبنا المرابط عبدالله بن يوسف وغلامنا الحاج علي بن ونجام وكافة المقدمين والعمال وخدام المخزن ببلد براك",
-    "confidence": "متوسطة (نص منشور، لم تُرَ صورته)"
+    "confidence": "متوسطة (نص منشور، لم تُرَ صورته)",
+    "title": "رسالة سلطانية — منشورة في فيسبوك"
    }
   ],
   "status": "من شجرة المؤلف فقط",
   "branch": "1 سالم بن يوسف (أقار)",
   "notes": "تكرار: «عبد الله بن يوسف» آخر في أشكدة (ص143، أخو أحمد بن الفقيه يوسف). يوسف بن محمد بن أبي بكر بن سالم من حاشية المؤلف. رسالة سلطانية ثانية من المنتصر موجهة إليه ببراك (منشورة على فيسبوك عن كتاب الحسناوي) تؤكد أنه كان المرابط المخاطَب في براك أوائل القرن 13هـ، كما في رسالة 1219 (ص165).",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "a_ahmad_ab",
@@ -1189,7 +1263,9 @@
   "status": "من شجرة المؤلف فقط",
   "branch": "1 سالم بن يوسف (أقار)",
   "notes": "مطابقة أبيه بأبي بكر بن محمد بن أبي بكر بن سالم من حاشية المؤلف.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "a_tahir_m",
@@ -1201,7 +1277,9 @@
   "status": "من شجرة المؤلف فقط",
   "branch": "1 سالم بن يوسف (أقار)",
   "notes": "حلقة من حاشية المؤلف (ص163) فقط.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "a_m_tahir",
@@ -1226,7 +1304,9 @@
    "father_per_author": "أبوه الطاهر بن محمد بن سالم بن محمد بن سالم بن يوسف",
    "status": "من شجرة المؤلف فقط",
    "basis": "ص163: الخط «محمد الطاهر»، والمؤلف «محمد بن الطاهر …»"
-  }
+  },
+  "living": false,
+  "hidden": false
  },
  {
   "id": "m_madani",
@@ -1247,7 +1327,9 @@
   "status": "ثابت",
   "branch": "1 سالم بن يوسف (أقار)",
   "notes": "الرابط مكتوب؛ موضع السلسلة كلها من المؤلف.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "m_tuhami",
@@ -1268,7 +1350,9 @@
   "status": "ثابت",
   "branch": "1 سالم بن يوسف (أقار)",
   "notes": "«الأنصاري أصلاً» مكتوبة؛ «الخزرجي» في الحاشية من المؤلف. الأجيال 11–13 بحسب شجرة المؤلف فقط.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "a4",
@@ -1337,7 +1421,9 @@
   "status": "ثابت",
   "branch": "2 الأجواد (الأصل)",
   "notes": "وثيقة ص218 تختصر فتقول «عبد الله بن فضل» (والصواب حفيده). المؤلف يزيد له ابنين «محمد بلحاج» و«نفيسة» — لا وثيقة.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "a5_mubarak",
@@ -1366,7 +1452,9 @@
   "status": "ثابت",
   "branch": "2 الأجواد (فرع منقطع)",
   "notes": "مذكور في الحبس المنسوخ وحده.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "a5_ali",
@@ -1395,7 +1483,9 @@
   "status": "ثابت",
   "branch": "2 الأجواد (فرع منقطع)",
   "notes": "مذكور في الحبس المنسوخ وحده. تكرار: «علي» و«عمر» هنا يفسّران احتمال اختلاط «عمر بن علي» في الحبس.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "a5_umar",
@@ -1424,7 +1514,9 @@
   "status": "ثابت",
   "branch": "2 الأجواد (فرع منقطع)",
   "notes": "مذكور في الحبس المنسوخ وحده. تكرار: «علي» و«عمر» هنا يفسّران احتمال اختلاط «عمر بن علي» في الحبس.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "a5_ahmad",
@@ -1453,7 +1545,9 @@
   "status": "ثابت",
   "branch": "2 الأجواد (فرع منقطع)",
   "notes": "مذكور في الحبس المنسوخ وحده.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "a5_atiyya",
@@ -1482,7 +1576,9 @@
   "status": "ثابت",
   "branch": "2 الأجواد (فرع منقطع)",
   "notes": "مذكور في الحبس المنسوخ وحده.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "a5_belq",
@@ -1511,7 +1607,9 @@
   "status": "ثابت",
   "branch": "2 الأجواد (فرع منقطع)",
   "notes": "مذكور في الحبس المنسوخ وحده.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "m5",
@@ -1604,7 +1702,9 @@
   "status": "ثابت",
   "branch": "2 الأجواد",
   "notes": "مطابقة «الحاج محمد بن عبد الله» (1157 فما بعد) به يسندها نسب 1189 الصريح.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "aj6",
@@ -1641,7 +1741,9 @@
   "status": "ثابت",
   "branch": "2 الأجواد",
   "notes": "تكرار: له أخ آخر اسمه عبد الله (1157).",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "ab6_other",
@@ -1670,7 +1772,9 @@
   "status": "ثابت",
   "branch": "2 الأجواد",
   "notes": "قد يكون هو المذكور في ص218 أو يكون الأجواد نفسه.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "mm6",
@@ -1715,7 +1819,9 @@
   "status": "ثابت",
   "branch": "2 الأجواد",
   "notes": "ربما أكثر من محمد واحد بين الإخوة؛ دُمجوا هنا.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "bh6",
@@ -1744,7 +1850,9 @@
   "status": "ثابت",
   "branch": "2 الأجواد",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "bq6",
@@ -1765,7 +1873,9 @@
   "status": "ثابت",
   "branch": "2 الأجواد",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "fd6",
@@ -1794,7 +1904,9 @@
   "status": "ثابت",
   "branch": "2 الأجواد",
   "notes": "متوفى قبل 1157.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "ar6",
@@ -1815,7 +1927,9 @@
   "status": "ثابت",
   "branch": "2 الأجواد",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "aj7_ali",
@@ -1876,7 +1990,9 @@
   "status": "ثابت",
   "branch": "2 الأجواد",
   "notes": "آخر حلقة في فرع الأجواد موصولة بفضل بسلسلة مكتوبة (1189).",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "ak7",
@@ -1905,7 +2021,9 @@
   "status": "محتمل",
   "branch": "2 الأجواد",
   "notes": "أبوه «عبد الله بن الحاج محمد» — لا يُحسم أيّ الأخوين (الأجواد أو الآخر).",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "a_hm_ajwad",
@@ -1926,7 +2044,9 @@
   "status": "من شجرة المؤلف فقط",
   "branch": "2 الأجواد",
   "notes": "الوثيقة تقف عنده؛ جعله ابن علي بن عبد الله الأجواد من حاشية المؤلف (ص171–172).",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "ar_ajwad",
@@ -1947,7 +2067,9 @@
   "status": "ثابت",
   "branch": "2 الأجواد",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "m_ar_ajwad",
@@ -1976,7 +2098,9 @@
   "status": "ثابت",
   "branch": "2 الأجواد",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "abd_1346",
@@ -1997,7 +2121,9 @@
   "status": "ثابت",
   "branch": "2 الأجواد",
   "notes": "آخر كاتب مؤرخ يكتب سلسلته (1346). الأجيال 8–11 تتوقف على رابط المؤلف «الحاج محمد الأجواد بن علي».",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "m_1336",
@@ -2018,7 +2144,9 @@
   "status": "محتمل",
   "branch": "2 الأجواد",
   "notes": "قراءة السلسلة ناقصة؛ «الحجازي أصلاً ونسباً» بلا «الأنصاري».",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "b3",
@@ -2063,7 +2191,9 @@
   "status": "ثابت",
   "branch": "3/4 بلقاسم بن فضل (أشكدة)",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "i4",
@@ -2112,7 +2242,9 @@
    "father_per_author": "أبوه بلقاسم بن الحاج فضل — والمؤلف قلب نص 1276 ليوافق ذلك",
    "status": "مخالف للوثيقة",
    "basis": "ص131: الخط «بن ابي القاسم بن اسماعيل بن الحاج فضل»؛ ترتيب المؤلف يوافق 1174 وص136 لكنه تعديل لنص 1276"
-  }
+  },
+  "living": false,
+  "hidden": false
  },
  {
   "id": "ghazala",
@@ -2133,7 +2265,9 @@
   "status": "ثابت",
   "branch": "3 أبو بكر بن إسماعيل (أشكدة)",
   "notes": "زوج الفقيه محمد بن المرابط عمر (فرع قاسم): مصاهرة موثقة بين الفرعين.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "abi5",
@@ -2178,7 +2312,9 @@
   "status": "ثابت",
   "branch": "3 أبو بكر بن إسماعيل (أشكدة)",
   "notes": "وثيقة 1276 تجعله «أبا بكر بن أبي القاسم بن إسماعيل».",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "mbh6",
@@ -2215,7 +2351,9 @@
   "status": "ثابت",
   "branch": "3 أبو بكر بن إسماعيل (أشكدة)",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "ft7",
@@ -2252,7 +2390,9 @@
   "status": "ثابت",
   "branch": "3 أبو بكر بن إسماعيل (أشكدة)",
   "notes": "أقدم «الجداوي الأنصاري» مؤرخ (1174) في توقيعه.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "abf8",
@@ -2273,7 +2413,9 @@
   "status": "محتمل",
   "branch": "3 أبو بكر بن إسماعيل (أشكدة)",
   "notes": "اسم الأب غير مؤكد.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "mr7_ash",
@@ -2302,7 +2444,9 @@
   "status": "ثابت",
   "branch": "3 أبو بكر بن إسماعيل (أشكدة)",
   "notes": "تكرار مهم: غير القاضي محمد الرشيد بن محمد بن عمر (فرع قاسم).",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "mmr8",
@@ -2323,7 +2467,9 @@
   "status": "محتمل",
   "branch": "3 أبو بكر بن إسماعيل (أشكدة)",
   "notes": "نسبته لمحمد الرشيد الأشكدي (لا القاضي) من قرينة «ابن عمه».",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "amr8",
@@ -2352,7 +2498,9 @@
   "status": "ثابت",
   "branch": "3 أبو بكر بن إسماعيل (أشكدة)",
   "notes": "التاريخ: 1276 في التدقيق؛ لكن عمّه فتح الله نشط 1152–1174، فقراءة 1176 أوفق زمنياً — تحتاج حسماً. تدقيق النسخ: ص131 «ستة وسبعين ومايتان والف» = 1276، لا 1176.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "iab6",
@@ -2373,7 +2521,9 @@
   "status": "ثابت",
   "branch": "3 أبو بكر بن إسماعيل (أشكدة)",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "ai7",
@@ -2394,7 +2544,9 @@
   "status": "ثابت",
   "branch": "3 أبو بكر بن إسماعيل (أشكدة)",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "m8_1301",
@@ -2415,7 +2567,9 @@
   "status": "محتمل",
   "branch": "3 أبو بكر بن إسماعيل (أشكدة)",
   "notes": "الحرد يقف عند «إسماعيل»؛ مطابقة «أحمد بن إسماعيل» بابن الفقيه إسماعيل بن أبي بكر (1142) هي إضافة المؤلف «(بن أبي بكر بن إسماعيل)». زمنياً: 3 أجيال في نحو 160 سنة — متوترة.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "a9_1301",
@@ -2436,7 +2590,9 @@
   "status": "ثابت",
   "branch": "3 أبو بكر بن إسماعيل (أشكدة)",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "ali_fathi",
@@ -2469,7 +2625,9 @@
    "father_per_author": "أبوه أحمد بن سالم بن سالم كدوة (فرع سالم بن يوسف)",
    "status": "مخالف للوثيقة",
    "basis": "ص160، 162 (حواشٍ) تخالف حرد 1301 «علي الفتحي بن احمد بن محمد بن احمد بن اسماعيل»، وتخالف المؤلف نفسه في ص129"
-  }
+  },
+  "living": false,
+  "hidden": false
  },
  {
   "id": "murghani",
@@ -2490,7 +2648,9 @@
   "status": "محتمل",
   "branch": "3 أبو بكر بن إسماعيل (أشكدة)",
   "notes": "مطابقة علي الفتحي (1299) بكاتب 1301 بالاسم والتاريخ. تكرار: «سيدي أحمد المرغني» في ص136 (بعد 1156؟) — إمّا شخص أقدم أو أن تاريخ ص136 متأخر.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "salim_fathi",
@@ -2511,7 +2671,9 @@
   "status": "محتمل",
   "branch": "3 أبو بكر بن إسماعيل (أشكدة)",
   "notes": "المؤلف: «سالم إدقيمش».",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "a_fathi2",
@@ -2523,7 +2685,9 @@
   "status": "من شجرة المؤلف فقط",
   "branch": "3 أبو بكر بن إسماعيل (أشكدة)",
   "notes": "من حاشية المؤلف ص162 فقط.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "a_poet1360",
@@ -2544,7 +2708,9 @@
   "status": "من شجرة المؤلف فقط",
   "branch": "3 أبو بكر بن إسماعيل (أشكدة)",
   "notes": "اسم الناظم لا يظهر في الصورة؛ هويته وسلسلته من المؤلف (الذي يضعها في فرع سالم بن يوسف). أول «الخزرجي».",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "mab6",
@@ -2565,7 +2731,9 @@
   "status": "ثابت",
   "branch": "3 أبو بكر بن إسماعيل (أشكدة)",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "ti5",
@@ -2594,7 +2762,9 @@
   "status": "ثابت",
   "branch": "أولاد إسماعيل بن بلقاسم (أشكدة)",
   "notes": "ص136 تجعل ورثة سالم بن طاهر من أبناء إسماعيل بن بلقاسم.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "st6",
@@ -2623,7 +2793,9 @@
   "status": "ثابت",
   "branch": "أولاد إسماعيل بن بلقاسم (أشكدة)",
   "notes": "متوفى قبل وثيقة ص136.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "aq5",
@@ -2652,7 +2824,9 @@
   "status": "ثابت",
   "branch": "4 أبناء بلقاسم (دبدب) — ترجيحاً",
   "notes": "وثيقة 1276 فيها «أبي القاسم بن إسماعيل بن الحاج فضل» أيضاً.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "fq6",
@@ -2673,7 +2847,9 @@
   "status": "ثابت",
   "branch": "4 أبناء بلقاسم (دبدب) — ترجيحاً",
   "notes": "تكرار: غير فضل بن أبي القاسم (الجيل 4، 1089).",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "yq6",
@@ -2702,7 +2878,9 @@
   "status": "ثابت",
   "branch": "4 أبناء بلقاسم (دبدب) — ترجيحاً",
   "notes": "مطابقة «يوسف بن بلقاسم» (ص136) بيوسف بن أبي القاسم بن إسماعيل (1119) استنتاج؛ لا يمكن أن يكون ابن بلقاسم بن فضل زمنياً.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "ay7",
@@ -2731,7 +2909,9 @@
   "status": "محتمل",
   "branch": "4 أبناء بلقاسم (دبدب) — ترجيحاً",
   "notes": "الرابط بيوسف مكتوب؛ موضع يوسف محتمل.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "ayb7",
@@ -2752,7 +2932,9 @@
   "status": "محتمل",
   "branch": "4 أبناء بلقاسم (دبدب) — ترجيحاً",
   "notes": "تكرار مع عبد الله بن يوسف (أقار، 1219).",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "ay8_salim",
@@ -2773,7 +2955,9 @@
   "status": "ثابت",
   "branch": "4 أبناء بلقاسم (دبدب) — ترجيحاً",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "ay8_fadl",
@@ -2794,7 +2978,9 @@
   "status": "ثابت",
   "branch": "4 أبناء بلقاسم (دبدب) — ترجيحاً",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "ay8_aisha",
@@ -2815,7 +3001,9 @@
   "status": "ثابت",
   "branch": "4 أبناء بلقاسم (دبدب) — ترجيحاً",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "ay8_mabruka",
@@ -2836,7 +3024,9 @@
   "status": "ثابت",
   "branch": "4 أبناء بلقاسم (دبدب) — ترجيحاً",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "fb4",
@@ -2857,7 +3047,9 @@
   "status": "ثابت",
   "branch": "أولاد فضل بن بلقاسم (أشكدة)",
   "notes": "أخوّته لإسماعيل بن أبي القاسم من عبارة «ابنة عمه». تكرار: فضل بن أبي القاسم بن إسماعيل (1119) شخص آخر.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "aqf5",
@@ -2894,7 +3086,9 @@
   "status": "ثابت",
   "branch": "أولاد فضل بن بلقاسم (أشكدة)",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "faq6",
@@ -2915,7 +3109,9 @@
   "status": "ثابت",
   "branch": "أولاد فضل بن بلقاسم (أشكدة)",
   "notes": "ربما هو البائع «سيدي[...] ابن ابا القاسم بن فضل» في ص137 (تخمين المؤلف).",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "aaq6",
@@ -2944,7 +3140,9 @@
   "status": "ثابت",
   "branch": "أولاد فضل بن بلقاسم (أشكدة)",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "a_ism_fadl",
@@ -2956,7 +3154,9 @@
   "status": "من شجرة المؤلف فقط",
   "branch": "أولاد فضل بن بلقاسم (أشكدة)",
   "notes": "حلقة من حاشية المؤلف ص141 لوصل «المشرد».",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "mi6_mushrid",
@@ -2977,7 +3177,9 @@
   "status": "ثابت",
   "branch": "أولاد فضل بن بلقاسم (أشكدة)",
   "notes": "الرابط مكتوب؛ موضع إسماعيل من المؤلف.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "mm7_mushrid",
@@ -2998,7 +3200,9 @@
   "status": "ثابت",
   "branch": "أولاد فضل بن بلقاسم (أشكدة)",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "mushrid",
@@ -3019,7 +3223,9 @@
   "status": "ثابت",
   "branch": "أولاد فضل بن بلقاسم (أشكدة)",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "q3",
@@ -3056,7 +3262,9 @@
   "status": "ثابت",
   "branch": "5 قاسم (بيت القاضي الرشيد)",
   "notes": "«قاسم بن فضل بن عبد الله» لا ترد إلا في حرد 1261.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "uq4",
@@ -3097,7 +3305,9 @@
    "father_per_author": "أبوه قاسم بن الحاج فضل (المؤلف يرمّم «[قاسم]» في ممزق)",
    "status": "محتمل",
    "basis": "ص181: «عمر بن […] / فضل» — ترميم لا قراءة"
-  }
+  },
+  "living": false,
+  "hidden": false
  },
  {
   "id": "mu5",
@@ -3142,7 +3352,9 @@
   "status": "ثابت",
   "branch": "5 قاسم (بيت القاضي الرشيد)",
   "notes": "تكرار: «الفقيه محمد بن الفقيه عمر بن أبي عبد الله» القاضي الوافي (1057، ص154) من أسرة أخرى. المؤلف يجعله أيضاً أبا إسماعيل (انظر «محمد بن قاسم»).",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "khadija",
@@ -3163,7 +3375,9 @@
   "status": "ثابت",
   "branch": "5 قاسم (بيت القاضي الرشيد)",
   "notes": "أمها غزالة بنت إسماعيل بن أبي القاسم (أشكدة).",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "mr6",
@@ -3216,7 +3430,9 @@
   "status": "ثابت",
   "branch": "5 قاسم (بيت القاضي الرشيد)",
   "notes": "تكرار: محمد الرشيد بن محمد بالحاج (أشكدة).",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "qm7",
@@ -3261,7 +3477,9 @@
   "status": "ثابت",
   "branch": "5 قاسم (بيت القاضي الرشيد)",
   "notes": "رسالة ص193 قد تقرأ «محمد بن أحمد الرشيد» (منخفضة).",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "aqd5",
@@ -3298,7 +3516,9 @@
   "status": "ثابت",
   "branch": "5 قاسم (بيت القاضي الرشيد)",
   "notes": "تنبيه: شاهد 1051 «عبد القادر بن عمر» يوقّع «السوداني»؛ إن كان هو فنسبة البيت «السوداني» لا «الجداوي». لم يناقشه المؤلف.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "qu5",
@@ -3323,7 +3543,9 @@
    "father_per_author": "لا يرد في شجرة المؤلف (عنده فرع «عمر بن قاسم» ولا «قاسم بن عمر»)",
    "status": "مخالف للوثيقة",
    "basis": "ص183: الخط «ابنة قاسم بن المرابط عمر»"
-  }
+  },
+  "living": false,
+  "hidden": false
  },
  {
   "id": "mq4",
@@ -3356,7 +3578,9 @@
    "father_per_author": "أبوه عمر بن قاسم (المؤلف: «محمد بن عمر بن قاسم»)",
    "status": "مخالف للوثيقة",
    "basis": "ص188، 219: الخط «بن محمد بن قاسم بن فضل»؛ المؤلف أقحم «عمر» وصرّح بذلك في الحاشية"
-  }
+  },
+  "living": false,
+  "hidden": false
  },
  {
   "id": "im5",
@@ -3393,7 +3617,9 @@
   "status": "ثابت",
   "branch": "5 قاسم (بيت القاضي الرشيد)",
   "notes": "مدين نحو 1085 «إسماعيل بن محمد بن فضل»: المؤلف يجعله «بن فضل بن قاسم»؛ قد يكون حفيد الحاج فضل عبر محمد. غير محسوم.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "ui6",
@@ -3430,7 +3656,9 @@
   "status": "ثابت",
   "branch": "5 قاسم (بيت القاضي الرشيد)",
   "notes": "قاضٍ 1172–1176 حسب جدول المؤلف.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "mui7",
@@ -3459,7 +3687,9 @@
   "status": "ثابت",
   "branch": "5 قاسم (بيت القاضي الرشيد)",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "mm8_1261",
@@ -3480,7 +3710,9 @@
   "status": "ثابت",
   "branch": "5 قاسم (بيت القاضي الرشيد)",
   "notes": "ناسخ «درة الغواص» 1261؛ آخر حلقة في فرع قاسم بسلسلة مكتوبة.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "ahq4",
@@ -3509,7 +3741,9 @@
   "status": "محتمل",
   "branch": "5 قاسم (بيت القاضي الرشيد)",
   "notes": "زوج ضوة؛ كونه ابن قاسم بن فضل استنتاج المؤلف.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "arq4",
@@ -3530,7 +3764,9 @@
   "status": "محتمل",
   "branch": "5 قاسم (بيت القاضي الرشيد)",
   "notes": "قاسم بلا نسب؛ «زاوية براك» قرينة. شجرة المؤلف تضع عبد الرحمن تحت قاسم.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "muwaffaq",
@@ -3551,7 +3787,9 @@
   "status": "ثابت",
   "branch": "5 قاسم (بيت القاضي الرشيد)",
   "notes": "أقدم فرد مؤرخ في هذا الفرع إن صحت المطابقة.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "fq4_hajj",
@@ -3572,7 +3810,9 @@
   "status": "محتمل",
   "branch": "5 قاسم (بيت القاضي الرشيد)",
   "notes": "قاسم بلا نسب؛ المؤلف يسمّي المشتري «المرابط». متجانس مع الحاج فضل الأكبر.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "qf5",
@@ -3593,7 +3833,9 @@
   "status": "ثابت",
   "branch": "5 قاسم (بيت القاضي الرشيد)",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "ath_m",
@@ -3614,7 +3856,9 @@
   "status": "محتمل",
   "branch": "6 العثامنة (البرادنة)",
   "notes": "جذر عائم: ورثة وقف عبد الله الجداوي بقرب الدرجة، ولا سلسلة إلى فضل. المؤلف: «حفيد الشيخ عثمان» — بلا وثيقة.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "badr",
@@ -3635,7 +3879,9 @@
   "status": "ثابت",
   "branch": "6 العثامنة (البرادنة)",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "ath_abd",
@@ -3656,7 +3902,9 @@
   "status": "ثابت",
   "branch": "6 العثامنة (البرادنة)",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "abd_badr",
@@ -3685,7 +3933,9 @@
   "status": "ثابت",
   "branch": "6 العثامنة (البرادنة)",
   "notes": "الوثيقة الوحيدة التي تصل هذا الفرع بعبد الله سبال العين (ذرية، بلا سلسلة).",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "m_abd_badr",
@@ -3706,7 +3956,9 @@
   "status": "ثابت",
   "branch": "6 العثامنة (البرادنة)",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "a_aqd_father_uthman",
@@ -3727,7 +3979,9 @@
   "status": "محتمل",
   "branch": "6 العثامنة (البرادنة)",
   "notes": "جذر عائم. المؤلف (ص194) يذكر فرضيتين لم يحسمهما: من أولاد أبي القاسم بأشكدة (الحسناوي)، أو أن عبد القادر هذا هو عبد القادر بن عمر بن قاسم (رأيه). كلتاهما بلا وثيقة.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "uthman",
@@ -3756,7 +4010,9 @@
   "status": "ثابت",
   "branch": "6 العثامنة (البرادنة)",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "abdnur",
@@ -3793,7 +4049,9 @@
   "status": "محتمل",
   "branch": "6 العثامنة (البرادنة)",
   "notes": "«الحاج عبد النور» (1105، 1153) = عبد النور بن عثمان مطابقة بالاسم.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "aqd_abdnur",
@@ -3814,7 +4072,9 @@
   "status": "ثابت",
   "branch": "6 العثامنة (البرادنة)",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "mabruka_abdnur",
@@ -3835,7 +4095,9 @@
   "status": "ثابت",
   "branch": "6 العثامنة (البرادنة)",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "fath_abdnur",
@@ -3856,7 +4118,9 @@
   "status": "محتمل",
   "branch": "6 العثامنة (البرادنة)",
   "notes": "الاسم مطموس؛ «فتح الله» من 1153 «عبد الله بن فتح الله» ومن المؤلف.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "abd_fath",
@@ -3877,7 +4141,9 @@
   "status": "ثابت",
   "branch": "6 العثامنة (البرادنة)",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "ahmad_fath",
@@ -3898,7 +4164,9 @@
   "status": "محتمل",
   "branch": "6 العثامنة (البرادنة)",
   "notes": "أيّ فتح الله؟ غير محسوم.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "aqd_ahmad",
@@ -3919,7 +4187,9 @@
   "status": "ثابت",
   "branch": "6 العثامنة (البرادنة)",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "a_ali_wahid",
@@ -3931,7 +4201,9 @@
   "status": "من شجرة المؤلف فقط",
   "branch": "7 عبد الواحد (العلاونة)",
   "notes": "رواية شفوية عند المؤلف (ص202 ح1)، وهو نفسه يقرّ بضياع الربط.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "a_yusuf_wahid",
@@ -3943,7 +4215,9 @@
   "status": "من شجرة المؤلف فقط",
   "branch": "7 عبد الواحد (العلاونة)",
   "notes": "من المؤلف فقط.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "hajj_saad",
@@ -3964,7 +4238,9 @@
   "status": "من شجرة المؤلف فقط",
   "branch": "7 عبد الواحد (العلاونة)",
   "notes": "الجذر الموثق للفرع. ربطه بيوسف بن علي (= «سعد بن يوسف بن علي» عند المؤلف) من المؤلف فقط. الأجيال هنا على فرضية المؤلف.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "wahid1",
@@ -3985,7 +4261,9 @@
   "status": "ثابت",
   "branch": "7 عبد الواحد (العلاونة)",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "saad1",
@@ -4006,7 +4284,9 @@
   "status": "ثابت",
   "branch": "7 عبد الواحد (العلاونة)",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "wahid2",
@@ -4027,7 +4307,9 @@
   "status": "ثابت",
   "branch": "7 عبد الواحد (العلاونة)",
   "notes": "«العلواني الجدّاوي الأنصاري» إضافة المؤلف؛ الخط «بزاوية براك» فقط.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "w_hani",
@@ -4048,7 +4330,9 @@
   "status": "ثابت",
   "branch": "7 عبد الواحد (العلاونة)",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "w_yusuf",
@@ -4069,7 +4353,9 @@
   "status": "ثابت",
   "branch": "7 عبد الواحد (العلاونة)",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "w_abd",
@@ -4090,7 +4376,9 @@
   "status": "ثابت",
   "branch": "7 عبد الواحد (العلاونة)",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "w_ali",
@@ -4111,7 +4399,9 @@
   "status": "ثابت",
   "branch": "7 عبد الواحد (العلاونة)",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "w_saad",
@@ -4148,7 +4438,9 @@
   "status": "ثابت",
   "branch": "7 عبد الواحد (العلاونة)",
   "notes": "تكرار: سعد بن عبد الواحد (الجيل 6) وسعد بن عبد الواحد (الجيل 8).",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "w_falfali",
@@ -4177,7 +4469,9 @@
   "status": "ثابت",
   "branch": "7 عبد الواحد (العلاونة)",
   "notes": "تكرار: «محمد الفلفلي بن الفقيه الموهوب بن عبد الله» آخر في وثيقة 1221.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "w_saad_saad",
@@ -4206,7 +4500,9 @@
   "status": "ثابت",
   "branch": "7 عبد الواحد (العلاونة)",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "w_m_saad",
@@ -4227,7 +4523,9 @@
   "status": "ثابت",
   "branch": "7 عبد الواحد (العلاونة)",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "w_jaddawi",
@@ -4248,7 +4546,9 @@
   "status": "محتمل",
   "branch": "7 عبد الواحد (العلاونة)",
   "notes": "«الجداوي» لقب شخص هنا. مطابقة أبيه بمحمد بن سعد بن عبد الواحد ترجيح.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "w_bashir",
@@ -4269,7 +4569,9 @@
   "status": "ثابت",
   "branch": "7 عبد الواحد (العلاونة)",
   "notes": "تنبيه زمني: جدّه أوقف 1120 على أبيه، والابن يشتري 1221 — ممكن بصعوبة؛ قد يكون عبد الواحد آخر.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "yahmad",
@@ -4290,7 +4592,9 @@
   "status": "محتمل",
   "branch": "7 عبد الواحد (العلاونة) — بإسناد المؤلف",
   "notes": "جذر عائم: الوثيقة تثبت أنهم من ذرية عبد الله سبال العين بحكم قضائي بعد نزاع. إلحاقهم بعبد الواحد من المؤلف. تكرار: يحمد بن عبد الواسع (1061) من أسرة القضاة.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "y_m",
@@ -4311,7 +4615,9 @@
   "status": "ثابت",
   "branch": "7 عبد الواحد (العلاونة) — بإسناد المؤلف",
   "notes": "المؤلف يكتب «محمد بن عمر بن يحمد».",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "y_aqd",
@@ -4332,7 +4638,9 @@
   "status": "ثابت",
   "branch": "7 عبد الواحد (العلاونة) — بإسناد المؤلف",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "y_saad",
@@ -4353,7 +4661,9 @@
   "status": "ثابت",
   "branch": "7 عبد الواحد (العلاونة) — بإسناد المؤلف",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "y_abd",
@@ -4374,7 +4684,9 @@
   "status": "ثابت",
   "branch": "7 عبد الواحد (العلاونة) — بإسناد المؤلف",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "y_abd2",
@@ -4395,7 +4707,9 @@
   "status": "ثابت",
   "branch": "7 عبد الواحد (العلاونة) — بإسناد المؤلف",
   "notes": "",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "nafisa",
@@ -4408,13 +4722,16 @@
     "page": "صورة pc1 (ليست في الكتاب)",
     "date": "شعبان 1058",
     "quote": "قاسم بن الحاج فضل وعماته نفيسة وفاطمة … شعبان عام ثمانية وخمسين بعد الالف",
-    "confidence": "عالية"
+    "confidence": "عالية",
+    "title": "صورة وثيقة عائلية (ليست في الكتاب)"
    }
   ],
   "status": "محتمل",
   "branch": "5 قاسم (بيت القاضي الرشيد)",
   "notes": "الوثيقة تسمّيهما «عمّات» قاسم بن الحاج فضل، ولا تذكر أباهما. الأرجح زمنياً أن قاسم هنا هو قاسم بن الحاج فضل بن قاسم (الجيل 5، وأبناء جيله راشدون نحو 1043–1060)، فتكون نفيسة وفاطمة أختي الحاج فضل بن قاسم وابنتي قاسم بن فضل. مطابقة لا نص.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "fatima_a",
@@ -4427,13 +4744,16 @@
     "page": "صورة pc1 (ليست في الكتاب)",
     "date": "شعبان 1058",
     "quote": "قاسم بن الحاج فضل وعماته نفيسة وفاطمة … شعبان عام ثمانية وخمسين بعد الالف",
-    "confidence": "عالية"
+    "confidence": "عالية",
+    "title": "صورة وثيقة عائلية (ليست في الكتاب)"
    }
   ],
   "status": "محتمل",
   "branch": "5 قاسم (بيت القاضي الرشيد)",
   "notes": "الوثيقة تسمّيهما «عمّات» قاسم بن الحاج فضل، ولا تذكر أباهما. الأرجح زمنياً أن قاسم هنا هو قاسم بن الحاج فضل بن قاسم (الجيل 5، وأبناء جيله راشدون نحو 1043–1060)، فتكون نفيسة وفاطمة أختي الحاج فضل بن قاسم وابنتي قاسم بن فضل. مطابقة لا نص.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "m5_ab4",
@@ -4446,13 +4766,16 @@
     "page": "صورة pc1 (ليست في الكتاب)",
     "date": "1127",
     "quote": "ومحمد بن ابي بكر بن محمد بن الحاج فضل — زاوية براك",
-    "confidence": "متوسطة"
+    "confidence": "متوسطة",
+    "title": "صورة وثيقة عائلية (ليست في الكتاب)"
    }
   ],
   "status": "ثابت",
   "branch": "محمد بن فضل (أصل الفرعين 1 و2)",
   "notes": "توقيع شاهد مؤطّر.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "musk_m_ali",
@@ -4473,7 +4796,9 @@
   "status": "محتمل",
   "branch": "1 سالم بن يوسف (أقار)",
   "notes": "لا يرد إلا في سلسلة نسب ابنه في «المسك والريحان».",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "musk_bashir",
@@ -4494,7 +4819,9 @@
   "status": "محتمل",
   "branch": "1 سالم بن يوسف (أقار)",
   "notes": "فقيه ومقرئ ومتصوف من آقار الشاطئ؛ له «الحكم» و«الدعاء» و«القصيدة». أول ترجمة مطبوعة لأحد أحفاد الفرع بنسبه.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "musk_barraki_ansari",
@@ -4515,7 +4842,9 @@
   "status": "محتمل",
   "branch": "فروع لم تُربط بعد",
   "notes": "أول نص مطبوع من فزان يجمع «البراكي» و«الأنصاري» لأسرة علم في براك. موضعه في الشجرة غير معروف.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
  },
  {
   "id": "musk_m_wahid",
@@ -4536,6 +4865,316 @@
   "status": "محتمل",
   "branch": "فروع لم تُربط بعد",
   "notes": "تعاقب «سعد» و«عبد الواحد» يوافق فرع عبد الواحد (العلاونة)، والمولد «براك الزاوية». غير مربوط بوثيقة.",
-  "author_version": null
+  "author_version": null,
+  "living": false,
+  "hidden": false
+ },
+ {
+  "id": "oj11",
+  "name_as_written": "محمد بن عبد الله",
+  "father_id": "a_abd_yusuf",
+  "generation": 11,
+  "earliest_doc_date": null,
+  "evidence": [],
+  "status": "رواية الأسرة",
+  "branch": "1 سالم بن يوسف (أقار)",
+  "notes": "المصدر: رواية الأسرة (جمال عمر أحمد عمر عمير، 2026-10-09) ومسار مخطوط بالقلم على شجرة 1987",
+  "author_version": null,
+  "living": false,
+  "hidden": false
+ },
+ {
+  "id": "oj12",
+  "name_as_written": "أحمد بن محمد",
+  "father_id": "oj11",
+  "generation": 12,
+  "earliest_doc_date": null,
+  "evidence": [],
+  "status": "رواية الأسرة",
+  "branch": "1 سالم بن يوسف (أقار)",
+  "notes": "المصدر: رواية الأسرة (جمال عمر أحمد عمر عمير، 2026-10-09) ومسار مخطوط بالقلم على شجرة 1987",
+  "author_version": null,
+  "living": false,
+  "hidden": false
+ },
+ {
+  "id": "oj13",
+  "name_as_written": "عمير بن أحمد",
+  "father_id": "oj12",
+  "generation": 13,
+  "earliest_doc_date": null,
+  "evidence": [],
+  "status": "رواية الأسرة",
+  "branch": "1 سالم بن يوسف (أقار)",
+  "notes": "المصدر: رواية الأسرة (جمال عمر أحمد عمر عمير، 2026-10-09) ومسار مخطوط بالقلم على شجرة 1987",
+  "author_version": null,
+  "living": false,
+  "hidden": false
+ },
+ {
+  "id": "oj14",
+  "name_as_written": "عمر بن عمير",
+  "father_id": "oj13",
+  "generation": 14,
+  "earliest_doc_date": null,
+  "evidence": [],
+  "status": "رواية الأسرة",
+  "branch": "1 سالم بن يوسف (أقار)",
+  "notes": "المصدر: رواية الأسرة (جمال عمر أحمد عمر عمير، 2026-10-09) ومسار مخطوط بالقلم على شجرة 1987",
+  "author_version": null,
+  "living": false,
+  "hidden": false
+ },
+ {
+  "id": "oj15",
+  "name_as_written": "أحمد بن عمر",
+  "father_id": "oj14",
+  "generation": 15,
+  "earliest_doc_date": null,
+  "evidence": [],
+  "status": "رواية الأسرة",
+  "branch": "1 سالم بن يوسف (أقار)",
+  "notes": "المصدر: رواية الأسرة (جمال عمر أحمد عمر عمير، 2026-10-09) ومسار مخطوط بالقلم على شجرة 1987",
+  "author_version": null,
+  "living": false,
+  "hidden": false
+ },
+ {
+  "id": "oj16",
+  "name_as_written": "عمر بن أحمد",
+  "father_id": "oj15",
+  "generation": 16,
+  "earliest_doc_date": null,
+  "evidence": [],
+  "status": "رواية الأسرة",
+  "branch": "1 سالم بن يوسف (أقار)",
+  "notes": "المصدر: رواية الأسرة (جمال عمر أحمد عمر عمير، 2026-10-09) ومسار مخطوط بالقلم على شجرة 1987",
+  "author_version": null,
+  "living": true,
+  "hidden": false
+ },
+ {
+  "id": "oj16_abdrahman",
+  "name_as_written": "عبد الرحمن بن أحمد",
+  "father_id": "oj15",
+  "generation": 16,
+  "earliest_doc_date": null,
+  "evidence": [],
+  "status": "رواية الأسرة",
+  "branch": "1 سالم بن يوسف (أقار)",
+  "notes": "المصدر: رواية الأسرة (جمال عمر أحمد عمر عمير، 2026-10-09) ومسار مخطوط بالقلم على شجرة 1987",
+  "author_version": null,
+  "living": true,
+  "hidden": false
+ },
+ {
+  "id": "oj16_salim",
+  "name_as_written": "سالم بن أحمد",
+  "father_id": "oj15",
+  "generation": 16,
+  "earliest_doc_date": null,
+  "evidence": [],
+  "status": "رواية الأسرة",
+  "branch": "1 سالم بن يوسف (أقار)",
+  "notes": "المصدر: رواية الأسرة (جمال عمر أحمد عمر عمير، 2026-10-09) ومسار مخطوط بالقلم على شجرة 1987",
+  "author_version": null,
+  "living": true,
+  "hidden": false
+ },
+ {
+  "id": "oj16_abdallah",
+  "name_as_written": "عبد الله بن أحمد",
+  "father_id": "oj15",
+  "generation": 16,
+  "earliest_doc_date": null,
+  "evidence": [],
+  "status": "رواية الأسرة",
+  "branch": "1 سالم بن يوسف (أقار)",
+  "notes": "المصدر: رواية الأسرة (جمال عمر أحمد عمر عمير، 2026-10-09) ومسار مخطوط بالقلم على شجرة 1987",
+  "author_version": null,
+  "living": true,
+  "hidden": false
+ },
+ {
+  "id": "oj16_yusuf",
+  "name_as_written": "يوسف بن أحمد",
+  "father_id": "oj15",
+  "generation": 16,
+  "earliest_doc_date": null,
+  "evidence": [],
+  "status": "رواية الأسرة",
+  "branch": "1 سالم بن يوسف (أقار)",
+  "notes": "المصدر: رواية الأسرة (جمال عمر أحمد عمر عمير، 2026-10-09) ومسار مخطوط بالقلم على شجرة 1987",
+  "author_version": null,
+  "living": true,
+  "hidden": false
+ },
+ {
+  "id": "oj16_muhammad",
+  "name_as_written": "محمد بن أحمد",
+  "father_id": "oj15",
+  "generation": 16,
+  "earliest_doc_date": null,
+  "evidence": [],
+  "status": "رواية الأسرة",
+  "branch": "1 سالم بن يوسف (أقار)",
+  "notes": "المصدر: رواية الأسرة (جمال عمر أحمد عمر عمير، 2026-10-09) ومسار مخطوط بالقلم على شجرة 1987",
+  "author_version": null,
+  "living": true,
+  "hidden": false
+ },
+ {
+  "id": "oj16_abubakr",
+  "name_as_written": "أبو بكر بن أحمد",
+  "father_id": "oj15",
+  "generation": 16,
+  "earliest_doc_date": null,
+  "evidence": [],
+  "status": "رواية الأسرة",
+  "branch": "1 سالم بن يوسف (أقار)",
+  "notes": "المصدر: رواية الأسرة (جمال عمر أحمد عمر عمير، 2026-10-09) ومسار مخطوط بالقلم على شجرة 1987",
+  "author_version": null,
+  "living": true,
+  "hidden": false
+ },
+ {
+  "id": "oj17_jamal",
+  "name_as_written": "جمال بن عمر",
+  "father_id": "oj16",
+  "generation": 17,
+  "earliest_doc_date": null,
+  "evidence": [],
+  "status": "رواية الأسرة",
+  "branch": "1 سالم بن يوسف (أقار)",
+  "notes": "صاحب الموقع (جمال ابن آدم). المصدر: رواية الأسرة (جمال عمر أحمد عمر عمير، 2026-10-09) ومسار مخطوط بالقلم على شجرة 1987",
+  "author_version": null,
+  "living": true,
+  "hidden": false
+ },
+ {
+  "id": "oj17_tariq",
+  "name_as_written": "طارق بن عمر",
+  "father_id": "oj16",
+  "generation": 17,
+  "earliest_doc_date": null,
+  "evidence": [],
+  "status": "رواية الأسرة",
+  "branch": "1 سالم بن يوسف (أقار)",
+  "notes": "المصدر: رواية الأسرة (جمال عمر أحمد عمر عمير، 2026-10-09) ومسار مخطوط بالقلم على شجرة 1987",
+  "author_version": null,
+  "living": true,
+  "hidden": false
+ },
+ {
+  "id": "oj17_ahmad",
+  "name_as_written": "أحمد بن عمر",
+  "father_id": "oj16",
+  "generation": 17,
+  "earliest_doc_date": null,
+  "evidence": [],
+  "status": "رواية الأسرة",
+  "branch": "1 سالم بن يوسف (أقار)",
+  "notes": "المصدر: رواية الأسرة (جمال عمر أحمد عمر عمير، 2026-10-09) ومسار مخطوط بالقلم على شجرة 1987",
+  "author_version": null,
+  "living": true,
+  "hidden": false
+ },
+ {
+  "id": "oj17_farhat",
+  "name_as_written": "فرحات بن عمر",
+  "father_id": "oj16",
+  "generation": 17,
+  "earliest_doc_date": null,
+  "evidence": [],
+  "status": "رواية الأسرة",
+  "branch": "1 سالم بن يوسف (أقار)",
+  "notes": "المصدر: رواية الأسرة (جمال عمر أحمد عمر عمير، 2026-10-09) ومسار مخطوط بالقلم على شجرة 1987",
+  "author_version": null,
+  "living": true,
+  "hidden": false
+ },
+ {
+  "id": "oj17_abdulmumin",
+  "name_as_written": "عبد المؤمن بن عمر",
+  "father_id": "oj16",
+  "generation": 17,
+  "earliest_doc_date": null,
+  "evidence": [],
+  "status": "رواية الأسرة",
+  "branch": "1 سالم بن يوسف (أقار)",
+  "notes": "المصدر: رواية الأسرة (جمال عمر أحمد عمر عمير، 2026-10-09) ومسار مخطوط بالقلم على شجرة 1987",
+  "author_version": null,
+  "living": true,
+  "hidden": false
+ },
+ {
+  "id": "oj17_abdulraouf",
+  "name_as_written": "عبد الرؤوف بن عمر",
+  "father_id": "oj16",
+  "generation": 17,
+  "earliest_doc_date": null,
+  "evidence": [],
+  "status": "رواية الأسرة",
+  "branch": "1 سالم بن يوسف (أقار)",
+  "notes": "المصدر: رواية الأسرة (جمال عمر أحمد عمر عمير، 2026-10-09) ومسار مخطوط بالقلم على شجرة 1987",
+  "author_version": null,
+  "living": true,
+  "hidden": false
+ },
+ {
+  "id": "oj18_umar",
+  "name_as_written": "عمر بن جمال",
+  "father_id": "oj17_jamal",
+  "generation": 18,
+  "earliest_doc_date": null,
+  "evidence": [],
+  "status": "رواية الأسرة",
+  "branch": "1 سالم بن يوسف (أقار)",
+  "notes": "المصدر: رواية الأسرة (جمال عمر أحمد عمر عمير، 2026-10-09) ومسار مخطوط بالقلم على شجرة 1987",
+  "author_version": null,
+  "living": true,
+  "hidden": false
+ },
+ {
+  "id": "oj18_yusuf",
+  "name_as_written": "يوسف بن جمال",
+  "father_id": "oj17_jamal",
+  "generation": 18,
+  "earliest_doc_date": null,
+  "evidence": [],
+  "status": "رواية الأسرة",
+  "branch": "1 سالم بن يوسف (أقار)",
+  "notes": "المصدر: رواية الأسرة (جمال عمر أحمد عمر عمير، 2026-10-09) ومسار مخطوط بالقلم على شجرة 1987",
+  "author_version": null,
+  "living": true,
+  "hidden": false
+ },
+ {
+  "id": "oj18_ahmad",
+  "name_as_written": "أحمد بن جمال",
+  "father_id": "oj17_jamal",
+  "generation": 18,
+  "earliest_doc_date": null,
+  "evidence": [],
+  "status": "رواية الأسرة",
+  "branch": "1 سالم بن يوسف (أقار)",
+  "notes": "المصدر: رواية الأسرة (جمال عمر أحمد عمر عمير، 2026-10-09) ومسار مخطوط بالقلم على شجرة 1987",
+  "author_version": null,
+  "living": true,
+  "hidden": false
+ },
+ {
+  "id": "oj18_ibrahim",
+  "name_as_written": "إبراهيم بن جمال",
+  "father_id": "oj17_jamal",
+  "generation": 18,
+  "earliest_doc_date": null,
+  "evidence": [],
+  "status": "رواية الأسرة",
+  "branch": "1 سالم بن يوسف (أقار)",
+  "notes": "المصدر: رواية الأسرة (جمال عمر أحمد عمر عمير، 2026-10-09) ومسار مخطوط بالقلم على شجرة 1987",
+  "author_version": null,
+  "living": true,
+  "hidden": false
  }
 ]
