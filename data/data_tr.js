@@ -204,7 +204,85 @@ window.FamilyTreeData = {
         // Language UI
         lang_loading: "Dil güncelleniyor...",
         lang_ar: "🇸🇦 Arapça",
-        lang_en: "🇺🇸 İngilizce"
+        lang_en: "🇺🇸 İngilizce",
+
+        // Evidence tree (tree/tree.js). Person names and document text stay in Arabic.
+        // TODO translate: the strings below are English placeholders.
+        tab_evidence: "Evidence tree", // TODO translate
+        tree_cta: "Evidence tree: every name linked to its original document →", // TODO translate
+        tree_branch_link: "View this branch with its documents", // TODO translate
+        tree_page_title: "Descendants of Abdullah Sabal Al-Ain Al-Jaddawi Al-Ansari — the evidence tree", // TODO translate
+        tree_back_home: "← Back to the Golden Record", // TODO translate
+        tree_title: "The Al-Sabal Al-Ain family tree, document by document", // TODO translate
+        tree_intro: "Every name opens the documents that mention it, and the style of its ring shows how strong the evidence is for the link to the father.", // TODO translate
+        tree_aria: "Al-Sabal Al-Ain family tree", // TODO translate
+        tree_search_placeholder: "Search for a name…", // TODO translate
+        tree_search_empty: "No matching name", // TODO translate
+        tree_toggle_1987: "Show the 1987 tree reading (unproven)", // TODO translate
+        tree_btn_float: "Branches not yet linked by a document", // TODO translate
+        tree_float_sub: "The head of each branch here has no father named in the available documents", // TODO translate
+        tree_zoom_in: "Zoom in", // TODO translate
+        tree_zoom_out: "Zoom out", // TODO translate
+        tree_zoom_fit: "Show the whole tree", // TODO translate
+        tree_legend_title: "Strength of the evidence for the link to the father", // TODO translate
+        tree_status_ok: "Proven", // TODO translate
+        tree_status_maybe: "Probable", // TODO translate
+        tree_status_author: "From the author's tree only", // TODO translate
+        tree_link_strong: "Strongly probable", // TODO translate
+        tree_legend_hint: "Drag to move; zoom with Ctrl + wheel or with two fingers", // TODO translate
+        tree_above_ali: "Above Ali: no document yet", // TODO translate
+        tree_gen: "Generation {n}", // TODO translate
+        tree_gen_unknown: "Generation not determined", // TODO translate
+        tree_gen_zero: "Generation 0 (above Abdullah)", // TODO translate
+        tree_gen_top: "Generation {n} (top of the chain)", // TODO translate
+        tree_branch: "Branch {n}", // TODO translate
+        tree_poster_only: "In the 1987 poster only: “{x}”", // TODO translate
+        tree_poster_title: "In the 1987 poster", // TODO translate
+        tree_poster_note: "The lowest plaque on the poster reads “{name} {x}”. The last two attributions do not appear with him in any document.", // TODO translate
+        tree_r87_callout_1: "The 1987 tree reading, later covered over.", // TODO translate
+        tree_r87_callout_2: "No document places Fadl and al-Hajj Muhammad", // TODO translate
+        tree_r87_callout_3: "between Umar and Abdullah. Tap for details.", // TODO translate
+        tree_r87_aria: "1987 reading, unproven", // TODO translate
+        tree_r87_eyebrow: "1987 tree reading · between Umar and Abdullah", // TODO translate
+        tree_r87_status: "Unproven", // TODO translate
+        tree_r87_note: "The 1987 tree placed two boxes between Umar and Abdullah: “Fadl”, then “al-Hajj Muhammad”. Both were later covered over. That reading takes the text of the endowment (habs) copy literally. This record takes the endower to be {a4}, so the Fadl and al-Hajj Muhammad named in it are {fadl} and his son {m3}.", // TODO translate
+        tree_r87_text: "Text of the endowment deed", // TODO translate
+        tree_r87_link: "The link adopted here", // TODO translate
+        tree_panel_label: "Documents for this name", // TODO translate
+        tree_close: "Close", // TODO translate
+        tree_father: "Father", // TODO translate
+        tree_father_none: "Not yet linked by a document", // TODO translate
+        tree_earliest: "Earliest document", // TODO translate
+        tree_ah: " AH", // TODO translate
+        tree_children: "Children", // TODO translate
+        tree_docs: "Documents", // TODO translate
+        tree_docs_none: "No document mentions this person. The name comes from the author's tree alone.", // TODO translate
+        tree_docs_mention: "Other documents mentioning this person", // TODO translate
+        tree_name_in_doc: "Name in the document:", // TODO translate
+        tree_doc_above: "The full text and explanation of this page are in its earlier card above.", // TODO translate
+        tree_doc_n: "Document {i} of {n} on this page", // TODO translate
+        tree_audit: "Verification notes", // TODO translate
+        tree_author_version: "The author's version", // TODO translate
+        tree_page_book: "p. {n} of the book", // TODO translate
+        tree_no_date: "Undated", // TODO translate
+        tree_confidence: "Confidence in the reading", // TODO translate
+        tree_legibility: "Legibility", // TODO translate
+        tree_quote: "Text as quoted", // TODO translate
+        tree_transcription: "Text as written", // TODO translate
+        tree_explain: "Explanation", // TODO translate
+        tree_orig_vs_restored: "Original versus restored copy", // TODO translate
+        tree_caption_vs_image: "The author's caption versus the image", // TODO translate
+        tree_better_image: "Why a better image is needed", // TODO translate
+        tree_img_zoom: "Enlarge the document image", // TODO translate
+        tree_img_alt: "Document image", // TODO translate
+        tree_source: "Source", // TODO translate
+        tree_owner: "Original owned by:", // TODO translate
+        tree_link_to_father: "Link to father: {s}", // TODO translate
+        tree_legend_chip: "Key to symbols", // TODO translate
+        tree_hint_wheel: "To zoom: Ctrl + wheel", // TODO translate
+        tree_hint_touch: "Use two fingers to move the tree", // TODO translate
+        tree_load_error: "The tree data could not be loaded. Please reload the page.", // TODO translate
+        tree_credits: "The document images were published in the book by Dr. Muhammad Abd al-Qadir al-Shaykh al-Ansari (2022), from the files of the Libyan Center for Archives and Historical Studies (Chairman of the Board: Prof. Dr. Muhammad al-Tahir al-Jarari). According to the family's account, the documents were gathered from the elders of the Ansar families in Brak and al-Shati, attested by witnesses, and the originals were returned to their owners after being photographed. The originals belong to those families. They are published here with permission, with the source of each document cited." // TODO translate
     },
     nodes: [
         {
