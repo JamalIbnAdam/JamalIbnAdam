@@ -1,4 +1,4 @@
-const CACHE_NAME = 'jamalibnadam-v2';
+const CACHE_NAME = 'jamalibnadam-v3';
 const ASSETS_TO_CACHE = [
     './',
     './index.html',
@@ -11,7 +11,12 @@ const ASSETS_TO_CACHE = [
     './data/data_en.js',
     './data/data_es.js',
     './data/data_pl.js',
-    './data/data_tr.js'
+    './data/data_tr.js',
+    './tree/tree.css',
+    './tree/tree.js',
+    './assets/vendor/d3.v7.9.0.min.js',
+    './data/tree.json',
+    './data/docs.json'
 ];
 
 self.addEventListener('install', (event) => {
