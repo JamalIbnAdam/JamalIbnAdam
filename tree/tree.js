@@ -20,6 +20,7 @@ const FORM_ENDPOINT = '';    // form service endpoint (part B); unused while emp
 const CONFIG = {
   spine: ['ali', 'umar', 'abdallah'],          // bottom → top on the trunk; the last one is the medallion
   fanRoot: 'abdallah',
+  plaqueAli: 'علي الجداوي الأنصاري',            // the base of the tree, as the tribe's documents name the lineage
   posterAli: 'الخزرجي الأنصاري',                 // extra words on the 1987 root plaque, not found in any document
   fanDeg: 250,
   openDepth: 2,                                // generations shown below an opened name; the rest fold into a «+N» chip
@@ -381,7 +382,7 @@ function draw() {
     const g = spineItem(ali.id), y = SLOT.ali, w = 300, h = 84, n = 18;
     el('path', { class: 'plaque ' + stKey(ali.status), d: `M${-w / 2 + n},${y - h / 2} H${w / 2 - n} L${w / 2},${y} L${w / 2 - n},${y + h / 2} H${-w / 2 + n} L${-w / 2},${y} Z` }, g);
     el('path', { class: 'plaque-in', d: `M${-w / 2 + n + 6},${y - h / 2 + 7} H${w / 2 - n - 6} L${w / 2 - 9},${y} L${w / 2 - n - 6},${y + h / 2 - 7} H${-w / 2 + n + 6} L${-w / 2 + 9},${y} Z` }, g);
-    el('text', { class: 'ptxt', x: 0, y: y - 12, 'font-size': 30, 'font-weight': 700 }, g).textContent = ali.name_as_written;
+    el('text', { class: 'ptxt', x: 0, y: y - 12, 'font-size': 30, 'font-weight': 700 }, g).textContent = CONFIG.plaqueAli;
     el('text', { class: 'psub', x: 0, y: y + 22 }, g).textContent = t('tree_poster_only', { x: CONFIG.posterAli });
   })();
 
