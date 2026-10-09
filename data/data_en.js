@@ -152,7 +152,7 @@ window.FamilyTreeData = {
         lib_book_info: "Book: The Ansar Khazraj in Wadi Al-Shatii (Dr. Mohammed Abdul Qadir, 2022)",
         lib_method_text: "This tree (73 generations) was documented based on a methodology of corroborating evidence:",
         lib_point_1:
-            "<strong>Manuscript Verification:</strong> Reliance on original documents of the descendants of Grandfather Ali, verified by carbon dating and written in Maghrebi script.",
+            "<strong>Manuscript Verification:</strong> Reliance on original documents of the descendants of Grandfather Ali, written in Maghrebi script.",
         lib_point_2:
             "<strong>Civilizational Evidence:</strong> The 'Sabul' water system established by Grandfather Abdullah matches Granadan irrigation engineering.",
         lib_point_3:
@@ -814,7 +814,7 @@ window.FamilyTreeData = {
             src: "Al-Ansar al-Khazraj (Dr. Muhammad Abd al-Qadir, 2022)",
             logic: "Mentioned with his father in migration documents; the ancestor of the four branches.",
             story:
-                "The son who traveled with his father during migration and settlement. Death confirmed around 1000 AH based on a carbon-dated inheritance division document dated 1002 AH.",
+                "The son who traveled with his father during migration and settlement. Death confirmed around 1000 AH based on an inheritance division document dated 1002 AH.",
             doc_img: "wathiqat-bay-brak-1002h-fadl-sabbal-alain.webp",
             doc_title: "Purchase Deed in Brak - 1002 AH",
             doc_desc_key: "doc_1002_desc",

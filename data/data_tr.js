@@ -789,7 +789,7 @@ window.FamilyTreeData = {
             src: "Al-Ansar al-Khazraj (Dr. Muhammad Abd al-Qadir, 2022)",
             logic: "Göç belgelerinde babasıyla birlikte anılır; dört kolun atasıdır.",
             story:
-                "Göç ve yerleşim sırasında babasıyla birlikte yolculuk eden oğuldur. Ölümü, 1002 H tarihli karbon testli miras paylaşım belgesine dayanarak yaklaşık 1000 H olarak doğrulanmıştır.",
+                "Göç ve yerleşim sırasında babasıyla birlikte yolculuk eden oğuldur. Ölümü, 1002 H tarihli miras paylaşım belgesine dayanarak yaklaşık 1000 H olarak doğrulanmıştır.",
             doc_img: "wathiqat-bay-brak-1002h-fadl-sabbal-alain.webp",
             doc_title: "Purchase Deed in Brak - 1002 AH",
             doc_desc_key: "doc_1002_desc",

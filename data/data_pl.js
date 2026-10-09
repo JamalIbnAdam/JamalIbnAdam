@@ -795,7 +795,7 @@ window.FamilyTreeData = {
             src: "Al-Ansar al-Khazraj (Dr. Muhammad Abd al-Qadir, 2022)",
             logic: "Wspomniany wraz z ojcem w dokumentach migracyjnych; przodek czterech gałęzi.",
             story:
-                "Syn, który podróżował z ojcem podczas migracji i osiedlenia. Śmierć potwierdzona około 1000 AH na podstawie datowanego radiowęglowo dokumentu podziału spadku z 1002 AH.",
+                "Syn, który podróżował z ojcem podczas migracji i osiedlenia. Śmierć potwierdzona około 1000 AH na podstawie dokumentu podziału spadku z 1002 AH.",
             doc_img: "wathiqat-bay-brak-1002h-fadl-sabbal-alain.webp",
             doc_title: "Purchase Deed in Brak - 1002 AH",
             doc_desc_key: "doc_1002_desc",

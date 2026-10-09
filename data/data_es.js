@@ -153,7 +153,7 @@ window.FamilyTreeData = {
         lib_book_info: "Libro: Los Ansar Khazraj en Wadi Al-Shatii (Dr. Mohammed Abdul Qadir, 2022)",
         lib_method_text: "Este linaje (73 generaciones) se documentó mediante una metodología de corroboración de evidencias:",
         lib_point_1:
-            "<strong>Verificación de manuscritos:</strong> Dependencia de documentos originales de los descendientes del abuelo Ali, verificados por datación de carbono y escritos en caligrafía magrebí.",
+            "<strong>Verificación de manuscritos:</strong> Dependencia de documentos originales de los descendientes del abuelo Ali, escritos en caligrafía magrebí.",
         lib_point_2:
             "<strong>Prueba civilizatoria:</strong> El sistema hídrico 'Sabul' establecido por el abuelo Abdullah coincide con la ingeniería de riego granadina.",
         lib_point_3:
