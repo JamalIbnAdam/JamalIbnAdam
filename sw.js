@@ -1,4 +1,8 @@
-const CACHE_NAME = 'jamalibnadam-v3';
+const CACHE_NAME = 'jamalibnadam-v4';
+// document scans are not precached: each one is cached the first time it is viewed
+const EVIDENCE_CACHE = 'jamalibnadam-evidence';
+const EVIDENCE_PATH = '/assets/evidence/';
+const EVIDENCE_MAX = 100;
 const ASSETS_TO_CACHE = [
     './',
     './index.html',
@@ -36,7 +40,7 @@ self.addEventListener('activate', (event) => {
         caches.keys().then((cacheNames) => {
             return Promise.all(
                 cacheNames.map((cacheName) => {
-                    if (cacheName !== CACHE_NAME) {
+                    if (cacheName !== CACHE_NAME && cacheName !== EVIDENCE_CACHE) {
                         return caches.delete(cacheName);
                     }
                 })
@@ -46,7 +50,28 @@ self.addEventListener('activate', (event) => {
     return self.clients.claim();
 });
 
+function evidenceCacheFirst(request) {
+    return caches.open(EVIDENCE_CACHE).then((cache) => {
+        return cache.match(request).then((cached) => {
+            if (cached) return cached;
+            return fetch(request).then((response) => {
+                if (response.ok) {
+                    cache.put(request, response.clone()).then(() => cache.keys()).then((keys) => {
+                        // oldest first: keep the newest EVIDENCE_MAX scans
+                        return Promise.all(keys.slice(0, Math.max(0, keys.length - EVIDENCE_MAX)).map((key) => cache.delete(key)));
+                    });
+                }
+                return response;
+            });
+        });
+    });
+}
+
 self.addEventListener('fetch', (event) => {
+    if (event.request.method === 'GET' && new URL(event.request.url).pathname.includes(EVIDENCE_PATH)) {
+        event.respondWith(evidenceCacheFirst(event.request));
+        return;
+    }
     event.respondWith(
         caches.match(event.request)
             .then((response) => {
