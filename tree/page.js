@@ -75,6 +75,23 @@ async function changeLanguage(langCode) {
     }
 }
 
+// sun/moon switch: dark unless the visitor chose otherwise (the choice is applied before first paint in index.html)
+const themeStorageKey = 'treeTheme';
+const themeButton = document.getElementById('ft-theme');
+if (themeButton) {
+    themeButton.setAttribute('aria-pressed', String(htmlRoot.getAttribute('data-theme') !== 'light'));
+    themeButton.addEventListener('click', () => {
+        const next = htmlRoot.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        htmlRoot.setAttribute('data-theme', next);
+        themeButton.setAttribute('aria-pressed', String(next === 'dark'));
+        try {
+            localStorage.setItem(themeStorageKey, next);
+        } catch (error) {
+            console.warn('Unable to save theme preference', error);
+        }
+    });
+}
+
 if (select) select.addEventListener('change', (event) => changeLanguage(event.target.value));
 changeLanguage(resolveInitialLanguage());
 

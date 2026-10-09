@@ -1,9 +1,13 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <script>
+        // theme before first paint: the stored choice, otherwise dark
+        (function () { try { var t = localStorage.getItem('treeTheme'); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) { } })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -43,104 +47,106 @@
         content="شجرة الأدلة لأحفاد عبد الله سبال العين الجدّاوي الأنصاري: 159 اسماً، كل اسم مربوط بصورة وثيقته الأصلية ونصّها وتاريخها ومصدرها، مع بيان قوة الدليل على صلته بأبيه.">
     <meta name="twitter:image" content="https://jamalibnadam.com/og-image.jpg?v=1.7">
 
-    <link rel="stylesheet" href="../styles.css?v=1.7">
     <link rel="stylesheet" href="tree.css">
 </head>
 
-<body class="flex flex-col min-h-screen">
+<body>
 
-    <!-- === HEADER (same style as the home page) === -->
-    <header class="bg-slate-900 text-white shadow-xl relative overflow-hidden">
-        <!-- Background Pattern (Abstract) -->
-        <div class="absolute inset-0 opacity-10"
-            style="background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48ZyBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0wIDQwaDQwVjBIMHY0MHptMjAgMjBoMjB2MjBIMjBWNjB6TTEwIDgwaDIwdjIwSDEwVjgteiIgZmlsbD0iI0ZGRkZGRiIgLz48L2c+PC9zdmc+');">
+    <header class="ft-top">
+        <a class="ft-logo" href="../" aria-label="Jamal Ibn Adam"><img src="../logo.webp" alt="" width="56" height="56"></a>
+        <div class="ft-titles">
+            <h1 data-i18n="tree_h1">السجل الذهبي لآل سبال العين</h1>
+            <p data-i18n="tree_tagline">كل اسم هنا مربوط بوثيقته</p>
         </div>
-
-        <div class="container mx-auto px-4 py-6 relative">
-
-            <div class="absolute top-0 ltr:right-0 rtl:left-0 mt-2 mx-4 z-50 flex gap-2 items-center">
-                <label for="lang-select" class="sr-only">Select Language</label>
-                <select id="lang-select" aria-label="Select Language"
-                    class="appearance-none bg-slate-800/80 backdrop-blur-md text-amber-50 text-xs font-bold border border-white/10 rounded-lg py-1.5 px-3 pr-8 focus:outline-none focus:border-amber-500 cursor-pointer shadow-lg hover:bg-slate-700 transition-all">
-                    <option value="ar">🇸🇦 العربية</option>
-                    <option value="en">🇺🇸 English</option>
-                    <option value="tr">🇹🇷 Türkçe</option>
-                    <option value="pl">🇵🇱 Polski</option>
-                    <option value="es">🇪🇸 Español</option>
-                </select>
-            </div>
-
-            <div class="flex flex-col md:flex-row items-center gap-4 text-center md:text-start mt-8 md:mt-2">
-                <a href="../" aria-label="Jamal Ibn Adam">
-                    <img src="../logo.webp" alt="Jamal Ibn Adam Logo" width="80" height="80"
-                        class="h-20 w-20 md:h-24 md:w-24 object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500">
-                </a>
-                <div>
-                    <h1 class="text-2xl md:text-4xl font-bold leading-tight text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-100 to-amber-200 drop-shadow-sm"
-                        data-i18n="tree_page_title">أحفاد عبد الله سبال العين الجدّاوي الأنصاري — شجرة الأدلة</h1>
-                    <p class="text-slate-400 text-xs md:text-sm font-light tracking-wider mt-1">
-                        <a href="../" class="ft-home" data-i18n="tree_back_home">→ العودة إلى السجل الذهبي</a>
-                    </p>
-                </div>
-            </div>
-        </div>
+        <nav class="ft-tools">
+            <a href="../" class="ft-home" data-i18n="tree_back_home">→ العودة إلى السجل الذهبي</a>
+            <label for="lang-select" class="ft-sr">Select Language</label>
+            <select id="lang-select" aria-label="Select Language">
+                <option value="ar">🇸🇦 العربية</option>
+                <option value="en">🇺🇸 English</option>
+                <option value="tr">🇹🇷 Türkçe</option>
+                <option value="pl">🇵🇱 Polski</option>
+                <option value="es">🇪🇸 Español</option>
+            </select>
+            <button type="button" id="ft-theme" class="ft-theme" aria-pressed="true" aria-label="تبديل المظهر">
+                <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" /></svg>
+                <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" /><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1" /></svg>
+            </button>
+        </nav>
     </header>
 
-    <!-- === THE EVIDENCE TREE === -->
-    <main class="ft-main flex-grow">
-    <!-- Evidence-based family tree (tree/tree.js, data/tree.json, data/docs.json) -->
-    <section id="ftree" class="ftree" dir="rtl">
-        <header class="ft-head">
-            <h2 data-i18n="tree_title"></h2>
-            <p data-i18n="tree_intro"></p>
-        </header>
-
-        <div class="ft-bar" role="toolbar">
-            <div class="ft-search">
-                <input id="ft-q" type="search" autocomplete="off" aria-controls="ft-results"
-                    aria-expanded="false" data-i18n-placeholder="tree_search_placeholder">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m20 20-4-4" /></svg>
-                <ul class="ft-results" id="ft-results" role="listbox" hidden></ul>
+    <main class="ft-main">
+        <section id="ftree" class="ftree" dir="rtl">
+            <div class="ft-stats">
+                <div class="tile"><b id="ft-st-persons" class="wait">000</b><span data-i18n="tree_stat_persons">اسم</span></div>
+                <div class="tile"><b id="ft-st-docs" class="wait">00</b><span data-i18n="tree_stat_docs">وثيقة</span></div>
+                <div class="tile"><b id="ft-st-oldest" class="wait">0000هـ</b><span data-i18n="tree_stat_oldest">أقدم وثيقة مؤرخة</span></div>
             </div>
-            <label class="ft-switch"><input id="ft-t1987" type="checkbox"> <span data-i18n="tree_toggle_1987"></span></label>
-            <button class="ft-btn" id="ft-goFloat" type="button" data-i18n="tree_btn_float"></button>
-        </div>
 
-        <div class="ft-stage" id="ft-stage">
-            <svg id="ft-tree" class="ft-svg" role="group"><g id="ft-world"></g></svg>
-            <div class="ft-zoom">
-                <button id="ft-zin" type="button"><svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10" /></svg></button>
-                <button id="ft-zout" type="button"><svg viewBox="0 0 16 16"><path d="M3 8h10" /></svg></button>
-                <button id="ft-zfit" type="button"><svg viewBox="0 0 16 16"><path d="M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4" /></svg></button>
-            </div>
-            <details class="ft-legend" id="ft-legend">
-                <summary data-i18n="tree_legend_chip"></summary>
-                <div class="ft-legend-body" id="ft-legend-body"></div>
-            </details>
-            <div class="ft-hint" id="ft-hint" role="status" hidden></div>
-            <aside class="ft-panel" id="ft-panel" dir="rtl" aria-live="polite">
-                <div class="ph">
-                    <div class="grab" aria-hidden="true"></div>
-                    <div class="tt">
-                        <div class="eyebrow" id="ft-pEyebrow"></div>
-                        <h3 id="ft-pName"></h3>
-                        <div id="ft-pStatus"></div>
-                    </div>
-                    <button class="x" id="ft-pClose" type="button"><svg viewBox="0 0 14 14"><path d="M2 2l10 10M12 2 2 12" /></svg></button>
+            <div class="ft-bar" role="toolbar">
+                <div class="ft-search">
+                    <input id="ft-q" type="search" role="combobox" aria-autocomplete="list" autocomplete="off" aria-controls="ft-results"
+                        aria-expanded="false" aria-label="ابحث عن اسم…" placeholder="ابحث عن اسم…" data-i18n-placeholder="tree_search_placeholder">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m20 20-4-4" /></svg>
+                    <ul class="ft-results" id="ft-results" role="listbox" hidden></ul>
                 </div>
-                <div class="pb" id="ft-pBody"></div>
-            </aside>
-        </div>
+                <div class="ft-acts">
+                <button class="ft-btn" id="ft-all" type="button" data-i18n="tree_show_all">عرض الشجرة كاملة</button>
+                <button class="ft-btn" id="ft-fold" type="button" data-i18n="tree_fold_all">طيّ الفروع</button>
+                <button class="ft-btn" id="ft-goFloat" type="button" data-i18n="tree_btn_float">فروع لم تُربط بعد بوثيقة</button>
+                <label class="ft-switch"><input id="ft-t1987" type="checkbox"> <span data-i18n="tree_toggle_1987">إظهار قراءة شجرة 1987</span></label>
+                </div>
+            </div>
 
-        <div class="ft-floats" id="ft-floats">
-            <h3 data-i18n="tree_btn_float"></h3>
-            <p data-i18n="tree_float_sub"></p>
-            <div class="ft-fcards" id="ft-fcards"></div>
-        </div>
+            <div class="ft-stage" id="ft-stage">
+                <svg id="ft-tree" class="ft-svg" role="group">
+                    <defs>
+                        <radialGradient id="ft-fruit" cx="38%" cy="30%" r="78%">
+                            <stop offset="0" class="fs0" />
+                            <stop offset="1" class="fs1" />
+                        </radialGradient>
+                    </defs>
+                    <g id="ft-world"></g>
+                </svg>
+                <div class="ft-zoom">
+                    <button id="ft-zin" type="button" aria-label="تكبير"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10" /></svg></button>
+                    <button id="ft-zout" type="button" aria-label="تصغير"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10" /></svg></button>
+                    <button id="ft-zfit" type="button" aria-label="عرض الشجرة كاملة"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4" /></svg></button>
+                    <button id="ft-zfull" type="button" aria-pressed="false" aria-label="ملء الشاشة"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 2h5M2 2v5M14 14H9M14 14V9M14 2H9M14 2v5M2 14h5M2 14V9" /></svg></button>
+                </div>
+                <details class="ft-legend" id="ft-legend">
+                    <summary data-i18n="tree_legend_chip">كيف تقرأ الشجرة</summary>
+                    <div class="ft-legend-body" id="ft-legend-body"></div>
+                </details>
+                <div class="ft-hint" id="ft-hint" role="status" hidden></div>
+                <div class="ft-rotate" id="ft-rotate" hidden>
+                    <span data-i18n="tree_rotate_hint">أدر الهاتف أفقياً لرؤية أوسع</span>
+                    <button type="button" id="ft-rotate-x" aria-label="×"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l10 10M13 3 3 13" /></svg></button>
+                </div>
+                <aside class="ft-panel" id="ft-panel" dir="rtl" aria-live="polite">
+                    <div class="ph">
+                        <div class="grab" aria-hidden="true"></div>
+                        <div class="tt">
+                            <div class="eyebrow" id="ft-pEyebrow"></div>
+                            <h2 id="ft-pName"></h2>
+                            <div class="line" id="ft-pLine"></div>
+                            <div class="badges" id="ft-pBadges"></div>
+                        </div>
+                        <button class="x" id="ft-pClose" type="button" aria-label="إغلاق"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l10 10M13 3 3 13" /></svg></button>
+                    </div>
+                    <div class="pb" id="ft-pBody"></div>
+                </aside>
+            </div>
 
-        <p class="ft-credits" data-i18n="tree_credits"></p>
-        <div class="ft-tip" id="ft-tip" role="tooltip" hidden></div>
-    </section>
+            <div class="ft-floats" id="ft-floats">
+                <h2 data-i18n="tree_btn_float">فروع لم تُربط بعد بوثيقة</h2>
+                <p data-i18n="tree_float_sub"></p>
+                <div class="ft-fcards" id="ft-fcards"></div>
+            </div>
+
+            <p class="ft-credits" data-i18n="tree_credits"></p>
+            <div class="ft-tip" id="ft-tip" role="tooltip" hidden></div>
+        </section>
     </main>
 
     <script src="../assets/vendor/d3.v7.9.0.min.js" defer></script>
