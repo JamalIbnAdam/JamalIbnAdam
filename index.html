@@ -95,6 +95,7 @@
     </script>
 
     <link rel="stylesheet" href="styles.css?v=1.7">
+    <link rel="stylesheet" href="tree/tree.css">
 </head>
 
 <body class="flex flex-col min-h-screen">
@@ -309,60 +310,48 @@
                 </div>
             </div>
 
-            <!-- Branches from Fadl (under main tree) -->
-            <h2 id="new-branches" class="tree-section-title" data-i18n="fadl_branch_title"></h2>
+            <!-- Evidence-based family tree (tree/tree.js, data/tree.json, data/docs.json) -->
+            <section id="ftree" class="ftree" dir="rtl">
+                <header class="ft-head">
+                    <h2 data-i18n="tree_title"></h2>
+                    <p data-i18n="tree_intro"></p>
+                </header>
 
-            <div class="tree-root">
-                <div class="fadl-node" data-i18n="fadl_node"></div>
-            </div>
-
-            <div class="branches-wrapper">
-                <!-- (1) ابناء محمد بن فضل بن عبد الله -->
-                <div class="branch-card" style="border-top-color: #991b1b; box-shadow: 0 10px 24px rgba(0,0,0,0.18);">
-                    <div class="branch-header text-white font-bold" style="background: #991b1b;">
-                        <h3 style="display:inline; font-size:inherit;" data-i18n="branch_1_title"></h3><br>
-                        <span style="font-size:0.85rem; font-weight:500;" data-i18n="branch_1_subtitle"></span>
+                <div class="ft-bar" role="toolbar">
+                    <div class="ft-search">
+                        <input id="ft-q" type="search" autocomplete="off" aria-controls="ft-results"
+                            aria-expanded="false" data-i18n-placeholder="tree_search_placeholder">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m20 20-4-4" /></svg>
+                        <ul class="ft-results" id="ft-results" role="listbox" hidden></ul>
                     </div>
-                    <div class="branch-body" data-i18n="branch_1_desc"></div>
+                    <label class="ft-switch"><input id="ft-t1987" type="checkbox"> <span data-i18n="tree_toggle_1987"></span></label>
+                    <button class="ft-btn" id="ft-goFloat" type="button" data-i18n="tree_btn_float"></button>
                 </div>
 
-                <!-- (2) ابناء ابولقاسم بن فضل بن عبد الله -->
-                <div class="branch-card" style="border-top-color: #0d9488;">
-                    <div class="branch-header text-white" style="background: #0d9488;">
-                        <h3 style="display:inline; font-size:inherit;" data-i18n="branch_2_title"></h3><br>
-                        <span style="font-size:0.85rem; font-weight:500;" data-i18n="branch_2_subtitle"></span>
+                <div class="ft-stage" id="ft-stage">
+                    <svg id="ft-tree" role="group"><g id="ft-world"></g></svg>
+                    <div class="ft-zoom">
+                        <button id="ft-zin" type="button"><svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10" /></svg></button>
+                        <button id="ft-zout" type="button"><svg viewBox="0 0 16 16"><path d="M3 8h10" /></svg></button>
+                        <button id="ft-zfit" type="button"><svg viewBox="0 0 16 16"><path d="M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4" /></svg></button>
                     </div>
-                    <div class="branch-body" data-i18n="branch_2_desc"></div>
+                    <div class="ft-legend" id="ft-legend"></div>
+                    <aside class="ft-panel" id="ft-panel" dir="rtl" aria-live="polite">
+                        <div class="ph">
+                            <div class="grab" aria-hidden="true"></div>
+                            <div class="tt">
+                                <div class="eyebrow" id="ft-pEyebrow"></div>
+                                <h3 id="ft-pName"></h3>
+                                <div id="ft-pStatus"></div>
+                            </div>
+                            <button class="x" id="ft-pClose" type="button"><svg viewBox="0 0 14 14"><path d="M2 2l10 10M12 2 2 12" /></svg></button>
+                        </div>
+                        <div class="pb" id="ft-pBody"></div>
+                    </aside>
                 </div>
 
-                <!-- (3) أولاد قاسم بن فضل بن عبدالله - زاوية براك -->
-                <div class="branch-card" style="border-top-color: #3498db;">
-                    <div class="branch-header text-white" style="background: #3498db;">
-                        <h3 style="display:inline; font-size:inherit;" data-i18n="branch_3_title"></h3><br>
-                        <span style="font-size:0.85rem; font-weight:500;" data-i18n="branch_3_subtitle"></span>
-                    </div>
-                    <div class="branch-body" data-i18n="branch_3_desc"></div>
-                </div>
-
-                <!-- (تانيا) العثامنة - زاوية براك -->
-                <div class="branch-card" style="border-top-color: #e67e22;">
-                    <div class="branch-header text-white" style="background: #e67e22;">
-                        <h3 style="display:inline; font-size:inherit;" data-i18n="branch_4_title"></h3><br>
-                        <span style="font-size:0.85rem; font-weight:500;" data-i18n="branch_4_subtitle"></span>
-                    </div>
-                    <div class="branch-body" data-i18n="branch_4_desc"></div>
-                </div>
-
-                <!-- (تالثا) أولاد عبد الواحد - زاوية براك -->
-                <div class="branch-card" style="border-top-color: #15803d;">
-                    <div class="branch-header text-white font-bold" style="background: #15803d;">
-                        <h3 style="display:inline; font-size:inherit;" data-i18n="branch_5_title"></h3><br>
-                        <span style="font-size:0.85rem; font-weight:500;" data-i18n="branch_5_subtitle"></span>
-                    </div>
-                    <div class="branch-body" data-i18n="branch_5_desc"></div>
-                </div>
-
-            </div>
+                <p class="ft-credits" data-i18n="tree_credits"></p>
+            </section>
 
             <!-- Concluding timeline / generations note -->
             <div class="mt-6 p-4 bg-slate-50 rounded-lg border border-slate-100 text-right">
@@ -942,6 +931,8 @@
     </div>
 
     <script src="main.js?v=1.7" defer></script>
+    <script src="assets/vendor/d3.v7.9.0.min.js" defer></script>
+    <script src="tree/tree.js" defer></script>
 
     <div id="install-guide"
         style="display:none; position:fixed; bottom:0; width:100%; background:white; padding:20px; z-index:9999; border-top:2px solid #d4af37; text-align:center;">
