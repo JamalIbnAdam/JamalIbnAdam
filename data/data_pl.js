@@ -228,7 +228,7 @@ window.FamilyTreeData = {
         tree_status_maybe: "Probable", // TODO translate
         tree_status_author: "From the author's tree only", // TODO translate
         tree_link_strong: "Strongly probable", // TODO translate
-        tree_legend_hint: "Drag to move; zoom with the wheel or with two fingers", // TODO translate
+        tree_legend_hint: "Drag to move; zoom with Ctrl + wheel or with two fingers", // TODO translate
         tree_above_ali: "Above Ali: no document yet", // TODO translate
         tree_gen: "Generation {n}", // TODO translate
         tree_gen_unknown: "Generation not determined", // TODO translate
@@ -274,9 +274,12 @@ window.FamilyTreeData = {
         tree_better_image: "Why a better image is needed", // TODO translate
         tree_img_zoom: "Enlarge the document image", // TODO translate
         tree_img_alt: "Document image", // TODO translate
-        tree_img_missing: "Document image: to be added", // TODO translate
         tree_source: "Source", // TODO translate
         tree_owner: "Original owned by:", // TODO translate
+        tree_link_to_father: "Link to father: {s}", // TODO translate
+        tree_legend_chip: "Key to symbols", // TODO translate
+        tree_hint_wheel: "To zoom: Ctrl + wheel", // TODO translate
+        tree_hint_touch: "Use two fingers to move the tree", // TODO translate
         tree_load_error: "The tree data could not be loaded. Please reload the page.", // TODO translate
         tree_credits: "The document images were published in the book by Dr. Muhammad Abd al-Qadir al-Shaykh al-Ansari (2022), from the files of the Libyan Center for Archives and Historical Studies (Chairman of the Board: Prof. Dr. Muhammad al-Tahir al-Jarari). According to the family's account, the documents were gathered from the elders of the Ansar families in Brak and al-Shati, attested by witnesses, and the originals were returned to their owners after being photographed. The originals belong to those families. They are published here with permission, with the source of each document cited." // TODO translate
     },
