@@ -329,13 +329,17 @@
                 </div>
 
                 <div class="ft-stage" id="ft-stage">
-                    <svg id="ft-tree" role="group"><g id="ft-world"></g></svg>
+                    <svg id="ft-tree" class="ft-svg" role="group"><g id="ft-world"></g></svg>
                     <div class="ft-zoom">
                         <button id="ft-zin" type="button"><svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10" /></svg></button>
                         <button id="ft-zout" type="button"><svg viewBox="0 0 16 16"><path d="M3 8h10" /></svg></button>
                         <button id="ft-zfit" type="button"><svg viewBox="0 0 16 16"><path d="M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4" /></svg></button>
                     </div>
-                    <div class="ft-legend" id="ft-legend"></div>
+                    <details class="ft-legend" id="ft-legend">
+                        <summary data-i18n="tree_legend_chip"></summary>
+                        <div class="ft-legend-body" id="ft-legend-body"></div>
+                    </details>
+                    <div class="ft-hint" id="ft-hint" role="status" hidden></div>
                     <aside class="ft-panel" id="ft-panel" dir="rtl" aria-live="polite">
                         <div class="ph">
                             <div class="grab" aria-hidden="true"></div>
@@ -350,7 +354,14 @@
                     </aside>
                 </div>
 
+                <div class="ft-floats" id="ft-floats">
+                    <h3 data-i18n="tree_btn_float"></h3>
+                    <p data-i18n="tree_float_sub"></p>
+                    <div class="ft-fcards" id="ft-fcards"></div>
+                </div>
+
                 <p class="ft-credits" data-i18n="tree_credits"></p>
+                <div class="ft-tip" id="ft-tip" role="tooltip" hidden></div>
             </section>
 
             <!-- Concluding timeline / generations note -->

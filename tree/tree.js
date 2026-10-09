@@ -119,7 +119,7 @@ const mark = id => { reach.add(id); kids.get(id).forEach(c => !reach.has(c) && m
 floatRoots.forEach(mark);
 persons.forEach(p => { if (!reach.has(p.id)) { floatRoots.push(p.id); mark(p.id); } });
 
-const FS = 66, FL = 84, FR = 24;
+const FS = 66, FL = 84, FR = 26;
 const ftrees = floatRoots.map(rid => {
   let slot = 0, maxL = 0; const local = new Map();
   (function lay(id, l) {
@@ -133,6 +133,27 @@ const ftrees = floatRoots.map(rid => {
   })(rid, 0);
   return { rid, local, w: Math.max(1, slot) * FS, h: maxL };
 });
+/* unattached branches: one small upward tree per card, in their own block under the stage */
+function drawFloats() {
+  fcards.textContent = '';
+  ftrees.forEach(f => {
+    const W = f.w + 24, H = f.h * FL + FR * 2 + 28;
+    const fig = document.createElement('figure'); fig.className = 'ft-fcard';
+    const s = el('svg', { class: 'ft-svg', width: W, height: H, viewBox: `0 0 ${W} ${H}`, role: 'group' });
+    const gE = el('g', {}, s), gN = el('g', {}, s);
+    const P = id => { const p = f.local.get(id); return [12 + FS / 2 + (f.w - FS) - p.x, H - 14 - FR - p.l * FL]; };   // RTL: first child on the right
+    for (const [id] of f.local) {
+      flo.add(id);
+      const p = byId.get(id); if (id === f.rid) continue;
+      const [x, y] = P(id), [px, py] = P(p.father_id);
+      drawEdge(`M${f1(px)},${f1(py)} C${f1(px)},${f1(py - FL * 0.55)} ${f1(x)},${f1(y + FL * 0.55)} ${f1(x)},${f1(y)}`, p.status, edgeW(1 + countDesc(id)), gE);
+    }
+    for (const [id] of f.local) { const [x, y] = P(id); makeNode(id, x, y, FR, gN); }
+    const cap = document.createElement('figcaption');
+    cap.textContent = (byId.get(f.rid).branch || '').replace(/^\d\s*/, '');
+    fig.append(s, cap); fcards.appendChild(fig);
+  });
+}
 function countDesc(id) { let n = 0; for (const c of kids.get(id)) n += 1 + countDesc(c); return n; }
 const fanBox = (() => { let x0 = Infinity, x1 = -Infinity, y0 = Infinity, y1 = -Infinity; for (const f of fan.values()) { x0 = Math.min(x0, f.x - f.nr); x1 = Math.max(x1, f.x + f.nr); y0 = Math.min(y0, f.y - f.nr); y1 = Math.max(y1, f.y + f.nr); } return { x0, x1, y0, y1 }; })();
 const ali = byId.get(CONFIG.spine[0]), umar = byId.get(CONFIG.spine[1]), abd = byId.get(CONFIG.spine[2]);
@@ -141,6 +162,8 @@ const ali = byId.get(CONFIG.spine[0]), umar = byId.get(CONFIG.spine[1]), abd = b
 const stage = $('ft-stage'), treeEl = $('ft-tree'), world = $('ft-world'), panel = $('ft-panel');
 const pName = $('ft-pName'), pEyebrow = $('ft-pEyebrow'), pStatus = $('ft-pStatus'), pBody = $('ft-pBody');
 const q = $('ft-q'), results = $('ft-results'), t87 = $('ft-t1987');
+const floats = $('ft-floats'), fcards = $('ft-fcards'), legendEl = $('ft-legend'), tip = $('ft-tip');
+legendEl.open = window.innerWidth >= 1024;   // a chip on small screens, open on desktop
 const lightbox = document.createElement('div');
 lightbox.className = 'ft-lightbox'; lightbox.hidden = true;
 const lbImg = document.createElement('img'); lbImg.alt = '';
@@ -157,7 +180,7 @@ const measure = (text, font) => { mctx.font = font; return mctx.measureText(text
 const edgeW = n => Math.min(19, 1.3 + 1.55 * Math.sqrt(Math.max(0, n - 1)));
 
 // rebuilt by draw()
-let L = {}, nodeEls = new Map(), spineEls = new Map(), groups = new Map(), blabEls = [], flo = new Map(), floatBox = null, keyLabels = [];
+let L = {}, nodeEls = new Map(), spineEls = new Map(), groups = new Map(), blabEls = [], flo = new Set(), keyLabels = [];
 let selected = null, currentK = 1;
 
 function edgeD(pid, cid) {
@@ -182,7 +205,6 @@ function drawEdge(d, status, w, parent) {
 function makeNode(id, x, y, r, parent) {
   const p = byId.get(id), k = stKey(p.status);
   const g = el('g', { class: `node ${k}`, transform: `translate(${f1(x)},${f1(y)})`, tabindex: '0', role: 'button', 'aria-label': `${p.name_as_written} — ${stText(p.status)}`, 'data-id': id }, parent);
-  el('title', {}, g).textContent = p.name_as_written;
   el('circle', { class: 'halo', r: r + 7 }, g);
   el('circle', { class: 'c', r }, g);
   const tx = el('text', { class: 'nl' }, g);
@@ -204,8 +226,8 @@ function draw() {
   const uiFont = cssVar('--ft-f-ui');
   const pillW = text => measure(text, `600 15px ${uiFont}`) + 26;
   world.textContent = '';
-  L = {}; nodeEls = new Map(); spineEls = new Map(); groups = new Map(); blabEls = []; flo = new Map(); floatBox = null;
-  ['rings', 'blabs', 'edges', 'trunk', 'float', 'nodes', 'spine', 'klabs'].forEach(n => L[n] = el('g', { class: 'L-' + n }, world));
+  L = {}; nodeEls = new Map(); spineEls = new Map(); groups = new Map(); blabEls = []; flo = new Set();
+  ['rings', 'blabs', 'edges', 'trunk', 'nodes', 'spine', 'klabs'].forEach(n => L[n] = el('g', { class: 'L-' + n }, world));
 
   /* generation rings */
   const ringPad = 4 * Math.PI / 180;
@@ -310,7 +332,6 @@ function draw() {
     el('path', { class: 'plaque-in', d: `M${-w / 2 + n + 6},${y - h / 2 + 7} H${w / 2 - n - 6} L${w / 2 - 9},${y} L${w / 2 - n - 6},${y + h / 2 - 7} H${-w / 2 + n + 6} L${-w / 2 + 9},${y} Z` }, g);
     el('text', { class: 'ptxt', x: 0, y: y - 12, 'font-size': 30, 'font-weight': 700 }, g).textContent = ali.name_as_written;
     el('text', { class: 'psub', x: 0, y: y + 22 }, g).textContent = t('tree_poster_only', { x: CONFIG.posterAli });
-    el('title', {}, g).textContent = `${ali.name_as_written} — ${stText(ali.status)}`;
   })();
 
   // tulip plaque with the verse
@@ -326,7 +347,6 @@ function draw() {
     const g = spineItem(umar.id), y = SLOT.umar;
     el('rect', { class: 'plaque ' + stKey(umar.status), x: -78, y: y - 28, width: 156, height: 56, rx: 7 }, g);
     el('text', { class: 'ptxt', x: 0, y: y - 2, 'font-size': 30, 'font-weight': 700 }, g).textContent = shortName(umar);
-    el('title', {}, g).textContent = `${umar.name_as_written} — ${stText(umar.status)}`;
   })();
 
   // 1987 reading (hidden by default)
@@ -352,7 +372,6 @@ function draw() {
     el('circle', { class: 'plaque-in', r: MED_R - 9, cx: 0, cy: 0 }, g);
     el('text', { class: 'ptxt', x: 0, y: -16, 'font-size': 31, 'font-weight': 700 }, g).textContent = 'عبد الله';
     el('text', { class: 'ptxt', x: 0, y: 22, 'font-size': 25 }, g).textContent = 'سبال العين';
-    el('title', {}, g).textContent = `${abd.name_as_written} — ${stText(abd.status)}`;
   })();
 
   // link from the medallion to its sons: label the first strong one
@@ -364,42 +383,7 @@ function draw() {
     pill(x + 74, y + 30, linkLabel(byId.get(main)), stKey(byId.get(main).status), S);
   })();
 
-  /* unattached box beside the trunk */
-  if (ftrees.length) {
-    const pad = 46, gapT = 70, head = 96;
-    const title = t('tree_btn_float'), sub = t('tree_float_sub');
-    const innerW = ftrees.reduce((sum, f) => sum + f.w, 0) + gapT * (ftrees.length - 1);
-    const maxH = Math.max(...ftrees.map(f => f.h));
-    const bw = Math.max(innerW, measure(sub, `400 14px ${uiFont}`), measure(title, `700 30px ${cssVar('--ft-f-callig')}`)) + pad * 2;
-    const bh = head + maxH * FL + FR * 2 + 70;
-    // bottom-aligned with the trunk's roots; slide left until no fan node, ring label or branch arc is under the box
-    const bottom = SLOT.note + 60, top = bottom - bh;
-    const hitsBox = r => { for (const f of fan.values()) if (f.x + f.nr + 60 > r - bw && f.x - f.nr - 130 < r && f.y + f.nr + 50 > top && f.y - f.nr - 50 < bottom) return true; return false; };
-    let right = -200;
-    while (hitsBox(right) && right > -6000) right -= 20;
-    const left = right - bw;
-    floatBox = { x: left, y: top, w: bw, h: bh };
-    const G = L.float;
-    el('rect', { class: 'fbox', x: left, y: top, width: f1(bw), height: bh, rx: 18 }, G);
-    el('text', { class: 'ftitle', x: f1(left + bw / 2), y: top + 44, 'font-size': 30 }, G).textContent = title;
-    el('text', { class: 'fsub', x: f1(left + bw / 2), y: top + 74 }, G).textContent = sub;
-    let cx = right - pad - (bw - pad * 2 - innerW) / 2;   // RTL: first tree on the right
-    const baseY = top + bh - 62;
-    ftrees.forEach(f => {
-      const x0 = cx - f.w + FS / 2;
-      const P = id => { const p = f.local.get(id); return [x0 + (f.w - FS) - p.x, baseY - p.l * FL]; };
-      for (const [id, p] of f.local) { const [x, y] = P(id); flo.set(id, { x, y, l: p.l, w: FS, tree: f }); }
-      for (const [id] of f.local) {
-        const p = byId.get(id); if (id === f.rid) continue;
-        const [x, y] = P(id), [px, py] = P(p.father_id);
-        drawEdge(`M${f1(px)},${f1(py)} C${f1(px)},${f1(py - FL * 0.55)} ${f1(x)},${f1(y + FL * 0.55)} ${f1(x)},${f1(y)}`, p.status, edgeW(1 + countDesc(id)), G);
-      }
-      for (const [id] of f.local) { const [x, y] = P(id); makeNode(id, x, y, FR, L.nodes); }
-      const bl = (byId.get(f.rid).branch || '').replace(/^\d\s*/, '');
-      el('text', { class: 'ftree-lab', x: f1(cx - f.w / 2), y: baseY + FR + 30 }, G).textContent = bl;
-      cx -= f.w + gapT;
-    });
-  }
+  drawFloats();
 
   fitLabels();
   drawLegend();
@@ -430,7 +414,14 @@ function fitLabels() {
       while (fs > 6.5 && !fitsIn(lines, fs, n.r)) fs -= 0.5;
       if (!best || fs > best.fs + 0.4) best = { fs, lines };
     }
-    const { fs, lines } = best;
+    let { fs, lines } = best;
+    // never let a name spill out of its circle: at the smallest size, shorten it (the tooltip and the panel carry the full name)
+    lines = lines.slice();
+    while (!fitsIn(lines, fs, n.r)) {
+      let j = 0; lines.forEach((l, i) => { if (width(l, fs) > width(lines[j], fs)) j = i; });
+      const cut = lines[j].replace(/…$/, ''); if (cut.length <= 1) break;
+      lines[j] = cut.slice(0, -1).trimEnd() + '…';
+    }
     n.t.textContent = '';
     n.t.setAttribute('font-size', fs);
     lines.forEach((l, i) => el('tspan', { x: 0, dy: lines.length === 1 ? 1 : (i === 0 ? f1(-0.55 * fs) : f1(1.18 * fs)) }, n.t).textContent = l);
@@ -447,53 +438,80 @@ function fitLabels() {
   buildKeyLabels();
 }
 
-/* overview labels: screen-sized names for nodes whose sector is wide enough at the current zoom */
+/* names beside the circles while the names inside them are too small to read: 12px on screen, pushed outward
+   from the circle, and dropped only where they would cover another name or another circle */
 function buildKeyLabels() {
   const nameFont = cssVar('--ft-f-name');
   L.klabs.textContent = ''; keyLabels = [];
   for (const [id, n] of nodeEls) {
-    const f = fan.get(id), fl = flo.get(id);
-    const room = f ? f.W * f.r : fl ? fl.w : 0;
+    const f = fan.get(id); if (!f) continue;
     const tx = el('text', { class: 'klab' + (n.k === 'author' ? ' author' : '') }, L.klabs);
     tx.textContent = n.label;
-    keyLabels.push({ id, t: tx, x: n.x, y: n.y, room, w: measure(n.label, `700 12px ${nameFont}`) + 10, d: f ? f.d : (fl ? fl.l : 0), float: !!fl });
+    keyLabels.push({ id, n, t: tx, x: n.x, y: n.y, r: n.r, room: f.W * f.r, w: measure(n.label, `700 12px ${nameFont}`) + 8, d: f.d, ux: Math.sin(f.a), uy: -Math.cos(f.a) });
   }
   applyLOD(currentK);
 }
 
+// true when a name box (screen px, relative to the medallion) would sit on a branch's arc title
+function onArcTitle(cx, cy, hw, hh, k) {
+  const ang = Math.atan2(cx, -cy), rad = Math.hypot(cx, cy) / k;
+  const ext = (Math.abs(Math.sin(ang)) * hw + Math.abs(Math.cos(ang)) * hh) / k, da = hw / Math.max(1, Math.hypot(cx, cy));
+  for (const g of groups.values()) if (ang + da > g.a0 - 0.06 && ang - da < g.a1 + 0.06 && rad + ext > g.rmax + 16 && rad - ext < g.rmax + 70) return true;
+  return false;
+}
+
 /* ---------- zoom / pan ---------- */
 const svg = d3.select(treeEl);
-const DETAIL_PX = 7.2;
+const DETAIL_PX = 10;      // smallest on-screen size at which the name inside a circle is used; below it the name moves outside
 function applyLOD(k) {
   currentK = k;
-  const far = k * 11.5 < DETAIL_PX && k < 0.66;
-  treeEl.classList.toggle('lod-far', far);
   treeEl.classList.toggle('lod-near', k > 0.8);
-  const ringPx = GAP * k, boxes = [];
-  const order = keyLabels.slice().sort((a, b) => a.d - b.d || b.room - a.room);
-  for (const kl of order) {
-    let show = far && kl.room * k >= kl.w;
-    if (show && !kl.float && ringPx < 17 && kl.d > 2) show = false;
-    if (show && kl.float && FL * k < 17 && kl.d > 0) show = false;
-    if (show) {
-      const cx = kl.x * k, cy = kl.y * k, hw = kl.w / 2, hh = 9;
-      if (boxes.some(b => Math.abs(b[0] - cx) < hw + b[2] && Math.abs(b[1] - cy) < hh + b[3])) show = false;
-      else boxes.push([cx, cy, hw, hh]);
+  let outside = 0;
+  for (const kl of keyLabels) { kl.out = (kl.n.fs || 0) * k < DETAIL_PX; kl.n.g.classList.toggle('ext', kl.out); if (kl.out) outside++; }
+  if (outside) {
+    const hit = (b, cx, cy, hw, hh) => Math.abs(b[0] - cx) < hw + b[2] && Math.abs(b[1] - cy) < hh + b[3];
+    const circles = keyLabels.map(kl => [kl.x * k, kl.y * k, kl.r * k + 1, kl.r * k + 1]);
+    const boxes = [[0, 0, MED_R * k, MED_R * k], [0, SLOT.note / 2 * k, 150 * k, (SLOT.note / 2 + 30) * k]];   // medallion, trunk
+    const tr = d3.zoomTransform(treeEl), W = stage.clientWidth;
+    const order = keyLabels.map((kl, i) => [kl, i]).sort((a, b) => a[0].d - b[0].d || b[0].room - a[0].room);
+    for (const [kl, i] of order) {
+      if (!kl.out) { kl.t.setAttribute('display', 'none'); continue; }
+      const hw = kl.w / 2, hh = 8, gap = kl.r * k + 3, nx = kl.x * k, ny = kl.y * k;
+      let at = null;
+      for (const [ux, uy] of [[kl.ux, kl.uy], [0, 1], [0, -1], [kl.ux >= 0 ? 1 : -1, 0]]) {   // outward, below, above, beside
+        const d = gap + Math.abs(ux) * hw + Math.abs(uy) * hh, cx = nx + ux * d, cy = ny + uy * d;
+        if (boxes.some(b => hit(b, cx, cy, hw, hh)) || circles.some((c, j) => j !== i && hit(c, cx, cy, hw, hh))) continue;
+        if (onArcTitle(cx, cy, hw, hh, k)) continue;
+        const sx = tr.x + cx; if (sx - hw < 2 !== sx + hw < 2 || sx - hw > W - 2 !== sx + hw > W - 2) continue;   // would be cut by the stage edge
+        at = [cx, cy]; break;
+      }
+      if (at) {
+        boxes.push([at[0], at[1], hw, hh]);
+        kl.t.removeAttribute('display');
+        kl.t.setAttribute('x', f1(at[0] - nx)); kl.t.setAttribute('y', f1(at[1] - ny));
+        kl.t.setAttribute('transform', `translate(${f1(kl.x)},${f1(kl.y)}) scale(${(1 / k).toFixed(4)})`);
+      } else kl.t.setAttribute('display', 'none');
     }
-    if (show) { kl.t.removeAttribute('display'); kl.t.setAttribute('transform', `translate(${f1(kl.x)},${f1(kl.y)}) scale(${(1 / k).toFixed(4)})`); }
-    else kl.t.setAttribute('display', 'none');
-  }
+  } else for (const kl of keyLabels) kl.t.setAttribute('display', 'none');
   if (L.rings) L.rings.style.display = k * 13 < 6 ? 'none' : '';
 }
-const zoom = d3.zoom().scaleExtent([0.05, 4]).on('zoom', e => { world.setAttribute('transform', e.transform); applyLOD(e.transform.k); });
+const zoom = d3.zoom().scaleExtent([0.05, 4])
+  // cooperative gestures: the page keeps the plain wheel and the one-finger drag; Ctrl/⌘ + wheel, two fingers or a mouse drag move the tree
+  .filter(e => e.type === 'wheel' ? (e.ctrlKey || e.metaKey) : e.type.startsWith('touch') ? e.touches.length > 1 : !e.button)
+  .on('zoom', e => { world.setAttribute('transform', e.transform); applyLOD(e.transform.k); hideTip(); });
 svg.call(zoom).on('dblclick.zoom', null);
+const hintEl = $('ft-hint');
+let hintTimer;
+function hint(key) { hintEl.textContent = t(key); hintEl.hidden = false; clearTimeout(hintTimer); hintTimer = setTimeout(() => { hintEl.hidden = true; }, 1500); }
+treeEl.addEventListener('wheel', e => { if (!e.ctrlKey && !e.metaKey) hint('tree_hint_wheel'); }, { passive: true });
+treeEl.addEventListener('touchmove', e => { if (e.touches.length === 1) hint('tree_hint_touch'); }, { passive: true });
 
 const visible = () => stage.clientWidth > 0 && stage.clientHeight > 0;
 function contentBounds() {
   let x0 = Math.min(fanBox.x0, -160), x1 = Math.max(fanBox.x1, 160), y0 = fanBox.y0, y1 = Math.max(fanBox.y1, SLOT.note + 50);
   for (const g of groups.values()) { y0 = Math.min(y0, -(g.rmax + 80)); }
   const bb = L.blabs.getBBox(); if (bb.width) { x0 = Math.min(x0, bb.x); x1 = Math.max(x1, bb.x + bb.width); y0 = Math.min(y0, bb.y); }
-  if (floatBox) { x0 = Math.min(x0, floatBox.x); y1 = Math.max(y1, floatBox.y + floatBox.h); }
+
   const rb = L.rings.getBBox(); if (rb.width) { x0 = Math.min(x0, rb.x); x1 = Math.max(x1, rb.x + rb.width); }
   return { x0, y0, x1, y1 };
 }
@@ -503,20 +521,17 @@ function viewRect() {
   const W = stage.clientWidth, H = stage.clientHeight, open = panel.classList.contains('open');
   if (!open) return { x: 0, y: 0, w: W, h: H };
   if (isMobile()) { const vis = (window.innerHeight - panel.offsetHeight) - stage.getBoundingClientRect().top; return { x: 0, y: 0, w: W, h: Math.max(90, Math.min(H, vis)) }; }
+  if (panel.parentNode !== stage) return { x: 0, y: 0, w: W, h: H };
   const pw = panel.offsetWidth; return { x: pw, y: 0, w: W - pw, h: H };
 }
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 function go(tr, ms = 550) { (reduced || !ms ? svg : svg.transition().duration(ms).ease(d3.easeCubicInOut)).call(zoom.transform, tr); }
 function fit(ms = 550) {
   if (!visible()) return;
-  const b = contentBounds(), v = viewRect(), pad = isMobile() ? 10 : 22;
-  const legendH = isMobile() ? 34 : 0;
-  const kw = (v.w - pad * 2) / (b.x1 - b.x0), kh = (v.h - pad * 2 - legendH) / (b.y1 - b.y0);
-  // a tall phone screen would leave most of the stage empty: fill the height and let the wings run off the sides
-  const k = Math.min(kh, kw * (v.h > v.w * 1.3 ? 2.1 : 1));
-  const cxw = k > kw * 1.01 ? 0 : (b.x0 + b.x1) / 2;
-  const tx = v.x + v.w / 2 - k * cxw, ty = v.y + (v.h - legendH) / 2 - k * (b.y0 + b.y1) / 2;
-  go(d3.zoomIdentity.translate(tx, ty).scale(k), ms);
+  // the whole tree, branch arc labels included, inside the stage
+  const b = contentBounds(), v = viewRect(), pad = isMobile() ? 16 : 22;
+  const k = Math.min((v.w - pad * 2) / (b.x1 - b.x0), (v.h - pad * 2) / (b.y1 - b.y0));
+  go(d3.zoomIdentity.translate(v.x + v.w / 2 - k * (b.x0 + b.x1) / 2, v.y + v.h / 2 - k * (b.y0 + b.y1) / 2).scale(k), ms);
 }
 function posOf(id) {
   const n = nodeEls.get(id); if (n) return [n.x, n.y];
@@ -528,6 +543,7 @@ function posOf(id) {
   return [0, 0];
 }
 function centerOn(id, kMin = 1.25, ms = 600) {
+  if (flo.has(id)) { nodeEls.get(id)?.g.closest('.ft-fcard')?.scrollIntoView({ block: 'center', behavior: reduced || !ms ? 'auto' : 'smooth' }); return; }
   if (!visible()) return;
   const [x, y] = posOf(id), v = viewRect();
   if (isMobile()) kMin = Math.min(kMin, 1);
@@ -537,11 +553,7 @@ function centerOn(id, kMin = 1.25, ms = 600) {
 $('ft-zin').onclick = () => svg.transition().duration(reduced ? 0 : 250).call(zoom.scaleBy, 1.4);
 $('ft-zout').onclick = () => svg.transition().duration(reduced ? 0 : 250).call(zoom.scaleBy, 1 / 1.4);
 $('ft-zfit').onclick = () => fit();
-$('ft-goFloat').onclick = () => {
-  if (!floatBox || !visible()) return;
-  const v = viewRect(), k = Math.min(1.1, (v.w - 30) / floatBox.w, (v.h - 30) / floatBox.h);
-  go(d3.zoomIdentity.translate(v.x + v.w / 2 - k * (floatBox.x + floatBox.w / 2), v.y + v.h / 2 - k * (floatBox.y + floatBox.h / 2)).scale(k));
-};
+$('ft-goFloat').onclick = () => floats.scrollIntoView({ block: 'start', behavior: reduced ? 'auto' : 'smooth' });
 
 /* ---------- 1987 toggle ---------- */
 t87.addEventListener('change', () => {
@@ -552,13 +564,12 @@ t87.addEventListener('change', () => {
 /* ---------- panel ---------- */
 const stPill = (s, label) => `<span class="st ${stKey(s)}">${esc(label || s || '—')}</span>`;
 const personBtn = id => { const p = byId.get(id); return p ? `<button type="button" class="pl ${stKey(p.status)}" data-go="${esc(id)}">${esc(p.name_as_written)}</button>` : ''; };
-const docIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 15h6M9 18h4"/></svg>';
 const level = c => { const s = String(c || ''); return s.startsWith('عالية') ? 3 : s.startsWith('متوسطة') ? 2 : s.startsWith('منخفضة') ? 1 : 0; };
 const dotsHtml = (c, title) => { const n = level(c); return c ? `<span class="conf c${n}" title="${esc(title)}">${n ? [1, 2, 3].map(i => `<i class="${i <= n ? 'on' : ''}"></i>`).join('') : ''} ${esc(c)}</span>` : ''; };
 const pageTxt = pg => pg == null || pg === '' ? '' : (typeof pg === 'number' || /^\d+$/.test(String(pg)) ? t('tree_page_book', { n: pg }) : String(pg));
 const imgHtml = (src, page) => src
   ? `<button type="button" class="img has" data-img="${esc(src)}" aria-label="${esc(t('tree_img_zoom'))}"><img src="${esc(src)}" alt="${esc(t('tree_img_alt'))} ${esc(pageTxt(page))}" loading="lazy" decoding="async"></button>`
-  : `<div class="img">${docIcon}<span>${esc(t('tree_img_missing'))}</span></div>`;
+  : '';
 // mandatory credits under every scan: where it was published and which archive file it came from
 function creditHtml(recs) {
   const uniq = k => [...new Set(recs.map(d => d[k]).filter(Boolean))];
@@ -608,11 +619,12 @@ function openPerson(id, { center = true } = {}) {
   setSelected(id);
   pEyebrow.textContent = [genText(p), p.branch].filter(Boolean).join(' · ');
   pName.textContent = p.name_as_written;
-  pStatus.innerHTML = stPill(p.status, stText(p.status));
   const f = p.father_id && byId.get(p.father_id);
+  // the status describes the link to the father, not the person: say so, once
+  pStatus.innerHTML = stPill(p.status, f ? t('tree_link_to_father', { s: linkLabel(p) }) : stText(p.status));
   const ks = kids.get(id) || [];
   let fatherRow;
-  if (f) fatherRow = `${personBtn(f.id)} ${stPill(p.status, linkLabel(p))}`;
+  if (f) fatherRow = personBtn(f.id);
   else if (id === CONFIG.spine[0]) fatherRow = `<span class="muted">${esc(t('tree_above_ali'))}</span>`;
   else fatherRow = `<span class="muted">${esc(t('tree_father_none'))}</span>`;
   const ev = p.evidence || [], seen = new Set();
@@ -630,7 +642,7 @@ function openPerson(id, { center = true } = {}) {
   const av = p.author_version;
   if (av) html += `<section class="sec"><h4>${esc(t('tree_author_version'))}</h4><div class="box"><div>${esc(av.father_per_author || '')}</div><div>${stPill(av.status)}</div>${av.basis ? `<div class="muted">${esc(av.basis)}</div>` : ''}</div></section>`;
   pBody.innerHTML = html; pBody.scrollTop = 0;
-  showPanel(); if (center) requestAnimationFrame(() => centerOn(id, nodeEls.has(id) ? 1.25 : 0.95));
+  showPanel(id); if (center) requestAnimationFrame(() => centerOn(id, nodeEls.has(id) ? 1.25 : 0.95));
 }
 function open1987(id, center) {
   setSelected(id);
@@ -643,14 +655,14 @@ function open1987(id, center) {
     <section class="sec"><h4>${esc(t('tree_r87_text'))}</h4>${ev.map(e => evHtml(e, seen)).join('')}</section>
     <section class="sec"><h4>${esc(t('tree_r87_link'))}</h4><div class="chips">${personBtn('umar')} ${stPill(abd.status, linkLabel(abd))} ${personBtn(ROOT)}</div></section>`;
   pBody.scrollTop = 0;
-  showPanel(); if (center) requestAnimationFrame(() => centerOn(id, 0.95));
+  showPanel(id); if (center) requestAnimationFrame(() => centerOn(id, 0.95));
 }
 function setSelected(id) {
   if (selected) { nodeEls.get(selected)?.g.classList.remove('sel'); spineEls.get(selected)?.classList.remove('sel'); }
   selected = id; nodeEls.get(id)?.g.classList.add('sel'); spineEls.get(id)?.classList.add('sel');
 }
-function showPanel() { panel.classList.add('open'); }
-function closePanel() { panel.classList.remove('open'); setSelected(null); }
+function showPanel(id) { placePanel(id); panel.classList.add('open'); floats.classList.toggle('has-panel', panel.parentNode === floats); }
+function closePanel() { panel.classList.remove('open'); floats.classList.remove('has-panel'); setSelected(null); }
 function closeLightbox() { lightbox.hidden = true; lbImg.removeAttribute('src'); }
 $('ft-pClose').onclick = closePanel;
 pBody.addEventListener('click', e => {
@@ -659,16 +671,44 @@ pBody.addEventListener('click', e => {
 });
 lightbox.onclick = closeLightbox;
 // the bottom sheet is position:fixed, but #view-tree keeps a transform from its fade-up animation, so on phones it lives in <body>
-function placePanel() { const target = isMobile() ? document.body : stage; if (panel.parentNode !== target) target.appendChild(panel); }
-mqMobile.addEventListener('change', placePanel); placePanel();
+// on desktop it sits in the block that holds the selected name: the stage, or the unattached-branches block
+function placePanel(id) { const target = isMobile() ? document.body : (id && flo.has(id) ? floats : stage); if (panel.parentNode !== target) target.appendChild(panel); floats.classList.toggle('has-panel', target === floats && panel.classList.contains('open')); }
+mqMobile.addEventListener('change', () => placePanel(selected)); placePanel(selected);
 
 function onActivate(e) {
   const g = e.target.closest('[data-id]'); if (!g) return;
   if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') return;
   e.preventDefault();
+  hideTip();
   openPerson(g.dataset.id);
+  // a finger has no hover: show the tooltip briefly once the tree has settled
+  if (lastPointer === 'touch') { clearTimeout(tipTimer); tipTimer = setTimeout(() => { showTip(g); tipTimer = setTimeout(hideTip, 2500); }, 750); }
 }
-['click', 'keydown'].forEach(type => world.addEventListener(type, onActivate));
+['click', 'keydown'].forEach(type => { world.addEventListener(type, onActivate); fcards.addEventListener(type, onActivate); });
+
+/* ---------- tooltip: full name and lineage line, for every circle and plaque ---------- */
+let lastPointer = 'mouse', tipTimer;
+function lineage(id) {
+  const out = []; let p = byId.get(id), guard = 0;
+  while (p && guard++ < 40) { out.unshift(shortName(p)); p = p.father_id && byId.get(p.father_id); }
+  return out.join(' ← ');
+}
+function showTip(g) {
+  const p = byId.get(g.dataset.id); if (!p || !g.isConnected) return;
+  tip.innerHTML = `<b>${esc(p.name_as_written)}</b><span>${esc(lineage(p.id))}</span>`;
+  tip.hidden = false;
+  const r = g.getBoundingClientRect(), h = host.getBoundingClientRect(), tw = tip.offsetWidth, th = tip.offsetHeight;
+  const x = Math.max(4, Math.min(h.width - tw - 4, r.left + r.width / 2 - h.left - tw / 2));
+  const y = r.top - th - 8 < 0 ? r.bottom - h.top + 8 : r.top - h.top - th - 8;
+  tip.style.left = `${Math.round(x)}px`; tip.style.top = `${Math.round(y)}px`;
+}
+function hideTip() { clearTimeout(tipTimer); tip.hidden = true; }
+const tipTarget = e => { const g = e.target.closest && e.target.closest('.ft-svg [data-id]'); return g && host.contains(g) ? g : null; };
+host.addEventListener('pointerdown', e => { lastPointer = e.pointerType || 'mouse'; }, true);
+host.addEventListener('pointerover', e => { if (e.pointerType === 'touch') return; const g = tipTarget(e); if (g) showTip(g); });
+host.addEventListener('pointerout', e => { const g = tipTarget(e); if (g && !g.contains(e.relatedTarget)) hideTip(); });
+host.addEventListener('focusin', e => { const g = tipTarget(e); if (g && g.matches(':focus-visible')) showTip(g); });
+host.addEventListener('focusout', hideTip);
 document.addEventListener('keydown', e => { if (e.key === 'Escape') { if (!lightbox.hidden) closeLightbox(); else if (panel.classList.contains('open')) closePanel(); } });
 
 /* ---------- search ---------- */
@@ -713,7 +753,7 @@ function drawLegend() {
       : k === 'maybe' ? '<circle cx="36" cy="10" r="8" fill="var(--ft-sheet)" stroke="var(--ft-maybe)" stroke-width="2" stroke-dasharray="4 2.6"/>' : '<circle cx="36" cy="10" r="8" fill="var(--ft-sheet)" stroke="var(--ft-ink)" stroke-width="2"/>';
     return `<svg viewBox="0 0 46 20" aria-hidden="true">${line}${circ}</svg>`;
   };
-  $('ft-legend').innerHTML = `<div class="lt">${esc(t('tree_legend_title'))}</div>
+  $('ft-legend-body').innerHTML = `<div class="lt">${esc(t('tree_legend_title'))}</div>
     ${['ok', 'maybe', 'author'].map(k => `<div class="row">${sample(k)}<span>${esc(t('tree_status_' + k))}</span><span class="n">${c[k]}</span></div>`).join('')}
     <div class="hint">${esc(t('tree_legend_hint'))}</div>`;
 }
@@ -748,7 +788,7 @@ new ResizeObserver(() => {
   }, 150);
 }).observe(stage);
 
-window.__ftree = { openPerson, centerOn, fit, fan, count: () => new Set([...treeEl.querySelectorAll('[data-id]')].map(e => e.dataset.id).filter(id => !id.startsWith('r87_'))).size };
+window.__ftree = { openPerson, centerOn, fit, fan, count: () => new Set([...host.querySelectorAll('.ft-svg [data-id]')].map(e => e.dataset.id).filter(id => !id.startsWith('r87_'))).size };
 }
 
 /* ---------- load ---------- */
