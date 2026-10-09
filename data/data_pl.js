@@ -72,11 +72,11 @@ window.FamilyTreeData = {
 
         // Tree Section
         fadl_branch_title: "🔻 Gałęzie Fadla bin Abdullaha Sabal Al-Ain 🔻",
-        fadl_node: "52. Fadl ibn Abdullah ibn Umar ibn Ali Al-Sulami Al-Jaddawi Al-Khazraji<br>(942 AH - 1000 AH (Dokument Spadkowy 1002 AH))",
+        fadl_node: "52. Fadl ibn Abdullah ibn Umar ibn Ali Al-Jaddawi Al-Khazraji<br>(942 AH - 1000 AH (Dokument Spadkowy 1002 AH))",
         modern_era_title: "Współczesne Rozszerzenie (1100 AH - 1447 AH (1689 - 2026 AD))",
-        modern_era_lineage: "Łańcuch późnych przodków (20 pokoleń)",
+        modern_era_lineage: "See your chain in the evidence tree",
         modern_era_detail:
-            "Zgodnie z dokumentacją rodzinną: luka między przodkiem założycielem (Gen 51) a obecnym pokoleniem wynosi 22 imiona. (Fadl i Salem) są wspomniani powyżej, pozostaje 20 pokoleń reprezentujących oś czasu aż do naszych czasów.",
+            "",
         modern_era_generation: "Pokolenie 73: (obecne pokolenie - 2026)",
 
         // --- FIGURES TAB (The 4 Cards) ---
@@ -271,6 +271,75 @@ window.FamilyTreeData = {
         tree_link_trad_short: "Oral account of tribal elders", // TODO translate
         tree_stat_note: "This is the beginning of the collection, not its end. The tribe has far more names and documents than these; we add every name and every document once it arrives and has been verified.", // TODO translate
         tree_base_line: "The tree of the Ansar in Wadi al-Shati, Fezzan, Libya", // TODO translate
+
+        // Home page (index.html)
+        // TODO translate: English placeholders below.
+        home_nav_tree: "Evidence tree", // TODO translate
+        home_nav_journey: "The lineage journey", // TODO translate
+        home_nav_figures: "Ansar figures", // TODO translate
+        home_nav_library: "Library", // TODO translate
+        home_nav_poem: "The epic", // TODO translate
+        home_nav_author: "The author", // TODO translate
+        home_nav_sources: "References", // TODO translate
+        home_nav_home: "Home", // TODO translate
+        home_h1: "Descendants of Abdullah Sabal Al-Ain", // TODO translate
+        home_lede: "The lineage of the Ansar tribe of Wadi al-Shati in Fezzan: lineages that meet in Zawiyat Brak, Aqar, Ishkeda and Dabdab, and go back to Abdullah Sabal Al-Ain. Every name in the tree is tied to its document where one exists, or to the oral account of some of the tribe's notables and elders where one does not exist yet.", // TODO translate
+        home_search_label: "Search for a name in the tree", // TODO translate
+        home_search_ph: "Type your name or your grandfather's name", // TODO translate
+        home_search_btn: "Show my chain", // TODO translate
+        home_med_sub: "Zawiyat Brak, 10th century AH", // TODO translate
+        home_tree_p: "Tap any name to see its document: the image, the text as written, a plain explanation, and the source. Tap “Show my chain” to see your forefathers one by one, down to Abdullah Sabal Al-Ain.", // TODO translate
+        home_leg_ok: "A document names the person with his father", // TODO translate
+        home_leg_maybe: "An indication from the documents, without explicit text", // TODO translate
+        home_leg_trad: "Oral account of tribal elders; no document yet", // TODO translate
+        home_tree_ansar: "The tribe's attribution to the Ansar is written in its own documents: “al-Jaddawi al-Ansari” in a document from Ishkeda dated 1174 AH, then in documents of 1261 and 1276 AH.", // TODO translate
+        home_tree_btn: "Open the evidence tree", // TODO translate
+        home_tree_aria: "A preview of the evidence tree: Ali al-Jaddawi al-Ansari, his son Umar, then Abdullah Sabal Al-Ain, his son al-Hajj Fadl, and his grandsons Muhammad, Belqasim and Qasim with their sons", // TODO translate
+        home_j_p: "Three stages, each with its own degree of certainty. The golden thread is solid where the evidence is continuous, and dotted where the research is still under way.", // TODO translate
+        home_s1_k: "Stage one", // TODO translate
+        home_s1_h: "The origin, as in the books of genealogy", // TODO translate
+        home_s1_p: "From Qahtan to the Companion Jabir ibn Abdullah al-Ansari, as told in Ibn Hazm's Jamhara, Ibn Sa'd's Tabaqat and Ibn al-Kalbi's Nasab. Two names carry the mark “under review” because the old site had dropped them and we are checking them in the sources.", // TODO translate
+        home_verify: "under review", // TODO translate
+        home_verify_note: "A name under review in the sources: the old site had dropped it from the chain.", // TODO translate
+        home_s2_k: "Stage two", // TODO translate
+        home_s2_h: "Eight centuries under research", // TODO translate
+        home_s2_p: "Between the death of Jabir ibn Abdullah in 78 AH and Ali al-Jaddawi in about the ninth century AH lie some 22 to 25 generations for whom we have not yet found a document that names them. The tribe preserves its attribution to the Ansar, and it appears in its documents; the names of these links are what we are searching for.", // TODO translate
+        home_gap_aria: "About 24 forefathers whose names are not yet known", // TODO translate
+        home_hyp1_h: "The Hejaz and Jeddah hypothesis", // TODO translate
+        home_hyp1_p: "The epithet “al-Jaddawi” in the Brak documents, and the tribe's account that the forefather came from the Hejaz.", // TODO translate
+        home_hyp1_t: "What would settle it: a Hejazi or Maghribi document naming “Umar ibn Ali al-Jaddawi” or his son Abdullah.", // TODO translate
+        home_hyp2_h: "The Andalus hypothesis", // TODO translate
+        home_hyp2_p: "The view of Dr. Muhammad Abd al-Qadir al-Ansari, and the timing of the fall of Granada in 897 AH agrees with it. The two hypotheses may meet: Andalusian Ansar who settled in Jeddah and then came to Fezzan.", // TODO translate
+        home_hyp2_t: "What would settle it: a mention of the family in the sources on the Andalusian migration or in the biographical dictionaries of the Maghrib.", // TODO translate
+        home_gap_link: "Do you have a document or a source that fills one of these links?", // TODO translate
+        home_s3_k: "Stage three", // TODO translate
+        home_s3_h: "The documented branch in Fezzan", // TODO translate
+        home_s3_p: "From Ali al-Jaddawi al-Ansari to today's descendants; this is where the documents begin. The endowment deed names “Abdullah ibn al-Hajj Muhammad ibn the late Fadl ibn Umar ibn Ali al-Jaddawi”, and the documents of Brak and Ishkeda state the tribe's attribution outright: “al-Jaddawi al-Ansari”. The three sons of al-Hajj Fadl, Muhammad, Belqasim and Qasim, are the roots of the Ansar lineages in Brak, Aqar, Ishkeda and Dabdab.", // TODO translate
+        home_deed_alt: "Image of a sale deed in Brak dated 1002 AH", // TODO translate
+        home_deed_k: "The oldest dated document on the site", // TODO translate
+        home_deed_h: "A sale deed in the town of Brak, 1002 AH", // TODO translate
+        home_deed_p: "In it Abdullah ibn al-Murabit Salim ibn Muhammad buys land in Brak, and the name “al-Hajj Fadl” appears in the description of its boundaries in wording that points to his heirs. It is therefore likely that al-Hajj Fadl ibn Abdullah Sabal Al-Ain had died before 1002 AH.", // TODO translate
+        home_deed_credit: "Its image was sent by Dr. Muhammad Abd al-Qadir al-Shaykh al-Ansari.", // TODO translate
+        home_deed_link: "Read the text and the explanation", // TODO translate
+        home_houses_h: "The houses of the family", // TODO translate
+        home_src_download: "Download PDF", // TODO translate
+        home_src_open: "Open the source", // TODO translate
+        home_src_h: "References used in the research", // TODO translate
+        home_more_h: "Also on this site", // TODO translate
+        home_more_1_t: "Ansar figures in Libya", // TODO translate
+        home_more_1_d: "Companions and saints of the Ansar buried in Libya, from Ruwayfi ibn Thabit to Abu Ajila.", // TODO translate
+        home_more_2_t: "Library and documentation", // TODO translate
+        home_more_2_d: "The books and sources the research relied on, with their links.", // TODO translate
+        home_more_3_t: "The epic of the Ansar", // TODO translate
+        home_more_3_d: "A poem on the forefathers' story, from Marib to Medina to Fezzan.", // TODO translate
+        home_more_4_t: "Jamal Ibn Adam", // TODO translate
+        home_more_4_d: "About the site's owner and his books.", // TODO translate
+        home_send_btn: "Send a document or a clearer image", // TODO translate
+        home_theme_to_light: "Switch to the light theme", // TODO translate
+        home_theme_to_dark: "Switch to the dark theme", // TODO translate
+        home_see_chain: "See your chain in the evidence tree", // TODO translate
+        home_badge_books: "From the books of genealogy", // TODO translate
+
         tree_aria: "Al-Sabal Al-Ain family tree", // TODO translate
         tree_search_placeholder: "Search for a name…", // TODO translate
         tree_search_empty: "No matching name", // TODO translate
@@ -402,7 +471,7 @@ window.FamilyTreeData = {
             name: "8. Nabit ibn Malik",
             type: "epoch-1",
             date: "Starożytność",
-            badge: "Udokumentowany",
+            badge: "From the books of genealogy",
             src: "Nasab Ma'add wa al-Yaman al-Kabir (Al-Kalbi)",
             logic: "Przodek gałęzi Azd",
             story: "Przodek łączący gałęzie Azd z ich korzeniami Kahlana; kluczowe ogniwo w rodowodzie arabskim."
@@ -422,7 +491,7 @@ window.FamilyTreeData = {
             name: "10. Al-Azd",
             type: "epoch-1",
             date: "Starożytność",
-            badge: "Udokumentowany",
+            badge: "From the books of genealogy",
             src: "Jamharat Ibn Hazm",
             logic: "Przodek plemion",
             story: "Przodek Ansarów, Ghassanidów, Bariq i Khuza'a."
@@ -442,7 +511,7 @@ window.FamilyTreeData = {
             name: "12. Tha'labah ibn Mazin",
             type: "epoch-1",
             date: "Starożytność",
-            badge: "Udokumentowana sekwencja",
+            badge: "From the books of genealogy",
             src: "Jamharat Ansab al-Arab (Ibn Hazm)",
             logic: "Udokumentowane ogniwo",
             story: "Udokumentowane ogniwo w linii Azd, przywoływane przez głównych genealogów."
@@ -472,7 +541,7 @@ window.FamilyTreeData = {
             name: "15. Amir (Ma' al-Sama')",
             type: "epoch-1",
             date: "Przed potopem",
-            badge: "Udokumentowany",
+            badge: "From the books of genealogy",
             src: "Ibn Hazm",
             logic: "--",
             story: "Jemeński król słynący z hojności, nazywany "
@@ -504,7 +573,7 @@ window.FamilyTreeData = {
             name: "18. Harithah (Ojciec Ansarów)",
             type: "epoch-1",
             date: "IV w. n.e.",
-            badge: "Udokumentowany",
+            badge: "From the books of genealogy",
             src: "Jamharat Ibn Hazm",
             logic: "Ojciec Aws i Khazradża",
             story: "Poślubił Qaylah bint Kahil; ich dziećmi byli Aws i Khazradż."
@@ -514,7 +583,7 @@ window.FamilyTreeData = {
             name: "19. Al-Khazraj",
             type: "epoch-1",
             date: "V w. n.e.",
-            badge: "Udokumentowany",
+            badge: "From the books of genealogy",
             src: "Al-Isabah",
             logic: "Przodek plemienny",
             story: "Plemienny przodek wielkiego plemienia Khazradż, które wsparło Proroka ﷺ."
@@ -534,7 +603,7 @@ window.FamilyTreeData = {
             name: "21. Tazid ibn Jusham",
             type: "epoch-1",
             date: "--",
-            badge: "Udokumentowany",
+            badge: "From the books of genealogy",
             src: "Nasab Ma'add wa al-Yaman al-Kabir (Al-Kalbi)",
             logic: "Ogniwo rodowodowe",
             story: "Udokumentowane ogniwo w rodzie Khazradża."
@@ -544,7 +613,7 @@ window.FamilyTreeData = {
             name: "22. Sardah ibn Tazid",
             type: "epoch-1",
             date: "--",
-            badge: "Udokumentowana sekwencja",
+            badge: "From the books of genealogy",
             src: "Jamharat Ansab al-Arab (Ibn Hazm)",
             logic: "Ogniwo rodowodowe",
             story: "Wczesny przodek w łańcuchu prowadzącym do Banu Salimah."
@@ -564,7 +633,7 @@ window.FamilyTreeData = {
             name: "24. Ali ibn Asad",
             type: "epoch-1",
             date: "--",
-            badge: "Udokumentowany",
+            badge: "From the books of genealogy",
             src: "Mukhtalif al-Qaba'il (Ibn Habib)",
             logic: "Ogniwo rodowodowe",
             story: "Kluczowe ogniwo łączące linię Salimi z korzeniami Jushami."
@@ -584,7 +653,7 @@ window.FamilyTreeData = {
             name: "26. Salimah",
             type: "epoch-1",
             date: "Przed Hidżrą",
-            badge: "Udokumentowany",
+            badge: "From the books of genealogy",
             src: "Sirat Ibn Hisham",
             logic: "Przodek Banu Salimah",
             story: "Banu Salimah pragnęli przenieść się bliżej meczetu Proroka; powiedział im, że ich kroki są zapisywane."
@@ -614,7 +683,7 @@ window.FamilyTreeData = {
             name: "29. Tha'labah ibn Ka'b",
             type: "epoch-1",
             date: "--",
-            badge: "Udokumentowany",
+            badge: "From the books of genealogy",
             src: "Nasab Ma'add wa al-Yaman al-Kabir (Al-Kalbi)",
             logic: "Przodek przedislamski",
             story: "Przodek sprzed islamu, który żył w Jatrib."
@@ -658,152 +727,6 @@ window.FamilyTreeData = {
             src: "Al-Isabah (1022)",
             logic: "Głowa linii",
             story: "Przywódca Banu Salimah i płodny narrator hadisów."
-        },
-        {
-            id: "p_034",
-            name: "34. Abd al-Rahman (pierwszy)",
-            type: "epoch-3",
-            date: "100-150 AH (719 - 768 AD)",
-            badge: "Udokumentowany",
-            src: "Jamharat Ibn Hazm",
-            logic: "Wszedł do al-Andalus",
-            story: "Ibn Hazm odnotowuje, że potomkowie Abd al-Rahmana weszli do al-Andalus i osiedlili się w Jaen i Kordobie."
-        },
-        {
-            id: "p_035",
-            name: "35. Muhammad",
-            type: "epoch-3",
-            date: "150-200 AH (768 - 816 AD)",
-            badge: "Szacunkowy",
-            src: "Nafh al-Tib",
-            logic: "Era Umajjadów",
-            story: "Żył w okresie założenia Umajjadów w al-Andalus."
-        },
-        {
-            id: "p_036",
-            name: "36. Abdullah (pokolenie założycielskie)",
-            type: "epoch-3",
-            date: "200-250 AH (816 - 865 AD)",
-            badge: "Udokumentowany przez klasę",
-            src: "Jamharat Ibn Hazm + Nafh al-Tib",
-            logic: "Pierwsze pokolenie osiadłe w Ilbira",
-            story: "Reprezentuje pierwsze pokolenie, które osiadło w Ilbirze (starej Granadzie) po wejściu do al-Andalus."
-        },
-        {
-            id: "p_037",
-            name: "37. Abd al-Rahman (drugi)",
-            type: "epoch-3",
-            date: "250-300 AH (865 - 913 AD)",
-            badge: "Udokumentowany kontekst historyczny",
-            src: "Tarikh Ulama al-Andalus (Ibn al-Faradi)",
-            logic: "Stał po stronie Umajjadów podczas buntu Ibn Hafsuna",
-            story: "Żył w czasie buntu Ibn Hafsuna; Ansarowie z Ilbiry wspierali Umajjadów."
-        },
-        {
-            id: "p_038",
-            name: "38. Ahmad (era kalifatu)",
-            type: "epoch-3",
-            date: "300-350 AH (913 - 962 AD)",
-            badge: "Notable Granady",
-            src: "Al-Ihatah fi Akhbar Gharnatah (Ibn al-Khatib)",
-            logic: "Pełnił funkcje sądowe i administracyjne",
-            story: "Żył w złotym wieku za Abd al-Rahmana al-Nasira; Banu Salimah pełnili role sądowe."
-        },
-        {
-            id: "p_039",
-            name: "39. Muhammad (era 'Amiri)",
-            type: "epoch-3",
-            date: "350-400 AH (962 - 1010 AD)",
-            badge: "Udokumentowany przez klasę",
-            src: "Al-Dhayl wa al-Takmilah (Ibn Abd al-Malik al-Marrakushi)",
-            logic: "Wśród Ansarów było wielu uczonych",
-            story: "Pokolenie, które widziało wojskowy szczyt pod rządami al-Mansura ibn Abi Amira."
-        },
-        {
-            id: "p_040",
-            name: "40. Ibrahim",
-            type: "epoch-3",
-            date: "400-460 AH (1010 - 1068 AD)",
-            badge: "Udokumentowany",
-            src: "Al-Ihatah fi Akhbar Gharnatah",
-            logic: "Okres taif",
-            story: "Domy Banu Salimah w Granadzie słynęły z wiedzy i cnoty."
-        },
-        {
-            id: "p_041",
-            name: "41. Muhammad ibn Ibrahim",
-            type: "epoch-3",
-            date: "460-520 AH (1068 - 1126 AD)",
-            badge: "Udokumentowany",
-            src: "Al-Ihatah (Ibn al-Khatib)",
-            logic: "Znakomity Banu Salimah",
-            story: "Odnotowany jako elokwentny pisarz podróżujący między Granadą a Malagą."
-        },
-        {
-            id: "p_042",
-            name: "42. Abdullah (Andaluzyjski)",
-            type: "epoch-3",
-            date: "520-590 AH (1126 - 1194 AD)",
-            badge: "Udokumentowany",
-            src: "Al-Ihatah",
-            logic: "Żył w czasach Almohadów",
-            story: "Prawnik Banu Salimah opisywany jako biegły i cnotliwy."
-        },
-        {
-            id: "p_043",
-            name: "43. Znamienita linia Banu Salimah (era Nasrydów)",
-            type: "epoch-3",
-            date: "600 - 850 AH (1204 - 1447 AD)",
-            badge: "Historyczne pochodzenie",
-            src: "Al-Ihatah fi Akhbar Gharnatah",
-            logic: "Kontekst czasowy życia Banu Salimah w Granadzie; z tej linii pochodzi Ali.",
-            story: "Kontekst czasowy życia Banu Salimah w Granadzie; z tej linii pochodzi Ali."
-        },
-        {
-            id: "p_044",
-            name: "44. Ali (pierwszy udokumentowany przodek)",
-            type: "epoch-3",
-            date: "~840 - 900 AH (1437 - 1495 AD)",
-            badge: "Koniec al-Andalus",
-            src: "Family manuscripts + historical inference",
-            logic: "Udokumentowany przodek w zapisach rodzinnych; mógł być świadkiem upadku Granady, gdy jego syn Umar prowadził migrację.",
-            story: "Udokumentowany przodek w zapisach rodzinnych; mógł być świadkiem upadku Granady, gdy jego syn Umar prowadził migrację."
-        },
-        {
-            id: "p_045",
-            name: "45. Umar (ojciec założyciela)",
-            type: "epoch-4",
-            date: "860 - 930 AH (1456 - 1524 AD) (szacunkowo)",
-            badge: "Andaluzyjski مهاجر",
-            src: "Family documents + Andalusian migration context",
-            logic: "Był świadkiem upadku Granady (897 AH (1492 AD)) i przeniósł rodzinę do Fezu.",
-            story: "Był świadkiem upadku Granady i migrował z rodziną do Fezu."
-        },
-        {
-            id: "p_046",
-            name: "46. Abdullah Sibal al-Ayn (migracja do Libii)",
-            type: "epoch-5",
-            date: "900 - 960 AH (1495 - 1553 AD) (wejście do Fezzanu ~950 AH (~1544 AD))",
-            badge: "Założyciel wakfu",
-            src: "Tarikh Fezzan + waqf documents",
-            logic: "Urodzony w Maroku, migrował do Libii około 950 AH (~1544 AD) i ustanowił wakf.",
-            story: "Urodzony w Fezie, przeniósł andaluzyjskie doświadczenie do Fezzanu, ustanawiając system wakfu."
-        },
-        {
-            id: "p_047",
-            name: "47. Fadl ibn Abdullah ibn Umar ibn Ali Al-Sulami Al-Jaddawi Al-Khazraji",
-            type: "epoch-5",
-            date: "942 AH - 1000 AH (Dokument Spadkowy 1002 AH)",
-            badge: "Źródło akademickie",
-            src: "Al-Ansar al-Khazraj (Dr. Muhammad Abd al-Qadir, 2022)",
-            logic: "Wspomniany wraz z ojcem w dokumentach migracyjnych; przodek czterech gałęzi.",
-            story:
-                "Syn, który podróżował z ojcem podczas migracji i osiedlenia. Śmierć potwierdzona około 1000 AH na podstawie dokumentu podziału spadku z 1002 AH.",
-            doc_img: "wathiqat-bay-brak-1002h-fadl-sabbal-alain.webp",
-            doc_title: "Purchase Deed in Brak - 1002 AH",
-            doc_desc_key: "doc_1002_desc",
-            doc_transcription:
-                "Historical deed dated 1002 AH confirming the family's presence in Brak, listing names and properties (Palms and Land)."
         }
     ],
     links: []

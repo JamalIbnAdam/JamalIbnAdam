@@ -1,0 +1,64 @@
+:root[data-theme="dark"] { color-scheme: dark; --h-bg: #121614; --h-surface: #1a201d; --h-ink: #e8e4da; --h-ink2: #a9a596; --h-gold: #d4af37; --h-onGold: #1a1608; --h-trunk: #5f6b63; --h-hair: rgba(212,175,55,.32); --h-fruitHi: #2e3a33; --h-fruitLo: #1c2420; }
+:root[data-theme="light"] { color-scheme: light; --h-bg: #fdfbf7; --h-surface: #ffffff; --h-ink: #1d1a16; --h-ink2: #5a5246; --h-gold: #8a6c12; --h-onGold: #ffffff; --h-trunk: #7a877e; --h-hair: rgba(138,108,18,.30); --h-fruitHi: #fbf6e8; --h-fruitLo: #efe6cf; }
+
+/* from the design */
+body{margin:0}
+a{color:inherit}a:hover{opacity:.85}
+.sg-root{container-type:inline-size}
+.sg-root *{box-sizing:border-box}
+.sg-root a:focus-visible,.sg-root button:focus-visible,.sg-root input:focus-visible{outline:2px solid #d4af37;outline-offset:3px}
+.sg-h1{font-size:clamp(40px,7cqi,84px)}
+.sg-h2{font-size:clamp(28px,4.2cqi,44px)}
+.sg-lede{font-size:clamp(17px,1.9cqi,21px)}
+@container (max-width:700px){.sg-hide-sm{display:none}.sg-pad{padding-inline:20px}}
+@media (prefers-reduced-motion:no-preference){.sg-thread-draw{animation:sgdraw 1.6s ease-out .2s both}}
+@keyframes sgdraw{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0 0)}}
+
+/* ---------- additions the design leaves to the page ---------- */
+html { -webkit-text-size-adjust: 100%; }
+body { background: var(--h-bg); }
+[hidden] { display: none !important; }
+.sg-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.sg-root :is(h1, h2, h3, h4, p, a, li, dt, dd, button, label, figcaption, span) { unicode-bidi: plaintext; }
+.sg-root select:focus-visible { outline: 2px solid #d4af37; outline-offset: 3px; }
+.sg-lang { appearance: none; -webkit-appearance: none; }
+.sg-lang option { color: #1d1a16; background: #fff; }
+.sg-bead:hover { border-color: var(--h-gold) !important; }
+
+/* phones: the nav is one row that scrolls sideways */
+@container (max-width:700px) {
+  .sg-nav { flex: 1 1 100%; order: 3; flex-wrap: nowrap !important; overflow-x: auto; scrollbar-width: none; gap: 4px 20px !important; padding-block: 4px; white-space: nowrap; }
+  .sg-nav::-webkit-scrollbar { display: none; }
+  .sg-nav a { flex: none; min-height: 32px; display: inline-flex; align-items: center; }
+}
+
+/* the small sheet a stage-1 name opens: its source and its story */
+.sg-sheet { position: fixed; z-index: 50; inset-inline: 16px; bottom: 16px; margin-inline: auto; width: min(520px, calc(100% - 32px)); max-height: 70vh; overflow: auto; background: var(--h-surface); color: var(--h-ink); border: 1px solid var(--h-gold); border-radius: 16px; padding: 20px 22px; font-family: 'Noto Kufi Arabic', sans-serif; line-height: 1.75; box-shadow: 0 12px 40px rgb(0 0 0 / .35); }
+.sg-sheet h3 { margin: 0 0 6px; padding-inline-end: 44px; font-family: 'Amiri', serif; font-size: 26px; line-height: 1.4; color: var(--h-gold); }
+.sg-sheet p { margin: 0; font-size: 15px; }
+.sg-sheet .sg-sheet-src { margin-bottom: 10px; font-size: 13px; color: var(--h-ink2); }
+.sg-sheet-x { position: absolute; top: 12px; inset-inline-end: 12px; width: 44px; height: 44px; border-radius: 10px; border: 1px solid var(--h-hair); background: transparent; color: var(--h-ink); cursor: pointer; display: grid; place-items: center; }
+
+/* footer appeal: tree_credits, in the design's two paragraph styles */
+.sg-appeal { display: flex; flex-direction: column; gap: 18px; }
+.sg-appeal p { margin: 0; font-family: 'Amiri', serif; font-size: 22px; line-height: 1.9; color: var(--h-ink); }
+.sg-appeal p + p { font-size: 20px; line-height: 1.75; color: var(--h-gold); }
+
+/* «بيوت الأسرة»: the five existing cards, kept as they were, in the new surfaces */
+.sg-houses .tree-section-title { margin: 0 0 6px; font-family: 'Amiri', serif; font-size: 24px; font-weight: 700; line-height: 1.6; color: var(--h-ink); }
+.sg-houses .fadl-node { margin-bottom: 24px; color: var(--h-ink2); font-size: 15px; }
+.sg-houses .branches-wrapper { display: flex; flex-wrap: wrap; gap: 20px; align-items: stretch; }
+.sg-houses .branch-card { flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; border: 1px solid var(--h-hair); border-top: 4px solid; border-radius: 16px; background: var(--h-surface); overflow: hidden; }
+.sg-houses .branch-header { padding: 12px 20px; color: #fff; }
+.sg-houses .branch-header h4 { margin: 0; font-family: 'Amiri', serif; font-size: 20px; line-height: 1.5; }
+.sg-houses .branch-header span { font-size: 13px; }
+.sg-houses .branch-header span:empty { display: none; }
+.sg-houses .branch-body { flex: 1; padding: 14px 20px 6px; font-size: 15px; color: var(--h-ink); }
+.sg-houses .branch-body h4 { margin: 10px 0 4px; font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink); }
+.sg-houses .branch-body p { margin: 0 0 4px; }
+.sg-houses .branch-body ul { margin: 0; padding-inline-start: 20px; color: var(--h-ink2); }
+.sg-houses .branch-body [style*="color"] { color: var(--h-gold) !important; }
+.sg-houses .branch-evidence-link { align-self: flex-start; margin: 4px 20px 16px; min-height: 44px; display: inline-flex; align-items: center; color: var(--h-gold); font-size: 14px; }
+.sg-houses .modern-era { margin-top: 24px; padding: 20px 24px; border-radius: 16px; border: 1px solid var(--h-hair); display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 24px; }
+.sg-houses .modern-era-title { font-family: 'Amiri', serif; font-size: 20px; color: var(--h-ink); }
+.sg-houses .modern-era a { color: var(--h-gold); min-height: 44px; display: inline-flex; align-items: center; }

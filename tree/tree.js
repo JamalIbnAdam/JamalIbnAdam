@@ -20,6 +20,7 @@ const FORM_ENDPOINT = '';    // form service endpoint (part B); unused while emp
 const CONFIG = {
   spine: ['ali', 'umar', 'abdallah'],          // bottom → top on the trunk; the last one is the medallion
   fanRoot: 'abdallah',
+  plaqueAli: 'علي الجداوي الأنصاري',            // the base of the tree, as the tribe's documents name the lineage
   posterAli: 'الخزرجي الأنصاري',                 // extra words on the 1987 root plaque, not found in any document
   fanDeg: 250,
   openDepth: 2,                                // generations shown below an opened name; the rest fold into a «+N» chip
@@ -381,7 +382,7 @@ function draw() {
     const g = spineItem(ali.id), y = SLOT.ali, w = 300, h = 84, n = 18;
     el('path', { class: 'plaque ' + stKey(ali.status), d: `M${-w / 2 + n},${y - h / 2} H${w / 2 - n} L${w / 2},${y} L${w / 2 - n},${y + h / 2} H${-w / 2 + n} L${-w / 2},${y} Z` }, g);
     el('path', { class: 'plaque-in', d: `M${-w / 2 + n + 6},${y - h / 2 + 7} H${w / 2 - n - 6} L${w / 2 - 9},${y} L${w / 2 - n - 6},${y + h / 2 - 7} H${-w / 2 + n + 6} L${-w / 2 + 9},${y} Z` }, g);
-    el('text', { class: 'ptxt', x: 0, y: y - 12, 'font-size': 30, 'font-weight': 700 }, g).textContent = ali.name_as_written;
+    el('text', { class: 'ptxt', x: 0, y: y - 12, 'font-size': 30, 'font-weight': 700 }, g).textContent = CONFIG.plaqueAli;
     el('text', { class: 'psub', x: 0, y: y + 22 }, g).textContent = t('tree_poster_only', { x: CONFIG.posterAli });
   })();
 
@@ -1024,6 +1025,16 @@ function onHash() {
   const h = location.hash, c = /^#\/chain\/([\w-]+)$/.exec(h), b = /^#\/b\/([\w-]+)$/.exec(h);
   if (c && byId.has(c[1])) { chainPushed = booted; openChain(c[1]); return true; }
   closeChain();
+  // from the home page: a person, a document, or a name typed into its search box
+  const p = /^#\/p\/([\w-]+)$/.exec(h), d = /^#\/d\/([\w-]+)\/(\d+)$/.exec(h), s = /^#\/q\/(.+)$/.exec(h);
+  if (p && byId.has(p[1])) { openPerson(p[1]); return true; }
+  if (d) {
+    const rec = (docsByImage.get(d[1]) || []).find(x => String(x.doc_index) === d[2]) || (docsByImage.get(d[1]) || [])[0];
+    const owner = rec && ((rec.persons || []).map(x => x.tree_id).find(id => id && byId.has(id)) || persons.find(x => (x.evidence || []).some(e => imageId(e.image) === d[1]))?.id);
+    if (owner) { openPerson(owner, { center: false }); const i = docsOf(owner).items.findIndex(it => it.d === rec); openReader(owner, Math.max(0, i)); return true; }
+    return false;
+  }
+  if (s) { let text = s[1]; try { text = decodeURIComponent(text); } catch (e) { /* keep as typed */ } stage.scrollIntoView({ block: 'nearest' }); q.value = text; q.dispatchEvent(new Event('input')); q.focus(); return true; }
   return b ? focusBranch(b[1]) : false;
 }
 window.addEventListener('hashchange', () => { closeReader(); onHash(); });
