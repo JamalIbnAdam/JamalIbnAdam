@@ -72,11 +72,11 @@ window.FamilyTreeData = {
 
         // Tree Section
         fadl_branch_title: "🔻 Fadl bin Abdullah Sabal Al-Ain'in Kolları 🔻",
-        fadl_node: "52. Fadl ibn Abdullah ibn Umar ibn Ali Al-Sulami Al-Jaddawi Al-Khazraji<br>(942 H - 1000 H (Miras Belgesi 1002 H))",
+        fadl_node: "52. Fadl ibn Abdullah ibn Umar ibn Ali Al-Jaddawi Al-Khazraji<br>(942 H - 1000 H (Miras Belgesi 1002 H))",
         modern_era_title: "Modern Uzantı (H. 1100 - H. 1447 (1689 - 2026 AD))",
-        modern_era_lineage: "Geç dönem atalar zinciri (20 nesil)",
+        modern_era_lineage: "See your chain in the evidence tree",
         modern_era_detail:
-            "Aile belgelerine göre: kurucu ata (Nesil 51) ile mevcut nesil arasında 22 isim vardır. (Fadl ve Salim) yukarıda anılmıştır; geriye günümüze uzanan zaman çizelgesini temsil eden 20 nesil kalır.",
+            "",
         modern_era_generation: "Nesil 73: (Güncel nesil - 2026)",
 
         // --- FIGURES TAB (The 4 Cards) ---
@@ -267,6 +267,80 @@ window.FamilyTreeData = {
         tree_link_trad_short: "Oral account of tribal elders", // TODO translate
         tree_stat_note: "This is the beginning of the collection, not its end. The tribe has far more names and documents than these; we add every name and every document once it arrives and has been verified.", // TODO translate
         tree_base_line: "The tree of the Ansar in Wadi al-Shati, Fezzan, Libya", // TODO translate
+
+        // Home page (index.html)
+        // TODO translate: English placeholders below.
+        home_nav_tree: "Evidence tree", // TODO translate
+        home_nav_journey: "The lineage journey", // TODO translate
+        home_nav_figures: "Ansar figures", // TODO translate
+        home_nav_library: "Library", // TODO translate
+        home_nav_poem: "The epic", // TODO translate
+        home_nav_author: "The author", // TODO translate
+        home_nav_sources: "Sources", // TODO translate
+        home_nav_home: "Home", // TODO translate
+        home_h1: "Descendants of Abdullah Sabal Al-Ain", // TODO translate
+        home_lede: "The lineage of the Ansar tribe of Wadi al-Shati in Fezzan: lineages that meet in Zawiyat Brak, Aqar, Ishkeda and Dabdab, and go back to Abdullah Sabal Al-Ain. Every name in the tree is tied to its document where one exists, or to the oral account of some of the tribe's notables and elders where one does not exist yet.", // TODO translate
+        home_search_label: "Search for a name in the tree", // TODO translate
+        home_search_ph: "Type your name or your grandfather's name", // TODO translate
+        home_search_btn: "Show my chain", // TODO translate
+        home_med_sub: "Zawiyat Brak, 10th century AH", // TODO translate
+        home_tree_p: "Tap any name to see its document: the image, the text as written, a plain explanation, and the source. Tap “Show my chain” to see your forefathers one by one, down to Abdullah Sabal Al-Ain.", // TODO translate
+        home_leg_ok: "A document names the person with his father", // TODO translate
+        home_leg_maybe: "An indication from the documents, without explicit text", // TODO translate
+        home_leg_trad: "Oral account of tribal elders; no document yet", // TODO translate
+        home_tree_ansar: "The tribe's attribution to the Ansar is written in its own documents: “al-Jaddawi al-Ansari” in a document from Ishkeda dated 1174 AH, then in documents of 1261 and 1276 AH.", // TODO translate
+        home_tree_btn: "Open the evidence tree", // TODO translate
+        home_tree_aria: "A preview of the evidence tree: Ali al-Jaddawi al-Ansari, his son Umar, then Abdullah Sabal Al-Ain, his son al-Hajj Fadl, and his grandsons Muhammad, Belqasim and Qasim with their sons", // TODO translate
+        home_j_p: "Three stages, each with its own degree of certainty. The golden thread is solid where the evidence is continuous, and dotted where the research is still under way.", // TODO translate
+        home_s1_k: "Stage one", // TODO translate
+        home_s1_h: "The origin, as in the books of genealogy", // TODO translate
+        home_s1_p: "From Qahtan to the Companion Jabir ibn Abdullah al-Ansari, as told in Ibn Hazm's Jamhara, Ibn Sa'd's Tabaqat and Ibn al-Kalbi's Nasab. Two names carry the mark “under review” because the old site had dropped them and we are checking them in the sources.", // TODO translate
+        home_verify: "under review", // TODO translate
+        home_verify_note: "A name under review in the sources: the old site had dropped it from the chain.", // TODO translate
+        home_s2_k: "Stage two", // TODO translate
+        home_s2_h: "Eight centuries under research", // TODO translate
+        home_s2_p: "Between the death of Jabir ibn Abdullah in 78 AH and Ali al-Jaddawi in about the ninth century AH lie some 22 to 25 generations for whom we have not yet found a document that names them. The tribe preserves its attribution to the Ansar, and it appears in its documents; the names of these links are what we are searching for.", // TODO translate
+        home_gap_aria: "About 24 forefathers whose names are not yet known", // TODO translate
+        home_hyp1_h: "The Hejaz and Jeddah hypothesis", // TODO translate
+        home_hyp1_p: "The epithet “al-Jaddawi” in the Brak documents, and the tribe's account that the forefather came from the Hejaz.", // TODO translate
+        home_hyp1_t: "What would settle it: a Hejazi or Maghribi document naming “Umar ibn Ali al-Jaddawi” or his son Abdullah.", // TODO translate
+        home_hyp2_h: "The Andalus hypothesis", // TODO translate
+        home_hyp2_p: "The view of Dr. Muhammad Abd al-Qadir al-Ansari, and the timing of the fall of Granada in 897 AH agrees with it. The two hypotheses may meet: Andalusian Ansar who settled in Jeddah and then came to Fezzan.", // TODO translate
+        home_hyp2_t: "What would settle it: a mention of the family in the sources on the Andalusian migration or in the biographical dictionaries of the Maghrib.", // TODO translate
+        home_gap_link: "Do you have a document or a source that fills one of these links?", // TODO translate
+        home_s3_k: "Stage three", // TODO translate
+        home_s3_h: "The documented branch in Fezzan", // TODO translate
+        home_s3_p: "From Ali al-Jaddawi al-Ansari to today's descendants; this is where the documents begin. The endowment deed names “Abdullah ibn al-Hajj Muhammad ibn the late Fadl ibn Umar ibn Ali al-Jaddawi”, and the documents of Brak and Ishkeda state the tribe's attribution outright: “al-Jaddawi al-Ansari”. The three sons of al-Hajj Fadl, Muhammad, Belqasim and Qasim, are the roots of the Ansar lineages in Brak, Aqar, Ishkeda and Dabdab.", // TODO translate
+        home_deed_alt: "Image of a sale deed in Brak dated 1002 AH", // TODO translate
+        home_deed_k: "The oldest dated document on the site", // TODO translate
+        home_deed_h: "A sale deed in the town of Brak, 1002 AH", // TODO translate
+        home_deed_p: "In it Abdullah ibn al-Murabit Salim ibn Muhammad buys land in Brak, and the name “al-Hajj Fadl” appears in the description of its boundaries in wording that points to his heirs. It is therefore likely that al-Hajj Fadl ibn Abdullah Sabal Al-Ain had died before 1002 AH.", // TODO translate
+        home_deed_credit: "Its image was sent by Dr. Muhammad Abd al-Qadir al-Shaykh al-Ansari.", // TODO translate
+        home_deed_link: "Read the text and the explanation", // TODO translate
+        home_houses_h: "The houses of the family", // TODO translate
+        home_src_p: "The books that were read or searched to build this tree; the research continues. “Read in full” means read page by page; “Searched” means a search of the full text for the names and epithets.", // TODO translate
+        home_how_read: "Read in full", // TODO translate
+        home_how_searched: "Searched", // TODO translate
+        home_how_pages: "Specific pages", // TODO translate
+        home_how_via: "Via Dr. Muhammad's book", // TODO translate
+        home_how_partial: "Read in part", // TODO translate
+        home_src_download: "Download PDF", // TODO translate
+        home_src_open: "Open the source", // TODO translate
+        home_more_h: "Also on this site", // TODO translate
+        home_more_1_t: "Ansar figures in Libya", // TODO translate
+        home_more_1_d: "Companions and saints of the Ansar buried in Libya, from Ruwayfi ibn Thabit to Abu Ajila.", // TODO translate
+        home_more_2_t: "Library and documentation", // TODO translate
+        home_more_2_d: "The books and sources the research relied on, with their links.", // TODO translate
+        home_more_3_t: "The epic of the Ansar", // TODO translate
+        home_more_3_d: "A poem on the forefathers' story, from Marib to Medina to Fezzan.", // TODO translate
+        home_more_4_t: "Jamal Ibn Adam", // TODO translate
+        home_more_4_d: "About the site's owner and his books.", // TODO translate
+        home_send_btn: "Send a document or a clearer image", // TODO translate
+        home_theme_to_light: "Switch to the light theme", // TODO translate
+        home_theme_to_dark: "Switch to the dark theme", // TODO translate
+        home_see_chain: "See your chain in the evidence tree", // TODO translate
+        home_badge_books: "From the books of genealogy", // TODO translate
+
         tree_aria: "Al-Sabal Al-Ain family tree", // TODO translate
         tree_search_placeholder: "Search for a name…", // TODO translate
         tree_search_empty: "No matching name", // TODO translate
@@ -398,7 +472,7 @@ window.FamilyTreeData = {
             name: "8. Nabit ibn Malik",
             type: "epoch-1",
             date: "Antik",
-            badge: "Belgeli",
+            badge: "From the books of genealogy",
             src: "Nasab Ma'add wa al-Yaman al-Kabir (Al-Kalbi)",
             logic: "Ezd kollarının atası",
             story: "Ezd kollarını Kahlan köklerine bağlayan ata; Arap soyunda hayati bir halkadır."
@@ -418,7 +492,7 @@ window.FamilyTreeData = {
             name: "10. Al-Azd",
             type: "epoch-1",
             date: "Antik",
-            badge: "Belgeli",
+            badge: "From the books of genealogy",
             src: "Jamharat Ibn Hazm",
             logic: "Kabilelerin atası",
             story: "Ensar, Gassaniler, Bariq ve Huzaa'nın atası."
@@ -438,7 +512,7 @@ window.FamilyTreeData = {
             name: "12. Tha'labah ibn Mazin",
             type: "epoch-1",
             date: "Antik",
-            badge: "Belgeli silsile",
+            badge: "From the books of genealogy",
             src: "Jamharat Ansab al-Arab (Ibn Hazm)",
             logic: "Belgeli bağlantı",
             story: "Büyük nesep alimlerinin aktardığı Ezd soyundaki belgeli bir halkadır."
@@ -468,7 +542,7 @@ window.FamilyTreeData = {
             name: "15. Amir (Ma' al-Sama')",
             type: "epoch-1",
             date: "Tufandan önce",
-            badge: "Belgeli",
+            badge: "From the books of genealogy",
             src: "Ibn Hazm",
             logic: "--",
             story: "Cömertliğiyle meşhur Yemenli bir kral; 'Göklerin suyu' lakabıyla anılır."
@@ -498,7 +572,7 @@ window.FamilyTreeData = {
             name: "18. Harithah (Ensar'ın babası)",
             type: "epoch-1",
             date: "MS 4. yüzyıl",
-            badge: "Belgeli",
+            badge: "From the books of genealogy",
             src: "Jamharat Ibn Hazm",
             logic: "Evs ve Hazrec'in babası",
             story: "Kayla bint Kahil ile evlendi; çocukları Evs ve Hazrec idi."
@@ -508,7 +582,7 @@ window.FamilyTreeData = {
             name: "19. Al-Khazraj",
             type: "epoch-1",
             date: "MS 5. yüzyıl",
-            badge: "Belgeli",
+            badge: "From the books of genealogy",
             src: "Al-Isabah",
             logic: "Kabile atası",
             story: "Peygamber ﷺ'e destek veren büyük Hazrec kabilesinin atası."
@@ -528,7 +602,7 @@ window.FamilyTreeData = {
             name: "21. Tazid ibn Jusham",
             type: "epoch-1",
             date: "--",
-            badge: "Belgeli",
+            badge: "From the books of genealogy",
             src: "Nasab Ma'add wa al-Yaman al-Kabir (Al-Kalbi)",
             logic: "Soy bağı bağlantısı",
             story: "Hazrec soyunda belgeli bir halkadır."
@@ -538,7 +612,7 @@ window.FamilyTreeData = {
             name: "22. Sardah ibn Tazid",
             type: "epoch-1",
             date: "--",
-            badge: "Belgeli silsile",
+            badge: "From the books of genealogy",
             src: "Jamharat Ansab al-Arab (Ibn Hazm)",
             logic: "Soy bağı bağlantısı",
             story: "Benu Selime'ye giden zincirdeki erken atalardan biridir."
@@ -558,7 +632,7 @@ window.FamilyTreeData = {
             name: "24. Ali ibn Asad",
             type: "epoch-1",
             date: "--",
-            badge: "Belgeli",
+            badge: "From the books of genealogy",
             src: "Mukhtalif al-Qaba'il (Ibn Habib)",
             logic: "Soy bağı bağlantısı",
             story: "Selimî soyunu Cüşem köklerine bağlayan kilit bir halkadır."
@@ -578,7 +652,7 @@ window.FamilyTreeData = {
             name: "26. Salimah",
             type: "epoch-1",
             date: "Hicretten önce",
-            badge: "Belgeli",
+            badge: "From the books of genealogy",
             src: "Sirat Ibn Hisham",
             logic: "Benu Selime'nin atası",
             story: "Benu Selime, Peygamber'in mescidine yaklaşmak istedi; o ise ayak izlerinin kaydedildiğini söyledi."
@@ -608,7 +682,7 @@ window.FamilyTreeData = {
             name: "29. Tha'labah ibn Ka'b",
             type: "epoch-1",
             date: "--",
-            badge: "Belgeli",
+            badge: "From the books of genealogy",
             src: "Nasab Ma'add wa al-Yaman al-Kabir (Al-Kalbi)",
             logic: "İslam öncesi ata",
             story: "Yesrib'de yaşamış İslam öncesi bir atadır."
@@ -652,152 +726,6 @@ window.FamilyTreeData = {
             src: "Al-Isabah (1022)",
             logic: "Soy başı",
             story: "Benu Selime'nin lideri ve çok hadis rivayet eden sahabedir."
-        },
-        {
-            id: "p_034",
-            name: "34. Abd al-Rahman (birinci)",
-            type: "epoch-3",
-            date: "H. 100-150 (719 - 768 AD)",
-            badge: "Belgeli",
-            src: "Jamharat Ibn Hazm",
-            logic: "Endülüs'e girdi",
-            story: "İbn Hazm, Abd al-Rahman'ın soyunun Endülüs'e girip Jaen ve Kurtuba'ya yerleştiğini belirtir."
-        },
-        {
-            id: "p_035",
-            name: "35. Muhammad",
-            type: "epoch-3",
-            date: "H. 150-200 (768 - 816 AD)",
-            badge: "Tahmini",
-            src: "Nafh al-Tib",
-            logic: "Emevî dönemi",
-            story: "Endülüs'te Emevîlerin kuruluş döneminde yaşamıştır."
-        },
-        {
-            id: "p_036",
-            name: "36. Abdullah (kurucu nesil)",
-            type: "epoch-3",
-            date: "H. 200-250 (816 - 865 AD)",
-            badge: "Sınıfça belgelenmiş",
-            src: "Jamharat Ibn Hazm + Nafh al-Tib",
-            logic: "İlbire'ye yerleşen ilk nesil",
-            story: "Endülüs'e girişten sonra İlbire'ye (eski Gırnata) yerleşen ilk nesli temsil eder."
-        },
-        {
-            id: "p_037",
-            name: "37. Abd al-Rahman (ikinci)",
-            type: "epoch-3",
-            date: "H. 250-300 (865 - 913 AD)",
-            badge: "Belgeli tarihî bağlam",
-            src: "Tarikh Ulama al-Andalus (Ibn al-Faradi)",
-            logic: "İbn Hafsun isyanında Emevîlerin yanında durdu",
-            story: "İbn Hafsun isyanı döneminde yaşadı; İlbire'deki Ensar Emevîleri destekledi."
-        },
-        {
-            id: "p_038",
-            name: "38. Ahmad (Hilafet dönemi)",
-            type: "epoch-3",
-            date: "H. 300-350 (913 - 962 AD)",
-            badge: "Gırnata'nın ileri gelenleri",
-            src: "Al-Ihatah fi Akhbar Gharnatah (Ibn al-Khatib)",
-            logic: "Adli ve idari görevler üstlendi",
-            story: "Abd al-Rahman al-Nasir dönemindeki altın çağda yaşadı; Benu Selime adli görevler üstlendi."
-        },
-        {
-            id: "p_039",
-            name: "39. Muhammad ('Amiri dönemi)",
-            type: "epoch-3",
-            date: "H. 350-400 (962 - 1010 AD)",
-            badge: "Sınıfça belgelenmiş",
-            src: "Al-Dhayl wa al-Takmilah (Ibn Abd al-Malik al-Marrakushi)",
-            logic: "Ensar arasında birçok âlim",
-            story: "El-Mansur ibn Ebi Amir dönemindeki askerî zirveyi gören nesildir."
-        },
-        {
-            id: "p_040",
-            name: "40. Ibrahim",
-            type: "epoch-3",
-            date: "H. 400-460 (1010 - 1068 AD)",
-            badge: "Belgeli",
-            src: "Al-Ihatah fi Akhbar Gharnatah",
-            logic: "Tâife dönemi",
-            story: "Gırnata'daki Benu Selime haneleri ilim ve faziletle tanınmıştır."
-        },
-        {
-            id: "p_041",
-            name: "41. Muhammad ibn Ibrahim",
-            type: "epoch-3",
-            date: "H. 460-520 (1068 - 1126 AD)",
-            badge: "Belgeli",
-            src: "Al-Ihatah (Ibn al-Khatib)",
-            logic: "Benu Selime'nin önde geleni",
-            story: "Gırnata ile Malaga arasında seyahat eden beliğ bir yazar olarak kaydedilmiştir."
-        },
-        {
-            id: "p_042",
-            name: "42. Abdullah (Endülüsî)",
-            type: "epoch-3",
-            date: "H. 520-590 (1126 - 1194 AD)",
-            badge: "Belgeli",
-            src: "Al-Ihatah",
-            logic: "Muvahhidler döneminde yaşadı",
-            story: "Benu Selime'nin başarılı ve faziletli bir fakihi olarak anlatılır."
-        },
-        {
-            id: "p_043",
-            name: "43. Benu Selime'nin seçkin soyu (Nasrî dönemi)",
-            type: "epoch-3",
-            date: "H. 600 - 850 (1204 - 1447 AD)",
-            badge: "Tarihî köken",
-            src: "Al-Ihatah fi Akhbar Gharnatah",
-            logic: "Benu Selime'nin Gırnata'da yaşadığı dönemsel bağlam; bu soydan Ali gelmiştir.",
-            story: "Benu Selime'nin Gırnata'da yaşadığı dönemsel bağlam; bu soydan Ali gelmiştir."
-        },
-        {
-            id: "p_044",
-            name: "44. Ali (ilk belgeli ata)",
-            type: "epoch-3",
-            date: "~H. 840 - 900 (1437 - 1495 AD)",
-            badge: "Endülüs'ün sonu",
-            src: "Family manuscripts + historical inference",
-            logic: "Aile kayıtlarındaki belgeli ata; oğlunun Umar olduğu ve göçü yönettiği sırada Gırnata'nın düşüşüne şahit olmuş olabilir.",
-            story: "Aile kayıtlarındaki belgeli ata; oğlunun Umar olduğu ve göçü yönettiği sırada Gırnata'nın düşüşüne şahit olmuş olabilir."
-        },
-        {
-            id: "p_045",
-            name: "45. Umar (kurucunun babası)",
-            type: "epoch-4",
-            date: "H. 860 - 930 (1456 - 1524 AD) (tahmini)",
-            badge: "Endülüs muhaciri",
-            src: "Family documents + Andalusian migration context",
-            logic: "Gırnata'nın düşüşüne (H. 897 (1492 AD)) şahit oldu ve aileyi Fas'a taşıdı.",
-            story: "Gırnata'nın düşüşüne şahit oldu ve ailesiyle Fas'a göç etti."
-        },
-        {
-            id: "p_046",
-            name: "46. Abdullah Sibal al-Ayn (Libya'ya göç etti)",
-            type: "epoch-5",
-            date: "H. 900 - 960 (1495 - 1553 AD) (Fizan'a giriş ~H. 950 (~1544 AD))",
-            badge: "Vakıf kurucusu",
-            src: "Tarikh Fezzan + waqf documents",
-            logic: "Fas'ta doğdu, H. 950 civarında Libya'ya göç etti (~1544 AD) ve vakfı kurdu.",
-            story: "Fes'te doğdu ve Endülüs birikimini Fizan'a taşıyarak vakıf sistemini kurdu."
-        },
-        {
-            id: "p_047",
-            name: "47. Fadl ibn Abdullah ibn Umar ibn Ali Al-Sulami Al-Jaddawi Al-Khazraji",
-            type: "epoch-5",
-            date: "942 H - 1000 H (Miras Belgesi 1002 H)",
-            badge: "Akademik kaynak",
-            src: "Al-Ansar al-Khazraj (Dr. Muhammad Abd al-Qadir, 2022)",
-            logic: "Göç belgelerinde babasıyla birlikte anılır; dört kolun atasıdır.",
-            story:
-                "Göç ve yerleşim sırasında babasıyla birlikte yolculuk eden oğuldur. Ölümü, 1002 H tarihli miras paylaşım belgesine dayanarak yaklaşık 1000 H olarak doğrulanmıştır.",
-            doc_img: "wathiqat-bay-brak-1002h-fadl-sabbal-alain.webp",
-            doc_title: "Purchase Deed in Brak - 1002 AH",
-            doc_desc_key: "doc_1002_desc",
-            doc_transcription:
-                "Historical deed dated 1002 AH confirming the family's presence in Brak, listing names and properties (Palms and Land)."
         }
     ],
     links: []
