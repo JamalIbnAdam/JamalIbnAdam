@@ -133,6 +133,9 @@ function docsLabel(n) { return n <= 1 ? t('tree_docs_1') : n === 2 ? t('tree_doc
 function linkLabel(p) { const k = stKey(p.status); return k === 'ok' ? docsLabel(docsOf(p.id).count) : k === 'maybe' ? t('tree_link_maybe') : t('tree_link_trad'); }
 const linkExplain = p => t('tree_explain_' + stKey(p.status));
 
+const mqMobile = window.matchMedia('(max-width:720px)');
+const isMobile = () => mqMobile.matches;
+
 /* ---------- what is unfolded ---------- */
 const ROOT = CONFIG.fanRoot;
 const open = new Set();   // names whose children are drawn
@@ -145,7 +148,8 @@ resetOpen();
 /* ---------- fan layout: generations above the medallion ---------- */
 let fan = new Map();     // id -> {d, a, r, x, y, nr, W}
 let descN = new Map(), BASE = 300, fanBox = { x0: 0, x1: 0, y0: 0, y1: 0 };
-const nodeR = d => d <= 1 ? 42 : d === 2 ? 38 : 30;
+// phones get larger fruits, so a name can stay inside its fruit when a branch is zoomed
+const nodeR = d => isMobile() ? (d <= 1 ? 46 : d === 2 ? 42 : 36) : (d <= 1 ? 42 : d === 2 ? 38 : 30);
 const need = d => 2 * nodeR(d) + 12;
 const GAP = 78;
 const A = CONFIG.fanDeg * Math.PI / 180;
@@ -209,7 +213,7 @@ const stage = $('ft-stage'), treeEl = $('ft-tree'), world = $('ft-world'), panel
 const pName = $('ft-pName'), pEyebrow = $('ft-pEyebrow'), pLine = $('ft-pLine'), pBadges = $('ft-pBadges'), pBody = $('ft-pBody');
 const q = $('ft-q'), results = $('ft-results'), t87 = $('ft-t1987');
 const floats = $('ft-floats'), fcards = $('ft-fcards'), legendEl = $('ft-legend'), tip = $('ft-tip');
-legendEl.open = window.innerWidth >= 1024;   // a chip on small screens, open on desktop
+legendEl.open = window.innerWidth >= 1024;   // a chip on small screens, open on desktop (the tree is then fitted beside it)
 
 /* ---------- svg helpers ---------- */
 const NS = 'http://www.w3.org/2000/svg';
@@ -328,12 +332,9 @@ function draw() {
 
   /* trunk, roots, leaves, laurel */
   (function drawTrunk() {
-    const T = L.trunk, base = SLOT.note - 30;
-    // roots: tendrils fading into the ground
-    [[-1, 150, 46], [1, 150, 46], [-1, 92, 70], [1, 92, 70], [-1, 40, 60], [1, 40, 60]].forEach(([sgn, dx, dy], i) => {
-      el('path', { class: 'root-line', 'stroke-width': i < 2 ? 9 : 6, d: `M${sgn * 40},${base - 30} Q${sgn * (dx * 0.6)},${base + dy * 0.2} ${sgn * dx},${base + dy}` }, T);
-    });
-    el('path', { class: 'trunk', d: `M-48,-10 C-52,180 -58,420 -62,${base - 70} C-66,${base - 25} -95,${base - 4} -150,${base + 8} L150,${base + 8} C95,${base - 4} 66,${base - 25} 62,${base - 70} C58,420 52,180 48,-10 Z` }, T);
+    const T = L.trunk, base = SLOT.ali + 30;
+    // the trunk stands on علي's plaque: nothing is drawn beneath him
+    el('path', { class: 'trunk', d: `M-48,-10 C-52,180 -58,420 -62,${base - 60} L-64,${base} L64,${base} L62,${base - 60} C58,420 52,180 48,-10 Z` }, T);
     // leaves on the trunk flanks
     [[60, -1], [130, 1], [200, -1], [275, 1], [400, -1], [395, 1], [520, -1], [530, 1]].forEach(([y, s], i) => {
       const xEdge = s * (49 + y * 0.022);
@@ -372,9 +373,8 @@ function draw() {
   // connectors (drawn first, under plaques)
   connector(SLOT.ali - 40, SLOT.umar + 28, umar.status, linkLabel(umar), -1);
   connector(SLOT.umar - 28, SLOT.med + MED_R, abd.status, linkLabel(abd), -1);
-  // void below Ali
-  el('path', { class: 'void-line', d: `M0,${SLOT.ali + 40} L0,${SLOT.note - 22}` }, S);
-  el('text', { class: 'void-note', x: 0, y: SLOT.note + 34 }, S).textContent = t('tree_above_ali');
+  // under علي: the tribe's line, and nothing else
+  el('text', { class: 'base-line', x: 0, y: SLOT.ali + 78 }, S).textContent = t('tree_base_line');
 
   // root plaque (cartouche)
   (function () {
@@ -483,7 +483,7 @@ function fitLabels() {
     if (words.length > 1) { opts.push(splitLines(n.label)); if (words.length === 2) opts.push(words); }
     let best = null;
     for (const lines of opts) {
-      let fs = Math.min(lines.length > 1 ? n.r * 0.5 : n.r * 0.58, 18);
+      let fs = Math.min(lines.length > 1 ? n.r * 0.5 : n.r * 0.58, 20);
       while (fs > 9 && !fitsIn(lines, fs, n.r)) fs -= 0.5;
       if (!best || fs > best.fs + 0.4) best = { fs, lines };
     }
@@ -517,7 +517,7 @@ function buildKeyLabels() {
 
 /* ---------- zoom / pan ---------- */
 const svg = d3.select(treeEl);
-const DETAIL_PX = 9;       // smallest on-screen size at which the name inside a fruit is used; below it the name moves outside
+const DETAIL_PX = 9;       // smallest on-screen size at which the name inside a fruit is used (7.5 on phones)
 let lastLodK = 0, lodTimer = 0;
 function applyLOD(k, force) {
   currentK = k;
@@ -529,8 +529,9 @@ function applyLOD(k, force) {
   const put = b => { for (let gx = Math.floor((b[0] - b[2]) / CELL); gx <= Math.floor((b[0] + b[2]) / CELL); gx++) for (let gy = Math.floor((b[1] - b[3]) / CELL); gy <= Math.floor((b[1] + b[3]) / CELL); gy++) { const key = gx * 100003 + gy; const a = grid.get(key); if (a) a.push(b); else grid.set(key, [b]); } };
   const hits = (cx, cy, hw, hh, self) => { for (let gx = Math.floor((cx - hw) / CELL); gx <= Math.floor((cx + hw) / CELL); gx++) for (let gy = Math.floor((cy - hh) / CELL); gy <= Math.floor((cy + hh) / CELL); gy++) { const a = grid.get(gx * 100003 + gy); if (a) for (const b of a) if (b !== self && Math.abs(b[0] - cx) < hw + b[2] && Math.abs(b[1] - cy) < hh + b[3]) return true; } return false; };
   let outside = 0;
-  for (const kl of keyLabels) { kl.out = (kl.n.fs || 0) * k < DETAIL_PX; if (kl.out !== kl.wasOut) { kl.n.g.classList.toggle('ext', kl.out); kl.wasOut = kl.out; } if (kl.out) outside++; kl.box = [kl.x * k, kl.y * k, kl.r * k + 1, kl.r * k + 1]; put(kl.box); }
-  put([0, 0, MED_R * k, MED_R * k]); put([0, SLOT.note / 2 * k, 150 * k, (SLOT.note / 2 + 30) * k]);   // medallion, trunk
+  const phone = isMobile(), minPx = phone ? 7.5 : DETAIL_PX;
+  for (const kl of keyLabels) { kl.out = (kl.n.fs || 0) * k < minPx; if (kl.out !== kl.wasOut) { kl.n.g.classList.toggle('ext', kl.out); kl.wasOut = kl.out; } if (kl.out) outside++; kl.box = [kl.x * k, kl.y * k, kl.r * k + 1, kl.r * k + 1]; put(kl.box); }
+  put([0, 0, MED_R * k, MED_R * k]); put([0, SLOT.ali / 2 * k, 150 * k, (SLOT.ali / 2 + 50) * k]);   // medallion, trunk
   const show = (kl, mode, x, y) => {
     if (!kl.t) { if (!mode) return; kl.t = el('text', { class: 'klab' }, L.klabs); }
     if (kl.shown !== mode) { kl.t.textContent = mode === 'name' ? kl.n.label : mode === 'dots' ? '…' : ''; if (mode) kl.t.removeAttribute('display'); else kl.t.setAttribute('display', 'none'); kl.shown = mode; }
@@ -539,6 +540,8 @@ function applyLOD(k, force) {
   if (outside) {
     const order = keyLabels.filter(kl => kl.out).sort((a, b) => a.d - b.d || total.get(b.id) - total.get(a.id));
     for (const kl of order) {
+      // phones: no names outside the fruits; a name too small to read becomes «…», with the name in the tooltip and the panel
+      if (phone) { show(kl, kl.r * k >= 5 ? 'dots' : '', 0, 0); continue; }
       const hw = kl.w / 2, hh = 8, gap = kl.r * k + 3, nx = kl.x * k, ny = kl.y * k;
       let at = null;
       for (const [ux, uy] of [[kl.ux, kl.uy], [0, 1], [0, -1], [kl.ux >= 0 ? 1 : -1, 0]]) {   // outward, below, above, beside
@@ -555,6 +558,7 @@ function applyLOD(k, force) {
 const zoom = d3.zoom().scaleExtent([0.03, 4])
   // cooperative gestures: the page keeps the plain wheel and the one-finger drag; Ctrl/⌘ + wheel, two fingers or a mouse drag move the tree
   .filter(e => e.type === 'wheel' ? (e.ctrlKey || e.metaKey || stage.classList.contains('fs')) : e.type.startsWith('touch') ? (e.touches.length > 1 || stage.classList.contains('fs')) : !e.button)
+  .on('end', () => { if (legendCovers()) legendEl.open = false; })
   .on('zoom', e => {
     world.setAttribute('transform', e.transform);
     // with thousands of names, re-placing the outside names on every frame is the expensive part: do it between frames
@@ -570,15 +574,29 @@ treeEl.addEventListener('touchmove', e => { if (e.touches.length === 1 && !stage
 
 const visible = () => stage.clientWidth > 0 && stage.clientHeight > 0;
 function contentBounds() {
-  return { x0: Math.min(fanBox.x0, -170) - 30, x1: Math.max(fanBox.x1, 170) + 30, y0: fanBox.y0 - 34, y1: Math.max(fanBox.y1, SLOT.note + 50) };
+  return { x0: Math.min(fanBox.x0, -170) - 30, x1: Math.max(fanBox.x1, 170) + 30, y0: fanBox.y0 - 34, y1: Math.max(fanBox.y1, SLOT.ali + 104) };
 }
-const mqMobile = window.matchMedia('(max-width:720px)');
-const isMobile = () => mqMobile.matches;
 // the phone stage has a fixed share of the screen (set in tree.css) and opens on the medallion and the first generations;
 // resizing it to the tree after load would push the page about
 function sizeStage() { stage.style.height = ''; }
+// the legend never lies over a fruit: while it is open the tree is fitted beside it (below it on phones),
+// and it folds itself away as soon as the tree is moved under it
+function legendCovers() {
+  if (!legendEl.open || !visible()) return false;
+  const tr = d3.zoomTransform(treeEl), s = stage.getBoundingClientRect(), l = legendEl.getBoundingClientRect();
+  const x0 = l.left - s.left - 4, x1 = l.right - s.left + 4, y0 = l.top - s.top - 4, y1 = l.bottom - s.top + 4;
+  const hit = (x, y, rx, ry) => { const sx = tr.x + x * tr.k, sy = tr.y + y * tr.k; return sx + rx * tr.k > x0 && sx - rx * tr.k < x1 && sy + ry * tr.k > y0 && sy - ry * tr.k < y1; };
+  for (const f of fan.values()) if (hit(f.x, f.y, f.nr, f.nr)) return true;
+  return hit(0, SLOT.umar, 80, 30) || hit(0, SLOT.tulip, 100, 85) || hit(0, SLOT.ali, 152, 44);
+}
+function legendInset() {
+  if (!legendEl.open || (panel.classList.contains('open') && panel.parentNode === stage)) return null;
+  const s = stage.getBoundingClientRect(), l = legendEl.getBoundingClientRect();
+  return isMobile() ? { top: l.bottom - s.top + 6 } : { left: l.right - s.left + 8 };
+}
 function viewRect() {
-  const W = stage.clientWidth, H = stage.clientHeight, isOpen = panel.classList.contains('open');
+  const W = stage.clientWidth, H = stage.clientHeight, isOpen = panel.classList.contains('open'), ins = legendInset();
+  if (!isOpen && ins) return ins.top ? { x: 0, y: ins.top, w: W - 46, h: H - ins.top } : { x: ins.left, y: 0, w: W - ins.left, h: H };
   if (!isOpen) return isMobile() ? { x: 0, y: 0, w: W - 46, h: H } : { x: 0, y: 0, w: W, h: H };   // phones: keep clear of the zoom buttons
   if (panel.parentNode === document.body) { const vis = (window.innerHeight - panel.offsetHeight) - stage.getBoundingClientRect().top; return { x: 0, y: 0, w: W, h: Math.max(90, Math.min(H, vis)) }; }
   if (panel.parentNode !== stage) return { x: 0, y: 0, w: W, h: H };
@@ -621,8 +639,10 @@ $('ft-goFloat').onclick = () => floats.scrollIntoView({ block: 'start', behavior
 /* ---------- unfolding ---------- */
 function redraw(after) { draw(); sizeStage(); if (after) requestAnimationFrame(after); }
 function expand(id) { openBelow(id); redraw(() => centerOn(id, Math.min(1, d3.zoomTransform(treeEl).k), 450)); }
-function showAll() { for (const id of inFan) if (kids.get(id).length) open.add(id); redraw(() => fit(550, 'all')); }
+function showAll() { legendEl.open = false; for (const id of inFan) if (kids.get(id).length) open.add(id); redraw(() => fit(550, 'all')); }
 function foldAll() { resetOpen(); if (selected && inFan.has(selected)) { openPathTo(selected); openBelow(selected); } redraw(() => fit(550, 'home')); }
+// opened by hand over the tree: make room for it instead of covering names
+legendEl.addEventListener('toggle', () => { if (legendEl.open && drawn && fitted && legendCovers()) fit(350); });
 $('ft-all').onclick = showAll;
 $('ft-fold').onclick = foldAll;
 // search, deep links and the chain can reach any name: unfold the way to it first
@@ -673,8 +693,10 @@ function focusBranch(key, ms = 700) {
   (function walk(id) { const f = fan.get(id); if (!f) return; x0 = Math.min(x0, f.x - f.nr); x1 = Math.max(x1, f.x + f.nr); y0 = Math.min(y0, f.y - f.nr); y1 = Math.max(y1, f.y + f.nr); vkids(id).forEach(walk); })(b.root);
   stage.scrollIntoView({ block: 'center', behavior: 'auto' });
   const v = viewRect(), pad = isMobile() ? 34 : 80;
-  const k = Math.min(1.6, (v.w - pad * 2) / (x1 - x0), (v.h - pad * 2) / (y1 - y0));
-  go(d3.zoomIdentity.translate(v.x + v.w / 2 - k * (x0 + x1) / 2, v.y + v.h / 2 - k * (y0 + y1) / 2).scale(k), ms);
+  // phones: never so far out that the names leave their fruits; a wide branch is then panned, not shrunk
+  const k = Math.min(1.6, Math.max(isMobile() ? 0.56 : 0, Math.min((v.w - pad * 2) / (x1 - x0), (v.h - pad * 2) / (y1 - y0))));
+  const f0 = fan.get(b.root), wide = k * (x1 - x0) > v.w, cx = wide ? f0.x : (x0 + x1) / 2, cy = wide ? Math.min(f0.y, (y0 + y1) / 2 + (v.h / 2 - 70) / k) : (y0 + y1) / 2;
+  go(d3.zoomIdentity.translate(v.x + v.w / 2 - k * cx, v.y + v.h / 2 - k * cy).scale(k), ms);
   return true;
 }
 
@@ -791,7 +813,7 @@ panel.addEventListener('click', e => {
 });
 // the sheet is in <body> on phones, in the block that holds the selected name on desktop, and in the stage in full screen
 function placePanel(id) { const target = stage.classList.contains('fs') ? stage : isMobile() ? document.body : (id && flo.has(id) ? floats : stage); if (panel.parentNode !== target) target.appendChild(panel); floats.classList.toggle('has-panel', target === floats && panel.classList.contains('open')); }
-mqMobile.addEventListener('change', () => placePanel(selected)); placePanel(selected);
+mqMobile.addEventListener('change', () => { placePanel(selected); if (drawn) { draw(); fit(0); } }); placePanel(selected);
 
 function onActivate(e) {
   if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') return;
@@ -977,7 +999,7 @@ function renderChain(id) {
     if (cd.ph) { const es = x.estimate || {}; return `<li class="cc ph"><div class="card"><b>${esc(t('tree_unknown_chain', { n: cd.n }))}</b>${es.min != null ? `<span class="muted"> ${esc(t('tree_unknown_range', { min: es.min, max: es.max }))}</span>` : ''}</div><i class="ln trad"></i></li>`; }
     const D = x.living ? { thumbs: [], count: 0 } : docsOf(x.id), k = stKey(x.status);
     const thumbs = D.thumbs.slice(0, 5).map(th => `<button type="button" class="th" data-doc="${th.i}" data-of="${esc(x.id)}" aria-label="${esc(t('tree_open_doc'))}: ${esc(pageTxt(th.it.d ? th.it.d.page : th.it.e.page))}"><img src="${esc(asset(th.it.src))}" alt="" loading="lazy" decoding="async" width="60" height="76"></button>`).join('') + (D.thumbs.length > 5 ? `<span class="more">+${D.thumbs.length - 5}</span>` : '');
-    return `<li class="cc${last && x.id === ROOT ? ' root' : ''}"><div class="card"><span class="gen">${esc(genText(x))}</span><b class="nm">${esc(nameOf(x))}</b>${thumbs ? `<div class="strip">${thumbs}</div>` : ''}</div>${last ? '' : `<i class="ln ${k}"></i><span class="lb" title="${esc(linkExplain(x))}">${esc(linkLabel(x))}</span>`}</li>`;
+    return `<li class="cc${last && x.id === ROOT ? ' root' : ''}"><div class="card"><span class="gen">${esc(genText(x))}</span><b class="nm">${esc(nameOf(x))}</b>${thumbs ? `<div class="strip">${thumbs}</div>` : ''}</div>${last ? '' : `<i class="ln ${k}"></i><span class="lb" title="${esc(linkExplain(x))}">${esc(k === 'trad' ? t('tree_link_trad_short') : linkLabel(x))}</span>`}</li>`;
   }).join('');
   if (chainIO) chainIO.disconnect();
   const items = [...chainEl.querySelectorAll('.cc')];
