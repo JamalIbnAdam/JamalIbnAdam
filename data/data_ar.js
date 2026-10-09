@@ -297,7 +297,7 @@ window.FamilyTreeData = {
         lang_en: "🇺🇸 English",
 
         // Evidence tree (tree/tree.js). Person names and document text stay in Arabic.
-        tab_evidence: "شجرة الأدلة",
+        tab_evidence: "📜 شجرة الأدلة",
         tree_cta: "شجرة الأدلة: كل اسم مربوط بوثيقته الأصلية ←",
         tree_branch_link: "عرض هذا الفرع بالوثائق",
         tree_page_title: "أحفاد عبد الله سبال العين الجدّاوي الأنصاري — شجرة الأدلة",

@@ -231,7 +231,7 @@ window.FamilyTreeData = {
         lang_en: "🇺🇸 English",
 
         // Evidence tree (tree/tree.js). Person names and document text stay in Arabic.
-        tab_evidence: "Evidence tree",
+        tab_evidence: "📜 Evidence tree",
         tree_cta: "Evidence tree: every name linked to its original document →",
         tree_branch_link: "View this branch with its documents",
         tree_page_title: "Descendants of Abdullah Sabal Al-Ain Al-Jaddawi Al-Ansari — the evidence tree",

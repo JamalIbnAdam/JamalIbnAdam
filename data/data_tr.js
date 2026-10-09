@@ -208,7 +208,7 @@ window.FamilyTreeData = {
 
         // Evidence tree (tree/tree.js). Person names and document text stay in Arabic.
         // TODO translate: the strings below are English placeholders.
-        tab_evidence: "Evidence tree", // TODO translate
+        tab_evidence: "📜 Evidence tree", // TODO translate
         tree_cta: "Evidence tree: every name linked to its original document →", // TODO translate
         tree_branch_link: "View this branch with its documents", // TODO translate
         tree_page_title: "Descendants of Abdullah Sabal Al-Ain Al-Jaddawi Al-Ansari — the evidence tree", // TODO translate
