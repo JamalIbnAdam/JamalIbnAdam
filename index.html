@@ -1,1016 +1,778 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <script>
+        // theme before first paint: the stored choice (shared with /tree/), otherwise dark
+        (function () { try { var t = localStorage.getItem('treeTheme'); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) { } })();
+    </script>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="JamalIbnAdam">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Kufi+Arabic:wght@300;400;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Kufi+Arabic:wght@400;500;600&display=swap"
         media="print" onload="this.media='all'">
-
     <noscript>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Kufi+Arabic:wght@300;400;700&display=swap"
-            rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Kufi+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
     </noscript>
 
-    <title>السجل الذهبي لآل سبال العين | جمال ابن آدم - Jamal Ibn Adam</title>
-    <meta name="description"
-        content="السجل الذهبي لآل سبال العين: وثيقة تاريخية لرحلة الألف عام من يثرب إلى وادي الشاطئ عبر الأندلس (73 جيلاً). تحقيق وتوثيق جمال ابن آدم. The Golden Record of Al-Sabal Al-Ain: A 1000-year historical journey of the Ansar lineage from Yathrib to Wadi Al-Shatii via Andalusia. Documented by Jamal Ibn Adam (73 Generations).">
-    <meta name="keywords"
-        content="جمال ابن آدم, Jamal Ibn Adam, J.S. Adam, السجل الذهبي, Golden Record, آل سبال العين, Al-Sabal Al-Ain, الأنصار, Ansar, الخزرج, Khazraj, الأوس, Aws, بني سلمة, Banu Salimah, يثرب, Yathrib, المدينة المنورة, Madinah, وادي الشاطئ, Wadi Al-Shatii, ليبيا, Libya, فزان, Fezzan, طرابلس, Tripoli, برقة, Barqa, الأندلس, Andalus, غرناطة, Granada, اليمن, Yemen, مأرب, Ma'rib, فضل بن عبد الله, Fadl bin Abdullah, رويفع بن ثابت, Ruwayfi bin Thabit, منيذر الإفريقي, Munidhir Al-Ifriqi, عبد الله سبال العين, Abdullah Sabal al-Ain, نسب, Genealogy, شجرة العائلة, Family Tree, 73 جيلاً, 73 Generations, وثيقة ميراث 1002 هـ, Inheritance Document 1002 AH, مخطوطة, Manuscript">
+    <title>السجل الذهبي لآل سبال العين | أحفاد عبد الله سبال العين - جمال ابن آدم</title>
+    <meta name="description" content="نسب قبيلة الأنصار في وادي الشاطئ بفزان: لُحمات تجتمع في زاوية براك وآقار وأشكدة ودبدب، وأصلها عبد الله سبال العين. كل اسم في الشجرة مربوط بوثيقته إن وُجدت، أو برواية بعض أعيان وشيوخ القبيلة إن لم توجد بعد.">
     <meta name="author" content="Jamal Ibn Adam">
     <link rel="canonical" href="https://jamalibnadam.com/">
 
     <link rel="icon" type="image/webp" href="logo.webp">
     <link rel="shortcut icon" href="logo.webp">
     <link rel="preload" as="image" href="logo.webp">
-
-    <!-- PWA Settings -->
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="Official_Authorization_Document_optimized.png">
-    <meta name="theme-color" content="#0f172a">
+    <meta name="theme-color" content="#121614">
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://jamalibnadam.com/">
-    <meta property="og:title" content="السجل الذهبي لآل سبال العين | توثيق جمال ابن آدم">
-    <meta property="og:description"
-        content="رحلة الألف عام: من يثرب إلى الأندلس وصولاً إلى فزان (73 جيلاً موثقاً). A 1000-year journey from Yathrib to Andalus and Fezzan (73 Verified Generations).">
+    <meta property="og:title" content="السجل الذهبي لآل سبال العين | أحفاد عبد الله سبال العين - جمال ابن آدم">
+    <meta property="og:description" content="نسب قبيلة الأنصار في وادي الشاطئ بفزان: لُحمات تجتمع في زاوية براك وآقار وأشكدة ودبدب، وأصلها عبد الله سبال العين. كل اسم في الشجرة مربوط بوثيقته إن وُجدت، أو برواية بعض أعيان وشيوخ القبيلة إن لم توجد بعد.">
     <meta property="og:image" content="https://jamalibnadam.com/og-image.jpg?v=1.7">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:locale" content="ar_AR">
     <meta property="og:locale:alternate" content="en_US">
-
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:domain" content="jamalibnadam.com">
-    <meta name="twitter:url" content="https://jamalibnadam.com/">
-    <meta name="twitter:title" content="Golden Record of Al-Sabal Al-Ain by Jamal Ibn Adam">
-    <meta name="twitter:description"
-        content="1000-year journey from Yathrib to Libya. Verified Genealogy (73 Generations). رحلة الألف عام من يثرب إلى ليبيا (73 جيلاً موثقاً).">
+    <meta name="twitter:title" content="السجل الذهبي لآل سبال العين | أحفاد عبد الله سبال العين - جمال ابن آدم">
+    <meta name="twitter:description" content="نسب قبيلة الأنصار في وادي الشاطئ بفزان: لُحمات تجتمع في زاوية براك وآقار وأشكدة ودبدب، وأصلها عبد الله سبال العين. كل اسم في الشجرة مربوط بوثيقته إن وُجدت، أو برواية بعض أعيان وشيوخ القبيلة إن لم توجد بعد.">
     <meta name="twitter:image" content="https://jamalibnadam.com/og-image.jpg?v=1.7">
 
-
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Jamal Ibn Adam",
-      "alternateName": ["جمال ابن آدم", "J.S. Adam", "Jamal Ben Omar"],
-      "url": "https://jamalibnadam.com",
-      "image": "https://jamalibnadam.com/logo.webp",
-      "sameAs": [
-        "https://www.youtube.com/@JamalIbnAdam",
-        "https://www.andrewtips.com"
-      ],
-      "jobTitle": "Author & Historian",
-      "worksFor": {
-        "@type": "Organization",
-        "name": "Golden Record Project"
-      }
-    }
-    </script>
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Book",
+      "@type": "WebSite",
       "name": "السجل الذهبي لآل سبال العين",
       "alternateName": "The Golden Record of Al-Sabal Al-Ain",
-      "author": {
-        "@type": "Person",
-        "name": "Jamal Ibn Adam"
-      },
-      "url": "https://jamalibnadam.com",
-      "description": "السجل الذهبي لآل سبال العين: وثيقة تاريخية لرحلة الألف عام من يثرب إلى وادي الشاطئ عبر الأندلس (73 جيلاً). تحقيق وتوثيق جمال ابن آدم. The Golden Record of Al-Sabal Al-Ain: A 1000-year historical journey of the Ansar lineage from Yathrib to Wadi Al-Shatii via Andalusia. Documented by Jamal Ibn Adam (73 Generations).",
-      "keywords": "Jamal Ibn Adam, Al-Sabal Al-Ain, Ansar, Khazraj, Genealogy, Libya, History",
-      "inLanguage": ["ar", "en", "tr", "pl", "es"]
+      "url": "https://jamalibnadam.com/",
+      "inLanguage": ["ar", "en"],
+      "author": { "@type": "Person", "name": "Jamal Ibn Adam", "alternateName": "جمال ابن آدم" },
+      "description": "نسب قبيلة الأنصار في وادي الشاطئ بفزان: لُحمات تجتمع في زاوية براك وآقار وأشكدة ودبدب، وأصلها عبد الله سبال العين. كل اسم في الشجرة مربوط بوثيقته إن وُجدت، أو برواية بعض أعيان وشيوخ القبيلة إن لم توجد بعد."
     }
     </script>
 
-    <link rel="stylesheet" href="styles.css?v=1.8">
+    <link rel="stylesheet" href="home.css">
 </head>
 
-<body class="flex flex-col min-h-screen">
-
-    <!-- === HERO HEADER === -->
-    <header class="bg-slate-900 text-white shadow-xl relative overflow-hidden">
-        <!-- Background Pattern (Abstract) -->
-        <div class="absolute inset-0 opacity-10"
-            style="background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48ZyBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0wIDQwaDQwVjBIMHY0MHptMjAgMjBoMjB2MjBIMjBWNjB6TTEwIDgwaDIwdjIwSDEwVjgteiIgZmlsbD0iI0ZGRkZGRiIgLz48L2c+PC9zdmc+');">
-        </div>
-
-        <div class="container mx-auto px-4 py-6 relative">
-
-            <div class="absolute top-0 ltr:right-0 rtl:left-0 mt-2 mx-4 z-50 flex gap-2 items-center">
-                <!-- Install App Button -->
-                <button id="install-btn"
-                    class="hidden appearance-none bg-amber-500/90 backdrop-blur-md text-white text-xs font-bold border border-amber-400 rounded-lg py-1.5 px-3 focus:outline-none cursor-pointer shadow-lg hover:bg-amber-400 transition-all items-center gap-1">
-                    <span>📲</span> <span data-i18n="btn_install">Install App</span>
-                </button>
-
-                <label for="lang-select" class="sr-only">Select Language</label>
-                <select id="lang-select" onchange="changeLanguage(this.value)" aria-label="Select Language"
-                    class="appearance-none bg-slate-800/80 backdrop-blur-md text-amber-50 text-xs font-bold border border-white/10 rounded-lg py-1.5 px-3 pr-8 focus:outline-none focus:border-amber-500 cursor-pointer shadow-lg hover:bg-slate-700 transition-all">
-                    <option value="ar">🇸🇦 العربية</option>
-                    <option value="en">🇺🇸 English</option>
-                    <option value="tr">🇹🇷 Türkçe</option>
-                    <option value="pl">🇵🇱 Polski</option>
-                    <option value="es">🇪🇸 Español</option>
-                </select>
-            </div>
-
-            <div class="flex flex-col md:flex-row items-center justify-between gap-6 mt-8 md:mt-2">
-
-                <div class="flex flex-col md:flex-row items-center gap-4 text-center md:text-start md:flex-1">
-                    <img src="logo.webp" alt="Jamal Ibn Adam Logo" width="80" height="80" fetchpriority="high"
-                        class="h-20 w-20 md:h-24 md:w-24 object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500">
-
-                    <div>
-                        <h1 class="text-2xl md:text-4xl font-bold leading-tight text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-100 to-amber-200 drop-shadow-sm"
-                            data-i18n="header_title">
-                            The Golden Record of Al-Sabal Al-Ain
-                        </h1>
-                        <p class="text-slate-400 text-xs md:text-sm font-light tracking-wider mt-1"
-                            data-i18n="header_subtitle">
-                            From Yathrib to Wadi Al-Shatii: A 1000-Year Journey (73 Generations)
-                        </p>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-3 gap-2 md:gap-4 w-full md:w-auto mt-4 md:mt-0">
-                    <div class="bg-white/5 border border-white/10 rounded-lg p-2 md:p-3 text-center backdrop-blur-sm">
-                        <div class="text-xl md:text-2xl font-bold text-amber-400" data-i18n="stat_continents_val">3
-                        </div>
-                        <div class="text-[10px] md:text-xs text-slate-400 uppercase tracking-wider"
-                            data-i18n="stat_continents_label">Continents</div>
-                    </div>
-                    <div class="bg-white/5 border border-white/10 rounded-lg p-2 md:p-3 text-center backdrop-blur-sm">
-                        <div class="text-xl md:text-2xl font-bold text-emerald-400" data-i18n="stat_eras_val">5</div>
-                        <div class="text-[10px] md:text-xs text-slate-400 uppercase tracking-wider"
-                            data-i18n="stat_eras_label">Eras</div>
-                    </div>
-                    <div class="bg-white/5 border border-white/10 rounded-lg p-2 md:p-3 text-center backdrop-blur-sm">
-                        <div class="text-xl md:text-2xl font-bold text-amber-400" data-i18n="stat_generations_val">73
-                        </div>
-                        <div class="text-[10px] md:text-xs text-slate-400 uppercase tracking-wider"
-                            data-i18n="stat_generations_label">Generations</div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="container mx-auto px-4">
-            <!-- Navigation Tabs -->
-            <div
-                class="nav-tabs-container sticky top-0 z-40 bg-slate-900/95 backdrop-blur no-scrollbar border-b border-white/10 mt-8">
-                <button onclick="switchTab('tree')" id="tab-tree"
-                    class="nav-btn active text-sm md:text-lg px-4 pb-2 text-white/90" data-i18n="tab_tree">
-                    🌳 The Blessed Family Tree
-                </button>
-                <a href="/tree/" id="tab-evidence" class="nav-btn text-sm md:text-lg px-4 pb-2 text-white/60"
-                    style="display:inline-block; text-decoration:none;" data-i18n="tab_evidence">📜 شجرة الأدلة</a>
-                <button onclick="switchTab('figures')" id="tab-figures"
-                    class="nav-btn text-sm md:text-lg px-4 pb-2 text-white/60" data-i18n="tab_figures">
-                    🗺️ Ansar Figures in Libya
-                </button>
-                <button onclick="switchTab('library')" id="tab-library"
-                    class="nav-btn text-sm md:text-lg px-4 pb-2 text-white/60" data-i18n="tab_library">
-                    📚 Library & Documentation
-                </button>
-                <button onclick="switchTab('poem')" id="tab-poem"
-                    class="nav-btn text-sm md:text-lg px-4 pb-2 text-white/60" data-i18n="tab_poem">
-                    📜 The Ansar Epic
-                </button>
-                <button onclick="switchTab('author')" id="tab-author"
-                    class="nav-btn text-sm md:text-lg px-4 pb-2 text-white/60" data-i18n="tab_author">
-                    👤 Jamal Ibn Adam (J.S. Adam)
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <!-- === MAIN CONTENT === -->
-    <main class="container mx-auto px-4 py-8 flex-grow max-w-5xl min-h-[80vh]">
-
-        <!-- ================= TAB 1: TREE ================= -->
-        <div id="view-tree" class="animate-fade-up">
-
-            <!-- Controls Toolbar -->
-            <div class="home-search-card bg-white rounded-xl shadow-sm border border-slate-100 p-4 mb-8 sticky top-4 z-40">
-                <div class="home-search-row flex flex-col md:flex-row gap-4 items-center justify-between">
-                    <!-- Search -->
-                    <div class="home-search relative w-full md:w-1/3">
-                        <input type="text" id="searchInput" placeholder="" data-i18n-placeholder="search_placeholder"
-                            class="w-full pl-4 pr-10 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-amber-400 focus:outline-none text-sm transition-all">
-                        <span class="absolute left-3 top-2.5 text-slate-400">🔍</span>
-                    </div>
-
-                    <!-- Filter Buttons -->
-                    <div class="home-filter-bar sticky top-0 z-40 bg-slate-900/95 backdrop-blur border-b border-white/5 shadow-lg">
-                        <div class="container mx-auto px-4 py-3">
-                            <div class="flex items-center gap-3 overflow-x-auto no-scrollbar snap-x touch-pan-x w-full">
-
-                                <button
-                                    class="tab-btn active flex-shrink-0 snap-start flex items-center gap-2 px-5 py-2 rounded-full text-xs font-bold transition-all bg-amber-700 text-white shadow-lg border border-amber-600"
-                                    onclick="filterTimeline('all', this)">
-                                    <span>🔍</span> <span data-i18n="filter_all">All</span>
-                                </button>
-
-                                <button
-                                    class="tab-btn flex-shrink-0 snap-start flex items-center gap-2 px-5 py-2 rounded-full text-xs font-bold transition-all bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700"
-                                    onclick="filterTimeline('yemen', this)">
-                                    <span>🇾🇪</span> <span data-i18n="filter_yemen">Yemen</span>
-                                </button>
-
-                                <button
-                                    class="tab-btn flex-shrink-0 snap-start flex items-center gap-2 px-5 py-2 rounded-full text-xs font-bold transition-all bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700"
-                                    onclick="filterTimeline('prophet', this)">
-                                    <span>🕌</span> <span data-i18n="filter_prophet">Prophetic Era</span>
-                                </button>
-
-                                <button
-                                    class="tab-btn flex-shrink-0 snap-start flex items-center gap-2 px-5 py-2 rounded-full text-xs font-bold transition-all bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700"
-                                    onclick="filterTimeline('andalus', this)">
-                                    <span>🏰</span> <span data-i18n="filter_andalus">Andalus</span>
-                                </button>
-
-                                <button
-                                    class="tab-btn flex-shrink-0 snap-start flex items-center gap-2 px-5 py-2 rounded-full text-xs font-bold transition-all bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700"
-                                    onclick="filterTimeline('migration', this)">
-                                    <span>⛵</span> <span data-i18n="filter_migration">Migration</span>
-                                </button>
-
-                                <button
-                                    class="tab-btn flex-shrink-0 snap-start flex items-center gap-2 px-5 py-2 rounded-full text-xs font-bold transition-all bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700"
-                                    onclick="filterTimeline('libya', this)">
-                                    <span>🇱🇾</span> <span data-i18n="filter_libya">Libya</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Timeline Container -->
-            <div class="relative px-2 md:px-0">
-                <div class="timeline-line hidden md:block"></div>
-
-                <h2 class="sr-only">Timeline</h2>
-                <div id="timelineContainer" class="space-y-4">
-                    <div class="bg-white rounded-xl p-4 shadow border border-slate-100 animate-pulse">
-                        <div class="flex items-center gap-4">
-                            <div class="h-12 w-12 rounded-full bg-slate-200"></div>
-                            <div class="flex-1 space-y-2">
-                                <div class="h-4 bg-slate-200 rounded w-1/3"></div>
-                                <div class="h-3 bg-slate-200 rounded w-1/4"></div>
-                            </div>
-                        </div>
-                        <div class="mt-4 space-y-2">
-                            <div class="h-3 bg-slate-200 rounded w-full"></div>
-                            <div class="h-3 bg-slate-200 rounded w-5/6"></div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white rounded-xl p-4 shadow border border-slate-100 animate-pulse">
-                        <div class="flex items-center gap-4">
-                            <div class="h-12 w-12 rounded-full bg-slate-200"></div>
-                            <div class="flex-1 space-y-2">
-                                <div class="h-4 bg-slate-200 rounded w-1/3"></div>
-                                <div class="h-3 bg-slate-200 rounded w-1/4"></div>
-                            </div>
-                        </div>
-                        <div class="mt-4 space-y-2">
-                            <div class="h-3 bg-slate-200 rounded w-full"></div>
-                            <div class="h-3 bg-slate-200 rounded w-5/6"></div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white rounded-xl p-4 shadow border border-slate-100 animate-pulse">
-                        <div class="flex items-center gap-4">
-                            <div class="h-12 w-12 rounded-full bg-slate-200"></div>
-                            <div class="flex-1 space-y-2">
-                                <div class="h-4 bg-slate-200 rounded w-1/3"></div>
-                                <div class="h-3 bg-slate-200 rounded w-1/4"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Empty State -->
-                <div id="noResults" class="hidden text-center py-12">
-                    <div class="text-4xl mb-2">🍂</div>
-                    <p class="text-slate-400" data-i18n="no_results"></p>
-                </div>
-            </div>
-
-            <!-- Branches from Fadl (under main tree) -->
-            <h2 id="new-branches" class="tree-section-title" data-i18n="fadl_branch_title"></h2>
-
-            <!-- Entry point to the evidence tree page (/tree/) -->
-            <a href="/tree/" id="evidence-cta" data-i18n="tree_cta"
-                style="display:block; margin:12px 0 16px; padding:12px 16px; background:#fff; border:1px solid #d4af37; border-radius:12px; color:#0f172a; font-weight:700; text-decoration:none;">شجرة الأدلة: كل اسم مربوط بوثيقته الأصلية ←</a>
-
-            <div class="tree-root">
-                <div class="fadl-node" data-i18n="fadl_node"></div>
-            </div>
-
-            <div class="branches-wrapper">
-                <!-- (1) ابناء محمد بن فضل بن عبد الله -->
-                <div class="branch-card" style="border-top-color: #991b1b; box-shadow: 0 10px 24px rgba(0,0,0,0.18);">
-                    <div class="branch-header text-white font-bold" style="background: #991b1b;">
-                        <h3 style="display:inline; font-size:inherit;" data-i18n="branch_1_title"></h3><br>
-                        <span style="font-size:0.85rem; font-weight:500;" data-i18n="branch_1_subtitle"></span>
-                    </div>
-                    <div class="branch-body" data-i18n="branch_1_desc"></div>
-                    <a href="/tree/#/b/muhammad" class="branch-evidence-link" data-i18n="tree_branch_link"
-                        style="display:inline-block; margin-top:8px; font-size:0.85rem; color:#92400e; text-decoration:underline;">عرض هذا الفرع بالوثائق</a>
-                </div>
-
-                <!-- (2) ابناء ابولقاسم بن فضل بن عبد الله -->
-                <div class="branch-card" style="border-top-color: #0d9488;">
-                    <div class="branch-header text-white" style="background: #0d9488;">
-                        <h3 style="display:inline; font-size:inherit;" data-i18n="branch_2_title"></h3><br>
-                        <span style="font-size:0.85rem; font-weight:500;" data-i18n="branch_2_subtitle"></span>
-                    </div>
-                    <div class="branch-body" data-i18n="branch_2_desc"></div>
-                    <a href="/tree/#/b/belqasim" class="branch-evidence-link" data-i18n="tree_branch_link"
-                        style="display:inline-block; margin-top:8px; font-size:0.85rem; color:#92400e; text-decoration:underline;">عرض هذا الفرع بالوثائق</a>
-                </div>
-
-                <!-- (3) أولاد قاسم بن فضل بن عبدالله - زاوية براك -->
-                <div class="branch-card" style="border-top-color: #3498db;">
-                    <div class="branch-header text-white" style="background: #3498db;">
-                        <h3 style="display:inline; font-size:inherit;" data-i18n="branch_3_title"></h3><br>
-                        <span style="font-size:0.85rem; font-weight:500;" data-i18n="branch_3_subtitle"></span>
-                    </div>
-                    <div class="branch-body" data-i18n="branch_3_desc"></div>
-                    <a href="/tree/#/b/qasim" class="branch-evidence-link" data-i18n="tree_branch_link"
-                        style="display:inline-block; margin-top:8px; font-size:0.85rem; color:#92400e; text-decoration:underline;">عرض هذا الفرع بالوثائق</a>
-                </div>
-
-                <!-- (تانيا) العثامنة - زاوية براك -->
-                <div class="branch-card" style="border-top-color: #e67e22;">
-                    <div class="branch-header text-white" style="background: #e67e22;">
-                        <h3 style="display:inline; font-size:inherit;" data-i18n="branch_4_title"></h3><br>
-                        <span style="font-size:0.85rem; font-weight:500;" data-i18n="branch_4_subtitle"></span>
-                    </div>
-                    <div class="branch-body" data-i18n="branch_4_desc"></div>
-                    <a href="/tree/#/b/uthamna" class="branch-evidence-link" data-i18n="tree_branch_link"
-                        style="display:inline-block; margin-top:8px; font-size:0.85rem; color:#92400e; text-decoration:underline;">عرض هذا الفرع بالوثائق</a>
-                </div>
-
-                <!-- (تالثا) أولاد عبد الواحد - زاوية براك -->
-                <div class="branch-card" style="border-top-color: #15803d;">
-                    <div class="branch-header text-white font-bold" style="background: #15803d;">
-                        <h3 style="display:inline; font-size:inherit;" data-i18n="branch_5_title"></h3><br>
-                        <span style="font-size:0.85rem; font-weight:500;" data-i18n="branch_5_subtitle"></span>
-                    </div>
-                    <div class="branch-body" data-i18n="branch_5_desc"></div>
-                    <a href="/tree/#/b/abdulwahid" class="branch-evidence-link" data-i18n="tree_branch_link"
-                        style="display:inline-block; margin-top:8px; font-size:0.85rem; color:#92400e; text-decoration:underline;">عرض هذا الفرع بالوثائق</a>
-                </div>
-
-            </div>
-
-            <!-- Concluding timeline / generations note -->
-            <div class="mt-6 p-4 bg-slate-50 rounded-lg border border-slate-100 text-right">
-                <div class="font-bold mb-2" data-i18n="modern_era_title"></div>
-                <p class="mb-2" data-i18n="modern_era_lineage"></p>
-                <p class="mb-2" data-i18n="modern_era_detail"></p>
-                <p class="font-semibold" data-i18n="modern_era_generation"></p>
-            </div>
-        </div>
-
-        <!-- ================= TAB 2: FIGURES ================= -->
-        <div id="view-figures" class="hidden animate-fade-up">
-            <div class="bg-blue-50 border-r-4 border-blue-500 p-6 rounded-lg mb-8 shadow-sm">
-                <h2 class="font-bold text-blue-900 text-lg mb-2 serif-font" data-i18n="figures_intro_title"></h2>
-                <p class="text-sm text-blue-800 leading-relaxed" data-i18n="figures_intro_text"></p>
-            </div>
-
-            <div class="figures-grid grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Card 1 -->
-                <div
-                    class="bg-white rounded-xl p-6 shadow hover:shadow-md transition border border-slate-100 relative overflow-hidden group">
-                    <div class="absolute top-0 left-0 w-2 h-full bg-emerald-500"></div>
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <span
-                                class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded mb-2 inline-block"
-                                data-i18n="fig_1_badge"></span>
-                            <h3 class="text-xl font-bold text-slate-800 serif-font group-hover:text-emerald-700 transition"
-                                data-i18n="fig_1_name"></h3>
-                            <p class="text-sm text-slate-500 mt-2" data-i18n="fig_1_desc"></p>
-                        </div>
-                        <div class="text-3xl opacity-20 group-hover:opacity-100 transition">⚔️</div>
-                    </div>
-                    <div class="mt-4 pt-4 border-t border-slate-50 flex items-center gap-2 text-xs text-slate-400">
-                        <span data-i18n="fig_1_loc"></span>
-                    </div>
-                </div>
-
-                <!-- Card 2 -->
-                <div
-                    class="bg-white rounded-xl p-6 shadow hover:shadow-md transition border border-slate-100 relative overflow-hidden group">
-                    <div class="absolute top-0 left-0 w-2 h-full bg-emerald-500"></div>
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <span
-                                class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded mb-2 inline-block"
-                                data-i18n="fig_2_badge"></span>
-                            <h3 class="text-xl font-bold text-slate-800 serif-font group-hover:text-emerald-700 transition"
-                                data-i18n="fig_2_name"></h3>
-                            <p class="text-sm text-slate-500 mt-2" data-i18n="fig_2_desc"></p>
-                        </div>
-                        <div class="text-3xl opacity-20 group-hover:opacity-100 transition">🕌</div>
-                    </div>
-                    <div class="mt-4 pt-4 border-t border-slate-50 flex items-center gap-2 text-xs text-slate-400">
-                        <span data-i18n="fig_2_loc"></span>
-                    </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div
-                    class="bg-white rounded-xl p-6 shadow hover:shadow-md transition border border-slate-100 relative overflow-hidden group">
-                    <div class="absolute top-0 left-0 w-2 h-full bg-amber-500"></div>
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <span
-                                class="text-xs font-bold text-amber-600 bg-amber-50 px-2 py-1 rounded mb-2 inline-block"
-                                data-i18n="fig_3_badge"></span>
-                            <h3 class="text-xl font-bold text-slate-800 serif-font group-hover:text-amber-700 transition"
-                                data-i18n="fig_3_name"></h3>
-                            <p class="text-sm text-slate-500 mt-2" data-i18n="fig_3_desc"></p>
-                        </div>
-                        <div class="text-3xl opacity-20 group-hover:opacity-100 transition">📜</div>
-                    </div>
-                    <div class="mt-4 pt-4 border-t border-slate-50 flex items-center gap-2 text-xs text-slate-400">
-                        <span data-i18n="fig_3_loc"></span>
-                    </div>
-                </div>
-
-                <!-- Card 4 -->
-                <div
-                    class="bg-white rounded-xl p-6 shadow hover:shadow-md transition border border-slate-100 relative overflow-hidden group">
-                    <div class="absolute top-0 left-0 w-2 h-full bg-amber-500"></div>
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <span
-                                class="text-xs font-bold text-amber-600 bg-amber-50 px-2 py-1 rounded mb-2 inline-block"
-                                data-i18n="fig_4_badge"></span>
-                            <h3 class="text-xl font-bold text-slate-800 serif-font group-hover:text-amber-700 transition"
-                                data-i18n="fig_4_name"></h3>
-                            <p class="text-sm text-slate-500 mt-2" data-i18n="fig_4_desc"></p>
-                        </div>
-                        <div class="text-3xl opacity-20 group-hover:opacity-100 transition">🌴</div>
-                    </div>
-                    <div class="mt-4 pt-4 border-t border-slate-50 flex items-center gap-2 text-xs text-slate-400">
-                        <span data-i18n="fig_4_loc"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ================= TAB 3: LIBRARY ================= -->
-        <div id="view-library" class="hidden animate-fade-up">
-
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Book Display -->
-                <div class="lg:col-span-1 flex flex-col items-center gap-6">
-                    <div class="w-48 h-72">
-                        <img src="ansar-wadi-al-shati.webp"
-                            alt="The Golden Record: History & Documentation of Al-Sabal Al-Ain Book Cover"
-                            data-i18n-alt="library_book_alt"
-                            class="w-full h-full object-cover rounded-lg shadow-md hover:scale-105 transition duration-500">
-                    </div>
-                    <div class="bg-white p-4 rounded-lg shadow-sm border border-slate-200 text-right w-full">
-                        <span class="block text-xs text-slate-500 mb-1" data-i18n="library_doc_label"></span>
-                        <span class="block font-bold text-slate-800" data-i18n="lib_book_info"></span>
-                        <span class="block text-sm text-slate-600 mt-2" data-i18n="library_author"></span>
-                    </div>
-
-                    <div onclick="showDocumentModal('wathiqat-bay-brak-1002h-fadl-sabbal-alain.webp', 'doc_1002_title', 'doc_1002_transcription')"
-                        class="w-full bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition cursor-pointer overflow-hidden">
-                        <div class="w-full h-48">
-                            <img src="wathiqat-bay-brak-1002h-fadl-sabbal-alain.webp"
-                                alt="Historical Document 1002 AH - Fadl Sabbal Al-Ain Purchase Deed"
-                                class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-4 text-right space-y-2">
-                            <h4 class="font-bold text-slate-800" data-i18n="doc_1002_title"></h4>
-                            <p class="text-sm text-slate-600" data-i18n="doc_1002_desc"></p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Methodology Content -->
-                <div class="lg:col-span-2 space-y-6">
-                    <div class="bg-white p-8 rounded-xl shadow-sm border border-slate-100">
-                        <h2 class="text-2xl font-bold text-slate-800 mb-6 serif-font flex items-center gap-3"
-                            data-i18n="library_methodology_title">
-                            <span class="text-amber-500">❖</span>
-                        </h2>
-
-                        <div class="prose prose-sm max-w-none text-slate-600 leading-8">
-                            <p class="mb-4" data-i18n="lib_method_text"></p>
-                            <ul class="list-disc list-inside space-y-2 marker:text-amber-500">
-                                <li data-i18n="lib_point_1"></li>
-                                <li data-i18n="lib_point_2"></li>
-                                <li data-i18n="lib_point_3"></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
-                        <h3 class="font-bold text-slate-800 mb-3 text-sm" data-i18n="library_sources_title"></h3>
-                        <ul class="text-xs text-slate-600 space-y-2">
-                            <li data-i18n="library_source_1"></li>
-                            <li data-i18n="library_source_2"></li>
-                            <li data-i18n="library_source_3"></li>
-                            <li data-i18n="library_source_4"></li>
-                        </ul>
-                    </div>
-
-                    <div class="bg-emerald-50 border border-emerald-200 p-6 rounded-xl flex items-start gap-4">
-                        <div class="text-3xl">🛡️</div>
-                        <div>
-                            <h4 class="font-bold text-emerald-900 mb-1" data-i18n="lib_logic_title"></h4>
-                            <p class="text-sm text-emerald-800/80 leading-relaxed" data-i18n="lib_logic_text"></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- ================= TAB 4: POEM ================= -->
-        <div id="view-poem" class="hidden animate-fade-up">
-            <div class="poem-card rounded-2xl p-6 md:p-10 mb-8">
-                <div class="poem-section text-center mb-8">
-                    <div class="text-3xl mb-3">📜</div>
-                    <h2 class="text-3xl md:text-4xl font-bold text-[#4a2f0a] poem-font" data-i18n="poem_main_title">
-                    </h2>
-                    <p class="mt-4 text-sm md:text-base text-[#5b4631] leading-relaxed max-w-3xl mx-auto"
-                        data-i18n="poem_intro"></p>
-                </div>
-
-                <div class="poem-section space-y-8">
-                    <div>
-                        <h3 class="text-xl md:text-2xl font-bold text-[#4a2f0a] poem-font mb-4"
-                            data-i18n="poem_ch1_title"></h3>
-                        <div class="poem-font" data-i18n-lines="poem_ch1_body"></div>
-                    </div>
-
-                    <div>
-                        <h3 class="text-xl md:text-2xl font-bold text-[#4a2f0a] poem-font mb-4"
-                            data-i18n="poem_ch2_title"></h3>
-                        <div class="poem-font" data-i18n-lines="poem_ch2_body"></div>
-                    </div>
-
-                    <div class="grid grid-cols-1 lg:grid-cols-[1.4fr_0.6fr] gap-6 items-center">
-                        <div>
-                            <h3 class="text-xl md:text-2xl font-bold text-[#4a2f0a] poem-font mb-4"
-                                data-i18n="poem_ch3_title"></h3>
-                            <div class="poem-font" data-i18n-lines="poem_ch3_body"></div>
-                        </div>
-                        <div class="poem-image rounded-xl p-4 text-center shadow-sm">
-                            <div class="text-5xl mb-3">🕌</div>
-                            <div class="text-xs uppercase tracking-widest text-[#a68b5b] mb-1">Placeholder</div>
-                            <div class="text-sm font-semibold text-[#4a2f0a]" data-i18n="poem_ch3_image_alt"></div>
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-1 lg:grid-cols-[0.6fr_1.4fr] gap-6 items-center">
-                        <div class="poem-image rounded-xl p-4 text-center shadow-sm">
-                            <div class="text-5xl mb-3">🌴</div>
-                            <div class="text-xs uppercase tracking-widest text-[#a68b5b] mb-1">Placeholder</div>
-                            <div class="text-sm font-semibold text-[#4a2f0a]" data-i18n="poem_ch4_image_alt"></div>
-                        </div>
-                        <div>
-                            <h3 class="text-xl md:text-2xl font-bold text-[#4a2f0a] poem-font mb-4"
-                                data-i18n="poem_ch4_title"></h3>
-                            <div class="poem-font" data-i18n-lines="poem_ch4_body"></div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h3 class="text-xl md:text-2xl font-bold text-[#4a2f0a] poem-font mb-4"
-                            data-i18n="poem_ch5_title"></h3>
-                        <div class="poem-font" data-i18n-lines="poem_ch5_body"></div>
-                    </div>
-
-                    <div class="mt-6 text-center">
-                        <p class="poem-font text-base md:text-lg text-[#4a2f0a]" data-i18n="poem_conclusion"></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ================= TAB 5: AUTHOR ================= -->
-        <div id="view-author" class="hidden animate-fade-up">
-            <div class="space-y-8">
-
-                <!-- Header Card -->
-                <div
-                    class="bg-gradient-to-r from-slate-900 to-slate-800 text-white p-8 rounded-xl shadow-lg border border-slate-700">
-                    <h2 class="text-3xl md:text-4xl font-bold serif-font mb-4" data-i18n="author_channel_title"></h2>
-                    <p class="text-slate-100 leading-8 text-lg" data-i18n="author_bio"></p>
-                </div>
-
-                <!-- YouTube Embed -->
-                <div class="flex flex-col items-center">
-                    <h3 class="text-2xl font-bold mb-6 text-slate-800 serif-font" data-i18n="author_playlist_title">
-                    </h3>
-                    <div class="w-full aspect-video rounded-xl overflow-hidden shadow-lg border border-slate-200 relative bg-slate-900 cursor-pointer group"
-                        onclick="loadYoutubeVideo(this)">
-                        <img src="ansar-wadi-al-shati.webp" alt="Video Thumbnail"
-                            class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-300">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div
-                                class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition">
-                                <svg class="w-8 h-8 text-white fill-current" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z" />
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="youtube-container absolute inset-0 bg-black z-20 hidden"></div>
-                    </div>
-                </div>
-
-                <!-- Books Section -->
-                <div class="bg-white p-8 rounded-xl shadow-md border border-slate-100">
-                    <h3 class="text-2xl font-bold mb-6 text-slate-800 serif-font" data-i18n="author_books_title">
-                    </h3>
-                    <p class="text-slate-700 leading-8 mb-6" data-i18n="author_books_intro"></p>
-                    <div class="space-y-4 mb-6 text-slate-700 leading-8">
-                        <p data-i18n="author_book_1"></p>
-                        <p data-i18n="author_book_2"></p>
-                    </div>
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="https://www.andrewtips.com" target="_blank" rel="noopener noreferrer"
-                            class="px-6 py-3 bg-slate-900 text-white rounded-lg font-bold hover:bg-slate-800 transition text-center"
-                            data-i18n="btn_visit_books">
-                        </a>
-                        <a href="https://www.youtube.com/@JamalIbnAdam" target="_blank" rel="noopener noreferrer"
-                            class="px-6 py-3 bg-white border-2 border-slate-900 text-slate-900 rounded-lg font-bold hover:bg-slate-50 transition text-center"
-                            data-i18n="btn_visit_youtube">
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Contact Section -->
-                <div
-                    class="contact-section p-8 rounded-xl shadow-lg bg-gradient-to-r from-slate-900 to-slate-800 text-white">
-                    <h3 class="text-2xl font-bold mb-4 serif-font text-white" data-i18n="contact_header"></h3>
-                    <div id="contactSuccess" class="hidden text-emerald-300 text-sm mb-4 space-y-1">
-                        <h4 class="text-base font-bold" data-i18n="form_success_title"></h4>
-                        <p data-i18n="form_success_message"></p>
-                    </div>
-                    <form id="contactForm" action="https://formspree.io/f/mlgwrrar" method="POST" class="space-y-4">
-                        <div>
-                            <label class="contact-label block mb-2 text-slate-300 text-sm"
-                                data-i18n="contact_name_label"></label>
-                            <input type="text" name="name" required
-                                class="contact-input w-full min-h-[48px] rounded-lg px-4 py-3 bg-slate-800 border border-slate-700 text-white focus:outline-none focus:ring-2 focus:ring-amber-400 placeholder-slate-500"
-                                data-i18n-placeholder="contact_name_label" placeholder="">
-                        </div>
-                        <div>
-                            <label class="contact-label block mb-2 text-slate-300 text-sm"
-                                data-i18n="contact_email_label"></label>
-                            <input type="email" name="email" required
-                                class="contact-input w-full min-h-[48px] rounded-lg px-4 py-3 bg-slate-800 border border-slate-700 text-white focus:outline-none focus:ring-2 focus:ring-amber-400 placeholder-slate-500"
-                                data-i18n-placeholder="contact_email_label" placeholder="">
-                        </div>
-                        <div>
-                            <label class="contact-label block mb-2 text-slate-300 text-sm"
-                                data-i18n="contact_message_label"></label>
-                            <textarea name="message" rows="5" required
-                                class="contact-input w-full min-h-[120px] rounded-lg px-4 py-3 bg-slate-800 border border-slate-700 text-white focus:outline-none focus:ring-2 focus:ring-amber-400 placeholder-slate-500"
-                                data-i18n-placeholder="contact_message_label" placeholder=""></textarea>
-                        </div>
-                        <button type="submit"
-                            class="w-full min-h-[48px] bg-amber-400 text-slate-900 font-bold rounded-lg hover:bg-amber-300 transition"
-                            data-i18n="btn_send"></button>
-                    </form>
-                </div>
-
-            </div>
-        </div>
-
-    </main>
-
-    <!-- === FOOTER === -->
-    <footer
-        class="bg-slate-900 text-slate-400 py-12 text-center text-sm mt-auto border-t border-slate-800 relative overflow-hidden">
-        <div class="absolute inset-0 opacity-5"
-            style="background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48ZyBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0wIDQwaDQwVjBIMHY0MHptMjAgMjBoMjB2MjBIMjBWNjB6TTEwIDgwaDIwdjIwSDEwVjgteiIgZmlsbD0iI0ZGRkZGRiIgLz48L2c+PC9zdmc+');">
-        </div>
-        <div class="container mx-auto px-4 relative z-10">
-
-            <!-- Share Section -->
-            <div class="mb-12">
-                <h4 class="text-slate-500 font-bold mb-6 text-xs uppercase tracking-widest" data-i18n="share_title">
-                    Share with others
-                </h4>
-                <div class="flex justify-center gap-4 flex-wrap">
-                    <button onclick="shareTo('whatsapp')"
-                        class="p-3 bg-[#25D366]/10 text-[#25D366] rounded-full hover:bg-[#25D366] hover:text-white transition transform hover:scale-110"
-                        aria-label="Share on WhatsApp">
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.536 0 1.52 1.115 2.988 1.264 3.186.149.198 2.178 3.325 5.293 4.607 2.903 1.196 2.903.804 3.423.754.52-.049 1.758-.718 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.815 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                        </svg>
-                    </button>
-                    <button onclick="shareTo('telegram')"
-                        class="p-3 bg-[#0088cc]/10 text-[#0088cc] rounded-full hover:bg-[#0088cc] hover:text-white transition transform hover:scale-110"
-                        aria-label="Share on Telegram">
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.354 4.025-1.591 4.476-1.597z" />
-                        </svg>
-                    </button>
-                    <button onclick="shareTo('twitter')"
-                        class="p-3 bg-slate-700/50 text-white rounded-full hover:bg-black hover:text-white transition transform hover:scale-110"
-                        aria-label="Share on X">
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                        </svg>
-                    </button>
-                    <button onclick="shareTo('facebook')"
-                        class="p-3 bg-[#1877F2]/10 text-[#1877F2] rounded-full hover:bg-[#1877F2] hover:text-white transition transform hover:scale-110"
-                        aria-label="Share on Facebook">
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.962.925-1.962 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                        </svg>
-                    </button>
-                    <button onclick="shareTo('copy')"
-                        class="p-3 bg-slate-700/50 text-slate-400 rounded-full hover:bg-slate-600 hover:text-white transition transform hover:scale-110"
-                        aria-label="Copy Link">
-                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                        </svg>
-                    </button>
-                    <button id="nativeShareBtn" onclick="shareTo('native')"
-                        class="hidden p-3 bg-amber-500/10 text-amber-500 rounded-full hover:bg-amber-500 hover:text-white transition transform hover:scale-110"
-                        aria-label="Share">
-                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
-                        </svg>
-                    </button>
-                </div>
-                <div id="shareSuccess"
-                    class="text-emerald-400 text-xs mt-3 hidden opacity-0 transition-opacity duration-300"
-                    data-i18n="share_success">Link copied!</div>
-            </div>
-
-            <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-8">
-                <div class="flex items-center gap-3">
-                    <img src="Jamal Ibn Adam Logo.svg" alt="Logo" width="40" height="40"
-                        class="h-10 w-10 opacity-80 grayscale hover:grayscale-0 transition duration-300">
-                    <div class="text-left rtl:text-right">
-                        <h4 class="font-bold text-slate-200">Jamal Ibn Adam</h4>
-                        <p class="text-xs text-slate-500">The Golden Record Project</p>
-                    </div>
-                </div>
-                <div class="flex gap-4">
-                    <a href="https://x.com/jamalibnadam" target="_blank" rel="noopener noreferrer"
-                        class="p-2 bg-slate-800 rounded-full hover:bg-slate-700 transition text-slate-400 hover:text-white"
-                        aria-label="Twitter">
-                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z">
-                            </path>
-                        </svg>
-                    </a>
-                    <a href="https://www.youtube.com/@JamalIbnAdam" target="_blank" rel="noopener noreferrer"
-                        class="p-2 bg-slate-800 rounded-full hover:bg-slate-700 transition text-slate-400 hover:text-white"
-                        aria-label="YouTube">
-                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M23.5 6.14a3 3 0 00-2.12-2.12C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.52A3 3 0 00.5 6.14C0 8 0 12 0 12s0 4 .52 5.86a3 3 0 002.12 2.12c1.88.52 9.38.52 9.38.52s7.5 0 9.38-.52a3 3 0 002.12-2.12C24 16 24 12 24 12s0-4-.52-5.86zM9.54 15.57V8.43L15.82 12l-6.28 3.57z">
-                            </path>
-                        </svg>
-                    </a>
-                    <a href="javascript:void(0)"
-                        onclick="switchTab('author'); document.getElementById('contactForm').scrollIntoView({behavior: 'smooth'})"
-                        class="p-2 bg-slate-800 rounded-full hover:bg-slate-700 transition text-slate-400 hover:text-white"
-                        aria-label="Email">
-                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z">
-                            </path>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-
-            <div
-                class="border-t border-slate-800/50 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
-                <p data-i18n="footer_rights"></p>
-                <div class="flex gap-4">
-                    <a href="#" class="hover:text-slate-300 transition">Privacy Policy</a>
-                    <span class="text-slate-700">•</span>
-                    <a href="#" class="hover:text-slate-300 transition">Terms of Use</a>
-                    <span class="text-slate-700">•</span>
-                    <a href="#" class="hover:text-slate-300 transition">Sitemap</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- === MODAL === -->
-    <div id="detailModal" class="fixed inset-0 z-50 hidden flex items-start md:items-center justify-center p-4 md:p-6">
-        <!-- Backdrop -->
-        <div class="absolute inset-0 bg-slate-900/80 backdrop-blur-sm transition-opacity opacity-0" id="modalBackdrop">
-        </div>
-
-        <!-- Content -->
-        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] relative z-10 transform scale-95 opacity-0 transition-all duration-300 overflow-hidden"
-            id="modalContent">
-            <!-- Header -->
-            <div id="modalHeader"
-                class="p-6 text-white rounded-t-2xl flex justify-between items-start relative overflow-hidden">
-                <div class="absolute inset-0 opacity-10 bg-white"
-                    style="background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPjxyZWN0IHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiNmZmYiLz48L3N2Zz4=');">
-                </div>
-                <div class="relative z-10">
-                    <span id="modalEpoch"
-                        class="text-[10px] uppercase tracking-widest font-bold opacity-80 mb-2 block border border-white/30 rounded-full px-2 py-0.5 w-fit"
-                        data-i18n="modal_epoch_label"></span>
-                    <h3 id="modalName" class="text-3xl font-bold serif-font leading-tight" data-i18n="modal_name_label">
-                    </h3>
-                    <div id="modalDateRow" class="flex items-center gap-2 mt-2 text-white/90">
-                        <span class="text-sm">📅</span>
-                        <span id="modalDate" class="text-sm font-mono" data-i18n="modal_date_label"></span>
-                    </div>
-                </div>
-                <button id="modalCloseButton" onclick="closeModal()"
-                    class="relative z-10 text-white/70 hover:text-white transition bg-black/20 hover:bg-black/30 rounded-full p-2 h-9 w-9 flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-            </div>
-
-            <!-- Body -->
-            <div id="modalBody" class="p-6 md:p-8 overflow-y-auto max-h-[65vh] md:max-h-[70vh] space-y-6">
-                <div id="modalDefaultBody" class="space-y-6">
-                    <!-- Story Section -->
-                    <div>
-                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wide mb-3 flex items-center gap-2"
-                            data-i18n="modal_story_label">
-                            <span class="w-4 h-px bg-slate-300"></span>
-                        </h4>
-                        <p id="modalStory"
-                            class="text-slate-700 leading-loose text-lg font-medium border-l-4 border-slate-100 pl-4">
-                        </p>
-                    </div>
-
-                    <!-- Details Grid -->
-                    <div class="grid grid-cols-1 gap-4 text-sm">
-                        <div class="flex items-start gap-3 p-3 rounded-lg bg-slate-50 border border-slate-100">
-                            <span class="text-xl">📚</span>
-                            <div>
-                                <strong class="block text-slate-800 mb-1" data-i18n="modal_source_label"></strong>
-                                <span id="modalSource" class="text-slate-600 block"></span>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-3 p-3 rounded-lg bg-amber-50 border border-amber-100">
-                            <span class="text-xl">💡</span>
-                            <div>
-                                <strong class="block text-amber-900 mb-1" data-i18n="modal_logic_label"></strong>
-                                <span id="modalLogic" class="text-amber-800 block"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="modalDocBody" class="hidden space-y-6">
-                    <div class="bg-white rounded-xl border border-amber-100 shadow-sm overflow-hidden">
-                        <img id="modalDocImage" src="" alt="Document Preview" class="w-full h-auto object-contain"
-                            loading="lazy">
-                    </div>
-                    <div class="bg-white border border-slate-200 rounded-xl p-5">
-                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wide mb-3">Transcription</h4>
-                        <div class="max-h-[40vh] overflow-y-auto pr-2">
-                            <p id="modalDocTranscription" class="text-slate-700 leading-loose text-base md:text-lg"></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- === DOCUMENT MODAL === -->
-    <div id="docModal" class="fixed inset-0 z-50 hidden flex items-start md:items-center justify-center p-4 md:p-6">
-        <div class="absolute inset-0 bg-slate-900/80 backdrop-blur-sm transition-opacity opacity-0" id="docBackdrop">
-        </div>
-
-        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] relative z-10 transform scale-95 opacity-0 transition-all duration-300 overflow-hidden"
-            id="docContent">
-            <div
-                class="p-5 md:p-6 bg-gradient-to-r from-[#8d6e63] to-[#d4af37] text-white flex justify-between items-start">
-                <div>
-                    <span class="text-[10px] uppercase tracking-widest font-bold opacity-80 mb-2 block">📜
-                        Manuscript</span>
-                    <h3 id="docTitle" class="text-2xl md:text-3xl font-bold serif-font leading-tight"></h3>
-                </div>
-                <button id="docCloseButton" onclick="closeDocModal()"
-                    class="text-white/80 hover:text-white transition bg-black/20 hover:bg-black/30 rounded-full p-2 h-9 w-9 flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-            </div>
-
-            <div class="p-5 md:p-6 overflow-y-auto max-h-[70vh] space-y-6 bg-[#fdfbf7]">
-                <div class="bg-white rounded-xl border border-amber-100 shadow-sm overflow-hidden">
-                    <img id="docImage" src="" alt="Manuscript Detail" class="w-full h-auto object-contain"
-                        loading="lazy">
-                </div>
-                <div class="bg-white border border-slate-200 rounded-xl p-5">
-                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wide mb-3">Transcription</h4>
-                    <p id="docDesc" class="text-slate-700 leading-loose text-base md:text-lg"></p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="lang-loader">
-        <div class="spinner"></div>
-        <div class="loading-text" data-i18n="lang_loading"></div>
-    </div>
-
-    <script src="main.js?v=1.8" defer></script>
-
-    <div id="install-guide"
-        style="display:none; position:fixed; bottom:0; width:100%; background:white; padding:20px; z-index:9999; border-top:2px solid #d4af37; text-align:center;">
-        <p>لتثبيت السجل على هاتفك: اضغط على زر <b>المشاركة</b> ثم <b>"إضافة إلى الشاشة الرئيسية"</b></p>
-        <button onclick="this.parentElement.style.display='none'">إغلاق</button>
-    </div>
-
-    <script>
-        // Register Service Worker
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js')
-                    .then((registration) => {
-                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                    }, (err) => {
-                        console.log('ServiceWorker registration failed: ', err);
-                    });
-            });
-        }
-
-        // PWA Installation Logic
-        let deferredPrompt;
-        const installBtn = document.getElementById('install-btn');
-
-        // Check if app is already installed
-        const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
-
-        // Force show button for desktop users (if not already installed)
-        if (!isStandalone) {
-            installBtn.classList.remove('hidden');
-            installBtn.classList.add('flex');
-        }
-
-        window.addEventListener('beforeinstallprompt', (e) => {
-            // Prevent Chrome 67 and earlier from automatically showing the prompt
-            e.preventDefault();
-            // Stash the event so it can be triggered later.
-            deferredPrompt = e;
-            // Ensure button is visible
-            installBtn.classList.remove('hidden');
-            installBtn.classList.add('flex');
-        });
-
-        function triggerInstall() {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-            } else {
-                document.getElementById('install-guide').style.display = 'block';
-            }
-        }
-
-        installBtn.addEventListener('click', triggerInstall);
-    </script>
+<body>
+<div class="sg-root" id="home" style="width: 100%; min-height: 100vh; background: var(--h-bg); color: var(--h-ink); font-family: 'Noto Kufi Arabic', 'Amiri', serif; line-height: 1.75;">
+
+<header class="sg-pad" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 48px; border-bottom: 1px solid var(--h-hair);">
+<a href="#top" style="display: flex; align-items: center; gap: 14px; text-decoration: none;">
+<img src="logo.webp" width="48" height="48" alt="شعار جمال ابن آدم" style="width: 48px; height: 48px; border-radius: 50%;">
+<span style="font-family: 'Amiri', serif; font-size: 22px; font-weight: 700; color: var(--h-gold);" data-i18n="tree_h1">السجل الذهبي لآل سبال العين</span>
+</a>
+<nav class="sg-nav" aria-label="أقسام الموقع" style="display: flex; flex-wrap: wrap; gap: 4px 22px; font-size: 15px;">
+<a href="#tree" style="text-decoration: none; color: var(--h-ink);" data-i18n="home_nav_tree">شجرة الأدلة</a>
+<a href="#journey" style="text-decoration: none; color: var(--h-ink2);" data-i18n="home_nav_journey">رحلة النسب</a>
+<a href="more/#figures" style="text-decoration: none; color: var(--h-ink2);" data-i18n="home_nav_figures">أعلام الأنصار</a>
+<a href="more/#library" style="text-decoration: none; color: var(--h-ink2);" data-i18n="home_nav_library">المكتبة</a>
+<a href="more/#poem" style="text-decoration: none; color: var(--h-ink2);" data-i18n="home_nav_poem">الملحمة</a>
+<a href="more/#author" style="text-decoration: none; color: var(--h-ink2);" data-i18n="home_nav_author">المؤلف</a>
+<a href="#sources" style="text-decoration: none; color: var(--h-ink2);" data-i18n="home_nav_sources">المصادر</a>
+</nav>
+<div style="display: flex; gap: 10px; align-items: center;">
+<label for="lang-select" class="sg-sr">Select Language</label><select id="lang-select" class="sg-lang" style="min-height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid var(--h-hair); background: transparent; color: var(--h-ink); font: inherit; font-size: 14px; cursor: pointer;"><option value="ar">العربية</option><option value="en">English</option><option value="tr">Türkçe</option><option value="pl">Polski</option><option value="es">Español</option></select>
+<button type="button" id="home-theme" aria-label="التبديل إلى الوضع الفاتح" style="width: 44px; height: 44px; border-radius: 10px; border: 1px solid var(--h-hair); background: transparent; color: var(--h-gold); cursor: pointer; display: grid; place-items: center;">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"></circle><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"></path></svg>
+</button>
+</div>
+</header>
+
+<section id="top" class="sg-pad" style="max-width: 1240px; margin: 0 auto; padding: 88px 48px 72px; display: flex; flex-wrap: wrap; align-items: center; gap: 56px;">
+<div style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 28px;">
+<h1 class="sg-h1" style="margin: 0; font-family: 'Amiri', serif; font-weight: 700; line-height: 1.25; color: var(--h-gold);" data-i18n="home_h1">أحفاد عبد الله سبال العين</h1>
+<p class="sg-lede" style="margin: 0; max-width: 34em; color: var(--h-ink);" data-i18n="home_lede">نسب قبيلة الأنصار في وادي الشاطئ بفزان: لُحمات تجتمع في زاوية براك وآقار وأشكدة ودبدب، وأصلها عبد الله سبال العين. كل اسم في الشجرة مربوط بوثيقته إن وُجدت، أو برواية بعض أعيان وشيوخ القبيلة إن لم توجد بعد.</p>
+<form id="home-search" action="tree/" style="display: flex; flex-wrap: wrap; gap: 12px; max-width: 560px;">
+<label for="sg-search" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0);" data-i18n="home_search_label">ابحث عن اسم في الشجرة</label>
+<input id="sg-search" type="search" placeholder="اكتب اسمك أو اسم جدك" data-i18n-placeholder="home_search_ph" autocomplete="off" style="flex: 1 1 260px; min-height: 52px; padding: 0 18px; border-radius: 12px; border: 1px solid var(--h-hair); background: var(--h-surface); color: var(--h-ink); font: inherit; font-size: 16px;">
+<button type="submit" style="border: 0; cursor: pointer; font-family: inherit; min-height: 52px; padding: 0 26px; border-radius: 12px; background: var(--h-gold); color: var(--h-onGold); text-decoration: none; display: inline-flex; align-items: center; font-weight: 600; font-size: 16px;" data-i18n="home_search_btn">اعرض سلسلتي</button>
+</form>
+<dl style="margin: 8px 0 0; display: flex; flex-wrap: wrap; gap: 0;">
+<div style="padding-inline-end: 28px; margin-inline-end: 28px; border-inline-end: 1px solid var(--h-hair);"><dt style="font-size: 13px; color: var(--h-ink2);" data-i18n="tree_stat_persons">اسماً أُدخلت حتى الآن</dt><dd style="margin: 0; order: -1; font-family: 'Amiri', serif; font-size: 34px; color: var(--h-gold); line-height: 1.2;" id="home-st-persons">181</dd></div>
+<div style="padding-inline-end: 28px; margin-inline-end: 28px; border-inline-end: 1px solid var(--h-hair);"><dt style="font-size: 13px; color: var(--h-ink2);" data-i18n="tree_stat_docs">وثيقة منشورة حتى الآن</dt><dd style="margin: 0; font-family: 'Amiri', serif; font-size: 34px; color: var(--h-gold); line-height: 1.2;" id="home-st-docs">87</dd></div>
+<div><dt style="font-size: 13px; color: var(--h-ink2);" data-i18n="tree_stat_oldest">أقدم وثيقة مؤرخة</dt><dd style="margin: 0; font-family: 'Amiri', serif; font-size: 34px; color: var(--h-gold); line-height: 1.2;" id="home-st-oldest">1002هـ</dd></div>
+</dl>
+<p style="margin: -8px 0 0; max-width: 34em; font-size: 14px; color: var(--h-ink2);" data-i18n="tree_stat_note">هذه بداية الجمع لا نهايته. أسماء القبيلة ووثائقها أكثر من ذلك بكثير، ونضيف كل اسم وكل وثيقة بعد وصولها والتحقق منها.</p>
+</div>
+<div style="flex: 0 1 380px; display: flex; justify-content: center;">
+<div style="position: relative; width: 340px; max-width: 100%; aspect-ratio: 1 / 1; display: grid; place-items: center;">
+<div style="position: absolute; inset: 0; border-radius: 50%; border: 1px solid var(--h-hair);"></div>
+<div style="position: absolute; inset: 22px; border-radius: 50%; border: 1px solid var(--h-gold); opacity: .7;"></div>
+<div style="width: 236px; height: 236px; border-radius: 50%; background: radial-gradient(circle at 50% 38%, var(--h-fruitHi), var(--h-fruitLo)); border: 1px solid var(--h-gold); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px;">
+<span style="font-family: 'Amiri', serif; font-size: 40px; font-weight: 700; color: var(--h-gold); line-height: 1.2;">عبد الله</span>
+<span style="font-family: 'Amiri', serif; font-size: 30px; color: var(--h-ink); line-height: 1.3;">سبال العين</span>
+<span style="margin-top: 10px; font-size: 13px; color: var(--h-ink2);" data-i18n="home_med_sub">زاوية براك، القرن العاشر الهجري</span>
+</div>
+</div>
+</div>
+</section>
+
+<section id="tree" class="sg-pad" style="max-width: 1240px; margin: 0 auto; padding: 0 48px 96px;">
+<div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: stretch; padding: 40px; border-radius: 20px; border: 1px solid var(--h-hair); background: var(--h-surface);">
+<div style="flex: 1 1 380px; display: flex; flex-direction: column; gap: 16px; justify-content: center;">
+<h2 class="sg-h2" style="margin: 0; font-family: 'Amiri', serif; font-weight: 700; color: var(--h-ink); line-height: 1.3;" data-i18n="home_nav_tree">شجرة الأدلة</h2>
+<p style="margin: 0; max-width: 32em; color: var(--h-ink2);" data-i18n="home_tree_p">اضغط أي اسم لترى وثيقته: صورتها، ونصها كما في الخط، وشرحها بلغة سهلة، ومصدرها. واضغط «اعرض سلسلتي» لترى أجدادك جداً بعد جد حتى عبد الله سبال العين.</p>
+<ul style="margin: 4px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 15px;">
+<li style="display: flex; align-items: center; gap: 14px;"><span aria-hidden="true" style="width: 44px; height: 0; border-top: 2px solid var(--h-ink);"></span data-i18n="home_leg_ok">وثيقة تذكر الاسم مع أبيه</li>
+<li style="display: flex; align-items: center; gap: 14px;"><span aria-hidden="true" style="width: 44px; height: 0; border-top: 2px dashed var(--h-ink);"></span data-i18n="home_leg_maybe">قرينة من الوثائق بلا نص صريح</li>
+<li style="display: flex; align-items: center; gap: 14px;"><span aria-hidden="true" style="width: 44px; height: 0; border-top: 2px dotted var(--h-ink);"></span data-i18n="home_leg_trad">رواية بعض أعيان وشيوخ القبيلة، لا وثيقة بعد</li>
+</ul>
+<p style="margin: 4px 0 0; max-width: 32em; font-size: 15px; color: var(--h-ink);" data-i18n="home_tree_ansar">نسبة القبيلة إلى الأنصار مكتوبة في وثائقها: «الجداوي الأنصاري» في وثيقة من أشكدة سنة 1174هـ، ثم في وثائق 1261 و1276هـ.</p>
+<a href="tree/" style="align-self: flex-start; margin-top: 12px; min-height: 48px; padding: 0 24px; border-radius: 12px; border: 1px solid var(--h-gold); color: var(--h-gold); text-decoration: none; display: inline-flex; align-items: center; font-weight: 600;" data-i18n="home_tree_btn">افتح شجرة الأدلة</a>
+</div>
+<div style="flex: 1 1 420px; min-height: 520px; position: relative; border-radius: 14px; background: var(--h-bg); overflow: hidden;">
+<svg viewBox="0 0 520 600" role="img" id="home-preview" aria-label="معاينة لشجرة الأدلة: علي الجداوي الأنصاري، ابنه عمر، ثم عبد الله سبال العين، ابنه الحاج فضل، وأحفاده محمد وبلقاسم وقاسم وأبناؤهم" style="width: 100%; height: 100%; display: block;"><g fill="none" stroke-linecap="round"><path d="M260 506 V364" stroke="var(--h-trunk)" stroke-width="18"></path><path d="M260 296 V274" stroke="var(--h-trunk)" stroke-width="9"></path><path d="M260 250 C260 212.5 390 222.5 390 175" stroke="var(--h-trunk)" stroke-width="6"></path><path d="M260 250 C260 205.0 260 215.0 260 160" stroke="var(--h-trunk)" stroke-width="6"></path><path d="M260 250 C260 212.5 130 222.5 130 175" stroke="var(--h-trunk)" stroke-width="6"></path><path d="M390 175 C390 147.5 480 157.5 480 120" stroke="var(--h-trunk)" stroke-width="3"></path><path d="M390 175 C390 120.0 455 130.0 455 65" stroke="var(--h-trunk)" stroke-width="3"></path><path d="M390 175 C390 107.5 400 117.5 400 40" stroke="var(--h-trunk)" stroke-width="3"></path><path d="M390 175 C390 127.5 345 137.5 345 80" stroke="var(--h-trunk)" stroke-width="3"></path><path d="M260 160 C260 115.0 290 125.0 290 70" stroke="var(--h-trunk)" stroke-width="3"></path><path d="M260 160 C260 115.0 230 125.0 230 70" stroke="var(--h-trunk)" stroke-width="3"></path><path d="M130 175 C130 127.5 175 137.5 175 80" stroke="var(--h-trunk)" stroke-width="3"></path><path d="M130 175 C130 117.5 120 127.5 120 60" stroke="var(--h-trunk)" stroke-width="3" stroke-dasharray="7 6"></path><path d="M130 175 C130 135.0 65 145.0 65 95" stroke="var(--h-trunk)" stroke-width="3" stroke-dasharray="7 6"></path></g><g fill="var(--h-trunk)" opacity=".75"><path d="M222 214 q10 -12 22 -6 q-10 12 -22 6z"></path><path d="M300 200 q12 -8 22 2 q-12 8 -22 -2z"></path><path d="M168 150 q8 -12 20 -8 q-8 12 -20 8z"></path><path d="M420 140 q10 -10 22 -2 q-10 10 -22 2z"></path><path d="M268 118 q8 -10 18 -6 q-8 10 -18 6z"></path><path d="M96 128 q10 -8 20 0 q-10 8 -20 0z"></path></g><circle cx="390" cy="175" r="24" fill="var(--h-fruitLo)" stroke="var(--h-gold)" stroke-width="1"></circle><text x="390" y="180" text-anchor="middle" font-family="Amiri, serif" font-size="13" fill="var(--h-ink)">محمد</text><circle cx="260" cy="160" r="24" fill="var(--h-fruitLo)" stroke="var(--h-gold)" stroke-width="1"></circle><text x="260" y="165" text-anchor="middle" font-family="Amiri, serif" font-size="13" fill="var(--h-ink)">بلقاسم</text><circle cx="130" cy="175" r="24" fill="var(--h-fruitLo)" stroke="var(--h-gold)" stroke-width="1"></circle><text x="130" y="180" text-anchor="middle" font-family="Amiri, serif" font-size="13" fill="var(--h-ink)">قاسم</text><circle cx="480" cy="120" r="21" fill="var(--h-fruitLo)" stroke="var(--h-gold)" stroke-width="1"></circle><text x="480" y="124" text-anchor="middle" font-family="Amiri, serif" font-size="10" fill="var(--h-ink)">فضل</text><circle cx="455" cy="65" r="21" fill="var(--h-fruitLo)" stroke="var(--h-gold)" stroke-width="1"></circle><text x="455" y="68" text-anchor="middle" font-family="Amiri, serif" font-size="10" fill="var(--h-ink)">طاهر</text><circle cx="400" cy="40" r="21" fill="var(--h-fruitLo)" stroke="var(--h-gold)" stroke-width="1"></circle><text x="400" y="43" text-anchor="middle" font-family="Amiri, serif" font-size="8.5" fill="var(--h-ink)">أبو بكر</text><circle cx="345" cy="80" r="21" fill="var(--h-fruitLo)" stroke="var(--h-gold)" stroke-width="1"></circle><text x="345" y="83" text-anchor="middle" font-family="Amiri, serif" font-size="8.5" fill="var(--h-ink)">عبد الله</text><circle cx="290" cy="70" r="21" fill="var(--h-fruitLo)" stroke="var(--h-gold)" stroke-width="1"></circle><text x="290" y="73" text-anchor="middle" font-family="Amiri, serif" font-size="8.5" fill="var(--h-ink)">إسماعيل</text><circle cx="230" cy="70" r="21" fill="var(--h-fruitLo)" stroke="var(--h-gold)" stroke-width="1"></circle><text x="230" y="74" text-anchor="middle" font-family="Amiri, serif" font-size="10" fill="var(--h-ink)">فضل</text><circle cx="175" cy="80" r="21" fill="var(--h-fruitLo)" stroke="var(--h-gold)" stroke-width="1"></circle><text x="175" y="84" text-anchor="middle" font-family="Amiri, serif" font-size="10" fill="var(--h-ink)">محمد</text><circle cx="120" cy="60" r="21" fill="var(--h-fruitLo)" stroke="var(--h-gold)" stroke-width="1" stroke-dasharray="4 3"></circle><text x="120" y="64" text-anchor="middle" font-family="Amiri, serif" font-size="10" fill="var(--h-ink)">عمر</text><circle cx="65" cy="95" r="21" fill="var(--h-fruitLo)" stroke="var(--h-gold)" stroke-width="1" stroke-dasharray="4 3"></circle><text x="65" y="98" text-anchor="middle" font-family="Amiri, serif" font-size="8.5" fill="var(--h-ink)">عبد الرحمن</text><circle cx="260" cy="250" r="27" fill="var(--h-fruitLo)" stroke="var(--h-gold)" stroke-width="1"></circle><text x="260" y="254" text-anchor="middle" font-family="Amiri, serif" font-size="11.5" fill="var(--h-ink)">الحاج فضل</text><rect x="20" y="138" width="38" height="22" rx="11" fill="none" stroke="var(--h-hair)"></rect><text x="39" y="153" text-anchor="middle" font-family="Noto Kufi Arabic, sans-serif" font-size="10" fill="var(--h-ink2)">+4</text><circle cx="260" cy="330" r="38" fill="var(--h-fruitLo)" stroke="var(--h-gold)" stroke-width="2"></circle><circle cx="260" cy="330" r="44" fill="none" stroke="var(--h-gold)" stroke-width="1" opacity=".55"></circle><text x="260" y="326" text-anchor="middle" font-family="Amiri, serif" font-size="15" font-weight="700" fill="var(--h-gold)">عبد الله</text><text x="260" y="345" text-anchor="middle" font-family="Amiri, serif" font-size="13" fill="var(--h-ink)">سبال العين</text><rect x="215" y="410" width="90" height="34" rx="6" fill="var(--h-fruitLo)" stroke="var(--h-gold)" stroke-width="1"></rect><text x="260" y="433" text-anchor="middle" font-family="Amiri, serif" font-size="17" font-weight="700" fill="var(--h-ink)">عمر</text><rect x="176" y="480" width="168" height="52" rx="8" fill="var(--h-fruitLo)" stroke="var(--h-gold)" stroke-width="1.5"></rect><text x="260" y="503" text-anchor="middle" font-family="Amiri, serif" font-size="17" font-weight="700" fill="var(--h-gold)">علي الجداوي</text><text x="260" y="523" text-anchor="middle" font-family="Amiri, serif" font-size="14" fill="var(--h-ink)">الأنصاري</text><line x1="150" y1="556" x2="370" y2="556" stroke="var(--h-hair)" stroke-width="1"></line><text x="260" y="582" text-anchor="middle" font-family="Amiri, serif" font-size="16" fill="var(--h-gold)">شجرة الأنصار في وادي الشاطئ، فزان، ليبيا</text></svg>
+</div>
+</div>
+</section>
+
+<section id="journey" class="sg-pad" style="max-width: 1240px; margin: 0 auto; padding: 0 48px 96px;">
+<h2 class="sg-h2" style="margin: 0 0 12px; font-family: 'Amiri', serif; font-weight: 700; color: var(--h-ink); line-height: 1.3;" data-i18n="home_nav_journey">رحلة النسب</h2>
+<p style="margin: 0 0 48px; max-width: 40em; color: var(--h-ink2);" data-i18n="home_j_p">ثلاث مراحل، ولكل مرحلة درجتها من اليقين. الخيط الذهبي متصل حيث يتصل الدليل، ومنقّط حيث ما زال البحث جارياً.</p>
+
+<div style="display: grid; grid-template-columns: 48px minmax(0, 1fr); column-gap: 28px;">
+
+<div aria-hidden="true" style="display: flex; justify-content: center;"><span class="sg-thread-draw" style="width: 3px; background: var(--h-trunk); border-radius: 2px;"></span></div>
+<div style="padding-bottom: 64px;">
+<p style="margin: 0; font-size: 14px; color: var(--h-gold);" data-i18n="home_s1_k">المرحلة الأولى</p>
+<h3 style="margin: 4px 0 8px; font-family: 'Amiri', serif; font-size: 30px; font-weight: 700; color: var(--h-ink);" data-i18n="home_s1_h">الأصل كما في كتب الأنساب</h3>
+<p style="margin: 0 0 24px; max-width: 42em; color: var(--h-ink2);" data-i18n="home_s1_p">من قحطان إلى الصحابي جابر بن عبد الله الأنصاري، كما ترويها جمهرة ابن حزم وطبقات ابن سعد ونسب ابن الكلبي. اسمان عليهما علامة «يُراجع» لأن الموقع القديم أسقطهما ونراجعهما في المصادر.</p>
+<ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 10px 8px; align-items: center;">
+
+<li style="display: flex; align-items: center; gap: 8px;">
+<button type="button" class="sg-bead" data-bead="قحطان" style="padding: 6px 14px; border-radius: 999px; border: 1px solid var(--h-hair); font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink); background: var(--h-surface); cursor: pointer; line-height: inherit;">قحطان</button>
+<span aria-hidden="true" style="color: var(--h-ink2); font-size: 14px;">‹</span>
+</li>
+
+<li style="display: flex; align-items: center; gap: 8px;">
+<button type="button" class="sg-bead" data-bead="يعرب" style="padding: 6px 14px; border-radius: 999px; border: 1px solid var(--h-hair); font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink); background: var(--h-surface); cursor: pointer; line-height: inherit;">يعرب</button>
+<span aria-hidden="true" style="color: var(--h-ink2); font-size: 14px;">‹</span>
+</li>
+
+<li style="display: flex; align-items: center; gap: 8px;">
+<button type="button" class="sg-bead" data-bead="يشجب" style="padding: 6px 14px; border-radius: 999px; border: 1px solid var(--h-hair); font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink); background: var(--h-surface); cursor: pointer; line-height: inherit;">يشجب</button>
+<span aria-hidden="true" style="color: var(--h-ink2); font-size: 14px;">‹</span>
+</li>
+
+<li style="display: flex; align-items: center; gap: 8px;">
+<button type="button" class="sg-bead" data-bead="سبأ" style="padding: 6px 14px; border-radius: 999px; border: 1px solid var(--h-hair); font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink); background: var(--h-surface); cursor: pointer; line-height: inherit;">سبأ</button>
+<span aria-hidden="true" style="color: var(--h-ink2); font-size: 14px;">‹</span>
+</li>
+
+<li style="display: flex; align-items: center; gap: 8px;">
+<button type="button" class="sg-bead" data-bead="كهلان" style="padding: 6px 14px; border-radius: 999px; border: 1px solid var(--h-hair); font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink); background: var(--h-surface); cursor: pointer; line-height: inherit;">كهلان</button>
+<span aria-hidden="true" style="color: var(--h-ink2); font-size: 14px;">‹</span>
+</li>
+
+<li style="display: flex; align-items: center; gap: 8px;">
+<button type="button" class="sg-bead" data-bead="زيد" style="padding: 6px 14px; border-radius: 999px; border: 1px solid var(--h-hair); font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink); background: var(--h-surface); cursor: pointer; line-height: inherit;">زيد</button>
+<span aria-hidden="true" style="color: var(--h-ink2); font-size: 14px;">‹</span>
+</li>
+
+<li style="display: flex; align-items: center; gap: 8px;">
+<button type="button" class="sg-bead" data-bead="مالك" style="padding: 6px 14px; border-radius: 999px; border: 1px solid var(--h-hair); font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink); background: var(--h-surface); cursor: pointer; line-height: inherit;">مالك</button>
+<span aria-hidden="true" style="color: var(--h-ink2); font-size: 14px;">‹</span>
+</li>
+
+<li style="display: flex; align-items: center; gap: 8px;">
+<button type="button" class="sg-bead" data-bead="نبت" style="padding: 6px 14px; border-radius: 999px; border: 1px solid var(--h-hair); font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink); background: var(--h-surface); cursor: pointer; line-height: inherit;">نبت</button>
+<span aria-hidden="true" style="color: var(--h-ink2); font-size: 14px;">‹</span>
+</li>
+
+<li style="display: flex; align-items: center; gap: 8px;">
+<button type="button" class="sg-bead" data-bead="الغوث" style="padding: 6px 14px; border-radius: 999px; border: 1px solid var(--h-hair); font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink); background: var(--h-surface); cursor: pointer; line-height: inherit;">الغوث</button>
+<span aria-hidden="true" style="color: var(--h-ink2); font-size: 14px;">‹</span>
+</li>
+
+<li style="display: flex; align-items: center; gap: 8px;">
+<button type="button" class="sg-bead" data-bead="الأزد" style="padding: 6px 14px; border-radius: 999px; border: 1px solid var(--h-hair); font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink); background: var(--h-surface); cursor: pointer; line-height: inherit;">الأزد</button>
+<span aria-hidden="true" style="color: var(--h-ink2); font-size: 14px;">‹</span>
+</li>
+
+<li style="display: flex; align-items: center; gap: 8px;">
+<button type="button" class="sg-bead" data-bead="مازن" style="padding: 6px 14px; border-radius: 999px; border: 1px solid var(--h-hair); font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink); background: var(--h-surface); cursor: pointer; line-height: inherit;">مازن</button>
+<span aria-hidden="true" style="color: var(--h-ink2); font-size: 14px;">‹</span>
+</li>
+
+<li style="display: flex; align-items: center; gap: 8px;">
+<button type="button" class="sg-bead" data-bead="ثعلبة" style="padding: 6px 14px; border-radius: 999px; border: 1px solid var(--h-hair); font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink); background: var(--h-surface); cursor: pointer; line-height: inherit;">ثعلبة</button>
+<span aria-hidden="true" style="color: var(--h-ink2); font-size: 14px;">‹</span>
+</li>
+
+<li style="display: flex; align-items: center; gap: 8px;">
+<button type="button" class="sg-bead" data-bead="امرؤ القيس" style="padding: 6px 14px; border-radius: 999px; border: 1px solid var(--h-hair); font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink); background: var(--h-surface); cursor: pointer; line-height: inherit;">امرؤ القيس</button>
+<span aria-hidden="true" style="color: var(--h-ink2); font-size: 14px;">‹</span>
+</li>
+
+<li style="display: flex; align-items: center; gap: 8px;">
+<button type="button" class="sg-bead" data-bead="حارثة الغطريف" style="padding: 6px 14px; border-radius: 999px; border: 1px solid var(--h-hair); font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink); background: var(--h-surface); cursor: pointer; line-height: inherit;">حارثة الغطريف</button>
+<span aria-hidden="true" style="color: var(--h-ink2); font-size: 14px;">‹</span>
+</li>
+
+<li style="display: flex; align-items: center; gap: 8px;">
+<button type="button" class="sg-bead" data-bead="عامر ماء السماء" style="padding: 6px 14px; border-radius: 999px; border: 1px solid var(--h-hair); font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink); background: var(--h-surface); cursor: pointer; line-height: inherit;">عامر ماء السماء</button>
+<span aria-hidden="true" style="color: var(--h-ink2); font-size: 14px;">‹</span>
+</li>
+
+<li style="display: flex; align-items: center; gap: 8px;">
+<button type="button" class="sg-bead" data-bead="عمرو مزيقياء" style="padding: 6px 14px; border-radius: 999px; border: 1px solid var(--h-hair); font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink); background: var(--h-surface); cursor: pointer; line-height: inherit;">عمرو مزيقياء</button>
+<span aria-hidden="true" style="color: var(--h-ink2); font-size: 14px;">‹</span>
+</li>
+
+<li style="display: flex; align-items: center; gap: 8px;">
+<button type="button" class="sg-bead" data-bead="ثعلبة العنقاء" style="padding: 6px 14px; border-radius: 999px; border: 1px solid var(--h-hair); font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink); background: var(--h-surface); cursor: pointer; line-height: inherit;">ثعلبة العنقاء</button>
+<span aria-hidden="true" style="color: var(--h-ink2); font-size: 14px;">‹</span>
+</li>
+
+<li style="display: flex; align-items: center; gap: 8px;">
+<button type="button" class="sg-bead" data-bead="حارثة" style="padding: 6px 14px; border-radius: 999px; border: 1px solid var(--h-hair); font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink); background: var(--h-surface); cursor: pointer; line-height: inherit;">حارثة</button>
+<span aria-hidden="true" style="color: var(--h-ink2); font-size: 14px;">‹</span>
+</li>
+
+<li style="display: flex; align-items: center; gap: 8px;">
+<button type="button" class="sg-bead" data-bead="الخزرج" style="padding: 6px 14px; border-radius: 999px; border: 1px solid var(--h-hair); font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink); background: var(--h-surface); cursor: pointer; line-height: inherit;">الخزرج</button>
+<span aria-hidden="true" style="color: var(--h-ink2); font-size: 14px;">‹</span>
+</li>
+
+<li style="display: flex; align-items: center; gap: 8px;">
+<button type="button" class="sg-bead" data-bead="جشم" style="padding: 6px 14px; border-radius: 999px; border: 1px solid var(--h-hair); font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink); background: var(--h-surface); cursor: pointer; line-height: inherit;">جشم</button>
+<span aria-hidden="true" style="color: var(--h-ink2); font-size: 14px;">‹</span>
+</li>
+
+<li style="display: flex; align-items: center; gap: 8px;">
+<button type="button" class="sg-bead" data-bead="تزيد" style="padding: 6px 14px; border-radius: 999px; border: 1px solid var(--h-hair); font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink); background: var(--h-surface); cursor: pointer; line-height: inherit;">تزيد</button>
+<span aria-hidden="true" style="color: var(--h-ink2); font-size: 14px;">‹</span>
+</li>
+
+<li style="display: flex; align-items: center; gap: 8px;">
+<button type="button" class="sg-bead" data-bead="ساردة" style="padding: 6px 14px; border-radius: 999px; border: 1px solid var(--h-hair); font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink); background: var(--h-surface); cursor: pointer; line-height: inherit;">ساردة</button>
+<span aria-hidden="true" style="color: var(--h-ink2); font-size: 14px;">‹</span>
+</li>
+
+<li style="display: flex; align-items: center; gap: 8px;">
+<button type="button" class="sg-bead" data-bead="أسد" style="padding: 6px 14px; border-radius: 999px; border: 1px solid var(--h-hair); font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink); background: var(--h-surface); cursor: pointer; line-height: inherit;">أسد</button>
+<span aria-hidden="true" style="color: var(--h-ink2); font-size: 14px;">‹</span>
+</li>
+
+<li style="display: flex; align-items: center; gap: 8px;">
+<button type="button" class="sg-bead" data-bead="علي" style="padding: 6px 14px; border-radius: 999px; border: 1px solid var(--h-hair); font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink); background: var(--h-surface); cursor: pointer; line-height: inherit;">علي</button>
+<span aria-hidden="true" style="color: var(--h-ink2); font-size: 14px;">‹</span>
+</li>
+
+<li style="display: flex; align-items: center; gap: 8px;">
+<button type="button" class="sg-bead" data-bead="سعد" style="padding: 6px 14px; border-radius: 999px; border: 1px solid var(--h-hair); font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink); background: var(--h-surface); cursor: pointer; line-height: inherit;">سعد</button>
+<span aria-hidden="true" style="color: var(--h-ink2); font-size: 14px;">‹</span>
+</li>
+
+<li style="display: flex; align-items: center; gap: 8px;">
+<button type="button" class="sg-bead" data-bead="سلمة" style="padding: 6px 14px; border-radius: 999px; border: 1px solid var(--h-hair); font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink); background: var(--h-surface); cursor: pointer; line-height: inherit;">سلمة</button>
+<span aria-hidden="true" style="color: var(--h-ink2); font-size: 14px;">‹</span>
+</li>
+
+<li style="display: flex; align-items: center; gap: 8px;">
+<button type="button" class="sg-bead" data-bead="كعب" data-verify="1" style="padding: 6px 14px; border-radius: 999px; border: 1px solid var(--h-gold); font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink); background: var(--h-surface); cursor: pointer; line-height: inherit;">كعب<span style="margin-inline-start: 8px; font-family: 'Noto Kufi Arabic', sans-serif; font-size: 11px; color: var(--h-gold);" data-i18n="home_verify">يُراجع</span></button>
+<span aria-hidden="true" style="color: var(--h-ink2); font-size: 14px;">‹</span>
+</li>
+
+<li style="display: flex; align-items: center; gap: 8px;">
+<button type="button" class="sg-bead" data-bead="غنم" style="padding: 6px 14px; border-radius: 999px; border: 1px solid var(--h-hair); font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink); background: var(--h-surface); cursor: pointer; line-height: inherit;">غنم</button>
+<span aria-hidden="true" style="color: var(--h-ink2); font-size: 14px;">‹</span>
+</li>
+
+<li style="display: flex; align-items: center; gap: 8px;">
+<button type="button" class="sg-bead" data-bead="كعب" style="padding: 6px 14px; border-radius: 999px; border: 1px solid var(--h-hair); font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink); background: var(--h-surface); cursor: pointer; line-height: inherit;">كعب</button>
+<span aria-hidden="true" style="color: var(--h-ink2); font-size: 14px;">‹</span>
+</li>
+
+<li style="display: flex; align-items: center; gap: 8px;">
+<button type="button" class="sg-bead" data-bead="حرام" data-verify="1" style="padding: 6px 14px; border-radius: 999px; border: 1px solid var(--h-gold); font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink); background: var(--h-surface); cursor: pointer; line-height: inherit;">حرام<span style="margin-inline-start: 8px; font-family: 'Noto Kufi Arabic', sans-serif; font-size: 11px; color: var(--h-gold);" data-i18n="home_verify">يُراجع</span></button>
+<span aria-hidden="true" style="color: var(--h-ink2); font-size: 14px;">‹</span>
+</li>
+
+<li style="display: flex; align-items: center; gap: 8px;">
+<button type="button" class="sg-bead" data-bead="ثعلبة" style="padding: 6px 14px; border-radius: 999px; border: 1px solid var(--h-hair); font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink); background: var(--h-surface); cursor: pointer; line-height: inherit;">ثعلبة</button>
+<span aria-hidden="true" style="color: var(--h-ink2); font-size: 14px;">‹</span>
+</li>
+
+<li style="display: flex; align-items: center; gap: 8px;">
+<button type="button" class="sg-bead" data-bead="حرام" style="padding: 6px 14px; border-radius: 999px; border: 1px solid var(--h-hair); font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink); background: var(--h-surface); cursor: pointer; line-height: inherit;">حرام</button>
+<span aria-hidden="true" style="color: var(--h-ink2); font-size: 14px;">‹</span>
+</li>
+
+<li style="display: flex; align-items: center; gap: 8px;">
+<button type="button" class="sg-bead" data-bead="عمرو" style="padding: 6px 14px; border-radius: 999px; border: 1px solid var(--h-hair); font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink); background: var(--h-surface); cursor: pointer; line-height: inherit;">عمرو</button>
+<span aria-hidden="true" style="color: var(--h-ink2); font-size: 14px;">‹</span>
+</li>
+
+<li style="display: flex; align-items: center; gap: 8px;">
+<button type="button" class="sg-bead" data-bead="عبد الله" style="padding: 6px 14px; border-radius: 999px; border: 1px solid var(--h-hair); font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink); background: var(--h-surface); cursor: pointer; line-height: inherit;">عبد الله</button>
+<span aria-hidden="true" style="color: var(--h-ink2); font-size: 14px;">‹</span>
+</li>
+
+<li style="display: flex; align-items: center; gap: 8px;">
+<button type="button" class="sg-bead" data-bead="جابر بن عبد الله" style="padding: 6px 14px; border-radius: 999px; border: 1px solid var(--h-hair); font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink); background: var(--h-surface); cursor: pointer; line-height: inherit;">جابر بن عبد الله</button>
+
+</li>
+
+</ol>
+</div>
+
+<div aria-hidden="true" style="display: flex; justify-content: center;"><span style="width: 0; border-inline-start: 3px dotted var(--h-gold); opacity: .8;"></span></div>
+<div style="padding-bottom: 64px;">
+<p style="margin: 0; font-size: 14px; color: var(--h-gold);" data-i18n="home_s2_k">المرحلة الثانية</p>
+<h3 style="margin: 4px 0 8px; font-family: 'Amiri', serif; font-size: 30px; font-weight: 700; color: var(--h-ink);" data-i18n="home_s2_h">ثمانية قرون قيد البحث</h3>
+<p style="margin: 0 0 24px; max-width: 42em; color: var(--h-ink2);" data-i18n="home_s2_p">بين وفاة جابر بن عبد الله سنة 78هـ وعلي الجداوي في القرن التاسع الهجري تقريباً نحو 22 إلى 25 جيلاً لم نجد بعدُ وثيقة تسمّيهم. الانتساب إلى الأنصار تحفظه القبيلة ويرد في وثائقها، أما أسماء هذه الحلقات فنبحث عنها.</p>
+<div role="img" id="home-gap" aria-label="نحو 24 جداً لم تُعرف أسماؤهم بعد" style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px;">
+
+<span style="width: 40px; height: 40px; border-radius: 50%; border: 1px dashed var(--h-ink2); display: grid; place-items: center; font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink2);">؟</span>
+
+<span style="width: 40px; height: 40px; border-radius: 50%; border: 1px dashed var(--h-ink2); display: grid; place-items: center; font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink2);">؟</span>
+
+<span style="width: 40px; height: 40px; border-radius: 50%; border: 1px dashed var(--h-ink2); display: grid; place-items: center; font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink2);">؟</span>
+
+<span style="width: 40px; height: 40px; border-radius: 50%; border: 1px dashed var(--h-ink2); display: grid; place-items: center; font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink2);">؟</span>
+
+<span style="width: 40px; height: 40px; border-radius: 50%; border: 1px dashed var(--h-ink2); display: grid; place-items: center; font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink2);">؟</span>
+
+<span style="width: 40px; height: 40px; border-radius: 50%; border: 1px dashed var(--h-ink2); display: grid; place-items: center; font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink2);">؟</span>
+
+<span style="width: 40px; height: 40px; border-radius: 50%; border: 1px dashed var(--h-ink2); display: grid; place-items: center; font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink2);">؟</span>
+
+<span style="width: 40px; height: 40px; border-radius: 50%; border: 1px dashed var(--h-ink2); display: grid; place-items: center; font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink2);">؟</span>
+
+<span style="width: 40px; height: 40px; border-radius: 50%; border: 1px dashed var(--h-ink2); display: grid; place-items: center; font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink2);">؟</span>
+
+<span style="width: 40px; height: 40px; border-radius: 50%; border: 1px dashed var(--h-ink2); display: grid; place-items: center; font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink2);">؟</span>
+
+<span style="width: 40px; height: 40px; border-radius: 50%; border: 1px dashed var(--h-ink2); display: grid; place-items: center; font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink2);">؟</span>
+
+<span style="width: 40px; height: 40px; border-radius: 50%; border: 1px dashed var(--h-ink2); display: grid; place-items: center; font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink2);">؟</span>
+
+<span style="width: 40px; height: 40px; border-radius: 50%; border: 1px dashed var(--h-ink2); display: grid; place-items: center; font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink2);">؟</span>
+
+<span style="width: 40px; height: 40px; border-radius: 50%; border: 1px dashed var(--h-ink2); display: grid; place-items: center; font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink2);">؟</span>
+
+<span style="width: 40px; height: 40px; border-radius: 50%; border: 1px dashed var(--h-ink2); display: grid; place-items: center; font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink2);">؟</span>
+
+<span style="width: 40px; height: 40px; border-radius: 50%; border: 1px dashed var(--h-ink2); display: grid; place-items: center; font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink2);">؟</span>
+
+<span style="width: 40px; height: 40px; border-radius: 50%; border: 1px dashed var(--h-ink2); display: grid; place-items: center; font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink2);">؟</span>
+
+<span style="width: 40px; height: 40px; border-radius: 50%; border: 1px dashed var(--h-ink2); display: grid; place-items: center; font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink2);">؟</span>
+
+<span style="width: 40px; height: 40px; border-radius: 50%; border: 1px dashed var(--h-ink2); display: grid; place-items: center; font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink2);">؟</span>
+
+<span style="width: 40px; height: 40px; border-radius: 50%; border: 1px dashed var(--h-ink2); display: grid; place-items: center; font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink2);">؟</span>
+
+<span style="width: 40px; height: 40px; border-radius: 50%; border: 1px dashed var(--h-ink2); display: grid; place-items: center; font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink2);">؟</span>
+
+<span style="width: 40px; height: 40px; border-radius: 50%; border: 1px dashed var(--h-ink2); display: grid; place-items: center; font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink2);">؟</span>
+
+<span style="width: 40px; height: 40px; border-radius: 50%; border: 1px dashed var(--h-ink2); display: grid; place-items: center; font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink2);">؟</span>
+
+<span style="width: 40px; height: 40px; border-radius: 50%; border: 1px dashed var(--h-ink2); display: grid; place-items: center; font-family: 'Amiri', serif; font-size: 18px; color: var(--h-ink2);">؟</span>
+
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 20px;">
+<article style="flex: 1 1 320px; padding: 24px 28px; border-radius: 16px; border: 1px solid var(--h-hair);">
+<h4 style="margin: 0 0 8px; font-family: 'Amiri', serif; font-size: 22px; color: var(--h-ink);" data-i18n="home_hyp1_h">فرضية الحجاز وجدّة</h4>
+<p style="margin: 0 0 12px; font-size: 15px; color: var(--h-ink2);" data-i18n="home_hyp1_p">لقب «الجدّاوي» في وثائق براك، ورواية القبيلة أن الجد جاء من الحجاز.</p>
+<p style="margin: 0; font-size: 14px; color: var(--h-ink);" data-i18n="home_hyp1_t">ما يحسمها: وثيقة حجازية أو مغربية تذكر «عمر بن علي الجداوي» أو ابنه عبد الله.</p>
+</article>
+<article style="flex: 1 1 320px; padding: 24px 28px; border-radius: 16px; border: 1px solid var(--h-hair);">
+<h4 style="margin: 0 0 8px; font-family: 'Amiri', serif; font-size: 22px; color: var(--h-ink);" data-i18n="home_hyp2_h">فرضية الأندلس</h4>
+<p style="margin: 0 0 12px; font-size: 15px; color: var(--h-ink2);" data-i18n="home_hyp2_p">رأي الدكتور محمد عبد القادر الأنصاري، ويوافقها توقيت سقوط غرناطة سنة 897هـ. والفرضيتان قد تجتمعان: أنصار أندلسيون أقاموا في جدّة ثم قدموا فزان.</p>
+<p style="margin: 0; font-size: 14px; color: var(--h-ink);" data-i18n="home_hyp2_t">ما يحسمها: ذكر للأسرة في مصادر الهجرة الأندلسية أو تراجم المغرب.</p>
+</article>
+</div>
+<a href="#contribute" style="display: inline-flex; align-items: center; min-height: 44px; margin-top: 20px; color: var(--h-gold); font-size: 15px;" data-i18n="home_gap_link">عندك وثيقة أو مصدر يملأ حلقة من هذه الحلقات؟</a>
+</div>
+
+<div aria-hidden="true" style="display: flex; justify-content: center;"><span style="width: 3px; background: var(--h-gold); border-radius: 2px;"></span></div>
+<div>
+<p style="margin: 0; font-size: 14px; color: var(--h-gold);" data-i18n="home_s3_k">المرحلة الثالثة</p>
+<h3 style="margin: 4px 0 8px; font-family: 'Amiri', serif; font-size: 30px; font-weight: 700; color: var(--h-ink);" data-i18n="home_s3_h">الفرع الموثّق في فزان</h3>
+<p style="margin: 0 0 24px; max-width: 42em; color: var(--h-ink2);" data-i18n="home_s3_p">من علي الجداوي الأنصاري إلى أحفاد اليوم، وهنا تبدأ الوثائق. وثيقة الحبس تذكر «عبد الله بن الحاج محمد بن المرحوم فضل بن عمر بن علي الجداوي»، ووثائق براك وأشكدة تنسب القبيلة صراحةً: «الجداوي الأنصاري». أبناء الحاج فضل الثلاثة، محمد وبلقاسم وقاسم، هم أصول لُحمات الأنصار في براك وآقار وأشكدة ودبدب.</p>
+<ol style="margin: 0 0 40px; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 10px 8px; align-items: center;">
+
+<li style="display: flex; align-items: center; gap: 8px;">
+<a href="tree/#/p/ali" style="padding: 8px 18px; border-radius: 999px; border: 1px dashed var(--h-ink2); font-family: 'Amiri', serif; font-size: 20px; color: var(--h-ink); background: var(--h-surface); text-decoration: none;">علي الجداوي الأنصاري</a>
+<span aria-hidden="true" style="color: var(--h-ink2);">‹</span>
+</li>
+
+<li style="display: flex; align-items: center; gap: 8px;">
+<a href="tree/#/p/umar" style="padding: 8px 18px; border-radius: 999px; border: 1px dashed var(--h-ink2); font-family: 'Amiri', serif; font-size: 20px; color: var(--h-ink); background: var(--h-surface); text-decoration: none;">عمر</a>
+<span aria-hidden="true" style="color: var(--h-ink2);">‹</span>
+</li>
+
+<li style="display: flex; align-items: center; gap: 8px;">
+<a href="tree/#/p/abdallah" style="padding: 8px 18px; border-radius: 999px; border: 2px solid var(--h-gold); font-family: 'Amiri', serif; font-size: 20px; color: var(--h-gold); background: var(--h-surface); text-decoration: none;">عبد الله سبال العين</a>
+<span aria-hidden="true" style="color: var(--h-ink2);">‹</span>
+</li>
+
+<li style="display: flex; align-items: center; gap: 8px;">
+<a href="tree/#/p/fadl" style="padding: 8px 18px; border-radius: 999px; border: 1px solid var(--h-ink2); font-family: 'Amiri', serif; font-size: 20px; color: var(--h-ink); background: var(--h-surface); text-decoration: none;">الحاج فضل</a>
+<span aria-hidden="true" style="color: var(--h-ink2);">‹</span>
+</li>
+
+<li style="display: flex; align-items: center; gap: 8px;">
+<a href="tree/" style="padding: 8px 18px; border-radius: 999px; border: 1px solid var(--h-ink2); font-family: 'Amiri', serif; font-size: 20px; color: var(--h-ink); background: var(--h-surface); text-decoration: none;">محمد · بلقاسم · قاسم</a>
+
+</li>
+
+</ol>
+
+<figure style="margin: 0; display: flex; flex-wrap: wrap; gap: 32px; padding: 32px; border-radius: 20px; background: var(--h-surface); border: 1px solid var(--h-hair);">
+<img src="assets/evidence/site-1002.webp" loading="lazy" decoding="async" width="240" height="420" data-i18n-alt="home_deed_alt" alt="صورة عقد بيع في براك مؤرخ في سنة 1002هـ" style="flex: 0 1 240px; width: 240px; max-width: 100%; height: 420px; object-fit: cover; object-position: top; border-radius: 10px;">
+<figcaption style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 12px;">
+<p style="margin: 0; font-size: 14px; color: var(--h-gold);" data-i18n="home_deed_k">أقدم وثيقة مؤرخة في الموقع</p>
+<h4 style="margin: 0; font-family: 'Amiri', serif; font-size: 26px; color: var(--h-ink);" data-i18n="home_deed_h">عقد بيع في بلد براك، سنة 1002هـ</h4>
+<p style="margin: 0; color: var(--h-ink2);" data-i18n="home_deed_p">يشتري فيه عبد الله بن المرابط سالم بن محمد أرضاً في براك، ويرد اسم «الحاج فضل» في وصف حدودها بصيغة تشير إلى ورثته. لذلك يُرجَّح أن الحاج فضل بن عبد الله سبال العين كان قد توفي قبل سنة 1002هـ.</p>
+<p style="margin: 0; font-size: 14px; color: var(--h-ink2);" data-i18n="home_deed_credit">أرسل صورتها د. محمد عبد القادر الشيخ الأنصاري.</p>
+<a href="tree/#/d/site-1002/1" style="align-self: flex-start; display: inline-flex; align-items: center; min-height: 44px; color: var(--h-gold);" data-i18n="home_deed_link">اقرأ النص والشرح</a>
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+
+<section id="houses" class="sg-pad" style="max-width: 1240px; margin: 0 auto; padding: 0 48px 96px;">
+<h2 class="sg-h2" data-i18n="home_houses_h" style="margin: 0 0 12px; font-family: 'Amiri', serif; font-weight: 700; color: var(--h-ink); line-height: 1.3;">بيوت الأسرة</h2>
+<div class="sg-houses">
+<h3 id="new-branches" class="tree-section-title" data-i18n="fadl_branch_title"></h3>
+<div class="tree-root"><div class="fadl-node" data-i18n="fadl_node"></div></div>
+<div class="branches-wrapper">
+<div class="branch-card" style="border-top-color: #991b1b;">
+<div class="branch-header" style="background: #991b1b;"><h4 data-i18n="branch_1_title"></h4><span data-i18n="branch_1_subtitle"></span></div>
+<div class="branch-body" data-i18n="branch_1_desc"></div>
+<a href="tree/#/b/muhammad" class="branch-evidence-link" data-i18n="tree_branch_link">عرض هذا الفرع بالوثائق</a>
+</div>
+<div class="branch-card" style="border-top-color: #0d9488;">
+<div class="branch-header" style="background: #0d9488;"><h4 data-i18n="branch_2_title"></h4><span data-i18n="branch_2_subtitle"></span></div>
+<div class="branch-body" data-i18n="branch_2_desc"></div>
+<a href="tree/#/b/belqasim" class="branch-evidence-link" data-i18n="tree_branch_link">عرض هذا الفرع بالوثائق</a>
+</div>
+<div class="branch-card" style="border-top-color: #3498db;">
+<div class="branch-header" style="background: #3498db;"><h4 data-i18n="branch_3_title"></h4><span data-i18n="branch_3_subtitle"></span></div>
+<div class="branch-body" data-i18n="branch_3_desc"></div>
+<a href="tree/#/b/qasim" class="branch-evidence-link" data-i18n="tree_branch_link">عرض هذا الفرع بالوثائق</a>
+</div>
+<div class="branch-card" style="border-top-color: #e67e22;">
+<div class="branch-header" style="background: #e67e22;"><h4 data-i18n="branch_4_title"></h4><span data-i18n="branch_4_subtitle"></span></div>
+<div class="branch-body" data-i18n="branch_4_desc"></div>
+<a href="tree/#/b/uthamna" class="branch-evidence-link" data-i18n="tree_branch_link">عرض هذا الفرع بالوثائق</a>
+</div>
+<div class="branch-card" style="border-top-color: #15803d;">
+<div class="branch-header" style="background: #15803d;"><h4 data-i18n="branch_5_title"></h4><span data-i18n="branch_5_subtitle"></span></div>
+<div class="branch-body" data-i18n="branch_5_desc"></div>
+<a href="tree/#/b/abdulwahid" class="branch-evidence-link" data-i18n="tree_branch_link">عرض هذا الفرع بالوثائق</a>
+</div>
+</div>
+<div class="modern-era">
+<div class="modern-era-title" data-i18n="modern_era_title"></div>
+<a href="tree/" data-i18n="modern_era_lineage">انظر سلسلتك في شجرة الأدلة</a>
+</div>
+</div>
+</section>
+
+<section id="sources" class="sg-pad" style="max-width: 1240px; margin: 0 auto; padding: 0 48px 96px;">
+<h2 class="sg-h2" style="margin: 0 0 12px; font-family: 'Amiri', serif; font-weight: 700; color: var(--h-ink);" data-i18n="home_nav_sources">المصادر</h2>
+<p style="margin: 0 0 36px; max-width: 42em; color: var(--h-ink2);" data-i18n="home_src_p">الكتب التي قُرئت أو بُحث فيها لبناء هذه الشجرة، وما زال البحث مستمراً. «قُرئ كاملاً» يعني قراءة صفحة صفحة؛ «بُحث فيه» يعني بحثاً في النص الكامل عن الأسماء والألقاب.</p>
+<div id="home-sources" style="display: flex; flex-wrap: wrap; gap: 40px 56px;">
+
+<div style="flex: 1 1 340px; min-width: 0;">
+<h3 style="margin: 0 0 14px; padding-bottom: 10px; border-bottom: 1px solid var(--h-hair); font-family: 'Amiri', serif; font-size: 22px; color: var(--h-gold);">وثائق القبيلة</h3>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px;">
+
+<li style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-size: 15px;">
+<span style="flex: 1 1 220px; color: var(--h-ink);">د. محمد عبد القادر الشيخ الأنصاري، «الأنصار الخزرج في وادي الشاطئ» (2022)</span>
+<span style="font-size: 12px; color: var(--h-ink2);">قُرئ كاملاً</span>
+
+</li>
+
+<li style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-size: 15px;">
+<span style="flex: 1 1 220px; color: var(--h-ink);">حبيب وداعة الحسناوي، «وثائق دولة أولاد امحمد بفزان» (1994)</span>
+<span style="font-size: 12px; color: var(--h-ink2);">عبر كتاب د. محمد</span>
+
+</li>
+
+<li style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-size: 15px;">
+<span style="flex: 1 1 220px; color: var(--h-ink);">ملفات المركز الليبي للمحفوظات والدراسات التاريخية: براك، آقار، أشكدة</span>
+<span style="font-size: 12px; color: var(--h-ink2);">عبر كتاب د. محمد</span>
+
+</li>
+
+</ul>
+</div>
+
+<div style="flex: 1 1 340px; min-width: 0;">
+<h3 style="margin: 0 0 14px; padding-bottom: 10px; border-bottom: 1px solid var(--h-hair); font-family: 'Amiri', serif; font-size: 22px; color: var(--h-gold);">فزان وليبيا</h3>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px;">
+
+<li style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-size: 15px;">
+<span style="flex: 1 1 220px; color: var(--h-ink);">الحضيري، «المسك والريحان في أعلام فزان»</span>
+<span style="font-size: 12px; color: var(--h-ink2);">قُرئ كاملاً</span>
+
+</li>
+
+<li style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-size: 15px;">
+<span style="flex: 1 1 220px; color: var(--h-ink);">محمد مصطفى بازامة، «صفحات من تاريخ فزان»</span>
+<span style="font-size: 12px; color: var(--h-ink2);">قُرئ كاملاً</span>
+
+</li>
+
+<li style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-size: 15px;">
+<span style="flex: 1 1 220px; color: var(--h-ink);">مصطفى خوجة، «تاريخ فزان»</span>
+<span style="font-size: 12px; color: var(--h-ink2);">قُرئ كاملاً</span>
+
+</li>
+
+<li style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-size: 15px;">
+<span style="flex: 1 1 220px; color: var(--h-ink);">«أجوبة علماء فزان»</span>
+<span style="font-size: 12px; color: var(--h-ink2);">قُرئ كاملاً</span>
+
+</li>
+
+<li style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-size: 15px;">
+<span style="flex: 1 1 220px; color: var(--h-ink);">ابن غلبون، «التذكار فيمن ملك طرابلس»</span>
+<span style="font-size: 12px; color: var(--h-ink2);">قُرئ كاملاً</span>
+
+</li>
+
+<li style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-size: 15px;">
+<span style="flex: 1 1 220px; color: var(--h-ink);">شارل فيرو، «الحوليات الليبية»</span>
+<span style="font-size: 12px; color: var(--h-ink2);">قُرئ كاملاً</span>
+
+</li>
+
+<li style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-size: 15px;">
+<span style="flex: 1 1 220px; color: var(--h-ink);">الطاهر أحمد الزاوي، «معجم البلدان الليبية»</span>
+<span style="font-size: 12px; color: var(--h-ink2);">قُرئ كاملاً</span>
+
+</li>
+
+<li style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-size: 15px;">
+<span style="flex: 1 1 220px; color: var(--h-ink);">أحمد النائب الأنصاري، «المنهل العذب» ج1–2</span>
+<span style="font-size: 12px; color: var(--h-ink2);">قُرئ كاملاً</span>
+
+</li>
+
+<li style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-size: 15px;">
+<span style="flex: 1 1 220px; color: var(--h-ink);">أحمد النائب الأنصاري، «نفحات النسرين والريحان»</span>
+<span style="font-size: 12px; color: var(--h-ink2);">قُرئ كاملاً</span>
+
+</li>
+
+</ul>
+</div>
+
+<div style="flex: 1 1 340px; min-width: 0;">
+<h3 style="margin: 0 0 14px; padding-bottom: 10px; border-bottom: 1px solid var(--h-hair); font-family: 'Amiri', serif; font-size: 22px; color: var(--h-gold);">الرحالة والمستكشفون الأوروبيون</h3>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px;">
+
+<li style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-size: 15px;">
+<span style="flex: 1 1 220px; color: var(--h-ink);">إنريكو دي أغوستيني، «سكان طرابلس الغرب» (Le popolazioni della Tripolitania)، طرابلس 1917، ص349–361. يسجّل رواية القبيلة أن أصلها «من جدة (الحجاز)»، ويذكر أولاد فضل في براك</span>
+<span style="font-size: 12px; color: var(--h-ink2);">صفحات محددة</span>
+<p style="flex: 1 1 100%; margin: 6px 0 0; padding: 14px 16px; border-radius: 12px; border: 1px solid var(--h-hair); font-size: 14px; line-height: 1.9; color: var(--h-ink2);">ملاحظة على هذا الكتاب: يقسم المؤلف سكان بعض القرى إلى «أحرار» و«شواشنة». هذا تصنيف إداري أملاه مخبرون محليون سنة 1917، وقال المؤلف نفسه إن معلوماته تقديرية. ولفظ «الشواشنة» لا يدل على أصل واحد: يذكر الطاهر الزاوي في «معجم البلدان الليبية» (ص209–210) أنه يُطلق في العرف الطرابلسي على مواليد المماليك من السودان، ثم يقول عن الشواشنة في قماطة إنهم «عرب أقحاح يرجعون في نسبهم إلى بني جوشن». وفي وثائق براك ما يخالف تصنيف الكتاب لبعض اللحمات، ومنها وثيقة مؤرخة 1186هـ. فهذا التصنيف لا يُثبت نسب أحد ولا ينفيه، والمرجع في النسب الوثائق ورواية أعيان القبيلة وشيوخها.</p>
+</li>
+
+<li style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-size: 15px;">
+<span style="flex: 1 1 220px; color: var(--h-ink);">هورنمان، «يوميات الرحلة» (1802)</span>
+<span style="font-size: 12px; color: var(--h-ink2);">قُرئ جزئياً</span>
+
+</li>
+
+<li style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-size: 15px;">
+<span style="flex: 1 1 220px; color: var(--h-ink);">ليون، «رحلة في شمال إفريقيا» (1821)</span>
+<span style="font-size: 12px; color: var(--h-ink2);">قُرئ جزئياً</span>
+
+</li>
+
+</ul>
+</div>
+
+<div style="flex: 1 1 340px; min-width: 0;">
+<h3 style="margin: 0 0 14px; padding-bottom: 10px; border-bottom: 1px solid var(--h-hair); font-family: 'Amiri', serif; font-size: 22px; color: var(--h-gold);">تونس والمغرب</h3>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px;">
+
+<li style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-size: 15px;">
+<span style="flex: 1 1 220px; color: var(--h-ink);">ابن أبي دينار، «المؤنس في أخبار إفريقية وتونس»</span>
+<span style="font-size: 12px; color: var(--h-ink2);">قُرئ كاملاً</span>
+
+</li>
+
+<li style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-size: 15px;">
+<span style="flex: 1 1 220px; color: var(--h-ink);">الوزير السراج، «الحلل السندسية»</span>
+<span style="font-size: 12px; color: var(--h-ink2);">قُرئ كاملاً</span>
+
+</li>
+
+<li style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-size: 15px;">
+<span style="flex: 1 1 220px; color: var(--h-ink);">الزركشي، «تاريخ الدولتين الموحدية والحفصية»</span>
+<span style="font-size: 12px; color: var(--h-ink2);">قُرئ كاملاً</span>
+
+</li>
+
+<li style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-size: 15px;">
+<span style="flex: 1 1 220px; color: var(--h-ink);">ابن الشماع، «الأدلة البينة النورانية»</span>
+<span style="font-size: 12px; color: var(--h-ink2);">قُرئ كاملاً</span>
+
+</li>
+
+<li style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-size: 15px;">
+<span style="flex: 1 1 220px; color: var(--h-ink);">الراشدي، «ابتسام الغروس»</span>
+<span style="font-size: 12px; color: var(--h-ink2);">قُرئ كاملاً</span>
+
+</li>
+
+<li style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-size: 15px;">
+<span style="flex: 1 1 220px; color: var(--h-ink);">البكري، «المسالك والممالك»</span>
+<span style="font-size: 12px; color: var(--h-ink2);">صفحات محددة</span>
+
+</li>
+
+</ul>
+</div>
+
+<div style="flex: 1 1 340px; min-width: 0;">
+<h3 style="margin: 0 0 14px; padding-bottom: 10px; border-bottom: 1px solid var(--h-hair); font-family: 'Amiri', serif; font-size: 22px; color: var(--h-gold);">الحجاز وجدة ومصر</h3>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px;">
+
+<li style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-size: 15px;">
+<span style="flex: 1 1 220px; color: var(--h-ink);">السخاوي، «الضوء اللامع»</span>
+<span style="font-size: 12px; color: var(--h-ink2);">بُحث فيه</span>
+
+</li>
+
+<li style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-size: 15px;">
+<span style="flex: 1 1 220px; color: var(--h-ink);">ابن إياس، «بدائع الزهور»</span>
+<span style="font-size: 12px; color: var(--h-ink2);">بُحث فيه</span>
+
+</li>
+
+<li style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-size: 15px;">
+<span style="flex: 1 1 220px; color: var(--h-ink);">ابن فهد، «بلوغ القرى» و«نيل المنى»</span>
+<span style="font-size: 12px; color: var(--h-ink2);">بُحث فيه</span>
+
+</li>
+
+<li style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-size: 15px;">
+<span style="flex: 1 1 220px; color: var(--h-ink);">عبد الباسط الملطي، «نيل الأمل»</span>
+<span style="font-size: 12px; color: var(--h-ink2);">بُحث فيه</span>
+
+</li>
+
+<li style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-size: 15px;">
+<span style="flex: 1 1 220px; color: var(--h-ink);">ابن فرج، «السلاح والعدة في تاريخ بندر جدة»</span>
+<span style="font-size: 12px; color: var(--h-ink2);">بُحث فيه</span>
+
+</li>
+
+</ul>
+</div>
+
+<div style="flex: 1 1 340px; min-width: 0;">
+<h3 style="margin: 0 0 14px; padding-bottom: 10px; border-bottom: 1px solid var(--h-hair); font-family: 'Amiri', serif; font-size: 22px; color: var(--h-gold);">الأنساب والمعاجم</h3>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px;">
+
+<li style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-size: 15px;">
+<span style="flex: 1 1 220px; color: var(--h-ink);">ابن حزم، «جمهرة أنساب العرب»</span>
+<span style="font-size: 12px; color: var(--h-ink2);">صفحات محددة</span>
+
+</li>
+
+<li style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-size: 15px;">
+<span style="flex: 1 1 220px; color: var(--h-ink);">ابن سعد، «الطبقات الكبرى»</span>
+<span style="font-size: 12px; color: var(--h-ink2);">صفحات محددة</span>
+
+</li>
+
+<li style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-size: 15px;">
+<span style="flex: 1 1 220px; color: var(--h-ink);">ياقوت، «معجم البلدان»</span>
+<span style="font-size: 12px; color: var(--h-ink2);">صفحات محددة</span>
+
+</li>
+
+<li style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-size: 15px;">
+<span style="flex: 1 1 220px; color: var(--h-ink);">الكتاني، «فهرس الفهارس»</span>
+<span style="font-size: 12px; color: var(--h-ink2);">صفحات محددة</span>
+
+</li>
+
+<li style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-size: 15px;">
+<span style="flex: 1 1 220px; color: var(--h-ink);">«لسان العرب» و«تاج العروس» (مادة سبل)</span>
+<span style="font-size: 12px; color: var(--h-ink2);">صفحات محددة</span>
+
+</li>
+
+</ul>
+</div>
+
+</div>
+</section>
+
+<section id="more" class="sg-pad" style="max-width: 1240px; margin: 0 auto; padding: 0 48px 96px;">
+<h2 class="sg-h2" style="margin: 0 0 28px; font-family: 'Amiri', serif; font-weight: 700; color: var(--h-ink);" data-i18n="home_more_h">في الموقع أيضاً</h2>
+<ul style="margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--h-hair);">
+
+<li style="border-bottom: 1px solid var(--h-hair);">
+<a href="more/#figures" style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 32px; padding: 22px 4px; text-decoration: none;">
+<span style="flex: 0 0 260px; font-family: 'Amiri', serif; font-size: 24px; color: var(--h-ink);" data-i18n="home_more_1_t">أعلام الأنصار في ليبيا</span>
+<span style="flex: 1 1 320px; color: var(--h-ink2);" data-i18n="home_more_1_d">صحابة وأولياء من الأنصار دُفنوا في ليبيا، من رويفع بن ثابت إلى أبي عجيلة.</span>
+</a>
+</li>
+
+<li style="border-bottom: 1px solid var(--h-hair);">
+<a href="more/#library" style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 32px; padding: 22px 4px; text-decoration: none;">
+<span style="flex: 0 0 260px; font-family: 'Amiri', serif; font-size: 24px; color: var(--h-ink);" data-i18n="home_more_2_t">المكتبة والتوثيق</span>
+<span style="flex: 1 1 320px; color: var(--h-ink2);" data-i18n="home_more_2_d">الكتب والمصادر التي اعتمد عليها البحث، مع روابطها.</span>
+</a>
+</li>
+
+<li style="border-bottom: 1px solid var(--h-hair);">
+<a href="more/#poem" style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 32px; padding: 22px 4px; text-decoration: none;">
+<span style="flex: 0 0 260px; font-family: 'Amiri', serif; font-size: 24px; color: var(--h-ink);" data-i18n="home_more_3_t">ملحمة الأنصار</span>
+<span style="flex: 1 1 320px; color: var(--h-ink2);" data-i18n="home_more_3_d">قصيدة في سيرة الأجداد من مأرب إلى المدينة إلى فزان.</span>
+</a>
+</li>
+
+<li style="border-bottom: 1px solid var(--h-hair);">
+<a href="more/#author" style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 32px; padding: 22px 4px; text-decoration: none;">
+<span style="flex: 0 0 260px; font-family: 'Amiri', serif; font-size: 24px; color: var(--h-ink);" data-i18n="home_more_4_t">جمال ابن آدم</span>
+<span style="flex: 1 1 320px; color: var(--h-ink2);" data-i18n="home_more_4_d">عن صاحب الموقع وكتبه.</span>
+</a>
+</li>
+
+</ul>
+</section>
+
+<footer id="contribute" class="sg-pad" style="border-top: 1px solid var(--h-hair); padding: 64px 48px 48px;">
+<div style="max-width: 760px; margin: 0 auto; text-align: center; display: flex; flex-direction: column; gap: 18px; align-items: center;">
+<div class="sg-appeal" data-i18n="tree_credits"><p>نرجو تكرّماً من أصحاب الوثائق المنشورة هنا إرسال صورة ملوّنة واضحة تماماً من النسخة الأصلية لكل وثيقة، حتى نتحقق من قراءتها بدقة أكبر. وسنضيف على كل وثيقة اسم صاحبها، وختم موقع «جمال ابن آدم». تُنشر الوثائق هنا بإذن، مع ذكر مصدر كل وثيقة.</p>
+<p>وشكراً لأبناء العم، أحفاد سيدي الشيخ الفاضل عبد الله سبال العين، رحمه الله رحمةً واسعة وألحقنا به في جنات النعيم.</p></div>
+<a id="home-send" hidden href="#contribute" style="margin-top: 8px; min-height: 48px; padding: 0 26px; border-radius: 12px; background: var(--h-gold); color: var(--h-onGold); text-decoration: none; display: inline-flex; align-items: center; font-weight: 600;" data-i18n="home_send_btn">أرسل وثيقة أو صورة أوضح</a>
+<p style="margin: 24px 0 0; font-size: 13px; color: var(--h-ink2);">jamalibnadam.com · جمال ابن آدم</p>
+</div>
+</footer>
+</div>
+
+<div class="sg-sheet" id="home-sheet" role="dialog" aria-modal="false" aria-labelledby="home-sheet-name" hidden>
+<button type="button" class="sg-sheet-x" id="home-sheet-x" aria-label="إغلاق"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 3l10 10M13 3 3 13"></path></svg></button>
+<h3 id="home-sheet-name"></h3>
+<p class="sg-sheet-src" id="home-sheet-src"></p>
+<p id="home-sheet-story"></p>
+</div>
+
+<script src="home.js" defer></script>
 </body>
 
 </html>
