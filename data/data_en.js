@@ -238,8 +238,8 @@ window.FamilyTreeData = {
         tree_back_home: "← Back to the Golden Record",
         tree_h1: "The Golden Record of Al-Sabal Al-Ain",
         tree_tagline: "Every name here is tied to its document",
-        tree_stat_persons: "names",
-        tree_stat_docs: "documents",
+        tree_stat_persons: "names entered so far",
+        tree_stat_docs: "documents published so far",
         tree_stat_oldest: "oldest dated document",
         tree_theme: "Switch theme: dark / light",
         tree_show_all: "Show the whole tree",
@@ -253,7 +253,7 @@ window.FamilyTreeData = {
         tree_docs_few: "📄 {n} documents",
         tree_docs_many: "📄 {n} documents",
         tree_link_maybe: "Indication from the documents",
-        tree_link_trad: "Family tradition",
+        tree_link_trad: "Oral account of tribal elders",
         tree_legend_ok: "📄 Documents",
         tree_explain_ok: "A document names him with his father",
         tree_explain_maybe: "A strong indication, without explicit text",
@@ -267,7 +267,7 @@ window.FamilyTreeData = {
         tree_chain_n: "{n} generations",
         tree_chain_ok: "{n} of them documented",
         tree_chain_maybe: "{n} by indication from the documents",
-        tree_chain_trad: "{n} by family tradition",
+        tree_chain_trad: "{n} by oral account of tribal elders",
         tree_open_doc: "Open the document",
         tree_img_unpublished: "The image of this document has not been published yet",
         tree_have_image: "Do you have its image?",
@@ -287,6 +287,9 @@ window.FamilyTreeData = {
         tree_fit_image: "Fit the image",
         tree_rotate: "Rotate the image",
         tree_sheet_handle: "Resize the text sheet",
+        tree_link_trad_short: "Oral account of tribal elders",
+        tree_stat_note: "This is the beginning of the collection, not its end. The tribe has far more names and documents than these; we add every name and every document once it arrives and has been verified.",
+        tree_base_line: "The tree of the Ansar in Wadi al-Shati, Fezzan, Libya",
         tree_aria: "Al-Sabal Al-Ain family tree",
         tree_search_placeholder: "Search for a name…",
         tree_search_empty: "No matching name",
@@ -340,7 +343,7 @@ window.FamilyTreeData = {
         tree_hint_wheel: "To zoom: Ctrl + wheel",
         tree_hint_touch: "Use two fingers to move the tree",
         tree_load_error: "The tree data could not be loaded. Please reload the page.",
-        tree_credits: "The document images were published in the book by Dr. Muhammad Abd al-Qadir al-Shaykh al-Ansari (2022), from the files of the Libyan Center for Archives and Historical Studies (Chairman of the Board: Prof. Dr. Muhammad al-Tahir al-Jarari). According to the family's account, the documents were gathered from the elders of the Ansar families in Brak and al-Shati, attested by witnesses, and the originals were returned to their owners after being photographed. The originals belong to those families. They are published here with permission, with the source of each document cited."
+        tree_credits: "<p>We kindly ask the owners of the documents published here to send a clear, full-colour photo of each original, so we can verify its reading more precisely. We will add the owner's name and the «Jamal Ibn Adam» site seal to each document. The documents are published here with permission, and each one's source is cited.</p><p>With thanks to our cousins, the descendants of the venerable Shaykh Abdullah Sabal al-Ayn — may God grant him His vast mercy and join us with him in the Gardens of Bliss.</p>"
     },
     nodes: [
         {
