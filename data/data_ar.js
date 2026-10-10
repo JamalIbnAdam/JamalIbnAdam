@@ -335,6 +335,8 @@ window.FamilyTreeData = {
         tree_chain_ok: "{n} منها موثّق بوثائق",
         tree_chain_maybe: "{n} قرينة من الوثائق",
         tree_chain_trad: "{n} رواية أعيان القبيلة",
+        tree_chain_civil: "{n} من السجل المدني",
+        tree_chain_author: "{n} من شجرة المؤلف",
         tree_open_doc: "فتح الوثيقة",
         tree_img_unpublished: "لم تُنشر صورة هذه الوثيقة بعد",
         tree_have_image: "لديك صورتها؟",

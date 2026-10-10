@@ -272,6 +272,8 @@ window.FamilyTreeData = {
         tree_chain_ok: "{n} of them documented",
         tree_chain_maybe: "{n} by indication from the documents",
         tree_chain_trad: "{n} by oral account of tribal elders",
+        tree_chain_civil: "{n} from the civil registry",
+        tree_chain_author: "{n} from the author's tree",
         tree_open_doc: "Open the document",
         tree_img_unpublished: "The image of this document has not been published yet",
         tree_have_image: "Do you have its image?",

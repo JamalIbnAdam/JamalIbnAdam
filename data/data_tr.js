@@ -249,6 +249,8 @@ window.FamilyTreeData = {
         tree_chain_ok: "{n} of them documented", // TODO translate
         tree_chain_maybe: "{n} by indication from the documents", // TODO translate
         tree_chain_trad: "{n} by oral account of tribal elders", // TODO translate
+        tree_chain_civil: "{n} nüfus kaydından",
+        tree_chain_author: "{n} yazarın şeceresinden",
         tree_open_doc: "Open the document", // TODO translate
         tree_img_unpublished: "The image of this document has not been published yet", // TODO translate
         tree_have_image: "Do you have its image?", // TODO translate
