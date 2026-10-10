@@ -1,4 +1,4 @@
-const CACHE_NAME = 'jamalibnadam-v15';
+const CACHE_NAME = 'jamalibnadam-v16';
 // document scans are not precached: each one is cached the first time it is viewed
 const EVIDENCE_CACHE = 'jamalibnadam-evidence';
 const EVIDENCE_PATH = '/assets/evidence/';
@@ -6,8 +6,6 @@ const EVIDENCE_MAX = 100;
 const ASSETS_TO_CACHE = [
     './',
     './index.html',
-    './styles.css',
-    './main.js',
     './manifest.json',
     './logo.webp',
     './install.js',
@@ -23,7 +21,8 @@ const ASSETS_TO_CACHE = [
     './home.js',
     './data/sources.json',
     './data/stats.json',
-    './more/'
+    './more/',
+    './more/more.js'
 ];
 // the evidence tree's own files are fetched only by /tree/: cached there on first use, never from the home page
 const TREE_RUNTIME = [

@@ -85,9 +85,9 @@ window.FamilyTreeData = {
         modern_era_generation: "Generación 73: (Generación actual - 2026)",
 
         // --- FIGURES TAB (The 4 Cards) ---
-        figures_intro_title: "De la introducción de 'Al-Ansar en Wadi Al-Shatii'",
+        figures_intro_title: "Figuras de los Ansar en Libia",
         figures_intro_text:
-            "Las fuentes históricas confirman que la presencia de la familia 'Sabal Al-Ain' es una extensión natural de las tribus ansaríes (Aws y Jazray) en territorio libio. Estas figuras son 'primas' en linaje e historia.",
+            "Figuras de los Ansar que vivieron en Libia a lo largo de los siglos. Las mencionamos para dar a conocer la presencia ansarí en el país, no para probar el linaje de ninguna familia en particular.",
 
         // Card 1
         fig_1_badge: "Primera generación (Compañeros)",

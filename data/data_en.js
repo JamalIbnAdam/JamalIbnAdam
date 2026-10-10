@@ -84,9 +84,9 @@ window.FamilyTreeData = {
         modern_era_generation: "Generation 73: (Current generation - 2026)",
 
         // --- FIGURES TAB (The 4 Cards) ---
-        figures_intro_title: "From the introduction of 'Al-Ansar in Wadi Al-Shatii'",
+        figures_intro_title: "Figures of the Ansar in Libya",
         figures_intro_text:
-            "Historical sources confirm that the presence of the 'Sabal Al-Ain' family is a natural extension of the Ansar tribes (Aws and Khazraj) in Libyan territory. These figures are 'cousins' in lineage and history.",
+            "Figures of the Ansar who lived in Libya over the centuries. We mention them to introduce the Ansari presence in the country, not to prove the lineage of any particular family.",
 
         // Card 1
         fig_1_badge: "First Generation (Companions)",

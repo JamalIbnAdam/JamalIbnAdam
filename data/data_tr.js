@@ -80,9 +80,9 @@ window.FamilyTreeData = {
         modern_era_generation: "Nesil 73: (Güncel nesil - 2026)",
 
         // --- FIGURES TAB (The 4 Cards) ---
-        figures_intro_title: "'Vadi El-Şati'de Ensar' Kitabının Girişinden",
+        figures_intro_title: "Libya’daki Ensar ileri gelenleri",
         figures_intro_text:
-            "Tarihi kaynaklar, 'Sabal Al-Ain' ailesinin varlığının, Libya topraklarındaki Ensar kabilelerinin (Evs ve Hazrec) doğal bir uzantısı olduğunu doğrulamaktadır.",
+            "Yüzyıllar boyunca Libya’da yaşamış Ensar ileri gelenleri. Onları ülkedeki Ensar varlığını tanıtmak için anıyoruz; belirli bir ailenin nesebini kanıtlamak için değil.",
 
         // Card 1
         fig_1_badge: "Birinci Nesil (Sahabeler)",

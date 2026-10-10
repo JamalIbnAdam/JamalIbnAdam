@@ -5,7 +5,7 @@ Static site served by GitHub Pages from the `main` branch (repo root).
 ## Pages
 - `/` — home page: `index.html`, `home.css`, `home.js`
 - `/tree/` — the evidence tree: `tree/index.html`, `tree/tree.js`, `tree/tree.css`, `tree/page.js`
-- `/more/` — figures, library, poem and author views: `more/index.html` with `styles.css` and `main.js`
+- `/more/` — figures, library, poem and author views: `more/index.html` with `home.css` (the home page's styles) and `more/more.js`
 
 ## Data
 - `data/tree.json`, `data/docs.json` — persons and document records for the tree

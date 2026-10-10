@@ -80,9 +80,9 @@ window.FamilyTreeData = {
         modern_era_generation: "Pokolenie 73: (obecne pokolenie - 2026)",
 
         // --- FIGURES TAB (The 4 Cards) ---
-        figures_intro_title: "Ze wstępu do 'Al-Ansar w Wadi Al-Shatii'",
+        figures_intro_title: "Postacie Ansarów w Libii",
         figures_intro_text:
-            "Źródła historyczne potwierdzają, że obecność rodziny 'Sabal Al-Ain' jest naturalnym przedłużeniem plemion Ansar (Aws i Khazraj) na terytorium Libii.",
+            "Postacie Ansarów, które żyły w Libii na przestrzeni wieków. Wymieniamy je, aby przybliżyć obecność Ansarów w kraju, a nie po to, by dowodzić rodowodu jakiejkolwiek konkretnej rodziny.",
 
         // Card 1
         fig_1_badge: "Pierwsze Pokolenie (Towarzysze)",
