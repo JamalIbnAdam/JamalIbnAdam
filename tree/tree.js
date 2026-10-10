@@ -858,7 +858,7 @@ function setBorn(p) {
   pBorn.hidden = !b;
   if (!b) { pBorn.textContent = ''; return; }
   const basis = (htmlLang() !== 'ar' && b.basis_en) || b.basis || '';
-  pBorn.innerHTML = `<span>${esc(birthText(p, false))}</span> · <button type="button" class="btag" aria-expanded="false" aria-controls="ft-pBasis">${esc(t('tree_birth_' + b.kind))}</button><p class="basis" id="ft-pBasis" hidden>${esc(basis)}</p>`;
+  pBorn.innerHTML = `<span>${esc(birthText(p, false))}</span> <button type="button" class="btag" aria-expanded="false" aria-controls="ft-pBasis">${esc(t('tree_birth_' + b.kind))}</button><p class="basis" id="ft-pBasis" hidden>${esc(basis)}</p>`;
 }
 function setEyebrow(text) { pEyebrow.textContent = ''; pEyebrow.dataset.t = text; if (text) pEyebrow.setAttribute('aria-label', text); else pEyebrow.removeAttribute('aria-label'); }   // the branch's name has ancestors' names in it
 function setName(text) { pName.textContent = ''; pName.dataset.t = text; pName.setAttribute('aria-label', text); }
