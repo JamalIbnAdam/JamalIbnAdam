@@ -237,12 +237,14 @@ function layout() {
 }
 // عمر, the verse plaque and علي's plaque are spaced along a trunk whose length follows the crown;
 // the two 1987 boxes need room between the medallion and عمر, so the trunk is longer while they are shown
+// عمر's box and علي's plaque are taller than the name alone needs: each has its date under the name
+const UMAR_H = 76, ALI_H = 114;
 function setSlots() {
-  const show87 = !!(t87 && t87.checked), crown = -fanBox.y0 + 34, fixed = MED_R + 84 + 62;   // above the trunk, and the plaque with its line below it
+  const show87 = !!(t87 && t87.checked), crown = -fanBox.y0 + 34, fixed = MED_R + ALI_H + 62;   // above the trunk, and the plaque with its line below it
   const S = Math.max(show87 ? 488 : 302, TRUNK_SHARE / (1 - TRUNK_SHARE) * (crown + fixed));
   const at = f => Math.round(MED_R + f * S);
-  SLOT = show87 ? { med: 0, hm: at(0.156), fd: at(0.336), umar: at(0.537), tulip: at(0.795), ali: MED_R + S + 42 }
-    : { med: 0, hm: at(0.1), fd: at(0.16), umar: at(0.2), tulip: at(0.57), ali: MED_R + S + 42 };
+  SLOT = show87 ? { med: 0, hm: at(0.156), fd: at(0.336), umar: at(0.537), tulip: at(0.8), ali: MED_R + S + ALI_H / 2 }
+    : { med: 0, hm: at(0.1), fd: at(0.16), umar: at(0.2), tulip: at(0.6), ali: MED_R + S + ALI_H / 2 };
 }
 
 const inFan = new Set(); (function walk(id) { inFan.add(id); kids.get(id).forEach(walk); })(ROOT);
@@ -431,7 +433,7 @@ function draw() {
       }
     });
     // an old hollow and a knot, on the open bark between the plaques
-    const g0 = SLOT.tulip + 44, g1 = SLOT.ali - 46;
+    const g0 = SLOT.tulip + 44, g1 = SLOT.ali - ALI_H / 2 - 4;
     [[-0.5, 0.66, 9, 17, -12], [0.74, 0.2, 7, 10, 14]].forEach(([fx, fg, rx, ry, rot]) => {
       const y = g0 + (g1 - g0) * fg, x = fx * trunkHalf(y, fx);
       const g = el('g', { transform: `translate(${f1(x)},${f1(y)}) rotate(${rot})` }, T);
@@ -474,20 +476,21 @@ function draw() {
   function spineItem(id) { const g = el('g', { class: 'spine-item', tabindex: '0', role: 'button', 'data-id': id, 'aria-label': byId.get(id)?.name_as_written || id }, S); spineEls.set(id, g); return g; }
 
   // connectors (drawn first, under plaques)
-  connector(SLOT.ali - 40, SLOT.umar + 28, umar.status, linkLabel(umar), -1);
-  connector(SLOT.umar - 28, SLOT.med + MED_R, abd.status, linkLabel(abd), -1);
+  connector(SLOT.ali - ALI_H / 2 + 2, SLOT.umar + UMAR_H / 2, umar.status, linkLabel(umar), -1);
+  connector(SLOT.umar - UMAR_H / 2, SLOT.med + MED_R, abd.status, linkLabel(abd), -1);
   // under علي: the tribe's line, and nothing else
-  el('text', { class: 'base-line', x: 0, y: SLOT.ali + 78 }, S).textContent = t('tree_base_line');
+  el('text', { class: 'base-line', x: 0, y: SLOT.ali + ALI_H / 2 + 36 }, S).textContent = t('tree_base_line');
 
   // root plaque (cartouche)
   (function () {
-    const g = spineItem(ali.id), y = SLOT.ali, w = 300, h = 84, n = 18;
+    const g = spineItem(ali.id), y = SLOT.ali, w = 300, h = ALI_H, n = 18, mark = birthMark(ali);
     el('path', { class: 'plaque ' + stKey(ali.status), d: `M${-w / 2 + n},${y - h / 2} H${w / 2 - n} L${w / 2},${y} L${w / 2 - n},${y + h / 2} H${-w / 2 + n} L${-w / 2},${y} Z` }, g);
     el('path', { class: 'plaque-in', d: `M${-w / 2 + n + 6},${y - h / 2 + 7} H${w / 2 - n - 6} L${w / 2 - 9},${y} L${w / 2 - n - 6},${y + h / 2 - 7} H${-w / 2 + n + 6} L${-w / 2 + 9},${y} Z` }, g);
-    el('text', { class: 'ptxt', x: 0, y: y - 12, 'font-size': 30, 'font-weight': 700 }, g).textContent = CONFIG.plaqueAli;
+    el('text', { class: 'ptxt', x: 0, y: y - (mark ? 31 : 12), 'font-size': 30, 'font-weight': 700 }, g).textContent = CONFIG.plaqueAli;
+    if (mark) el('text', { class: 'pdate', x: 0, y: y + 5, 'font-size': 21 }, g).textContent = mark;
     // the line under the name is shrunk when a translation is too long for the plaque
     const sub = t('tree_poster_only', { x: CONFIG.posterAli }), subW = measure(sub, `400 12px ${uiFont}`);
-    el('text', { class: 'psub', x: 0, y: y + 22, style: `font-size:${f1(Math.min(12, 12 * (w - 2 * n - 28) / subW))}px` }, g).textContent = sub;
+    el('text', { class: 'psub', x: 0, y: y + (mark ? 36 : 22), style: `font-size:${f1(Math.min(12, 12 * (w - 2 * n - 28) / subW))}px` }, g).textContent = sub;
   })();
 
   // tulip plaque with the verse
@@ -500,9 +503,10 @@ function draw() {
 
   // Umar box
   (function () {
-    const g = spineItem(umar.id), y = SLOT.umar;
-    el('rect', { class: 'plaque ' + stKey(umar.status), x: -78, y: y - 28, width: 156, height: 56, rx: 7 }, g);
-    el('text', { class: 'ptxt', x: 0, y: y - 2, 'font-size': 30, 'font-weight': 700 }, g).textContent = shortName(umar);
+    const g = spineItem(umar.id), y = SLOT.umar, mark = birthMark(umar);
+    el('rect', { class: 'plaque ' + stKey(umar.status), x: -78, y: y - UMAR_H / 2, width: 156, height: UMAR_H, rx: 7 }, g);
+    el('text', { class: 'ptxt', x: 0, y: y - (mark ? 14 : 2), 'font-size': 30, 'font-weight': 700 }, g).textContent = shortName(umar);
+    if (mark) el('text', { class: 'pdate', x: 0, y: y + 19, 'font-size': 21 }, g).textContent = mark;
   })();
 
   // 1987 reading (hidden by default)
@@ -526,8 +530,10 @@ function draw() {
     const g = spineItem(abd.id), k = stKey(abd.status);
     el('circle', { class: 'plaque ' + k, r: MED_R, cx: 0, cy: 0 }, g);
     el('circle', { class: 'plaque-in', r: MED_R - 9, cx: 0, cy: 0 }, g);
-    el('text', { class: 'ptxt', x: 0, y: -16, 'font-size': 31, 'font-weight': 700 }, g).textContent = 'عبد الله';
-    el('text', { class: 'ptxt', x: 0, y: 22, 'font-size': 25 }, g).textContent = 'سبال العين';
+    const mark = birthMark(abd);   // «~880هـ» under the name, at no less than 70% of the smaller name line
+    el('text', { class: 'ptxt', x: 0, y: mark ? -24 : -16, 'font-size': 31, 'font-weight': 700 }, g).textContent = 'عبد الله';
+    el('text', { class: 'ptxt', x: 0, y: mark ? 11 : 22, 'font-size': 25 }, g).textContent = 'سبال العين';
+    if (mark) el('text', { class: 'pdate', x: 0, y: 40, 'font-size': 18 }, g).textContent = mark;
   })();
 
 
@@ -562,20 +568,33 @@ function fitLabels() {
     const opts = [[n.label]], words = n.label.split(/\s+/);
     if (words.length > 1) { opts.push(splitLines(n.label)); if (words.length === 2) opts.push(words); }
     const pick = r => { let best = null; for (const lines of opts) { let fs = Math.min(lines.length > 1 ? n.r * 0.5 : n.r * 0.58, 20); while (fs > 9 && !fitsIn(lines, fs, r)) fs -= 0.5; if (!best || fs > best.fs + 0.4) best = { fs, lines }; } return best; };
-    let best = pick(n.r), mark = birthMark(byId.get(id)), df = 0, up = 0;
-    // the date goes under the name only where the fruit has room for both: the name is fitted in a smaller circle, moved up
-    // a little, and the date must fit the chord at its own height. Otherwise the name keeps the whole fruit, as before.
+    let best = pick(n.r), mark = birthMark(byId.get(id)), df = 0, up = 0, room = (lines, fs) => fitsIn(lines, fs, n.r);
+    // A name that has a date carries it wherever the name itself is shown: the date is drawn at 72% of the name's size (never
+    // under 70%), under the name. The two are fitted together: the name in a circle made smaller by the room the date
+    // takes, moved up a little, and the date within the chord of the fruit at its own height. Nothing spills out of the fruit.
     if (mark) {
-      const d0 = Math.min(11, Math.max(6.5, n.r * 0.24)), withDate = pick(n.r - d0 * 0.95);
-      const dfTry = Math.min(d0, withDate.fs * 0.72), upTry = dfTry * 0.8;
-      const yDate = (withDate.lines.length === 1 ? 0.78 * withDate.fs : 0.63 * withDate.fs + 0.78 * withDate.fs) + dfTry * 0.75 - upTry;   // clear of the letters' tails
-      const chord = 2 * Math.sqrt(Math.max(0, n.r * n.r - (yDate + dfTry * 0.55) * (yDate + dfTry * 0.55))) - 6;
-      if (withDate.fs >= 9.5 && fitsIn(withDate.lines, withDate.fs, n.r - d0 * 0.95) && width(mark, dfTry) * 0.74 <= chord) { best = withDate; df = dfTry; up = upTry; n.dateDy = yDate; }
+      const DATE = 0.72, chord = y => 2 * Math.sqrt(Math.max(0, n.r * n.r - y * y));
+      // the block (name, then date) is moved up by u; each line must fit the chord of the fruit at its own far edge
+      const fits = (lines, fs, u) => {
+        const d = fs * DATE, last = lines.length === 1 ? 1 - u : 0.63 * fs - u, yd = last + 0.78 * fs + 0.75 * d;
+        const names = lines.length === 1 ? width(lines[0], fs) <= chord(Math.abs(1 - u) + 0.36 * fs) - 8
+          : width(lines[0], fs) <= chord(0.55 * fs + u + 0.42 * fs) - 7 && width(lines[1], fs) <= chord(Math.abs(0.63 * fs - u) + 0.4 * fs) - 7;
+        return names && width(mark, d) * 0.74 <= chord(yd + 0.52 * d) - 6;
+      };
+      let both = null;
+      for (const lines of opts) {
+        let fs = Math.min(lines.length > 1 ? n.r * 0.5 : n.r * 0.58, 20), u = 0;
+        const shift = f => { for (const m of [0.55, 0.7, 0.85, 1, 1.2]) if (fits(lines, f, f * DATE * m)) return f * DATE * m; return -1; };
+        while (fs > 6.5 && (u = shift(fs)) < 0) fs -= 0.5;
+        if (u < 0) u = fs * DATE * 0.85;
+        if (!both || fs > both.fs + 0.4) both = { fs, lines, u };
+      }
+      best = both; df = best.fs * DATE; up = best.u; room = (lines, fs) => fits(lines, fs, up);
     }
     let { fs, lines } = best;
     // never let a name spill out of its fruit: at the smallest size, shorten it (the tooltip and the panel carry the full name)
     lines = lines.slice();
-    while (!fitsIn(lines, fs, n.r)) {
+    while (!room(lines, fs)) {
       let j = 0; lines.forEach((l, i) => { if (width(l, fs) > width(lines[j], fs)) j = i; });
       const cut = lines[j].replace(/…$/, ''); if (cut.length <= 1) break;
       lines[j] = cut.slice(0, -1).trimEnd() + '…';
@@ -655,7 +674,7 @@ function applyLOD(k, force) {
     for (const kl of order) {
       // phones: no names outside the fruits; a name too small to read becomes «…», with the name in the tooltip and the panel
       if (phone) { show(kl, kl.r * k >= 5 ? 'dots' : '', 0, 0); continue; }
-      const hw = kl.w / 2, hh = kl.mark ? 14 : 8, gap = kl.r * k + 3,   // two lines when the name has a date under it
+      const hw = kl.w / 2, hh = kl.mark ? 17 : 8, gap = kl.r * k + 3,   // two lines when the name has a date under it
        nx = kl.x * k, ny = kl.y * k;
       let at = null;
       for (const [ux, uy] of [[kl.ux, kl.uy], [0, 1], [0, -1], [kl.ux >= 0 ? 1 : -1, 0]]) {   // outward, below, above, beside
@@ -687,7 +706,7 @@ treeEl.addEventListener('touchmove', e => { if (e.touches.length === 1 && !stage
 
 const visible = () => stage.clientWidth > 0 && stage.clientHeight > 0;
 function contentBounds() {
-  return { x0: Math.min(fanBox.x0, -170) - 30, x1: Math.max(fanBox.x1, 170) + 30, y0: fanBox.y0 - 34, y1: Math.max(fanBox.y1, SLOT.ali + 104) };
+  return { x0: Math.min(fanBox.x0, -170) - 30, x1: Math.max(fanBox.x1, 170) + 30, y0: fanBox.y0 - 34, y1: Math.max(fanBox.y1, SLOT.ali + ALI_H / 2 + 62) };
 }
 // the phone stage has a fixed share of the screen (set in tree.css) and opens on the medallion and the first generations;
 // resizing it to the tree after load would push the page about
@@ -700,7 +719,7 @@ function legendCovers() {
   const x0 = l.left - s.left - 4, x1 = l.right - s.left + 4, y0 = l.top - s.top - 4, y1 = l.bottom - s.top + 4;
   const hit = (x, y, rx, ry) => { const sx = tr.x + x * tr.k, sy = tr.y + y * tr.k; return sx + rx * tr.k > x0 && sx - rx * tr.k < x1 && sy + ry * tr.k > y0 && sy - ry * tr.k < y1; };
   for (const f of fan.values()) if (hit(f.x, f.y, f.nr, f.nr)) return true;
-  return hit(0, SLOT.umar, 80, 30) || hit(0, SLOT.tulip, 100, 85) || hit(0, SLOT.ali, 152, 44);
+  return hit(0, SLOT.umar, 80, UMAR_H / 2 + 2) || hit(0, SLOT.tulip, 100, 85) || hit(0, SLOT.ali, 152, ALI_H / 2 + 2);
 }
 function legendInset() {
   if (isMobile() || !legendEl.open || (panel.classList.contains('open') && panel.parentNode === stage)) return null;
