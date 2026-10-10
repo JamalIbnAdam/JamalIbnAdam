@@ -4,8 +4,11 @@
 (() => {
 'use strict';
 
-const $ = id => document.getElementById(id);
-const host = $('ftree');
+// An element the script expects but the page does not have (an older page kept by a phone, with this newer script) is
+// stood in for by a detached element: giving it a handler or a text does nothing, and nothing throws.
+const missing = new Map();
+const $ = id => document.getElementById(id) || missing.get(id) || (console.warn(`tree: #${id} is not in this page`), missing.set(id, document.createElement('div')).get(id));
+const host = document.getElementById('ftree');
 if (!host || !window.d3) return;
 const d3 = window.d3;
 // this file lives in /tree/, the data and the scans at the site root
@@ -47,9 +50,11 @@ const t87 = $('ft-t1987');
 /* ---------- strings ---------- */
 const strings = () => (window.FamilyTreeData && window.FamilyTreeData.translations) || {};
 const hasStrings = () => typeof strings().tree_h1 === 'string';
+// the few texts that may be needed before the strings have arrived; a missing string is never shown as its raw key
+const DEFAULTS = { tree_load_error: 'تعذّر تحميل الشجرة. أعد التحميل.', tree_reload: 'أعد التحميل', tree_close: 'إغلاق' };
 const t = (key, vars) => {
   const s = strings()[key];
-  const out = typeof s === 'string' ? s : key;
+  const out = typeof s === 'string' ? s : (DEFAULTS[key] || '');
   return vars ? out.replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : out;
 };
 
@@ -1405,13 +1410,26 @@ const getJSON = url => fetch(url).then(r => { if (!r.ok) throw new Error(`${url}
 // a same-origin test file can stand in for tree.json: /tree/?data=<path>.json (used for the 2,000-name performance test)
 const override = new URLSearchParams(location.search).get('data');
 const treeUrl = override && /^[\w./-]+\.json$/.test(override) && !override.includes('..') ? asset(override) : asset('data/tree.json');
+function showLoadError(withReload) {
+  const st = document.getElementById('ft-stage'); if (!st || st.querySelector('.ft-error')) return;
+  const box = document.createElement('div');
+  box.className = 'ft-error';
+  const p = document.createElement('p'); p.textContent = t('tree_load_error'); box.appendChild(p);
+  if (withReload) {
+    // a phone can hold an old page with this newer script: empty the site's kept files (not the document scans) and load again
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'cta'; b.textContent = t('tree_reload');
+    b.addEventListener('click', async () => {
+      try { if (window.caches) { const names = await caches.keys(); await Promise.all(names.filter(n => n.startsWith('jamalibnadam-') && n !== 'jamalibnadam-evidence').map(n => caches.delete(n))); } } catch (e) { /* reload anyway */ }
+      location.reload();
+    });
+    box.appendChild(b);
+  }
+  st.appendChild(box);
+}
 Promise.all([getJSON(treeUrl), getJSON(asset('data/docs.json'))])
-  .then(([tree, docs]) => init(Array.isArray(tree) ? tree : (tree.persons || []), Array.isArray(docs) ? docs : []))
-  .catch(err => {
-    console.error('Family tree failed to load', err);
-    const box = document.createElement('div');
-    box.className = 'ft-error';
-    box.textContent = t('tree_load_error');
-    $('ft-stage').appendChild(box);
-  });
+  .then(([tree, docs]) => {
+    // the data arrived: a failure from here on is in the drawing, not in the loading
+    try { init(Array.isArray(tree) ? tree : (tree.persons || []), Array.isArray(docs) ? docs : []); }
+    catch (err) { console.error('Family tree failed to draw', err); showLoadError(true); }
+  }, err => { console.error('Family tree data failed to load', err); showLoadError(false); });
 })();

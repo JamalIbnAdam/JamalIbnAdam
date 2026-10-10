@@ -1,4 +1,4 @@
-const CACHE_NAME = 'jamalibnadam-v33';
+const CACHE_NAME = 'jamalibnadam-v34';
 // document scans are not precached: each one is cached the first time it is viewed
 const EVIDENCE_CACHE = 'jamalibnadam-evidence';
 const EVIDENCE_PATH = '/assets/evidence/';
@@ -28,22 +28,14 @@ const ASSETS_TO_CACHE = [
     './data/ansar-libya.json',
     './data/figures-unlinked.json'
 ];
-// the evidence tree's own files are fetched only by /tree/: cached there on first use, never from the home page
-const TREE_RUNTIME = [
-    '/tree/tree.css',
-    '/tree/tree.js',
-    '/tree/page.js',
-    '/assets/vendor/d3.v7.9.0.min.js',
-    '/data/tree.json',
-    '/data/docs.json'
-];
-
 self.addEventListener('install', (event) => {
     self.skipWaiting();
     event.waitUntil(
         caches.open(CACHE_NAME)
             .then((cache) => {
-                return cache.addAll(ASSETS_TO_CACHE).catch((err) => {
+                // 'reload': straight from the server, never from the browser's own HTTP cache, so a new version
+                // cannot be built out of an old page and a new script
+                return cache.addAll(ASSETS_TO_CACHE.map((url) => new Request(url, { cache: 'reload' }))).catch((err) => {
                     console.warn('Some assets failed to cache:', err);
                 });
             })
@@ -82,36 +74,36 @@ function evidenceCacheFirst(request) {
     });
 }
 
-function treeCacheFirst(request) {
+// Pages, scripts, styles and data: the network first, so a page and its script always come from the same deploy.
+// The fresh copy is kept (without any ?query) for when there is no network; only then is the kept copy used.
+const FRESH = /\.(?:html|js|css|json)$/;
+function networkFirst(request, url) {
+    const key = url.origin + url.pathname;
     return caches.open(CACHE_NAME).then((cache) => {
-        return cache.match(request).then((cached) => {
-            if (cached) return cached;
-            return fetch(request).then((response) => {
-                if (response.ok) cache.put(request, response.clone());
-                return response;
+        return fetch(request, { cache: 'no-cache' }).then((response) => {
+            if (response.ok) cache.put(key, response.clone());
+            return response;
+        }).catch(() => {
+            return cache.match(key).then((kept) => kept || cache.match(request, { ignoreSearch: true })).then((kept) => {
+                if (kept) return kept;
+                throw new Error('offline, and no kept copy of ' + url.pathname);
             });
         });
     });
 }
 
 self.addEventListener('fetch', (event) => {
-    const url = new URL(event.request.url);
+    const request = event.request, url = new URL(request.url);
     // other sites (fonts, the video, the contact form) are left to the browser, under the page's own rules
-    if (url.origin !== self.location.origin) return;
-    if (event.request.method === 'GET' && url.origin === self.location.origin) {
-        if (url.pathname.includes(EVIDENCE_PATH)) {
-            event.respondWith(evidenceCacheFirst(event.request));
-            return;
-        }
-        if (!url.search && TREE_RUNTIME.some((path) => url.pathname.endsWith(path))) {
-            event.respondWith(treeCacheFirst(event.request));
-            return;
-        }
+    if (url.origin !== self.location.origin || request.method !== 'GET') return;
+    if (url.pathname.includes(EVIDENCE_PATH)) {
+        event.respondWith(evidenceCacheFirst(request));
+        return;
     }
-    event.respondWith(
-        caches.match(event.request)
-            .then((response) => {
-                return response || fetch(event.request);
-            })
-    );
+    if (request.mode === 'navigate' || url.pathname.endsWith('/') || FRESH.test(url.pathname)) {
+        event.respondWith(networkFirst(request, url));
+        return;
+    }
+    // images, fonts and icons do not change under a name: the kept copy first
+    event.respondWith(caches.match(request).then((response) => response || fetch(request)));
 });
