@@ -27,6 +27,8 @@ window.FamilyTreeData = {
 
         // --- POEM TAB ---
         poem_main_title: "La epopeya de los Ansar en la tierra de Libia",
+        poem_video_watch: "Ver en YouTube ↗",
+        home_poem_listen: "▶ Escucha el nashid",
         poem_intro:
             "Un poema sobre la historia de los Ansar, desde su apoyo al Profeta ﷺ en Medina hasta la tierra de Libia y Wadi al-Shati. Cada hecho que menciona tiene su fuente en este sitio.",
         poem_ch1_title: "Capítulo I: Los Ansar en Medina",

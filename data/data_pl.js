@@ -27,6 +27,8 @@ window.FamilyTreeData = {
 
         // --- POEM TAB ---
         poem_main_title: "Epos Ansarów w ziemi Libii",
+        poem_video_watch: "Zobacz na YouTube ↗",
+        home_poem_listen: "▶ Posłuchaj nasheedu",
         poem_intro:
             "Poemat o dziejach Ansarów, od wsparcia Proroka ﷺ w Medynie po ziemię libijską i Wadi al-Szati. Każde wydarzenie, o którym mówi, ma swoje źródło na tej stronie.",
         poem_ch1_title: "Rozdział I: Ansarowie w Medynie",
