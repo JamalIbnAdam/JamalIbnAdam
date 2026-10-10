@@ -29,7 +29,20 @@
   "notes": "اسمه «علي الجداوي» في نسخة حبس غير مؤرخة (ص168): «عمر بن علي الجداوي». ونسبة «الجداوي الأنصاري» مكتوبة في وثائق القبيلة منذ 1174هـ (ص132). ونسبة «السلمي الخزرجي» (من بني سلمة من الخزرج، إلى جابر بن عبد الله رضي الله عنه) رواية أعيان القبيلة: الحاج محمد القاضي الرشيد الأنصاري، ونقلاً عن الحاج أبي بكر البركولي الأنصاري والحاج المجذوب الأنصاري والحاج النعماني الأنصاري، رحمهم الله جميعاً، سجّلها المؤلف (ص91 ح7)، والعهدة على الرواة. و«الخزرجي» يرد أيضاً في ملصق شجرة 1987 وفي ورقة غير مؤرخة. تنبيه تكرار: في شجرة المؤلف «عمر بن علي» متأخر في فرع سالم بن يوسف (ص159)، وسنة نسخ الحبس مجهولة.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    770,
+    845
+   ],
+   "g": [
+    1369,
+    1441
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "umar",
@@ -76,7 +89,20 @@
   "notes": "محتمل قوي. حرفياً الحبس يجعل عمر أبا فضل («فضل بن عمر بن علي»)، ووثيقة 1186 المرمّمة تجعله أبا عبد الله («عبد الله بن عمر الجداوي»). إقحام «عبد الله» في الحبس استنتاج المؤلف.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    805,
+    880
+   ],
+   "g": [
+    1403,
+    1475
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "abdallah",
@@ -171,7 +197,20 @@
   "notes": "«سبال العين» و«الجداوي» لا تجتمعان في وثيقة واحدة. الصلة بعمر محتملة (انظر عمر). ص199: الخط «الشيخ الحاج عبد الله سبال [العين]». ص208 قد تُقرأ «سبال [عين] براك».",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    845,
+    920
+   ],
+   "g": [
+    1441,
+    1514
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "ph_aqd_1",
@@ -334,7 +373,20 @@
   "notes": "اسمه وارد في نسب ابنه «الفقيه محمد بن عبد الله» في وثيقة الوقف 1153هـ. لا يُعرف عنه غير ذلك بعد.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    955,
+    1095
+   ],
+   "g": [
+    1548,
+    1684
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "ph_yahmad_1",
@@ -574,7 +626,20 @@
    "basis": "ص168، 215–217: الخط «فضل بن عمر بن علي الجداوي»؛ الرابط فضل←عبد الله ثابت من وثائق أخرى، لكن تعديل نص الحبس مخالف له"
   },
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    885,
+    960
+   ],
+   "g": [
+    1480,
+    1553
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "m3",
@@ -653,7 +718,20 @@
   "notes": "المؤلف يضيف ابناً خامساً «دين الله» (وولديه محمد وعثمان) — لا وثيقة.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    930,
+    990
+   ],
+   "g": [
+    1524,
+    1582
+   ],
+   "kind": "doc",
+   "basis": "حفيدته ضوء بنت فضل بن محمد مذكورة سنة 1057هـ (ص154)، وابنه طاهر سنة 1089هـ (ص138)",
+   "basis_en": "His granddaughter Daw is named in 1057 AH (p.154) and his son Tahir in 1089 AH (p.138)."
+  }
  },
  {
   "id": "f4_fadl_m",
@@ -676,7 +754,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    945,
+    1025
+   ],
+   "g": [
+    1538,
+    1616
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "f5_dawa",
@@ -711,7 +802,20 @@
    "basis": "ص183: الخط «ضوة ابنة الحاج فضل»؛ وثيقة 1057 تسند المطابقة"
   },
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    965,
+    1050
+   ],
+   "g": [
+    1558,
+    1640
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "t4_tahir",
@@ -750,7 +854,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    945,
+    1025
+   ],
+   "g": [
+    1538,
+    1616
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "t5_muh",
@@ -781,7 +898,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    965,
+    1050
+   ],
+   "g": [
+    1558,
+    1640
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "t6_belq",
@@ -812,7 +942,20 @@
   "notes": "الاسم الأول غير مؤكد في القراءتين.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1005,
+    1095
+   ],
+   "g": [
+    1597,
+    1684
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "ab4",
@@ -883,7 +1026,20 @@
   "notes": "مطابقة «الفقيه أبو بكر» في 1043 به استنتاج (اسم يوسف + أقار).",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    945,
+    1010
+   ],
+   "g": [
+    1538,
+    1602
+   ],
+   "kind": "calc",
+   "basis": "محسوب من أعمار الآباء والأبناء: بين الأب وابنه 18 إلى 60 سنة، مع أقرب تاريخ ثابت في السلسلة.",
+   "basis_en": "Computed from fathers and sons (18 to 60 years apart) and the nearest fixed date in the line."
+  }
  },
  {
   "id": "y5_yusuf",
@@ -930,7 +1086,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    980,
+    1025
+   ],
+   "g": [
+    1572,
+    1616
+   ],
+   "kind": "doc",
+   "basis": "اشترى أرضاً في آقار سنة 1043هـ (ص150–151)، فكان راشداً حياً حينها",
+   "basis_en": "He bought land in Aqar in 1043 AH (pp.150–151), so he was an adult then."
+  }
  },
  {
   "id": "t5_tahir_ab",
@@ -953,7 +1122,20 @@
   "notes": "الأب «الفقيه أبو بكر» بلا نسب؛ ربطه بأبي بكر بن محمد بالمطابقة.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    965,
+    1045
+   ],
+   "g": [
+    1558,
+    1635
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "mb5_mabruka",
@@ -976,7 +1158,20 @@
   "notes": "زوج أحمدوا بن إمجيدة.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    965,
+    1045
+   ],
+   "g": [
+    1558,
+    1635
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "s6_salim",
@@ -1023,7 +1218,20 @@
   "notes": "المؤلف: ولد نحو 1045 من بنت نعسان (رواية).",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1030,
+    1070
+   ],
+   "g": [
+    1621,
+    1660
+   ],
+   "kind": "doc",
+   "basis": "تقدير المؤلف: وُلد نحو 1045هـ",
+   "basis_en": "The author's estimate: born about 1045 AH."
+  }
  },
  {
   "id": "ms7",
@@ -1062,7 +1270,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1045,
+    1130
+   ],
+   "g": [
+    1635,
+    1718
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "sm8",
@@ -1109,7 +1330,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1075,
+    1165
+   ],
+   "g": [
+    1665,
+    1752
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "msm9",
@@ -1132,7 +1366,20 @@
   "notes": "تكرار: «محمد بن سالم» آخر في الجيل نفسه (ابن سالم بن أبي بكر).",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1095,
+    1185
+   ],
+   "g": [
+    1684,
+    1771
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "as9",
@@ -1163,7 +1410,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1095,
+    1185
+   ],
+   "g": [
+    1684,
+    1771
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "fa10",
@@ -1194,7 +1454,20 @@
   "notes": "أبعد جيل موصول بفضل بسلسلة مكتوبة في وثيقة: عشرة أسماء متصلة حتى «عبد الله سبال العين». تدقيق النسخ: التاريخ 1229 (ص161 وقصاصة ص219)، لا 1226.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1125,
+    1215
+   ],
+   "g": [
+    1713,
+    1800
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "abs7",
@@ -1241,7 +1514,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1060,
+    1110
+   ],
+   "g": [
+    1650,
+    1699
+   ],
+   "kind": "doc",
+   "basis": "خاطبه السلطان في رسالة نحو 1130–1137هـ (ص148، ص164؛ القراءة منخفضة الثقة)",
+   "basis_en": "The sultan wrote to him around 1130–1137 AH (pp.148, 164; low-confidence reading)."
+  }
  },
  {
   "id": "sab8",
@@ -1272,7 +1558,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1075,
+    1165
+   ],
+   "g": [
+    1665,
+    1752
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "ss9",
@@ -1303,7 +1602,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1095,
+    1185
+   ],
+   "g": [
+    1684,
+    1771
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "msab9",
@@ -1334,7 +1646,20 @@
   "notes": "تكرار مع محمد بن سالم بن محمد (1186).",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1095,
+    1185
+   ],
+   "g": [
+    1684,
+    1771
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "mab8",
@@ -1374,7 +1699,20 @@
   "author_version": null,
   "living": false,
   "hidden": false,
-  "also_civil": true
+  "also_civil": true,
+  "birth_est": {
+   "h": [
+    1090,
+    1150
+   ],
+   "g": [
+    1679,
+    1737
+   ],
+   "kind": "doc",
+   "basis": "ابنه أبو بكر شاهد في وثيقة 1186هـ (ص158، ص219)",
+   "basis_en": "His son Abu Bakr witnessed a deed in 1186 AH (pp.158, 219)."
+  }
  },
  {
   "id": "bma9",
@@ -1405,7 +1743,20 @@
   "notes": "صلته بمحمد مقروءة؛ موضع محمد نفسه محتمل.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1105,
+    1185
+   ],
+   "g": [
+    1694,
+    1771
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "a_ali_m",
@@ -1444,7 +1795,20 @@
   "notes": "الوثيقة «علي بن محمد» فقط؛ «بن أبي بكر بن سالم» من حاشية المؤلف. تأكيد مستقل مطبوع: «المسك والريحان» (ص235) يسوق نسب حفيده «علي بن محمد بن أبي بكر المرابطي الآقاري»، فيوافق حاشية المؤلف في وصل علي بمحمد بن أبي بكر. رُفعت الحالة إلى «محتمل». وثيقة 1186 (قصاصة ص219، النسخة المرمّمة) تكتب «علي بن محمد بن بوبكر بن سالم» صراحة.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1105,
+    1185
+   ],
+   "g": [
+    1694,
+    1771
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "a_umar_ali",
@@ -1458,7 +1822,20 @@
   "notes": "لا يرد في أي وثيقة؛ حلقة من حاشية المؤلف (ص159). متجانس الاسم مع «عمر بن علي الجداوي» في الحبس.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1125,
+    1215
+   ],
+   "g": [
+    1713,
+    1800
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "a_ab_umar",
@@ -1472,7 +1849,20 @@
   "notes": "حلقة من حاشية المؤلف (ص159) فقط.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1160,
+    1255
+   ],
+   "g": [
+    1747,
+    1839
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "a_fahd",
@@ -1495,7 +1885,20 @@
   "notes": "الوثيقة لا تذكر إلا أباه أبا بكر؛ الموضع من المؤلف.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1185,
+    1280
+   ],
+   "g": [
+    1771,
+    1863
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "a_yusuf_m",
@@ -1509,7 +1912,20 @@
   "notes": "لا يرد إلا ضمناً في «عبد الله بن يوسف». | حلقة في نسب يحفظه أبناء القبيلة ومسجّل في السجل المدني لأحفاده (إفادة صاحب الموقع 2026-10-10). التصنيف السابق: من شجرة المؤلف فقط.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1105,
+    1175
+   ],
+   "g": [
+    1694,
+    1762
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "a_abd_yusuf",
@@ -1556,7 +1972,20 @@
   "author_version": null,
   "living": false,
   "hidden": false,
-  "also_civil": true
+  "also_civil": true,
+  "birth_est": {
+   "h": [
+    1150,
+    1190
+   ],
+   "g": [
+    1737,
+    1776
+   ],
+   "kind": "doc",
+   "basis": "خاطبه السلطان برسالتين سنة 1211هـ و1219هـ (ص152، ص165)",
+   "basis_en": "The sultan wrote to him in 1211 AH and 1219 AH (pp.152, 165)."
+  }
  },
  {
   "id": "a_ahmad_ab",
@@ -1579,7 +2008,20 @@
   "notes": "مطابقة أبيه بأبي بكر بن محمد بن أبي بكر بن سالم من حاشية المؤلف.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1125,
+    1215
+   ],
+   "g": [
+    1713,
+    1800
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "a_tahir_m",
@@ -1593,7 +2035,20 @@
   "notes": "حلقة من حاشية المؤلف (ص163) فقط.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1125,
+    1215
+   ],
+   "g": [
+    1713,
+    1800
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "a_m_tahir",
@@ -1620,7 +2075,20 @@
    "basis": "ص163: الخط «محمد الطاهر»، والمؤلف «محمد بن الطاهر …»"
   },
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1160,
+    1255
+   ],
+   "g": [
+    1747,
+    1839
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "m_madani",
@@ -1643,7 +2111,20 @@
   "notes": "الرابط مكتوب؛ موضع السلسلة كلها من المؤلف.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1185,
+    1280
+   ],
+   "g": [
+    1771,
+    1863
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "m_tuhami",
@@ -1666,7 +2147,20 @@
   "notes": "«الأنصاري أصلاً» مكتوبة؛ «الخزرجي» في الحاشية من المؤلف. الأجيال 11–13 بحسب شجرة المؤلف فقط.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1205,
+    1300
+   ],
+   "g": [
+    1791,
+    1883
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "a4",
@@ -1737,7 +2231,20 @@
   "notes": "وثيقة ص218 تختصر فتقول «عبد الله بن فضل» (والصواب حفيده). المؤلف يزيد له ابنين «محمد بلحاج» و«نفيسة» — لا وثيقة.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    945,
+    1025
+   ],
+   "g": [
+    1538,
+    1616
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "a5_mubarak",
@@ -1768,7 +2275,20 @@
   "notes": "مذكور في الحبس المنسوخ وحده.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    965,
+    1050
+   ],
+   "g": [
+    1558,
+    1640
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "a5_ali",
@@ -1799,7 +2319,20 @@
   "notes": "مذكور في الحبس المنسوخ وحده. تكرار: «علي» و«عمر» هنا يفسّران احتمال اختلاط «عمر بن علي» في الحبس.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    965,
+    1050
+   ],
+   "g": [
+    1558,
+    1640
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "a5_umar",
@@ -1830,7 +2363,20 @@
   "notes": "مذكور في الحبس المنسوخ وحده. تكرار: «علي» و«عمر» هنا يفسّران احتمال اختلاط «عمر بن علي» في الحبس.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    965,
+    1050
+   ],
+   "g": [
+    1558,
+    1640
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "a5_ahmad",
@@ -1861,7 +2407,20 @@
   "notes": "مذكور في الحبس المنسوخ وحده.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    965,
+    1050
+   ],
+   "g": [
+    1558,
+    1640
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "a5_atiyya",
@@ -1892,7 +2451,20 @@
   "notes": "مذكور في الحبس المنسوخ وحده.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    965,
+    1050
+   ],
+   "g": [
+    1558,
+    1640
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "a5_belq",
@@ -1923,7 +2495,20 @@
   "notes": "مذكور في الحبس المنسوخ وحده.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    965,
+    1050
+   ],
+   "g": [
+    1558,
+    1640
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "m5",
@@ -2018,7 +2603,20 @@
   "notes": "مطابقة «الحاج محمد بن عبد الله» (1157 فما بعد) به يسندها نسب 1189 الصريح.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    965,
+    1050
+   ],
+   "g": [
+    1558,
+    1640
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "aj6",
@@ -2057,7 +2655,20 @@
   "notes": "تكرار: له أخ آخر اسمه عبد الله (1157).",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1005,
+    1095
+   ],
+   "g": [
+    1597,
+    1684
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "ab6_other",
@@ -2088,7 +2699,20 @@
   "notes": "قد يكون هو المذكور في ص218 أو يكون الأجواد نفسه.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1005,
+    1095
+   ],
+   "g": [
+    1597,
+    1684
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "mm6",
@@ -2135,7 +2759,20 @@
   "notes": "ربما أكثر من محمد واحد بين الإخوة؛ دُمجوا هنا.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1005,
+    1095
+   ],
+   "g": [
+    1597,
+    1684
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "bh6",
@@ -2166,7 +2803,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1005,
+    1095
+   ],
+   "g": [
+    1597,
+    1684
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "bq6",
@@ -2189,7 +2839,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1005,
+    1095
+   ],
+   "g": [
+    1597,
+    1684
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "fd6",
@@ -2220,7 +2883,20 @@
   "notes": "متوفى قبل 1157.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1005,
+    1095
+   ],
+   "g": [
+    1597,
+    1684
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "ar6",
@@ -2243,7 +2919,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1005,
+    1095
+   ],
+   "g": [
+    1597,
+    1684
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "aj7_ali",
@@ -2306,7 +2995,20 @@
   "notes": "آخر حلقة في فرع الأجواد موصولة بفضل بسلسلة مكتوبة (1189).",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1040,
+    1130
+   ],
+   "g": [
+    1631,
+    1718
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "ak7",
@@ -2337,7 +3039,20 @@
   "notes": "أبوه «عبد الله بن الحاج محمد» — لا يُحسم أيّ الأخوين (الأجواد أو الآخر).",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1040,
+    1130
+   ],
+   "g": [
+    1631,
+    1718
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "a_hm_ajwad",
@@ -2360,7 +3075,20 @@
   "notes": "الوثيقة تقف عنده؛ جعله ابن علي بن عبد الله الأجواد من حاشية المؤلف (ص171–172).",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1075,
+    1165
+   ],
+   "g": [
+    1665,
+    1752
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "ar_ajwad",
@@ -2383,7 +3111,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1095,
+    1185
+   ],
+   "g": [
+    1684,
+    1771
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "m_ar_ajwad",
@@ -2414,7 +3155,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1125,
+    1215
+   ],
+   "g": [
+    1713,
+    1800
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "abd_1346",
@@ -2437,7 +3191,20 @@
   "notes": "آخر كاتب مؤرخ يكتب سلسلته (1346). الأجيال 8–11 تتوقف على رابط المؤلف «الحاج محمد الأجواد بن علي».",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1160,
+    1255
+   ],
+   "g": [
+    1747,
+    1839
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "m_1336",
@@ -2460,7 +3227,20 @@
   "notes": "قراءة السلسلة ناقصة؛ «الحجازي أصلاً ونسباً» بلا «الأنصاري».",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1160,
+    1255
+   ],
+   "g": [
+    1747,
+    1839
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "b3",
@@ -2507,7 +3287,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    915,
+    1005
+   ],
+   "g": [
+    1509,
+    1597
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "i4",
@@ -2558,7 +3351,20 @@
    "basis": "ص131: الخط «بن ابي القاسم بن اسماعيل بن الحاج فضل»؛ ترتيب المؤلف يوافق 1174 وص136 لكنه تعديل لنص 1276"
   },
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    930,
+    1025
+   ],
+   "g": [
+    1524,
+    1616
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "ghazala",
@@ -2581,7 +3387,20 @@
   "notes": "زوج الفقيه محمد بن المرابط عمر (فرع قاسم): مصاهرة موثقة بين الفرعين.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    955,
+    1050
+   ],
+   "g": [
+    1548,
+    1640
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "abi5",
@@ -2628,7 +3447,20 @@
   "notes": "وثيقة 1276 تجعله «أبا بكر بن أبي القاسم بن إسماعيل».",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    955,
+    1050
+   ],
+   "g": [
+    1548,
+    1640
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "mbh6",
@@ -2667,7 +3499,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1005,
+    1095
+   ],
+   "g": [
+    1597,
+    1684
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "ft7",
@@ -2706,7 +3551,20 @@
   "notes": "أقدم «الجداوي الأنصاري» مؤرخ (1174) في توقيعه.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1040,
+    1130
+   ],
+   "g": [
+    1631,
+    1718
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "abf8",
@@ -2729,7 +3587,20 @@
   "notes": "اسم الأب غير مؤكد.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1075,
+    1165
+   ],
+   "g": [
+    1665,
+    1752
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "mr7_ash",
@@ -2760,7 +3631,20 @@
   "notes": "تكرار مهم: غير القاضي محمد الرشيد بن محمد بن عمر (فرع قاسم).",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1040,
+    1130
+   ],
+   "g": [
+    1631,
+    1718
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "mmr8",
@@ -2783,7 +3667,20 @@
   "notes": "نسبته لمحمد الرشيد الأشكدي (لا القاضي) من قرينة «ابن عمه».",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1075,
+    1165
+   ],
+   "g": [
+    1665,
+    1752
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "amr8",
@@ -2814,7 +3711,20 @@
   "notes": "التاريخ: 1276 في التدقيق؛ لكن عمّه فتح الله نشط 1152–1174، فقراءة 1176 أوفق زمنياً — تحتاج حسماً. تدقيق النسخ: ص131 «ستة وسبعين ومايتان والف» = 1276، لا 1176.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1075,
+    1165
+   ],
+   "g": [
+    1665,
+    1752
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "iab6",
@@ -2837,7 +3747,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1005,
+    1095
+   ],
+   "g": [
+    1597,
+    1684
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "ai7",
@@ -2860,7 +3783,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1040,
+    1130
+   ],
+   "g": [
+    1631,
+    1718
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "m8_1301",
@@ -2883,7 +3819,20 @@
   "notes": "الحرد يقف عند «إسماعيل»؛ مطابقة «أحمد بن إسماعيل» بابن الفقيه إسماعيل بن أبي بكر (1142) هي إضافة المؤلف «(بن أبي بكر بن إسماعيل)». زمنياً: 3 أجيال في نحو 160 سنة — متوترة.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1075,
+    1165
+   ],
+   "g": [
+    1665,
+    1752
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "a9_1301",
@@ -2906,7 +3855,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1095,
+    1185
+   ],
+   "g": [
+    1684,
+    1771
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "ali_fathi",
@@ -2941,7 +3903,20 @@
    "basis": "ص160، 162 (حواشٍ) تخالف حرد 1301 «علي الفتحي بن احمد بن محمد بن احمد بن اسماعيل»، وتخالف المؤلف نفسه في ص129"
   },
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1125,
+    1215
+   ],
+   "g": [
+    1713,
+    1800
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "murghani",
@@ -2964,7 +3939,20 @@
   "notes": "مطابقة علي الفتحي (1299) بكاتب 1301 بالاسم والتاريخ. تكرار: «سيدي أحمد المرغني» في ص136 (بعد 1156؟) — إمّا شخص أقدم أو أن تاريخ ص136 متأخر.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1160,
+    1255
+   ],
+   "g": [
+    1747,
+    1839
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "salim_fathi",
@@ -2987,7 +3975,20 @@
   "notes": "المؤلف: «سالم إدقيمش».",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1160,
+    1255
+   ],
+   "g": [
+    1747,
+    1839
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "a_fathi2",
@@ -3001,7 +4002,20 @@
   "notes": "من حاشية المؤلف ص162 فقط.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1185,
+    1280
+   ],
+   "g": [
+    1771,
+    1863
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "a_poet1360",
@@ -3024,7 +4038,20 @@
   "notes": "اسم الناظم لا يظهر في الصورة؛ هويته وسلسلته من المؤلف (الذي يضعها في فرع سالم بن يوسف). أول «الخزرجي».",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1205,
+    1300
+   ],
+   "g": [
+    1791,
+    1883
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "mab6",
@@ -3047,7 +4074,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1005,
+    1095
+   ],
+   "g": [
+    1597,
+    1684
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "ti5",
@@ -3078,7 +4118,20 @@
   "notes": "ص136 تجعل ورثة سالم بن طاهر من أبناء إسماعيل بن بلقاسم.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    955,
+    1050
+   ],
+   "g": [
+    1548,
+    1640
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "st6",
@@ -3109,7 +4162,20 @@
   "notes": "متوفى قبل وثيقة ص136.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1005,
+    1095
+   ],
+   "g": [
+    1597,
+    1684
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "aq5",
@@ -3140,7 +4206,20 @@
   "notes": "وثيقة 1276 فيها «أبي القاسم بن إسماعيل بن الحاج فضل» أيضاً.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    955,
+    1050
+   ],
+   "g": [
+    1548,
+    1640
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "fq6",
@@ -3163,7 +4242,20 @@
   "notes": "تكرار: غير فضل بن أبي القاسم (الجيل 4، 1089).",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1005,
+    1095
+   ],
+   "g": [
+    1597,
+    1684
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "yq6",
@@ -3194,7 +4286,20 @@
   "notes": "مطابقة «يوسف بن بلقاسم» (ص136) بيوسف بن أبي القاسم بن إسماعيل (1119) استنتاج؛ لا يمكن أن يكون ابن بلقاسم بن فضل زمنياً.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1005,
+    1095
+   ],
+   "g": [
+    1597,
+    1684
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "ay7",
@@ -3225,7 +4330,20 @@
   "notes": "الرابط بيوسف مكتوب؛ موضع يوسف محتمل.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1040,
+    1130
+   ],
+   "g": [
+    1631,
+    1718
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "ayb7",
@@ -3248,7 +4366,20 @@
   "notes": "تكرار مع عبد الله بن يوسف (أقار، 1219).",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1040,
+    1130
+   ],
+   "g": [
+    1631,
+    1718
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "ay8_salim",
@@ -3271,7 +4402,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1075,
+    1165
+   ],
+   "g": [
+    1665,
+    1752
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "ay8_fadl",
@@ -3294,7 +4438,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1075,
+    1165
+   ],
+   "g": [
+    1665,
+    1752
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "ay8_aisha",
@@ -3317,7 +4474,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1075,
+    1165
+   ],
+   "g": [
+    1665,
+    1752
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "ay8_mabruka",
@@ -3340,7 +4510,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1075,
+    1165
+   ],
+   "g": [
+    1665,
+    1752
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "fb4",
@@ -3363,7 +4546,20 @@
   "notes": "أخوّته لإسماعيل بن أبي القاسم من عبارة «ابنة عمه». تكرار: فضل بن أبي القاسم بن إسماعيل (1119) شخص آخر.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    930,
+    1025
+   ],
+   "g": [
+    1524,
+    1616
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "aqf5",
@@ -3402,7 +4598,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    955,
+    1050
+   ],
+   "g": [
+    1548,
+    1640
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "faq6",
@@ -3425,7 +4634,20 @@
   "notes": "ربما هو البائع «سيدي[...] ابن ابا القاسم بن فضل» في ص137 (تخمين المؤلف).",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1005,
+    1095
+   ],
+   "g": [
+    1597,
+    1684
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "aaq6",
@@ -3456,7 +4678,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1005,
+    1095
+   ],
+   "g": [
+    1597,
+    1684
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "a_ism_fadl",
@@ -3470,7 +4705,20 @@
   "notes": "حلقة من حاشية المؤلف ص141 لوصل «المشرد».",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    955,
+    1050
+   ],
+   "g": [
+    1548,
+    1640
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "mi6_mushrid",
@@ -3493,7 +4741,20 @@
   "notes": "الرابط مكتوب؛ موضع إسماعيل من المؤلف.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1005,
+    1095
+   ],
+   "g": [
+    1597,
+    1684
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "mm7_mushrid",
@@ -3516,7 +4777,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1040,
+    1130
+   ],
+   "g": [
+    1631,
+    1718
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "mushrid",
@@ -3539,7 +4813,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1075,
+    1165
+   ],
+   "g": [
+    1665,
+    1752
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "q3",
@@ -3578,7 +4865,20 @@
   "notes": "«قاسم بن فضل بن عبد الله» لا ترد إلا في حرد 1261.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    915,
+    1005
+   ],
+   "g": [
+    1509,
+    1597
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "uq4",
@@ -3621,7 +4921,20 @@
    "basis": "ص181: «عمر بن […] / فضل» — ترميم لا قراءة"
   },
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    930,
+    1025
+   ],
+   "g": [
+    1524,
+    1616
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "mu5",
@@ -3668,7 +4981,20 @@
   "notes": "تكرار: «الفقيه محمد بن الفقيه عمر بن أبي عبد الله» القاضي الوافي (1057، ص154) من أسرة أخرى. المؤلف يجعله أيضاً أبا إسماعيل (انظر «محمد بن قاسم»).",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    955,
+    1050
+   ],
+   "g": [
+    1548,
+    1640
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "khadija",
@@ -3691,7 +5017,20 @@
   "notes": "أمها غزالة بنت إسماعيل بن أبي القاسم (أشكدة).",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1005,
+    1090
+   ],
+   "g": [
+    1597,
+    1679
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "mr6",
@@ -3746,7 +5085,20 @@
   "notes": "تكرار: محمد الرشيد بن محمد بالحاج (أشكدة).",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1005,
+    1095
+   ],
+   "g": [
+    1597,
+    1684
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "qm7",
@@ -3793,7 +5145,20 @@
   "notes": "رسالة ص193 قد تقرأ «محمد بن أحمد الرشيد» (منخفضة).",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1040,
+    1130
+   ],
+   "g": [
+    1631,
+    1718
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "aqd5",
@@ -3832,7 +5197,20 @@
   "notes": "تنبيه: شاهد 1051 «عبد القادر بن عمر» يوقّع «السوداني»؛ إن كان هو فنسبة البيت «السوداني» لا «الجداوي». لم يناقشه المؤلف.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    955,
+    1050
+   ],
+   "g": [
+    1548,
+    1640
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "qu5",
@@ -3859,7 +5237,20 @@
    "basis": "ص183: الخط «ابنة قاسم بن المرابط عمر»"
   },
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    955,
+    1050
+   ],
+   "g": [
+    1548,
+    1640
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "mq4",
@@ -3894,7 +5285,20 @@
    "basis": "ص188، 219: الخط «بن محمد بن قاسم بن فضل»؛ المؤلف أقحم «عمر» وصرّح بذلك في الحاشية"
   },
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    930,
+    1025
+   ],
+   "g": [
+    1524,
+    1616
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "im5",
@@ -3933,7 +5337,20 @@
   "notes": "مدين نحو 1085 «إسماعيل بن محمد بن فضل»: المؤلف يجعله «بن فضل بن قاسم»؛ قد يكون حفيد الحاج فضل عبر محمد. غير محسوم.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    955,
+    1050
+   ],
+   "g": [
+    1548,
+    1640
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "ui6",
@@ -3972,7 +5389,20 @@
   "notes": "قاضٍ 1172–1176 حسب جدول المؤلف.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1005,
+    1095
+   ],
+   "g": [
+    1597,
+    1684
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "mui7",
@@ -4003,7 +5433,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1040,
+    1130
+   ],
+   "g": [
+    1631,
+    1718
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "mm8_1261",
@@ -4026,7 +5469,20 @@
   "notes": "ناسخ «درة الغواص» 1261؛ آخر حلقة في فرع قاسم بسلسلة مكتوبة.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1075,
+    1165
+   ],
+   "g": [
+    1665,
+    1752
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "ahq4",
@@ -4057,7 +5513,20 @@
   "notes": "زوج ضوة؛ كونه ابن قاسم بن فضل استنتاج المؤلف.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    930,
+    1025
+   ],
+   "g": [
+    1524,
+    1616
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "arq4",
@@ -4080,7 +5549,20 @@
   "notes": "قاسم بلا نسب؛ «زاوية براك» قرينة. شجرة المؤلف تضع عبد الرحمن تحت قاسم.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    930,
+    1025
+   ],
+   "g": [
+    1524,
+    1616
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "muwaffaq",
@@ -4103,7 +5585,20 @@
   "notes": "أقدم فرد مؤرخ في هذا الفرع إن صحت المطابقة.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    955,
+    1050
+   ],
+   "g": [
+    1548,
+    1640
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "fq4_hajj",
@@ -4126,7 +5621,20 @@
   "notes": "قاسم بلا نسب؛ المؤلف يسمّي المشتري «المرابط». متجانس مع الحاج فضل الأكبر.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    930,
+    1025
+   ],
+   "g": [
+    1524,
+    1616
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "qf5",
@@ -4149,7 +5657,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    955,
+    1050
+   ],
+   "g": [
+    1548,
+    1640
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "ath_m",
@@ -4172,7 +5693,20 @@
   "notes": "جذر عائم: ورثة وقف عبد الله الجداوي بقرب الدرجة، ولا سلسلة إلى فضل. المؤلف: «حفيد الشيخ عثمان» — بلا وثيقة.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1005,
+    1130
+   ],
+   "g": [
+    1597,
+    1718
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "badr",
@@ -4195,7 +5729,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1040,
+    1155
+   ],
+   "g": [
+    1631,
+    1742
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "ath_abd",
@@ -4218,7 +5765,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1040,
+    1155
+   ],
+   "g": [
+    1631,
+    1742
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "abd_badr",
@@ -4249,7 +5809,20 @@
   "notes": "الوثيقة الوحيدة التي تصل هذا الفرع بعبد الله سبال العين (ذرية، بلا سلسلة).",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1075,
+    1175
+   ],
+   "g": [
+    1665,
+    1762
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "m_abd_badr",
@@ -4272,7 +5845,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1095,
+    1195
+   ],
+   "g": [
+    1684,
+    1781
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "a_aqd_father_uthman",
@@ -4295,7 +5881,20 @@
   "notes": "جذر عائم. المؤلف (ص194) يذكر فرضيتين لم يحسمهما: من أولاد أبي القاسم بأشكدة (الحسناوي)، أو أن عبد القادر هذا هو عبد القادر بن عمر بن قاسم (رأيه). كلتاهما بلا وثيقة.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    930,
+    1050
+   ],
+   "g": [
+    1524,
+    1640
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "uthman",
@@ -4326,7 +5925,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    955,
+    1070
+   ],
+   "g": [
+    1548,
+    1660
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "abdnur",
@@ -4365,7 +5977,20 @@
   "notes": "«الحاج عبد النور» (1105، 1153) = عبد النور بن عثمان مطابقة بالاسم.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1005,
+    1090
+   ],
+   "g": [
+    1597,
+    1679
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "aqd_abdnur",
@@ -4388,7 +6013,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1040,
+    1150
+   ],
+   "g": [
+    1631,
+    1737
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "mabruka_abdnur",
@@ -4411,7 +6049,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1040,
+    1105
+   ],
+   "g": [
+    1631,
+    1694
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "fath_abdnur",
@@ -4434,7 +6085,20 @@
   "notes": "الاسم مطموس؛ «فتح الله» من 1153 «عبد الله بن فتح الله» ومن المؤلف.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1040,
+    1135
+   ],
+   "g": [
+    1631,
+    1723
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "abd_fath",
@@ -4457,7 +6121,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1075,
+    1155
+   ],
+   "g": [
+    1665,
+    1742
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "ahmad_fath",
@@ -4480,7 +6157,20 @@
   "notes": "أيّ فتح الله؟ غير محسوم.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1075,
+    1185
+   ],
+   "g": [
+    1665,
+    1771
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "aqd_ahmad",
@@ -4503,7 +6193,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1095,
+    1215
+   ],
+   "g": [
+    1684,
+    1800
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "a_ali_wahid",
@@ -4517,7 +6220,20 @@
   "notes": "رواية شفوية عند المؤلف (ص202 ح1)، وهو نفسه يقرّ بضياع الربط.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    875,
+    970
+   ],
+   "g": [
+    1471,
+    1563
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "a_yusuf_wahid",
@@ -4531,7 +6247,20 @@
   "notes": "من المؤلف فقط.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    915,
+    1005
+   ],
+   "g": [
+    1509,
+    1597
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "hajj_saad",
@@ -4554,7 +6283,20 @@
   "notes": "الجذر الموثق للفرع. ربطه بيوسف بن علي (= «سعد بن يوسف بن علي» عند المؤلف) من المؤلف فقط. الأجيال هنا على فرضية المؤلف.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    930,
+    1025
+   ],
+   "g": [
+    1524,
+    1616
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "wahid1",
@@ -4577,7 +6319,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    955,
+    1050
+   ],
+   "g": [
+    1548,
+    1640
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "saad1",
@@ -4600,7 +6355,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1005,
+    1085
+   ],
+   "g": [
+    1597,
+    1674
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "wahid2",
@@ -4623,7 +6391,20 @@
   "notes": "«العلواني الجدّاوي الأنصاري» إضافة المؤلف؛ الخط «بزاوية براك» فقط.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1040,
+    1105
+   ],
+   "g": [
+    1631,
+    1694
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "w_hani",
@@ -4646,7 +6427,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1075,
+    1120
+   ],
+   "g": [
+    1665,
+    1708
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "w_yusuf",
@@ -4669,7 +6463,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1075,
+    1120
+   ],
+   "g": [
+    1665,
+    1708
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "w_abd",
@@ -4692,7 +6499,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1075,
+    1120
+   ],
+   "g": [
+    1665,
+    1708
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "w_ali",
@@ -4715,7 +6535,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1075,
+    1120
+   ],
+   "g": [
+    1665,
+    1708
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "w_saad",
@@ -4754,7 +6587,20 @@
   "notes": "تكرار: سعد بن عبد الواحد (الجيل 6) وسعد بن عبد الواحد (الجيل 8).",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1075,
+    1120
+   ],
+   "g": [
+    1665,
+    1708
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "w_falfali",
@@ -4785,7 +6631,20 @@
   "notes": "تكرار: «محمد الفلفلي بن الفقيه الموهوب بن عبد الله» آخر في وثيقة 1221.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1075,
+    1120
+   ],
+   "g": [
+    1665,
+    1708
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "w_saad_saad",
@@ -4816,7 +6675,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1095,
+    1180
+   ],
+   "g": [
+    1684,
+    1766
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "w_m_saad",
@@ -4839,7 +6711,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1095,
+    1180
+   ],
+   "g": [
+    1684,
+    1766
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "w_jaddawi",
@@ -4862,7 +6747,20 @@
   "notes": "«الجداوي» لقب شخص هنا. مطابقة أبيه بمحمد بن سعد بن عبد الواحد ترجيح.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1125,
+    1215
+   ],
+   "g": [
+    1713,
+    1800
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "w_bashir",
@@ -4885,7 +6783,20 @@
   "notes": "تنبيه زمني: جدّه أوقف 1120 على أبيه، والابن يشتري 1221 — ممكن بصعوبة؛ قد يكون عبد الواحد آخر.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1095,
+    1180
+   ],
+   "g": [
+    1684,
+    1766
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "yahmad",
@@ -4908,7 +6819,20 @@
   "notes": "جذر عائم: الوثيقة تثبت أنهم من ذرية عبد الله سبال العين بحكم قضائي بعد نزاع. إلحاقهم بعبد الواحد من المؤلف. تكرار: يحمد بن عبد الواسع (1061) من أسرة القضاة.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1075,
+    1185
+   ],
+   "g": [
+    1665,
+    1771
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "y_m",
@@ -4931,7 +6855,20 @@
   "notes": "المؤلف يكتب «محمد بن عمر بن يحمد».",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1095,
+    1215
+   ],
+   "g": [
+    1684,
+    1800
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "y_aqd",
@@ -4954,7 +6891,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1095,
+    1215
+   ],
+   "g": [
+    1684,
+    1800
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "y_saad",
@@ -4977,7 +6927,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1095,
+    1215
+   ],
+   "g": [
+    1684,
+    1800
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "y_abd",
@@ -5000,7 +6963,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1095,
+    1210
+   ],
+   "g": [
+    1684,
+    1796
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "y_abd2",
@@ -5023,7 +6999,20 @@
   "notes": "",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1125,
+    1230
+   ],
+   "g": [
+    1713,
+    1815
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "nafisa",
@@ -5045,7 +7034,20 @@
   "notes": "الوثيقة تسمّيهما «عمّات» قاسم بن الحاج فضل، ولا تذكر أباهما. الأرجح زمنياً أن قاسم هنا هو قاسم بن الحاج فضل بن قاسم (الجيل 5، وأبناء جيله راشدون نحو 1043–1060)، فتكون نفيسة وفاطمة أختي الحاج فضل بن قاسم وابنتي قاسم بن فضل. مطابقة لا نص.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    930,
+    1025
+   ],
+   "g": [
+    1524,
+    1616
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "fatima_a",
@@ -5067,7 +7069,20 @@
   "notes": "الوثيقة تسمّيهما «عمّات» قاسم بن الحاج فضل، ولا تذكر أباهما. الأرجح زمنياً أن قاسم هنا هو قاسم بن الحاج فضل بن قاسم (الجيل 5، وأبناء جيله راشدون نحو 1043–1060)، فتكون نفيسة وفاطمة أختي الحاج فضل بن قاسم وابنتي قاسم بن فضل. مطابقة لا نص.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    930,
+    1025
+   ],
+   "g": [
+    1524,
+    1616
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "m5_ab4",
@@ -5089,7 +7104,20 @@
   "notes": "توقيع شاهد مؤطّر.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    965,
+    1050
+   ],
+   "g": [
+    1558,
+    1640
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "musk_m_ali",
@@ -5112,7 +7140,20 @@
   "notes": "لا يرد إلا في سلسلة نسب ابنه في «المسك والريحان».",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1125,
+    1215
+   ],
+   "g": [
+    1713,
+    1800
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "musk_bashir",
@@ -5135,7 +7176,20 @@
   "notes": "فقيه ومقرئ ومتصوف من آقار الشاطئ؛ له «الحكم» و«الدعاء» و«القصيدة». أول ترجمة مطبوعة لأحد أحفاد الفرع بنسبه.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1160,
+    1255
+   ],
+   "g": [
+    1747,
+    1839
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "oj11",
@@ -5149,7 +7203,20 @@
   "notes": "المصدر: رواية الأسرة (جمال عمر أحمد عمر عمير، 2026-10-09) ومسار مخطوط بالقلم على شجرة 1987 | حلقة في نسب يحفظه أبناء القبيلة ومسجّل في السجل المدني لأحفاده (إفادة صاحب الموقع 2026-10-10). التصنيف السابق: رواية الأسرة.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1170,
+    1245
+   ],
+   "g": [
+    1757,
+    1830
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "oj12",
@@ -5163,7 +7230,20 @@
   "notes": "المصدر: رواية الأسرة (جمال عمر أحمد عمر عمير، 2026-10-09) ومسار مخطوط بالقلم على شجرة 1987 | حلقة في نسب يحفظه أبناء القبيلة ومسجّل في السجل المدني لأحفاده (إفادة صاحب الموقع 2026-10-10). التصنيف السابق: رواية الأسرة.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1195,
+    1270
+   ],
+   "g": [
+    1781,
+    1854
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "oj13",
@@ -5181,7 +7261,20 @@
   "aliases": [
    "ابن نجمة",
    "عمر بن نجمة"
-  ]
+  ],
+  "birth_est": {
+   "h": [
+    1215,
+    1290
+   ],
+   "g": [
+    1800,
+    1873
+   ],
+   "kind": "gen",
+   "basis": "تقدير بعدد الأجيال: يُقاس على جيله في الخط الموثّق، وكل جيل نحو 30 إلى 35 سنة، بهامش واسع.",
+   "basis_en": "Estimated by generation count against the documented line (about 30–35 years a generation), with a wide margin."
+  }
  },
  {
   "id": "oj14",
@@ -5198,7 +7291,20 @@
   "hidden": false,
   "aliases": [
    "عمر"
-  ]
+  ],
+  "birth_est": {
+   "h": [
+    1265,
+    1315
+   ],
+   "g": [
+    1849,
+    1897
+   ],
+   "kind": "calc",
+   "basis": "محسوب من أعمار الآباء والأبناء: بين الأب وابنه 18 إلى 60 سنة، مع أقرب تاريخ ثابت في السلسلة.",
+   "basis_en": "Computed from fathers and sons (18 to 60 years apart) and the nearest fixed date in the line."
+  }
  },
  {
   "id": "oj15",
@@ -5212,7 +7318,20 @@
   "notes": "المصدر: السجل المدني الليبي (بإفادة صاحب الموقع، 2026-10-10) ورواية الأسرة (جمال عمر أحمد عمر عمير، 2026-10-09) ومسار مخطوط بالقلم على شجرة 1987",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1329,
+    1329
+   ],
+   "g": [
+    1911,
+    1911
+   ],
+   "kind": "doc",
+   "basis": "سنة ميلاده 1911م بإفادة الأسرة",
+   "basis_en": "Born 1911 CE, from the family."
+  }
  },
  {
   "id": "oj16",
@@ -5240,7 +7359,20 @@
   "notes": "المصدر: السجل المدني الليبي (بإفادة صاحب الموقع، 2026-10-10) ورواية الأسرة (جمال عمر أحمد عمر عمير، 2026-10-09) ومسار مخطوط بالقلم على شجرة 1987 | توفي رحمه الله، وسُمّي أخ له بعده باسمه (عبد الرحمن الثاني). بإفادة صاحب الموقع 2026-10-10.",
   "author_version": null,
   "living": false,
-  "hidden": false
+  "hidden": false,
+  "birth_est": {
+   "h": [
+    1345,
+    1395
+   ],
+   "g": [
+    1927,
+    1975
+   ],
+   "kind": "calc",
+   "basis": "محسوب من أعمار الآباء والأبناء: بين الأب وابنه 18 إلى 60 سنة، مع أقرب تاريخ ثابت في السلسلة.",
+   "basis_en": "Computed from fathers and sons (18 to 60 years apart) and the nearest fixed date in the line."
+  }
  },
  {
   "id": "oj16_salim",

@@ -244,7 +244,7 @@ const ali = byId.get(CONFIG.spine[0]), umar = byId.get(CONFIG.spine[1]), abd = b
 
 /* ---------- dom ---------- */
 const stage = $('ft-stage'), treeEl = $('ft-tree'), world = $('ft-world'), panel = $('ft-panel');
-const pName = $('ft-pName'), pEyebrow = $('ft-pEyebrow'), pLine = $('ft-pLine'), pBadges = $('ft-pBadges'), pBody = $('ft-pBody'), pFoot = $('ft-pFoot'), pScroll = $('ft-pScroll');
+const pName = $('ft-pName'), pEyebrow = $('ft-pEyebrow'), pLine = $('ft-pLine'), pBadges = $('ft-pBadges'), pBorn = $('ft-pBorn'), pBody = $('ft-pBody'), pFoot = $('ft-pFoot'), pScroll = $('ft-pScroll');
 const q = $('ft-q'), results = $('ft-results');
 const legendEl = $('ft-legend'), tip = $('ft-tip');
 legendEl.open = window.innerWidth >= 1024;   // a chip on small screens, open on desktop (the tree is then fitted beside it)
@@ -843,6 +843,23 @@ function betweenHtml(info) {
 // the data keeps its own audit trail («التصنيف السابق: …») at the end of a note; it is not part of the public source line
 const publicNote = s => String(s || '').replace(/\s*\|?\s*التصنيف السابق:[^.|]*\.?\s*$/, '').trim();
 // the panel's heading: the name is drawn from data-t, with no text node
+/* An estimated birth date (data: birth_est, Hijri and Gregorian ranges). Only for those who have died and are named:
+   the living and the «قيد البحث» circles have none in the data, and none is shown for them. */
+const htmlLang = () => document.documentElement.getAttribute('lang') || 'ar';
+const birthOf = p => (p && p.birth_est && !p.living && !p.placeholder ? p.birth_est : null);
+function birthText(p, short) {
+  const b = birthOf(p); if (!b) return '';
+  const one = b.h[0] === b.h[1];
+  return t(`tree_birth${short ? '_short' : ''}_${one ? 'year' : 'range'}`, one ? { h: b.h[0], g: b.g[0] } : { h0: b.h[0], h1: b.h[1], g0: b.g[0], g1: b.g[1] });
+}
+// the panel's line: the date, then a small tag saying how it is known; pressing the tag shows the basis
+function setBorn(p) {
+  const b = birthOf(p);
+  pBorn.hidden = !b;
+  if (!b) { pBorn.textContent = ''; return; }
+  const basis = (htmlLang() !== 'ar' && b.basis_en) || b.basis || '';
+  pBorn.innerHTML = `<span>${esc(birthText(p, false))}</span> · <button type="button" class="btag" aria-expanded="false" aria-controls="ft-pBasis">${esc(t('tree_birth_' + b.kind))}</button><p class="basis" id="ft-pBasis" hidden>${esc(basis)}</p>`;
+}
 function setEyebrow(text) { pEyebrow.textContent = ''; pEyebrow.dataset.t = text; if (text) pEyebrow.setAttribute('aria-label', text); else pEyebrow.removeAttribute('aria-label'); }   // the branch's name has ancestors' names in it
 function setName(text) { pName.textContent = ''; pName.dataset.t = text; pName.setAttribute('aria-label', text); }
 function stripHtml(id) {
@@ -868,6 +885,7 @@ function openPerson(id, { center = true } = {}) {
   const info = p.placeholder ? chainInfo.get(id) || { start: id, list: [id], estimate: p.estimate || {}, heads: [] } : null;
   // a chain is not one generation: no generation line, and «حلقات بين … و…» in place of the lineage line
   setEyebrow((info ? [p.branch] : [genText(p), p.branch]).filter(Boolean).join(' · '));
+  setBorn(info ? null : p);
   setName(info ? chainLabel(info) : nameOf(p));
   pLine.innerHTML = info ? betweenHtml(info) : lineageHtml(p);
   if (info) {
@@ -908,7 +926,7 @@ function openPerson(id, { center = true } = {}) {
 }
 function open1987(id, center) {
   setSelected(id);
-  setEyebrow(t('tree_r87_eyebrow'));
+  setEyebrow(t('tree_r87_eyebrow')); setBorn(null);
   setName(CONFIG.reading1987.boxes.find(b => b.id === id).label);
   pLine.innerHTML = '';
   pBadges.innerHTML = `<span class="st trad">${esc(t('tree_link_trad'))}</span>`; pFoot.innerHTML = '';
@@ -942,6 +960,7 @@ panel.addEventListener('click', e => {
   const th = e.target.closest('[data-doc]'); if (th) { openReader(th.dataset.of, +th.dataset.doc); return; }
   const ch = e.target.closest('[data-chain]'); if (ch) { location.hash = '#/chain/' + ch.dataset.chain; return; }
   const sh = e.target.closest('[data-share]'); if (sh) { shareChain(sh.dataset.share); return; }
+  const bt = e.target.closest('.btag'); if (bt) { const box = bt.nextElementSibling; box.hidden = !box.hidden; bt.setAttribute('aria-expanded', String(!box.hidden)); return; }
   const ad = e.target.closest('[data-add]'); if (ad) { const box = ad.nextElementSibling; box.hidden = !box.hidden; if (!box.hidden) box.innerHTML = addBoxHtml(ad.dataset.add); ad.setAttribute('aria-expanded', String(!box.hidden)); }
 });
 // the sheet is in <body> on phones, and in the stage on desktop and in full screen
@@ -966,7 +985,7 @@ function onActivate(e) {
 let lastPointer = 'mouse', tipTimer;
 function showTip(g) {
   const p = byId.get(g.dataset.id); if (!p || !g.isConnected) return;
-  tip.innerHTML = p.placeholder && chainInfo.has(p.id) ? `<b>${esc(chainLabel(chainInfo.get(p.id)))}</b><span>${esc(betweenText(chainInfo.get(p.id)))}</span>` : `<b>${esc(nameOf(p))}</b><span>${esc(nasabText(p.id))}</span>`;
+  tip.innerHTML = p.placeholder && chainInfo.has(p.id) ? `<b>${esc(chainLabel(chainInfo.get(p.id)))}</b><span>${esc(betweenText(chainInfo.get(p.id)))}</span>` : `<b>${esc(nameOf(p))}</b>${birthText(p, true) ? `<span class="born">${esc(birthText(p, true))}</span>` : ''}<span>${esc(nasabText(p.id))}</span>`;
   tip.hidden = false;
   const r = g.getBoundingClientRect(), h = host.getBoundingClientRect(), tw = tip.offsetWidth, th = tip.offsetHeight;
   const x = Math.max(4, Math.min(h.width - tw - 4, r.left + r.width / 2 - h.left - tw / 2));
@@ -1138,7 +1157,7 @@ function renderChain(id) {
     if (cd.ph) { const es = x.estimate || {}; return `<li class="cc ph"><div class="card"><b class="nm">${esc(t('tree_unknown_chain', { n: cd.n }))}${es.min != null ? ` <span class="muted">${esc(t('tree_unknown_range', { min: es.min, max: es.max }))}</span>` : ''}</b>${es.basis ? `<p class="basis">${esc(es.basis)}</p>` : ''}</div><i class="ln trad"></i></li>`; }
     const D = x.living ? { thumbs: [], count: 0 } : docsOf(x.id), k = stKey(x.status);
     const thumbs = D.thumbs.slice(0, 5).map(th => `<button type="button" class="th" data-doc="${th.i}" data-of="${esc(x.id)}" aria-label="${esc(t('tree_open_doc'))}: ${esc(pageTxt(th.it.d ? th.it.d.page : th.it.e.page))}"><img src="${esc(asset(th.it.src))}" alt="" loading="lazy" decoding="async" width="60" height="76"></button>`).join('') + (D.thumbs.length > 5 ? `<span class="more">+${D.thumbs.length - 5}</span>` : '');
-    return `<li class="cc${x.id === ROOT ? ' root' : ''}"><div class="card"><span class="gen">${esc(genText(x))}</span><b class="nm">${esc(x.id === CONFIG.spine[0] ? CONFIG.plaqueAli : nameOf(x))}</b>${thumbs ? `<div class="strip">${thumbs}</div>` : ''}</div>${last ? '' : `<i class="ln ${k}"></i><span class="lb">${(srcKey(x.status) === 'trad' ? [t('tree_link_trad_short')] : linkLabels(x)).map(l => `<span>${esc(l)}</span>`).join('')}</span>`}</li>`;
+    return `<li class="cc${x.id === ROOT ? ' root' : ''}"><div class="card"><span class="gen">${esc(genText(x))}</span><b class="nm">${esc(x.id === CONFIG.spine[0] ? CONFIG.plaqueAli : nameOf(x))}</b>${birthText(x, true) ? `<span class="born">${esc(birthText(x, true))}</span>` : ''}${thumbs ? `<div class="strip">${thumbs}</div>` : ''}</div>${last ? '' : `<i class="ln ${k}"></i><span class="lb">${(srcKey(x.status) === 'trad' ? [t('tree_link_trad_short')] : linkLabels(x)).map(l => `<span>${esc(l)}</span>`).join('')}</span>`}</li>`;
   }).join('');
   if (chainIO) chainIO.disconnect();
   const items = [...chainEl.querySelectorAll('.cc')];
