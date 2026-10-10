@@ -164,6 +164,9 @@ a.tile:hover { border-color: var(--ft-gold); }
 .ft-svg .node:focus, .ft-svg .spine-item:focus, .ft-svg .chip:focus { outline: none; }
 .ft-svg .spine-item:focus-visible .plaque, .ft-svg .node:focus-visible circle.c, .ft-svg .chip:focus-visible rect { stroke: var(--ft-gold); stroke-width: 4; }
 .ft-svg .node.ext .nl { display: none; }
+/* the small date under a name: «~1170هـ» */
+.ft-svg .nl .bm { font-weight: 400; fill: var(--ft-ink2); }
+.ft-svg .klab .bm { font-weight: 500; font-size: 10px; fill: var(--ft-ink2); }
 .ft-svg .klab { font: 700 12px var(--ft-f-name); fill: var(--ft-ink); text-anchor: middle; dominant-baseline: central; paint-order: stroke; stroke: var(--ft-bg); stroke-width: 3.5px; stroke-linejoin: round; pointer-events: none; }
 .ft-svg .phpill rect { fill: var(--ft-bg); stroke: var(--ft-branch); }
 .ft-svg .phpill text { font: 600 12px var(--ft-f-ui); fill: var(--ft-ink2); direction: inherit; unicode-bidi: plaintext; }

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'jamalibnadam-5d597c37d8';
+const CACHE_NAME = 'jamalibnadam-1c7f0dd272';
 // document scans are not precached: each one is cached the first time it is viewed
 const EVIDENCE_CACHE = 'jamalibnadam-evidence';
 const EVIDENCE_PATH = '/assets/evidence/';
@@ -13,14 +13,14 @@ const ASSETS_TO_CACHE = [
     './install.js?v=106657188c',
     './touch.js?v=1347000355',
     './icons/icon-192.png',
-    './data/data_ar.js?v=ce63db1b2d',
-    './data/data_en.js?v=5ffbaed941',
-    './data/data_es.js?v=c2c51309f3',
-    './data/data_pl.js?v=cefe9214eb',
-    './data/data_tr.js?v=81e88305ac',
+    './data/data_ar.js?v=67605a376c',
+    './data/data_en.js?v=14390e2180',
+    './data/data_es.js?v=bc9c2ae893',
+    './data/data_pl.js?v=e2fb61e00c',
+    './data/data_tr.js?v=d5e4462f07',
     './tree/',
-    './home.css?v=240886e502',
-    './home.js?v=873fcdf88f',
+    './home.css?v=50cc5eb38d',
+    './home.js?v=9e84c0ce9c',
     './data/sources.json?v=af366f2bbd',
     './data/stats.json?v=851fc52dc0',
     './more/',
