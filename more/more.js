@@ -228,14 +228,12 @@ $('more-nasheed').addEventListener('click', () => {
 
 /* ---------- the playlist loads only when asked for ---------- */
 $('more-video').addEventListener('click', () => {
-    const box = $('more-video');
-    if (box.querySelector('iframe')) return;
     const iframe = document.createElement('iframe');
     iframe.src = 'https://www.youtube.com/embed/videoseries?list=PLx2j-W6hDiG6a9AAPBQgCRjG_t1Ge--dl&autoplay=1';
     iframe.title = 'YouTube video player';
     iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
     iframe.allowFullscreen = true;
-    box.appendChild(iframe);
+    $('more-video-box').replaceChildren(iframe);   // the card becomes the player
 });
 
 /* ---------- contact form; «أرسل بياناتك» on the tree page arrives here with its message ready ---------- */

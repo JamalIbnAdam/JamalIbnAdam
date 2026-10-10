@@ -148,6 +148,9 @@ window.FamilyTreeData = {
         author_channel_title: "Oficjalny Kanał: Jamal Ibn Adam",
         author_bio:
             "Witamy na oficjalnym kanale myśliciela 'Jamala Ibn Adama' (znanego na świecie jako J.S. Adam)...",
+        copy_btn: "Kopiuj",
+        copy_done: "Skopiowano ✓",
+        author_playlist_card: "Oficjalna playlista — Jamal Ibn Adam",
         author_playlist_title: "Oficjalna Playlista",
         author_youtube_title: "Kanał Jamala Ibn Adama",
         author_books_title: "Publikacje Globalne",

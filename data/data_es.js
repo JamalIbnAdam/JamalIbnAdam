@@ -151,6 +151,9 @@ window.FamilyTreeData = {
         author_channel_title: "Canal oficial: Jamal Ibn Adam",
         author_bio:
             "Bienvenido al canal oficial del pensador 'Jamal Ibn Adam' (conocido globalmente como J.S. Adam). Este canal documenta un profundo viaje humano de la oscuridad de la tribulación a la luz de la sabiduría...",
+        copy_btn: "Copiar",
+        copy_done: "Copiado ✓",
+        author_playlist_card: "Lista de reproducción oficial — Jamal Ibn Adam",
         author_playlist_title: "Lista de reproducción oficial",
         author_youtube_title: "Canal de Jamal Ibn Adam",
         author_books_title: "Publicaciones globales",

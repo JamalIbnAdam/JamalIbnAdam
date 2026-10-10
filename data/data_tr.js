@@ -148,6 +148,9 @@ window.FamilyTreeData = {
         author_channel_title: "Resmi Kanal: Cemal İbn Adem",
         author_bio:
             "Düşünür 'Cemal İbn Adem'in (Dünya çapında J.S. Adam olarak bilinir) resmi kanalına hoş geldiniz...",
+        copy_btn: "Kopyala",
+        copy_done: "Kopyalandı ✓",
+        author_playlist_card: "Resmi oynatma listesi — Jamal Ibn Adam",
         author_playlist_title: "Resmi Çalma Listesi",
         author_youtube_title: "Cemal İbn Adem Kanalı",
         author_books_title: "Küresel Yayınlar",

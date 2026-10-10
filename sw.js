@@ -1,4 +1,4 @@
-const CACHE_NAME = 'jamalibnadam-a061ceb948';
+const CACHE_NAME = 'jamalibnadam-e02665c57e';
 // document scans are not precached: each one is cached the first time it is viewed
 const EVIDENCE_CACHE = 'jamalibnadam-evidence';
 const EVIDENCE_PATH = '/assets/evidence/';
@@ -9,22 +9,22 @@ const ASSETS_TO_CACHE = [
     './manifest.json',
     './logo.webp',
     './theme.js?v=400528e3de',
-    './sources.js?v=5f6f975b6e',
+    './sources.js?v=274b2e0e68',
     './install.js?v=106657188c',
-    './touch.js?v=037164d36b',
+    './touch.js?v=4e049d232c',
     './icons/icon-192.png',
-    './data/data_ar.js?v=67605a376c',
-    './data/data_en.js?v=14390e2180',
-    './data/data_es.js?v=bc9c2ae893',
-    './data/data_pl.js?v=e2fb61e00c',
-    './data/data_tr.js?v=d5e4462f07',
+    './data/data_ar.js?v=0676ebdfb3',
+    './data/data_en.js?v=c6a26ea31a',
+    './data/data_es.js?v=44188df3de',
+    './data/data_pl.js?v=26f86a69ea',
+    './data/data_tr.js?v=7d08b14be2',
     './tree/',
-    './home.css?v=c618594513',
+    './home.css?v=4258608df9',
     './home.js?v=9e84c0ce9c',
     './data/sources.json?v=af366f2bbd',
     './data/stats.json?v=851fc52dc0',
     './more/',
-    './more/more.js?v=92172b951d',
+    './more/more.js?v=d68bb50a63',
     './data/ansar-libya.json?v=e3ef693176',
     './data/figures-unlinked.json?v=d83716b80d'
 ];

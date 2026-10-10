@@ -2,11 +2,11 @@
    data as file?v=<hash>, so a changed file has a new address and an old copy is never used for it. */
 window.SITE_V = {
  "data/ansar-libya.json": "e3ef693176",
- "data/data_ar.js": "67605a376c",
- "data/data_en.js": "14390e2180",
- "data/data_es.js": "bc9c2ae893",
- "data/data_pl.js": "e2fb61e00c",
- "data/data_tr.js": "d5e4462f07",
+ "data/data_ar.js": "0676ebdfb3",
+ "data/data_en.js": "c6a26ea31a",
+ "data/data_es.js": "44188df3de",
+ "data/data_pl.js": "26f86a69ea",
+ "data/data_tr.js": "7d08b14be2",
  "data/docs.json": "dd15c67733",
  "data/figures-unlinked.json": "d83716b80d",
  "data/sources.json": "af366f2bbd",
