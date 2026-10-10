@@ -363,7 +363,9 @@ window.FamilyTreeData = {
         tree_chain_n_est: "about {n} generations", // TODO translate
         tree_aria: "Al-Sabal Al-Ain family tree", // TODO translate
         tree_search_placeholder: "Search for a name…", // TODO translate
-        tree_search_empty: "No matching name", // TODO translate
+        tree_nf_text: "Bu adı şecerede henüz bulamadık. Abdullah Sibal el-Ayn bin Ömer bin Ali el-Ceddavi el-Ensari’nin torunlarındansanız bilgilerinizi gönderin; site sahibi doğrulamak için sizinle iletişime geçecek, ardından adınız eklenecek.",
+        tree_nf_btn: "Bilgilerinizi gönderin",
+        tree_nf_msg: "Adımın şecereye eklenmesini istiyorum. Aradığım ad: {q}. Soy zincirim: … İletişim: …",
         tree_toggle_1987: "Show the 1987 tree reading", // TODO translate
         tree_zoom_in: "Zoom in", // TODO translate
         tree_zoom_out: "Zoom out", // TODO translate

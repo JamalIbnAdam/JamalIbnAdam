@@ -1131,9 +1131,15 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && reader.hid
 /* ---------- search ---------- */
 const index = persons.filter(searchable).map(p => ({ id: p.id, n: norm(p.name_as_written + ' ' + (p.short_name || '')), p }));
 let hits = [], cursor = 0;
+// a name that is not in the tree yet: an invitation to send it, with the typed text already in the message
+function notFoundHtml(sending) {
+  const msg = t('tree_nf_msg', { q: q.value.trim() });
+  return `<li class="empty nf"><p>${esc(t('tree_nf_text'))}</p>` + (!sending ? `<button type="button" class="nf-btn" data-send>${esc(t('tree_nf_btn'))}</button>`
+    : `<div class="ft-nf"><p class="msg">${esc(msg)}</p>${CONTRIBUTE_URL ? `<a class="nf-btn" href="${esc(contributeHref(msg))}" target="_blank" rel="noopener">${esc(t('tree_add_send'))}</a>` : `<p class="soon">${esc(t('tree_add_soon'))}</p>`}<p class="soon">${esc(t('tree_add_moderation'))}</p></div>`) + '</li>';
+}
 function renderHits() {
   results.innerHTML = hits.length ? hits.map((h, i) => `<li role="option" id="ft-opt${i}" aria-selected="${i === cursor}" data-go="${esc(h.id)}"><span class="rn">${esc(h.p.name_as_written)}</span><span class="rm">${esc(lineage(h.id))}</span></li>`).join('')
-    : `<li class="empty">${esc(t('tree_search_empty'))}</li>`;
+    : notFoundHtml(false);
   results.hidden = false; q.setAttribute('aria-expanded', 'true');
 }
 q.addEventListener('input', () => {
@@ -1150,7 +1156,11 @@ q.addEventListener('keydown', e => {
   else if (e.key === 'Enter') { choose(hits[cursor].id); e.preventDefault(); }
   else if (e.key === 'Escape') { results.hidden = true; }
 });
-results.addEventListener('mousedown', e => { const li = e.target.closest('[data-go]'); if (li) { e.preventDefault(); choose(li.dataset.go); } });
+results.addEventListener('mousedown', e => {
+  const li = e.target.closest('[data-go]'); if (li) { e.preventDefault(); choose(li.dataset.go); return; }
+  if (e.target.closest('.nf')) e.preventDefault();   // keep the box open while the invitation is read
+});
+results.addEventListener('click', e => { if (e.target.closest('[data-send]')) results.innerHTML = notFoundHtml(true); });
 q.addEventListener('blur', () => setTimeout(() => { results.hidden = true; q.setAttribute('aria-expanded', 'false'); }, 120));
 function choose(id) {
   results.hidden = true; q.blur();

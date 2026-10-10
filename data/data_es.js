@@ -387,7 +387,9 @@ window.FamilyTreeData = {
         tree_chain_n_est: "about {n} generations", // TODO translate
         tree_aria: "Al-Sabal Al-Ain family tree", // TODO translate
         tree_search_placeholder: "Search for a name…", // TODO translate
-        tree_search_empty: "No matching name", // TODO translate
+        tree_nf_text: "Todavía no hemos encontrado este nombre en el árbol. Si eres descendiente de Abdullah Sibal al-Ayn ibn Umar ibn Ali al-Jaddawi al-Ansari, envía tus datos; el propietario del sitio se pondrá en contacto contigo para verificarlos y después se añadirá tu nombre.",
+        tree_nf_btn: "Envía tus datos",
+        tree_nf_msg: "Me gustaría que mi nombre se añadiera al árbol. El nombre que busqué: {q}. Mi linaje: … Contacto: …",
         tree_toggle_1987: "Show the 1987 tree reading", // TODO translate
         tree_zoom_in: "Zoom in", // TODO translate
         tree_zoom_out: "Zoom out", // TODO translate
