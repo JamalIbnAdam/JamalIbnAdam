@@ -126,6 +126,7 @@ a.tile:hover { border-color: var(--ft-gold); }
 .ft-legend > summary::after { content: " ▾"; }
 .ft-legend[open] > summary::after { content: " ▴"; }
 .ft-legend-body { display: grid; gap: 7px; padding: 2px 12px 10px; }
+.ft-legend .lx { display: none; }   /* the ✕ is for phones, where the open legend is a card over the tree */
 .ft-legend .lead { font-size: .8rem; color: var(--ft-ink2); }
 .ft-legend ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
 .ft-legend b { font-weight: 700; }
@@ -364,6 +365,11 @@ details.audit > summary { cursor: pointer; font-weight: 700; color: var(--ft-mut
   .ft-btn { font-size: .8rem; padding: 5px 10px; }
   .ft-stage { height: 72vh; height: 72svh; min-height: 380px; }
   .ft-legend { top: 8px; left: 8px; font-size: .8rem; }
+  /* open on a phone: a card over the stage, with its own ✕; it scrolls inside, and the tree under it is not refitted */
+  .ft-legend[open] { top: 12px; left: 12px; right: 12px; width: auto; max-width: none; max-height: calc(100% - 24px); overflow: auto; overscroll-behavior: contain; z-index: 8; background: var(--ft-sheet); font-size: .9rem; }
+  .ft-legend[open] > summary { min-height: 44px; display: flex; align-items: center; padding-inline-end: 56px; font-size: .95rem; }
+  .ft-legend[open] .lx { display: grid; place-items: center; position: absolute; top: 0; inset-inline-end: 0; width: 44px; height: 44px; border-radius: 10px; cursor: pointer; }
+  .ft-legend .lx svg { width: 15px; height: 15px; stroke: var(--ft-ink); stroke-width: 1.8; fill: none; stroke-linecap: round; }
   .ft-hint { font-size: .85rem; white-space: normal; text-align: center; }
   .ft-zoom { top: 8px; right: 8px; }
   .ft-credits { font-size: .9rem; }
