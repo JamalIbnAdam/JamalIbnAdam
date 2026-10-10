@@ -46,7 +46,7 @@ window.FamilyTreeData = {
         ],
         poem_ch4_title: "🌴 Rozdział IV: Drzewo Fadla (Sześć gałęzi)",
         poem_ch4_body: [
-            "Od Abdullaha Sabal al-Ain wyrosła linia Fadla i sześć głównych gałęzi.",
+            "Od Abdullaha Sabal al-Ain wyrosły gałęzie, które od niego pochodzą.",
             "Agar, Ashkedah, Dabdab, Brak oraz rody Usmana, Kasima, Abu Bakra, Salema i Abd al-Wahida ukształtowały dziedzictwo.",
         ],
         poem_ch5_title: "🤝 Rozdział V: Pomoc i Schronienie",

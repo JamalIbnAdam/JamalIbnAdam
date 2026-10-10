@@ -49,7 +49,7 @@ window.FamilyTreeData = {
         ],
         poem_ch4_title: "🌴 Chapter IV: The Tree of فضل (Six Branches)",
         poem_ch4_body: [
-            "From Abdullah Sabal al-Ain grew the line of Fadl and the six main branches.",
+            "From Abdullah Sabal al-Ain grew the branches descended from him.",
             "Agar, Ashkedah, Dabdab, Brak, and the families of Uthman, Qasim, Abu Bakr, Salem, and Abdul Wahid shaped the legacy.",
             "Their honor is preserved across generations in Wadi Al-Shatii."
         ],
