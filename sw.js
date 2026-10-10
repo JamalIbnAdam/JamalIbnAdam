@@ -1,4 +1,4 @@
-const CACHE_NAME = 'jamalibnadam-v23';
+const CACHE_NAME = 'jamalibnadam-v24';
 // document scans are not precached: each one is cached the first time it is viewed
 const EVIDENCE_CACHE = 'jamalibnadam-evidence';
 const EVIDENCE_PATH = '/assets/evidence/';
