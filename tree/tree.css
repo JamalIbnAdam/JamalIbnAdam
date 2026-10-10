@@ -199,6 +199,7 @@ a.tile:hover { border-color: var(--ft-gold); }
 .ft-svg .spine-item:hover .plaque { stroke-width: 4; }
 .ft-svg .spine-item.sel .plaque { stroke: var(--ft-gold); stroke-width: 5; }
 .ft-svg .ptxt { font-family: var(--ft-f-name); fill: var(--ft-ink); text-anchor: middle; dominant-baseline: central; }
+.ft-svg .pdate { font-family: var(--ft-f-name); fill: var(--ft-ink2); text-anchor: middle; dominant-baseline: central; }
 .ft-svg .psub { font: 400 12px var(--ft-f-ui); fill: var(--ft-muted); text-anchor: middle; dominant-baseline: central; }
 .ft-svg .verse { font-family: var(--ft-f-name); fill: var(--ft-ink); text-anchor: middle; dominant-baseline: central; }
 .ft-svg .conn { fill: none; stroke: var(--ft-on-trunk); stroke-width: 2.5; }
