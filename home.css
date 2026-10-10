@@ -178,6 +178,11 @@ body { background: var(--h-bg); }
   .sg-chips a { flex: none; min-height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--h-hair); color: var(--h-ink); font-size: 14px; text-decoration: none; display: inline-flex; align-items: center; }
 }
 
+/* a text field in a flex row is as wide as its text wants by default, and that grows with the phone's font size:
+   it may shrink, and it fills its row (M4.21) */
+#sg-search, .sg-contact input, .sg-contact textarea { min-width: 0; width: 100%; }
+.sg-gapcard :is(a, button) { max-width: 100%; }
+
 /* phones: a 16px gutter, and nothing with a fixed width may hold a flex row wider than the screen */
 @media (max-width: 600px) {
   .sg-pad { padding-inline: 16px !important; }   /* the design's paddings are inline styles */

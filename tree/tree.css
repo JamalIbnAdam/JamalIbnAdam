@@ -81,12 +81,14 @@ img { max-width: 100%; height: auto; }
 .ft-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; padding-block: 4px 10px; }
 .ft-search { position: relative; flex: 0 1 320px; min-width: 0; }
 .ft-acts { display: contents; }
-.ft-search input { width: 100%; padding: 7px 36px 7px 12px; border: 1px solid var(--ft-line); border-radius: 8px; background: var(--ft-sheet); }
+.ft-search input { min-width: 0; width: 100%; padding: 7px 36px 7px 12px; border: 1px solid var(--ft-line); border-radius: 8px; background: var(--ft-sheet); }
 .ft-search input::placeholder { color: var(--ft-muted); opacity: 1; }
 .ft-search > svg { position: absolute; right: 11px; top: 50%; translate: 0 -50%; width: 16px; height: 16px; stroke: var(--ft-muted); fill: none; stroke-width: 2; pointer-events: none; }
 .ft-results { position: absolute; inset-inline: 0; top: calc(100% + 4px); z-index: 30; padding: 4px; background: var(--ft-sheet); border: 1px solid var(--ft-line); border-radius: 10px; box-shadow: var(--ft-shadow); max-height: min(60vh, 380px); overflow: auto; }
 .ft-results li { padding: 6px 10px; border-radius: 7px; cursor: pointer; display: grid; }
 .ft-results li[aria-selected="true"], .ft-results li:hover { background: var(--ft-quote); }
+/* names without a text node (tree.js, tAttr): the text is drawn here, so there is no word in the page for «Touch to Search» */
+[data-t]::before { content: attr(data-t); }
 .ft-results .rn { font-family: var(--ft-f-name); font-weight: 700; font-size: 1.05rem; }
 .ft-results .rm { font-size: .8rem; line-height: 1.8; color: var(--ft-muted); white-space: normal; overflow-wrap: anywhere; unicode-bidi: plaintext; }   /* the full chain, wrapped, never cut */
 .ft-results .empty { color: var(--ft-muted); cursor: default; }
@@ -235,7 +237,11 @@ img { max-width: 100%; height: auto; }
 .ft-panel .badges { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
 .ft-panel .x { flex: none; width: 36px; height: 36px; border: 1px solid var(--ft-line); border-radius: 8px; display: grid; place-items: center; }
 .ft-panel .x svg { width: 14px; height: 14px; stroke: var(--ft-ink); stroke-width: 2; stroke-linecap: round; fill: none; }
-.ft-panel .pb { overflow: auto; padding: 14px 18px 24px; display: grid; gap: 18px; align-content: start; overscroll-behavior: contain; }
+.ft-panel .pb { flex: 1 1 auto; min-height: 0; overflow: auto; padding: 14px 18px 24px; display: grid; gap: 18px; align-content: start; overscroll-behavior: contain; }
+.ft-panel .ps { display: contents; }   /* desktop: the header stays, the body scrolls; phones: both scroll together (below) */
+.ft-panel .pf { flex: none; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; padding: 10px 18px 12px; border-top: 1px solid var(--ft-hair); background: var(--ft-sheet); }
+.ft-panel .pf:empty { display: none; }
+.ft-panel .pf .cta { white-space: nowrap; }
 .ft-panel .sec { display: grid; gap: 8px; min-width: 0; }
 .ft-panel .sec > h4 { font-size: .8rem; font-weight: 700; color: var(--ft-muted); }
 .ft-panel h5 { font-size: .8rem; font-weight: 700; color: var(--ft-muted); margin-top: 8px; }
@@ -351,14 +357,18 @@ details.audit > summary { cursor: pointer; font-weight: 700; color: var(--ft-mut
   .ft-zoom { top: 8px; right: 8px; }
   .ft-credits { font-size: .9rem; }
   /* bottom sheet: tree.js moves the panel to <body> on phones (and into the stage in full screen) */
-  .ft-panel { position: fixed; top: auto; left: 0; right: 0; bottom: 0; width: auto; max-height: 62%; z-index: 9000; border-inline-start: 0; border-top: 1px solid var(--ft-hair); border-radius: 16px 16px 0 0; transform: translateY(104%); opacity: 1; transition: transform .22s ease-out; padding-bottom: env(safe-area-inset-bottom, 0px); box-shadow: var(--ft-shadow); }
+  .ft-panel { position: fixed; top: auto; left: 0; right: 0; bottom: 0; width: auto; max-height: 62%; max-height: 62dvh; z-index: 9000; border-inline-start: 0; border-top: 1px solid var(--ft-hair); border-radius: 16px 16px 0 0; transform: translateY(104%); opacity: 1; transition: transform .22s ease-out; box-shadow: var(--ft-shadow); }
   .ft-stage.fs .ft-panel { position: absolute; }
   .ft-panel.open { transform: none; }
   .ft-panel .ph { padding: 6px 16px 10px; flex-wrap: wrap; }
   .ft-panel .ph .grab { display: block; width: 100%; height: 14px; position: relative; }
   .ft-panel .ph .grab::after { content: ""; position: absolute; top: 5px; left: 50%; translate: -50% 0; width: 40px; height: 4px; border-radius: 2px; background: var(--ft-line); }
   .ft-panel .ph h2 { font-size: 1.75rem; }
-  .ft-panel .pb { padding: 12px 16px 20px; }
+  /* the sheet is a column: the header and the body scroll as one, and the buttons' row is a footer that is always in view */
+  .ft-panel .ps { display: block; flex: 1 1 auto; min-height: 0; overflow: auto; overscroll-behavior: contain; }
+  .ft-panel .pb { flex: none; overflow: visible; padding: 12px 16px calc(20px + env(safe-area-inset-bottom, 0px)); }
+  .ft-panel .pf { padding: 10px 16px max(12px, env(safe-area-inset-bottom)); }
+  .ft-panel .ps:has(+ .pf:not(:empty)) .pb { padding-bottom: 16px; }
   /* reader: the image on top, the text in a sheet that drags up over it */
   .ft-reader .rb { display: block; }
   .ft-reader .rv { position: absolute; inset: 0 0 var(--ft-sheet-h, 48%) 0; height: auto; }

@@ -244,7 +244,7 @@ const ali = byId.get(CONFIG.spine[0]), umar = byId.get(CONFIG.spine[1]), abd = b
 
 /* ---------- dom ---------- */
 const stage = $('ft-stage'), treeEl = $('ft-tree'), world = $('ft-world'), panel = $('ft-panel');
-const pName = $('ft-pName'), pEyebrow = $('ft-pEyebrow'), pLine = $('ft-pLine'), pBadges = $('ft-pBadges'), pBody = $('ft-pBody');
+const pName = $('ft-pName'), pEyebrow = $('ft-pEyebrow'), pLine = $('ft-pLine'), pBadges = $('ft-pBadges'), pBody = $('ft-pBody'), pFoot = $('ft-pFoot'), pScroll = $('ft-pScroll');
 const q = $('ft-q'), results = $('ft-results');
 const legendEl = $('ft-legend'), tip = $('ft-tip');
 legendEl.open = window.innerWidth >= 1024;   // a chip on small screens, open on desktop (the tree is then fitted beside it)
@@ -799,7 +799,11 @@ t87.addEventListener('change', () => {
 
 /* ---------- person panel ---------- */
 const stPill = (p, label) => (label ? [label] : linkLabels(p)).map(x => `<span class="st ${stKey(p.status)}">${esc(x)}</span>`).join('');
-const personBtn = id => { const p = byId.get(id); return p ? `<button type="button" class="pl" data-go="${esc(id)}">${esc(nameOf(p))}</button>` : ''; };
+/* A name in the panel or in the search results carries no text node: the browser draws it from data-t ([data-t]::before in
+   tree.css), so Chrome on Android finds no word under the finger for its «Touch to Search» bar. aria-label keeps the name for
+   screen readers. Notes, quotes, the reader's text and the chain page's lineage line stay ordinary, selectable text. */
+const tAttr = text => `data-t="${esc(text)}" aria-label="${esc(text)}"`;
+const personBtn = id => { const p = byId.get(id); return p ? `<button type="button" class="pl" data-go="${esc(id)}" ${tAttr(nameOf(p))}></button>` : ''; };
 const level = c => { const s = String(c || ''); return s.startsWith('عالية') ? 3 : s.startsWith('متوسطة') ? 2 : s.startsWith('منخفضة') ? 1 : 0; };
 const dotsHtml = (c, title, withText = true) => { const n = level(c); return c ? `<span class="conf" title="${esc(title)}: ${esc(c)}">${n ? [1, 2, 3].map(i => `<i class="${i <= n ? 'on' : ''}"></i>`).join('') : ''}${withText ? ' ' + esc(c) : ''}</span>` : ''; };
 const pageTxt = pg => pg == null || pg === '' ? '' : (typeof pg === 'number' || /^\d+$/.test(String(pg)) ? t('tree_page_book', { n: pg }) : String(pg));
@@ -825,7 +829,7 @@ function nasabText(id) { const p = byId.get(id), bin = t('tree_bin'); return nas
 // the panel's line carries on from the name above it: «بن … بن … بن علي الجداوي الأنصاري», every father a link
 function lineageHtml(p) {
   const bin = t('tree_bin');
-  return nasabParts(p.id).slice(1).map((a, i) => `<span class="bn">${esc(i ? bin : binOf(p))}</span> <button type="button" class="lk" data-go="${esc(a.id)}">${esc(a.text)}</button>`).join(' ');
+  return nasabParts(p.id).slice(1).map((a, i) => `<span class="bn" data-t="${esc(i ? bin : binOf(p))}" aria-hidden="true"></span> <button type="button" class="lk" data-go="${esc(a.id)}" ${tAttr(a.text)}></button>`).join(' ');
 }
 // a chain of placeholders: «حلقات بين <the named ancestor above> و<the named head below>»
 const plainName = p => nameOf(p).replace(/\s*[(（][^)）]*[)）]\s*$/, '');   // the name without a bracketed epithet
@@ -833,11 +837,14 @@ const chainEnds = info => { const above = byId.get((byId.get(info.start) || {}).
 function betweenText(info) { const e = chainEnds(info); return e.above && e.heads.length ? t('tree_unknown_between', { a: plainName(e.above), b: e.heads.map(plainName).join(t('tree_and')) }) : ''; }
 function betweenHtml(info) {
   const e = chainEnds(info); if (!e.above || !e.heads.length) return '';
-  const link = a => `<button type="button" class="lk" data-go="${esc(a.id)}">${esc(plainName(a))}</button>`;
+  const link = a => `<button type="button" class="lk" data-go="${esc(a.id)}" ${tAttr(plainName(a))}></button>`;
   return esc(t('tree_unknown_between')).replace('{a}', link(e.above)).replace('{b}', e.heads.map(link).join(esc(t('tree_and'))));
 }
 // the data keeps its own audit trail («التصنيف السابق: …») at the end of a note; it is not part of the public source line
 const publicNote = s => String(s || '').replace(/\s*\|?\s*التصنيف السابق:[^.|]*\.?\s*$/, '').trim();
+// the panel's heading: the name is drawn from data-t, with no text node
+function setEyebrow(text) { pEyebrow.textContent = ''; pEyebrow.dataset.t = text; if (text) pEyebrow.setAttribute('aria-label', text); else pEyebrow.removeAttribute('aria-label'); }   // the branch's name has ancestors' names in it
+function setName(text) { pName.textContent = ''; pName.dataset.t = text; pName.setAttribute('aria-label', text); }
 function stripHtml(id) {
   const D = docsOf(id);
   const thumbs = D.thumbs.map(th => {
@@ -860,11 +867,11 @@ function openPerson(id, { center = true } = {}) {
   setSelected(id);
   const info = p.placeholder ? chainInfo.get(id) || { start: id, list: [id], estimate: p.estimate || {}, heads: [] } : null;
   // a chain is not one generation: no generation line, and «حلقات بين … و…» in place of the lineage line
-  pEyebrow.textContent = (info ? [p.branch] : [genText(p), p.branch]).filter(Boolean).join(' · ');
-  pName.textContent = info ? chainLabel(info) : nameOf(p);
+  setEyebrow((info ? [p.branch] : [genText(p), p.branch]).filter(Boolean).join(' · '));
+  setName(info ? chainLabel(info) : nameOf(p));
   pLine.innerHTML = info ? betweenHtml(info) : lineageHtml(p);
   if (info) {
-    pBadges.innerHTML = '';
+    pBadges.innerHTML = ''; pFoot.innerHTML = '';
     pBody.innerHTML = `<section class="sec"><p class="note">${esc(info.estimate.basis || t('tree_unknown_basis'))}</p></section>` + (info.heads.length ? `<section class="sec"><div class="chips">${info.heads.map(personBtn).join('')}</div></section>` : '');
     showPanel(id); if (center) requestAnimationFrame(() => centerOn(id)); return;
   }
@@ -872,7 +879,8 @@ function openPerson(id, { center = true } = {}) {
   pBadges.innerHTML = (f ? stPill(p) : '') + (!p.living && p.earliest_doc_date ? `<span class="bd">${esc(t('tree_earliest'))}: ${esc(ahTxt(p.earliest_doc_date))}</span>` : '');
   let html = '';
   const chain = ancestors(id, ROOT);
-  if (chain.length && chain[chain.length - 1].id === ROOT) html += `<section class="sec"><button type="button" class="cta" data-chain="${esc(id)}">${esc(t('tree_chain_btn'))}</button> <button type="button" class="add" data-share="${esc(id)}">${esc(t('tree_share'))}</button></section>`;
+  // the chain and share buttons sit in the panel's footer, which never scrolls away
+  pFoot.innerHTML = chain.length && chain[chain.length - 1].id === ROOT ? `<button type="button" class="cta" data-chain="${esc(id)}">${esc(t('tree_chain_btn'))}</button> <button type="button" class="add" data-share="${esc(id)}">${esc(t('tree_share'))}</button>` : '';
   if (!f) html += `<section class="sec"><p class="muted">${esc(id === CONFIG.spine[0] ? t('tree_above_ali') : t('tree_father_none'))}</p></section>`;
   if (ks.length) html += `<section class="sec"><h4>${esc(t('tree_children'))} (${ks.length})</h4><div class="chips">${ks.map(personBtn).join('')}</div></section>`;
   if (!p.living) {
@@ -895,15 +903,15 @@ function openPerson(id, { center = true } = {}) {
   }
   // an open branch: anyone from the family can send the next generation
   if (!ks.length) html += `<section class="sec"><button type="button" class="add" data-add="${esc(id)}"><span aria-hidden="true">+</span> ${esc(t('tree_add_children'))}</button><div class="addbox" hidden></div></section>`;
-  pBody.innerHTML = html; pBody.scrollTop = 0;
+  pBody.innerHTML = html; pBody.scrollTop = 0; pScroll.scrollTop = 0;
   showPanel(id); if (center) requestAnimationFrame(() => centerOn(id));
 }
 function open1987(id, center) {
   setSelected(id);
-  pEyebrow.textContent = t('tree_r87_eyebrow');
-  pName.textContent = CONFIG.reading1987.boxes.find(b => b.id === id).label;
+  setEyebrow(t('tree_r87_eyebrow'));
+  setName(CONFIG.reading1987.boxes.find(b => b.id === id).label);
   pLine.innerHTML = '';
-  pBadges.innerHTML = `<span class="st trad">${esc(t('tree_link_trad'))}</span>`;
+  pBadges.innerHTML = `<span class="st trad">${esc(t('tree_link_trad'))}</span>`; pFoot.innerHTML = '';
   const note = esc(t('tree_r87_note')).replace(/\{(\w+)\}/g, (m, k) => personBtn(k) || m);
   const S = stripHtml('umar');
   pBody.innerHTML = `<section class="sec"><p class="note">${note}</p></section>
@@ -1267,7 +1275,7 @@ function notFoundHtml() {
 }
 function renderHits() {
   // the full chain is written only under a three-part match; otherwise the name and its generation
-  const list = hits.map((h, i) => `<li role="option" id="ft-opt${i}" aria-selected="${i === cursor}" data-go="${esc(h.id)}"><span class="rn">${esc(h.p.name_as_written)}</span><span class="rm">${esc(fullMatch ? nasabText(h.id) : genText(h.p))}</span></li>`).join('');
+  const list = hits.map((h, i) => `<li role="option" id="ft-opt${i}" aria-selected="${i === cursor}" data-go="${esc(h.id)}" aria-label="${esc(h.p.name_as_written + ' — ' + (fullMatch ? nasabText(h.id) : genText(h.p)))}"><span class="rn" data-t="${esc(h.p.name_as_written)}" aria-hidden="true"></span><span class="rm" data-t="${esc(fullMatch ? nasabText(h.id) : genText(h.p))}" aria-hidden="true"></span></li>`).join('');
   const hint = `<li class="empty hint">${esc(t('tree_search_hint'))}</li>`;
   results.innerHTML = fullMatch ? list : wordCount < 3 ? list + hint : list || notFoundHtml();
   results.hidden = false; q.setAttribute('aria-expanded', 'true');
