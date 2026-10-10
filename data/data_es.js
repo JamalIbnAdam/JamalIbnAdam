@@ -85,9 +85,9 @@ window.FamilyTreeData = {
         modern_era_generation: "Generación 73: (Generación actual - 2026)",
 
         // --- FIGURES TAB (The 4 Cards) ---
-        figures_intro_title: "De la introducción de 'Al-Ansar en Wadi Al-Shatii'",
+        figures_intro_title: "Figuras de los Ansar en Libia",
         figures_intro_text:
-            "Las fuentes históricas confirman que la presencia de la familia 'Sabal Al-Ain' es una extensión natural de las tribus ansaríes (Aws y Jazray) en territorio libio. Estas figuras son 'primas' en linaje e historia.",
+            "Figuras de los Ansar que vivieron en Libia a lo largo de los siglos. Las mencionamos para dar a conocer la presencia ansarí en el país, no para probar el linaje de ninguna familia en particular.",
 
         // Card 1
         fig_1_badge: "Primera generación (Compañeros)",
@@ -249,6 +249,9 @@ window.FamilyTreeData = {
         tree_fullscreen: "Full screen", // TODO translate
         tree_rotate_hint: "Turn the phone sideways for a wider view", // TODO translate
         tree_hidden_name: "A member of the family", // TODO translate
+        tree_bin: "ibn",
+        tree_bint: "bint",
+        tree_nasab_gap: "… [eslabones en estudio: unos {n}] …",
         tree_docs_1: "📄 1 document", // TODO translate
         tree_docs_2: "📄 2 documents", // TODO translate
         tree_docs_few: "📄 {n} documents", // TODO translate
@@ -261,6 +264,8 @@ window.FamilyTreeData = {
         tree_link_civil: "🏛 Registro civil",
         tree_link_author: "Del árbol del autor",
         tree_legend_unknown: "? En estudio",
+        tree_legend_testimony: "🗣 Testimonio de los notables de la tribu",
+        tree_testimony_chip: "🗣 Testimonio de los notables de la tribu — bajo la responsabilidad de los narradores",
         tree_unknown_chain: "Under research — an estimated {n} generations", // TODO translate
         tree_unknown_range: "(between {min} and {max})", // TODO translate
         tree_unknown_basis: "An ancestor whose name is not yet known.", // TODO translate
@@ -402,7 +407,7 @@ window.FamilyTreeData = {
         tree_gen_top: "Generation {n} (top of the chain)", // TODO translate
         tree_poster_only: "“al-Jaddawi al-Ansari” in the tribe's deeds since 1174 AH", // TODO translate
         tree_poster_title: "Epithets in the deeds and the 1987 poster", // TODO translate
-        tree_poster_note: "The name “al-Jaddawi” is attested in the habs deed: “Umar ibn Ali al-Jaddawi”. The tribe's Ansari affiliation is written in its deeds from 1174 AH: “al-Jaddawi al-Ansari”. “al-Khazraji” appears on the 1987 tree label and on an undated paper: “al-Ansari al-Jabiri al-Khazraji”.", // TODO translate
+        tree_poster_note: "The name “al-Jaddawi” is attested in the habs deed: “Umar ibn Ali al-Jaddawi”. The tribe's Ansari affiliation is written in its deeds from 1174 AH: “al-Jaddawi al-Ansari”. The attribution “al-Salami al-Khazraji” (of Banu Salima of al-Khazraj, to Jabir ibn Abdullah, may God be pleased with him) is the testimony of the tribe's elders: al-Hajj Muhammad al-Qadi al-Rashid al-Ansari, and as related from al-Hajj Abu Bakr al-Barkuli, al-Hajj al-Majdhub and al-Hajj al-Nu'mani, all al-Ansari, may God have mercy on them all (p. 91, n. 7). “al-Khazraji” appears on the 1987 tree label and on an undated paper: “al-Ansari al-Jabiri al-Khazraji”.", // TODO translate
         tree_r87_callout_1: "The 1987 tree reading, later covered over.", // TODO translate
         tree_r87_callout_2: "No document places Fadl and al-Hajj Muhammad", // TODO translate
         tree_r87_callout_3: "between Umar and Abdullah. Tap for details.", // TODO translate

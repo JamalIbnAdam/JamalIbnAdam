@@ -21,6 +21,8 @@ const CONFIG = {
   spine: ['ali', 'umar', 'abdallah'],          // bottom → top on the trunk; the last one is the medallion
   fanRoot: 'abdallah',
   plaqueAli: 'علي الجداوي الأنصاري',            // the base of the tree, as the tribe's documents name the lineage
+  // the elders named in the book's footnote for each testimony page (the data carries the footnote as one quote)
+  testimonyNames: { 'ansar-p091': ['الحاج محمد القاضي الرشيد الأنصاري', 'الحاج أبو بكر البركولي الأنصاري', 'الحاج المجذوب الأنصاري', 'الحاج النعماني الأنصاري'] },
   posterAli: 'الخزرجي الأنصاري',                 // extra words on the 1987 root plaque, not found in any document
   fanDeg: 250,
   openDepth: 2,                                // generations shown below an opened name; the rest fold into a «+N» chip
@@ -133,7 +135,9 @@ function docsOf(id) {
       if (seen.has(img)) continue; seen.add(img);
       const mine = recs.filter(d => (d.persons || []).some(x => x.tree_id === id));
       const use = mine.length ? mine : recs;
-      if (!use.length) items.push({ img, src: e.image, e, d: null });
+      // the elders' testimony recorded in the book: shown in its own section, opened in the reader, never counted as a document
+      if (e.kind === 'testimony') items.push({ img, src: e.image, e, d: null, testimony: true });
+      else if (!use.length) items.push({ img, src: e.image, e, d: null });
       else use.forEach(d => items.push({ img, src: e.image, e, d }));
     }
     for (const d of docsByPerson.get(id) || []) {
@@ -142,8 +146,9 @@ function docsOf(id) {
       items.push({ img: d.image_id, src: `assets/evidence/${d.image_id}.webp`, e: null, d });
     }
   }
-  const thumbs = []; items.forEach((it, i) => { if (!thumbs.some(th => th.img === it.img)) thumbs.push({ img: it.img, i, it }); });
-  const out = { items, bare, thumbs, count: thumbs.length + bare.length };
+  const thumbs = [], testimony = [];
+  items.forEach((it, i) => { if (it.testimony) testimony.push({ img: it.img, i, it }); else if (!thumbs.some(th => th.img === it.img)) thumbs.push({ img: it.img, i, it }); });
+  const out = { items, bare, thumbs, testimony, count: thumbs.length + bare.length };
   docCache.set(id, out); return out;
 }
 // «📄 N وثائق» / «قرينة من الوثائق» / «رواية الأسرة»: the evidence for the link to the father, as a neutral fact
@@ -790,11 +795,25 @@ const ahTxt = v => /^\d+$/.test(String(v)) ? `${v}${t('tree_ah')}` : String(v);
 const docDate = it => it.d ? (it.d.date_hijri && /^\d+$/.test(String(it.d.date_hijri)) ? ahTxt(it.d.date_hijri) : '') : (it.e && /^\d+/.test(String(it.e.date || '')) ? ahTxt(String(it.e.date).match(/^\d+/)[0]) : '');
 function genText(p) { return p.generation == null ? t('tree_gen_unknown') : p.generation === 0 ? t('tree_gen_zero') : p.generation < 0 ? t('tree_gen_top', { n: p.generation }) : t('tree_gen', { n: p.generation }); }
 function ancestors(id, stopAt) { const out = []; let p = byId.get(id), guard = 0; while (p && p.father_id && byId.has(p.father_id) && guard++ < 200) { p = byId.get(p.father_id); out.push(p); if (p.id === stopAt) break; } return out; }
-// «بن … بن … بن عبد الله سبال العين»: every father is a link
+/* The lineage in words, the Arab way: from the person to the oldest known ancestor, joined by «بن», with no arrows.
+   «جمال بن عمر بن … بن الحاج فضل بن عبد الله سبال العين بن عمر بن علي الجداوي الأنصاري» */
+function nasabParts(id) {
+  const line = [byId.get(id), ...ancestors(id)], out = [];
+  for (let i = 0; i < line.length; i++) {
+    const x = line[i];
+    if (x.placeholder) { let n = 1; while (line[i + 1] && line[i + 1].placeholder) { n++; i++; } out.push({ id: x.id, gap: true, text: t('tree_nasab_gap', { n }) }); continue; }   // a run of «؟» is one segment
+    let name = x.id === CONFIG.spine[0] ? CONFIG.plaqueAli : shortName(x);
+    if (out.length && !x.hidden) name = name.replace(/^أبو(?=\s)/, 'أبي');   // genitive after «بن»
+    out.push({ id: x.id, text: name });
+  }
+  return out;
+}
+const binOf = p => t(/ بنت /.test(' ' + p.name_as_written + ' ') ? 'tree_bint' : 'tree_bin');
+function nasabText(id) { const p = byId.get(id), bin = t('tree_bin'); return nasabParts(id).map((a, i) => i ? `${i === 1 ? binOf(p) : bin} ${a.text}` : a.text).join(' '); }
+// the panel's line carries on from the name above it: «بن … بن … بن علي الجداوي الأنصاري», every father a link
 function lineageHtml(p) {
-  const up = ancestors(p.id, inFan.has(p.id) && p.id !== ROOT ? ROOT : null).filter((a, i, list) => !(a.placeholder && i && list[i - 1].placeholder)); if (!up.length) return '';
-  const first = / بنت /.test(' ' + p.name_as_written + ' ') ? 'بنت' : 'بن';
-  return up.map((a, i) => a.placeholder ? `<span class="bn">…</span> <button type="button" class="lk" data-go="${esc(a.id)}">${esc(t('tree_unknown_name'))}</button> <span class="bn">…</span>` : `<span class="bn">${i && !up[i - 1].placeholder ? 'بن' : i ? '' : first}</span> <button type="button" class="lk" data-go="${esc(a.id)}">${esc(shortName(a))}</button>`).join(' ');
+  const bin = t('tree_bin');
+  return nasabParts(p.id).slice(1).map((a, i) => `<span class="bn">${esc(i ? bin : binOf(p))}</span> <button type="button" class="lk" data-go="${esc(a.id)}">${esc(a.text)}</button>`).join(' ');
 }
 // a chain of placeholders: «حلقات بين <the named ancestor above> و<the named head below>»
 const plainName = p => nameOf(p).replace(/\s*[(（][^)）]*[)）]\s*$/, '');   // the name without a bracketed epithet
@@ -848,6 +867,11 @@ function openPerson(id, { center = true } = {}) {
     const S = stripHtml(id);
     // the civil registry needs no document picture: the documents section is shown for it only when there is one
     if (S.count || src !== 'civil') html += `<section class="sec"><h4>${esc(t('tree_docs'))} (${S.count})</h4>${S.count ? S.html : `<p class="muted">${esc(t('tree_docs_none'))}</p>`}</section>`;
+    // the testimony of the tribe's elders: its chip, the elders' names, and the book page in the reader
+    docsOf(id).testimony.forEach(th => {
+      const names = CONFIG.testimonyNames[th.img] || [], page = pageTxt(th.it.e.page);
+      html += `<section class="sec tst"><span class="st">${esc(t('tree_testimony_chip'))}</span>${names.length ? `<ul class="who">${names.map(n => `<li>${esc(n)}</li>`).join('')}</ul>` : ''}<div class="strip"><button type="button" class="th" data-doc="${th.i}" data-of="${esc(id)}" aria-label="${esc(t('tree_open_doc'))}: ${esc(page)}"><img src="${esc(asset(th.it.src))}" alt="" loading="lazy" decoding="async" width="120" height="150"><span class="thp">${esc(page)}</span></button></div><span class="src">${esc(t('tree_source'))}: ${esc(th.it.e.source || page)}</span></section>`;
+    });
     // the civil registry, the author's tree or the elders' account: the notes say where it comes from
     if (k === 'trad' && p.notes) html += `<section class="sec"><h4>${esc(t('tree_link_' + src))}</h4><p class="srcline">${esc(publicNote(p.notes))}</p></section>`;
     const audit = [];
@@ -919,10 +943,9 @@ function onActivate(e) {
 
 /* ---------- tooltip: full name and lineage line, for every fruit and plaque ---------- */
 let lastPointer = 'mouse', tipTimer;
-function lineage(id) { return [byId.get(id), ...ancestors(id)].reverse().filter((a, i, list) => !(a.placeholder && i && list[i - 1].placeholder)).map(a => a.placeholder ? '…' : shortName(a)).join(' ← '); }
 function showTip(g) {
   const p = byId.get(g.dataset.id); if (!p || !g.isConnected) return;
-  tip.innerHTML = p.placeholder && chainInfo.has(p.id) ? `<b>${esc(chainLabel(chainInfo.get(p.id)))}</b><span>${esc(betweenText(chainInfo.get(p.id)))}</span>` : `<b>${esc(nameOf(p))}</b><span>${esc(lineage(p.id))}</span>`;
+  tip.innerHTML = p.placeholder && chainInfo.has(p.id) ? `<b>${esc(chainLabel(chainInfo.get(p.id)))}</b><span>${esc(betweenText(chainInfo.get(p.id)))}</span>` : `<b>${esc(nameOf(p))}</b><span>${esc(nasabText(p.id))}</span>`;
   tip.hidden = false;
   const r = g.getBoundingClientRect(), h = host.getBoundingClientRect(), tw = tip.offsetWidth, th = tip.offsetHeight;
   const x = Math.max(4, Math.min(h.width - tw - 4, r.left + r.width / 2 - h.left - tw / 2));
@@ -1031,7 +1054,7 @@ function readerTabs(it) {
 }
 function renderReader() {
   const it = R.list[R.i], d = it.d, e = it.e;
-  $('ft-rTitle').textContent = (d && d.doc_type) || pageTxt(e && e.page) || t('tree_docs');
+  $('ft-rTitle').textContent = it.testimony ? t('tree_legend_testimony') : (d && d.doc_type) || pageTxt(e && e.page) || t('tree_docs');
   const date = d ? [d.date_as_written, d.date_hijri && /^\d+$/.test(String(d.date_hijri)) ? `(${ahTxt(d.date_hijri)})` : ''].filter(Boolean).join(' ') : (e && e.date) || '';
   $('ft-rMeta').innerHTML = `<span class="pg">${esc(pageTxt(d ? d.page : e.page))}</span><span>${esc(date || t('tree_no_date'))}</span>${d ? dotsHtml(d.legibility, t('tree_legibility')) : dotsHtml(e && e.confidence, t('tree_confidence'))}${d && d.needs_better_image ? `<span class="bd need">${esc(t('tree_needs_image'))}</span>` : ''}`;
   $('ft-rCount').textContent = `${R.i + 1} / ${R.list.length}`;
@@ -1066,16 +1089,17 @@ window.addEventListener('resize', () => { if (!reader.hidden) vFit(); });
 const chainEl = document.createElement('div');
 chainEl.className = 'ft-chain'; chainEl.hidden = true; chainEl.dir = 'rtl';
 chainEl.setAttribute('role', 'dialog'); chainEl.setAttribute('aria-modal', 'true'); chainEl.setAttribute('aria-labelledby', 'ft-cTitle');
-chainEl.innerHTML = `<header class="ch"><div><h2 id="ft-cTitle"></h2><p id="ft-cSum"></p></div><button type="button" id="ft-cClose">${icon(IC.x)}</button></header><ol class="cl" id="ft-cList"></ol>`;
+chainEl.innerHTML = `<header class="ch"><div><h2 id="ft-cTitle"></h2><p id="ft-cSum"></p></div><button type="button" id="ft-cClose">${icon(IC.x)}</button></header><p class="nasab" id="ft-cNasab"></p><ol class="cl" id="ft-cList"></ol>`;
 document.body.appendChild(chainEl);
 trap(chainEl);
 let chainId = null, chainIO = null, chainPushed = false;
 function renderChain(id) {
   const p = byId.get(id); if (!p) return false;
-  const line = [p, ...ancestors(id, ROOT)];
-  const c = { ok: 0, maybe: 0, civil: 0, author: 0, trad: 0 }; line.forEach(x => { if (!x.placeholder && (x.id !== ROOT || x.father_id)) c[srcKey(x.status)]++; });
+  const line = [p, ...ancestors(id)];   // down to the oldest known ancestor
+  const c = { ok: 0, maybe: 0, civil: 0, author: 0, trad: 0 }; line.forEach(x => { if (!x.placeholder && x.father_id && byId.has(x.father_id)) c[srcKey(x.status)]++; });   // every link to a father
   $('ft-cTitle').textContent = t('tree_chain_title');
   $('ft-cSum').textContent = [t(line.some(x => x.placeholder) ? 'tree_chain_n_est' : 'tree_chain_n', { n: line.length }), t('tree_chain_ok', { n: c.ok }), ...['maybe', 'civil', 'author', 'trad'].map(k => c[k] ? t('tree_chain_' + k, { n: c[k] }) : '')].filter(Boolean).join(' · ');
+  $('ft-cNasab').textContent = nasabText(id);
   $('ft-cClose').setAttribute('aria-label', t('tree_close'));
   // a run of unknown ancestors is one card
   const cards = [];
@@ -1088,7 +1112,7 @@ function renderChain(id) {
     if (cd.ph) { const es = x.estimate || {}; return `<li class="cc ph"><div class="card"><b class="nm">${esc(t('tree_unknown_chain', { n: cd.n }))}${es.min != null ? ` <span class="muted">${esc(t('tree_unknown_range', { min: es.min, max: es.max }))}</span>` : ''}</b>${es.basis ? `<p class="basis">${esc(es.basis)}</p>` : ''}</div><i class="ln trad"></i></li>`; }
     const D = x.living ? { thumbs: [], count: 0 } : docsOf(x.id), k = stKey(x.status);
     const thumbs = D.thumbs.slice(0, 5).map(th => `<button type="button" class="th" data-doc="${th.i}" data-of="${esc(x.id)}" aria-label="${esc(t('tree_open_doc'))}: ${esc(pageTxt(th.it.d ? th.it.d.page : th.it.e.page))}"><img src="${esc(asset(th.it.src))}" alt="" loading="lazy" decoding="async" width="60" height="76"></button>`).join('') + (D.thumbs.length > 5 ? `<span class="more">+${D.thumbs.length - 5}</span>` : '');
-    return `<li class="cc${last && x.id === ROOT ? ' root' : ''}"><div class="card"><span class="gen">${esc(genText(x))}</span><b class="nm">${esc(nameOf(x))}</b>${thumbs ? `<div class="strip">${thumbs}</div>` : ''}</div>${last ? '' : `<i class="ln ${k}"></i><span class="lb">${esc(srcKey(x.status) === 'trad' ? t('tree_link_trad_short') : linkLabel(x))}</span>`}</li>`;
+    return `<li class="cc${x.id === ROOT ? ' root' : ''}"><div class="card"><span class="gen">${esc(genText(x))}</span><b class="nm">${esc(x.id === CONFIG.spine[0] ? CONFIG.plaqueAli : nameOf(x))}</b>${thumbs ? `<div class="strip">${thumbs}</div>` : ''}</div>${last ? '' : `<i class="ln ${k}"></i><span class="lb">${esc(srcKey(x.status) === 'trad' ? t('tree_link_trad_short') : linkLabel(x))}</span>`}</li>`;
   }).join('');
   if (chainIO) chainIO.disconnect();
   const items = [...chainEl.querySelectorAll('.cc')];
@@ -1098,10 +1122,10 @@ function renderChain(id) {
 }
 function openChain(id) {
   if (!renderChain(id)) return;
-  chainId = id; chainEl.hidden = false; chainEl.scrollTop = 0; document.documentElement.classList.add('ft-noscroll');
+  chainId = id; chainEl.hidden = false; chainEl.scrollTop = 0; document.documentElement.classList.add('ft-noscroll', 'ft-chain-open');
   requestAnimationFrame(() => $('ft-cClose').focus());
 }
-function closeChain() { if (chainEl.hidden) return; chainEl.hidden = true; chainId = null; if (!stage.classList.contains('fs')) document.documentElement.classList.remove('ft-noscroll'); }
+function closeChain() { if (chainEl.hidden) return; chainEl.hidden = true; chainId = null; document.documentElement.classList.remove('ft-chain-open'); if (!stage.classList.contains('fs')) document.documentElement.classList.remove('ft-noscroll'); }
 // Back closes the chain: it is opened by setting the hash, and closed by going back to where it was opened from
 $('ft-cClose').onclick = () => { if (chainPushed) history.back(); else { history.replaceState(null, '', location.pathname + location.search); closeChain(); } };
 chainEl.addEventListener('click', e => { const th = e.target.closest('[data-doc]'); if (th) openReader(th.dataset.of, +th.dataset.doc); });
@@ -1131,15 +1155,14 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && reader.hid
 /* ---------- search ---------- */
 const index = persons.filter(searchable).map(p => ({ id: p.id, n: norm(p.name_as_written + ' ' + (p.short_name || '')), p }));
 let hits = [], cursor = 0;
-// a name that is not in the tree yet: an invitation to send it, with the typed text already in the message
-function notFoundHtml(sending) {
+// a name that is not in the tree yet: an invitation to send it; the button opens the contact form with the typed text in the message
+function notFoundHtml() {
   const msg = t('tree_nf_msg', { q: q.value.trim() });
-  return `<li class="empty nf"><p>${esc(t('tree_nf_text'))}</p>` + (!sending ? `<button type="button" class="nf-btn" data-send>${esc(t('tree_nf_btn'))}</button>`
-    : `<div class="ft-nf"><p class="msg">${esc(msg)}</p>${CONTRIBUTE_URL ? `<a class="nf-btn" href="${esc(contributeHref(msg))}" target="_blank" rel="noopener">${esc(t('tree_add_send'))}</a>` : `<p class="soon">${esc(t('tree_add_soon'))}</p>`}<p class="soon">${esc(t('tree_add_moderation'))}</p></div>`) + '</li>';
+  return `<li class="empty nf"><p>${esc(t('tree_nf_text'))}</p><a class="nf-btn" href="../more/?msg=${encodeURIComponent(msg)}#contact">${esc(t('tree_nf_btn'))}</a></li>`;
 }
 function renderHits() {
-  results.innerHTML = hits.length ? hits.map((h, i) => `<li role="option" id="ft-opt${i}" aria-selected="${i === cursor}" data-go="${esc(h.id)}"><span class="rn">${esc(h.p.name_as_written)}</span><span class="rm">${esc(lineage(h.id))}</span></li>`).join('')
-    : notFoundHtml(false);
+  results.innerHTML = hits.length ? hits.map((h, i) => `<li role="option" id="ft-opt${i}" aria-selected="${i === cursor}" data-go="${esc(h.id)}"><span class="rn">${esc(h.p.name_as_written)}</span><span class="rm">${esc(nasabText(h.id))}</span></li>`).join('')
+    : notFoundHtml();
   results.hidden = false; q.setAttribute('aria-expanded', 'true');
 }
 q.addEventListener('input', () => {
@@ -1160,7 +1183,6 @@ results.addEventListener('mousedown', e => {
   const li = e.target.closest('[data-go]'); if (li) { e.preventDefault(); choose(li.dataset.go); return; }
   if (e.target.closest('.nf')) e.preventDefault();   // keep the box open while the invitation is read
 });
-results.addEventListener('click', e => { if (e.target.closest('[data-send]')) results.innerHTML = notFoundHtml(true); });
 q.addEventListener('blur', () => setTimeout(() => { results.hidden = true; q.setAttribute('aria-expanded', 'false'); }, 120));
 function choose(id) {
   results.hidden = true; q.blur();
@@ -1173,7 +1195,7 @@ function choose(id) {
 /* ---------- legend and header numbers ---------- */
 function drawLegend() {
   // no line samples: every line is solid, and the source of each name is written in its card
-  const items = ['tree_legend_doc', 'tree_link_civil', 'tree_link_maybe', 'tree_link_trad', 'tree_link_author', 'tree_legend_unknown'];
+  const items = ['tree_legend_doc', 'tree_link_civil', 'tree_link_maybe', 'tree_legend_testimony', 'tree_link_trad', 'tree_link_author', 'tree_legend_unknown'];
   $('ft-legend-body').innerHTML = `<p class="lead">${esc(t('tree_legend_intro'))}</p><ul>${items.map(k => `<li><b>${esc(t(k))}</b></li>`).join('')}</ul>` +
     `<p class="say">${esc(t('tree_legend_say'))}</p><div class="hint">${esc(t('tree_legend_hint'))}</div>`;
 }

@@ -57,6 +57,7 @@ function applyTranslations() {
     if (typeof translations.tree_page_title === 'string') document.title = translations.tree_page_title;
     const lang = (data.meta && data.meta.lang) || 'ar';
     if (select) select.value = lang;
+    labelTheme();
     htmlRoot.setAttribute('dir', (data.meta && data.meta.dir) || 'rtl');
     htmlRoot.setAttribute('lang', lang);   // last: this is the signal tree.js redraws on
 }
@@ -77,13 +78,19 @@ async function changeLanguage(langCode) {
 
 // sun/moon switch: dark unless the visitor chose otherwise (the choice is applied before first paint in index.html)
 const themeStorageKey = 'treeTheme';
-const themeButton = document.getElementById('ft-theme');
+const themeButton = document.getElementById('home-theme');   // the shared header's button
+function labelTheme() {
+    const translations = (window.FamilyTreeData && window.FamilyTreeData.translations) || {};
+    const label = translations[htmlRoot.getAttribute('data-theme') === 'light' ? 'home_theme_to_dark' : 'home_theme_to_light'];
+    if (themeButton && typeof label === 'string') themeButton.setAttribute('aria-label', label);
+}
 if (themeButton) {
     themeButton.setAttribute('aria-pressed', String(htmlRoot.getAttribute('data-theme') !== 'light'));
     themeButton.addEventListener('click', () => {
         const next = htmlRoot.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
         htmlRoot.setAttribute('data-theme', next);
         themeButton.setAttribute('aria-pressed', String(next === 'dark'));
+        labelTheme();
         try {
             localStorage.setItem(themeStorageKey, next);
         } catch (error) {
