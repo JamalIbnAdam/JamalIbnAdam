@@ -785,11 +785,12 @@ function openPerson(id, { center = true } = {}) {
   const p = byId.get(id); if (!p) return;
   reveal(id);
   setSelected(id);
-  pEyebrow.textContent = [genText(p), p.branch].filter(Boolean).join(' · ');
-  pName.textContent = p.placeholder && chainInfo.has(id) ? chainLabel(chainInfo.get(id)) : nameOf(p);
-  pLine.innerHTML = lineageHtml(p);
-  if (p.placeholder) {
-    const info = chainInfo.get(id) || { estimate: p.estimate || {}, heads: [] };
+  const info = p.placeholder ? chainInfo.get(id) || { start: id, list: [id], estimate: p.estimate || {}, heads: [] } : null;
+  // a chain is not one generation: no generation line, and «حلقات بين … و…» in place of the lineage line
+  pEyebrow.textContent = (info ? [p.branch] : [genText(p), p.branch]).filter(Boolean).join(' · ');
+  pName.textContent = info ? chainLabel(info) : nameOf(p);
+  pLine.innerHTML = info ? betweenHtml(info) : lineageHtml(p);
+  if (info) {
     pBadges.innerHTML = '';
     pBody.innerHTML = `<section class="sec"><p class="note">${esc(info.estimate.basis || t('tree_unknown_basis'))}</p></section>` + (info.heads.length ? `<section class="sec"><div class="chips">${info.heads.map(personBtn).join('')}</div></section>` : '');
     showPanel(id); if (center) requestAnimationFrame(() => centerOn(id)); return;
