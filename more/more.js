@@ -63,7 +63,7 @@ function loadLanguageScript(langCode) {
     return loadScript(`${url}?t=${Date.now()}`).catch(() => loadScript(url));
 }
 
-// the poem: one line per verse, its two halves side by side
+// the poem: one verse per line — its first half, a gap, then its second half. The verses are Arabic in every language.
 function renderPoem() {
     document.querySelectorAll('[data-i18n-lines]').forEach((box) => {
         const value = strings()[box.getAttribute('data-i18n-lines')];
@@ -72,11 +72,14 @@ function renderPoem() {
         lines.forEach((line) => {
             const p = document.createElement('p');
             p.className = 'poem-line';
-            if (typeof line === 'string' && line.includes('...')) {
-                const parts = line.split('...');
-                const first = (parts.shift() || '').trim();
-                p.innerHTML = `<span class="verse-part">${first}</span><span class="verse-divider">…</span><span class="verse-part">${parts.join('...').trim()}</span>`;
-            } else p.textContent = line;
+            p.dir = 'rtl';
+            p.lang = 'ar';
+            String(line).split(' ... ').forEach((half) => {
+                const span = document.createElement('span');
+                span.className = 'verse-part';
+                span.textContent = half.trim();
+                p.appendChild(span);
+            });
             box.appendChild(p);
         });
     });

@@ -28,41 +28,43 @@ window.FamilyTreeData = {
         // --- POEM TAB ---
         poem_main_title: "La epopeya de los Ansar en la tierra de Libia",
         poem_intro:
-            "Esta epopeya, con forma de manuscrito, traza el linaje de los Ansar desde la cuna de Arabia en Yemen, pasando por su apoyo al Profeta ﷺ en Medina, a través de las conquistas benditas, hasta el asentamiento de sus linajes en la tierra pura de Libia.",
-        poem_ch1_title: "🛡️ Capítulo I: Orígenes y patria (Yemen y Medina)",
+            "Un poema sobre la historia de los Ansar, desde su apoyo al Profeta ﷺ en Medina hasta la tierra de Libia y Wadi al-Shati. Cada hecho que menciona tiene su fuente en este sitio.",
+        poem_ch1_title: "Capítulo I: Los Ansar en Medina",
         poem_ch1_body: [
-            "Desde Ma'rib y las raíces azdíes, los Ansar se alzaron como tribus nobles de fe.",
-            "Tras la gran inundación, Aws y Jazray se trasladaron a Yathrib y abrazaron la luz del islam.",
-            "Su lealtad al Profeta ﷺ se convirtió en la piedra angular de su legado."
+            "سَلُوا الْمَدِينَةَ عَنْ قَوْمٍ إِذَا ذُكِرُوا ... قَالَتْ: هُمُ النَّصْرُ وَالْإِيوَاءُ وَالدَّارُ",
+            "أَوْسٌ وَخَزْرَجُ آوَوْا الْمُصْطَفَى وَحَمَوْا ... دِينَ الْإِلَهِ، فَهُمْ لِلدِّينِ أَنْصَارُ",
+            "وَيَوْمَ بَدْرٍ وَفِي الْأَحْزَابِ مَا وَهَنُوا ... وَلَا ثَنَتْهُمْ عَنِ الْإِيمَانِ أَخْطَارُ",
+            "لَا يُبْغِضُ الْقَوْمَ إِلَّا مَنْ بِهِ دَخَلٌ ... وَحُبُّهُمْ عِنْدَ أَهْلِ الدِّينِ مِعْيَارُ",
+            "يَقِلُّ عَدُّهُمُ وَالنَّاسُ قَدْ كَثُرُوا ... كَالْمِلْحِ فِي الزَّادِ، صَحَّتْ عَنْهُ آثَارُ"
         ],
-        poem_ch2_title: "⚔️ Capítulo II: Conquistas y gloria",
+        poem_ch2_title: "Capítulo II: En la tierra de Libia",
         poem_ch2_body: [
-            "Los Ansar marcharon con los primeros compañeros en Yarmuk y más allá.",
-            "Llevaron el Corán hacia el oeste, levantando mezquitas y comunidades en Al-Ándalus.",
-            "Ciudades como Toledo y Granada resonaron con el llamado a la unidad y la adoración."
+            "وَفِي رُبَى بَرْقَةٍ مِنْهُمْ رُوَيْفِعُهُمْ ... أَمِيرُهَا، وَعَلَى الْبَيْضَاءِ أَنْوَارُ",
+            "وَفِي طَرَابُلُسٍ صَحْبُ النَّبِيِّ ثَوَى ... مُنَيْذِرٌ، وَلَهُ فِي النَّقْلِ أَخْبَارُ",
+            "وَعِنْدَ غَرْيَانَ وَادِي النَّخْلِ مَسْجِدُهُ ... عَبْدُ الْعَزِيزِ، وَفِي الْبَحْرِ الْعِدَى جَارُوا",
+            "وَفِي الْجَنُوبِ وَفِي الشُّطْآنِ قَدْ نَزَلُوا ... فِي كُلِّ مِصْرٍ لَهُمْ شَأْنٌ وَأَقْدَارُ"
         ],
-        poem_ch3_title: "🕌 Capítulo III: La prueba de precedencia (Trípoli y Barqa)",
+        poem_ch3_title: "Capítulo III: El antepasado Abdullah Sabal al-Ain",
         poem_ch3_body: [
-            "Trípoli y Barqa testimonian la temprana presencia ansarí en Libia.",
-            "Compañeros como Munidhir al-Ifriqi y Ruwayfi ibn Thabit descansan en su suelo.",
-            "Estos hitos confirman las raíces ancestrales establecidas desde las primeras conquistas."
+            "أَمِنْ ثَرَى جُدَّةٍ جَاؤُوا أَمِ انْحَدَرُوا ... مِنْ أَرْضِ أَنْدَلُسٍ؟ وَالْبَحْثُ أَطْوَارُ",
+            "وَحَطَّ فِي الشَّاطِئِ الْمَيْمُونِ رَحْلَتَهُ ... عَبْدُ الْإِلَهِ، وَمَاءُ الْعَيْنِ مِدْرَارُ",
+            "سَبَّالَ عَيْنٍ دَعَوْهُ، إِذْ أَبَاحَ لَهُمْ ... سَبِيلَهَا، فَارْتَوَى سَارٍ وَزُوَّارُ",
+            "وَشَادَ زَاوِيَةً لِلْعِلْمِ يَعْمُرُهَا ... قُرْآنُ فَجْرٍ، وَإِطْعَامٌ، وَأَذْكَارُ",
+            "سُطُورُ أَجْدَادِنَا فِي الرَّقِّ شَاهِدَةٌ ... بَيْعٌ وَحَبْسٌ وَإِشْهَادٌ وَإِقْرَارُ"
         ],
-        poem_ch4_title: "🌴 Capítulo IV: El árbol de Fadl (seis ramas)",
+        poem_ch4_title: "Capítulo IV: Las ramas y las aldeas",
         poem_ch4_body: [
-            "De Abdullah Sabal al-Ain surgieron las ramas que descienden de él.",
-            "Agar, Ashkedah, Dabdab, Brak y las familias de Uthman, Qasim, Abu Bakr, Salem y Abdul Wahid forjaron el legado.",
-            "Su honor se preserva a través de las generaciones en Wadi Al-Shatii."
+            "مِنْ نَسْلِهِ قَدْ نَمَتْ شَتَّى الْبُطُونِ لَنَا ... كَمَا تَفَرَّعَ فِي الْبُسْتَانِ أَشْجَارُ",
+            "فِي الشَّاطِئِ اجْتَمَعَتْ أَحْيَاؤُهُمْ وَزَهَتْ ... بَرَاكُ، أَشْكِدَةٌ، دَبْدَبْ، وَآقَارُ",
+            "وَصَانَ أَشْيَاخُنَا الْأَنْسَابَ فِي صُدُرٍ ... كَمَا تُصَانُ مِنَ الْأَيَّامِ أَسْرَارُ",
+            "وَإِنْ نَأَتْ بِبَنِيهِ الْيَوْمَ غُرْبَتُهُمْ ... فَالْأَصْلُ يَجْمَعُهُمْ، وَالْوُدُّ أَسْوَارُ"
         ],
-        poem_ch5_title: "🤝 Capítulo V: Apoyo y santuario",
+        poem_ch5_title: "Cierre",
         poem_ch5_body: [
-            "Los Ansar siguen siendo un pueblo de valentía, solidaridad y protección del vecino.",
-            "Su respuesta a los llamados de auxilio nace de la fe, la generosidad y el honor."
+            "يَا رَبِّ فَاحْفَظْ بَنِي الْأَنْصَارِ قَاطِبَةً ... وَعْدُ النَّبِيِّ لَهُمْ: حَوْضٌ وَأَنْهَارُ",
+            "ثُمَّ الصَّلَاةُ عَلَى الْهَادِي وَعِتْرَتِهِ ... مَا سَبَّحَتْ فِي دُجَى الْأَسْحَارِ أَطْيَارُ"
         ],
-        poem_conclusion:
-            "🤲 Conclusión y fidelidad: Oh Señor, preserva a los Ansar en toda tierra y envía bendiciones sobre Muhammad ﷺ, quien ennobleció nuestro linaje.",
         poem_credits: "✍️ Letra: Jamal Ibn Adam (Asistido por IA) | 🎵 Nasheed exclusivo de YouTube",
-        poem_ch3_image_alt: "Munidhir Al-Ifriqi - retrato de referencia",
-        poem_ch4_image_alt: "Palmeras del sur - paisaje de referencia",
 
         // Search & Filters
         search_placeholder: "Buscar antepasado (p. ej., Omar, Jaber)...",
@@ -308,14 +310,18 @@ window.FamilyTreeData = {
         home_verify_note: "A name under review in the sources: the old site had dropped it from the chain.", // TODO translate
         home_s2_k: "Stage two", // TODO translate
         home_s2_h: "Eight centuries under research", // TODO translate
-        home_s2_p: "Between the death of Jabir ibn Abdullah in 78 AH and Ali al-Jaddawi in about the ninth century AH lie some 22 to 25 generations for whom we have not yet found a document that names them. The tribe preserves its attribution to the Ansar, and it appears in its documents; the names of these links are what we are searching for.", // TODO translate
-        home_gap_aria: "About 24 forefathers whose names are not yet known", // TODO translate
         home_hyp1_h: "The Hejaz and Jeddah hypothesis", // TODO translate
         home_hyp1_p: "The epithet “al-Jaddawi” in the Brak al-Shati documents, and the tribe's account that the forefather came from the Hejaz.", // TODO translate
         home_hyp1_t: "What would settle it: a Hejazi or Maghribi document naming “Umar ibn Ali al-Jaddawi” or his son Abdullah.", // TODO translate
         home_hyp2_h: "The Andalus hypothesis", // TODO translate
         home_hyp2_p: "The view of Dr. Muhammad Abd al-Qadir al-Ansari, and the timing of the fall of Granada in 897 AH agrees with it. The two hypotheses may meet: Andalusian Ansar who settled in Jeddah and then came to Fezzan.", // TODO translate
         home_hyp2_t: "What would settle it: a mention of the family in the sources on the Andalusian migration or in the biographical dictionaries of the Maghrib.", // TODO translate
+        home_gap_label: "8 centuries · about 22–25 generations", // TODO translate
+        home_gap_h: "Links under research", // TODO translate
+        home_gap_p: "Between the death of the Companion Jabir ibn Abdullah, may God be pleased with him, in 78 AH, and the forefather Ali al-Jaddawi in the ninth century AH, lie some 22 to 25 generations for whom we have not yet found a document that names them. The affiliation to the Ansar is preserved by the tribe and appears in its documents; the names of these links we are still looking for in the books of al-Andalus, the Hejaz and Jeddah, and in documents and manuscripts.", // TODO translate
+        home_gap_appeal: "If you are of the Ansar in any country and you have a document, a manuscript or an old family tree that mentions “al-Jaddawi”, or that connects the Ansar of al-Andalus or the Hejaz with Libya, send it to us. The missing link may be with you.", // TODO translate
+        home_gap_send: "Send a document", // TODO translate
+        home_gap_share: "Share this page", // TODO translate
         home_gap_link: "Do you have a document or a source that fills one of these links?", // TODO translate
         home_s3_k: "Stage three", // TODO translate
         home_s3_h: "The documented branch in Fezzan", // TODO translate

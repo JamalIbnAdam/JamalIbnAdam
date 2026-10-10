@@ -28,37 +28,43 @@ window.FamilyTreeData = {
         // --- POEM TAB ---
         poem_main_title: "Libya Topraklarında Ensar Destanı",
         poem_intro:
-            "Bu el yazması üslubundaki anlatım, Ensar soyunun Yemen'den Medine'ye, fetihlere ve Libya'daki yerleşime uzanan tarihî serüvenini özetler.",
-        poem_ch1_title: "🛡️ Bölüm I: Köken ve Yurt (Yemen & Medine)",
+            "Ensar'ın, Medine'de Peygamber'e ﷺ yardım etmelerinden Libya topraklarına ve Vadi eş-Şati'ye uzanan hikâyesi üzerine bir şiir. İçindeki her olayın bu sitede bir kaynağı vardır.",
+        poem_ch1_title: "Birinci Bölüm: Medine'de Ensar",
         poem_ch1_body: [
-            "Ensar, Ma'rib ve Ezd köklerinden doğarak Yesrib'de İslam nuruyla birleşti.",
-            "Evs ve Hazrec kabileleri Peygamber ﷺ'e destek vererek örnek bir sadakat gösterdi."
+            "سَلُوا الْمَدِينَةَ عَنْ قَوْمٍ إِذَا ذُكِرُوا ... قَالَتْ: هُمُ النَّصْرُ وَالْإِيوَاءُ وَالدَّارُ",
+            "أَوْسٌ وَخَزْرَجُ آوَوْا الْمُصْطَفَى وَحَمَوْا ... دِينَ الْإِلَهِ، فَهُمْ لِلدِّينِ أَنْصَارُ",
+            "وَيَوْمَ بَدْرٍ وَفِي الْأَحْزَابِ مَا وَهَنُوا ... وَلَا ثَنَتْهُمْ عَنِ الْإِيمَانِ أَخْطَارُ",
+            "لَا يُبْغِضُ الْقَوْمَ إِلَّا مَنْ بِهِ دَخَلٌ ... وَحُبُّهُمْ عِنْدَ أَهْلِ الدِّينِ مِعْيَارُ",
+            "يَقِلُّ عَدُّهُمُ وَالنَّاسُ قَدْ كَثُرُوا ... كَالْمِلْحِ فِي الزَّادِ، صَحَّتْ عَنْهُ آثَارُ"
         ],
-        poem_ch2_title: "⚔️ Bölüm II: Fetihler ve İhtişam",
+        poem_ch2_title: "İkinci Bölüm: Libya topraklarında",
         poem_ch2_body: [
-            "Ensar, Yermük'ten Endülüs'e kadar fetihlerde ön saflarda yer aldı.",
-            "Batı beldelerinde camiler inşa ederek ilim ve birliği yaydı."
+            "وَفِي رُبَى بَرْقَةٍ مِنْهُمْ رُوَيْفِعُهُمْ ... أَمِيرُهَا، وَعَلَى الْبَيْضَاءِ أَنْوَارُ",
+            "وَفِي طَرَابُلُسٍ صَحْبُ النَّبِيِّ ثَوَى ... مُنَيْذِرٌ، وَلَهُ فِي النَّقْلِ أَخْبَارُ",
+            "وَعِنْدَ غَرْيَانَ وَادِي النَّخْلِ مَسْجِدُهُ ... عَبْدُ الْعَزِيزِ، وَفِي الْبَحْرِ الْعِدَى جَارُوا",
+            "وَفِي الْجَنُوبِ وَفِي الشُّطْآنِ قَدْ نَزَلُوا ... فِي كُلِّ مِصْرٍ لَهُمْ شَأْنٌ وَأَقْدَارُ"
         ],
-        poem_ch3_title: "🕌 Bölüm III: Öncelik Şahidi (Trablus & Berka)",
+        poem_ch3_title: "Üçüncü Bölüm: Ata Abdullah Sebal el-Ayn",
         poem_ch3_body: [
-            "Trablus ve Berka, Ensar'ın Libya'daki erken izlerini taşıyan şehirlere tanıklık eder.",
-            "Munidhir el-İfriki ve Ruwayfi bin Thabit gibi sahabiler bu topraklarda metfundur."
+            "أَمِنْ ثَرَى جُدَّةٍ جَاؤُوا أَمِ انْحَدَرُوا ... مِنْ أَرْضِ أَنْدَلُسٍ؟ وَالْبَحْثُ أَطْوَارُ",
+            "وَحَطَّ فِي الشَّاطِئِ الْمَيْمُونِ رَحْلَتَهُ ... عَبْدُ الْإِلَهِ، وَمَاءُ الْعَيْنِ مِدْرَارُ",
+            "سَبَّالَ عَيْنٍ دَعَوْهُ، إِذْ أَبَاحَ لَهُمْ ... سَبِيلَهَا، فَارْتَوَى سَارٍ وَزُوَّارُ",
+            "وَشَادَ زَاوِيَةً لِلْعِلْمِ يَعْمُرُهَا ... قُرْآنُ فَجْرٍ، وَإِطْعَامٌ، وَأَذْكَارُ",
+            "سُطُورُ أَجْدَادِنَا فِي الرَّقِّ شَاهِدَةٌ ... بَيْعٌ وَحَبْسٌ وَإِشْهَادٌ وَإِقْرَارُ"
         ],
-        poem_ch4_title: "🌴 Bölüm IV: Fazl'ın Şeceresi (Altı Kol)",
+        poem_ch4_title: "Dördüncü Bölüm: Kollar ve köyler",
         poem_ch4_body: [
-            "Abdullah Sebal el-Ayn'dan, onun soyundan gelen kollar doğdu.",
-            "Agar, Aşkeda, Dabdab, Brak ve Osman, Kasım, Ebubekir, Salim, Abdülvahid aileleri bu mirası şekillendirdi."
+            "مِنْ نَسْلِهِ قَدْ نَمَتْ شَتَّى الْبُطُونِ لَنَا ... كَمَا تَفَرَّعَ فِي الْبُسْتَانِ أَشْجَارُ",
+            "فِي الشَّاطِئِ اجْتَمَعَتْ أَحْيَاؤُهُمْ وَزَهَتْ ... بَرَاكُ، أَشْكِدَةٌ، دَبْدَبْ، وَآقَارُ",
+            "وَصَانَ أَشْيَاخُنَا الْأَنْسَابَ فِي صُدُرٍ ... كَمَا تُصَانُ مِنَ الْأَيَّامِ أَسْرَارُ",
+            "وَإِنْ نَأَتْ بِبَنِيهِ الْيَوْمَ غُرْبَتُهُمْ ... فَالْأَصْلُ يَجْمَعُهُمْ، وَالْوُدُّ أَسْوَارُ"
         ],
-        poem_ch5_title: "🤝 Bölüm V: Yardım ve Himaye",
+        poem_ch5_title: "Kapanış",
         poem_ch5_body: [
-            "Ensar, cesaret, komşuluk ve dayanışma ruhuyla tanınır.",
-            "Zor zamanlarda yardıma koşmak onların geleneğidir."
+            "يَا رَبِّ فَاحْفَظْ بَنِي الْأَنْصَارِ قَاطِبَةً ... وَعْدُ النَّبِيِّ لَهُمْ: حَوْضٌ وَأَنْهَارُ",
+            "ثُمَّ الصَّلَاةُ عَلَى الْهَادِي وَعِتْرَتِهِ ... مَا سَبَّحَتْ فِي دُجَى الْأَسْحَارِ أَطْيَارُ"
         ],
-        poem_conclusion:
-            "🤲 Sonuç ve Sadakat: Allah'ım Ensar'ı muhafaza eyle, Peygamberimiz ﷺ'e salat ve selam olsun.",
         poem_credits: "✍️ Sözler: Cemal İbn Adem (Yapay Zeka Destekli) | 🎵 Özel YouTube İlahi",
-        poem_ch3_image_alt: "Munidhir el-İfriki - yer tutucu portre",
-        poem_ch4_image_alt: "Güney hurmalıkları - yer tutucu manzara",
 
         // Search & Filters
         search_placeholder: "Ata ara (örn: Ömer, Cabir)...",
@@ -291,14 +297,18 @@ window.FamilyTreeData = {
         home_verify_note: "A name under review in the sources: the old site had dropped it from the chain.", // TODO translate
         home_s2_k: "Stage two", // TODO translate
         home_s2_h: "Eight centuries under research", // TODO translate
-        home_s2_p: "Between the death of Jabir ibn Abdullah in 78 AH and Ali al-Jaddawi in about the ninth century AH lie some 22 to 25 generations for whom we have not yet found a document that names them. The tribe preserves its attribution to the Ansar, and it appears in its documents; the names of these links are what we are searching for.", // TODO translate
-        home_gap_aria: "About 24 forefathers whose names are not yet known", // TODO translate
         home_hyp1_h: "The Hejaz and Jeddah hypothesis", // TODO translate
         home_hyp1_p: "The epithet “al-Jaddawi” in the Brak eş-Şati documents, and the tribe's account that the forefather came from the Hejaz.", // TODO translate
         home_hyp1_t: "What would settle it: a Hejazi or Maghribi document naming “Umar ibn Ali al-Jaddawi” or his son Abdullah.", // TODO translate
         home_hyp2_h: "The Andalus hypothesis", // TODO translate
         home_hyp2_p: "The view of Dr. Muhammad Abd al-Qadir al-Ansari, and the timing of the fall of Granada in 897 AH agrees with it. The two hypotheses may meet: Andalusian Ansar who settled in Jeddah and then came to Fezzan.", // TODO translate
         home_hyp2_t: "What would settle it: a mention of the family in the sources on the Andalusian migration or in the biographical dictionaries of the Maghrib.", // TODO translate
+        home_gap_label: "8 centuries · about 22–25 generations", // TODO translate
+        home_gap_h: "Links under research", // TODO translate
+        home_gap_p: "Between the death of the Companion Jabir ibn Abdullah, may God be pleased with him, in 78 AH, and the forefather Ali al-Jaddawi in the ninth century AH, lie some 22 to 25 generations for whom we have not yet found a document that names them. The affiliation to the Ansar is preserved by the tribe and appears in its documents; the names of these links we are still looking for in the books of al-Andalus, the Hejaz and Jeddah, and in documents and manuscripts.", // TODO translate
+        home_gap_appeal: "If you are of the Ansar in any country and you have a document, a manuscript or an old family tree that mentions “al-Jaddawi”, or that connects the Ansar of al-Andalus or the Hejaz with Libya, send it to us. The missing link may be with you.", // TODO translate
+        home_gap_send: "Send a document", // TODO translate
+        home_gap_share: "Share this page", // TODO translate
         home_gap_link: "Do you have a document or a source that fills one of these links?", // TODO translate
         home_s3_k: "Stage three", // TODO translate
         home_s3_h: "The documented branch in Fezzan", // TODO translate
