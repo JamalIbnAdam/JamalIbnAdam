@@ -290,6 +290,37 @@ window.FamilyTreeData = {
         home_nav_library: "Library", // TODO translate
         home_nav_poem: "The epic", // TODO translate
         home_nav_author: "The author", // TODO translate
+        home_nav_methods: "Research method", // TODO translate
+        methods_h: "How we verify: the method of research and checking", // TODO translate
+        methods_intro: "A lineage is established first by documents, then by what the tribe preserves and what its elders testify to. Scientific tests are used only as support and corroboration; they do not replace a document. Here we explain each method: what it can do and what its limits are, with links so that you can check for yourself.", // TODO translate
+        methods_can: "What it can do", // TODO translate
+        methods_limits: "Its limits", // TODO translate
+        methods_sources: "Sources", // TODO translate
+        m1_h: "The order of strength of evidence on this site", // TODO translate
+        m1_li1: "Original documents: deeds of sale, endowments and judges’ attestations that name the person together with his father.", // TODO translate
+        m1_li2: "The civil registry, and the lineages that the members of the tribe preserve.", // TODO translate
+        m1_li3: "The testimonies of the tribe’s elders, written or reported in a published book, on the responsibility of those who relate them.", // TODO translate
+        m1_li4: "Books of genealogy and history.", // TODO translate
+        m1_li5: "Scientific tests (carbon, ink, DNA): for corroboration only.", // TODO translate
+        m1_after: "Every name in the tree has its source, of one of these kinds, written in its card.", // TODO translate
+        m2_h: "Agreement between documents (our first method)", // TODO translate
+        m2_p: "We compare independent documents kept by different families: do the same witnesses and judges recur? Are the dates and the generations consistent? Is the same lineage written in different towns? Forging one document is possible; forging dozens of scattered documents, with consistent names and dates, held by families that do not know one another, is close to impossible.", // TODO translate
+        m3_h: "Radiocarbon dating (carbon-14)", // TODO translate
+        m3_can: "It clearly reveals paper made after the middle of the twentieth century, because the nuclear tests of the 1950s and 1960s raised the level of carbon-14 in the atmosphere, so that all modern paper carries an unmistakable signature. A forgery on modern paper is therefore exposed. It is also useful for documents older than about 1650 CE.", // TODO translate
+        m3_lim: "Between about 1650 and 1950 CE the calibration curve becomes almost flat, so the result is wide and cannot tell a document one hundred years old from one three hundred years old. It dates the paper, not the writing: a modern document written on an old blank sheet would not be detected. And it needs a small piece of the document (a few milligrams), which is destroyed, so it is done only with the owner’s permission.", // TODO translate
+        m4_h: "Examining the ink and the paper", // TODO translate
+        m4_p: "The old ink of Arabic manuscripts is mostly iron-gall ink, while modern inks contain synthetic dyes. They can be told apart with instruments that do not damage the document (Raman spectroscopy, X-ray fluorescence (XRF) and infrared). Old handmade paper and its watermarks differ from modern machine-made paper, and many European watermarks can be dated. These examinations are better suited than carbon for detecting forgery, because they destroy nothing.", // TODO translate
+        m5_h: "DNA: what it says and what it does not say", // TODO translate
+        m5_types_h: "Two different kinds", // TODO translate
+        m5_types: "A Y-DNA test follows the father’s line alone, from son to father to grandfather, and it is the one that is useful for tribal lineages. The “population origins” test (Autosomal / myOrigins) gives a map of the proportions of a person’s origins by region, and does not compare him with any particular tribe.", // TODO translate
+        m5_can: "If men from different branches of the tribe (Aqar, Ishkeda, Brak, Dabdab…) are tested and their Y chromosome matches down to a deep mutation, that is scientific evidence of a common paternal ancestor. And if the mutation matches Ansari families of documented lineage in other countries, that is a further indication.", // TODO translate
+        m5_lim: "There is no single fixed haplogroup for the Ansar; the families that trace themselves to them have appeared in different haplogroups, and no peer-reviewed scientific study defining a mutation for the Ansar has been published. A match is read on the deep mutation (such as Big Y results), not on the general name of the haplogroup alone.", // TODO translate
+        m5_fiqh_h: "The ruling in Islamic law", // TODO translate
+        m5_fiqh: "The Islamic Fiqh Council of the Muslim World League (16th session, 1422 AH / 2002 CE) resolved that it is not permissible to rely on DNA fingerprinting to deny a lineage that is established in Islamic law. The test here is for corroboration, and it does not overturn a lineage established by documents and common knowledge.", // TODO translate
+        m5_how_h: "How your branch can be tested", // TODO translate
+        m5_how: "Each branch chooses one man or more from the direct paternal line and orders a Y-DNA test (Y-37 at least, and preferably Big Y), then sends us the name of the haplogroup and the mutation only. We publish no one’s name or result without his permission.", // TODO translate
+        m6_h: "Test results", // TODO translate
+        m6_p: "If the result of a laboratory examination of any document, or a Y-DNA result for any branch of the tribe, reaches us, we will publish it here as it is, with the name of the laboratory and its date, and with its owner’s permission.", // TODO translate
         home_nav_sources: "References", // TODO translate
         home_nav_home: "Home", // TODO translate
         home_h1: "Descendants of Abdullah Sabal Al-Ain", // TODO translate
