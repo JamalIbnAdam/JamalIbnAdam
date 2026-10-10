@@ -228,7 +228,7 @@ window.FamilyTreeData = {
         tree_legend_say: "Każda rodzina, która ma dokument, może go przesłać, aby udokumentować swoją gałąź.",
         tree_legend_intro: "Źródło każdego imienia jest zapisane w jego karcie po dotknięciu:",
         tree_legend_doc: "📄 Dokument",
-        tree_link_civil: "🏛 Rejestr stanu cywilnego",
+        tree_link_civil: "🏛 Rejestr stanu cywilnego i pamięć plemienia",
         tree_link_author: "Z drzewa autora",
         tree_legend_unknown: "? W trakcie badań",
         tree_legend_testimony: "🗣 Świadectwo starszyzny plemienia",
@@ -314,7 +314,7 @@ window.FamilyTreeData = {
         home_h1: "Descendants of Abdullah Sabal Al-Ain", // TODO translate
         home_lede: "The lineage of the Ansar tribe of Wadi al-Shati in Fezzan: lineages that meet in Zawiyat Brak al-Szati, Aqar, Ishkeda and Dabdab, and go back to Abdullah Sabal Al-Ain. Every name in the tree is tied to its document where one exists, or to the oral account of some of the tribe's notables and elders where one does not exist yet.", // TODO translate
         home_search_label: "Search for a name in the tree", // TODO translate
-        home_search_ph: "Type your name or your grandfather's name", // TODO translate
+        home_search_ph: "Wpisz swoje trzyczęściowe imię", // TODO translate
         home_search_btn: "Show my chain", // TODO translate
         home_med_sub: "Zawiyat Brak al-Szati, 10th century AH", // TODO translate
         home_tree_p: "Tap any name to see its document: the image, the text as written, a plain explanation, and the source. Tap “Show my chain” to see your forefathers one by one, down to Abdullah Sabal Al-Ain.", // TODO translate
@@ -394,6 +394,13 @@ window.FamilyTreeData = {
         tree_chain_n_est: "about {n} generations", // TODO translate
         tree_aria: "Al-Sabal Al-Ain family tree", // TODO translate
         tree_search_placeholder: "Search for a name…", // TODO translate
+        tree_share_chain: "Udostępnij mój rodowód",
+        tree_share: "Udostępnij",
+        tree_share_wa: "WhatsApp",
+        tree_share_dl: "Pobierz obraz",
+        tree_share_copy: "Skopiuj link",
+        tree_share_text: "Rodowód {name}: {line} — {site} {url}",
+        tree_search_hint: "Wpisz swoje trzyczęściowe imię: własne, ojca i dziadka, na przykład: جمال عمر أحمد",
         tree_nf_text: "Nie znaleźliśmy jeszcze tego imienia w drzewie. Jeśli jesteś potomkiem Abdullaha Sibal al-Ajn ibn Umar ibn Ali al-Dżaddawi al-Ansari, prześlij swoje dane; właściciel strony skontaktuje się z Tobą w celu weryfikacji, a następnie Twoje imię zostanie dodane.",
         tree_nf_btn: "Prześlij swoje dane",
         tree_nf_msg: "Chciałbym, aby moje imię zostało dodane do drzewa. Imię, którego szukałem: {q}. Mój rodowód: … Kontakt: …",

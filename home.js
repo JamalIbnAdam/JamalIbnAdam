@@ -117,10 +117,16 @@ function loadNumbers() {
 }
 
 /* ---------- search: the tree page does the searching ---------- */
+// the words of a name as the tree counts them: no tashkeel, no «بن / ابن / بنت», and «عبد الله» or «أبو بكر» is one word
+const nameWordCount = (text) => String(text || '').replace(/[\u064B-\u065F\u0670\u0640]/g, '').replace(/[أإآٱ]/g, 'ا').replace(/[^\p{L}\p{N}]+/gu, ' ')
+    .replace(/(^| )(بن|ابن|بنت)(?= |$)/g, ' ').replace(/(^| )(عبد|ابو|ابي) +/g, '$1$2').trim().split(/\s+/).filter(Boolean).length;
 $('home-search').addEventListener('submit', (event) => {
     event.preventDefault();
     const q = $('sg-search').value.trim();
-    location.href = q ? `tree/#/q/${encodeURIComponent(q)}` : 'tree/';
+    // a chain is shown only for a three-part name (own name, father, grandfather); the tree page does the matching
+    const short = nameWordCount(q) < 3;
+    $('home-search-hint').hidden = !short;
+    if (!short) location.href = `tree/#/q/${encodeURIComponent(q)}`;
 });
 
 /* ---------- stage 1: each name opens a small sheet with its source and its story ---------- */

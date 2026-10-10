@@ -153,7 +153,17 @@ function docsOf(id) {
 }
 // «📄 N وثائق» / «قرينة من الوثائق» / «رواية الأسرة»: the evidence for the link to the father, as a neutral fact
 function docsLabel(n) { return n <= 1 ? t('tree_docs_1') : n === 2 ? t('tree_docs_2') : n <= 10 ? t('tree_docs_few', { n }) : t('tree_docs_many', { n }); }
-function linkLabel(p) { const k = srcKey(p.status); return k === 'ok' ? docsLabel(docsOf(p.id).count) : t('tree_link_' + k); }
+// The labels of a link, documents first: «📄 N وثائق», then «🏛 السجل المدني وحفظ القبيلة» when the person is also in the
+// civil registry (status, or the also_civil flag). The other sources are one label each, as before.
+function linkLabels(p) {
+  const k = srcKey(p.status), n = docsOf(p.id).count;
+  if (k === 'ok') return [docsLabel(n), ...(p.also_civil ? [t('tree_link_civil')] : [])];
+  if (k === 'civil') return [...(n ? [docsLabel(n)] : []), t('tree_link_civil')];
+  return [t('tree_link_' + k)];
+}
+const linkLabel = p => linkLabels(p).join(' · ');
+// for the chain's counts: a generation with documents is counted as documented, even if it is also in the civil registry
+const countKey = p => { const k = srcKey(p.status); return k === 'civil' && docsOf(p.id).count ? 'ok' : k; };
 
 const mqMobile = window.matchMedia('(max-width:720px)');
 const isMobile = () => mqMobile.matches;
@@ -786,7 +796,7 @@ t87.addEventListener('change', () => {
 });
 
 /* ---------- person panel ---------- */
-const stPill = (p, label) => `<span class="st ${stKey(p.status)}">${esc(label || linkLabel(p))}</span>`;
+const stPill = (p, label) => (label ? [label] : linkLabels(p)).map(x => `<span class="st ${stKey(p.status)}">${esc(x)}</span>`).join('');
 const personBtn = id => { const p = byId.get(id); return p ? `<button type="button" class="pl" data-go="${esc(id)}">${esc(nameOf(p))}</button>` : ''; };
 const level = c => { const s = String(c || ''); return s.startsWith('عالية') ? 3 : s.startsWith('متوسطة') ? 2 : s.startsWith('منخفضة') ? 1 : 0; };
 const dotsHtml = (c, title, withText = true) => { const n = level(c); return c ? `<span class="conf" title="${esc(title)}: ${esc(c)}">${n ? [1, 2, 3].map(i => `<i class="${i <= n ? 'on' : ''}"></i>`).join('') : ''}${withText ? ' ' + esc(c) : ''}</span>` : ''; };
@@ -860,7 +870,7 @@ function openPerson(id, { center = true } = {}) {
   pBadges.innerHTML = (f ? stPill(p) : '') + (!p.living && p.earliest_doc_date ? `<span class="bd">${esc(t('tree_earliest'))}: ${esc(ahTxt(p.earliest_doc_date))}</span>` : '');
   let html = '';
   const chain = ancestors(id, ROOT);
-  if (chain.length && chain[chain.length - 1].id === ROOT) html += `<section class="sec"><button type="button" class="cta" data-chain="${esc(id)}">${esc(t('tree_chain_btn'))}</button></section>`;
+  if (chain.length && chain[chain.length - 1].id === ROOT) html += `<section class="sec"><button type="button" class="cta" data-chain="${esc(id)}">${esc(t('tree_chain_btn'))}</button> <button type="button" class="add" data-share="${esc(id)}">${esc(t('tree_share'))}</button></section>`;
   if (!f) html += `<section class="sec"><p class="muted">${esc(id === CONFIG.spine[0] ? t('tree_above_ali') : t('tree_father_none'))}</p></section>`;
   if (ks.length) html += `<section class="sec"><h4>${esc(t('tree_children'))} (${ks.length})</h4><div class="chips">${ks.map(personBtn).join('')}</div></section>`;
   if (!p.living) {
@@ -921,6 +931,7 @@ panel.addEventListener('click', e => {
   const b = e.target.closest('[data-go]'); if (b) { if (!b.dataset.go.startsWith('r87')) openPerson(b.dataset.go); return; }
   const th = e.target.closest('[data-doc]'); if (th) { openReader(th.dataset.of, +th.dataset.doc); return; }
   const ch = e.target.closest('[data-chain]'); if (ch) { location.hash = '#/chain/' + ch.dataset.chain; return; }
+  const sh = e.target.closest('[data-share]'); if (sh) { shareChain(sh.dataset.share); return; }
   const ad = e.target.closest('[data-add]'); if (ad) { const box = ad.nextElementSibling; box.hidden = !box.hidden; if (!box.hidden) box.innerHTML = addBoxHtml(ad.dataset.add); ad.setAttribute('aria-expanded', String(!box.hidden)); }
 });
 // the sheet is in <body> on phones, and in the stage on desktop and in full screen
@@ -1089,17 +1100,22 @@ window.addEventListener('resize', () => { if (!reader.hidden) vFit(); });
 const chainEl = document.createElement('div');
 chainEl.className = 'ft-chain'; chainEl.hidden = true; chainEl.dir = 'rtl';
 chainEl.setAttribute('role', 'dialog'); chainEl.setAttribute('aria-modal', 'true'); chainEl.setAttribute('aria-labelledby', 'ft-cTitle');
-chainEl.innerHTML = `<header class="ch"><div><h2 id="ft-cTitle"></h2><p id="ft-cSum"></p></div><button type="button" id="ft-cClose">${icon(IC.x)}</button></header><p class="nasab" id="ft-cNasab"></p><ol class="cl" id="ft-cList"></ol>`;
+chainEl.innerHTML = `<header class="ch"><div><h2 id="ft-cTitle"></h2><p id="ft-cSum"></p></div><button type="button" id="ft-cShare" class="share"></button><button type="button" id="ft-cClose">${icon(IC.x)}</button></header><p class="nasab" id="ft-cNasab"></p><ol class="cl" id="ft-cList"></ol>`;
 document.body.appendChild(chainEl);
 trap(chainEl);
 let chainId = null, chainIO = null, chainPushed = false;
+// «19 جيلاً · 8 منها موثّق بوثائق · …»: every link to a father, counted by its source
+function chainSummary(line) {
+  const c = { ok: 0, maybe: 0, civil: 0, author: 0, trad: 0 }; line.forEach(x => { if (!x.placeholder && x.father_id && byId.has(x.father_id)) c[countKey(x)]++; });
+  return [t(line.some(x => x.placeholder) ? 'tree_chain_n_est' : 'tree_chain_n', { n: line.length }), t('tree_chain_ok', { n: c.ok }), ...['maybe', 'civil', 'author', 'trad'].map(k => c[k] ? t('tree_chain_' + k, { n: c[k] }) : '')].filter(Boolean).join(' · ');
+}
 function renderChain(id) {
   const p = byId.get(id); if (!p) return false;
   const line = [p, ...ancestors(id)];   // down to the oldest known ancestor
-  const c = { ok: 0, maybe: 0, civil: 0, author: 0, trad: 0 }; line.forEach(x => { if (!x.placeholder && x.father_id && byId.has(x.father_id)) c[srcKey(x.status)]++; });   // every link to a father
   $('ft-cTitle').textContent = t('tree_chain_title');
-  $('ft-cSum').textContent = [t(line.some(x => x.placeholder) ? 'tree_chain_n_est' : 'tree_chain_n', { n: line.length }), t('tree_chain_ok', { n: c.ok }), ...['maybe', 'civil', 'author', 'trad'].map(k => c[k] ? t('tree_chain_' + k, { n: c[k] }) : '')].filter(Boolean).join(' · ');
+  $('ft-cSum').textContent = chainSummary(line);
   $('ft-cNasab').textContent = nasabText(id);
+  $('ft-cShare').textContent = t('tree_share_chain');
   $('ft-cClose').setAttribute('aria-label', t('tree_close'));
   // a run of unknown ancestors is one card
   const cards = [];
@@ -1112,7 +1128,7 @@ function renderChain(id) {
     if (cd.ph) { const es = x.estimate || {}; return `<li class="cc ph"><div class="card"><b class="nm">${esc(t('tree_unknown_chain', { n: cd.n }))}${es.min != null ? ` <span class="muted">${esc(t('tree_unknown_range', { min: es.min, max: es.max }))}</span>` : ''}</b>${es.basis ? `<p class="basis">${esc(es.basis)}</p>` : ''}</div><i class="ln trad"></i></li>`; }
     const D = x.living ? { thumbs: [], count: 0 } : docsOf(x.id), k = stKey(x.status);
     const thumbs = D.thumbs.slice(0, 5).map(th => `<button type="button" class="th" data-doc="${th.i}" data-of="${esc(x.id)}" aria-label="${esc(t('tree_open_doc'))}: ${esc(pageTxt(th.it.d ? th.it.d.page : th.it.e.page))}"><img src="${esc(asset(th.it.src))}" alt="" loading="lazy" decoding="async" width="60" height="76"></button>`).join('') + (D.thumbs.length > 5 ? `<span class="more">+${D.thumbs.length - 5}</span>` : '');
-    return `<li class="cc${x.id === ROOT ? ' root' : ''}"><div class="card"><span class="gen">${esc(genText(x))}</span><b class="nm">${esc(x.id === CONFIG.spine[0] ? CONFIG.plaqueAli : nameOf(x))}</b>${thumbs ? `<div class="strip">${thumbs}</div>` : ''}</div>${last ? '' : `<i class="ln ${k}"></i><span class="lb">${esc(srcKey(x.status) === 'trad' ? t('tree_link_trad_short') : linkLabel(x))}</span>`}</li>`;
+    return `<li class="cc${x.id === ROOT ? ' root' : ''}"><div class="card"><span class="gen">${esc(genText(x))}</span><b class="nm">${esc(x.id === CONFIG.spine[0] ? CONFIG.plaqueAli : nameOf(x))}</b>${thumbs ? `<div class="strip">${thumbs}</div>` : ''}</div>${last ? '' : `<i class="ln ${k}"></i><span class="lb">${(srcKey(x.status) === 'trad' ? [t('tree_link_trad_short')] : linkLabels(x)).map(l => `<span>${esc(l)}</span>`).join('')}</span>`}</li>`;
   }).join('');
   if (chainIO) chainIO.disconnect();
   const items = [...chainEl.querySelectorAll('.cc')];
@@ -1130,6 +1146,78 @@ function closeChain() { if (chainEl.hidden) return; chainEl.hidden = true; chain
 $('ft-cClose').onclick = () => { if (chainPushed) history.back(); else { history.replaceState(null, '', location.pathname + location.search); closeChain(); } };
 chainEl.addEventListener('click', e => { const th = e.target.closest('[data-doc]'); if (th) openReader(th.dataset.of, +th.dataset.doc); });
 chainEl.addEventListener('keydown', e => { if (e.key === 'Escape' && reader.hidden) $('ft-cClose').click(); });
+
+/* ---------- share my chain: a picture drawn here in the page, and a line of text. Nothing leaves the page but what the reader sends. ---------- */
+const SHARE_W = 1080, SHARE_H = 1350, SITE_URL = 'https://jamalibnadam.com/';
+const loadImage = src => new Promise((resolve, reject) => { const im = new Image(); im.onload = () => resolve(im); im.onerror = reject; im.src = src; });
+function wrapLines(ctx, text, maxWidth) {
+  const lines = []; let line = '';
+  for (const word of text.split(' ')) { const next = line ? line + ' ' + word : word; if (line && ctx.measureText(next).width > maxWidth) { lines.push(line); line = word; } else line = next; }
+  if (line) lines.push(line);
+  return lines;
+}
+async function shareCanvas(id) {
+  const p = byId.get(id), line = [p, ...ancestors(id)];
+  const nameFont = 'Amiri, serif', uiFont = '"Noto Kufi Arabic", sans-serif';
+  if (document.fonts) { await Promise.all(['700 64px Amiri', '400 40px Amiri', '500 30px "Noto Kufi Arabic"'].map(f => document.fonts.load(f, 'السجل الذهبي 19').catch(() => { }))); await document.fonts.ready; }
+  const cv = document.createElement('canvas'); cv.width = SHARE_W; cv.height = SHARE_H;
+  const ctx = cv.getContext('2d'), gold = '#d4af37', ink = '#e8e4da', ink2 = '#a9a596', cx = SHARE_W / 2;
+  ctx.direction = 'rtl'; ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
+  ctx.fillStyle = '#121614'; ctx.fillRect(0, 0, SHARE_W, SHARE_H);
+  ctx.strokeStyle = gold; ctx.lineWidth = 3; ctx.strokeRect(34, 34, SHARE_W - 68, SHARE_H - 68);       // a thin gold double frame
+  ctx.lineWidth = 1.5; ctx.strokeRect(50, 50, SHARE_W - 100, SHARE_H - 100);
+  try { const logo = await loadImage(asset('logo.webp')), r = 70; ctx.save(); ctx.beginPath(); ctx.arc(cx, 160, r, 0, Math.PI * 2); ctx.clip(); ctx.drawImage(logo, cx - r, 160 - r, 2 * r, 2 * r); ctx.restore(); ctx.beginPath(); ctx.arc(cx, 160, r + 3, 0, Math.PI * 2); ctx.lineWidth = 2; ctx.stroke(); } catch (e) { /* the picture is drawn without the logo */ }
+  ctx.fillStyle = gold; ctx.font = `700 54px ${nameFont}`; ctx.fillText(t('tree_h1'), cx, 318);
+  ctx.beginPath(); ctx.moveTo(cx - 150, 356); ctx.lineTo(cx + 150, 356); ctx.lineWidth = 1.5; ctx.stroke();
+  // the name, large; shrunk only if it is wider than the frame
+  let size = 84; ctx.fillStyle = ink; do { ctx.font = `700 ${size}px ${nameFont}`; size -= 4; } while (ctx.measureText(nameOf(p)).width > SHARE_W - 200 && size > 40);
+  ctx.fillText(nameOf(p), cx, 478);
+  // the whole lineage, wrapped and centred: the font is shrunk until it fits the space; nothing is cut
+  const text = nasabText(id), top = 560, bottom = 1085; let fs = 50, lines, lh;
+  do { ctx.font = `400 ${fs}px ${nameFont}`; lines = wrapLines(ctx, text, SHARE_W - 220); lh = fs * 1.75; fs -= 2; } while (lines.length * lh > bottom - top && fs > 18);
+  ctx.fillStyle = ink; lines.forEach((l, i) => ctx.fillText(l, cx, top + (bottom - top - lines.length * lh) / 2 + lh * (i + 0.72)));
+  // the same counts as the chain's header
+  ctx.fillStyle = gold; let ss = 32, sum = chainSummary(line), sl; do { ctx.font = `500 ${ss}px ${uiFont}`; sl = wrapLines(ctx, sum, SHARE_W - 200); ss -= 2; } while (sl.length > 2 && ss > 18);
+  sl.forEach((l, i) => ctx.fillText(l, cx, 1160 + i * (ss + 2) * 1.7));
+  ctx.fillStyle = ink2; ctx.direction = 'ltr'; ctx.font = `500 30px ${uiFont}`; ctx.fillText('jamalibnadam.com', cx, 1274);
+  return cv;
+}
+const shareUrl = id => `${SITE_URL}tree/#/chain/${id}`;
+const shareText = id => t('tree_share_text', { name: nameOf(byId.get(id)), line: nasabText(id), site: t('tree_h1'), url: shareUrl(id) });
+const shareBox = document.createElement('dialog');
+shareBox.className = 'ft-share'; shareBox.dir = 'rtl';
+document.body.appendChild(shareBox);
+shareBox.addEventListener('keydown', e => { if (e.key === 'Escape') e.stopPropagation(); });   // Escape closes this box only
+shareBox.addEventListener('click', async e => {
+  if (e.target === shareBox || e.target.closest('[data-x]')) { shareBox.close(); return; }
+  if (e.target.closest('[data-copy]')) {
+    const url = shareBox.dataset.url; let ok = false;
+    try { await navigator.clipboard.writeText(url); ok = true; } catch (err) {
+      const f = document.createElement('textarea'); f.value = url; f.setAttribute('readonly', ''); f.style.cssText = 'position: fixed; top: 0; opacity: 0;'; shareBox.appendChild(f); f.select();
+      try { ok = document.execCommand('copy'); } catch (err2) { ok = false; } f.remove();
+    }
+    if (ok) shareBox.querySelector('.done').hidden = false;
+  }
+});
+async function shareChain(id) {
+  if (!byId.has(id)) return;
+  const cv = await shareCanvas(id), text = shareText(id), url = shareUrl(id);
+  const blob = await new Promise(resolve => cv.toBlob(resolve, 'image/png'));
+  const file = blob && typeof File === 'function' ? new File([blob], 'nasab.png', { type: 'image/png' }) : null;
+  // phones: the system's own share sheet (WhatsApp and the other apps), with the picture
+  if (file && navigator.canShare && navigator.canShare({ files: [file] })) {
+    try { await navigator.share({ files: [file], text, url }); return; } catch (err) { if (err && err.name === 'AbortError') return; }
+  }
+  // elsewhere: WhatsApp with the text, the picture to save, or the link to copy
+  const data = cv.toDataURL('image/png');
+  shareBox.dataset.url = url;
+  shareBox.innerHTML = `<header><h2>${esc(t('tree_share_chain'))}</h2><button type="button" data-x aria-label="${esc(t('tree_close'))}">${icon(IC.x)}</button></header>
+<img src="${data}" alt="${esc(text)}" width="216" height="270">
+<div class="acts"><a class="b wa" href="https://wa.me/?text=${encodeURIComponent(text)}" target="_blank" rel="noopener">${esc(t('tree_share_wa'))}</a><a class="b" href="${data}" download="nasab-${esc(id)}.png">${esc(t('tree_share_dl'))}</a><button type="button" class="b" data-copy>${esc(t('tree_share_copy'))}</button></div>
+<p class="done" role="status" hidden>${esc(t('share_success'))}</p>`;
+  if (typeof shareBox.showModal === 'function') shareBox.showModal(); else shareBox.setAttribute('open', '');
+}
+$('ft-cShare').onclick = () => { if (chainId) shareChain(chainId); };
 
 /* ---------- routes ---------- */
 let booted = false;
@@ -1154,22 +1242,42 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && reader.hid
 
 /* ---------- search ---------- */
 const index = persons.filter(searchable).map(p => ({ id: p.id, n: norm(p.name_as_written + ' ' + (p.short_name || '')), p }));
-let hits = [], cursor = 0;
+/* A chain is revealed only for a three-part name: one's own name, the father's and the grandfather's («جمال عمر أحمد»).
+   Names are compared word by word after folding: no tashkeel, أ/إ/آ → ا, ى → ي, ة → ه (norm), no «بن / ابن / بنت», no titles,
+   and «عبد الله» = «عبدالله», «أبي بكر» = «أبو بكر» (each is one word). */
+const nameWords = s => norm(s).replace(/(^| )(بن|ابن|بنت|ابنه)(?= |$)/g, ' ').replace(/(^| )(الحاج|الشيخ|الفقيه|المرابط|سيدي)(?= )/g, ' ')
+  .replace(/(^| )(ابي|ابا)(?= )/g, '$1ابو').replace(/(^| )(عبد|ابو) +/g, '$1$2').replace(/\s+/g, ' ').trim().split(' ').filter(Boolean);
+const coreKey = p => nameWords(shortNameOf(p.name_as_written || ''))[0] || '';   // the person's own name: nothing in brackets, nothing after «بن»
+const keyOf = new Map(persons.map(p => [p.id, p.placeholder ? '' : coreKey(p)]));
+// word 1 is the person, word 2 the father, word 3 the grandfather; any further word goes on up the line
+function matchesLine(p, words) {
+  let x = p;
+  for (const w of words) { if (!x || keyOf.get(x.id) !== w) return false; x = byId.get(x.father_id); }
+  return true;
+}
+let hits = [], cursor = 0, fullMatch = false, wordCount = 0;
 // a name that is not in the tree yet: an invitation to send it; the button opens the contact form with the typed text in the message
 function notFoundHtml() {
   const msg = t('tree_nf_msg', { q: q.value.trim() });
   return `<li class="empty nf"><p>${esc(t('tree_nf_text'))}</p><a class="nf-btn" href="../more/?msg=${encodeURIComponent(msg)}#contact">${esc(t('tree_nf_btn'))}</a></li>`;
 }
 function renderHits() {
-  results.innerHTML = hits.length ? hits.map((h, i) => `<li role="option" id="ft-opt${i}" aria-selected="${i === cursor}" data-go="${esc(h.id)}"><span class="rn">${esc(h.p.name_as_written)}</span><span class="rm">${esc(nasabText(h.id))}</span></li>`).join('')
-    : notFoundHtml();
+  // the full chain is written only under a three-part match; otherwise the name and its generation
+  const list = hits.map((h, i) => `<li role="option" id="ft-opt${i}" aria-selected="${i === cursor}" data-go="${esc(h.id)}"><span class="rn">${esc(h.p.name_as_written)}</span><span class="rm">${esc(fullMatch ? nasabText(h.id) : genText(h.p))}</span></li>`).join('');
+  const hint = `<li class="empty hint">${esc(t('tree_search_hint'))}</li>`;
+  results.innerHTML = fullMatch ? list : wordCount < 3 ? list + hint : list || notFoundHtml();
   results.hidden = false; q.setAttribute('aria-expanded', 'true');
 }
 q.addEventListener('input', () => {
   const s = norm(q.value);
   if (!s) { results.hidden = true; q.setAttribute('aria-expanded', 'false'); return; }
-  const toks = s.split(' ');
-  hits = index.filter(x => toks.every(tok => x.n.includes(tok))).sort((a, b) => (a.n.startsWith(s) ? 0 : 1) - (b.n.startsWith(s) ? 0 : 1) || a.n.length - b.n.length).slice(0, 10);
+  const toks = s.split(' '), words = nameWords(q.value);
+  wordCount = words.length;
+  // three words or more: the persons whose own name, father and grandfather are these words
+  hits = wordCount >= 3 ? index.filter(x => matchesLine(x.p, words)).slice(0, 10) : [];
+  fullMatch = hits.length > 0;
+  // otherwise, for research: those who have died can be found by any part of the name. The living appear only on a three-part match.
+  if (!fullMatch) hits = index.filter(x => !x.p.living && toks.every(tok => x.n.includes(tok))).sort((a, b) => (a.n.startsWith(s) ? 0 : 1) - (b.n.startsWith(s) ? 0 : 1) || a.n.length - b.n.length).slice(0, 10);
   cursor = 0; renderHits();
 });
 q.addEventListener('keydown', e => {
@@ -1245,7 +1353,7 @@ new ResizeObserver(() => {
 window.addEventListener('orientationchange', () => setTimeout(sizeStage, 250));
 window.addEventListener('resize', () => { clearTimeout(rt); sizeStage(); });
 
-window.__ftree = { openPerson, centerOn, fit, focusBranch, showAll, foldAll, expand, openReader, zoomTo: tr => svg.call(zoom.transform, tr), get fan() { return fan; }, count: () => persons.filter(p => !p.placeholder).length, drawnCount: () => new Set([...host.querySelectorAll('.ft-svg [data-id]')].map(e => e.dataset.id).filter(id => !id.startsWith('r87_'))).size };
+window.__ftree = { shareCanvas, shareText, shareChain, openPerson, centerOn, fit, focusBranch, showAll, foldAll, expand, openReader, zoomTo: tr => svg.call(zoom.transform, tr), get fan() { return fan; }, count: () => persons.filter(p => !p.placeholder).length, drawnCount: () => new Set([...host.querySelectorAll('.ft-svg [data-id]')].map(e => e.dataset.id).filter(id => !id.startsWith('r87_'))).size };
 }
 
 /* ---------- load ---------- */

@@ -174,6 +174,12 @@ body { background: var(--h-bg); }
 @media (max-width: 600px) {
   .sg-pad { padding-inline: 16px !important; }   /* the design's paddings are inline styles */
   .sg-gapcard { padding: 18px 16px !important; }   /* the research card keeps its width for the text on a phone */
+  /* the three numbers: one row of three equal tiles, as on /tree/ — the number first, its label under it, no divider lines */
+  .sg-stats { display: grid !important; grid-template-columns: repeat(3, 1fr); gap: 8px !important; }
+  .sg-stats > div { margin: 0 !important; padding: 10px 6px !important; border: 1px solid var(--h-hair) !important; border-radius: 12px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .sg-stats dd { order: -1; font-size: 26px !important; white-space: nowrap; }
+  .sg-stats dt { font-size: 12.5px !important; line-height: 1.5; }
+  .sg-stats-note { margin-top: 0 !important; font-size: 13px !important; }
   .sg-root :is(section, figure, article, form, dl, ol, ul, div) { min-width: 0; max-width: 100%; }
 }
 

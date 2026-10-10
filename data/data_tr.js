@@ -227,7 +227,7 @@ window.FamilyTreeData = {
         tree_legend_say: "Belgesi olan her aile, kolunun belgelenmesi için onu gönderebilir.",
         tree_legend_intro: "Her adın kaynağı, üzerine dokunulduğunda kartında yazılıdır:",
         tree_legend_doc: "📄 Belge",
-        tree_link_civil: "🏛 Nüfus kaydı",
+        tree_link_civil: "🏛 Nüfus kaydı ve kabilenin hafızası",
         tree_link_author: "Yazarın şeceresinden",
         tree_legend_unknown: "? Araştırılıyor",
         tree_legend_testimony: "🗣 Kabile ileri gelenlerinin tanıklığı",
@@ -313,7 +313,7 @@ window.FamilyTreeData = {
         home_h1: "Descendants of Abdullah Sabal Al-Ain", // TODO translate
         home_lede: "The lineage of the Ansar tribe of Wadi al-Shati in Fezzan: lineages that meet in Zawiyat Brak eş-Şati, Aqar, Ishkeda and Dabdab, and go back to Abdullah Sabal Al-Ain. Every name in the tree is tied to its document where one exists, or to the oral account of some of the tribe's notables and elders where one does not exist yet.", // TODO translate
         home_search_label: "Search for a name in the tree", // TODO translate
-        home_search_ph: "Type your name or your grandfather's name", // TODO translate
+        home_search_ph: "Üç parçalı adınızı yazın", // TODO translate
         home_search_btn: "Show my chain", // TODO translate
         home_med_sub: "Zawiyat Brak eş-Şati, 10th century AH", // TODO translate
         home_tree_p: "Tap any name to see its document: the image, the text as written, a plain explanation, and the source. Tap “Show my chain” to see your forefathers one by one, down to Abdullah Sabal Al-Ain.", // TODO translate
@@ -393,6 +393,13 @@ window.FamilyTreeData = {
         tree_chain_n_est: "about {n} generations", // TODO translate
         tree_aria: "Al-Sabal Al-Ain family tree", // TODO translate
         tree_search_placeholder: "Search for a name…", // TODO translate
+        tree_share_chain: "Soy zincirimi paylaş",
+        tree_share: "Paylaş",
+        tree_share_wa: "WhatsApp",
+        tree_share_dl: "Görseli indir",
+        tree_share_copy: "Bağlantıyı kopyala",
+        tree_share_text: "{name} soy zinciri: {line} — {site} {url}",
+        tree_search_hint: "Üç parçalı adınızı yazın: kendi adınız, babanızın ve dedenizin adı, örneğin: جمال عمر أحمد",
         tree_nf_text: "Bu adı şecerede henüz bulamadık. Abdullah Sibal el-Ayn bin Ömer bin Ali el-Ceddavi el-Ensari’nin torunlarındansanız bilgilerinizi gönderin; site sahibi doğrulamak için sizinle iletişime geçecek, ardından adınız eklenecek.",
         tree_nf_btn: "Bilgilerinizi gönderin",
         tree_nf_msg: "Adımın şecereye eklenmesini istiyorum. Aradığım ad: {q}. Soy zincirim: … İletişim: …",

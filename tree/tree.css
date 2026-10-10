@@ -90,6 +90,9 @@ img { max-width: 100%; height: auto; }
 .ft-results .rn { font-family: var(--ft-f-name); font-weight: 700; font-size: 1.05rem; }
 .ft-results .rm { font-size: .8rem; line-height: 1.8; color: var(--ft-muted); white-space: normal; overflow-wrap: anywhere; unicode-bidi: plaintext; }   /* the full chain, wrapped, never cut */
 .ft-results .empty { color: var(--ft-muted); cursor: default; }
+.ft-results .hint { padding: 8px 12px; font-size: .86rem; line-height: 1.8; color: var(--ft-ink2); border-top: 1px solid var(--ft-line); }
+.ft-results .hint:first-child { border-top: 0; }
+.ft-results .hint:hover { background: none; }
 .ft-results .nf { display: grid; gap: 10px; padding: 10px 12px; color: var(--ft-ink); line-height: 1.8; }
 .ft-results .nf:hover { background: none; }
 .ft-results .nf-btn { justify-self: start; min-height: 44px; padding: 0 20px; border-radius: 10px; background: var(--ft-gold); color: var(--ft-bg); font-weight: 700; display: inline-flex; align-items: center; text-decoration: none; cursor: pointer; }
@@ -323,9 +326,10 @@ details.audit > summary { cursor: pointer; font-weight: 700; color: var(--ft-mut
 .ft-chain .th img { height: 72px; }
 .ft-chain .more { font-size: .8rem; color: var(--ft-muted); direction: ltr; }
 /* the thin gold line that draws from card to card as the reader scrolls */
-.ft-chain .ln { display: block; width: 2px; height: 58px; background: var(--ft-gold); transform: scaleY(0); transform-origin: top; transition: transform .6s ease-out .1s; }
+.ft-chain .ln { display: block; width: 2px; height: 64px; background: var(--ft-gold); transform: scaleY(0); transform-origin: top; transition: transform .6s ease-out .1s; }
 .ft-chain .cc.in .ln { transform: scaleY(1); }
-.ft-chain .lb { position: absolute; bottom: 17px; inset-inline-start: calc(50% + 14px); font-size: .8rem; font-weight: 700; color: var(--ft-ink2); white-space: nowrap; }
+.ft-chain .lb { position: absolute; bottom: 8px; inset-inline-start: calc(50% + 14px); max-width: calc(50% - 18px); display: grid; gap: 0; font-size: .8rem; line-height: 1.5; font-weight: 700; color: var(--ft-ink2); }   /* one line per label: documents, then the civil registry */
+.ft-chain .lb > span { unicode-bidi: plaintext; }
 .ft-chain .cc.root .card { width: 190px; height: 190px; border-radius: 50%; border: 3px solid var(--ft-gold); place-content: center; text-align: center; box-shadow: 0 0 0 6px color-mix(in srgb, var(--ft-gold) 14%, transparent); }
 .ft-chain .cc.root .strip { justify-content: center; grid-template-columns: repeat(3, 34px); }
 .ft-chain .cc.root .th:nth-child(n+4), .ft-chain .cc.root .more { display: none; }
@@ -402,6 +406,19 @@ input, textarea, [contenteditable], [contenteditable] * {
 }
 .ft-panel .tst { display: grid; gap: 8px; justify-items: start; }
 .ft-panel .tst .who { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; font-family: var(--ft-f-name); font-size: 1.05rem; line-height: 1.8; unicode-bidi: plaintext; }
+.ft-chain .ch button.share { width: auto; padding: 0 14px; font: inherit; font-size: .86rem; font-weight: 700; color: var(--ft-gold-ink); border-color: var(--ft-hair); white-space: nowrap; cursor: pointer; }
+/* the share box (where the phone's own share sheet is not available): the picture, WhatsApp, download, copy the link */
+.ft-share { width: min(420px, 100vw - 24px); max-height: calc(100vh - 24px); padding: 0; border: 1px solid var(--ft-gold); border-radius: 14px; background: var(--ft-sheet); color: var(--ft-ink); font-family: var(--ft-f-ui); overflow: auto; z-index: 9800; }
+.ft-share::backdrop { background: rgba(0, 0, 0, .7); }
+.ft-share header { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-bottom: 1px solid var(--ft-hair); }
+.ft-share h2 { flex: 1; font-family: var(--ft-f-name); font-size: 1.3rem; color: var(--ft-gold-ink); }
+.ft-share header button { width: 38px; height: 38px; border: 1px solid var(--ft-line); border-radius: 8px; background: transparent; display: grid; place-items: center; cursor: pointer; }
+.ft-share header svg { width: 16px; height: 16px; stroke: var(--ft-ink); stroke-width: 1.8; fill: none; stroke-linecap: round; }
+.ft-share img { display: block; width: 216px; height: 270px; margin: 14px auto; border-radius: 8px; border: 1px solid var(--ft-hair); }
+.ft-share .acts { display: grid; gap: 8px; padding: 0 14px 14px; }
+.ft-share .b { min-height: 46px; padding: 0 16px; border-radius: 10px; border: 1px solid var(--ft-gold); background: transparent; color: var(--ft-gold-ink); font: inherit; font-weight: 700; text-decoration: none; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+.ft-share .b.wa { background: var(--ft-gold); color: var(--ft-bg); }
+.ft-share .done { margin: 0; padding: 0 14px 14px; text-align: center; font-size: .86rem; color: var(--ft-ink2); }
 /* printing the chain: the lineage in words and its cards, nothing else */
 @media print {
   html.ft-chain-open body > :not(.ft-chain) { display: none !important; }
