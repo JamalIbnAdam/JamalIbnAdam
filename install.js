@@ -1,9 +1,12 @@
 /* Install UI, shared by /, /tree/ and /more/. Self-contained: it brings its own styles and Arabic defaults,
    and reads translations from data/data_<lang>.js when the page has loaded them.
-   - already installed: nothing
-   - Android Chrome/Edge: a header button and a one-time bar that call the browser's install prompt
-   - Samsung Internet, Firefox and other Android browsers: the button opens a sheet with the menu steps
-   - iPhone/iPad: the button and the bar open a sheet with the three Share-menu steps */
+   - already running as the installed app: nothing
+   - everywhere else the header button is shown at once; it never waits for an event. Pressing it:
+       · the browser's own install prompt, when the browser has offered one (beforeinstallprompt)
+       · iPhone/iPad: a sheet with the three Share-menu steps
+       · Android (Chrome without a prompt, Samsung Internet, Firefox, others): a sheet with the menu steps
+       · computers: a sheet saying where the browser keeps «install» (or that it has none)
+   - phones and tablets, from any browser, also get a one-time bar («لاحقاً» keeps it away for 14 days) */
 (() => {
 'use strict';
 
@@ -23,7 +26,12 @@ const DEFAULTS = {
     install_and_title: 'ثبّت التطبيق من قائمة المتصفح',
     install_and_1: 'اضغط زر القائمة ☰ أسفل الشاشة',
     install_and_2: 'اختر "إضافة الصفحة إلى" ثم "الشاشة الرئيسية"',
-    install_ff: '⋮ ← تثبيت'
+    install_ff: '⋮ ← تثبيت',
+    install_and_chrome_1: 'اضغط ⋮ أعلى الشاشة، ثم «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية»',
+    install_desk_title: 'ثبّت التطبيق على حاسوبك',
+    install_desk_chrome: 'اضغط أيقونة التثبيت في شريط العنوان، أو القائمة ⋮ ← تثبيت',
+    install_desk_safari: 'ملف ← إضافة إلى Dock',
+    install_desk_ff: 'هذا المتصفح لا يدعم التثبيت؛ افتح الموقع في Chrome أو Edge أو Safari'
 };
 const t = (key) => {
     const tr = window.FamilyTreeData && window.FamilyTreeData.translations;
@@ -39,6 +47,9 @@ const isIPad = /iPad/.test(ua) || (navigator.platform === 'MacIntel' && navigato
 const isIOSSafari = isIOS && /Safari/.test(ua) && !/CriOS|FxiOS|EdgiOS|OPiOS|GSA\//.test(ua);
 const isAndroid = /Android/.test(ua);
 const isFirefox = /Firefox|FxiOS/.test(ua);
+const isSamsung = /SamsungBrowser/.test(ua);
+const isMobile = isIOS || isAndroid || /Mobi|Tablet|Silk|Kindle/.test(ua);          // phones and tablets: they also get the bar
+const isMacSafari = !isIOS && /Macintosh/.test(ua) && /Safari/.test(ua) && !/Chrome|Chromium|Edg\/|OPR\/|Firefox/.test(ua);
 
 const LATER_KEY = 'installBarLater', SEEN_KEY = 'installSeen', LATER_MS = 14 * 24 * 60 * 60 * 1000;
 const store = {
@@ -92,13 +103,13 @@ const ICON = {
 };
 
 /* ---------- pieces ---------- */
-let deferredPrompt = null, fallback = false, button = null, bar = null, sheet = null, arrow = null;
+let deferredPrompt = null, button = null, bar = null, sheet = null, arrow = null;
 
 function makeButton() {
     const slot = document.querySelector('[data-install-slot]');
     if (!slot || button) return;
     button = document.createElement('button');
-    button.type = 'button'; button.className = 'ins-btn'; button.hidden = true;
+    button.type = 'button'; button.className = 'ins-btn';
     slot.appendChild(button);
     button.addEventListener('click', act);
     label();
@@ -125,11 +136,20 @@ ${isIOSSafari ? '' : `<p class="ins-other">${esc(t('install_ios_other'))}</p>`}`
         arrow.className = 'ins-arrow ' + (isIPad ? 'up' : 'down'); arrow.setAttribute('aria-hidden', 'true'); arrow.innerHTML = ICON.arrow;
         document.body.appendChild(arrow);
         if (!isIPad) sheet.classList.add('has-arrow');
+    } else if (kind === 'desktop') {
+        // a computer: where this browser keeps «install», or that it has none
+        const text = isMacSafari ? t('install_desk_safari') : isFirefox ? t('install_desk_ff') : t('install_desk_chrome');
+        sheet.innerHTML = `<button type="button" class="ins-x" aria-label="${esc(t('install_close'))}">${ICON.x}</button>
+<h2 id="ins-title">${esc(t('install_desk_title'))}</h2>
+<ol><li><span class="ins-ic">${ICON.phone}</span><span>${esc(text)}</span></li></ol>`;
     } else {
+        // Android: Samsung Internet's menu is at the bottom; Firefox has one step; Chrome (when it has offered no prompt) and the rest use ⋮
+        const steps = isFirefox ? step(1, ICON.menu, t('install_ff')) : isSamsung ? step(1, ICON.menu, t('install_and_1')) + step(2, ICON.home, t('install_and_2')) : step(1, ICON.menu, t('install_and_chrome_1'));
         sheet.innerHTML = `<button type="button" class="ins-x" aria-label="${esc(t('install_close'))}">${ICON.x}</button>
 <h2 id="ins-title">${esc(t('install_and_title'))}</h2>
-<ol>${isFirefox ? step(1, ICON.menu, t('install_ff')) : step(1, ICON.menu, t('install_and_1')) + step(2, ICON.home, t('install_and_2'))}</ol>`;
+<ol>${steps}</ol>`;
     }
+    sheet.dataset.kind = kind === 'ios' ? 'ios' : kind === 'desktop' ? (isMacSafari ? 'desktop-safari' : isFirefox ? 'desktop-firefox' : 'desktop-chrome') : (isFirefox ? 'android-firefox' : isSamsung ? 'android-samsung' : 'android-chrome');
     document.body.appendChild(sheet);
     sheet.querySelector('.ins-x').addEventListener('click', closeSheet);
     sheet.querySelector('.ins-x').focus();
@@ -141,7 +161,7 @@ function act() {
         if (p.userChoice && p.userChoice.then) p.userChoice.then(() => hideBar()).catch(() => {});
         return;
     }
-    openSheet(isIOS ? 'ios' : 'android');
+    openSheet(isIOS ? 'ios' : isMobile ? 'android' : 'desktop');
 }
 
 function hideBar() { if (bar) { bar.remove(); bar = null; } }
@@ -169,17 +189,12 @@ function planBar() {
     store.set(SEEN_KEY, '1');
     setTimeout(showBar, first ? 10000 : 2500);
 }
-function offer(withBar) {
-    makeButton();
-    if (button) button.hidden = false;
-    if (withBar) planBar();
-}
 
 /* ---------- wiring ---------- */
+// the browser's own prompt is kept for the button when it comes; nothing waits for it
 window.addEventListener('beforeinstallprompt', (event) => {
     event.preventDefault();
-    deferredPrompt = event; fallback = false;
-    offer(isAndroid);            // the bar is for phones; desktop Chrome gets the header button only
+    deferredPrompt = event;
 });
 window.addEventListener('appinstalled', () => { deferredPrompt = null; hideBar(); closeSheet(); if (button) button.hidden = true; });
 document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeSheet(); });
@@ -187,10 +202,8 @@ document.addEventListener('keydown', (event) => { if (event.key === 'Escape') cl
 new MutationObserver(() => { label(); if (bar) { hideBar(); showBar(); } }).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
 
 function start() {
-    makeButton();
-    if (isIOS) { offer(true); return; }
-    // Samsung Internet, Firefox and others never fire beforeinstallprompt: after 4 seconds the button shows the menu steps
-    if (isAndroid) setTimeout(() => { if (!deferredPrompt && !standaloneNow()) { fallback = true; offer(false); } }, 4000);
+    makeButton();               // at once, on every browser that is not the installed app
+    if (isMobile) planBar();    // the bar is for phones and tablets; never on a computer
 }
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
 })();

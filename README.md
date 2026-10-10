@@ -25,3 +25,5 @@ Also bump `CACHE_NAME` in `sw.js` so installed copies pick up the change.
 python3 -m http.server 8080
 ```
 Then open http://localhost:8080.
+
+`scripts/build-estimates.mjs` is the PM's tool that wrote the `birth_est` field (estimated birth dates) into `data/tree.json`. It is kept for the record; the site does not run it.

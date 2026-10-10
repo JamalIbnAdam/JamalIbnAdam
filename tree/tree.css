@@ -231,6 +231,15 @@ a.tile:hover { border-color: var(--ft-gold); }
 .ft-panel .ph .grab { display: none; }
 .ft-panel .ph .tt { flex: 1; min-width: 0; display: grid; gap: 4px; }
 .ft-panel .eyebrow { font-size: .8rem; color: var(--ft-muted); }
+/* the estimated birth date, its small tag (how it is known) and the basis the tag reveals */
+.ft-panel .born { font-size: .9rem; line-height: 2; color: var(--ft-ink2); }
+.ft-panel .born > span { unicode-bidi: plaintext; }
+.ft-panel .btag { margin-inline-start: 6px; vertical-align: middle; }
+.ft-panel .btag { display: inline-flex; align-items: center; min-height: 26px; padding: 0 10px; border: 1px solid var(--ft-hair); border-radius: 999px; font-size: .78rem; font-weight: 700; color: var(--ft-gold-ink); cursor: pointer; }
+.ft-panel .btag[aria-expanded="true"] { border-color: var(--ft-gold); }
+.ft-panel .born .basis { margin-top: 6px; padding: 8px 10px; border-radius: 8px; background: var(--ft-quote); font-size: .84rem; line-height: 1.8; color: var(--ft-ink); unicode-bidi: plaintext; }
+.ft-chain .born { font-size: .84rem; color: var(--ft-ink2); unicode-bidi: plaintext; }
+.ft-tip .born { color: #e6c964; }
 .ft-panel .ph h2 { font-family: var(--ft-f-name); font-weight: 700; font-size: 1.9rem; line-height: 1.4; text-wrap: balance; }
 .ft-panel .line { font-family: var(--ft-f-name); font-size: 1.05rem; line-height: 1.9; color: var(--ft-ink2); }
 .ft-panel .line .bn { color: var(--ft-muted); }
