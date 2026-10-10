@@ -73,6 +73,8 @@ img { max-width: 100%; height: auto; }
 /* ---------- stats and toolbar ---------- */
 .ft-stats { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 10px; }
 .ft-stats .tile { display: flex; align-items: baseline; gap: 8px; padding: 6px 14px; border: 1px solid var(--ft-hair); border-radius: 10px; background: color-mix(in srgb, var(--ft-sheet) 70%, transparent); }
+a.tile { color: inherit; text-decoration: none; }
+a.tile:hover { border-color: var(--ft-gold); }
 .ft-stats b { font-family: var(--ft-f-name); font-size: 1.45rem; line-height: 1.2; color: var(--ft-gold-ink); font-variant-numeric: tabular-nums; }
 .ft-stats span { font-size: .8rem; color: var(--ft-ink2); }
 .ft-stats b { unicode-bidi: plaintext; }

@@ -1322,8 +1322,11 @@ function drawLegend() {
 // every number comes from the data
 function drawStats() {
   const dated = docs.map(d => Number(d.date_hijri)).filter(n => Number.isFinite(n) && n > 0);
-  ['ft-st-persons', 'ft-st-docs', 'ft-st-oldest'].forEach(id => $(id).classList.remove('wait'));
-  $('ft-st-persons').textContent = persons.filter(p => !p.placeholder).length;
+  ['ft-st-docs', 'ft-st-oldest'].forEach(id => $(id).classList.remove('wait'));
+  // the references count is the one build-stats writes from data/sources.json (the home page reads the same file)
+  fetch(asset('data/stats.json')).then(r => (r.ok ? r.json() : Promise.reject(new Error(`stats.json: HTTP ${r.status}`))))
+    .then(stats => { $('ft-st-refs').textContent = stats.references; $('ft-st-refs').classList.remove('wait'); })
+    .catch(error => console.warn('Unable to load the references count', error));
   $('ft-st-docs').textContent = docs.length;
   $('ft-st-oldest').textContent = dated.length ? ahTxt(Math.min(...dated)) : '—';
 }
