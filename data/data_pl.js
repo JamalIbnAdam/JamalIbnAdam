@@ -241,7 +241,7 @@ window.FamilyTreeData = {
         tree_unknown_pill: "Under research · ≈{n}", // TODO translate
         tree_unknown_between: "Links between {a} and {b}", // TODO translate
         tree_and: " and ", // TODO translate
-        tree_chain_btn: "Show my chain to Abdullah Sabal Al-Ain", // TODO translate
+        tree_chain_btn: "Show my full chain", // TODO translate
         tree_chain_title: "My lineage chain, with its evidence", // TODO translate
         tree_chain_n: "{n} generations", // TODO translate
         tree_chain_ok: "{n} of them documented", // TODO translate
@@ -319,7 +319,7 @@ window.FamilyTreeData = {
         home_search_ph: "Wpisz swoje trzyczęściowe imię", // TODO translate
         home_search_btn: "Show my chain", // TODO translate
         home_med_sub: "Zawiyat Brak al-Szati, 10th century AH", // TODO translate
-        home_tree_p: "Tap any name to see its document: the image, the text as written, a plain explanation, and the source. Tap “Show my chain” to see your forefathers one by one, down to Abdullah Sabal Al-Ain.", // TODO translate
+        home_tree_p: "Tap any name to see its document: the image, the text as written, a plain explanation, and the source. Tap “Show my chain” to see your forefathers one by one, back to Ali al-Jaddawi al-Ansari.", // TODO translate
         home_tree_ansar: "The tribe's attribution to the Ansar is written in its own documents: “al-Jaddawi al-Ansari” in a document from Ishkeda dated 1174 AH, then in documents of 1261 and 1276 AH.", // TODO translate
         home_tree_btn: "Open the evidence tree", // TODO translate
         home_tree_aria: "A preview of the evidence tree: Ali al-Jaddawi al-Ansari, his son Umar, then Abdullah Sabal Al-Ain, his son al-Hajj Fadl, and his grandsons Muhammad, Belqasim and Qasim with their sons", // TODO translate

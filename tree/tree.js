@@ -244,7 +244,7 @@ const ali = byId.get(CONFIG.spine[0]), umar = byId.get(CONFIG.spine[1]), abd = b
 
 /* ---------- dom ---------- */
 const stage = $('ft-stage'), treeEl = $('ft-tree'), world = $('ft-world'), panel = $('ft-panel');
-const pName = $('ft-pName'), pEyebrow = $('ft-pEyebrow'), pLine = $('ft-pLine'), pBadges = $('ft-pBadges'), pBody = $('ft-pBody');
+const pName = $('ft-pName'), pEyebrow = $('ft-pEyebrow'), pLine = $('ft-pLine'), pBadges = $('ft-pBadges'), pBody = $('ft-pBody'), pFoot = $('ft-pFoot'), pScroll = $('ft-pScroll');
 const q = $('ft-q'), results = $('ft-results');
 const legendEl = $('ft-legend'), tip = $('ft-tip');
 legendEl.open = window.innerWidth >= 1024;   // a chip on small screens, open on desktop (the tree is then fitted beside it)
@@ -871,7 +871,7 @@ function openPerson(id, { center = true } = {}) {
   setName(info ? chainLabel(info) : nameOf(p));
   pLine.innerHTML = info ? betweenHtml(info) : lineageHtml(p);
   if (info) {
-    pBadges.innerHTML = '';
+    pBadges.innerHTML = ''; pFoot.innerHTML = '';
     pBody.innerHTML = `<section class="sec"><p class="note">${esc(info.estimate.basis || t('tree_unknown_basis'))}</p></section>` + (info.heads.length ? `<section class="sec"><div class="chips">${info.heads.map(personBtn).join('')}</div></section>` : '');
     showPanel(id); if (center) requestAnimationFrame(() => centerOn(id)); return;
   }
@@ -879,7 +879,8 @@ function openPerson(id, { center = true } = {}) {
   pBadges.innerHTML = (f ? stPill(p) : '') + (!p.living && p.earliest_doc_date ? `<span class="bd">${esc(t('tree_earliest'))}: ${esc(ahTxt(p.earliest_doc_date))}</span>` : '');
   let html = '';
   const chain = ancestors(id, ROOT);
-  if (chain.length && chain[chain.length - 1].id === ROOT) html += `<section class="sec"><button type="button" class="cta" data-chain="${esc(id)}">${esc(t('tree_chain_btn'))}</button> <button type="button" class="add" data-share="${esc(id)}">${esc(t('tree_share'))}</button></section>`;
+  // the chain and share buttons sit in the panel's footer, which never scrolls away
+  pFoot.innerHTML = chain.length && chain[chain.length - 1].id === ROOT ? `<button type="button" class="cta" data-chain="${esc(id)}">${esc(t('tree_chain_btn'))}</button> <button type="button" class="add" data-share="${esc(id)}">${esc(t('tree_share'))}</button>` : '';
   if (!f) html += `<section class="sec"><p class="muted">${esc(id === CONFIG.spine[0] ? t('tree_above_ali') : t('tree_father_none'))}</p></section>`;
   if (ks.length) html += `<section class="sec"><h4>${esc(t('tree_children'))} (${ks.length})</h4><div class="chips">${ks.map(personBtn).join('')}</div></section>`;
   if (!p.living) {
@@ -902,7 +903,7 @@ function openPerson(id, { center = true } = {}) {
   }
   // an open branch: anyone from the family can send the next generation
   if (!ks.length) html += `<section class="sec"><button type="button" class="add" data-add="${esc(id)}"><span aria-hidden="true">+</span> ${esc(t('tree_add_children'))}</button><div class="addbox" hidden></div></section>`;
-  pBody.innerHTML = html; pBody.scrollTop = 0;
+  pBody.innerHTML = html; pBody.scrollTop = 0; pScroll.scrollTop = 0;
   showPanel(id); if (center) requestAnimationFrame(() => centerOn(id));
 }
 function open1987(id, center) {
@@ -910,7 +911,7 @@ function open1987(id, center) {
   setEyebrow(t('tree_r87_eyebrow'));
   setName(CONFIG.reading1987.boxes.find(b => b.id === id).label);
   pLine.innerHTML = '';
-  pBadges.innerHTML = `<span class="st trad">${esc(t('tree_link_trad'))}</span>`;
+  pBadges.innerHTML = `<span class="st trad">${esc(t('tree_link_trad'))}</span>`; pFoot.innerHTML = '';
   const note = esc(t('tree_r87_note')).replace(/\{(\w+)\}/g, (m, k) => personBtn(k) || m);
   const S = stripHtml('umar');
   pBody.innerHTML = `<section class="sec"><p class="note">${note}</p></section>
