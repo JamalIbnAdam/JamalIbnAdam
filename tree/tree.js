@@ -1241,18 +1241,19 @@ window.addEventListener('hashchange', () => { closeReader(); onHash(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && reader.hidden && chainEl.hidden) { if (stage.classList.contains('fs')) setFull(false); else if (panel.classList.contains('open')) closePanel(); } });
 
 /* ---------- search ---------- */
-const index = persons.filter(searchable).map(p => ({ id: p.id, n: norm(p.name_as_written + ' ' + (p.short_name || '')), p }));
+// aliases (other names a person is known by) are for searching only: they are never shown as the name
+const index = persons.filter(searchable).map(p => ({ id: p.id, n: norm([p.name_as_written, p.short_name || '', ...(p.aliases || [])].join(' ')), p }));
 /* A chain is revealed only for a three-part name: one's own name, the father's and the grandfather's («جمال عمر أحمد»).
    Names are compared word by word after folding: no tashkeel, أ/إ/آ → ا, ى → ي, ة → ه (norm), no «بن / ابن / بنت», no titles,
    and «عبد الله» = «عبدالله», «أبي بكر» = «أبو بكر» (each is one word). */
 const nameWords = s => norm(s).replace(/(^| )(بن|ابن|بنت|ابنه)(?= |$)/g, ' ').replace(/(^| )(الحاج|الشيخ|الفقيه|المرابط|سيدي)(?= )/g, ' ')
   .replace(/(^| )(ابي|ابا)(?= )/g, '$1ابو').replace(/(^| )(عبد|ابو) +/g, '$1$2').replace(/\s+/g, ' ').trim().split(' ').filter(Boolean);
 const coreKey = p => nameWords(shortNameOf(p.name_as_written || ''))[0] || '';   // the person's own name: nothing in brackets, nothing after «بن»
-const keyOf = new Map(persons.map(p => [p.id, p.placeholder ? '' : coreKey(p)]));
+const keysOf = new Map(persons.map(p => [p.id, new Set(p.placeholder ? [] : [coreKey(p), ...(p.aliases || []).map(a => nameWords(a)[0] || '')].filter(Boolean))]));   // the name, and any alias
 // word 1 is the person, word 2 the father, word 3 the grandfather; any further word goes on up the line
 function matchesLine(p, words) {
   let x = p;
-  for (const w of words) { if (!x || keyOf.get(x.id) !== w) return false; x = byId.get(x.father_id); }
+  for (const w of words) { if (!x || !keysOf.get(x.id).has(w)) return false; x = byId.get(x.father_id); }
   return true;
 }
 let hits = [], cursor = 0, fullMatch = false, wordCount = 0;
