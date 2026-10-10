@@ -101,6 +101,7 @@ function applyTranslations() {
     if ($('lang-select')) $('lang-select').value = lang;
     renderPoem();
     renderFigures();
+    window.SourcesList.render($('more-sources'), t);
     updateThemeLabel();
     if (!settled) goToHash();
     settled = true;
@@ -233,6 +234,8 @@ contactForm.addEventListener('submit', async (event) => {
 $('lang-select').addEventListener('change', (event) => changeLanguage(event.target.value));
 changeLanguage(resolveInitialLanguage());
 loadFigures();
+// the library's references: the same list, drawn by the same code, as on the home page
+window.SourcesList.load().then(() => window.SourcesList.render($('more-sources'), t)).catch((error) => console.warn('Unable to load the sources list', error));
 
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {

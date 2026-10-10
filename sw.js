@@ -9,6 +9,7 @@ const ASSETS_TO_CACHE = [
     './manifest.json',
     './logo.webp',
     './theme.js',
+    './sources.js',
     './install.js',
     './touch.js',
     './icons/icon-192.png',

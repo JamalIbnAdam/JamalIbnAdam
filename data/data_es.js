@@ -141,26 +141,7 @@ window.FamilyTreeData = {
         library_book_alt: "Al-Ansar Al-Khazraj en Wadi Al-Shatii",
         library_doc_label: "Información del documento (fuente):",
         library_author: "Autor: Dr. Mohammed Abdul Qadir Al-Sheikh Al-Ansari (2022)",
-        library_methodology_title: "❖ Metodología científica de documentación",
-        library_sources_title: "📚 Fuentes y referencias aprobadas:",
         lib_book_info: "Libro: Los Ansar Khazraj en Wadi Al-Shatii (Dr. Mohammed Abdul Qadir, 2022)",
-        lib_method_text: "Este linaje (73 generaciones) se documentó mediante una metodología de corroboración de evidencias:",
-        lib_point_1:
-            "<strong>Verificación de manuscritos:</strong> Dependencia de documentos originales de los descendientes del abuelo Ali, escritos en caligrafía magrebí.",
-        lib_point_2:
-            "<strong>Prueba civilizatoria:</strong> El sistema hídrico 'Sabul' establecido por el abuelo Abdullah coincide con la ingeniería de riego granadina.",
-        lib_point_3:
-            "<strong>Cronología:</strong> Los marcos temporales calculados confirman que el abuelo Ali vivió justo después de la caída de Al-Ándalus.",
-        library_source_1:
-            "1. <strong>Manuscritos familiares:</strong> (Conservados en el Centro de la Yihad Libia - Trípoli).",
-        library_source_2:
-            "2. <strong>Historia de Fezzan:</strong> (Autor: Mustafa Khawjah - Editor: Habib Wada'ah).",
-        library_source_3: "3. <strong>Diccionario de la población de Libia:</strong> (Compilado por Khalifa al-Tlissi).",
-        library_source_4:
-            "4. <strong>Genealogías árabes en Libia:</strong> (Autor: Mohammed Abd al-Razzaq Manaa).",
-        lib_logic_title: "Enlace científico: ¿por qué (Ali) desciende de Banu Salma?",
-        lib_logic_text:
-            "1. <strong>Título:</strong> Su nombre aparece en manuscritos como 'Al-Sulami Al-Ansari'.<br>2. <strong>Escritura:</strong> Documentos antiguos escritos en caligrafía andalusí.<br>3. <strong>Línea temporal:</strong> Alineación perfecta con el éxodo de familias granadinas (post 897 AH (1492 d.C.)).",
 
         // --- AUTHOR SECTION ---
         author_channel_title: "Canal oficial: Jamal Ibn Adam",
@@ -348,6 +329,8 @@ window.FamilyTreeData = {
         home_houses_h: "The houses of the family", // TODO translate
         home_src_download: "Download PDF", // TODO translate
         home_src_open: "Open the source", // TODO translate
+        doc_1002_desc: "A deed of sale in Brak al-Shati dated 1002 AH, in which “[to the heirs of?] al-Hajj Fadl” appears. If the reading “to the heirs of” is right, al-Hajj Fadl died before 1002 AH. The document was given by Dr. Muhammad Abd al-Qadir al-Shaykh al-Ansari.", // TODO translate
+        lib_open_question: "Where was the forefather Ali before Wadi al-Shati? It is not settled yet. The two hypotheses (the Hejaz and Jeddah, and al-Andalus) and their evidence are on the home page.", // TODO translate
         home_src_h: "References used in the research", // TODO translate
         home_more_h: "Also on this site", // TODO translate
         home_more_1_t: "Ansar figures in Libya", // TODO translate

@@ -140,26 +140,7 @@ window.FamilyTreeData = {
         library_book_alt: "Al-Ansar Al-Khazraj in Wadi Al-Shatii",
         library_doc_label: "Document info (source):",
         library_author: "Author: Dr. Mohammed Abdul Qadir Al-Sheikh Al-Ansari (2022)",
-        library_methodology_title: "❖ Scientific Documentation Methodology",
-        library_sources_title: "📚 Approved Sources & References:",
         lib_book_info: "Book: The Ansar Khazraj in Wadi Al-Shatii (Dr. Mohammed Abdul Qadir, 2022)",
-        lib_method_text: "This tree (73 generations) was documented based on a methodology of corroborating evidence:",
-        lib_point_1:
-            "<strong>Manuscript Verification:</strong> Reliance on original documents of the descendants of Grandfather Ali, written in Maghrebi script.",
-        lib_point_2:
-            "<strong>Civilizational Evidence:</strong> The 'Sabul' water system established by Grandfather Abdullah matches Granadan irrigation engineering.",
-        lib_point_3:
-            "<strong>Chronology:</strong> Calculated timeframes confirm Grandfather Ali lived immediately after the fall of Andalusia.",
-        library_source_1:
-            "1. <strong>Family manuscripts:</strong> (Preserved at the Libyan Jihad Center - Tripoli).",
-        library_source_2:
-            "2. <strong>History of Fezzan:</strong> (Author: Mustafa Khawjah - Editor: Habib Wada'ah).",
-        library_source_3: "3. <strong>Dictionary of Libya's Population:</strong> (Compiled by Khalifa al-Tlissi).",
-        library_source_4:
-            "4. <strong>Arab Genealogies in Libya:</strong> (Author: Mohammed Abd al-Razzaq Manaa).",
-        lib_logic_title: "Scientific Link: Why is (Ali) a descendant of Banu Salma?",
-        lib_logic_text:
-            "1. <strong>Title:</strong> His name appears in manuscripts as 'Al-Sulami Al-Ansari'.<br>2. <strong>Script:</strong> Old documents written in Andalusian script.<br>3. <strong>Timeline:</strong> Perfect alignment with the exodus of Granadan families (post 897 AH (1492 AD)).",
 
         // --- AUTHOR SECTION ---
         author_channel_title: "Official Channel: Jamal Ibn Adam",
@@ -209,7 +190,8 @@ window.FamilyTreeData = {
         modal_story_fallback: "A connecting link in the inherited lineage.",
         modal_logic_fallback: "A natural sequence of generations.",
         btn_view_doc: "View Document 1002 AH",
-        doc_1002_desc: "Rare sales deed dated 1002 AH. Used as the primary reference to determine the death era of Fadl ibn Abdullah and confirm his timeline at the turn of the 11th Hijri century.",
+        doc_1002_desc: "A deed of sale in Brak al-Shati dated 1002 AH, in which “[to the heirs of?] al-Hajj Fadl” appears. If the reading “to the heirs of” is right, al-Hajj Fadl died before 1002 AH. The document was given by Dr. Muhammad Abd al-Qadir al-Shaykh al-Ansari.",
+        lib_open_question: "Where was the forefather Ali before Wadi al-Shati? It is not settled yet. The two hypotheses (the Hejaz and Jeddah, and al-Andalus) and their evidence are on the home page.",
 
         // Share
         share_title: "Share with others",
