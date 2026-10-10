@@ -157,11 +157,10 @@ window.FamilyTreeData = {
         author_book_1: "<strong>Breaths of Hope:</strong> Survival memoirs from intensive care that inspired this channel.",
         author_book_2:
             "<strong>The Crypto Mentor:</strong> The book explaining the financial cause God used to save the author.",
-        author_title_1: "«مرشد العملات الرقميّة» (The Crypto Mentor)",
-        author_title_2: "«أنفاس الأمل» (Breaths of Hope)",
-        author_publisher: "Publisher: <a href=\"https://www.andrewtips.com\" target=\"_blank\" rel=\"noopener\" style=\"color: var(--h-gold);\">Andrew Tips</a>",
+        author_title_1: "«مرشد العملات الرقميّة»<span class=\"en\" lang=\"en\">The Crypto Mentor</span>",
+        author_title_2: "«أنفاس الأمل»<span class=\"en\" lang=\"en\">Breaths of Hope</span>",
         footer_books: "<a href=\"https://jsadamauthor.com/\" target=\"_blank\" rel=\"noopener\" style=\"color: var(--h-gold);\">The author's books</a>",
-        btn_visit_youtube: "Official Andrew Tips Channel",
+        btn_visit_youtube: "Official Jamal Ibn Adam Channel",
         btn_install: "Install App",
         install_instructions: "To install on your computer, click the install icon (+) in the address bar above.",
 
