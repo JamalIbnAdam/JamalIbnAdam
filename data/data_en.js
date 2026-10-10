@@ -394,7 +394,7 @@ window.FamilyTreeData = {
         tree_gen_zero: "Generation 0 (above Abdullah)",
         tree_gen_top: "Generation {n} (top of the chain)",
         tree_poster_only: "“al-Jaddawi al-Ansari” in the tribe's deeds since 1174 AH",
-        tree_poster_title: "In the 1987 poster",
+        tree_poster_title: "Epithets in the deeds and the 1987 poster",
         tree_poster_note: "The name “al-Jaddawi” is attested in the habs deed: “Umar ibn Ali al-Jaddawi”. The tribe's Ansari affiliation is written in its deeds from 1174 AH: “al-Jaddawi al-Ansari”. “al-Khazraji” appears on the 1987 tree label and on an undated paper: “al-Ansari al-Jabiri al-Khazraji”.",
         tree_r87_callout_1: "The 1987 tree reading, later covered over.",
         tree_r87_callout_2: "No document places Fadl and al-Hajj Muhammad",
