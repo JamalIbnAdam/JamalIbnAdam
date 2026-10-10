@@ -35,8 +35,12 @@ const CONFIG = {
     abdulwahid: { root: 'yahmad' }
   }
 };
-const SLOT = { med: 0, hm: 150, fd: 238, umar: 336, tulip: 462, ali: 604, note: 702 };
+// places along the trunk, measured down from the medallion's centre; set by setSlots() for the current crown
+let SLOT = { med: 0, hm: 150, fd: 238, umar: 336, tulip: 462, ali: 604 };
+const TRUNK_SHARE = 0.375;   // the trunk, from the plaque's top to the medallion's bottom, is 35–40% of the tree's height
 const MED_R = 74;
+
+const t87 = $('ft-t1987');
 
 /* ---------- strings ---------- */
 const strings = () => (window.FamilyTreeData && window.FamilyTreeData.translations) || {};
@@ -204,6 +208,16 @@ function layout() {
   let x0 = Infinity, x1 = -Infinity, y0 = Infinity, y1 = -Infinity;
   for (const f of fan.values()) { x0 = Math.min(x0, f.x - f.nr); x1 = Math.max(x1, f.x + f.nr); y0 = Math.min(y0, f.y - f.nr); y1 = Math.max(y1, f.y + f.nr); }
   fanBox = { x0, x1, y0, y1 };
+  setSlots();
+}
+// عمر, the verse plaque and علي's plaque are spaced along a trunk whose length follows the crown;
+// the two 1987 boxes need room between the medallion and عمر, so the trunk is longer while they are shown
+function setSlots() {
+  const show87 = !!(t87 && t87.checked), crown = -fanBox.y0 + 34, fixed = MED_R + 84 + 62;   // above the trunk, and the plaque with its line below it
+  const S = Math.max(show87 ? 488 : 302, TRUNK_SHARE / (1 - TRUNK_SHARE) * (crown + fixed));
+  const at = f => Math.round(MED_R + f * S);
+  SLOT = show87 ? { med: 0, hm: at(0.156), fd: at(0.336), umar: at(0.537), tulip: at(0.795), ali: MED_R + S + 42 }
+    : { med: 0, hm: at(0.1), fd: at(0.16), umar: at(0.2), tulip: at(0.57), ali: MED_R + S + 42 };
 }
 
 const inFan = new Set(); (function walk(id) { inFan.add(id); kids.get(id).forEach(walk); })(ROOT);
@@ -212,7 +226,7 @@ const ali = byId.get(CONFIG.spine[0]), umar = byId.get(CONFIG.spine[1]), abd = b
 /* ---------- dom ---------- */
 const stage = $('ft-stage'), treeEl = $('ft-tree'), world = $('ft-world'), panel = $('ft-panel');
 const pName = $('ft-pName'), pEyebrow = $('ft-pEyebrow'), pLine = $('ft-pLine'), pBadges = $('ft-pBadges'), pBody = $('ft-pBody');
-const q = $('ft-q'), results = $('ft-results'), t87 = $('ft-t1987');
+const q = $('ft-q'), results = $('ft-results');
 const legendEl = $('ft-legend'), tip = $('ft-tip');
 legendEl.open = window.innerWidth >= 1024;   // a chip on small screens, open on desktop (the tree is then fitted beside it)
 
@@ -236,8 +250,8 @@ let selected = null, currentK = 1, grown = false;
 function edgePts(pid, cid) {
   const p = fan.get(pid), c = fan.get(cid);
   if (pid === ROOT) {
-    const sa = Math.max(-0.9, Math.min(0.9, c.a * 0.5));
-    return [pt(MED_R - 6, sa), pt(c.r * 0.45, sa * 0.6), pt(c.r * 0.7, c.a), [c.x, c.y]];
+    const lim = A / 2 - 0.05, sa = Math.max(-1.35, Math.min(1.35, c.a * 0.85)), wide = x => Math.max(-lim, Math.min(lim, x));
+    return [pt(MED_R - 6, sa), pt(c.r * 0.5, wide(c.a * 1.3)), pt(c.r * 0.82, wide(c.a * 1.12)), [c.x, c.y]];
   }
   const rm = (p.r + c.r) / 2;
   return [[p.x, p.y], pt(rm, p.a), pt(rm, c.a), [c.x, c.y]];
@@ -343,14 +357,23 @@ function draw() {
 
   /* trunk, roots, leaves, laurel */
   (function drawTrunk() {
-    const T = L.trunk, base = SLOT.ali + 30;
-    // the trunk stands on علي's plaque: nothing is drawn beneath him
-    el('path', { class: 'trunk', d: `M-48,-10 C-52,180 -58,420 -62,${base - 60} L-64,${base} L64,${base} L62,${base - 60} C58,420 52,180 48,-10 Z` }, T);
+    const T = L.trunk, top = -10, base = SLOT.ali + 30, H = base - top;
+    // an old olive trunk: it stands on علي's plaque (nothing is drawn beneath him) and is a little wider at the base
+    const half = y => 44 + 30 * Math.pow((y - top) / H, 1.6);
+    const spline = pts => { let d = `M${f1(pts[0][0])},${f1(pts[0][1])}`; for (let i = 0; i < pts.length - 1; i++) { const p0 = pts[Math.max(0, i - 1)], p1 = pts[i], p2 = pts[i + 1], p3 = pts[Math.min(pts.length - 1, i + 2)]; d += ` C${f1(p1[0] + (p2[0] - p0[0]) / 6)},${f1(p1[1] + (p2[1] - p0[1]) / 6)} ${f1(p2[0] - (p3[0] - p1[0]) / 6)},${f1(p2[1] - (p3[1] - p1[1]) / 6)} ${f1(p2[0])},${f1(p2[1])}`; } return d; };
+    const side = sgn => Array.from({ length: 9 }, (_, i) => { const y = top + H * i / 8; return [sgn * (half(y) + (i > 0 && i < 8 ? (i % 2 ? 4 : -3) : 0)), y]; });
+    el('path', { class: 'trunk', d: spline(side(-1)) + ' L' + spline(side(1).reverse()).slice(1) + ' Z' }, T);
+    // three strands twist around each other and fuse higher up
+    const strand = (phase, amp, dx) => spline(Array.from({ length: 15 }, (_, i) => { const u = i / 14, y = base - u * H * 0.9; return [Math.sin(u * Math.PI * 2.3 + phase) * amp * Math.pow(1 - u, 0.9) * (half(y) / 74) + dx, y]; }));
+    [[0, 36], [2.1, 32], [4.2, 28]].forEach(([phase, amp]) => { el('path', { class: 'strand', d: strand(phase, amp, 0) }, T); el('path', { class: 'groove', d: strand(phase, amp, 8) }, T); });
+    // bark: short strokes along the grain, and two old knots
+    for (let i = 0; i < 26; i++) { const h = seed('bark' + i), y = top + 30 + (h % 1000) / 1000 * (H - 60), x = (((h >>> 10) % 1000) / 1000 - 0.5) * 1.5 * half(y), len = 14 + (h >>> 20) % 16; el('path', { class: 'bark', d: `M${f1(x)},${f1(y)} q${(h >>> 5) % 2 ? 2.5 : -2.5},${f1(-len / 2)} 0,${-len}` }, T); }
+    [[-0.36, 0.66, 9, 13], [0.34, 0.36, 7, 10]].forEach(([fx, fy, rx, ry]) => { const y = top + H * fy, x = fx * half(y); el('ellipse', { class: 'knot', cx: f1(x), cy: f1(y), rx, ry }, T); el('ellipse', { class: 'knot-ring', cx: f1(x), cy: f1(y), rx: rx + 4, ry: ry + 5 }, T); });
     // leaves on the trunk flanks
-    [[60, -1], [130, 1], [200, -1], [275, 1], [400, -1], [395, 1], [520, -1], [530, 1]].forEach(([y, s], i) => {
-      const xEdge = s * (49 + y * 0.022);
-      leaf(xEdge, y, s > 0 ? -0.55 - (i % 2) * 0.25 : Math.PI + 0.55 + (i % 2) * 0.25, 40, 11, T);
-      leaf(xEdge, y + 14, s > 0 ? -0.05 : Math.PI + 0.05, 28, 8, T);
+    [[0.1, -1], [0.22, 1], [0.34, -1], [0.46, 1], [0.66, -1], [0.65, 1], [0.86, -1], [0.88, 1]].forEach(([fy, sg], i) => {
+      const y = top + H * fy, xEdge = sg * (half(y) + 3);
+      leaf(xEdge, y, sg > 0 ? -0.55 - (i % 2) * 0.25 : Math.PI + 0.55 + (i % 2) * 0.25, 40, 11, T);
+      leaf(xEdge, y + 14, sg > 0 ? -0.05 : Math.PI + 0.05, 28, 8, T);
     });
     // laurel around the lower half of the medallion
     const LR = MED_R + 10;
@@ -593,7 +616,6 @@ function fit(ms = 550, mode = fitMode) {
   if (!visible()) return;
   fitMode = mode;
   const b = contentBounds(), v = viewRect(), pad = isMobile() ? 16 : 22;
-  if (mode === 'home') b.y1 = SLOT.umar + 46;
   const k = Math.min(1.5, (v.w - pad * 2) / (b.x1 - b.x0), (v.h - pad * 2) / (b.y1 - b.y0));
   go(d3.zoomIdentity.translate(v.x + v.w / 2 - k * (b.x0 + b.x1) / 2, v.y + v.h / 2 - k * (b.y0 + b.y1) / 2).scale(k), ms);
 }
@@ -681,8 +703,9 @@ function focusBranch(key, ms = 700) {
 
 /* ---------- 1987 toggle ---------- */
 t87.addEventListener('change', () => {
+  draw();
   treeEl.classList.toggle('show87', t87.checked);
-  if (t87.checked) { const v = viewRect(), k = Math.max(0.45, Math.min(1, v.h / 900, v.w / 640)); go(d3.zoomIdentity.translate(v.x + v.w / 2 - k * 90, v.y + v.h / 2 - k * 335).scale(k)); }
+  if (t87.checked) { const v = viewRect(), k = Math.max(0.45, Math.min(1, v.h / 900, v.w / 640)); go(d3.zoomIdentity.translate(v.x + v.w / 2 - k * 90, v.y + v.h / 2 - k * SLOT.umar).scale(k)); } else fit();
 });
 
 /* ---------- person panel ---------- */
