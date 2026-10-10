@@ -126,12 +126,9 @@
 <section id="figures" class="sg-pad sg-sec">
 <h2 class="sg-h2" data-i18n="figures_intro_title">أعلام الأنصار في ليبيا</h2>
 <p class="sg-sec-lede" data-i18n="figures_intro_text">أعلام من الأنصار عاشوا في ليبيا عبر القرون. نذكرهم للتعريف بالحضور الأنصاري في البلاد، لا لإثبات نسب أسرة بعينها.</p>
-<div class="sg-grid" id="more-figures">
-<article class="sg-card"><span class="sg-tag" data-i18n="fig_1_badge"></span><h3 data-i18n="fig_1_name"></h3><p data-i18n="fig_1_desc"></p><p class="sg-meta" data-i18n="fig_1_loc"></p></article>
-<article class="sg-card"><span class="sg-tag" data-i18n="fig_2_badge"></span><h3 data-i18n="fig_2_name"></h3><p data-i18n="fig_2_desc"></p><p class="sg-meta" data-i18n="fig_2_loc"></p></article>
-<article class="sg-card"><span class="sg-tag" data-i18n="fig_3_badge"></span><h3 data-i18n="fig_3_name"></h3><p data-i18n="fig_3_desc"></p><p class="sg-meta" data-i18n="fig_3_loc"></p></article>
-<article class="sg-card"><span class="sg-tag" data-i18n="fig_4_badge"></span><h3 data-i18n="fig_4_name"></h3><p data-i18n="fig_4_desc"></p><p class="sg-meta" data-i18n="fig_4_loc"></p></article>
-</div>
+<p class="sg-sec-lede" id="more-fig-note"></p>
+<nav class="sg-chips" id="more-fig-chips" aria-label="المناطق"></nav>
+<div id="more-figures"></div>
 </section>
 
 <section id="library" class="sg-pad sg-sec">
@@ -206,6 +203,12 @@
 </div>
 </section>
 </main>
+
+<dialog class="sg-reader" id="more-reader" aria-labelledby="more-reader-title">
+<header><h2 id="more-reader-title"></h2><button type="button" id="more-reader-x" aria-label="إغلاق"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></header>
+<div class="sg-reader-img"><img id="more-reader-img" alt=""></div>
+<div class="sg-reader-text"><p class="sg-quote" id="more-reader-quote"></p><p class="sg-src" id="more-reader-src"></p></div>
+</dialog>
 
 <footer id="contribute" class="sg-pad" style="border-top: 1px solid var(--h-hair); padding: 64px 48px 48px;">
 <div style="max-width: 760px; margin: 0 auto; text-align: center; display: flex; flex-direction: column; gap: 18px; align-items: center;">

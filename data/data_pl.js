@@ -80,33 +80,26 @@ window.FamilyTreeData = {
         modern_era_generation: "Pokolenie 73: (obecne pokolenie - 2026)",
 
         // --- FIGURES TAB (The 4 Cards) ---
+        fig_region_tripoli: "Trypolis i zachodnie wybrzeże",
+        fig_region_jabal: "Góry Zachodnie i Gharjan",
+        fig_region_barqa: "Cyrenajka (Barka)",
+        fig_region_fezzan: "Fezzan i południe",
+        fig_region_unlinked: "Postacie z Brak al-Szati jeszcze niepowiązane z drzewem",
+        fig_evidence: "Dowody ({n})",
+        fig_via: "Cytowane za:",
+        fig_in_tree: "W drzewie dowodów",
+        fig_page: "s. {p}",
         figures_intro_title: "Postacie Ansarów w Libii",
         figures_intro_text:
             "Postacie Ansarów, które żyły w Libii na przestrzeni wieków. Wymieniamy je, aby przybliżyć obecność Ansarów w kraju, a nie po to, by dowodzić rodowodu jakiejkolwiek konkretnej rodziny.",
 
         // Card 1
-        fig_1_badge: "Pierwsze Pokolenie (Towarzysze)",
-        fig_1_name: "Ruwayfi bin Thabit Al-Ansari",
-        fig_1_desc: "Gubernator Barki i Trypolisu we wczesnej erze islamu.",
-        fig_1_loc: "📍 Pochowany w Al-Bayda",
 
         // Card 2
-        fig_2_badge: "Pierwsze Pokolenie (Towarzysze)",
-        fig_2_name: "Munidhir Al-Ifriqi Al-Ansari",
-        fig_2_desc: "Znany jako 'Fryzjer Proroka ﷺ' i jego towarzysz.",
-        fig_2_loc: "📍 Pochowany w Trypolisie",
 
         // Card 3
-        fig_3_badge: "Święci i Uczeni",
-        fig_3_name: "Święty Bu Ajila Al-Ansari",
-        fig_3_desc: "Jeden z wielkich szejków zachodniej Libii.",
-        fig_3_loc: "📍 Pochowany w Al-Ajaylat",
 
         // Card 4
-        fig_4_badge: "Święci i Uczeni",
-        fig_4_name: "Szejk Abdullah bin Mohammed Qutb",
-        fig_4_desc: "Ascetyczny uczony, który szerzył wiedzę na południu.",
-        fig_4_loc: "📍 Pochowany na pustyni (blisko Kufra)",
 
         // --- FADL BRANCHES (The 7 Cards) ---
         branch_1_title: "(1) Dzieci Salema bin Yusufa",

@@ -80,33 +80,26 @@ window.FamilyTreeData = {
         modern_era_generation: "Nesil 73: (Güncel nesil - 2026)",
 
         // --- FIGURES TAB (The 4 Cards) ---
+        fig_region_tripoli: "Trablus ve batı kıyısı",
+        fig_region_jabal: "Batı Dağı ve Garyan",
+        fig_region_barqa: "Berka",
+        fig_region_fezzan: "Fizan ve güney",
+        fig_region_unlinked: "Brak eş-Şati’den henüz şecereye bağlanmamış kişiler",
+        fig_evidence: "Kanıtlar ({n})",
+        fig_via: "Şuradan naklen:",
+        fig_in_tree: "Kanıt şeceresinde",
+        fig_page: "s. {p}",
         figures_intro_title: "Libya’daki Ensar ileri gelenleri",
         figures_intro_text:
             "Yüzyıllar boyunca Libya’da yaşamış Ensar ileri gelenleri. Onları ülkedeki Ensar varlığını tanıtmak için anıyoruz; belirli bir ailenin nesebini kanıtlamak için değil.",
 
         // Card 1
-        fig_1_badge: "Birinci Nesil (Sahabeler)",
-        fig_1_name: "Ruwayfi bin Thabit El-Ensari",
-        fig_1_desc: "İslam'ın ilk dönemlerinde Berka ve Trablus Valisi.",
-        fig_1_loc: "📍 Kabri Beyda'dadır",
 
         // Card 2
-        fig_2_badge: "Birinci Nesil (Sahabeler)",
-        fig_2_name: "Munidhir El-Ifriki El-Ensari",
-        fig_2_desc: "'Peygamber'in Berberi' olarak bilinen sahabe.",
-        fig_2_loc: "📍 Kabri Trablus'tadır (Eski Mezarlık)",
 
         // Card 3
-        fig_3_badge: "Veliler ve Alimler",
-        fig_3_name: "Veli Bu Acila El-Ensari",
-        fig_3_desc: "Batı Libya'nın büyük şeyhlerinden biri.",
-        fig_3_loc: "📍 Kabri Acilat'tadır",
 
         // Card 4
-        fig_4_badge: "Veliler ve Alimler",
-        fig_4_name: "Şeyh Abdullah bin Muhammed Kutub",
-        fig_4_desc: "Güneyde ilmi yayan zahid bir alim.",
-        fig_4_loc: "📍 Kabri Çöldedir (Kufra yakınları)",
 
         // --- FADL BRANCHES (The 7 Cards) ---
         branch_1_title: "(1) Salim bin Yusuf Çocukları",

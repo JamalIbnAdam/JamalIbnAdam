@@ -23,7 +23,9 @@ const ASSETS_TO_CACHE = [
     './data/sources.json',
     './data/stats.json',
     './more/',
-    './more/more.js'
+    './more/more.js',
+    './data/ansar-libya.json',
+    './data/figures-unlinked.json'
 ];
 // the evidence tree's own files are fetched only by /tree/: cached there on first use, never from the home page
 const TREE_RUNTIME = [

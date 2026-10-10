@@ -85,33 +85,26 @@ window.FamilyTreeData = {
         modern_era_generation: "Generación 73: (Generación actual - 2026)",
 
         // --- FIGURES TAB (The 4 Cards) ---
+        fig_region_tripoli: "Trípoli y la costa occidental",
+        fig_region_jabal: "La Montaña Occidental y Gharyan",
+        fig_region_barqa: "Cirenaica (Barqa)",
+        fig_region_fezzan: "Fezán y el sur",
+        fig_region_unlinked: "Figuras de Brak al-Shati aún no enlazadas con el árbol",
+        fig_evidence: "Pruebas ({n})",
+        fig_via: "Citado de:",
+        fig_in_tree: "En el árbol de pruebas",
+        fig_page: "p. {p}",
         figures_intro_title: "Figuras de los Ansar en Libia",
         figures_intro_text:
             "Figuras de los Ansar que vivieron en Libia a lo largo de los siglos. Las mencionamos para dar a conocer la presencia ansarí en el país, no para probar el linaje de ninguna familia en particular.",
 
         // Card 1
-        fig_1_badge: "Primera generación (Compañeros)",
-        fig_1_name: "Ruwayfi bin Thabit Al-Ansari",
-        fig_1_desc: "Gobernador de Barqa y Trípoli en la primera era islámica.",
-        fig_1_loc: "📍 Enterrado en Al-Bayda",
 
         // Card 2
-        fig_2_badge: "Primera generación (Compañeros)",
-        fig_2_name: "Munidhir Al-Ifriqi Al-Ansari",
-        fig_2_desc: "Conocido como el 'barbero del Profeta ﷺ' y su compañero.",
-        fig_2_loc: "📍 Enterrado en Trípoli (cementerio antiguo)",
 
         // Card 3
-        fig_3_badge: "Santos y eruditos",
-        fig_3_name: "El santo Bu Ajila Al-Ansari",
-        fig_3_desc: "Uno de los grandes shuyuj del occidente de Libia.",
-        fig_3_loc: "📍 Enterrado en Al-Ajaylat",
 
         // Card 4
-        fig_4_badge: "Santos y eruditos",
-        fig_4_name: "Sheikh Abdullah bin Mohammed Qutb",
-        fig_4_desc: "Erudito asceta que difundió el conocimiento en el sur.",
-        fig_4_loc: "📍 Enterrado en el desierto (cerca de Kufra)",
 
         // --- FADL BRANCHES (The 7 Cards) ---
         branch_1_title: "(1) Hijos de Salem bin Yusuf",

@@ -100,6 +100,7 @@ function applyTranslations() {
     htmlRoot.setAttribute('dir', (data.meta && data.meta.dir) || 'rtl');
     if ($('lang-select')) $('lang-select').value = lang;
     renderPoem();
+    renderFigures();
     updateThemeLabel();
     if (!settled) goToHash();
     settled = true;
@@ -134,23 +135,64 @@ $('home-theme').addEventListener('click', () => {
     updateThemeLabel();
 });
 
-/* ---------- figures named in the book but not linked to the tree (data/figures-unlinked.json) ---------- */
-function addUnlinkedFigures() {
-    fetch(`${siteRoot}data/figures-unlinked.json`).then((r) => (r.ok ? r.json() : [])).then((list) => {
-        list.forEach((p) => {
-            const e = (p.evidence || [])[0] || {};
-            const card = document.createElement('article');
-            card.className = 'sg-card';
-            card.dir = 'rtl';
-            card.innerHTML = `<h3>${esc(p.name_as_written)}</h3><p>${esc(p.note_for_display)}</p>` +
-                (e.quote ? `<p class="sg-quote">«${esc(e.quote)}»</p>` : '') +
-                (e.image ? `<a href="${esc(e.image)}" target="_blank" rel="noopener"><img class="sg-shot" src="${esc(e.image)}" alt="" loading="lazy" decoding="async"></a>` : '') +
-                `<p class="sg-meta">${esc([e.source, e.page, e.date].filter(Boolean).join(' · '))}</p>`;
-            $('more-figures').appendChild(card);
-        });
-        goToHash();
-    }).catch(() => { });
+/* ---------- «الأنصار في ليبيا»: data/ansar-libya.json, grouped by region; every card carries its evidence ---------- */
+// The names, places, claims, notes and quotes are shown exactly as the data has them, in Arabic, in every language.
+let figures = null, unlinked = null;
+const REGION_KEYS = { 'طرابلس والساحل الغربي': 'fig_region_tripoli', 'الجبل الغربي وغريان': 'fig_region_jabal', 'برقة': 'fig_region_barqa', 'فزان والجنوب': 'fig_region_fezzan' };
+const pageText = (page) => (/ص\s?\d/.test(String(page)) ? String(page) : t('fig_page').replace('{p}', page));   // some pages already say «ص240»
+// a page picture is shown only for our own book scans (the book of Dr. Muhammad); other books show quote and page only
+const ownScan = (e) => e.image && e.src === 'ansar';
+function evidenceHtml(e, sources) {
+    const src = [sources[e.src] || e.source || '', e.page ? pageText(e.page) : '', e.date || ''].filter(Boolean).join(' · ');
+    return `<li>${e.quote ? `<p class="sg-quote" dir="rtl" lang="ar">«${esc(e.quote)}»</p>` : ''}<p class="sg-src">${esc(src)}</p>` +
+        (e.via ? `<p class="sg-src">${esc(t('fig_via'))} <span dir="rtl" lang="ar">${esc(e.via)}</span></p>` : '') +
+        (ownScan(e) ? `<button type="button" class="sg-thumb" data-img="${esc(e.image)}" data-quote="${esc(e.quote || '')}" data-src="${esc(src)}" aria-label="${esc(t('tree_open_doc'))}: ${esc(pageText(e.page))}"><img src="${esc(e.image)}" alt="" loading="lazy" decoding="async" width="96" height="128"></button>` : '') + '</li>';
 }
+function figureCard(item, sources) {
+    const where = [item.place, item.era].filter(Boolean).join(' · ');
+    return `<article class="sg-card sg-fig" id="fig-${esc(item.id)}"><h3 dir="rtl" lang="ar">${esc(item.name)}</h3>` +
+        (where ? `<p class="sg-where" dir="rtl" lang="ar">📍 ${esc(where)}</p>` : '') +
+        `<p class="sg-claim" dir="rtl" lang="ar">${esc(item.claim)}</p>` +
+        (item.note ? `<p class="sg-note" dir="rtl" lang="ar">${esc(item.note)}</p>` : '') +
+        `<details class="sg-ev"><summary>${esc(t('fig_evidence').replace('{n}', item.evidence.length))}</summary><ol>${item.evidence.map((e) => evidenceHtml(e, sources)).join('')}</ol></details>` +
+        (item.tree_link ? `<a class="sg-btn sg-btn-line" href="${esc(item.tree_link)}">${esc(t('fig_in_tree'))}</a>` : '') + '</article>';
+}
+function renderFigures() {
+    if (!figures) return;
+    const open = new Set([...document.querySelectorAll('#more-figures details[open]')].map((d) => d.parentNode.id));
+    const groups = figures.regions.map((region, i) => ({ id: `fig-r${i + 1}`, title: t(REGION_KEYS[region] || region), cards: figures.items.filter((x) => x.region === region).map((x) => figureCard(x, figures.sources)) }));
+    // the fifth group: the figures of Brak al-Shati that are not linked to the tree yet (data/figures-unlinked.json)
+    if (unlinked && unlinked.length) groups.push({ id: 'fig-r5', title: t('fig_region_unlinked'), cards: unlinked.map((p, i) => figureCard({ id: `unlinked-${i + 1}`, name: p.name_as_written, claim: p.note_for_display, evidence: (p.evidence || []).map((e) => ({ ...e, src: 'ansar' })) }, { ansar: '' })) });
+    const shown = groups.filter((g) => g.cards.length);
+    $('more-fig-note').textContent = figures.note_ar || '';
+    $('more-fig-chips').innerHTML = shown.map((g) => `<a href="more/#${g.id}">${esc(g.title)}</a>`).join('');
+    $('more-figures').innerHTML = shown.map((g) => `<section class="sg-region" id="${g.id}"><h3 class="sg-region-h">${esc(g.title)}</h3><div class="sg-grid">${g.cards.join('')}</div></section>`).join('');
+    open.forEach((id) => { const d = document.getElementById(id)?.querySelector('details'); if (d) d.open = true; });
+    goToHash();
+}
+function loadFigures() {
+    const get = (file) => fetch(`${siteRoot}data/${file}`).then((r) => (r.ok ? r.json() : Promise.reject(new Error(`${file}: HTTP ${r.status}`))));
+    get('ansar-libya.json').then((data) => { figures = data; renderFigures(); }).catch((error) => console.warn('Unable to load the figures', error));
+    get('figures-unlinked.json').then((list) => { unlinked = list; renderFigures(); }).catch(() => { });
+}
+
+/* ---------- the page reader: the book page, its quote and its source ---------- */
+const reader = $('more-reader');
+function openReader(button) {
+    $('more-reader-title').textContent = button.dataset.src;
+    $('more-reader-img').src = button.dataset.img;
+    $('more-reader-quote').textContent = button.dataset.quote ? `«${button.dataset.quote}»` : '';
+    $('more-reader-src').textContent = button.dataset.src;
+    $('more-reader-x').setAttribute('aria-label', t('tree_close'));
+    reader.classList.remove('zoom');
+    if (typeof reader.showModal === 'function') reader.showModal(); else reader.setAttribute('open', '');
+}
+document.addEventListener('click', (event) => {
+    const thumb = event.target.closest('.sg-thumb');
+    if (thumb) { openReader(thumb); return; }
+    if (event.target.closest('#more-reader-x') || event.target === reader) { reader.close(); return; }
+    if (event.target.id === 'more-reader-img') reader.classList.toggle('zoom');   // a tap enlarges the page; another one fits it again
+});
 
 /* ---------- the playlist loads only when asked for ---------- */
 $('more-video').addEventListener('click', () => {
@@ -190,7 +232,7 @@ contactForm.addEventListener('submit', async (event) => {
 /* ---------- boot ---------- */
 $('lang-select').addEventListener('change', (event) => changeLanguage(event.target.value));
 changeLanguage(resolveInitialLanguage());
-addUnlinkedFigures();
+loadFigures();
 
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {

@@ -84,33 +84,26 @@ window.FamilyTreeData = {
         modern_era_generation: "Generation 73: (Current generation - 2026)",
 
         // --- FIGURES TAB (The 4 Cards) ---
+        fig_region_tripoli: "Tripoli and the western coast",
+        fig_region_jabal: "The Western Mountain and Gharyan",
+        fig_region_barqa: "Cyrenaica (Barqa)",
+        fig_region_fezzan: "Fezzan and the south",
+        fig_region_unlinked: "Figures of Brak al-Shati not yet linked to the tree",
+        fig_evidence: "Evidence ({n})",
+        fig_via: "As cited from:",
+        fig_in_tree: "In the evidence tree",
+        fig_page: "p. {p}",
         figures_intro_title: "Figures of the Ansar in Libya",
         figures_intro_text:
             "Figures of the Ansar who lived in Libya over the centuries. We mention them to introduce the Ansari presence in the country, not to prove the lineage of any particular family.",
 
         // Card 1
-        fig_1_badge: "First Generation (Companions)",
-        fig_1_name: "Ruwayfi bin Thabit Al-Ansari",
-        fig_1_desc: "Governor of Barka and Tripoli in the early Islamic era.",
-        fig_1_loc: "📍 Buried in Al-Bayda",
 
         // Card 2
-        fig_2_badge: "First Generation (Companions)",
-        fig_2_name: "Munidhir Al-Ifriqi Al-Ansari",
-        fig_2_desc: "Known as the 'Barber of the Prophet ﷺ' and his companion.",
-        fig_2_loc: "📍 Buried in Tripoli (Old Cemetery)",
 
         // Card 3
-        fig_3_badge: "Saints & Scholars",
-        fig_3_name: "The Saint Bu Ajila Al-Ansari",
-        fig_3_desc: "One of the great Sheikhs of Western Libya.",
-        fig_3_loc: "📍 Buried in Al-Ajaylat",
 
         // Card 4
-        fig_4_badge: "Saints & Scholars",
-        fig_4_name: "Sheikh Abdullah bin Mohammed Qutb",
-        fig_4_desc: "An ascetic scholar who spread knowledge in the South.",
-        fig_4_loc: "📍 Buried in the Desert (near Kufra)",
 
         // --- FADL BRANCHES (The 7 Cards) ---
         branch_1_title: "(1) Children of Salem bin Yusuf",
