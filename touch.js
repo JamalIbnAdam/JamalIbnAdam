@@ -1,13 +1,11 @@
-/* App-like touch, shared by /, /tree/ and /more/: no long-press menu on the tree, images, header or nav.
-   It is not blocked page-wide: transcriptions, quotes and the references list can still be selected and copied. */
+/* App-like touch, shared by /, /tree/ and /more/: no long-press menu anywhere on the page.
+   The exceptions are the text of a document, a quote, a note and the references list, and form fields. */
 (() => {
 'use strict';
-const BLOCK = 'header, nav, img, svg, .sg-nav, .nav-tabs-container, .ft-stage, .ft-fcards';
-const KEEP = '.ft-reader .tp, .ft-panel .qt, .ft-panel .note, #home-sources';
+const KEEP = '.ft-reader .tp, .ft-panel .qt, .ft-panel .note, #home-sources, input, textarea, [contenteditable]';
 document.addEventListener('contextmenu', (event) => {
     const target = event.target;
-    if (!target || !target.closest) return;
-    if (target.closest(KEEP)) return;
-    if (target.closest(BLOCK)) event.preventDefault();
+    if (target && target.closest && target.closest(KEEP)) return;
+    event.preventDefault();
 });
 })();

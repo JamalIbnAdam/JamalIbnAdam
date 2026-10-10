@@ -317,13 +317,11 @@ html[dir="rtl"] .gregorian-date {
     }
 }
 
-/* ---------- app-like touch: no selection or long-press callout on the UI, the tree and images ---------- */
-body { -webkit-tap-highlight-color: transparent; }
-header, nav, button, .sg-nav, .ft-stage, .ft-stage *, .ft-fcards, svg, img, .card, .sg-pad h1, .sg-pad h2 {
-  -webkit-user-select: none; user-select: none; -webkit-touch-callout: none;
-}
+/* ---------- app-like touch: no text selection or long-press pop-up anywhere on the page ---------- */
+body { -webkit-tap-highlight-color: transparent; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
 img { -webkit-user-drag: none; }
-/* researchers can still select and copy the text of a document, a quote and the references */
-.poem-line, .verse-part, #view-library p, #view-library li {
+/* the exceptions: the text of a document, a quote, a note and the references; form fields stay editable */
+.ft-reader .tp, .ft-reader .tp *, .ft-panel .qt, .ft-panel .qt *, .ft-panel .note, .ft-panel .note *, #home-sources, #home-sources *,
+input, textarea, [contenteditable], [contenteditable] * {
   -webkit-user-select: text; user-select: text; -webkit-touch-callout: default;
 }
