@@ -229,6 +229,9 @@ window.FamilyTreeData = {
         tree_fullscreen: "Full screen", // TODO translate
         tree_rotate_hint: "Turn the phone sideways for a wider view", // TODO translate
         tree_hidden_name: "A member of the family", // TODO translate
+        tree_bin: "ibn",
+        tree_bint: "bint",
+        tree_nasab_gap: "… [ogniwa w trakcie badań: około {n}] …",
         tree_docs_1: "📄 1 document", // TODO translate
         tree_docs_2: "📄 2 documents", // TODO translate
         tree_docs_few: "📄 {n} documents", // TODO translate
