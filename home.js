@@ -109,7 +109,7 @@ $('home-theme').addEventListener('click', () => {
 function loadNumbers() {
     fetch('data/stats.json').then((r) => (r.ok ? r.json() : Promise.reject(new Error(`stats.json: HTTP ${r.status}`))))
         .then((stats) => {
-            $('home-st-persons').textContent = stats.names;
+            $('home-st-refs').textContent = stats.references;   // the references list, counted by build-stats
             $('home-st-docs').textContent = stats.documents;
             if (stats.oldest_hijri) $('home-st-oldest').textContent = `${stats.oldest_hijri}${t('tree_ah') === 'tree_ah' ? 'هـ' : t('tree_ah')}`;
         })

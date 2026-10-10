@@ -277,7 +277,7 @@ window.FamilyTreeData = {
         tree_back_home: "→ العودة إلى السجل الذهبي",
         tree_h1: "السجل الذهبي لآل سبال العين",
         tree_tagline: "كل اسم هنا مربوط بوثيقته",
-        tree_stat_persons: "اسماً أُدخلت حتى الآن",
+        tree_stat_refs: "مرجعاً اعتُمد حتى الآن",
         tree_stat_docs: "وثيقة منشورة حتى الآن",
         tree_stat_oldest: "أقدم وثيقة مؤرخة",
         tree_theme: "تبديل المظهر: داكن / فاتح",

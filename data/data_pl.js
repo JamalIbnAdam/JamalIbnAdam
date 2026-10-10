@@ -207,7 +207,7 @@ window.FamilyTreeData = {
         tree_back_home: "← Back to the Golden Record", // TODO translate
         tree_h1: "The Golden Record of Al-Sabal Al-Ain", // TODO translate
         tree_tagline: "Every name here is tied to its document", // TODO translate
-        tree_stat_persons: "names entered so far", // TODO translate
+        tree_stat_refs: "references used so far", // TODO translate
         tree_stat_docs: "documents published so far", // TODO translate
         tree_stat_oldest: "oldest dated document", // TODO translate
         tree_theme: "Switch theme: dark / light", // TODO translate

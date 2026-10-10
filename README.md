@@ -17,7 +17,7 @@ Static site served by GitHub Pages from the `main` branch (repo root).
 ```
 node scripts/build-stats.mjs
 ```
-This rewrites `data/stats.json` from `data/tree.json` and `data/docs.json`. Commit it with the data.
+This rewrites `data/stats.json` from `data/tree.json`, `data/docs.json` and `data/sources.json` (the references count shown on the home page and the tree page). Commit it with the data.
 Also bump `CACHE_NAME` in `sw.js` so installed copies pick up the change.
 
 ## Local preview
