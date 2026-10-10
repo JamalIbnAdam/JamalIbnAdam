@@ -12,7 +12,7 @@
 :root[data-theme="dark"] {
   color-scheme: dark;
   --ft-bg: #121614; --ft-sheet: #1a1f1c; --ft-ink: #e8e4da; --ft-ink2: #c6c2b7; --ft-muted: #a7aba2;
-  --ft-line: #323a35; --ft-trunk: #5f6b63; --ft-branch: #8d9990; --ft-leaf: #6f8f76; --ft-plaque: #1a1f1c;
+  --ft-line: #323a35; --ft-trunk: #5f6b63; --ft-trunk-hi: #76857b; --ft-trunk-lo: #353e38; --ft-branch: #8d9990; --ft-leaf: #6f8f76; --ft-plaque: #1a1f1c;
   --ft-fruit0: #3b4b3a; --ft-fruit1: #1c2520; --ft-quote: #202622; --ft-gold-ink: #d4af37; --ft-on-trunk: #121614;
   --ft-shadow: 0 8px 24px rgb(0 0 0 / .45);
   --ft-page: radial-gradient(ellipse 120% 80% at 50% 18%, #1a211c 0%, #121614 55%, #0d100e 100%);
@@ -20,7 +20,7 @@
 :root[data-theme="light"] {
   color-scheme: light;
   --ft-bg: var(--color-paper); --ft-sheet: #ffffff; --ft-ink: #1d1a16; --ft-ink2: #4a4339; --ft-muted: #665f54;
-  --ft-line: #e4dccb; --ft-trunk: #2f2b24; --ft-branch: #3d382f; --ft-leaf: #5d7a62; --ft-plaque: #fffdf8;
+  --ft-line: #e4dccb; --ft-trunk: #6f6550; --ft-trunk-hi: #8a7f67; --ft-trunk-lo: #3f382b; --ft-branch: #3d382f; --ft-leaf: #5d7a62; --ft-plaque: #fffdf8;
   --ft-fruit0: #fffefa; --ft-fruit1: #efe6cf; --ft-quote: #f5f0e3; --ft-gold-ink: #77590a; --ft-on-trunk: #fdfbf7;
   --ft-shadow: 0 6px 18px rgb(60 45 10 / .12);
   /* paper with a very light grain: layered gradients, no image files */
@@ -31,6 +31,7 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
+html, body { overflow-x: clip; }   /* safety net; clip keeps position: sticky working */
 html.ft-noscroll { overflow: hidden; }
 body { margin: 0; min-height: 100vh; background: var(--ft-page); background-color: var(--ft-bg); color: var(--ft-ink); font-family: var(--ft-f-ui); font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
 h1, h2, h3, h4, h5, p, figure, dl, dd, ol, ul, pre { margin: 0; }
@@ -150,18 +151,31 @@ img { max-width: 100%; height: auto; }
 .ft-svg .node .halo { fill: none; stroke: var(--ft-gold); stroke-width: 3; opacity: 0; }
 .ft-svg .node.sel .halo { opacity: .35; }
 .ft-svg .node.hit .halo { opacity: 1; animation: ft-pulse 1.6s ease-out 2; }
-.ft-svg .node.ph circle.c { fill: none; stroke: var(--ft-branch); stroke-dasharray: 3 3; }
+.ft-svg .node.ph circle.c { fill: var(--ft-bg); stroke: var(--ft-branch); stroke-width: 1.4; stroke-dasharray: none; }   /* hollow, same ink as the branches */
 @keyframes ft-pulse { 0% { stroke-width: 14; opacity: 0; } 30% { opacity: .7; } 100% { stroke-width: 3; opacity: 1; } }
 .ft-svg .node:focus, .ft-svg .spine-item:focus, .ft-svg .chip:focus { outline: none; }
 .ft-svg .spine-item:focus-visible .plaque, .ft-svg .node:focus-visible circle.c, .ft-svg .chip:focus-visible rect { stroke: var(--ft-gold); stroke-width: 4; }
 .ft-svg .node.ext .nl { display: none; }
 .ft-svg .klab { font: 700 12px var(--ft-f-name); fill: var(--ft-ink); text-anchor: middle; dominant-baseline: central; paint-order: stroke; stroke: var(--ft-bg); stroke-width: 3.5px; stroke-linejoin: round; pointer-events: none; }
-.ft-svg .phlab { font: 600 13px var(--ft-f-ui); fill: var(--ft-ink2); text-anchor: middle; }
+.ft-svg .phpill rect { fill: var(--ft-bg); stroke: var(--ft-branch); stroke-dasharray: 2 4; stroke-linecap: round; }
+.ft-svg .phpill text { font: 600 12px var(--ft-f-ui); fill: var(--ft-ink2); direction: inherit; unicode-bidi: plaintext; }
+.ft-svg .node.ph text { font-family: var(--ft-f-name); }
 .ft-svg .chip { cursor: pointer; }
 .ft-svg .chip rect { fill: var(--ft-sheet); stroke: var(--ft-hair); stroke-width: 1.2; }
 .ft-svg .chip text { font: 700 13px var(--ft-f-ui); fill: var(--ft-ink); text-anchor: middle; dominant-baseline: central; direction: ltr; }
 .ft-svg .chip:hover rect { stroke: var(--ft-gold); stroke-width: 2; }
-.ft-svg .trunk { fill: var(--ft-trunk); }
+.ft-svg .trunk { fill: var(--ft-trunk); stroke: var(--ft-trunk-lo); stroke-width: 2.4; stroke-linejoin: round; }
+/* the olive trunk: three winding strands (lighter in front, darker behind), bark strokes, a hollow and a knot — paths only */
+.ft-svg .strand { fill: var(--ft-trunk-hi); fill: color-mix(in srgb, var(--ft-trunk) 38%, var(--ft-trunk-hi)); }
+.ft-svg .strand-shade { opacity: .6; }
+.ft-svg .shade-stop { stop-color: var(--ft-trunk-lo); }
+.ft-svg .strand-edge { fill: none; stroke: var(--ft-trunk-lo); stroke-width: 2.2; stroke-linecap: round; }
+.ft-svg .strand-edge.back { opacity: .55; stroke-width: 1.4; }
+.ft-svg .ridge { fill: none; stroke: var(--ft-trunk-hi); stroke-width: 3; stroke-linecap: round; opacity: .55; }
+.ft-svg .bark { fill: none; stroke: var(--ft-trunk-lo); stroke-width: 1.5; stroke-linecap: round; opacity: .7; }
+.ft-svg .knot { fill: var(--ft-trunk-lo); fill: color-mix(in srgb, var(--ft-trunk-lo) 60%, #000); }
+.ft-svg .knot-ring { fill: var(--ft-trunk); stroke: var(--ft-trunk-lo); stroke-width: 1.6; }
+.ft-svg .knot-ring.in { fill: none; stroke: var(--ft-trunk-hi); stroke-width: 1.4; opacity: .8; }
 .ft-svg .root-line { fill: none; stroke: var(--ft-trunk); stroke-linecap: round; }
 .ft-svg .leaf { fill: var(--ft-leaf); }
 .ft-svg .leaf-vein { fill: none; stroke: var(--ft-bg); stroke-width: 1; opacity: .55; }
@@ -309,6 +323,7 @@ details.audit > summary { cursor: pointer; font-weight: 700; color: var(--ft-mut
 .ft-chain .cc { display: grid; justify-items: center; position: relative; }
 .ft-chain .card { width: 100%; border: 1px solid var(--ft-hair); border-radius: 12px; background: var(--ft-sheet); padding: 12px 16px; display: grid; gap: 6px; opacity: 0; transform: translateY(10px); transition: opacity .25s ease-out, transform .25s ease-out; }
 .ft-chain .cc.in .card { opacity: 1; transform: none; }
+.ft-chain .basis { font-family: var(--ft-f-name); font-size: 1rem; line-height: 1.9; color: var(--ft-ink2); unicode-bidi: plaintext; }
 .ft-chain .gen { font-size: .8rem; color: var(--ft-muted); }
 .ft-chain .nm { font-family: var(--ft-f-name); font-size: 1.45rem; line-height: 1.5; }
 .ft-chain .strip { grid-template-columns: repeat(auto-fill, 60px); align-items: center; }
@@ -325,17 +340,6 @@ details.audit > summary { cursor: pointer; font-weight: 700; color: var(--ft-mut
 .ft-chain .cc.root .strip { justify-content: center; grid-template-columns: repeat(3, 34px); }
 .ft-chain .cc.root .th:nth-child(n+4), .ft-chain .cc.root .more { display: none; }
 .ft-chain .cc.root .th img { height: 40px; }
-
-/* ---------- unattached branches: their own block under the stage, never an overlay and never boxed in ---------- */
-.ft-floats { position: relative; margin-top: 26px; padding: 4px 0 8px; scroll-margin-top: 16px; }
-.ft-floats > h2 { font-family: var(--ft-f-name); font-weight: 700; font-size: 1.5rem; line-height: 1.5; text-align: center; }
-.ft-floats > p { margin-bottom: 12px; color: var(--ft-muted); font-size: .88rem; text-align: center; }
-.ft-fcards { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-end; gap: 16px 36px; }
-.ft-fcard { display: grid; justify-items: center; gap: 4px; max-width: 100%; }
-.ft-fcard.hit { outline: 2px solid var(--ft-gold); outline-offset: 8px; border-radius: 10px; }
-.ft-fcard svg { display: block; max-width: 100%; height: auto; overflow: visible; }
-.ft-fcard figcaption { font-size: .8rem; font-weight: 600; color: var(--ft-ink2); text-align: center; max-width: 260px; }
-@media (min-width: 721px) { .ft-floats.has-panel { min-height: 580px; padding-inline-end: calc(min(440px, 44%) + 18px); } }
 
 /* ---------- phones ---------- */
 @media (max-width: 720px) {
@@ -397,3 +401,12 @@ details.audit > summary { cursor: pointer; font-weight: 700; color: var(--ft-mut
   .ft-svg .node.hit .halo, .ft-svg.sway .L-trunk .leaf, .ft-svg.grow * { animation: none !important; }
 }
 @media print { .ft-panel, .ft-zoom, .ft-bar, .ft-hint, .ft-tip, .ft-rotate, .ft-tools { display: none !important; } }
+
+/* ---------- app-like touch: no text selection or long-press pop-up anywhere on the page ---------- */
+body { -webkit-tap-highlight-color: transparent; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+img { -webkit-user-drag: none; }
+/* the exceptions: the text of a document, a quote, a note and the references; form fields stay editable */
+.ft-reader .tp, .ft-reader .tp *, .ft-panel .qt, .ft-panel .qt *, .ft-panel .note, .ft-panel .note *, #home-sources, #home-sources *,
+input, textarea, [contenteditable], [contenteditable] * {
+  -webkit-user-select: text; user-select: text; -webkit-touch-callout: default;
+}

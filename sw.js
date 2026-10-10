@@ -1,4 +1,4 @@
-const CACHE_NAME = 'jamalibnadam-v12';
+const CACHE_NAME = 'jamalibnadam-v14';
 // document scans are not precached: each one is cached the first time it is viewed
 const EVIDENCE_CACHE = 'jamalibnadam-evidence';
 const EVIDENCE_PATH = '/assets/evidence/';
@@ -10,7 +10,9 @@ const ASSETS_TO_CACHE = [
     './main.js',
     './manifest.json',
     './logo.webp',
-    './Official_Authorization_Document_optimized.png',
+    './install.js',
+    './touch.js',
+    './icons/icon-192.png',
     './data/data_ar.js',
     './data/data_en.js',
     './data/data_es.js',

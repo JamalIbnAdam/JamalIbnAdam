@@ -316,3 +316,12 @@ html[dir="rtl"] .gregorian-date {
         border-radius: 12px;
     }
 }
+
+/* ---------- app-like touch: no text selection or long-press pop-up anywhere on the page ---------- */
+body { -webkit-tap-highlight-color: transparent; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+img { -webkit-user-drag: none; }
+/* the exceptions: the text of a document, a quote, a note and the references; form fields stay editable */
+.ft-reader .tp, .ft-reader .tp *, .ft-panel .qt, .ft-panel .qt *, .ft-panel .note, .ft-panel .note *, #home-sources, #home-sources *,
+input, textarea, [contenteditable], [contenteditable] * {
+  -webkit-user-select: text; user-select: text; -webkit-touch-callout: default;
+}

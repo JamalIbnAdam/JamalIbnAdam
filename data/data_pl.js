@@ -240,9 +240,12 @@ window.FamilyTreeData = {
         tree_explain_maybe: "A strong indication, without explicit text", // TODO translate
         tree_explain_trad: "No document yet", // TODO translate
         tree_legend_say: "A solid line means a document names the person together with his father. Any family that holds a document can send it so that its branch is documented.", // TODO translate
-        tree_unknown_chain: "Ancestors whose names are not known — an estimated {n}", // TODO translate
+        tree_unknown_chain: "Under research — an estimated {n} generations", // TODO translate
         tree_unknown_range: "(between {min} and {max})", // TODO translate
         tree_unknown_basis: "An ancestor whose name is not yet known.", // TODO translate
+        tree_unknown_pill: "Under research · ≈{n}", // TODO translate
+        tree_unknown_between: "Links between {a} and {b}", // TODO translate
+        tree_and: " and ", // TODO translate
         tree_chain_btn: "Show my chain to Abdullah Sabal Al-Ain", // TODO translate
         tree_chain_title: "My lineage chain, with its evidence", // TODO translate
         tree_chain_n: "{n} generations", // TODO translate
@@ -283,11 +286,11 @@ window.FamilyTreeData = {
         home_nav_sources: "References", // TODO translate
         home_nav_home: "Home", // TODO translate
         home_h1: "Descendants of Abdullah Sabal Al-Ain", // TODO translate
-        home_lede: "The lineage of the Ansar tribe of Wadi al-Shati in Fezzan: lineages that meet in Zawiyat Brak, Aqar, Ishkeda and Dabdab, and go back to Abdullah Sabal Al-Ain. Every name in the tree is tied to its document where one exists, or to the oral account of some of the tribe's notables and elders where one does not exist yet.", // TODO translate
+        home_lede: "The lineage of the Ansar tribe of Wadi al-Shati in Fezzan: lineages that meet in Zawiyat Brak al-Szati, Aqar, Ishkeda and Dabdab, and go back to Abdullah Sabal Al-Ain. Every name in the tree is tied to its document where one exists, or to the oral account of some of the tribe's notables and elders where one does not exist yet.", // TODO translate
         home_search_label: "Search for a name in the tree", // TODO translate
         home_search_ph: "Type your name or your grandfather's name", // TODO translate
         home_search_btn: "Show my chain", // TODO translate
-        home_med_sub: "Zawiyat Brak, 10th century AH", // TODO translate
+        home_med_sub: "Zawiyat Brak al-Szati, 10th century AH", // TODO translate
         home_tree_p: "Tap any name to see its document: the image, the text as written, a plain explanation, and the source. Tap “Show my chain” to see your forefathers one by one, down to Abdullah Sabal Al-Ain.", // TODO translate
         home_leg_ok: "A document names the person with his father", // TODO translate
         home_leg_maybe: "An indication from the documents, without explicit text", // TODO translate
@@ -306,7 +309,7 @@ window.FamilyTreeData = {
         home_s2_p: "Between the death of Jabir ibn Abdullah in 78 AH and Ali al-Jaddawi in about the ninth century AH lie some 22 to 25 generations for whom we have not yet found a document that names them. The tribe preserves its attribution to the Ansar, and it appears in its documents; the names of these links are what we are searching for.", // TODO translate
         home_gap_aria: "About 24 forefathers whose names are not yet known", // TODO translate
         home_hyp1_h: "The Hejaz and Jeddah hypothesis", // TODO translate
-        home_hyp1_p: "The epithet “al-Jaddawi” in the Brak documents, and the tribe's account that the forefather came from the Hejaz.", // TODO translate
+        home_hyp1_p: "The epithet “al-Jaddawi” in the Brak al-Szati documents, and the tribe's account that the forefather came from the Hejaz.", // TODO translate
         home_hyp1_t: "What would settle it: a Hejazi or Maghribi document naming “Umar ibn Ali al-Jaddawi” or his son Abdullah.", // TODO translate
         home_hyp2_h: "The Andalus hypothesis", // TODO translate
         home_hyp2_p: "The view of Dr. Muhammad Abd al-Qadir al-Ansari, and the timing of the fall of Granada in 897 AH agrees with it. The two hypotheses may meet: Andalusian Ansar who settled in Jeddah and then came to Fezzan.", // TODO translate
@@ -340,12 +343,32 @@ window.FamilyTreeData = {
         home_see_chain: "See your chain in the evidence tree", // TODO translate
         home_badge_books: "From the books of genealogy", // TODO translate
 
+
+        // Install UI (install.js)
+        install_btn: "Zainstaluj aplikację",
+        install_bar: "Zainstaluj Złoty Rejestr na telefonie — otwiera się jak aplikacja, bez przeglądarki",
+        install_now: "Zainstaluj",
+        install_later: "Później",
+        install_close: "Zamknij",
+        install_ios_title: "Dodaj aplikację do ekranu w 3 krokach",
+        install_ios_1: "Stuknij przycisk Udostępnij",
+        install_ios_1_note: "W Safari jest na dole ekranu, na iPadzie u góry",
+        install_ios_2: "Przewiń w dół i wybierz „Do ekranu początkowego”",
+        install_ios_3: "Stuknij „Dodaj” w górnym rogu",
+        install_ios_add: "Dodaj",
+        install_ios_other: "Jeśli nie widzisz tej opcji, otwórz stronę w Safari",
+        install_and_title: "Zainstaluj aplikację z menu przeglądarki",
+        install_and_1: "Stuknij przycisk menu ☰ na dole ekranu",
+        install_and_2: "Wybierz „Dodaj stronę do”, a potem „Ekran startowy”",
+        install_ff: "⋮ → Zainstaluj",
+
+        tree_unknown_name: "Under research", // TODO translate
+        tree_chain_more: "Show {n} more circles under research", // TODO translate
+        tree_chain_n_est: "about {n} generations", // TODO translate
         tree_aria: "Al-Sabal Al-Ain family tree", // TODO translate
         tree_search_placeholder: "Search for a name…", // TODO translate
         tree_search_empty: "No matching name", // TODO translate
         tree_toggle_1987: "Show the 1987 tree reading", // TODO translate
-        tree_btn_float: "Branches not yet linked by a document", // TODO translate
-        tree_float_sub: "The head of each branch here has no father named in the available documents", // TODO translate
         tree_zoom_in: "Zoom in", // TODO translate
         tree_zoom_out: "Zoom out", // TODO translate
         tree_zoom_fit: "Show the whole tree", // TODO translate
@@ -356,7 +379,7 @@ window.FamilyTreeData = {
         tree_gen_zero: "Generation 0 (above Abdullah)", // TODO translate
         tree_gen_top: "Generation {n} (top of the chain)", // TODO translate
         tree_poster_only: "“al-Jaddawi al-Ansari” in the tribe's deeds since 1174 AH", // TODO translate
-        tree_poster_title: "In the 1987 poster", // TODO translate
+        tree_poster_title: "Epithets in the deeds and the 1987 poster", // TODO translate
         tree_poster_note: "The name “al-Jaddawi” is attested in the habs deed: “Umar ibn Ali al-Jaddawi”. The tribe's Ansari affiliation is written in its deeds from 1174 AH: “al-Jaddawi al-Ansari”. “al-Khazraji” appears on the 1987 tree label and on an undated paper: “al-Ansari al-Jabiri al-Khazraji”.", // TODO translate
         tree_r87_callout_1: "The 1987 tree reading, later covered over.", // TODO translate
         tree_r87_callout_2: "No document places Fadl and al-Hajj Muhammad", // TODO translate

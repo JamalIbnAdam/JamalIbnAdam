@@ -31,12 +31,16 @@ const CONFIG = {
     muhammad: { root: 'm3' },
     belqasim: { root: 'b3' },
     qasim: { root: 'q3' },
-    uthamna: { floats: ['ath_m', 'a_aqd_father_uthman'] },
-    abdulwahid: { floats: ['yahmad'] }
+    uthamna: { roots: ['a_aqd_father_uthman', 'ath_m_father'] },
+    abdulwahid: { root: 'yahmad' }
   }
 };
-const SLOT = { med: 0, hm: 150, fd: 238, umar: 336, tulip: 462, ali: 604, note: 702 };
+// places along the trunk, measured down from the medallion's centre; set by setSlots() for the current crown
+let SLOT = { med: 0, hm: 150, fd: 238, umar: 336, tulip: 462, ali: 604 };
+const TRUNK_SHARE = 0.375;   // the trunk, from the plaque's top to the medallion's bottom, is 35–40% of the tree's height
 const MED_R = 74;
+
+const t87 = $('ft-t1987');
 
 /* ---------- strings ---------- */
 const strings = () => (window.FamilyTreeData && window.FamilyTreeData.translations) || {};
@@ -85,11 +89,22 @@ function init(persons, docs) {
 const byId = new Map(persons.map(p => [p.id, p]));
 const kids = new Map(persons.map(p => [p.id, []]));
 persons.forEach(p => { if (p.father_id && byId.has(p.father_id) && p.father_id !== p.id) kids.get(p.father_id).push(p.id); });
-const total = new Map();   // all descendants, folded or not
-(function count(list) { for (const p of list) if (!total.has(p.id)) (function c(id, seen) { if (seen.has(id)) return 0; seen.add(id); let n = 0; for (const k of kids.get(id)) n += 1 + c(k, seen); total.set(id, n); return n; })(p.id, new Set()); })(persons);
+const total = new Map();   // named descendants, folded or not; placeholders are not counted anywhere
+(function c(id) { let n = 0; for (const k of kids.get(id)) n += (byId.get(k).placeholder ? 0 : 1) + c(k); total.set(id, n); return n; })(persons.find(p => !p.father_id || !byId.has(p.father_id)).id);
+persons.forEach(p => { if (!total.has(p.id)) total.set(p.id, 0); });
+// a run of placeholders between two named persons: «قيد البحث — تقديراً N أجيال»
+const chainInfo = new Map();   // placeholder id -> { start, list, heads }
+persons.forEach(p => {
+  if (!p.placeholder || (byId.get(p.father_id) || {}).placeholder) return;
+  const list = [p.id]; let c = p;
+  while (kids.get(c.id).length === 1 && byId.get(kids.get(c.id)[0]).placeholder) { c = byId.get(kids.get(c.id)[0]); list.push(c.id); }
+  const info = { start: p.id, list, heads: kids.get(c.id), estimate: p.estimate || {} };
+  list.forEach(id => chainInfo.set(id, info));
+});
+const chainLabel = info => t('tree_unknown_chain', { n: info.list.length }) + (info.estimate.min != null ? ' ' + t('tree_unknown_range', { min: info.estimate.min, max: info.estimate.max }) : '');
 
 // a hidden person keeps the node, so descendants keep their chain, but not the name
-const nameOf = p => p.placeholder ? '؟' : p.hidden ? t('tree_hidden_name') : p.name_as_written;
+const nameOf = p => p.placeholder ? t('tree_unknown_name') : p.hidden ? t('tree_hidden_name') : p.name_as_written;
 const shortName = p => p.placeholder ? '؟' : p.hidden ? t('tree_hidden_name') : (p.short_name || shortNameOf(p.name_as_written || p.id));
 const searchable = p => !p.hidden && !p.placeholder;
 
@@ -143,7 +158,11 @@ const open = new Set();   // names whose children are drawn
 function openBelow(id, depth = CONFIG.openDepth) { if (depth <= 0 || !kids.has(id)) return; open.add(id); for (const c of kids.get(id)) openBelow(c, depth - 1); }
 function openPathTo(id) { let p = byId.get(id), guard = 0; while (p && p.father_id && guard++ < 200) { open.add(p.father_id); p = byId.get(p.father_id); } }
 function resetOpen() { open.clear(); openBelow(ROOT); }
-const vkids = id => open.has(id) ? kids.get(id) : [];
+// a placeholder chain is always drawn through to the named person at its end; on a phone a chain longer than
+// four circles shows three, then «⋯ N», then that person, until the «⋯» is tapped
+const unfoldedChains = new Set();
+const compactChain = info => isMobile() && info.list.length > 4 && !unfoldedChains.has(info.start);
+const vkids = id => { const info = chainInfo.get(id); if (info) return compactChain(info) && info.list.indexOf(id) === 2 ? info.heads : kids.get(id); return open.has(id) ? kids.get(id) : []; };
 resetOpen();
 
 /* ---------- fan layout: generations above the medallion ---------- */
@@ -155,65 +174,61 @@ const need = d => 2 * nodeR(d) + 12;
 const GAP = 78;
 const A = CONFIG.fanDeg * Math.PI / 180;
 const ringR = (base, d) => d <= 0 ? 0 : d === 1 ? Math.max(210, base * 0.36) : d === 2 ? Math.max(330, base * 0.66) : Math.max(330 + (d - 2) * GAP, base + (d - 3) * GAP);
+const PH_R = 13;           // a placeholder circle
+const PILL_FS = 12, PILL_MIN_PX = 10;   // the chain pill's font size, and the on-screen size below which the pills are hidden
+let vparent = new Map();   // the name each drawn name hangs from (a folded chain skips its hidden circles)
 function layout() {
-  const widths = base => {
-    const W = new Map(), seen = new Set();
-    (function w(id, d) {
-      seen.add(id);
-      let s = 0; for (const c of vkids(id)) if (!seen.has(c)) s += w(c, d + 1);
-      const v = Math.max(d > 0 ? need(d) / ringR(base, d) : 0, s);
-      W.set(id, v); return v;
-    })(ROOT, 0);
-    return W;
+  // placeholders do not take a generation ring of their own: they sit in a short row between two named generations
+  const measureAll = base => {
+    const W = new Map(), G = new Map();
+    (function w(id, nd, par) {
+      const ph = !!byId.get(id).placeholder, nr = !par ? MED_R : ph ? PH_R : nodeR(nd);
+      const info = ph ? chainInfo.get(id) : null, step = info ? Math.max(2 * PH_R + 8, 210 / (compactChain(info) ? 3 : info.list.length)) : 0;
+      const r = !par ? 0 : ph ? par.r + (par.ph ? step : par.nr + PH_R + 12) : Math.max(ringR(base, nd), par.r + par.nr + nr + (par.ph ? 10 : 14));
+      const me = { r, nr, ph, nd };
+      let s = 0; for (const c of vkids(id)) s += w(c, byId.get(c).placeholder ? nd : nd + 1, me);
+      const v = Math.max(par ? (2 * nr + (ph ? 8 : 12)) / r : 0, s);
+      W.set(id, v); G.set(id, me); return v;
+    })(ROOT, 0, null);
+    return { W, G };
   };
   let lo = 300, hi = 60000;
-  if (widths(lo).get(ROOT) <= A) hi = lo;
-  else for (let i = 0; i < 40; i++) { const m = (lo + hi) / 2; if (widths(m).get(ROOT) <= A) hi = m; else lo = m; }
-  BASE = hi; const Wf = widths(BASE);
-  fan = new Map(); descN = new Map();
-  (function place(id, d, a0) {
-    const w = Wf.get(id), a = a0 - w / 2, r = ringR(BASE, d);
-    fan.set(id, { d, a, r, W: w, nr: d === 0 ? MED_R : nodeR(d), x: d === 0 ? 0 : r * Math.sin(a), y: d === 0 ? 0 : -r * Math.cos(a) });
+  if (measureAll(lo).W.get(ROOT) <= A) hi = lo;
+  else for (let i = 0; i < 40; i++) { const m = (lo + hi) / 2; if (measureAll(m).W.get(ROOT) <= A) hi = m; else lo = m; }
+  BASE = hi; const { W: Wf, G } = measureAll(BASE);
+  fan = new Map(); descN = new Map(); vparent = new Map();
+  (function place(id, a0, pid) {
+    const w = Wf.get(id), a = a0 - w / 2, g = G.get(id);
+    fan.set(id, { d: g.nd, a, r: g.r, W: w, nr: g.nr, x: pid == null ? 0 : g.r * Math.sin(a), y: pid == null ? 0 : -g.r * Math.cos(a) });
+    if (pid != null) vparent.set(id, pid);
     const ks = vkids(id).filter(c => Wf.has(c));
     let s = ks.reduce((sum, c) => sum + Wf.get(c), 0), cur = a0 - (w - s) / 2, n = 1;
-    for (const c of ks) { n += place(c, d + 1, cur); cur -= Wf.get(c); }
+    for (const c of ks) { n += place(c, cur, id); cur -= Wf.get(c); }
     descN.set(id, n); return n;
-  })(ROOT, 0, Math.min(A, Wf.get(ROOT)) / 2);
+  })(ROOT, Math.min(A, Wf.get(ROOT)) / 2, null);
   let x0 = Infinity, x1 = -Infinity, y0 = Infinity, y1 = -Infinity;
   for (const f of fan.values()) { x0 = Math.min(x0, f.x - f.nr); x1 = Math.max(x1, f.x + f.nr); y0 = Math.min(y0, f.y - f.nr); y1 = Math.max(y1, f.y + f.nr); }
   fanBox = { x0, x1, y0, y1 };
+  setSlots();
+}
+// عمر, the verse plaque and علي's plaque are spaced along a trunk whose length follows the crown;
+// the two 1987 boxes need room between the medallion and عمر, so the trunk is longer while they are shown
+function setSlots() {
+  const show87 = !!(t87 && t87.checked), crown = -fanBox.y0 + 34, fixed = MED_R + 84 + 62;   // above the trunk, and the plaque with its line below it
+  const S = Math.max(show87 ? 488 : 302, TRUNK_SHARE / (1 - TRUNK_SHARE) * (crown + fixed));
+  const at = f => Math.round(MED_R + f * S);
+  SLOT = show87 ? { med: 0, hm: at(0.156), fd: at(0.336), umar: at(0.537), tulip: at(0.795), ali: MED_R + S + 42 }
+    : { med: 0, hm: at(0.1), fd: at(0.16), umar: at(0.2), tulip: at(0.57), ali: MED_R + S + 42 };
 }
 
-/* ---------- unattached branches: small upward trees ---------- */
 const inFan = new Set(); (function walk(id) { inFan.add(id); kids.get(id).forEach(walk); })(ROOT);
-const placed = new Set([...inFan, ...CONFIG.spine]);
-const floatRoots = persons.filter(p => !placed.has(p.id) && !(p.father_id && byId.has(p.father_id))).map(p => p.id);
-// anything still unreachable (e.g. a cycle) becomes its own root
-const reach = new Set(placed);
-const mark = id => { reach.add(id); kids.get(id).forEach(c => !reach.has(c) && mark(c)); };
-floatRoots.forEach(mark);
-persons.forEach(p => { if (!reach.has(p.id)) { floatRoots.push(p.id); mark(p.id); } });
-const FS = 72, FL = 90, FR = 28;
-const ftrees = floatRoots.map(rid => {
-  let slot = 0, maxL = 0; const local = new Map();
-  (function lay(id, l) {
-    maxL = Math.max(maxL, l);
-    const ks = kids.get(id).filter(c => !placed.has(c) && !local.has(c));
-    let x;
-    if (!ks.length) x = slot++ * FS;
-    else { const xs = ks.map(c => (lay(c, l + 1), local.get(c).x)); x = (xs[0] + xs[xs.length - 1]) / 2; }
-    local.set(id, { x, l });
-    return x;
-  })(rid, 0);
-  return { rid, local, w: Math.max(1, slot) * FS, h: maxL };
-});
 const ali = byId.get(CONFIG.spine[0]), umar = byId.get(CONFIG.spine[1]), abd = byId.get(CONFIG.spine[2]);
 
 /* ---------- dom ---------- */
 const stage = $('ft-stage'), treeEl = $('ft-tree'), world = $('ft-world'), panel = $('ft-panel');
 const pName = $('ft-pName'), pEyebrow = $('ft-pEyebrow'), pLine = $('ft-pLine'), pBadges = $('ft-pBadges'), pBody = $('ft-pBody');
-const q = $('ft-q'), results = $('ft-results'), t87 = $('ft-t1987');
-const floats = $('ft-floats'), fcards = $('ft-fcards'), legendEl = $('ft-legend'), tip = $('ft-tip');
+const q = $('ft-q'), results = $('ft-results');
+const legendEl = $('ft-legend'), tip = $('ft-tip');
 legendEl.open = window.innerWidth >= 1024;   // a chip on small screens, open on desktop (the tree is then fitted beside it)
 
 /* ---------- svg helpers ---------- */
@@ -229,15 +244,16 @@ const edgeW = n => Math.min(19, 1.5 + 1.55 * Math.sqrt(Math.max(0, n)));
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // rebuilt by draw()
-let L = {}, nodeEls = new Map(), spineEls = new Map(), flo = new Set(), keyLabels = [];
+let L = {}, nodeEls = new Map(), spineEls = new Map(), keyLabels = [], pillItems = [], solidBoxes = [], chipBoxesNow = [], trunkHalf = () => 100;
 let selected = null, currentK = 1, grown = false;
 
 // the branch from a father to a child: [start, control, control, end]
 function edgePts(pid, cid) {
   const p = fan.get(pid), c = fan.get(cid);
-  if (p.d === 0) {
-    const sa = Math.max(-0.9, Math.min(0.9, c.a * 0.5));
-    return [pt(MED_R - 6, sa), pt(c.r * 0.45, sa * 0.6), pt(c.r * 0.7, c.a), [c.x, c.y]];
+  if (pid === ROOT) {
+    // the limbs leave the medallion low on its flanks and swing wide before they rise, like an olive crown
+    const lim = A / 2 - 0.05, sa = Math.max(-1.75, Math.min(1.75, c.a * 1.3 + Math.sign(c.a) * 0.18)), wide = x => Math.max(-lim, Math.min(lim, x));
+    return [pt(MED_R - 6, sa), pt(Math.max(MED_R + 30, c.r * 0.42), Math.max(-1.75, Math.min(1.75, c.a * 1.45 + Math.sign(c.a) * 0.12))), pt(c.r * 0.8, wide(c.a * 1.12)), [c.x, c.y]];
   }
   const rm = (p.r + c.r) / 2;
   return [[p.x, p.y], pt(rm, p.a), pt(rm, c.a), [c.x, c.y]];
@@ -290,14 +306,22 @@ function draw() {
   const pillW = text => measure(text, `600 15px ${uiFont}`) + 26;
   layout();
   world.textContent = '';
-  L = {}; nodeEls = new Map(); spineEls = new Map(); flo = new Set();
+  L = {}; nodeEls = new Map(); spineEls = new Map();
   ['edges', 'leaves', 'trunk', 'nodes', 'chips', 'spine', 'klabs'].forEach(n => L[n] = el('g', { class: 'L-' + n }, world));
 
+  const chipBoxes = [];   // [cx, cy, half width, half height] of every chip, so the chain pills keep clear of them
   /* branches, thickest first, each with its sparse leaves (about one for every three names) */
   const leafy = new Set([...fan.keys()].filter(id => id !== ROOT).sort((a, b) => seed(a) - seed(b)).filter((id, i) => i % 3 === 0));
   [...fan.keys()].filter(id => id !== ROOT).sort((a, b) => total.get(b) - total.get(a)).forEach(id => {
-    const p = byId.get(id), P = edgePts(p.father_id, id);
-    drawEdge(pathD(P), p.status, edgeW(total.get(id)), L.edges);
+    const p = byId.get(id), up = vparent.get(id), P = edgePts(up, id);
+    drawEdge(pathD(P), p.placeholder || byId.get(up).placeholder ? 'قيد البحث' : p.status, p.placeholder ? 2.2 : edgeW(total.get(id)), L.edges);
+    // a folded chain: «⋯ N» on the link, where the hidden circles would be
+    if (byId.get(up).placeholder && p.father_id !== up) {
+      const info = chainInfo.get(up), [mx, my] = bez(P, 0.45), text = '⋯ ' + (info.list.length - 3), w = measure(text, `700 13px ${uiFont}`) + 16;
+      const g = el('g', { class: 'chip', transform: `translate(${f1(mx)},${f1(my)})`, tabindex: '0', role: 'button', 'data-chain': info.start, 'aria-label': t('tree_chain_more', { n: info.list.length - 3 }) }, L.chips);
+      el('rect', { x: f1(-w / 2), y: -11, width: f1(w), height: 22, rx: 11 }, g); el('text', { x: 0, y: 1 }, g).textContent = text;
+      chipBoxes.push([mx, my, w / 2, 11]);
+    }
     const h = seed(id);
     if (leafy.has(id)) {
       const u = 0.42 + (h >>> 3) % 30 / 100, [x, y, ang] = bez(P, u), side = (h >>> 9) & 1 ? 1 : -1;
@@ -308,39 +332,96 @@ function draw() {
   /* fruits */
   for (const [id, f] of fan) {
     if (id === ROOT) continue;
-    const P = edgePts(byId.get(id).father_id, id);
-    makeNode(id, f.x, f.y, f.nr, L.nodes, Math.atan2(P[2][1] - P[3][1], P[2][0] - P[3][0]));
+    const P = edgePts(vparent.get(id), id);
+    makeNode(id, f.x, f.y, f.nr, L.nodes, byId.get(id).placeholder ? null : Math.atan2(P[2][1] - P[3][1], P[2][0] - P[3][0]));
   }
 
   /* folded generations: a «+N» chip just beyond the name; the branch stays open-ended */
   for (const [id, f] of fan) {
-    if (id === ROOT || open.has(id) || !kids.get(id).length) continue;
+    if (id === ROOT || open.has(id) || !kids.get(id).length || byId.get(id).placeholder) continue;
     const n = total.get(id), text = '+' + n, w = measure(text, `700 13px ${uiFont}`) + 16;
     const ux = Math.sin(f.a), uy = -Math.cos(f.a), d = f.nr + 9 + Math.abs(ux) * w / 2 + Math.abs(uy) * 11;
     const g = el('g', { class: 'chip', transform: `translate(${f1(f.x + ux * d)},${f1(f.y + uy * d)})`, tabindex: '0', role: 'button', 'data-expand': id, 'aria-label': t('tree_expand_n', { n, name: nameOf(byId.get(id)) }) }, L.chips);
     el('rect', { x: f1(-w / 2), y: -11, width: f1(w), height: 22, rx: 11 }, g);
     el('text', { x: 0, y: 1 }, g).textContent = text;
+    chipBoxes.push([f.x + ux * d, f.y + uy * d, w / 2, 11]);
   }
 
-  /* unknown ancestors: one label over each run of «؟» fruits */
-  for (const [id, f] of fan) {
-    const p = byId.get(id), fa = byId.get(p.father_id);
-    if (!p.placeholder || (fa && fa.placeholder)) continue;
-    let n = 1, c = p; while (vkids(c.id).length === 1 && byId.get(vkids(c.id)[0]).placeholder) { c = byId.get(vkids(c.id)[0]); n++; }
-    const es = p.estimate || {};
-    el('text', { class: 'phlab', x: f1(f.x), y: f1(f.y - f.nr - 12) }, L.chips).textContent = t('tree_unknown_chain', { n }) + (es.min != null ? ' ' + t('tree_unknown_range', { min: es.min, max: es.max }) : '');
+  /* one horizontal pill for each chain of «؟» circles: «قيد البحث · ≈N». It opens the same small panel.
+     applyLOD() puts it beside the end nearest the named head, clear of the fruits, the names, the chips and the other pills. */
+  pillItems = []; chipBoxesNow = chipBoxes;
+  solidBoxes = chipBoxes.slice(); for (const [id, f] of fan) if (byId.get(id).placeholder) solidBoxes.push([f.x, f.y, f.nr + 2, f.nr + 2]);
+  const sibAngles = [...fan.entries()].filter(([id]) => vparent.get(id) === ROOT).map(([, f]) => f.a).sort((x, y) => x - y);
+  for (const info of new Set(chainInfo.values())) {
+    const shown = info.list.filter(id => fan.has(id)).map(id => fan.get(id)); if (!shown.length) continue;
+    const a = shown[0].a, text = t('tree_unknown_pill', { n: info.list.length }), hw = (measure(text, `600 ${PILL_FS}px ${uiFont}`) + 20) / 2, hh = 12;
+    const i = sibAngles.indexOf(a), gapLo = i > 0 ? a - sibAngles[i - 1] : 9, gapHi = i >= 0 && i < sibAngles.length - 1 ? sibAngles[i + 1] - a : 9;
+    const g = el('g', { class: 'chip phpill', tabindex: '0', role: 'button', 'data-id': info.start, 'aria-label': chainLabel(info), display: 'none' }, L.chips);
+    el('rect', { x: f1(-hw), y: -hh, width: f1(2 * hw), height: 2 * hh, rx: hh }, g); el('text', { x: 0, y: 1 }, g).textContent = text;
+    // anchors: the circle nearest the head first, then back along the chain; sideways from the chain, the roomier side first
+    pillItems.push({ g, hw, hh, anchors: shown.slice().reverse().map(f => [f.x, f.y]), ux: Math.cos(a), uy: Math.sin(a), first: gapHi >= gapLo ? 1 : -1 });
   }
 
   /* trunk, roots, leaves, laurel */
   (function drawTrunk() {
-    const T = L.trunk, base = SLOT.ali + 30;
-    // the trunk stands on علي's plaque: nothing is drawn beneath him
-    el('path', { class: 'trunk', d: `M-48,-10 C-52,180 -58,420 -62,${base - 60} L-64,${base} L64,${base} L62,${base - 60} C58,420 52,180 48,-10 Z` }, T);
+    const T = L.trunk, top = -22, base = SLOT.ali + 4, H = base - top;
+    /* An old olive trunk, drawn with paths only. It is stout and uneven, with a burl on each flank, and flares where it
+       meets علي's plaque (it ends behind the plaque: nothing is drawn beneath him, and there are no roots). Three strands
+       wind around each other up the trunk — lighter where one passes in front, darker behind — and fuse under عبد الله. */
+    const ss = (a, b, x) => { const u = Math.max(0, Math.min(1, (x - a) / (b - a))); return u * u * (3 - 2 * u); };
+    const bump = (v, at, w) => Math.exp(-((v - at) / w) * ((v - at) / w));
+    trunkHalf = (y, sg) => {
+      const v = Math.max(0, Math.min(1, (y - top) / H));
+      const body = 88 + 6 * Math.sin(v * 3.1) + 16 * ss(0.3, 0.8, v) + 36 * Math.pow(v, 5);              // shoulders, belly, flare
+      const rough = sg < 0 ? 5 * Math.sin(v * 17 + 0.6) + 3 * Math.sin(v * 41 + 2) + 13 * bump(v, 0.44, 0.07) - 7 * bump(v, 0.63, 0.05)
+        : 5 * Math.sin(v * 19 + 3.4) + 3 * Math.sin(v * 37 + 1) + 12 * bump(v, 0.7, 0.06) - 6 * bump(v, 0.36, 0.05);
+      return body + rough * ss(0, 0.08, v) * (1 - ss(0.93, 1, v));
+    };
+    const spline = pts => { let d = `M${f1(pts[0][0])},${f1(pts[0][1])}`; for (let i = 0; i < pts.length - 1; i++) { const p0 = pts[Math.max(0, i - 1)], p1 = pts[i], p2 = pts[i + 1], p3 = pts[Math.min(pts.length - 1, i + 2)]; d += ` C${f1(p1[0] + (p2[0] - p0[0]) / 6)},${f1(p1[1] + (p2[1] - p0[1]) / 6)} ${f1(p2[0] - (p3[0] - p1[0]) / 6)},${f1(p2[1] - (p3[1] - p1[1]) / 6)} ${f1(p2[0])},${f1(p2[1])}`; } return d; };
+    const N = 40, yAt = v => top + v * H;
+    const side = sg => Array.from({ length: N + 1 }, (_, i) => [sg * trunkHalf(yAt(i / N), sg), yAt(i / N)]);
+    el('path', { class: 'trunk', d: spline(side(-1)) + ' L' + spline(side(1).reverse()).slice(1) + ' Z' }, T);
+    // the shadow of a strand that passes behind fades in and out along it, so there is no hard step at the flank
+    const grad = el('linearGradient', { id: 'ft-strand-shade', x1: 0, y1: 0, x2: 0, y2: 1 }, el('defs', {}, T));
+    [[0, 0], [0.42, 1], [0.58, 1], [1, 0]].forEach(([o, a]) => el('stop', { class: 'shade-stop', offset: o, 'stop-opacity': a }, grad));
+    // the three strands
+    const TURNS = 1.55, PH = [0.5, 0.5 + 2 * Math.PI / 3, 0.5 + 4 * Math.PI / 3];
+    const mid = v => (trunkHalf(yAt(v), 1) - trunkHalf(yAt(v), -1)) / 2, wide = v => (trunkHalf(yAt(v), 1) + trunkHalf(yAt(v), -1)) / 2;
+    const fuse = v => ss(0.1, 0.4, v);                                                    // 0 under the medallion (one stem), 1 lower down
+    const cx = (j, v) => mid(v) + Math.sin(2 * Math.PI * TURNS * v + PH[j]) * wide(v) * 0.5 * fuse(v);
+    const sw = (j, v) => wide(v) * (0.62 + 0.55 * (1 - fuse(v)) + 0.07 * Math.sin(v * 23 + j * 2));
+    const depth = (j, v) => Math.cos(2 * Math.PI * TURNS * v + PH[j]);
+    const M = 120, runs = [];
+    PH.forEach((_, j) => { let from = 0, front = depth(j, 0) >= 0; for (let i = 1; i <= M; i++) { const f = depth(j, i / M) >= 0; if (f !== front || i === M) { runs.push({ j, a: Math.max(0, from / M - 0.012), b: Math.min(1, i / M + 0.012), front }); from = i; front = f; } } });
+    const edge = (r, sg) => { const n = Math.max(4, Math.round((r.b - r.a) * 46)); return Array.from({ length: n + 1 }, (_, i) => { const v = r.a + (r.b - r.a) * i / n; return [cx(r.j, v) + sg * sw(r.j, v) / 2, yAt(v)]; }); };
+    runs.sort((x, y) => x.front - y.front || y.a - x.a).forEach(r => {
+      if (fuse(r.b) < 0.05) return;                                                        // fused: the plain stem shows
+      const l = edge(r, -1), rt = edge(r, 1), k = r.front ? 'front' : 'back';
+      const body = spline(l) + ' L' + spline(rt.slice().reverse()).slice(1) + ' Z';
+      el('path', { class: 'strand', d: body }, T);
+      if (!r.front) el('path', { class: 'strand-shade', d: body, fill: 'url(#ft-strand-shade)' }, T);   // in shadow where it passes behind
+      el('path', { class: 'strand-edge ' + k, d: spline(l) }, T); el('path', { class: 'strand-edge ' + k, d: spline(rt) }, T);
+      // bark: a few darker curved strokes along the grain of the strand, and one lighter ridge where it faces the light
+      if (r.front) el('path', { class: 'ridge', d: spline(edge(r, -1).map((pt0, i) => [pt0[0] + (rt[i][0] - pt0[0]) * 0.3, pt0[1]]).slice(2, -2)) }, T);
+      const h = seed('bark' + r.j + Math.round(r.a * 100));
+      for (let b = 0; b < (r.front ? 3 : 1); b++) {
+        const u0 = 0.12 + ((h >>> (b * 7)) % 50) / 100, len = 0.18 + ((h >>> (b * 5 + 3)) % 14) / 100, across = 0.5 + ((h >>> (b * 4 + 9)) % 30) / 100;
+        const pts = Array.from({ length: 6 }, (_, i) => { const u = Math.min(0.96, u0 + len * i / 5), k2 = Math.min(l.length - 1, Math.round(u * (l.length - 1))); return [l[k2][0] + (rt[k2][0] - l[k2][0]) * (across + 0.05 * Math.sin(i * 1.7 + b)), l[k2][1]]; });
+        el('path', { class: 'bark', d: spline(pts) }, T);
+      }
+    });
+    // an old hollow and a knot, on the open bark between the plaques
+    const g0 = SLOT.tulip + 44, g1 = SLOT.ali - 46;
+    [[-0.5, 0.66, 9, 17, -12], [0.74, 0.2, 7, 10, 14]].forEach(([fx, fg, rx, ry, rot]) => {
+      const y = g0 + (g1 - g0) * fg, x = fx * trunkHalf(y, fx);
+      const g = el('g', { transform: `translate(${f1(x)},${f1(y)}) rotate(${rot})` }, T);
+      el('ellipse', { class: 'knot-ring', rx: rx + 5, ry: ry + 6 }, g); el('ellipse', { class: 'knot-ring in', rx: rx + 2, ry: ry + 2.5 }, g); el('ellipse', { class: 'knot', rx, ry }, g);
+    });
     // leaves on the trunk flanks
-    [[60, -1], [130, 1], [200, -1], [275, 1], [400, -1], [395, 1], [520, -1], [530, 1]].forEach(([y, s], i) => {
-      const xEdge = s * (49 + y * 0.022);
-      leaf(xEdge, y, s > 0 ? -0.55 - (i % 2) * 0.25 : Math.PI + 0.55 + (i % 2) * 0.25, 40, 11, T);
-      leaf(xEdge, y + 14, s > 0 ? -0.05 : Math.PI + 0.05, 28, 8, T);
+    [[0.1, -1], [0.22, 1], [0.34, -1], [0.46, 1], [0.66, -1], [0.65, 1], [0.86, -1], [0.88, 1]].forEach(([fy, sg], i) => {
+      const y = top + H * fy, xEdge = sg * (trunkHalf(y, sg) + 1);
+      leaf(xEdge, y, sg > 0 ? -0.55 - (i % 2) * 0.25 : Math.PI + 0.55 + (i % 2) * 0.25, 40, 11, T);
+      leaf(xEdge, y + 14, sg > 0 ? -0.05 : Math.PI + 0.05, 28, 8, T);
     });
     // laurel around the lower half of the medallion
     const LR = MED_R + 10;
@@ -366,8 +447,9 @@ function draw() {
     const k = stKey(status);
     el('path', { class: `conn ${k}`, d: `M0,${y0} L0,${y1}` }, S);
     const ym = (y0 + y1) / 2;
-    el('path', { class: 'void-line', d: `M${side * 52},${ym} L${side * 84},${ym}` }, S);
-    pill(side * (88 + pillW(label) / 2), ym, label, k, S);
+    const out = trunkHalf(ym, side) + 8;   // the label stands clear of the bark
+    el('path', { class: 'void-line', d: `M${side * 52},${ym} L${side * (out + 26)},${ym}` }, S);
+    pill(side * (out + 30 + pillW(label) / 2), ym, label, k, S);
   }
   function spineItem(id) { const g = el('g', { class: 'spine-item', tabindex: '0', role: 'button', 'data-id': id, 'aria-label': byId.get(id)?.name_as_written || id }, S); spineEls.set(id, g); return g; }
 
@@ -428,16 +510,7 @@ function draw() {
     el('text', { class: 'ptxt', x: 0, y: 22, 'font-size': 25 }, g).textContent = 'سبال العين';
   })();
 
-  // link from the medallion to its sons: label the first strong one
-  (function () {
-    const sons = kids.get(ROOT).filter(c => fan.has(c));
-    const main = sons.sort((a, b) => descN.get(b) - descN.get(a))[0];
-    if (!main) return;
-    const c = fan.get(main), [x, y] = pt(c.r * 0.5, c.a * 0.55);
-    pill(x + 74, y + 30, linkLabel(byId.get(main)), stKey(byId.get(main).status), S);
-  })();
 
-  drawFloats();
   fitLabels();
   drawLegend();
   if (selected) { ring(nodeEls.get(selected))?.g.classList.add('sel'); spineEls.get(selected)?.classList.add('sel'); }
@@ -453,35 +526,14 @@ function draw() {
   drawStats();
 }
 
-/* unattached branches: one small upward tree per card, in their own block under the stage */
-function drawFloats() {
-  fcards.textContent = '';
-  ftrees.forEach(f => {
-    const W = f.w + 28, H = f.h * FL + FR * 2 + 34;
-    const fig = document.createElement('figure'); fig.className = 'ft-fcard';
-    const s = el('svg', { class: 'ft-svg', width: W, height: H, viewBox: `0 0 ${W} ${H}`, role: 'group' });
-    const gE = el('g', {}, s), gN = el('g', {}, s);
-    const P = id => { const p = f.local.get(id); return [14 + FS / 2 + (f.w - FS) - p.x, H - 16 - FR - p.l * FL]; };   // RTL: first child on the right
-    for (const [id] of f.local) {
-      flo.add(id);
-      const p = byId.get(id); if (id === f.rid) continue;
-      const [x, y] = P(id), [px, py] = P(p.father_id);
-      drawEdge(`M${f1(px)},${f1(py)} C${f1(px)},${f1(py - FL * 0.55)} ${f1(x)},${f1(y + FL * 0.55)} ${f1(x)},${f1(y)}`, p.status, edgeW(total.get(id)), gE);
-    }
-    for (const [id] of f.local) { const [x, y] = P(id); makeNode(id, x, y, FR, gN, id === f.rid ? null : Math.PI / 2); }
-    const cap = document.createElement('figcaption');
-    cap.textContent = (byId.get(f.rid).branch || '').replace(/^\d\s*/, '');
-    fig.append(s, cap); fcards.appendChild(fig);
-  });
-}
-
 /* ---------- names inside the fruits (fitted with the fonts that are loaded) ---------- */
 function fitLabels() {
   const nameFont = cssVar('--ft-f-name');
   const width = (l, f) => measure(l, `700 100px ${nameFont}`) * f / 100;   // one measurement per name, scaled
   const fitsIn = (lines, f, r) => lines.length === 1 ? width(lines[0], f) <= 2 * r - 9 :
     lines.every((l, i) => { const yy = (i ? 1 : -1) * 1.05 * f; return width(l, f) <= 2 * Math.sqrt(Math.max(0, r * r - yy * yy)) - 7; });
-  for (const [, n] of nodeEls) {
+  for (const [id, n] of nodeEls) {
+    if (byId.get(id).placeholder) { n.t.textContent = ''; n.t.setAttribute('font-size', 15); el('tspan', { x: 0, dy: 1 }, n.t).textContent = '؟'; n.fs = 99; continue; }
     const opts = [[n.label]], words = n.label.split(/\s+/);
     if (words.length > 1) { opts.push(splitLines(n.label)); if (words.length === 2) opts.push(words); }
     let best = null;
@@ -512,7 +564,7 @@ function buildKeyLabels() {
   const nameFont = cssVar('--ft-f-name');
   L.klabs.textContent = ''; keyLabels = [];
   for (const [id, n] of nodeEls) {
-    const f = fan.get(id); if (!f) continue;
+    const f = fan.get(id); if (!f || byId.get(id).placeholder) continue;
     keyLabels.push({ id, n, t: null, x: n.x, y: n.y, r: n.r, w: measure(n.label, `700 12px ${nameFont}`) + 8, d: f.d, ux: Math.sin(f.a), uy: -Math.cos(f.a), shown: null });
   }
   lastLodK = 0; applyLOD(currentK, true);
@@ -535,6 +587,32 @@ function applyLOD(k, force) {
   const phone = isMobile(), minPx = phone ? 7.5 : DETAIL_PX;
   for (const kl of keyLabels) { kl.out = (kl.n.fs || 0) * k < minPx; if (kl.out !== kl.wasOut) { kl.n.g.classList.toggle('ext', kl.out); kl.wasOut = kl.out; } if (kl.out) outside++; kl.box = [kl.x * k, kl.y * k, kl.r * k + 1, kl.r * k + 1]; put(kl.box); }
   put([0, 0, MED_R * k, MED_R * k]); put([0, SLOT.ali / 2 * k, 150 * k, (SLOT.ali / 2 + 50) * k]);   // medallion, trunk
+  for (const b of solidBoxes) put([b[0] * k, b[1] * k, b[2] * k, b[3] * k]);                          // «؟» circles and chips
+  // chain pills, before the names so that the names keep clear of them. Zoomed out a little, a pill is held at a readable
+  // size (up to a third larger than drawn); where it would still fall below 10px on screen the pills go and the circles stay
+  const ps = Math.min(1.35, Math.max(1, (PILL_MIN_PX + 0.5) / (PILL_FS * k))), pillsOn = PILL_FS * k * ps >= PILL_MIN_PX;
+  const placed = [];
+  // exact test in world units: a pill's rectangle against the round fruits and circles, the chips and the other pills
+  const free = (cx, cy, hw, hh) => {
+    for (const n of nodeEls.values()) { const dx = Math.max(Math.abs(n.x - cx) - hw, 0), dy = Math.max(Math.abs(n.y - cy) - hh, 0); if (dx * dx + dy * dy < (n.r + 3) * (n.r + 3)) return false; }
+    const mx = Math.max(Math.abs(cx) - hw, 0), my = Math.max(Math.abs(cy) - hh, 0); if (mx * mx + my * my < (MED_R + 8) * (MED_R + 8)) return false;
+    for (const b of chipBoxesNow) if (Math.abs(b[0] - cx) < hw + b[2] + 3 && Math.abs(b[1] - cy) < hh + b[3] + 3) return false;
+    for (const b of placed) if (Math.abs(b[0] - cx) < hw + b[2] + 4 && Math.abs(b[1] - cy) < hh + b[3] + 4) return false;
+    return true;
+  };
+  for (const it of pillItems) {
+    let at = null;
+    if (pillsOn) {
+      const hw = it.hw * ps, hh = it.hh * ps, sx = it.ux >= 0 ? it.first : -it.first;
+      // beside the circle nearest the head first, then back along the chain; sideways from the chain or level with it, nudged outward step by step
+      search: for (const [ax, ay] of it.anchors) for (let step = 0; step < 6; step++) for (const [ux, uy] of [[it.ux * it.first, it.uy * it.first], [sx, 0], [-it.ux * it.first, -it.uy * it.first], [-sx, 0]]) {
+        const d = PH_R + 5 + Math.abs(ux) * hw + Math.abs(uy) * hh + step * 8 / k, cx = ax + ux * d, cy = ay + uy * d;
+        if (free(cx, cy, hw, hh)) { at = [cx * k, cy * k]; placed.push([cx, cy, hw, hh]); put([cx * k, cy * k, hw * k, hh * k]); break search; }
+      }
+    }
+    if (at) { it.g.setAttribute('transform', `translate(${f1(at[0] / k)},${f1(at[1] / k)}) scale(${ps.toFixed(4)})`); it.g.removeAttribute('display'); }
+    else it.g.setAttribute('display', 'none');
+  }
   const show = (kl, mode, x, y) => {
     if (!kl.t) { if (!mode) return; kl.t = el('text', { class: 'klab' }, L.klabs); }
     if (kl.shown !== mode) { kl.t.textContent = mode === 'name' ? kl.n.label : mode === 'dots' ? '…' : ''; if (mode) kl.t.removeAttribute('display'); else kl.t.setAttribute('display', 'none'); kl.shown = mode; }
@@ -613,7 +691,6 @@ function fit(ms = 550, mode = fitMode) {
   if (!visible()) return;
   fitMode = mode;
   const b = contentBounds(), v = viewRect(), pad = isMobile() ? 16 : 22;
-  if (mode === 'home') b.y1 = SLOT.umar + 46;
   const k = Math.min(1.5, (v.w - pad * 2) / (b.x1 - b.x0), (v.h - pad * 2) / (b.y1 - b.y0));
   go(d3.zoomIdentity.translate(v.x + v.w / 2 - k * (b.x0 + b.x1) / 2, v.y + v.h / 2 - k * (b.y0 + b.y1) / 2).scale(k), ms);
 }
@@ -627,7 +704,6 @@ function posOf(id) {
   return [0, 0];
 }
 function centerOn(id, kMin = 1.1, ms = 600) {
-  if (flo.has(id)) { nodeEls.get(id)?.g.closest('.ft-fcard')?.scrollIntoView({ block: 'center', behavior: reduced || !ms ? 'auto' : 'smooth' }); return; }
   if (!visible()) return;
   const [x, y] = posOf(id), v = viewRect();
   if (isMobile()) kMin = Math.min(kMin, 1);
@@ -637,7 +713,6 @@ function centerOn(id, kMin = 1.1, ms = 600) {
 $('ft-zin').onclick = () => svg.transition().duration(reduced ? 0 : 250).call(zoom.scaleBy, 1.4);
 $('ft-zout').onclick = () => svg.transition().duration(reduced ? 0 : 250).call(zoom.scaleBy, 1 / 1.4);
 $('ft-zfit').onclick = () => fit(550, 'all');
-$('ft-goFloat').onclick = () => floats.scrollIntoView({ block: 'start', behavior: reduced ? 'auto' : 'smooth' });
 
 /* ---------- unfolding ---------- */
 function redraw(after) { draw(); sizeStage(); if (after) requestAnimationFrame(after); }
@@ -679,34 +754,33 @@ maybeRotateHint();
 /* ---------- deep links: #/b/<key> opens the page centred on that branch ---------- */
 let branchKey = null;      // the branch a deep link is showing; its marker survives redraws
 function markBranch() {
-  host.querySelectorAll('.ft-fcard.hit, .node.hit').forEach(e => e.classList.remove('hit'));
+  host.querySelectorAll('.node.hit').forEach(e => e.classList.remove('hit'));
   const b = CONFIG.branches[branchKey]; if (!b) return [];
-  if (b.floats) { const cards = b.floats.map(id => nodeEls.get(id)?.g.closest('.ft-fcard')).filter(Boolean); cards.forEach(c => c.classList.add('hit')); return cards; }
-  const n = ring(nodeEls.get(b.root)); if (n) n.g.classList.add('hit');
-  return n ? [n.g] : [];
+  return (b.roots || [b.root]).map(id => ring(nodeEls.get(id))).filter(Boolean).map(n => { n.g.classList.add('hit'); return n.g; });
 }
 function focusBranch(key, ms = 700) {
   const b = CONFIG.branches[key]; if (!b) return false;
+  const roots = (b.roots || [b.root]).filter(id => byId.has(id)); if (!roots.length) return false;
   branchKey = key;
-  if (b.root && byId.has(b.root)) { openPathTo(b.root); (function all(id) { if (kids.get(id).length) open.add(id); kids.get(id).forEach(all); })(b.root); draw(); sizeStage(); }
-  const marked = markBranch(); if (!marked.length) return false;
-  if (b.floats) { marked[0].scrollIntoView({ block: 'center', behavior: reduced || !ms ? 'auto' : 'smooth' }); return true; }
-  if (!visible()) return false;
+  roots.forEach(rid => { openPathTo(rid); (function all(id) { if (kids.get(id).length) open.add(id); kids.get(id).forEach(all); })(rid); });
+  draw(); sizeStage();
+  if (!markBranch().length || !visible()) return false;
   let x0 = Infinity, x1 = -Infinity, y0 = Infinity, y1 = -Infinity;
-  (function walk(id) { const f = fan.get(id); if (!f) return; x0 = Math.min(x0, f.x - f.nr); x1 = Math.max(x1, f.x + f.nr); y0 = Math.min(y0, f.y - f.nr); y1 = Math.max(y1, f.y + f.nr); vkids(id).forEach(walk); })(b.root);
+  roots.forEach(rid => (function walk(id) { const f = fan.get(id); if (!f) return; x0 = Math.min(x0, f.x - f.nr); x1 = Math.max(x1, f.x + f.nr); y0 = Math.min(y0, f.y - f.nr); y1 = Math.max(y1, f.y + f.nr); vkids(id).forEach(walk); })(rid));
   stage.scrollIntoView({ block: 'center', behavior: 'auto' });
   const v = viewRect(), pad = isMobile() ? 34 : 80;
   // phones: never so far out that the names leave their fruits; a wide branch is then panned, not shrunk
   const k = Math.min(1.6, Math.max(isMobile() ? 0.56 : 0, Math.min((v.w - pad * 2) / (x1 - x0), (v.h - pad * 2) / (y1 - y0))));
-  const f0 = fan.get(b.root), wide = k * (x1 - x0) > v.w, cx = wide ? f0.x : (x0 + x1) / 2, cy = wide ? Math.min(f0.y, (y0 + y1) / 2 + (v.h / 2 - 70) / k) : (y0 + y1) / 2;
+  const f0 = fan.get(roots[0]), wide = k * (x1 - x0) > v.w, cx = wide ? f0.x : (x0 + x1) / 2, cy = wide ? Math.min(f0.y, (y0 + y1) / 2 + (v.h / 2 - 70) / k) : (y0 + y1) / 2;
   go(d3.zoomIdentity.translate(v.x + v.w / 2 - k * cx, v.y + v.h / 2 - k * cy).scale(k), ms);
   return true;
 }
 
 /* ---------- 1987 toggle ---------- */
 t87.addEventListener('change', () => {
+  draw();
   treeEl.classList.toggle('show87', t87.checked);
-  if (t87.checked) { const v = viewRect(), k = Math.max(0.45, Math.min(1, v.h / 900, v.w / 640)); go(d3.zoomIdentity.translate(v.x + v.w / 2 - k * 90, v.y + v.h / 2 - k * 335).scale(k)); }
+  if (t87.checked) { const v = viewRect(), k = Math.max(0.45, Math.min(1, v.h / 900, v.w / 640)); go(d3.zoomIdentity.translate(v.x + v.w / 2 - k * 90, v.y + v.h / 2 - k * SLOT.umar).scale(k)); } else fit();
 });
 
 /* ---------- person panel ---------- */
@@ -721,9 +795,18 @@ function genText(p) { return p.generation == null ? t('tree_gen_unknown') : p.ge
 function ancestors(id, stopAt) { const out = []; let p = byId.get(id), guard = 0; while (p && p.father_id && byId.has(p.father_id) && guard++ < 200) { p = byId.get(p.father_id); out.push(p); if (p.id === stopAt) break; } return out; }
 // «بن … بن … بن عبد الله سبال العين»: every father is a link
 function lineageHtml(p) {
-  const up = ancestors(p.id, inFan.has(p.id) && p.id !== ROOT ? ROOT : null); if (!up.length) return '';
+  const up = ancestors(p.id, inFan.has(p.id) && p.id !== ROOT ? ROOT : null).filter((a, i, list) => !(a.placeholder && i && list[i - 1].placeholder)); if (!up.length) return '';
   const first = / بنت /.test(' ' + p.name_as_written + ' ') ? 'بنت' : 'بن';
-  return up.map((a, i) => `<span class="bn">${i ? 'بن' : first}</span> <button type="button" class="lk" data-go="${esc(a.id)}">${esc(shortName(a))}</button>`).join(' ');
+  return up.map((a, i) => a.placeholder ? `<span class="bn">…</span> <button type="button" class="lk" data-go="${esc(a.id)}">${esc(t('tree_unknown_name'))}</button> <span class="bn">…</span>` : `<span class="bn">${i && !up[i - 1].placeholder ? 'بن' : i ? '' : first}</span> <button type="button" class="lk" data-go="${esc(a.id)}">${esc(shortName(a))}</button>`).join(' ');
+}
+// a chain of placeholders: «حلقات بين <the named ancestor above> و<the named head below>»
+const plainName = p => nameOf(p).replace(/\s*[(（][^)）]*[)）]\s*$/, '');   // the name without a bracketed epithet
+const chainEnds = info => { const above = byId.get((byId.get(info.start) || {}).father_id); return { above: above && !above.placeholder ? above : null, heads: info.heads.map(h => byId.get(h)).filter(Boolean) }; };
+function betweenText(info) { const e = chainEnds(info); return e.above && e.heads.length ? t('tree_unknown_between', { a: plainName(e.above), b: e.heads.map(plainName).join(t('tree_and')) }) : ''; }
+function betweenHtml(info) {
+  const e = chainEnds(info); if (!e.above || !e.heads.length) return '';
+  const link = a => `<button type="button" class="lk" data-go="${esc(a.id)}">${esc(plainName(a))}</button>`;
+  return esc(t('tree_unknown_between')).replace('{a}', link(e.above)).replace('{b}', e.heads.map(link).join(esc(t('tree_and'))));
 }
 function stripHtml(id) {
   const D = docsOf(id);
@@ -745,12 +828,14 @@ function openPerson(id, { center = true } = {}) {
   const p = byId.get(id); if (!p) return;
   reveal(id);
   setSelected(id);
-  pEyebrow.textContent = [genText(p), p.branch].filter(Boolean).join(' · ');
-  pName.textContent = nameOf(p);
-  pLine.innerHTML = lineageHtml(p);
-  if (p.placeholder) {
+  const info = p.placeholder ? chainInfo.get(id) || { start: id, list: [id], estimate: p.estimate || {}, heads: [] } : null;
+  // a chain is not one generation: no generation line, and «حلقات بين … و…» in place of the lineage line
+  pEyebrow.textContent = (info ? [p.branch] : [genText(p), p.branch]).filter(Boolean).join(' · ');
+  pName.textContent = info ? chainLabel(info) : nameOf(p);
+  pLine.innerHTML = info ? betweenHtml(info) : lineageHtml(p);
+  if (info) {
     pBadges.innerHTML = '';
-    pBody.innerHTML = `<section class="sec"><p class="note">${esc((p.estimate && p.estimate.basis) || t('tree_unknown_basis'))}</p></section>`;
+    pBody.innerHTML = `<section class="sec"><p class="note">${esc(info.estimate.basis || t('tree_unknown_basis'))}</p></section>` + (info.heads.length ? `<section class="sec"><div class="chips">${info.heads.map(personBtn).join('')}</div></section>` : '');
     showPanel(id); if (center) requestAnimationFrame(() => centerOn(id)); return;
   }
   const f = p.father_id && byId.get(p.father_id), ks = kids.get(id) || [], k = stKey(p.status);
@@ -805,8 +890,8 @@ function setSelected(id) {
   if (selected) { nodeEls.get(selected)?.g.classList.remove('sel'); spineEls.get(selected)?.classList.remove('sel'); }
   selected = id; ring(nodeEls.get(id))?.g.classList.add('sel'); spineEls.get(id)?.classList.add('sel');
 }
-function showPanel(id) { placePanel(id); panel.classList.add('open'); floats.classList.toggle('has-panel', panel.parentNode === floats); }
-function closePanel() { panel.classList.remove('open'); floats.classList.remove('has-panel'); setSelected(null); }
+function showPanel(id) { placePanel(id); panel.classList.add('open'); }
+function closePanel() { panel.classList.remove('open'); setSelected(null); }
 $('ft-pClose').onclick = closePanel;
 panel.addEventListener('click', e => {
   const b = e.target.closest('[data-go]'); if (b) { if (!b.dataset.go.startsWith('r87')) openPerson(b.dataset.go); return; }
@@ -814,13 +899,14 @@ panel.addEventListener('click', e => {
   const ch = e.target.closest('[data-chain]'); if (ch) { location.hash = '#/chain/' + ch.dataset.chain; return; }
   const ad = e.target.closest('[data-add]'); if (ad) { const box = ad.nextElementSibling; box.hidden = !box.hidden; if (!box.hidden) box.innerHTML = addBoxHtml(ad.dataset.add); ad.setAttribute('aria-expanded', String(!box.hidden)); }
 });
-// the sheet is in <body> on phones, in the block that holds the selected name on desktop, and in the stage in full screen
-function placePanel(id) { const target = stage.classList.contains('fs') ? stage : isMobile() ? document.body : (id && flo.has(id) ? floats : stage); if (panel.parentNode !== target) target.appendChild(panel); floats.classList.toggle('has-panel', target === floats && panel.classList.contains('open')); }
+// the sheet is in <body> on phones, and in the stage on desktop and in full screen
+function placePanel() { const target = stage.classList.contains('fs') || !isMobile() ? stage : document.body; if (panel.parentNode !== target) target.appendChild(panel); }
 mqMobile.addEventListener('change', () => { placePanel(selected); if (drawn) { draw(); fit(0); } }); placePanel(selected);
 
 function onActivate(e) {
   if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') return;
   const c = e.target.closest('[data-expand]'); if (c) { e.preventDefault(); hideTip(); expand(c.dataset.expand); return; }
+  const ch = e.target.closest('[data-chain]'); if (ch) { e.preventDefault(); hideTip(); unfoldedChains.add(ch.dataset.chain); redraw(() => centerOn(ch.dataset.chain, Math.min(1, d3.zoomTransform(treeEl).k), 450)); return; }
   const g = e.target.closest('[data-id]'); if (!g) return;
   e.preventDefault();
   hideTip();
@@ -829,14 +915,14 @@ function onActivate(e) {
   // a finger has no hover: show the tooltip briefly once the tree has settled
   if (lastPointer === 'touch') { clearTimeout(tipTimer); tipTimer = setTimeout(() => { const n = nodeEls.get(id) || { g: spineEls.get(id) }; if (n.g) showTip(n.g); tipTimer = setTimeout(hideTip, 2500); }, 750); }
 }
-['click', 'keydown'].forEach(type => { world.addEventListener(type, onActivate); fcards.addEventListener(type, onActivate); });
+['click', 'keydown'].forEach(type => world.addEventListener(type, onActivate));
 
 /* ---------- tooltip: full name and lineage line, for every fruit and plaque ---------- */
 let lastPointer = 'mouse', tipTimer;
-function lineage(id) { return [byId.get(id), ...ancestors(id)].reverse().map(shortName).join(' ← '); }
+function lineage(id) { return [byId.get(id), ...ancestors(id)].reverse().filter((a, i, list) => !(a.placeholder && i && list[i - 1].placeholder)).map(a => a.placeholder ? '…' : shortName(a)).join(' ← '); }
 function showTip(g) {
   const p = byId.get(g.dataset.id); if (!p || !g.isConnected) return;
-  tip.innerHTML = `<b>${esc(nameOf(p))}</b><span>${esc(lineage(p.id))}</span>`;
+  tip.innerHTML = p.placeholder && chainInfo.has(p.id) ? `<b>${esc(chainLabel(chainInfo.get(p.id)))}</b><span>${esc(betweenText(chainInfo.get(p.id)))}</span>` : `<b>${esc(nameOf(p))}</b><span>${esc(lineage(p.id))}</span>`;
   tip.hidden = false;
   const r = g.getBoundingClientRect(), h = host.getBoundingClientRect(), tw = tip.offsetWidth, th = tip.offsetHeight;
   const x = Math.max(4, Math.min(h.width - tw - 4, r.left + r.width / 2 - h.left - tw / 2));
@@ -987,9 +1073,9 @@ let chainId = null, chainIO = null, chainPushed = false;
 function renderChain(id) {
   const p = byId.get(id); if (!p) return false;
   const line = [p, ...ancestors(id, ROOT)];
-  const c = { ok: 0, maybe: 0, trad: 0 }; line.forEach(x => { if (x.id !== ROOT || x.father_id) c[stKey(x.status)]++; });
+  const c = { ok: 0, maybe: 0, trad: 0 }; line.forEach(x => { if (!x.placeholder && (x.id !== ROOT || x.father_id)) c[stKey(x.status)]++; });
   $('ft-cTitle').textContent = t('tree_chain_title');
-  $('ft-cSum').textContent = [t('tree_chain_n', { n: line.length }), t('tree_chain_ok', { n: c.ok }), c.maybe ? t('tree_chain_maybe', { n: c.maybe }) : '', t('tree_chain_trad', { n: c.trad })].filter(Boolean).join(' · ');
+  $('ft-cSum').textContent = [t(line.some(x => x.placeholder) ? 'tree_chain_n_est' : 'tree_chain_n', { n: line.length }), t('tree_chain_ok', { n: c.ok }), c.maybe ? t('tree_chain_maybe', { n: c.maybe }) : '', t('tree_chain_trad', { n: c.trad })].filter(Boolean).join(' · ');
   $('ft-cClose').setAttribute('aria-label', t('tree_close'));
   // a run of unknown ancestors is one card
   const cards = [];
@@ -999,7 +1085,7 @@ function renderChain(id) {
   }
   $('ft-cList').innerHTML = cards.map((cd, i) => {
     const x = cd.x, last = i === cards.length - 1;
-    if (cd.ph) { const es = x.estimate || {}; return `<li class="cc ph"><div class="card"><b>${esc(t('tree_unknown_chain', { n: cd.n }))}</b>${es.min != null ? `<span class="muted"> ${esc(t('tree_unknown_range', { min: es.min, max: es.max }))}</span>` : ''}</div><i class="ln trad"></i></li>`; }
+    if (cd.ph) { const es = x.estimate || {}; return `<li class="cc ph"><div class="card"><b class="nm">${esc(t('tree_unknown_chain', { n: cd.n }))}${es.min != null ? ` <span class="muted">${esc(t('tree_unknown_range', { min: es.min, max: es.max }))}</span>` : ''}</b>${es.basis ? `<p class="basis">${esc(es.basis)}</p>` : ''}</div><i class="ln trad"></i></li>`; }
     const D = x.living ? { thumbs: [], count: 0 } : docsOf(x.id), k = stKey(x.status);
     const thumbs = D.thumbs.slice(0, 5).map(th => `<button type="button" class="th" data-doc="${th.i}" data-of="${esc(x.id)}" aria-label="${esc(t('tree_open_doc'))}: ${esc(pageTxt(th.it.d ? th.it.d.page : th.it.e.page))}"><img src="${esc(asset(th.it.src))}" alt="" loading="lazy" decoding="async" width="60" height="76"></button>`).join('') + (D.thumbs.length > 5 ? `<span class="more">+${D.thumbs.length - 5}</span>` : '');
     return `<li class="cc${last && x.id === ROOT ? ' root' : ''}"><div class="card"><span class="gen">${esc(genText(x))}</span><b class="nm">${esc(nameOf(x))}</b>${thumbs ? `<div class="strip">${thumbs}</div>` : ''}</div>${last ? '' : `<i class="ln ${k}"></i><span class="lb" title="${esc(linkExplain(x))}">${esc(k === 'trad' ? t('tree_link_trad_short') : linkLabel(x))}</span>`}</li>`;
@@ -1119,14 +1205,14 @@ new ResizeObserver(() => {
     const first = !fitted;
     lastW = W; lastH = H; fitted = true;
     maybeRotateHint();
-    if (selected && !flo.has(selected) && panel.classList.contains('open')) centerOn(selected, d3.zoomTransform(treeEl).k, 0); else fit(0);
+    if (selected && panel.classList.contains('open')) centerOn(selected, d3.zoomTransform(treeEl).k, 0); else fit(0);
     if (first) requestAnimationFrame(() => { onHash(); booted = true; });
   }, 150);
 }).observe(stage);
 window.addEventListener('orientationchange', () => setTimeout(sizeStage, 250));
 window.addEventListener('resize', () => { clearTimeout(rt); sizeStage(); });
 
-window.__ftree = { openPerson, centerOn, fit, focusBranch, showAll, foldAll, expand, openReader, zoomTo: tr => svg.call(zoom.transform, tr), get fan() { return fan; }, count: () => persons.length, drawnCount: () => new Set([...host.querySelectorAll('.ft-svg [data-id]')].map(e => e.dataset.id).filter(id => !id.startsWith('r87_'))).size };
+window.__ftree = { openPerson, centerOn, fit, focusBranch, showAll, foldAll, expand, openReader, zoomTo: tr => svg.call(zoom.transform, tr), get fan() { return fan; }, count: () => persons.filter(p => !p.placeholder).length, drawnCount: () => new Set([...host.querySelectorAll('.ft-svg [data-id]')].map(e => e.dataset.id).filter(id => !id.startsWith('r87_'))).size };
 }
 
 /* ---------- load ---------- */
