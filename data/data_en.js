@@ -27,6 +27,8 @@ window.FamilyTreeData = {
 
         // --- POEM TAB ---
         poem_main_title: "The Ansar Epic in the Land of Libya",
+        poem_video_watch: "Watch on YouTube ↗",
+        home_poem_listen: "▶ Listen to the nasheed",
         poem_intro:
             "A poem on the story of the Ansar, from supporting the Prophet ﷺ in Medina to the land of Libya and Wadi al-Shati. Every event in it has a source on this site.",
         poem_ch1_title: "Chapter I: The Ansar in Medina",

@@ -27,6 +27,8 @@ window.FamilyTreeData = {
 
         // --- POEM TAB ---
         poem_main_title: "Libya Topraklarında Ensar Destanı",
+        poem_video_watch: "YouTube'da izle ↗",
+        home_poem_listen: "▶ İlahiyi dinle",
         poem_intro:
             "Ensar'ın, Medine'de Peygamber'e ﷺ yardım etmelerinden Libya topraklarına ve Vadi eş-Şati'ye uzanan hikâyesi üzerine bir şiir. İçindeki her olayın bu sitede bir kaynağı vardır.",
         poem_ch1_title: "Birinci Bölüm: Medine'de Ensar",

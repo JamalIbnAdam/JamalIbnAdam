@@ -210,6 +210,17 @@ document.addEventListener('click', (event) => {
     if (event.target.id === 'more-reader-img') reader.classList.toggle('zoom');   // a tap enlarges the page; another one fits it again
 });
 
+/* ---------- the nasheed: nothing is asked of YouTube until the visitor presses play; then the card becomes the player ---------- */
+$('more-nasheed').addEventListener('click', () => {
+    const iframe = document.createElement('iframe');
+    iframe.src = 'https://www.youtube-nocookie.com/embed/8e90r1lZMP4?autoplay=1&rel=0';
+    iframe.title = 'ملحمة الأنصار في أرض ليبيا';
+    iframe.allow = 'autoplay; encrypted-media; picture-in-picture';
+    iframe.allowFullscreen = true;
+    iframe.loading = 'lazy';
+    $('more-nasheed-box').replaceChildren(iframe);
+});
+
 /* ---------- the playlist loads only when asked for ---------- */
 $('more-video').addEventListener('click', () => {
     const box = $('more-video');
