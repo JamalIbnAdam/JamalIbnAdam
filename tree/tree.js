@@ -31,8 +31,8 @@ const CONFIG = {
     muhammad: { root: 'm3' },
     belqasim: { root: 'b3' },
     qasim: { root: 'q3' },
-    uthamna: { floats: ['ath_m', 'a_aqd_father_uthman'] },
-    abdulwahid: { floats: ['yahmad'] }
+    uthamna: { roots: ['a_aqd_father_uthman', 'ath_m_father'] },
+    abdulwahid: { root: 'yahmad' }
   }
 };
 const SLOT = { med: 0, hm: 150, fd: 238, umar: 336, tulip: 462, ali: 604, note: 702 };
@@ -85,11 +85,22 @@ function init(persons, docs) {
 const byId = new Map(persons.map(p => [p.id, p]));
 const kids = new Map(persons.map(p => [p.id, []]));
 persons.forEach(p => { if (p.father_id && byId.has(p.father_id) && p.father_id !== p.id) kids.get(p.father_id).push(p.id); });
-const total = new Map();   // all descendants, folded or not
-(function count(list) { for (const p of list) if (!total.has(p.id)) (function c(id, seen) { if (seen.has(id)) return 0; seen.add(id); let n = 0; for (const k of kids.get(id)) n += 1 + c(k, seen); total.set(id, n); return n; })(p.id, new Set()); })(persons);
+const total = new Map();   // named descendants, folded or not; placeholders are not counted anywhere
+(function c(id) { let n = 0; for (const k of kids.get(id)) n += (byId.get(k).placeholder ? 0 : 1) + c(k); total.set(id, n); return n; })(persons.find(p => !p.father_id || !byId.has(p.father_id)).id);
+persons.forEach(p => { if (!total.has(p.id)) total.set(p.id, 0); });
+// a run of placeholders between two named persons: «قيد البحث — تقديراً N أجيال»
+const chainInfo = new Map();   // placeholder id -> { start, list, heads }
+persons.forEach(p => {
+  if (!p.placeholder || (byId.get(p.father_id) || {}).placeholder) return;
+  const list = [p.id]; let c = p;
+  while (kids.get(c.id).length === 1 && byId.get(kids.get(c.id)[0]).placeholder) { c = byId.get(kids.get(c.id)[0]); list.push(c.id); }
+  const info = { start: p.id, list, heads: kids.get(c.id), estimate: p.estimate || {} };
+  list.forEach(id => chainInfo.set(id, info));
+});
+const chainLabel = info => t('tree_unknown_chain', { n: info.list.length }) + (info.estimate.min != null ? ' ' + t('tree_unknown_range', { min: info.estimate.min, max: info.estimate.max }) : '');
 
 // a hidden person keeps the node, so descendants keep their chain, but not the name
-const nameOf = p => p.placeholder ? '؟' : p.hidden ? t('tree_hidden_name') : p.name_as_written;
+const nameOf = p => p.placeholder ? t('tree_unknown_name') : p.hidden ? t('tree_hidden_name') : p.name_as_written;
 const shortName = p => p.placeholder ? '؟' : p.hidden ? t('tree_hidden_name') : (p.short_name || shortNameOf(p.name_as_written || p.id));
 const searchable = p => !p.hidden && !p.placeholder;
 
@@ -143,7 +154,11 @@ const open = new Set();   // names whose children are drawn
 function openBelow(id, depth = CONFIG.openDepth) { if (depth <= 0 || !kids.has(id)) return; open.add(id); for (const c of kids.get(id)) openBelow(c, depth - 1); }
 function openPathTo(id) { let p = byId.get(id), guard = 0; while (p && p.father_id && guard++ < 200) { open.add(p.father_id); p = byId.get(p.father_id); } }
 function resetOpen() { open.clear(); openBelow(ROOT); }
-const vkids = id => open.has(id) ? kids.get(id) : [];
+// a placeholder chain is always drawn through to the named person at its end; on a phone a chain longer than
+// four circles shows three, then «⋯ N», then that person, until the «⋯» is tapped
+const unfoldedChains = new Set();
+const compactChain = info => isMobile() && info.list.length > 4 && !unfoldedChains.has(info.start);
+const vkids = id => { const info = chainInfo.get(id); if (info) return compactChain(info) && info.list.indexOf(id) === 2 ? info.heads : kids.get(id); return open.has(id) ? kids.get(id) : []; };
 resetOpen();
 
 /* ---------- fan layout: generations above the medallion ---------- */
@@ -155,65 +170,50 @@ const need = d => 2 * nodeR(d) + 12;
 const GAP = 78;
 const A = CONFIG.fanDeg * Math.PI / 180;
 const ringR = (base, d) => d <= 0 ? 0 : d === 1 ? Math.max(210, base * 0.36) : d === 2 ? Math.max(330, base * 0.66) : Math.max(330 + (d - 2) * GAP, base + (d - 3) * GAP);
+const PH_R = 13;           // a placeholder circle
+let vparent = new Map();   // the name each drawn name hangs from (a folded chain skips its hidden circles)
 function layout() {
-  const widths = base => {
-    const W = new Map(), seen = new Set();
-    (function w(id, d) {
-      seen.add(id);
-      let s = 0; for (const c of vkids(id)) if (!seen.has(c)) s += w(c, d + 1);
-      const v = Math.max(d > 0 ? need(d) / ringR(base, d) : 0, s);
-      W.set(id, v); return v;
-    })(ROOT, 0);
-    return W;
+  // placeholders do not take a generation ring of their own: they sit in a short row between two named generations
+  const measureAll = base => {
+    const W = new Map(), G = new Map();
+    (function w(id, nd, par) {
+      const ph = !!byId.get(id).placeholder, nr = !par ? MED_R : ph ? PH_R : nodeR(nd);
+      const info = ph ? chainInfo.get(id) : null, step = info ? Math.max(2 * PH_R + 8, 210 / (compactChain(info) ? 3 : info.list.length)) : 0;
+      const r = !par ? 0 : ph ? par.r + (par.ph ? step : par.nr + PH_R + 12) : Math.max(ringR(base, nd), par.r + par.nr + nr + (par.ph ? 10 : 14));
+      const me = { r, nr, ph, nd };
+      let s = 0; for (const c of vkids(id)) s += w(c, byId.get(c).placeholder ? nd : nd + 1, me);
+      const v = Math.max(par ? (2 * nr + (ph ? 8 : 12)) / r : 0, s);
+      W.set(id, v); G.set(id, me); return v;
+    })(ROOT, 0, null);
+    return { W, G };
   };
   let lo = 300, hi = 60000;
-  if (widths(lo).get(ROOT) <= A) hi = lo;
-  else for (let i = 0; i < 40; i++) { const m = (lo + hi) / 2; if (widths(m).get(ROOT) <= A) hi = m; else lo = m; }
-  BASE = hi; const Wf = widths(BASE);
-  fan = new Map(); descN = new Map();
-  (function place(id, d, a0) {
-    const w = Wf.get(id), a = a0 - w / 2, r = ringR(BASE, d);
-    fan.set(id, { d, a, r, W: w, nr: d === 0 ? MED_R : nodeR(d), x: d === 0 ? 0 : r * Math.sin(a), y: d === 0 ? 0 : -r * Math.cos(a) });
+  if (measureAll(lo).W.get(ROOT) <= A) hi = lo;
+  else for (let i = 0; i < 40; i++) { const m = (lo + hi) / 2; if (measureAll(m).W.get(ROOT) <= A) hi = m; else lo = m; }
+  BASE = hi; const { W: Wf, G } = measureAll(BASE);
+  fan = new Map(); descN = new Map(); vparent = new Map();
+  (function place(id, a0, pid) {
+    const w = Wf.get(id), a = a0 - w / 2, g = G.get(id);
+    fan.set(id, { d: g.nd, a, r: g.r, W: w, nr: g.nr, x: pid == null ? 0 : g.r * Math.sin(a), y: pid == null ? 0 : -g.r * Math.cos(a) });
+    if (pid != null) vparent.set(id, pid);
     const ks = vkids(id).filter(c => Wf.has(c));
     let s = ks.reduce((sum, c) => sum + Wf.get(c), 0), cur = a0 - (w - s) / 2, n = 1;
-    for (const c of ks) { n += place(c, d + 1, cur); cur -= Wf.get(c); }
+    for (const c of ks) { n += place(c, cur, id); cur -= Wf.get(c); }
     descN.set(id, n); return n;
-  })(ROOT, 0, Math.min(A, Wf.get(ROOT)) / 2);
+  })(ROOT, Math.min(A, Wf.get(ROOT)) / 2, null);
   let x0 = Infinity, x1 = -Infinity, y0 = Infinity, y1 = -Infinity;
   for (const f of fan.values()) { x0 = Math.min(x0, f.x - f.nr); x1 = Math.max(x1, f.x + f.nr); y0 = Math.min(y0, f.y - f.nr); y1 = Math.max(y1, f.y + f.nr); }
   fanBox = { x0, x1, y0, y1 };
 }
 
-/* ---------- unattached branches: small upward trees ---------- */
 const inFan = new Set(); (function walk(id) { inFan.add(id); kids.get(id).forEach(walk); })(ROOT);
-const placed = new Set([...inFan, ...CONFIG.spine]);
-const floatRoots = persons.filter(p => !placed.has(p.id) && !(p.father_id && byId.has(p.father_id))).map(p => p.id);
-// anything still unreachable (e.g. a cycle) becomes its own root
-const reach = new Set(placed);
-const mark = id => { reach.add(id); kids.get(id).forEach(c => !reach.has(c) && mark(c)); };
-floatRoots.forEach(mark);
-persons.forEach(p => { if (!reach.has(p.id)) { floatRoots.push(p.id); mark(p.id); } });
-const FS = 72, FL = 90, FR = 28;
-const ftrees = floatRoots.map(rid => {
-  let slot = 0, maxL = 0; const local = new Map();
-  (function lay(id, l) {
-    maxL = Math.max(maxL, l);
-    const ks = kids.get(id).filter(c => !placed.has(c) && !local.has(c));
-    let x;
-    if (!ks.length) x = slot++ * FS;
-    else { const xs = ks.map(c => (lay(c, l + 1), local.get(c).x)); x = (xs[0] + xs[xs.length - 1]) / 2; }
-    local.set(id, { x, l });
-    return x;
-  })(rid, 0);
-  return { rid, local, w: Math.max(1, slot) * FS, h: maxL };
-});
 const ali = byId.get(CONFIG.spine[0]), umar = byId.get(CONFIG.spine[1]), abd = byId.get(CONFIG.spine[2]);
 
 /* ---------- dom ---------- */
 const stage = $('ft-stage'), treeEl = $('ft-tree'), world = $('ft-world'), panel = $('ft-panel');
 const pName = $('ft-pName'), pEyebrow = $('ft-pEyebrow'), pLine = $('ft-pLine'), pBadges = $('ft-pBadges'), pBody = $('ft-pBody');
 const q = $('ft-q'), results = $('ft-results'), t87 = $('ft-t1987');
-const floats = $('ft-floats'), fcards = $('ft-fcards'), legendEl = $('ft-legend'), tip = $('ft-tip');
+const legendEl = $('ft-legend'), tip = $('ft-tip');
 legendEl.open = window.innerWidth >= 1024;   // a chip on small screens, open on desktop (the tree is then fitted beside it)
 
 /* ---------- svg helpers ---------- */
@@ -229,13 +229,13 @@ const edgeW = n => Math.min(19, 1.5 + 1.55 * Math.sqrt(Math.max(0, n)));
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // rebuilt by draw()
-let L = {}, nodeEls = new Map(), spineEls = new Map(), flo = new Set(), keyLabels = [];
+let L = {}, nodeEls = new Map(), spineEls = new Map(), keyLabels = [];
 let selected = null, currentK = 1, grown = false;
 
 // the branch from a father to a child: [start, control, control, end]
 function edgePts(pid, cid) {
   const p = fan.get(pid), c = fan.get(cid);
-  if (p.d === 0) {
+  if (pid === ROOT) {
     const sa = Math.max(-0.9, Math.min(0.9, c.a * 0.5));
     return [pt(MED_R - 6, sa), pt(c.r * 0.45, sa * 0.6), pt(c.r * 0.7, c.a), [c.x, c.y]];
   }
@@ -290,14 +290,20 @@ function draw() {
   const pillW = text => measure(text, `600 15px ${uiFont}`) + 26;
   layout();
   world.textContent = '';
-  L = {}; nodeEls = new Map(); spineEls = new Map(); flo = new Set();
+  L = {}; nodeEls = new Map(); spineEls = new Map();
   ['edges', 'leaves', 'trunk', 'nodes', 'chips', 'spine', 'klabs'].forEach(n => L[n] = el('g', { class: 'L-' + n }, world));
 
   /* branches, thickest first, each with its sparse leaves (about one for every three names) */
   const leafy = new Set([...fan.keys()].filter(id => id !== ROOT).sort((a, b) => seed(a) - seed(b)).filter((id, i) => i % 3 === 0));
   [...fan.keys()].filter(id => id !== ROOT).sort((a, b) => total.get(b) - total.get(a)).forEach(id => {
-    const p = byId.get(id), P = edgePts(p.father_id, id);
-    drawEdge(pathD(P), p.status, edgeW(total.get(id)), L.edges);
+    const p = byId.get(id), up = vparent.get(id), P = edgePts(up, id);
+    drawEdge(pathD(P), p.placeholder || byId.get(up).placeholder ? 'قيد البحث' : p.status, p.placeholder ? 2.2 : edgeW(total.get(id)), L.edges);
+    // a folded chain: «⋯ N» on the link, where the hidden circles would be
+    if (byId.get(up).placeholder && p.father_id !== up) {
+      const info = chainInfo.get(up), [mx, my] = bez(P, 0.45), text = '⋯ ' + (info.list.length - 3), w = measure(text, `700 13px ${uiFont}`) + 16;
+      const g = el('g', { class: 'chip', transform: `translate(${f1(mx)},${f1(my)})`, tabindex: '0', role: 'button', 'data-chain': info.start, 'aria-label': t('tree_chain_more', { n: info.list.length - 3 }) }, L.chips);
+      el('rect', { x: f1(-w / 2), y: -11, width: f1(w), height: 22, rx: 11 }, g); el('text', { x: 0, y: 1 }, g).textContent = text;
+    }
     const h = seed(id);
     if (leafy.has(id)) {
       const u = 0.42 + (h >>> 3) % 30 / 100, [x, y, ang] = bez(P, u), side = (h >>> 9) & 1 ? 1 : -1;
@@ -308,13 +314,13 @@ function draw() {
   /* fruits */
   for (const [id, f] of fan) {
     if (id === ROOT) continue;
-    const P = edgePts(byId.get(id).father_id, id);
-    makeNode(id, f.x, f.y, f.nr, L.nodes, Math.atan2(P[2][1] - P[3][1], P[2][0] - P[3][0]));
+    const P = edgePts(vparent.get(id), id);
+    makeNode(id, f.x, f.y, f.nr, L.nodes, byId.get(id).placeholder ? null : Math.atan2(P[2][1] - P[3][1], P[2][0] - P[3][0]));
   }
 
   /* folded generations: a «+N» chip just beyond the name; the branch stays open-ended */
   for (const [id, f] of fan) {
-    if (id === ROOT || open.has(id) || !kids.get(id).length) continue;
+    if (id === ROOT || open.has(id) || !kids.get(id).length || byId.get(id).placeholder) continue;
     const n = total.get(id), text = '+' + n, w = measure(text, `700 13px ${uiFont}`) + 16;
     const ux = Math.sin(f.a), uy = -Math.cos(f.a), d = f.nr + 9 + Math.abs(ux) * w / 2 + Math.abs(uy) * 11;
     const g = el('g', { class: 'chip', transform: `translate(${f1(f.x + ux * d)},${f1(f.y + uy * d)})`, tabindex: '0', role: 'button', 'data-expand': id, 'aria-label': t('tree_expand_n', { n, name: nameOf(byId.get(id)) }) }, L.chips);
@@ -322,13 +328,17 @@ function draw() {
     el('text', { x: 0, y: 1 }, g).textContent = text;
   }
 
-  /* unknown ancestors: one label over each run of «؟» fruits */
-  for (const [id, f] of fan) {
-    const p = byId.get(id), fa = byId.get(p.father_id);
-    if (!p.placeholder || (fa && fa.placeholder)) continue;
-    let n = 1, c = p; while (vkids(c.id).length === 1 && byId.get(vkids(c.id)[0]).placeholder) { c = byId.get(vkids(c.id)[0]); n++; }
-    const es = p.estimate || {};
-    el('text', { class: 'phlab', x: f1(f.x), y: f1(f.y - f.nr - 12) }, L.chips).textContent = t('tree_unknown_chain', { n }) + (es.min != null ? ' ' + t('tree_unknown_range', { min: es.min, max: es.max }) : '');
+  /* one label for each chain of «؟» circles, written along the chain on the side with more room; it opens the same small panel */
+  const sibAngles = [...fan.entries()].filter(([id]) => vparent.get(id) === ROOT).map(([, f]) => f.a).sort((x, y) => x - y);
+  for (const info of new Set(chainInfo.values())) {
+    const shown = info.list.filter(id => fan.has(id)); if (!shown.length) continue;
+    const f0 = fan.get(shown[0]), f1n = fan.get(shown[shown.length - 1]), a = f0.a, rm = (f0.r + f1n.r) / 2;
+    const i = sibAngles.indexOf(a), gapLo = i > 0 ? a - sibAngles[i - 1] : 9, gapHi = i >= 0 && i < sibAngles.length - 1 ? sibAngles[i + 1] - a : 9;
+    const side = gapHi >= gapLo ? 1 : -1;                       // towards the larger gap
+    const [cx, cy] = pt(rm, a), px = Math.cos(a) * side * (PH_R + 11), py = Math.sin(a) * side * (PH_R + 11);
+    let deg = a * 180 / Math.PI - 90; if (deg < -90) deg += 180; if (deg > 90) deg -= 180;
+    const tx = el('text', { class: 'phlab', transform: `translate(${f1(cx + px)},${f1(cy + py)}) rotate(${f1(deg)})`, tabindex: '0', role: 'button', 'data-id': info.start }, L.chips);
+    tx.textContent = chainLabel(info);
   }
 
   /* trunk, roots, leaves, laurel */
@@ -428,16 +438,7 @@ function draw() {
     el('text', { class: 'ptxt', x: 0, y: 22, 'font-size': 25 }, g).textContent = 'سبال العين';
   })();
 
-  // link from the medallion to its sons: label the first strong one
-  (function () {
-    const sons = kids.get(ROOT).filter(c => fan.has(c));
-    const main = sons.sort((a, b) => descN.get(b) - descN.get(a))[0];
-    if (!main) return;
-    const c = fan.get(main), [x, y] = pt(c.r * 0.5, c.a * 0.55);
-    pill(x + 74, y + 30, linkLabel(byId.get(main)), stKey(byId.get(main).status), S);
-  })();
 
-  drawFloats();
   fitLabels();
   drawLegend();
   if (selected) { ring(nodeEls.get(selected))?.g.classList.add('sel'); spineEls.get(selected)?.classList.add('sel'); }
@@ -453,35 +454,14 @@ function draw() {
   drawStats();
 }
 
-/* unattached branches: one small upward tree per card, in their own block under the stage */
-function drawFloats() {
-  fcards.textContent = '';
-  ftrees.forEach(f => {
-    const W = f.w + 28, H = f.h * FL + FR * 2 + 34;
-    const fig = document.createElement('figure'); fig.className = 'ft-fcard';
-    const s = el('svg', { class: 'ft-svg', width: W, height: H, viewBox: `0 0 ${W} ${H}`, role: 'group' });
-    const gE = el('g', {}, s), gN = el('g', {}, s);
-    const P = id => { const p = f.local.get(id); return [14 + FS / 2 + (f.w - FS) - p.x, H - 16 - FR - p.l * FL]; };   // RTL: first child on the right
-    for (const [id] of f.local) {
-      flo.add(id);
-      const p = byId.get(id); if (id === f.rid) continue;
-      const [x, y] = P(id), [px, py] = P(p.father_id);
-      drawEdge(`M${f1(px)},${f1(py)} C${f1(px)},${f1(py - FL * 0.55)} ${f1(x)},${f1(y + FL * 0.55)} ${f1(x)},${f1(y)}`, p.status, edgeW(total.get(id)), gE);
-    }
-    for (const [id] of f.local) { const [x, y] = P(id); makeNode(id, x, y, FR, gN, id === f.rid ? null : Math.PI / 2); }
-    const cap = document.createElement('figcaption');
-    cap.textContent = (byId.get(f.rid).branch || '').replace(/^\d\s*/, '');
-    fig.append(s, cap); fcards.appendChild(fig);
-  });
-}
-
 /* ---------- names inside the fruits (fitted with the fonts that are loaded) ---------- */
 function fitLabels() {
   const nameFont = cssVar('--ft-f-name');
   const width = (l, f) => measure(l, `700 100px ${nameFont}`) * f / 100;   // one measurement per name, scaled
   const fitsIn = (lines, f, r) => lines.length === 1 ? width(lines[0], f) <= 2 * r - 9 :
     lines.every((l, i) => { const yy = (i ? 1 : -1) * 1.05 * f; return width(l, f) <= 2 * Math.sqrt(Math.max(0, r * r - yy * yy)) - 7; });
-  for (const [, n] of nodeEls) {
+  for (const [id, n] of nodeEls) {
+    if (byId.get(id).placeholder) { n.t.textContent = ''; n.t.setAttribute('font-size', 15); el('tspan', { x: 0, dy: 1 }, n.t).textContent = '؟'; n.fs = 99; continue; }
     const opts = [[n.label]], words = n.label.split(/\s+/);
     if (words.length > 1) { opts.push(splitLines(n.label)); if (words.length === 2) opts.push(words); }
     let best = null;
@@ -512,7 +492,7 @@ function buildKeyLabels() {
   const nameFont = cssVar('--ft-f-name');
   L.klabs.textContent = ''; keyLabels = [];
   for (const [id, n] of nodeEls) {
-    const f = fan.get(id); if (!f) continue;
+    const f = fan.get(id); if (!f || byId.get(id).placeholder) continue;
     keyLabels.push({ id, n, t: null, x: n.x, y: n.y, r: n.r, w: measure(n.label, `700 12px ${nameFont}`) + 8, d: f.d, ux: Math.sin(f.a), uy: -Math.cos(f.a), shown: null });
   }
   lastLodK = 0; applyLOD(currentK, true);
@@ -627,7 +607,6 @@ function posOf(id) {
   return [0, 0];
 }
 function centerOn(id, kMin = 1.1, ms = 600) {
-  if (flo.has(id)) { nodeEls.get(id)?.g.closest('.ft-fcard')?.scrollIntoView({ block: 'center', behavior: reduced || !ms ? 'auto' : 'smooth' }); return; }
   if (!visible()) return;
   const [x, y] = posOf(id), v = viewRect();
   if (isMobile()) kMin = Math.min(kMin, 1);
@@ -637,7 +616,6 @@ function centerOn(id, kMin = 1.1, ms = 600) {
 $('ft-zin').onclick = () => svg.transition().duration(reduced ? 0 : 250).call(zoom.scaleBy, 1.4);
 $('ft-zout').onclick = () => svg.transition().duration(reduced ? 0 : 250).call(zoom.scaleBy, 1 / 1.4);
 $('ft-zfit').onclick = () => fit(550, 'all');
-$('ft-goFloat').onclick = () => floats.scrollIntoView({ block: 'start', behavior: reduced ? 'auto' : 'smooth' });
 
 /* ---------- unfolding ---------- */
 function redraw(after) { draw(); sizeStage(); if (after) requestAnimationFrame(after); }
@@ -679,26 +657,24 @@ maybeRotateHint();
 /* ---------- deep links: #/b/<key> opens the page centred on that branch ---------- */
 let branchKey = null;      // the branch a deep link is showing; its marker survives redraws
 function markBranch() {
-  host.querySelectorAll('.ft-fcard.hit, .node.hit').forEach(e => e.classList.remove('hit'));
+  host.querySelectorAll('.node.hit').forEach(e => e.classList.remove('hit'));
   const b = CONFIG.branches[branchKey]; if (!b) return [];
-  if (b.floats) { const cards = b.floats.map(id => nodeEls.get(id)?.g.closest('.ft-fcard')).filter(Boolean); cards.forEach(c => c.classList.add('hit')); return cards; }
-  const n = ring(nodeEls.get(b.root)); if (n) n.g.classList.add('hit');
-  return n ? [n.g] : [];
+  return (b.roots || [b.root]).map(id => ring(nodeEls.get(id))).filter(Boolean).map(n => { n.g.classList.add('hit'); return n.g; });
 }
 function focusBranch(key, ms = 700) {
   const b = CONFIG.branches[key]; if (!b) return false;
+  const roots = (b.roots || [b.root]).filter(id => byId.has(id)); if (!roots.length) return false;
   branchKey = key;
-  if (b.root && byId.has(b.root)) { openPathTo(b.root); (function all(id) { if (kids.get(id).length) open.add(id); kids.get(id).forEach(all); })(b.root); draw(); sizeStage(); }
-  const marked = markBranch(); if (!marked.length) return false;
-  if (b.floats) { marked[0].scrollIntoView({ block: 'center', behavior: reduced || !ms ? 'auto' : 'smooth' }); return true; }
-  if (!visible()) return false;
+  roots.forEach(rid => { openPathTo(rid); (function all(id) { if (kids.get(id).length) open.add(id); kids.get(id).forEach(all); })(rid); });
+  draw(); sizeStage();
+  if (!markBranch().length || !visible()) return false;
   let x0 = Infinity, x1 = -Infinity, y0 = Infinity, y1 = -Infinity;
-  (function walk(id) { const f = fan.get(id); if (!f) return; x0 = Math.min(x0, f.x - f.nr); x1 = Math.max(x1, f.x + f.nr); y0 = Math.min(y0, f.y - f.nr); y1 = Math.max(y1, f.y + f.nr); vkids(id).forEach(walk); })(b.root);
+  roots.forEach(rid => (function walk(id) { const f = fan.get(id); if (!f) return; x0 = Math.min(x0, f.x - f.nr); x1 = Math.max(x1, f.x + f.nr); y0 = Math.min(y0, f.y - f.nr); y1 = Math.max(y1, f.y + f.nr); vkids(id).forEach(walk); })(rid));
   stage.scrollIntoView({ block: 'center', behavior: 'auto' });
   const v = viewRect(), pad = isMobile() ? 34 : 80;
   // phones: never so far out that the names leave their fruits; a wide branch is then panned, not shrunk
   const k = Math.min(1.6, Math.max(isMobile() ? 0.56 : 0, Math.min((v.w - pad * 2) / (x1 - x0), (v.h - pad * 2) / (y1 - y0))));
-  const f0 = fan.get(b.root), wide = k * (x1 - x0) > v.w, cx = wide ? f0.x : (x0 + x1) / 2, cy = wide ? Math.min(f0.y, (y0 + y1) / 2 + (v.h / 2 - 70) / k) : (y0 + y1) / 2;
+  const f0 = fan.get(roots[0]), wide = k * (x1 - x0) > v.w, cx = wide ? f0.x : (x0 + x1) / 2, cy = wide ? Math.min(f0.y, (y0 + y1) / 2 + (v.h / 2 - 70) / k) : (y0 + y1) / 2;
   go(d3.zoomIdentity.translate(v.x + v.w / 2 - k * cx, v.y + v.h / 2 - k * cy).scale(k), ms);
   return true;
 }
@@ -721,9 +697,9 @@ function genText(p) { return p.generation == null ? t('tree_gen_unknown') : p.ge
 function ancestors(id, stopAt) { const out = []; let p = byId.get(id), guard = 0; while (p && p.father_id && byId.has(p.father_id) && guard++ < 200) { p = byId.get(p.father_id); out.push(p); if (p.id === stopAt) break; } return out; }
 // «بن … بن … بن عبد الله سبال العين»: every father is a link
 function lineageHtml(p) {
-  const up = ancestors(p.id, inFan.has(p.id) && p.id !== ROOT ? ROOT : null); if (!up.length) return '';
+  const up = ancestors(p.id, inFan.has(p.id) && p.id !== ROOT ? ROOT : null).filter((a, i, list) => !(a.placeholder && i && list[i - 1].placeholder)); if (!up.length) return '';
   const first = / بنت /.test(' ' + p.name_as_written + ' ') ? 'بنت' : 'بن';
-  return up.map((a, i) => `<span class="bn">${i ? 'بن' : first}</span> <button type="button" class="lk" data-go="${esc(a.id)}">${esc(shortName(a))}</button>`).join(' ');
+  return up.map((a, i) => a.placeholder ? `<span class="bn">…</span> <button type="button" class="lk" data-go="${esc(a.id)}">${esc(t('tree_unknown_name'))}</button> <span class="bn">…</span>` : `<span class="bn">${i && !up[i - 1].placeholder ? 'بن' : i ? '' : first}</span> <button type="button" class="lk" data-go="${esc(a.id)}">${esc(shortName(a))}</button>`).join(' ');
 }
 function stripHtml(id) {
   const D = docsOf(id);
@@ -746,11 +722,12 @@ function openPerson(id, { center = true } = {}) {
   reveal(id);
   setSelected(id);
   pEyebrow.textContent = [genText(p), p.branch].filter(Boolean).join(' · ');
-  pName.textContent = nameOf(p);
+  pName.textContent = p.placeholder && chainInfo.has(id) ? chainLabel(chainInfo.get(id)) : nameOf(p);
   pLine.innerHTML = lineageHtml(p);
   if (p.placeholder) {
+    const info = chainInfo.get(id) || { estimate: p.estimate || {}, heads: [] };
     pBadges.innerHTML = '';
-    pBody.innerHTML = `<section class="sec"><p class="note">${esc((p.estimate && p.estimate.basis) || t('tree_unknown_basis'))}</p></section>`;
+    pBody.innerHTML = `<section class="sec"><p class="note">${esc(info.estimate.basis || t('tree_unknown_basis'))}</p></section>` + (info.heads.length ? `<section class="sec"><div class="chips">${info.heads.map(personBtn).join('')}</div></section>` : '');
     showPanel(id); if (center) requestAnimationFrame(() => centerOn(id)); return;
   }
   const f = p.father_id && byId.get(p.father_id), ks = kids.get(id) || [], k = stKey(p.status);
@@ -805,8 +782,8 @@ function setSelected(id) {
   if (selected) { nodeEls.get(selected)?.g.classList.remove('sel'); spineEls.get(selected)?.classList.remove('sel'); }
   selected = id; ring(nodeEls.get(id))?.g.classList.add('sel'); spineEls.get(id)?.classList.add('sel');
 }
-function showPanel(id) { placePanel(id); panel.classList.add('open'); floats.classList.toggle('has-panel', panel.parentNode === floats); }
-function closePanel() { panel.classList.remove('open'); floats.classList.remove('has-panel'); setSelected(null); }
+function showPanel(id) { placePanel(id); panel.classList.add('open'); }
+function closePanel() { panel.classList.remove('open'); setSelected(null); }
 $('ft-pClose').onclick = closePanel;
 panel.addEventListener('click', e => {
   const b = e.target.closest('[data-go]'); if (b) { if (!b.dataset.go.startsWith('r87')) openPerson(b.dataset.go); return; }
@@ -814,13 +791,14 @@ panel.addEventListener('click', e => {
   const ch = e.target.closest('[data-chain]'); if (ch) { location.hash = '#/chain/' + ch.dataset.chain; return; }
   const ad = e.target.closest('[data-add]'); if (ad) { const box = ad.nextElementSibling; box.hidden = !box.hidden; if (!box.hidden) box.innerHTML = addBoxHtml(ad.dataset.add); ad.setAttribute('aria-expanded', String(!box.hidden)); }
 });
-// the sheet is in <body> on phones, in the block that holds the selected name on desktop, and in the stage in full screen
-function placePanel(id) { const target = stage.classList.contains('fs') ? stage : isMobile() ? document.body : (id && flo.has(id) ? floats : stage); if (panel.parentNode !== target) target.appendChild(panel); floats.classList.toggle('has-panel', target === floats && panel.classList.contains('open')); }
+// the sheet is in <body> on phones, and in the stage on desktop and in full screen
+function placePanel() { const target = stage.classList.contains('fs') || !isMobile() ? stage : document.body; if (panel.parentNode !== target) target.appendChild(panel); }
 mqMobile.addEventListener('change', () => { placePanel(selected); if (drawn) { draw(); fit(0); } }); placePanel(selected);
 
 function onActivate(e) {
   if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') return;
   const c = e.target.closest('[data-expand]'); if (c) { e.preventDefault(); hideTip(); expand(c.dataset.expand); return; }
+  const ch = e.target.closest('[data-chain]'); if (ch) { e.preventDefault(); hideTip(); unfoldedChains.add(ch.dataset.chain); redraw(() => centerOn(ch.dataset.chain, Math.min(1, d3.zoomTransform(treeEl).k), 450)); return; }
   const g = e.target.closest('[data-id]'); if (!g) return;
   e.preventDefault();
   hideTip();
@@ -829,11 +807,11 @@ function onActivate(e) {
   // a finger has no hover: show the tooltip briefly once the tree has settled
   if (lastPointer === 'touch') { clearTimeout(tipTimer); tipTimer = setTimeout(() => { const n = nodeEls.get(id) || { g: spineEls.get(id) }; if (n.g) showTip(n.g); tipTimer = setTimeout(hideTip, 2500); }, 750); }
 }
-['click', 'keydown'].forEach(type => { world.addEventListener(type, onActivate); fcards.addEventListener(type, onActivate); });
+['click', 'keydown'].forEach(type => world.addEventListener(type, onActivate));
 
 /* ---------- tooltip: full name and lineage line, for every fruit and plaque ---------- */
 let lastPointer = 'mouse', tipTimer;
-function lineage(id) { return [byId.get(id), ...ancestors(id)].reverse().map(shortName).join(' ← '); }
+function lineage(id) { return [byId.get(id), ...ancestors(id)].reverse().filter((a, i, list) => !(a.placeholder && i && list[i - 1].placeholder)).map(a => a.placeholder ? '…' : shortName(a)).join(' ← '); }
 function showTip(g) {
   const p = byId.get(g.dataset.id); if (!p || !g.isConnected) return;
   tip.innerHTML = `<b>${esc(nameOf(p))}</b><span>${esc(lineage(p.id))}</span>`;
@@ -987,9 +965,9 @@ let chainId = null, chainIO = null, chainPushed = false;
 function renderChain(id) {
   const p = byId.get(id); if (!p) return false;
   const line = [p, ...ancestors(id, ROOT)];
-  const c = { ok: 0, maybe: 0, trad: 0 }; line.forEach(x => { if (x.id !== ROOT || x.father_id) c[stKey(x.status)]++; });
+  const c = { ok: 0, maybe: 0, trad: 0 }; line.forEach(x => { if (!x.placeholder && (x.id !== ROOT || x.father_id)) c[stKey(x.status)]++; });
   $('ft-cTitle').textContent = t('tree_chain_title');
-  $('ft-cSum').textContent = [t('tree_chain_n', { n: line.length }), t('tree_chain_ok', { n: c.ok }), c.maybe ? t('tree_chain_maybe', { n: c.maybe }) : '', t('tree_chain_trad', { n: c.trad })].filter(Boolean).join(' · ');
+  $('ft-cSum').textContent = [t(line.some(x => x.placeholder) ? 'tree_chain_n_est' : 'tree_chain_n', { n: line.length }), t('tree_chain_ok', { n: c.ok }), c.maybe ? t('tree_chain_maybe', { n: c.maybe }) : '', t('tree_chain_trad', { n: c.trad })].filter(Boolean).join(' · ');
   $('ft-cClose').setAttribute('aria-label', t('tree_close'));
   // a run of unknown ancestors is one card
   const cards = [];
@@ -999,7 +977,7 @@ function renderChain(id) {
   }
   $('ft-cList').innerHTML = cards.map((cd, i) => {
     const x = cd.x, last = i === cards.length - 1;
-    if (cd.ph) { const es = x.estimate || {}; return `<li class="cc ph"><div class="card"><b>${esc(t('tree_unknown_chain', { n: cd.n }))}</b>${es.min != null ? `<span class="muted"> ${esc(t('tree_unknown_range', { min: es.min, max: es.max }))}</span>` : ''}</div><i class="ln trad"></i></li>`; }
+    if (cd.ph) { const es = x.estimate || {}; return `<li class="cc ph"><div class="card"><b class="nm">${esc(t('tree_unknown_chain', { n: cd.n }))}${es.min != null ? ` <span class="muted">${esc(t('tree_unknown_range', { min: es.min, max: es.max }))}</span>` : ''}</b>${es.basis ? `<p class="basis">${esc(es.basis)}</p>` : ''}</div><i class="ln trad"></i></li>`; }
     const D = x.living ? { thumbs: [], count: 0 } : docsOf(x.id), k = stKey(x.status);
     const thumbs = D.thumbs.slice(0, 5).map(th => `<button type="button" class="th" data-doc="${th.i}" data-of="${esc(x.id)}" aria-label="${esc(t('tree_open_doc'))}: ${esc(pageTxt(th.it.d ? th.it.d.page : th.it.e.page))}"><img src="${esc(asset(th.it.src))}" alt="" loading="lazy" decoding="async" width="60" height="76"></button>`).join('') + (D.thumbs.length > 5 ? `<span class="more">+${D.thumbs.length - 5}</span>` : '');
     return `<li class="cc${last && x.id === ROOT ? ' root' : ''}"><div class="card"><span class="gen">${esc(genText(x))}</span><b class="nm">${esc(nameOf(x))}</b>${thumbs ? `<div class="strip">${thumbs}</div>` : ''}</div>${last ? '' : `<i class="ln ${k}"></i><span class="lb" title="${esc(linkExplain(x))}">${esc(k === 'trad' ? t('tree_link_trad_short') : linkLabel(x))}</span>`}</li>`;
@@ -1119,14 +1097,14 @@ new ResizeObserver(() => {
     const first = !fitted;
     lastW = W; lastH = H; fitted = true;
     maybeRotateHint();
-    if (selected && !flo.has(selected) && panel.classList.contains('open')) centerOn(selected, d3.zoomTransform(treeEl).k, 0); else fit(0);
+    if (selected && panel.classList.contains('open')) centerOn(selected, d3.zoomTransform(treeEl).k, 0); else fit(0);
     if (first) requestAnimationFrame(() => { onHash(); booted = true; });
   }, 150);
 }).observe(stage);
 window.addEventListener('orientationchange', () => setTimeout(sizeStage, 250));
 window.addEventListener('resize', () => { clearTimeout(rt); sizeStage(); });
 
-window.__ftree = { openPerson, centerOn, fit, focusBranch, showAll, foldAll, expand, openReader, zoomTo: tr => svg.call(zoom.transform, tr), get fan() { return fan; }, count: () => persons.length, drawnCount: () => new Set([...host.querySelectorAll('.ft-svg [data-id]')].map(e => e.dataset.id).filter(id => !id.startsWith('r87_'))).size };
+window.__ftree = { openPerson, centerOn, fit, focusBranch, showAll, foldAll, expand, openReader, zoomTo: tr => svg.call(zoom.transform, tr), get fan() { return fan; }, count: () => persons.filter(p => !p.placeholder).length, drawnCount: () => new Set([...host.querySelectorAll('.ft-svg [data-id]')].map(e => e.dataset.id).filter(id => !id.startsWith('r87_'))).size };
 }
 
 /* ---------- load ---------- */

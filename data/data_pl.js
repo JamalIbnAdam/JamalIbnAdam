@@ -240,7 +240,7 @@ window.FamilyTreeData = {
         tree_explain_maybe: "A strong indication, without explicit text", // TODO translate
         tree_explain_trad: "No document yet", // TODO translate
         tree_legend_say: "A solid line means a document names the person together with his father. Any family that holds a document can send it so that its branch is documented.", // TODO translate
-        tree_unknown_chain: "Ancestors whose names are not known — an estimated {n}", // TODO translate
+        tree_unknown_chain: "Under research — an estimated {n} generations", // TODO translate
         tree_unknown_range: "(between {min} and {max})", // TODO translate
         tree_unknown_basis: "An ancestor whose name is not yet known.", // TODO translate
         tree_chain_btn: "Show my chain to Abdullah Sabal Al-Ain", // TODO translate
@@ -359,12 +359,13 @@ window.FamilyTreeData = {
         install_and_2: "Wybierz „Dodaj stronę do”, a potem „Ekran startowy”",
         install_ff: "⋮ → Zainstaluj",
 
+        tree_unknown_name: "Under research", // TODO translate
+        tree_chain_more: "Show {n} more circles under research", // TODO translate
+        tree_chain_n_est: "about {n} generations", // TODO translate
         tree_aria: "Al-Sabal Al-Ain family tree", // TODO translate
         tree_search_placeholder: "Search for a name…", // TODO translate
         tree_search_empty: "No matching name", // TODO translate
         tree_toggle_1987: "Show the 1987 tree reading", // TODO translate
-        tree_btn_float: "Branches not yet linked by a document", // TODO translate
-        tree_float_sub: "The head of each branch here has no father named in the available documents", // TODO translate
         tree_zoom_in: "Zoom in", // TODO translate
         tree_zoom_out: "Zoom out", // TODO translate
         tree_zoom_fit: "Show the whole tree", // TODO translate

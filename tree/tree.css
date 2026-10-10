@@ -151,13 +151,15 @@ img { max-width: 100%; height: auto; }
 .ft-svg .node .halo { fill: none; stroke: var(--ft-gold); stroke-width: 3; opacity: 0; }
 .ft-svg .node.sel .halo { opacity: .35; }
 .ft-svg .node.hit .halo { opacity: 1; animation: ft-pulse 1.6s ease-out 2; }
-.ft-svg .node.ph circle.c { fill: none; stroke: var(--ft-branch); stroke-dasharray: 3 3; }
+.ft-svg .node.ph circle.c { fill: var(--ft-bg); stroke: var(--ft-branch); stroke-width: 1.4; stroke-dasharray: none; }   /* hollow, same ink as the branches */
 @keyframes ft-pulse { 0% { stroke-width: 14; opacity: 0; } 30% { opacity: .7; } 100% { stroke-width: 3; opacity: 1; } }
 .ft-svg .node:focus, .ft-svg .spine-item:focus, .ft-svg .chip:focus { outline: none; }
 .ft-svg .spine-item:focus-visible .plaque, .ft-svg .node:focus-visible circle.c, .ft-svg .chip:focus-visible rect { stroke: var(--ft-gold); stroke-width: 4; }
 .ft-svg .node.ext .nl { display: none; }
 .ft-svg .klab { font: 700 12px var(--ft-f-name); fill: var(--ft-ink); text-anchor: middle; dominant-baseline: central; paint-order: stroke; stroke: var(--ft-bg); stroke-width: 3.5px; stroke-linejoin: round; pointer-events: none; }
-.ft-svg .phlab { font: 600 13px var(--ft-f-ui); fill: var(--ft-ink2); text-anchor: middle; }
+.ft-svg .phlab { font: 600 11.5px var(--ft-f-ui); fill: var(--ft-ink2); text-anchor: middle; dominant-baseline: central; cursor: pointer; paint-order: stroke; stroke: var(--ft-bg); stroke-width: 4px; stroke-linejoin: round; }
+.ft-svg .phlab:hover, .ft-svg .phlab:focus-visible { fill: var(--ft-gold-ink); outline: none; }
+.ft-svg .node.ph text { font-family: var(--ft-f-name); }
 .ft-svg .chip { cursor: pointer; }
 .ft-svg .chip rect { fill: var(--ft-sheet); stroke: var(--ft-hair); stroke-width: 1.2; }
 .ft-svg .chip text { font: 700 13px var(--ft-f-ui); fill: var(--ft-ink); text-anchor: middle; dominant-baseline: central; direction: ltr; }
@@ -310,6 +312,7 @@ details.audit > summary { cursor: pointer; font-weight: 700; color: var(--ft-mut
 .ft-chain .cc { display: grid; justify-items: center; position: relative; }
 .ft-chain .card { width: 100%; border: 1px solid var(--ft-hair); border-radius: 12px; background: var(--ft-sheet); padding: 12px 16px; display: grid; gap: 6px; opacity: 0; transform: translateY(10px); transition: opacity .25s ease-out, transform .25s ease-out; }
 .ft-chain .cc.in .card { opacity: 1; transform: none; }
+.ft-chain .basis { font-family: var(--ft-f-name); font-size: 1rem; line-height: 1.9; color: var(--ft-ink2); unicode-bidi: plaintext; }
 .ft-chain .gen { font-size: .8rem; color: var(--ft-muted); }
 .ft-chain .nm { font-family: var(--ft-f-name); font-size: 1.45rem; line-height: 1.5; }
 .ft-chain .strip { grid-template-columns: repeat(auto-fill, 60px); align-items: center; }
@@ -326,17 +329,6 @@ details.audit > summary { cursor: pointer; font-weight: 700; color: var(--ft-mut
 .ft-chain .cc.root .strip { justify-content: center; grid-template-columns: repeat(3, 34px); }
 .ft-chain .cc.root .th:nth-child(n+4), .ft-chain .cc.root .more { display: none; }
 .ft-chain .cc.root .th img { height: 40px; }
-
-/* ---------- unattached branches: their own block under the stage, never an overlay and never boxed in ---------- */
-.ft-floats { position: relative; margin-top: 26px; padding: 4px 0 8px; scroll-margin-top: 16px; }
-.ft-floats > h2 { font-family: var(--ft-f-name); font-weight: 700; font-size: 1.5rem; line-height: 1.5; text-align: center; }
-.ft-floats > p { margin-bottom: 12px; color: var(--ft-muted); font-size: .88rem; text-align: center; }
-.ft-fcards { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-end; gap: 16px 36px; }
-.ft-fcard { display: grid; justify-items: center; gap: 4px; max-width: 100%; }
-.ft-fcard.hit { outline: 2px solid var(--ft-gold); outline-offset: 8px; border-radius: 10px; }
-.ft-fcard svg { display: block; max-width: 100%; height: auto; overflow: visible; }
-.ft-fcard figcaption { font-size: .8rem; font-weight: 600; color: var(--ft-ink2); text-align: center; max-width: 260px; }
-@media (min-width: 721px) { .ft-floats.has-panel { min-height: 580px; padding-inline-end: calc(min(440px, 44%) + 18px); } }
 
 /* ---------- phones ---------- */
 @media (max-width: 720px) {
