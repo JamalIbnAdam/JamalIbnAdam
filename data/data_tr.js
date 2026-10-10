@@ -155,11 +155,10 @@ window.FamilyTreeData = {
         author_book_1: "<strong>Breaths of Hope:</strong> Bu kanalın ilham kaynağı olan yoğun bakım hayatta kalma anıları.",
         author_book_2:
             "<strong>The Crypto Mentor:</strong> Yazarın kurtuluşu için Allah'ın vesile kıldığı finansal nedeni açıklayan kitap.",
-        author_title_1: "«مرشد العملات الرقميّة» (The Crypto Mentor)",
-        author_title_2: "«أنفاس الأمل» (Breaths of Hope)",
-        author_publisher: "Yayıncı: <a href=\"https://www.andrewtips.com\" target=\"_blank\" rel=\"noopener\" style=\"color: var(--h-gold);\">Andrew Tips</a>",
+        author_title_1: "«مرشد العملات الرقميّة»<span class=\"en\" lang=\"en\">The Crypto Mentor</span>",
+        author_title_2: "«أنفاس الأمل»<span class=\"en\" lang=\"en\">Breaths of Hope</span>",
         footer_books: "<a href=\"https://jsadamauthor.com/\" target=\"_blank\" rel=\"noopener\" style=\"color: var(--h-gold);\">Yazarın kitapları</a>",
-        btn_visit_youtube: "Resmi Andrew Tips Kanalı",
+        btn_visit_youtube: "Official Jamal Ibn Adam Channel", // TODO translate
 
         // Contact Section
         contact_header: "Cemal İbn Adem ile İletişim",
