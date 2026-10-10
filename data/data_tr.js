@@ -393,6 +393,12 @@ window.FamilyTreeData = {
         tree_chain_n_est: "about {n} generations", // TODO translate
         tree_aria: "Al-Sabal Al-Ain family tree", // TODO translate
         tree_search_placeholder: "Search for a name…", // TODO translate
+        tree_share_chain: "Soy zincirimi paylaş",
+        tree_share: "Paylaş",
+        tree_share_wa: "WhatsApp",
+        tree_share_dl: "Görseli indir",
+        tree_share_copy: "Bağlantıyı kopyala",
+        tree_share_text: "{name} soy zinciri: {line} — {site} {url}",
         tree_search_hint: "Üç parçalı adınızı yazın: kendi adınız, babanızın ve dedenizin adı, örneğin: جمال عمر أحمد",
         tree_nf_text: "Bu adı şecerede henüz bulamadık. Abdullah Sibal el-Ayn bin Ömer bin Ali el-Ceddavi el-Ensari’nin torunlarındansanız bilgilerinizi gönderin; site sahibi doğrulamak için sizinle iletişime geçecek, ardından adınız eklenecek.",
         tree_nf_btn: "Bilgilerinizi gönderin",

@@ -870,7 +870,7 @@ function openPerson(id, { center = true } = {}) {
   pBadges.innerHTML = (f ? stPill(p) : '') + (!p.living && p.earliest_doc_date ? `<span class="bd">${esc(t('tree_earliest'))}: ${esc(ahTxt(p.earliest_doc_date))}</span>` : '');
   let html = '';
   const chain = ancestors(id, ROOT);
-  if (chain.length && chain[chain.length - 1].id === ROOT) html += `<section class="sec"><button type="button" class="cta" data-chain="${esc(id)}">${esc(t('tree_chain_btn'))}</button></section>`;
+  if (chain.length && chain[chain.length - 1].id === ROOT) html += `<section class="sec"><button type="button" class="cta" data-chain="${esc(id)}">${esc(t('tree_chain_btn'))}</button> <button type="button" class="add" data-share="${esc(id)}">${esc(t('tree_share'))}</button></section>`;
   if (!f) html += `<section class="sec"><p class="muted">${esc(id === CONFIG.spine[0] ? t('tree_above_ali') : t('tree_father_none'))}</p></section>`;
   if (ks.length) html += `<section class="sec"><h4>${esc(t('tree_children'))} (${ks.length})</h4><div class="chips">${ks.map(personBtn).join('')}</div></section>`;
   if (!p.living) {
@@ -931,6 +931,7 @@ panel.addEventListener('click', e => {
   const b = e.target.closest('[data-go]'); if (b) { if (!b.dataset.go.startsWith('r87')) openPerson(b.dataset.go); return; }
   const th = e.target.closest('[data-doc]'); if (th) { openReader(th.dataset.of, +th.dataset.doc); return; }
   const ch = e.target.closest('[data-chain]'); if (ch) { location.hash = '#/chain/' + ch.dataset.chain; return; }
+  const sh = e.target.closest('[data-share]'); if (sh) { shareChain(sh.dataset.share); return; }
   const ad = e.target.closest('[data-add]'); if (ad) { const box = ad.nextElementSibling; box.hidden = !box.hidden; if (!box.hidden) box.innerHTML = addBoxHtml(ad.dataset.add); ad.setAttribute('aria-expanded', String(!box.hidden)); }
 });
 // the sheet is in <body> on phones, and in the stage on desktop and in full screen
@@ -1099,17 +1100,22 @@ window.addEventListener('resize', () => { if (!reader.hidden) vFit(); });
 const chainEl = document.createElement('div');
 chainEl.className = 'ft-chain'; chainEl.hidden = true; chainEl.dir = 'rtl';
 chainEl.setAttribute('role', 'dialog'); chainEl.setAttribute('aria-modal', 'true'); chainEl.setAttribute('aria-labelledby', 'ft-cTitle');
-chainEl.innerHTML = `<header class="ch"><div><h2 id="ft-cTitle"></h2><p id="ft-cSum"></p></div><button type="button" id="ft-cClose">${icon(IC.x)}</button></header><p class="nasab" id="ft-cNasab"></p><ol class="cl" id="ft-cList"></ol>`;
+chainEl.innerHTML = `<header class="ch"><div><h2 id="ft-cTitle"></h2><p id="ft-cSum"></p></div><button type="button" id="ft-cShare" class="share"></button><button type="button" id="ft-cClose">${icon(IC.x)}</button></header><p class="nasab" id="ft-cNasab"></p><ol class="cl" id="ft-cList"></ol>`;
 document.body.appendChild(chainEl);
 trap(chainEl);
 let chainId = null, chainIO = null, chainPushed = false;
+// «19 جيلاً · 8 منها موثّق بوثائق · …»: every link to a father, counted by its source
+function chainSummary(line) {
+  const c = { ok: 0, maybe: 0, civil: 0, author: 0, trad: 0 }; line.forEach(x => { if (!x.placeholder && x.father_id && byId.has(x.father_id)) c[countKey(x)]++; });
+  return [t(line.some(x => x.placeholder) ? 'tree_chain_n_est' : 'tree_chain_n', { n: line.length }), t('tree_chain_ok', { n: c.ok }), ...['maybe', 'civil', 'author', 'trad'].map(k => c[k] ? t('tree_chain_' + k, { n: c[k] }) : '')].filter(Boolean).join(' · ');
+}
 function renderChain(id) {
   const p = byId.get(id); if (!p) return false;
   const line = [p, ...ancestors(id)];   // down to the oldest known ancestor
-  const c = { ok: 0, maybe: 0, civil: 0, author: 0, trad: 0 }; line.forEach(x => { if (!x.placeholder && x.father_id && byId.has(x.father_id)) c[countKey(x)]++; });   // every link to a father
   $('ft-cTitle').textContent = t('tree_chain_title');
-  $('ft-cSum').textContent = [t(line.some(x => x.placeholder) ? 'tree_chain_n_est' : 'tree_chain_n', { n: line.length }), t('tree_chain_ok', { n: c.ok }), ...['maybe', 'civil', 'author', 'trad'].map(k => c[k] ? t('tree_chain_' + k, { n: c[k] }) : '')].filter(Boolean).join(' · ');
+  $('ft-cSum').textContent = chainSummary(line);
   $('ft-cNasab').textContent = nasabText(id);
+  $('ft-cShare').textContent = t('tree_share_chain');
   $('ft-cClose').setAttribute('aria-label', t('tree_close'));
   // a run of unknown ancestors is one card
   const cards = [];
@@ -1140,6 +1146,78 @@ function closeChain() { if (chainEl.hidden) return; chainEl.hidden = true; chain
 $('ft-cClose').onclick = () => { if (chainPushed) history.back(); else { history.replaceState(null, '', location.pathname + location.search); closeChain(); } };
 chainEl.addEventListener('click', e => { const th = e.target.closest('[data-doc]'); if (th) openReader(th.dataset.of, +th.dataset.doc); });
 chainEl.addEventListener('keydown', e => { if (e.key === 'Escape' && reader.hidden) $('ft-cClose').click(); });
+
+/* ---------- share my chain: a picture drawn here in the page, and a line of text. Nothing leaves the page but what the reader sends. ---------- */
+const SHARE_W = 1080, SHARE_H = 1350, SITE_URL = 'https://jamalibnadam.com/';
+const loadImage = src => new Promise((resolve, reject) => { const im = new Image(); im.onload = () => resolve(im); im.onerror = reject; im.src = src; });
+function wrapLines(ctx, text, maxWidth) {
+  const lines = []; let line = '';
+  for (const word of text.split(' ')) { const next = line ? line + ' ' + word : word; if (line && ctx.measureText(next).width > maxWidth) { lines.push(line); line = word; } else line = next; }
+  if (line) lines.push(line);
+  return lines;
+}
+async function shareCanvas(id) {
+  const p = byId.get(id), line = [p, ...ancestors(id)];
+  const nameFont = 'Amiri, serif', uiFont = '"Noto Kufi Arabic", sans-serif';
+  if (document.fonts) { await Promise.all(['700 64px Amiri', '400 40px Amiri', '500 30px "Noto Kufi Arabic"'].map(f => document.fonts.load(f, 'السجل الذهبي 19').catch(() => { }))); await document.fonts.ready; }
+  const cv = document.createElement('canvas'); cv.width = SHARE_W; cv.height = SHARE_H;
+  const ctx = cv.getContext('2d'), gold = '#d4af37', ink = '#e8e4da', ink2 = '#a9a596', cx = SHARE_W / 2;
+  ctx.direction = 'rtl'; ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
+  ctx.fillStyle = '#121614'; ctx.fillRect(0, 0, SHARE_W, SHARE_H);
+  ctx.strokeStyle = gold; ctx.lineWidth = 3; ctx.strokeRect(34, 34, SHARE_W - 68, SHARE_H - 68);       // a thin gold double frame
+  ctx.lineWidth = 1.5; ctx.strokeRect(50, 50, SHARE_W - 100, SHARE_H - 100);
+  try { const logo = await loadImage(asset('logo.webp')), r = 70; ctx.save(); ctx.beginPath(); ctx.arc(cx, 160, r, 0, Math.PI * 2); ctx.clip(); ctx.drawImage(logo, cx - r, 160 - r, 2 * r, 2 * r); ctx.restore(); ctx.beginPath(); ctx.arc(cx, 160, r + 3, 0, Math.PI * 2); ctx.lineWidth = 2; ctx.stroke(); } catch (e) { /* the picture is drawn without the logo */ }
+  ctx.fillStyle = gold; ctx.font = `700 54px ${nameFont}`; ctx.fillText(t('tree_h1'), cx, 318);
+  ctx.beginPath(); ctx.moveTo(cx - 150, 356); ctx.lineTo(cx + 150, 356); ctx.lineWidth = 1.5; ctx.stroke();
+  // the name, large; shrunk only if it is wider than the frame
+  let size = 84; ctx.fillStyle = ink; do { ctx.font = `700 ${size}px ${nameFont}`; size -= 4; } while (ctx.measureText(nameOf(p)).width > SHARE_W - 200 && size > 40);
+  ctx.fillText(nameOf(p), cx, 478);
+  // the whole lineage, wrapped and centred: the font is shrunk until it fits the space; nothing is cut
+  const text = nasabText(id), top = 560, bottom = 1085; let fs = 50, lines, lh;
+  do { ctx.font = `400 ${fs}px ${nameFont}`; lines = wrapLines(ctx, text, SHARE_W - 220); lh = fs * 1.75; fs -= 2; } while (lines.length * lh > bottom - top && fs > 18);
+  ctx.fillStyle = ink; lines.forEach((l, i) => ctx.fillText(l, cx, top + (bottom - top - lines.length * lh) / 2 + lh * (i + 0.72)));
+  // the same counts as the chain's header
+  ctx.fillStyle = gold; let ss = 32, sum = chainSummary(line), sl; do { ctx.font = `500 ${ss}px ${uiFont}`; sl = wrapLines(ctx, sum, SHARE_W - 200); ss -= 2; } while (sl.length > 2 && ss > 18);
+  sl.forEach((l, i) => ctx.fillText(l, cx, 1160 + i * (ss + 2) * 1.7));
+  ctx.fillStyle = ink2; ctx.direction = 'ltr'; ctx.font = `500 30px ${uiFont}`; ctx.fillText('jamalibnadam.com', cx, 1274);
+  return cv;
+}
+const shareUrl = id => `${SITE_URL}tree/#/chain/${id}`;
+const shareText = id => t('tree_share_text', { name: nameOf(byId.get(id)), line: nasabText(id), site: t('tree_h1'), url: shareUrl(id) });
+const shareBox = document.createElement('dialog');
+shareBox.className = 'ft-share'; shareBox.dir = 'rtl';
+document.body.appendChild(shareBox);
+shareBox.addEventListener('keydown', e => { if (e.key === 'Escape') e.stopPropagation(); });   // Escape closes this box only
+shareBox.addEventListener('click', async e => {
+  if (e.target === shareBox || e.target.closest('[data-x]')) { shareBox.close(); return; }
+  if (e.target.closest('[data-copy]')) {
+    const url = shareBox.dataset.url; let ok = false;
+    try { await navigator.clipboard.writeText(url); ok = true; } catch (err) {
+      const f = document.createElement('textarea'); f.value = url; f.setAttribute('readonly', ''); f.style.cssText = 'position: fixed; top: 0; opacity: 0;'; shareBox.appendChild(f); f.select();
+      try { ok = document.execCommand('copy'); } catch (err2) { ok = false; } f.remove();
+    }
+    if (ok) shareBox.querySelector('.done').hidden = false;
+  }
+});
+async function shareChain(id) {
+  if (!byId.has(id)) return;
+  const cv = await shareCanvas(id), text = shareText(id), url = shareUrl(id);
+  const blob = await new Promise(resolve => cv.toBlob(resolve, 'image/png'));
+  const file = blob && typeof File === 'function' ? new File([blob], 'nasab.png', { type: 'image/png' }) : null;
+  // phones: the system's own share sheet (WhatsApp and the other apps), with the picture
+  if (file && navigator.canShare && navigator.canShare({ files: [file] })) {
+    try { await navigator.share({ files: [file], text, url }); return; } catch (err) { if (err && err.name === 'AbortError') return; }
+  }
+  // elsewhere: WhatsApp with the text, the picture to save, or the link to copy
+  const data = cv.toDataURL('image/png');
+  shareBox.dataset.url = url;
+  shareBox.innerHTML = `<header><h2>${esc(t('tree_share_chain'))}</h2><button type="button" data-x aria-label="${esc(t('tree_close'))}">${icon(IC.x)}</button></header>
+<img src="${data}" alt="${esc(text)}" width="216" height="270">
+<div class="acts"><a class="b wa" href="https://wa.me/?text=${encodeURIComponent(text)}" target="_blank" rel="noopener">${esc(t('tree_share_wa'))}</a><a class="b" href="${data}" download="nasab-${esc(id)}.png">${esc(t('tree_share_dl'))}</a><button type="button" class="b" data-copy>${esc(t('tree_share_copy'))}</button></div>
+<p class="done" role="status" hidden>${esc(t('share_success'))}</p>`;
+  if (typeof shareBox.showModal === 'function') shareBox.showModal(); else shareBox.setAttribute('open', '');
+}
+$('ft-cShare').onclick = () => { if (chainId) shareChain(chainId); };
 
 /* ---------- routes ---------- */
 let booted = false;
@@ -1275,7 +1353,7 @@ new ResizeObserver(() => {
 window.addEventListener('orientationchange', () => setTimeout(sizeStage, 250));
 window.addEventListener('resize', () => { clearTimeout(rt); sizeStage(); });
 
-window.__ftree = { openPerson, centerOn, fit, focusBranch, showAll, foldAll, expand, openReader, zoomTo: tr => svg.call(zoom.transform, tr), get fan() { return fan; }, count: () => persons.filter(p => !p.placeholder).length, drawnCount: () => new Set([...host.querySelectorAll('.ft-svg [data-id]')].map(e => e.dataset.id).filter(id => !id.startsWith('r87_'))).size };
+window.__ftree = { shareCanvas, shareText, shareChain, openPerson, centerOn, fit, focusBranch, showAll, foldAll, expand, openReader, zoomTo: tr => svg.call(zoom.transform, tr), get fan() { return fan; }, count: () => persons.filter(p => !p.placeholder).length, drawnCount: () => new Set([...host.querySelectorAll('.ft-svg [data-id]')].map(e => e.dataset.id).filter(id => !id.startsWith('r87_'))).size };
 }
 
 /* ---------- load ---------- */

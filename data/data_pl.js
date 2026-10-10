@@ -394,6 +394,12 @@ window.FamilyTreeData = {
         tree_chain_n_est: "about {n} generations", // TODO translate
         tree_aria: "Al-Sabal Al-Ain family tree", // TODO translate
         tree_search_placeholder: "Search for a name…", // TODO translate
+        tree_share_chain: "Udostępnij mój rodowód",
+        tree_share: "Udostępnij",
+        tree_share_wa: "WhatsApp",
+        tree_share_dl: "Pobierz obraz",
+        tree_share_copy: "Skopiuj link",
+        tree_share_text: "Rodowód {name}: {line} — {site} {url}",
         tree_search_hint: "Wpisz swoje trzyczęściowe imię: własne, ojca i dziadka, na przykład: جمال عمر أحمد",
         tree_nf_text: "Nie znaleźliśmy jeszcze tego imienia w drzewie. Jeśli jesteś potomkiem Abdullaha Sibal al-Ajn ibn Umar ibn Ali al-Dżaddawi al-Ansari, prześlij swoje dane; właściciel strony skontaktuje się z Tobą w celu weryfikacji, a następnie Twoje imię zostanie dodane.",
         tree_nf_btn: "Prześlij swoje dane",
