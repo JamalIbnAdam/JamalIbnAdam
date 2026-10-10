@@ -531,7 +531,7 @@ function draw() {
   markBranch();
   treeEl.classList.toggle('sway', !reduced && fan.size <= 400);   // the sway repaints the svg, so not on very large trees
   if (!grown && !reduced) { grown = true; treeEl.classList.add('grow'); setTimeout(() => treeEl.classList.remove('grow'), 1300); }
-  [['ft-zin', 'tree_zoom_in'], ['ft-zout', 'tree_zoom_out'], ['ft-zfit', 'tree_zoom_fit'], ['ft-zfull', 'tree_fullscreen'], ['ft-pClose', 'tree_close'], ['ft-theme', 'tree_theme']].forEach(([id, key]) => { const b = $(id); if (b) { b.setAttribute('aria-label', t(key)); b.title = t(key); } });
+  [['ft-zin', 'tree_zoom_in'], ['ft-zout', 'tree_zoom_out'], ['ft-zfit', 'tree_zoom_fit'], ['ft-zfull', 'tree_fullscreen'], ['ft-pClose', 'tree_close'], ['ft-legend-x', 'tree_close'], ['ft-theme', 'tree_theme']].forEach(([id, key]) => { const b = $(id); if (b) { b.setAttribute('aria-label', t(key)); b.title = t(key); } });
   treeEl.setAttribute('aria-label', t('tree_aria'));
   panel.setAttribute('aria-label', t('tree_panel_label'));
   q.setAttribute('aria-label', t('tree_search_placeholder'));
@@ -653,7 +653,6 @@ function applyLOD(k, force) {
 const zoom = d3.zoom().scaleExtent([0.03, 4])
   // cooperative gestures: the page keeps the plain wheel and the one-finger drag; Ctrl/⌘ + wheel, two fingers or a mouse drag move the tree
   .filter(e => e.type === 'wheel' ? (e.ctrlKey || e.metaKey || stage.classList.contains('fs')) : e.type.startsWith('touch') ? (e.touches.length > 1 || stage.classList.contains('fs')) : !e.button)
-  .on('end', () => { if (legendCovers()) legendEl.open = false; })
   .on('zoom', e => {
     world.setAttribute('transform', e.transform);
     // with thousands of names, re-placing the outside names on every frame is the expensive part: do it between frames
@@ -674,8 +673,8 @@ function contentBounds() {
 // the phone stage has a fixed share of the screen (set in tree.css) and opens on the medallion and the first generations;
 // resizing it to the tree after load would push the page about
 function sizeStage() { stage.style.height = ''; }
-// the legend never lies over a fruit: while it is open the tree is fitted beside it (below it on phones),
-// and it folds itself away as soon as the tree is moved under it
+// The legend stays open until the reader closes it (its ✕ on phones, the chip again, or Esc): it never closes itself.
+// Desktop: while it is open the tree is fitted beside it. Phones: it is a card over the stage, and the tree is left as it is.
 function legendCovers() {
   if (!legendEl.open || !visible()) return false;
   const tr = d3.zoomTransform(treeEl), s = stage.getBoundingClientRect(), l = legendEl.getBoundingClientRect();
@@ -685,13 +684,13 @@ function legendCovers() {
   return hit(0, SLOT.umar, 80, 30) || hit(0, SLOT.tulip, 100, 85) || hit(0, SLOT.ali, 152, 44);
 }
 function legendInset() {
-  if (!legendEl.open || (panel.classList.contains('open') && panel.parentNode === stage)) return null;
+  if (isMobile() || !legendEl.open || (panel.classList.contains('open') && panel.parentNode === stage)) return null;
   const s = stage.getBoundingClientRect(), l = legendEl.getBoundingClientRect();
-  return isMobile() ? { top: l.bottom - s.top + 6 } : { left: l.right - s.left + 8 };
+  return { left: l.right - s.left + 8 };
 }
 function viewRect() {
   const W = stage.clientWidth, H = stage.clientHeight, isOpen = panel.classList.contains('open'), ins = legendInset();
-  if (!isOpen && ins) return ins.top ? { x: 0, y: ins.top, w: W - 46, h: H - ins.top } : { x: ins.left, y: 0, w: W - ins.left, h: H };
+  if (!isOpen && ins) return { x: ins.left, y: 0, w: W - ins.left, h: H };
   if (!isOpen) return isMobile() ? { x: 0, y: 0, w: W - 46, h: H } : { x: 0, y: 0, w: W, h: H };   // phones: keep clear of the zoom buttons
   if (panel.parentNode === document.body) { const vis = (window.innerHeight - panel.offsetHeight) - stage.getBoundingClientRect().top; return { x: 0, y: 0, w: W, h: Math.max(90, Math.min(H, vis)) }; }
   if (panel.parentNode !== stage) return { x: 0, y: 0, w: W, h: H };
@@ -731,10 +730,15 @@ $('ft-zfit').onclick = () => fit(550, 'all');
 /* ---------- unfolding ---------- */
 function redraw(after) { draw(); sizeStage(); if (after) requestAnimationFrame(after); }
 function expand(id) { openBelow(id); redraw(() => centerOn(id, Math.min(1, d3.zoomTransform(treeEl).k), 450)); }
-function showAll() { legendEl.open = false; for (const id of inFan) if (kids.get(id).length) open.add(id); redraw(() => fit(550, 'all')); }
+function showAll() { for (const id of inFan) if (kids.get(id).length) open.add(id); redraw(() => fit(550, 'all')); }
 function foldAll() { resetOpen(); if (selected && inFan.has(selected)) { openPathTo(selected); openBelow(selected); } redraw(() => fit(550, 'home')); }
-// opened by hand over the tree: make room for it instead of covering names
-legendEl.addEventListener('toggle', () => { if (legendEl.open && drawn && fitted && legendCovers()) fit(350); });
+// desktop: opened over the tree, the tree makes room beside it; closed, the tree takes the room back. Phones: nothing moves.
+legendEl.addEventListener('toggle', () => {
+  if (isMobile() || !drawn || !fitted) return;
+  if (!legendEl.open || legendCovers()) fit(350);
+});
+function closeLegend() { if (!legendEl.open) return; legendEl.open = false; legendEl.querySelector('summary').focus(); }
+$('ft-legend-x').onclick = closeLegend;
 $('ft-all').onclick = showAll;
 $('ft-fold').onclick = foldAll;
 // search, deep links and the chain can reach any name: unfold the way to it first
@@ -1267,7 +1271,13 @@ function onHash() {
   return b ? focusBranch(b[1]) : false;
 }
 window.addEventListener('hashchange', () => { closeReader(); onHash(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape' && reader.hidden && chainEl.hidden) { if (stage.classList.contains('fs')) setFull(false); else if (panel.classList.contains('open')) closePanel(); } });
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Escape' || !reader.hidden || !chainEl.hidden) return;
+  if (isMobile() && legendEl.open) closeLegend();   // on a phone the legend is the card on top
+  else if (stage.classList.contains('fs')) setFull(false);
+  else if (panel.classList.contains('open')) closePanel();
+  else if (legendEl.open) closeLegend();
+});
 
 /* ---------- search ---------- */
 // aliases (other names a person is known by) are for searching only: they are never shown as the name
