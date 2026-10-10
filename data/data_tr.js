@@ -279,11 +279,11 @@ window.FamilyTreeData = {
         home_nav_sources: "References", // TODO translate
         home_nav_home: "Home", // TODO translate
         home_h1: "Descendants of Abdullah Sabal Al-Ain", // TODO translate
-        home_lede: "The lineage of the Ansar tribe of Wadi al-Shati in Fezzan: lineages that meet in Zawiyat Brak, Aqar, Ishkeda and Dabdab, and go back to Abdullah Sabal Al-Ain. Every name in the tree is tied to its document where one exists, or to the oral account of some of the tribe's notables and elders where one does not exist yet.", // TODO translate
+        home_lede: "The lineage of the Ansar tribe of Wadi al-Shati in Fezzan: lineages that meet in Zawiyat Brak eş-Şati, Aqar, Ishkeda and Dabdab, and go back to Abdullah Sabal Al-Ain. Every name in the tree is tied to its document where one exists, or to the oral account of some of the tribe's notables and elders where one does not exist yet.", // TODO translate
         home_search_label: "Search for a name in the tree", // TODO translate
         home_search_ph: "Type your name or your grandfather's name", // TODO translate
         home_search_btn: "Show my chain", // TODO translate
-        home_med_sub: "Zawiyat Brak, 10th century AH", // TODO translate
+        home_med_sub: "Zawiyat Brak eş-Şati, 10th century AH", // TODO translate
         home_tree_p: "Tap any name to see its document: the image, the text as written, a plain explanation, and the source. Tap “Show my chain” to see your forefathers one by one, down to Abdullah Sabal Al-Ain.", // TODO translate
         home_leg_ok: "A document names the person with his father", // TODO translate
         home_leg_maybe: "An indication from the documents, without explicit text", // TODO translate
@@ -302,7 +302,7 @@ window.FamilyTreeData = {
         home_s2_p: "Between the death of Jabir ibn Abdullah in 78 AH and Ali al-Jaddawi in about the ninth century AH lie some 22 to 25 generations for whom we have not yet found a document that names them. The tribe preserves its attribution to the Ansar, and it appears in its documents; the names of these links are what we are searching for.", // TODO translate
         home_gap_aria: "About 24 forefathers whose names are not yet known", // TODO translate
         home_hyp1_h: "The Hejaz and Jeddah hypothesis", // TODO translate
-        home_hyp1_p: "The epithet “al-Jaddawi” in the Brak documents, and the tribe's account that the forefather came from the Hejaz.", // TODO translate
+        home_hyp1_p: "The epithet “al-Jaddawi” in the Brak eş-Şati documents, and the tribe's account that the forefather came from the Hejaz.", // TODO translate
         home_hyp1_t: "What would settle it: a Hejazi or Maghribi document naming “Umar ibn Ali al-Jaddawi” or his son Abdullah.", // TODO translate
         home_hyp2_h: "The Andalus hypothesis", // TODO translate
         home_hyp2_p: "The view of Dr. Muhammad Abd al-Qadir al-Ansari, and the timing of the fall of Granada in 897 AH agrees with it. The two hypotheses may meet: Andalusian Ansar who settled in Jeddah and then came to Fezzan.", // TODO translate
