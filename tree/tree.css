@@ -81,7 +81,7 @@ img { max-width: 100%; height: auto; }
 .ft-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; padding-block: 4px 10px; }
 .ft-search { position: relative; flex: 0 1 320px; min-width: 0; }
 .ft-acts { display: contents; }
-.ft-search input { width: 100%; padding: 7px 36px 7px 12px; border: 1px solid var(--ft-line); border-radius: 8px; background: var(--ft-sheet); }
+.ft-search input { min-width: 0; width: 100%; padding: 7px 36px 7px 12px; border: 1px solid var(--ft-line); border-radius: 8px; background: var(--ft-sheet); }
 .ft-search input::placeholder { color: var(--ft-muted); opacity: 1; }
 .ft-search > svg { position: absolute; right: 11px; top: 50%; translate: 0 -50%; width: 16px; height: 16px; stroke: var(--ft-muted); fill: none; stroke-width: 2; pointer-events: none; }
 .ft-results { position: absolute; inset-inline: 0; top: calc(100% + 4px); z-index: 30; padding: 4px; background: var(--ft-sheet); border: 1px solid var(--ft-line); border-radius: 10px; box-shadow: var(--ft-shadow); max-height: min(60vh, 380px); overflow: auto; }
