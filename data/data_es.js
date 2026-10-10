@@ -263,6 +263,9 @@ window.FamilyTreeData = {
         tree_unknown_chain: "Under research — an estimated {n} generations", // TODO translate
         tree_unknown_range: "(between {min} and {max})", // TODO translate
         tree_unknown_basis: "An ancestor whose name is not yet known.", // TODO translate
+        tree_unknown_pill: "Under research · ≈{n}", // TODO translate
+        tree_unknown_between: "Links between {a} and {b}", // TODO translate
+        tree_and: " and ", // TODO translate
         tree_chain_btn: "Show my chain to Abdullah Sabal Al-Ain", // TODO translate
         tree_chain_title: "My lineage chain, with its evidence", // TODO translate
         tree_chain_n: "{n} generations", // TODO translate

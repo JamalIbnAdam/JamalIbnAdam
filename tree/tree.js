@@ -175,6 +175,7 @@ const GAP = 78;
 const A = CONFIG.fanDeg * Math.PI / 180;
 const ringR = (base, d) => d <= 0 ? 0 : d === 1 ? Math.max(210, base * 0.36) : d === 2 ? Math.max(330, base * 0.66) : Math.max(330 + (d - 2) * GAP, base + (d - 3) * GAP);
 const PH_R = 13;           // a placeholder circle
+const PILL_FS = 12, PILL_MIN_PX = 10;   // the chain pill's font size, and the on-screen size below which the pills are hidden
 let vparent = new Map();   // the name each drawn name hangs from (a folded chain skips its hidden circles)
 function layout() {
   // placeholders do not take a generation ring of their own: they sit in a short row between two named generations
@@ -243,7 +244,7 @@ const edgeW = n => Math.min(19, 1.5 + 1.55 * Math.sqrt(Math.max(0, n)));
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // rebuilt by draw()
-let L = {}, nodeEls = new Map(), spineEls = new Map(), keyLabels = [];
+let L = {}, nodeEls = new Map(), spineEls = new Map(), keyLabels = [], pillItems = [], solidBoxes = [], chipBoxesNow = [];
 let selected = null, currentK = 1, grown = false;
 
 // the branch from a father to a child: [start, control, control, end]
@@ -307,6 +308,7 @@ function draw() {
   L = {}; nodeEls = new Map(); spineEls = new Map();
   ['edges', 'leaves', 'trunk', 'nodes', 'chips', 'spine', 'klabs'].forEach(n => L[n] = el('g', { class: 'L-' + n }, world));
 
+  const chipBoxes = [];   // [cx, cy, half width, half height] of every chip, so the chain pills keep clear of them
   /* branches, thickest first, each with its sparse leaves (about one for every three names) */
   const leafy = new Set([...fan.keys()].filter(id => id !== ROOT).sort((a, b) => seed(a) - seed(b)).filter((id, i) => i % 3 === 0));
   [...fan.keys()].filter(id => id !== ROOT).sort((a, b) => total.get(b) - total.get(a)).forEach(id => {
@@ -317,6 +319,7 @@ function draw() {
       const info = chainInfo.get(up), [mx, my] = bez(P, 0.45), text = '⋯ ' + (info.list.length - 3), w = measure(text, `700 13px ${uiFont}`) + 16;
       const g = el('g', { class: 'chip', transform: `translate(${f1(mx)},${f1(my)})`, tabindex: '0', role: 'button', 'data-chain': info.start, 'aria-label': t('tree_chain_more', { n: info.list.length - 3 }) }, L.chips);
       el('rect', { x: f1(-w / 2), y: -11, width: f1(w), height: 22, rx: 11 }, g); el('text', { x: 0, y: 1 }, g).textContent = text;
+      chipBoxes.push([mx, my, w / 2, 11]);
     }
     const h = seed(id);
     if (leafy.has(id)) {
@@ -340,19 +343,22 @@ function draw() {
     const g = el('g', { class: 'chip', transform: `translate(${f1(f.x + ux * d)},${f1(f.y + uy * d)})`, tabindex: '0', role: 'button', 'data-expand': id, 'aria-label': t('tree_expand_n', { n, name: nameOf(byId.get(id)) }) }, L.chips);
     el('rect', { x: f1(-w / 2), y: -11, width: f1(w), height: 22, rx: 11 }, g);
     el('text', { x: 0, y: 1 }, g).textContent = text;
+    chipBoxes.push([f.x + ux * d, f.y + uy * d, w / 2, 11]);
   }
 
-  /* one label for each chain of «؟» circles, written along the chain on the side with more room; it opens the same small panel */
+  /* one horizontal pill for each chain of «؟» circles: «قيد البحث · ≈N». It opens the same small panel.
+     applyLOD() puts it beside the end nearest the named head, clear of the fruits, the names, the chips and the other pills. */
+  pillItems = []; chipBoxesNow = chipBoxes;
+  solidBoxes = chipBoxes.slice(); for (const [id, f] of fan) if (byId.get(id).placeholder) solidBoxes.push([f.x, f.y, f.nr + 2, f.nr + 2]);
   const sibAngles = [...fan.entries()].filter(([id]) => vparent.get(id) === ROOT).map(([, f]) => f.a).sort((x, y) => x - y);
   for (const info of new Set(chainInfo.values())) {
-    const shown = info.list.filter(id => fan.has(id)); if (!shown.length) continue;
-    const f0 = fan.get(shown[0]), f1n = fan.get(shown[shown.length - 1]), a = f0.a, rm = (f0.r + f1n.r) / 2;
+    const shown = info.list.filter(id => fan.has(id)).map(id => fan.get(id)); if (!shown.length) continue;
+    const a = shown[0].a, text = t('tree_unknown_pill', { n: info.list.length }), hw = (measure(text, `600 ${PILL_FS}px ${uiFont}`) + 20) / 2, hh = 12;
     const i = sibAngles.indexOf(a), gapLo = i > 0 ? a - sibAngles[i - 1] : 9, gapHi = i >= 0 && i < sibAngles.length - 1 ? sibAngles[i + 1] - a : 9;
-    const side = gapHi >= gapLo ? 1 : -1;                       // towards the larger gap
-    const [cx, cy] = pt(rm, a), px = Math.cos(a) * side * (PH_R + 11), py = Math.sin(a) * side * (PH_R + 11);
-    let deg = a * 180 / Math.PI - 90; if (deg < -90) deg += 180; if (deg > 90) deg -= 180;
-    const tx = el('text', { class: 'phlab', transform: `translate(${f1(cx + px)},${f1(cy + py)}) rotate(${f1(deg)})`, tabindex: '0', role: 'button', 'data-id': info.start }, L.chips);
-    tx.textContent = chainLabel(info);
+    const g = el('g', { class: 'chip phpill', tabindex: '0', role: 'button', 'data-id': info.start, 'aria-label': chainLabel(info), display: 'none' }, L.chips);
+    el('rect', { x: f1(-hw), y: -hh, width: f1(2 * hw), height: 2 * hh, rx: hh }, g); el('text', { x: 0, y: 1 }, g).textContent = text;
+    // anchors: the circle nearest the head first, then back along the chain; sideways from the chain, the roomier side first
+    pillItems.push({ g, hw, hh, anchors: shown.slice().reverse().map(f => [f.x, f.y]), ux: Math.cos(a), uy: Math.sin(a), first: gapHi >= gapLo ? 1 : -1 });
   }
 
   /* trunk, roots, leaves, laurel */
@@ -538,6 +544,32 @@ function applyLOD(k, force) {
   const phone = isMobile(), minPx = phone ? 7.5 : DETAIL_PX;
   for (const kl of keyLabels) { kl.out = (kl.n.fs || 0) * k < minPx; if (kl.out !== kl.wasOut) { kl.n.g.classList.toggle('ext', kl.out); kl.wasOut = kl.out; } if (kl.out) outside++; kl.box = [kl.x * k, kl.y * k, kl.r * k + 1, kl.r * k + 1]; put(kl.box); }
   put([0, 0, MED_R * k, MED_R * k]); put([0, SLOT.ali / 2 * k, 150 * k, (SLOT.ali / 2 + 50) * k]);   // medallion, trunk
+  for (const b of solidBoxes) put([b[0] * k, b[1] * k, b[2] * k, b[3] * k]);                          // «؟» circles and chips
+  // chain pills, before the names so that the names keep clear of them. Zoomed out a little, a pill is held at a readable
+  // size (up to a third larger than drawn); where it would still fall below 10px on screen the pills go and the circles stay
+  const ps = Math.min(1.35, Math.max(1, (PILL_MIN_PX + 0.5) / (PILL_FS * k))), pillsOn = PILL_FS * k * ps >= PILL_MIN_PX;
+  const placed = [];
+  // exact test in world units: a pill's rectangle against the round fruits and circles, the chips and the other pills
+  const free = (cx, cy, hw, hh) => {
+    for (const n of nodeEls.values()) { const dx = Math.max(Math.abs(n.x - cx) - hw, 0), dy = Math.max(Math.abs(n.y - cy) - hh, 0); if (dx * dx + dy * dy < (n.r + 3) * (n.r + 3)) return false; }
+    const mx = Math.max(Math.abs(cx) - hw, 0), my = Math.max(Math.abs(cy) - hh, 0); if (mx * mx + my * my < (MED_R + 8) * (MED_R + 8)) return false;
+    for (const b of chipBoxesNow) if (Math.abs(b[0] - cx) < hw + b[2] + 3 && Math.abs(b[1] - cy) < hh + b[3] + 3) return false;
+    for (const b of placed) if (Math.abs(b[0] - cx) < hw + b[2] + 4 && Math.abs(b[1] - cy) < hh + b[3] + 4) return false;
+    return true;
+  };
+  for (const it of pillItems) {
+    let at = null;
+    if (pillsOn) {
+      const hw = it.hw * ps, hh = it.hh * ps, sx = it.ux >= 0 ? it.first : -it.first;
+      // beside the circle nearest the head first, then back along the chain; sideways from the chain or level with it, nudged outward step by step
+      search: for (const [ax, ay] of it.anchors) for (let step = 0; step < 6; step++) for (const [ux, uy] of [[it.ux * it.first, it.uy * it.first], [sx, 0], [-it.ux * it.first, -it.uy * it.first], [-sx, 0]]) {
+        const d = PH_R + 5 + Math.abs(ux) * hw + Math.abs(uy) * hh + step * 8 / k, cx = ax + ux * d, cy = ay + uy * d;
+        if (free(cx, cy, hw, hh)) { at = [cx * k, cy * k]; placed.push([cx, cy, hw, hh]); put([cx * k, cy * k, hw * k, hh * k]); break search; }
+      }
+    }
+    if (at) { it.g.setAttribute('transform', `translate(${f1(at[0] / k)},${f1(at[1] / k)}) scale(${ps.toFixed(4)})`); it.g.removeAttribute('display'); }
+    else it.g.setAttribute('display', 'none');
+  }
   const show = (kl, mode, x, y) => {
     if (!kl.t) { if (!mode) return; kl.t = el('text', { class: 'klab' }, L.klabs); }
     if (kl.shown !== mode) { kl.t.textContent = mode === 'name' ? kl.n.label : mode === 'dots' ? '…' : ''; if (mode) kl.t.removeAttribute('display'); else kl.t.setAttribute('display', 'none'); kl.shown = mode; }
@@ -724,6 +756,15 @@ function lineageHtml(p) {
   const first = / بنت /.test(' ' + p.name_as_written + ' ') ? 'بنت' : 'بن';
   return up.map((a, i) => a.placeholder ? `<span class="bn">…</span> <button type="button" class="lk" data-go="${esc(a.id)}">${esc(t('tree_unknown_name'))}</button> <span class="bn">…</span>` : `<span class="bn">${i && !up[i - 1].placeholder ? 'بن' : i ? '' : first}</span> <button type="button" class="lk" data-go="${esc(a.id)}">${esc(shortName(a))}</button>`).join(' ');
 }
+// a chain of placeholders: «حلقات بين <the named ancestor above> و<the named head below>»
+const plainName = p => nameOf(p).replace(/\s*[(（][^)）]*[)）]\s*$/, '');   // the name without a bracketed epithet
+const chainEnds = info => { const above = byId.get((byId.get(info.start) || {}).father_id); return { above: above && !above.placeholder ? above : null, heads: info.heads.map(h => byId.get(h)).filter(Boolean) }; };
+function betweenText(info) { const e = chainEnds(info); return e.above && e.heads.length ? t('tree_unknown_between', { a: plainName(e.above), b: e.heads.map(plainName).join(t('tree_and')) }) : ''; }
+function betweenHtml(info) {
+  const e = chainEnds(info); if (!e.above || !e.heads.length) return '';
+  const link = a => `<button type="button" class="lk" data-go="${esc(a.id)}">${esc(plainName(a))}</button>`;
+  return esc(t('tree_unknown_between')).replace('{a}', link(e.above)).replace('{b}', e.heads.map(link).join(esc(t('tree_and'))));
+}
 function stripHtml(id) {
   const D = docsOf(id);
   const thumbs = D.thumbs.map(th => {
@@ -837,7 +878,7 @@ let lastPointer = 'mouse', tipTimer;
 function lineage(id) { return [byId.get(id), ...ancestors(id)].reverse().filter((a, i, list) => !(a.placeholder && i && list[i - 1].placeholder)).map(a => a.placeholder ? '…' : shortName(a)).join(' ← '); }
 function showTip(g) {
   const p = byId.get(g.dataset.id); if (!p || !g.isConnected) return;
-  tip.innerHTML = `<b>${esc(nameOf(p))}</b><span>${esc(lineage(p.id))}</span>`;
+  tip.innerHTML = p.placeholder && chainInfo.has(p.id) ? `<b>${esc(chainLabel(chainInfo.get(p.id)))}</b><span>${esc(betweenText(chainInfo.get(p.id)))}</span>` : `<b>${esc(nameOf(p))}</b><span>${esc(lineage(p.id))}</span>`;
   tip.hidden = false;
   const r = g.getBoundingClientRect(), h = host.getBoundingClientRect(), tw = tip.offsetWidth, th = tip.offsetHeight;
   const x = Math.max(4, Math.min(h.width - tw - 4, r.left + r.width / 2 - h.left - tw / 2));

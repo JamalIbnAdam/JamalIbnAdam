@@ -157,8 +157,8 @@ img { max-width: 100%; height: auto; }
 .ft-svg .spine-item:focus-visible .plaque, .ft-svg .node:focus-visible circle.c, .ft-svg .chip:focus-visible rect { stroke: var(--ft-gold); stroke-width: 4; }
 .ft-svg .node.ext .nl { display: none; }
 .ft-svg .klab { font: 700 12px var(--ft-f-name); fill: var(--ft-ink); text-anchor: middle; dominant-baseline: central; paint-order: stroke; stroke: var(--ft-bg); stroke-width: 3.5px; stroke-linejoin: round; pointer-events: none; }
-.ft-svg .phlab { font: 600 11.5px var(--ft-f-ui); fill: var(--ft-ink2); text-anchor: middle; dominant-baseline: central; cursor: pointer; paint-order: stroke; stroke: var(--ft-bg); stroke-width: 4px; stroke-linejoin: round; }
-.ft-svg .phlab:hover, .ft-svg .phlab:focus-visible { fill: var(--ft-gold-ink); outline: none; }
+.ft-svg .phpill rect { fill: var(--ft-bg); stroke: var(--ft-branch); stroke-dasharray: 2 4; stroke-linecap: round; }
+.ft-svg .phpill text { font: 600 12px var(--ft-f-ui); fill: var(--ft-ink2); direction: inherit; unicode-bidi: plaintext; }
 .ft-svg .node.ph text { font-family: var(--ft-f-name); }
 .ft-svg .chip { cursor: pointer; }
 .ft-svg .chip rect { fill: var(--ft-sheet); stroke: var(--ft-hair); stroke-width: 1.2; }
