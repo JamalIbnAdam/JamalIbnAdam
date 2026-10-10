@@ -4,18 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <script>
-        // theme before first paint: the stored choice (shared with /tree/), otherwise dark
-        (function () { try { var t = localStorage.getItem('treeTheme'); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) { } })();
-    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Kufi+Arabic:wght@400;500;600&display=swap"
-        media="print" onload="this.media='all'">
+        media="print" data-late-css>
     <noscript>
         <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Kufi+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
     </noscript>
+    <script src="theme.js"></script>
 
     <title>السجل الذهبي لآل سبال العين | أحفاد عبد الله سبال العين - جمال ابن آدم</title>
     <meta name="description" content="نسب قبيلة الأنصار في وادي الشاطئ بفزان: لُحمات تجتمع في زاوية براك الشاطئ وآقار وأشكدة ودبدب، وأصلها عبد الله سبال العين. كل اسم في الشجرة مربوط بوثيقته إن وُجدت، أو برواية بعض أعيان وشيوخ القبيلة إن لم توجد بعد.">
