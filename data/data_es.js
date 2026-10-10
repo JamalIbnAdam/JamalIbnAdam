@@ -28,41 +28,43 @@ window.FamilyTreeData = {
         // --- POEM TAB ---
         poem_main_title: "La epopeya de los Ansar en la tierra de Libia",
         poem_intro:
-            "Esta epopeya, con forma de manuscrito, traza el linaje de los Ansar desde la cuna de Arabia en Yemen, pasando por su apoyo al Profeta ﷺ en Medina, a través de las conquistas benditas, hasta el asentamiento de sus linajes en la tierra pura de Libia.",
-        poem_ch1_title: "🛡️ Capítulo I: Orígenes y patria (Yemen y Medina)",
+            "Un poema sobre la historia de los Ansar, desde su apoyo al Profeta ﷺ en Medina hasta la tierra de Libia y Wadi al-Shati. Cada hecho que menciona tiene su fuente en este sitio.",
+        poem_ch1_title: "Capítulo I: Los Ansar en Medina",
         poem_ch1_body: [
-            "Desde Ma'rib y las raíces azdíes, los Ansar se alzaron como tribus nobles de fe.",
-            "Tras la gran inundación, Aws y Jazray se trasladaron a Yathrib y abrazaron la luz del islam.",
-            "Su lealtad al Profeta ﷺ se convirtió en la piedra angular de su legado."
+            "سَلُوا الْمَدِينَةَ عَنْ قَوْمٍ إِذَا ذُكِرُوا ... قَالَتْ: هُمُ النَّصْرُ وَالْإِيوَاءُ وَالدَّارُ",
+            "أَوْسٌ وَخَزْرَجُ آوَوْا الْمُصْطَفَى وَحَمَوْا ... دِينَ الْإِلَهِ، فَهُمْ لِلدِّينِ أَنْصَارُ",
+            "وَيَوْمَ بَدْرٍ وَفِي الْأَحْزَابِ مَا وَهَنُوا ... وَلَا ثَنَتْهُمْ عَنِ الْإِيمَانِ أَخْطَارُ",
+            "لَا يُبْغِضُ الْقَوْمَ إِلَّا مَنْ بِهِ دَخَلٌ ... وَحُبُّهُمْ عِنْدَ أَهْلِ الدِّينِ مِعْيَارُ",
+            "يَقِلُّ عَدُّهُمُ وَالنَّاسُ قَدْ كَثُرُوا ... كَالْمِلْحِ فِي الزَّادِ، صَحَّتْ عَنْهُ آثَارُ"
         ],
-        poem_ch2_title: "⚔️ Capítulo II: Conquistas y gloria",
+        poem_ch2_title: "Capítulo II: En la tierra de Libia",
         poem_ch2_body: [
-            "Los Ansar marcharon con los primeros compañeros en Yarmuk y más allá.",
-            "Llevaron el Corán hacia el oeste, levantando mezquitas y comunidades en Al-Ándalus.",
-            "Ciudades como Toledo y Granada resonaron con el llamado a la unidad y la adoración."
+            "وَفِي رُبَى بَرْقَةٍ مِنْهُمْ رُوَيْفِعُهُمْ ... أَمِيرُهَا، وَعَلَى الْبَيْضَاءِ أَنْوَارُ",
+            "وَفِي طَرَابُلُسٍ صَحْبُ النَّبِيِّ ثَوَى ... مُنَيْذِرٌ، وَلَهُ فِي النَّقْلِ أَخْبَارُ",
+            "وَعِنْدَ غَرْيَانَ وَادِي النَّخْلِ مَسْجِدُهُ ... عَبْدُ الْعَزِيزِ، وَفِي الْبَحْرِ الْعِدَى جَارُوا",
+            "وَفِي الْجَنُوبِ وَفِي الشُّطْآنِ قَدْ نَزَلُوا ... فِي كُلِّ مِصْرٍ لَهُمْ شَأْنٌ وَأَقْدَارُ"
         ],
-        poem_ch3_title: "🕌 Capítulo III: La prueba de precedencia (Trípoli y Barqa)",
+        poem_ch3_title: "Capítulo III: El antepasado Abdullah Sabal al-Ain",
         poem_ch3_body: [
-            "Trípoli y Barqa testimonian la temprana presencia ansarí en Libia.",
-            "Compañeros como Munidhir al-Ifriqi y Ruwayfi ibn Thabit descansan en su suelo.",
-            "Estos hitos confirman las raíces ancestrales establecidas desde las primeras conquistas."
+            "أَمِنْ ثَرَى جُدَّةٍ جَاؤُوا أَمِ انْحَدَرُوا ... مِنْ أَرْضِ أَنْدَلُسٍ؟ وَالْبَحْثُ أَطْوَارُ",
+            "وَحَطَّ فِي الشَّاطِئِ الْمَيْمُونِ رَحْلَتَهُ ... عَبْدُ الْإِلَهِ، وَمَاءُ الْعَيْنِ مِدْرَارُ",
+            "سَبَّالَ عَيْنٍ دَعَوْهُ، إِذْ أَبَاحَ لَهُمْ ... سَبِيلَهَا، فَارْتَوَى سَارٍ وَزُوَّارُ",
+            "وَشَادَ زَاوِيَةً لِلْعِلْمِ يَعْمُرُهَا ... قُرْآنُ فَجْرٍ، وَإِطْعَامٌ، وَأَذْكَارُ",
+            "سُطُورُ أَجْدَادِنَا فِي الرَّقِّ شَاهِدَةٌ ... بَيْعٌ وَحَبْسٌ وَإِشْهَادٌ وَإِقْرَارُ"
         ],
-        poem_ch4_title: "🌴 Capítulo IV: El árbol de Fadl (seis ramas)",
+        poem_ch4_title: "Capítulo IV: Las ramas y las aldeas",
         poem_ch4_body: [
-            "De Abdullah Sabal al-Ain surgieron las ramas que descienden de él.",
-            "Agar, Ashkedah, Dabdab, Brak y las familias de Uthman, Qasim, Abu Bakr, Salem y Abdul Wahid forjaron el legado.",
-            "Su honor se preserva a través de las generaciones en Wadi Al-Shatii."
+            "مِنْ نَسْلِهِ قَدْ نَمَتْ شَتَّى الْبُطُونِ لَنَا ... كَمَا تَفَرَّعَ فِي الْبُسْتَانِ أَشْجَارُ",
+            "فِي الشَّاطِئِ اجْتَمَعَتْ أَحْيَاؤُهُمْ وَزَهَتْ ... بَرَاكُ، أَشْكِدَةٌ، دَبْدَبْ، وَآقَارُ",
+            "وَصَانَ أَشْيَاخُنَا الْأَنْسَابَ فِي صُدُرٍ ... كَمَا تُصَانُ مِنَ الْأَيَّامِ أَسْرَارُ",
+            "وَإِنْ نَأَتْ بِبَنِيهِ الْيَوْمَ غُرْبَتُهُمْ ... فَالْأَصْلُ يَجْمَعُهُمْ، وَالْوُدُّ أَسْوَارُ"
         ],
-        poem_ch5_title: "🤝 Capítulo V: Apoyo y santuario",
+        poem_ch5_title: "Cierre",
         poem_ch5_body: [
-            "Los Ansar siguen siendo un pueblo de valentía, solidaridad y protección del vecino.",
-            "Su respuesta a los llamados de auxilio nace de la fe, la generosidad y el honor."
+            "يَا رَبِّ فَاحْفَظْ بَنِي الْأَنْصَارِ قَاطِبَةً ... وَعْدُ النَّبِيِّ لَهُمْ: حَوْضٌ وَأَنْهَارُ",
+            "ثُمَّ الصَّلَاةُ عَلَى الْهَادِي وَعِتْرَتِهِ ... مَا سَبَّحَتْ فِي دُجَى الْأَسْحَارِ أَطْيَارُ"
         ],
-        poem_conclusion:
-            "🤲 Conclusión y fidelidad: Oh Señor, preserva a los Ansar en toda tierra y envía bendiciones sobre Muhammad ﷺ, quien ennobleció nuestro linaje.",
         poem_credits: "✍️ Letra: Jamal Ibn Adam (Asistido por IA) | 🎵 Nasheed exclusivo de YouTube",
-        poem_ch3_image_alt: "Munidhir Al-Ifriqi - retrato de referencia",
-        poem_ch4_image_alt: "Palmeras del sur - paisaje de referencia",
 
         // Search & Filters
         search_placeholder: "Buscar antepasado (p. ej., Omar, Jaber)...",

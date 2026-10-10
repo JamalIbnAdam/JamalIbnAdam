@@ -28,37 +28,43 @@ window.FamilyTreeData = {
         // --- POEM TAB ---
         poem_main_title: "Epos Ansarów w ziemi Libii",
         poem_intro:
-            "Ten manuskryptowy opis streszcza dzieje Ansarów od Jemenu, przez Medynę, aż po podboje i osiedlenie rodów w Libii.",
-        poem_ch1_title: "🛡️ Rozdział I: Początki i Ojczyzna (Jemen i Medyna)",
+            "Poemat o dziejach Ansarów, od wsparcia Proroka ﷺ w Medynie po ziemię libijską i Wadi al-Szati. Każde wydarzenie, o którym mówi, ma swoje źródło na tej stronie.",
+        poem_ch1_title: "Rozdział I: Ansarowie w Medynie",
         poem_ch1_body: [
-            "Ansarowie wywodzą się z Ma'rib i plemion Azd, a w Jatrib przyjęli światło islamu.",
-            "Aws i Khazradż wsparli Proroka ﷺ, tworząc fundament ich tożsamości."
+            "سَلُوا الْمَدِينَةَ عَنْ قَوْمٍ إِذَا ذُكِرُوا ... قَالَتْ: هُمُ النَّصْرُ وَالْإِيوَاءُ وَالدَّارُ",
+            "أَوْسٌ وَخَزْرَجُ آوَوْا الْمُصْطَفَى وَحَمَوْا ... دِينَ الْإِلَهِ، فَهُمْ لِلدِّينِ أَنْصَارُ",
+            "وَيَوْمَ بَدْرٍ وَفِي الْأَحْزَابِ مَا وَهَنُوا ... وَلَا ثَنَتْهُمْ عَنِ الْإِيمَانِ أَخْطَارُ",
+            "لَا يُبْغِضُ الْقَوْمَ إِلَّا مَنْ بِهِ دَخَلٌ ... وَحُبُّهُمْ عِنْدَ أَهْلِ الدِّينِ مِعْيَارُ",
+            "يَقِلُّ عَدُّهُمُ وَالنَّاسُ قَدْ كَثُرُوا ... كَالْمِلْحِ فِي الزَّادِ، صَحَّتْ عَنْهُ آثَارُ"
         ],
-        poem_ch2_title: "⚔️ Rozdział II: Podboje i Chwała",
+        poem_ch2_title: "Rozdział II: Na ziemi libijskiej",
         poem_ch2_body: [
-            "Ansarowie uczestniczyli w zwycięstwach od Jarmuku po Andaluzję.",
-            "Na zachodzie zakładali meczety i wspólnoty, niosąc jedność i wiarę."
+            "وَفِي رُبَى بَرْقَةٍ مِنْهُمْ رُوَيْفِعُهُمْ ... أَمِيرُهَا، وَعَلَى الْبَيْضَاءِ أَنْوَارُ",
+            "وَفِي طَرَابُلُسٍ صَحْبُ النَّبِيِّ ثَوَى ... مُنَيْذِرٌ، وَلَهُ فِي النَّقْلِ أَخْبَارُ",
+            "وَعِنْدَ غَرْيَانَ وَادِي النَّخْلِ مَسْجِدُهُ ... عَبْدُ الْعَزِيزِ، وَفِي الْبَحْرِ الْعِدَى جَارُوا",
+            "وَفِي الْجَنُوبِ وَفِي الشُّطْآنِ قَدْ نَزَلُوا ... فِي كُلِّ مِصْرٍ لَهُمْ شَأْنٌ وَأَقْدَارُ"
         ],
-        poem_ch3_title: "🕌 Rozdział III: Świadectwo Pierwszeństwa (Trypolis i Barka)",
+        poem_ch3_title: "Rozdział III: Przodek Abdullah Sabal al-Ain",
         poem_ch3_body: [
-            "Trypolis i Barka świadczą o wczesnej obecności Ansarów w Libii.",
-            "Towarzysze, tacy jak Munidhir al-Ifriqi i Ruwayfi ibn Thabit, spoczywają w tej ziemi."
+            "أَمِنْ ثَرَى جُدَّةٍ جَاؤُوا أَمِ انْحَدَرُوا ... مِنْ أَرْضِ أَنْدَلُسٍ؟ وَالْبَحْثُ أَطْوَارُ",
+            "وَحَطَّ فِي الشَّاطِئِ الْمَيْمُونِ رَحْلَتَهُ ... عَبْدُ الْإِلَهِ، وَمَاءُ الْعَيْنِ مِدْرَارُ",
+            "سَبَّالَ عَيْنٍ دَعَوْهُ، إِذْ أَبَاحَ لَهُمْ ... سَبِيلَهَا، فَارْتَوَى سَارٍ وَزُوَّارُ",
+            "وَشَادَ زَاوِيَةً لِلْعِلْمِ يَعْمُرُهَا ... قُرْآنُ فَجْرٍ، وَإِطْعَامٌ، وَأَذْكَارُ",
+            "سُطُورُ أَجْدَادِنَا فِي الرَّقِّ شَاهِدَةٌ ... بَيْعٌ وَحَبْسٌ وَإِشْهَادٌ وَإِقْرَارُ"
         ],
-        poem_ch4_title: "🌴 Rozdział IV: Drzewo Fadla (Sześć gałęzi)",
+        poem_ch4_title: "Rozdział IV: Gałęzie i wsie",
         poem_ch4_body: [
-            "Od Abdullaha Sabal al-Ain wyrosły gałęzie, które od niego pochodzą.",
-            "Agar, Ashkedah, Dabdab, Brak oraz rody Usmana, Kasima, Abu Bakra, Salema i Abd al-Wahida ukształtowały dziedzictwo.",
+            "مِنْ نَسْلِهِ قَدْ نَمَتْ شَتَّى الْبُطُونِ لَنَا ... كَمَا تَفَرَّعَ فِي الْبُسْتَانِ أَشْجَارُ",
+            "فِي الشَّاطِئِ اجْتَمَعَتْ أَحْيَاؤُهُمْ وَزَهَتْ ... بَرَاكُ، أَشْكِدَةٌ، دَبْدَبْ، وَآقَارُ",
+            "وَصَانَ أَشْيَاخُنَا الْأَنْسَابَ فِي صُدُرٍ ... كَمَا تُصَانُ مِنَ الْأَيَّامِ أَسْرَارُ",
+            "وَإِنْ نَأَتْ بِبَنِيهِ الْيَوْمَ غُرْبَتُهُمْ ... فَالْأَصْلُ يَجْمَعُهُمْ، وَالْوُدُّ أَسْوَارُ"
         ],
-        poem_ch5_title: "🤝 Rozdział V: Pomoc i Schronienie",
+        poem_ch5_title: "Zakończenie",
         poem_ch5_body: [
-            "Ansarowie są znani z odwagi, solidarności i ochrony sąsiadów.",
-            "Odpowiadają na wezwania pomocy zgodnie z etosem wiary."
+            "يَا رَبِّ فَاحْفَظْ بَنِي الْأَنْصَارِ قَاطِبَةً ... وَعْدُ النَّبِيِّ لَهُمْ: حَوْضٌ وَأَنْهَارُ",
+            "ثُمَّ الصَّلَاةُ عَلَى الْهَادِي وَعِتْرَتِهِ ... مَا سَبَّحَتْ فِي دُجَى الْأَسْحَارِ أَطْيَارُ"
         ],
-        poem_conclusion:
-            "🤲 Zakończenie i Wierność: Boże, zachowaj Ansarów i obdarz błogosławieństwem Proroka ﷺ.",
         poem_credits: "✍️ Tekst: Jamal Ibn Adam (wspomagany AI) | 🎵 Ekskluzywny Nasheed na YouTube",
-        poem_ch3_image_alt: "Munidhir al-Ifriqi - szkic portretu",
-        poem_ch4_image_alt: "Południowe palmy - szkic krajobrazu",
 
         // Search & Filters
         search_placeholder: "Szukaj przodka (np. Omar, Jaber)...",
