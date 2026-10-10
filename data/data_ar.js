@@ -458,6 +458,11 @@ window.FamilyTreeData = {
         install_and_1: "اضغط زر القائمة ☰ أسفل الشاشة",
         install_and_2: "اختر \"إضافة الصفحة إلى\" ثم \"الشاشة الرئيسية\"",
         install_ff: "⋮ ← تثبيت",
+        install_and_chrome_1: "اضغط ⋮ أعلى الشاشة، ثم «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية»",
+        install_desk_title: "ثبّت التطبيق على حاسوبك",
+        install_desk_chrome: "اضغط أيقونة التثبيت في شريط العنوان، أو القائمة ⋮ ← تثبيت",
+        install_desk_safari: "ملف ← إضافة إلى Dock",
+        install_desk_ff: "هذا المتصفح لا يدعم التثبيت؛ افتح الموقع في Chrome أو Edge أو Safari",
 
         tree_unknown_name: "قيد البحث",
         tree_chain_more: "إظهار {n} دوائر أخرى قيد البحث",

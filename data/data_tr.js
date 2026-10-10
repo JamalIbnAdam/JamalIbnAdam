@@ -388,6 +388,11 @@ window.FamilyTreeData = {
         install_and_1: "Ekranın altındaki ☰ menü düğmesine dokun",
         install_and_2: "“Sayfayı şuraya ekle”yi, sonra “Ana ekran”ı seç",
         install_ff: "⋮ → Yükle",
+        install_and_chrome_1: "Ekranın üstündeki ⋮ simgesine, ardından “Uygulamayı yükle” veya “Ana ekrana ekle”ye dokunun",
+        install_desk_title: "Uygulamayı bilgisayarınıza yükleyin",
+        install_desk_chrome: "Adres çubuğundaki yükleme simgesine veya ⋮ menüsü → Yükle’ye tıklayın",
+        install_desk_safari: "Dosya → Dock’a Ekle",
+        install_desk_ff: "Bu tarayıcı yüklemeyi desteklemiyor; siteyi Chrome, Edge veya Safari’de açın",
 
         tree_unknown_name: "Under research", // TODO translate
         tree_chain_more: "Show {n} more circles under research", // TODO translate

@@ -389,6 +389,11 @@ window.FamilyTreeData = {
         install_and_1: "Stuknij przycisk menu ☰ na dole ekranu",
         install_and_2: "Wybierz „Dodaj stronę do”, a potem „Ekran startowy”",
         install_ff: "⋮ → Zainstaluj",
+        install_and_chrome_1: "Dotknij ⋮ u góry ekranu, a następnie „Zainstaluj aplikację” lub „Dodaj do ekranu głównego”",
+        install_desk_title: "Zainstaluj aplikację na komputerze",
+        install_desk_chrome: "Kliknij ikonę instalacji na pasku adresu albo menu ⋮ → Zainstaluj",
+        install_desk_safari: "Plik → Dodaj do Docka",
+        install_desk_ff: "Ta przeglądarka nie obsługuje instalacji; otwórz stronę w Chrome, Edge lub Safari",
 
         tree_unknown_name: "Under research", // TODO translate
         tree_chain_more: "Show {n} more circles under research", // TODO translate

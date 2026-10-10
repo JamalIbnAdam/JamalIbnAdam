@@ -400,6 +400,11 @@ window.FamilyTreeData = {
         install_and_1: "Tap the menu button ☰ at the bottom of the screen",
         install_and_2: "Choose “Add page to”, then “Home screen”",
         install_ff: "⋮ → Install",
+        install_and_chrome_1: "Tap ⋮ at the top of the screen, then “Install app” or “Add to Home screen”",
+        install_desk_title: "Install the app on your computer",
+        install_desk_chrome: "Click the install icon in the address bar, or the ⋮ menu → Install",
+        install_desk_safari: "File → Add to Dock",
+        install_desk_ff: "This browser does not support installing; open the site in Chrome, Edge or Safari",
 
         tree_unknown_name: "Under research",
         tree_chain_more: "Show {n} more circles under research",
