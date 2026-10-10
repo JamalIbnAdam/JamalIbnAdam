@@ -231,11 +231,12 @@ window.FamilyTreeData = {
         tree_docs_many: "📄 {n} documents", // TODO translate
         tree_link_maybe: "Indication from the documents", // TODO translate
         tree_link_trad: "Oral account of tribal elders", // TODO translate
-        tree_legend_ok: "📄 Documents", // TODO translate
-        tree_explain_ok: "A document names him with his father", // TODO translate
-        tree_explain_maybe: "A strong indication, without explicit text", // TODO translate
-        tree_explain_trad: "No document yet", // TODO translate
-        tree_legend_say: "A solid line means a document names the person together with his father. Any family that holds a document can send it so that its branch is documented.", // TODO translate
+        tree_legend_say: "Belgesi olan her aile, kolunun belgelenmesi için onu gönderebilir.",
+        tree_legend_intro: "Her adın kaynağı, üzerine dokunulduğunda kartında yazılıdır:",
+        tree_legend_doc: "📄 Belge",
+        tree_link_civil: "🏛 Nüfus kaydı",
+        tree_link_author: "Yazarın şeceresinden",
+        tree_legend_unknown: "? Araştırılıyor",
         tree_unknown_chain: "Under research — an estimated {n} generations", // TODO translate
         tree_unknown_range: "(between {min} and {max})", // TODO translate
         tree_unknown_basis: "An ancestor whose name is not yet known.", // TODO translate
@@ -288,9 +289,6 @@ window.FamilyTreeData = {
         home_search_btn: "Show my chain", // TODO translate
         home_med_sub: "Zawiyat Brak eş-Şati, 10th century AH", // TODO translate
         home_tree_p: "Tap any name to see its document: the image, the text as written, a plain explanation, and the source. Tap “Show my chain” to see your forefathers one by one, down to Abdullah Sabal Al-Ain.", // TODO translate
-        home_leg_ok: "A document names the person with his father", // TODO translate
-        home_leg_maybe: "An indication from the documents, without explicit text", // TODO translate
-        home_leg_trad: "Oral account of tribal elders; no document yet", // TODO translate
         home_tree_ansar: "The tribe's attribution to the Ansar is written in its own documents: “al-Jaddawi al-Ansari” in a document from Ishkeda dated 1174 AH, then in documents of 1261 and 1276 AH.", // TODO translate
         home_tree_btn: "Open the evidence tree", // TODO translate
         home_tree_aria: "A preview of the evidence tree: Ali al-Jaddawi al-Ansari, his son Umar, then Abdullah Sabal Al-Ain, his son al-Hajj Fadl, and his grandsons Muhammad, Belqasim and Qasim with their sons", // TODO translate
