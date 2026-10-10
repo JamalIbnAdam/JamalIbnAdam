@@ -5,18 +5,15 @@
     <meta charset="UTF-8">
     <base href="../">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <script>
-        // theme before first paint: the stored choice (shared with /tree/), otherwise dark
-        (function () { try { var t = localStorage.getItem('treeTheme'); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) { } })();
-    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Kufi+Arabic:wght@400;500;600&display=swap"
-        media="print" onload="this.media='all'">
+        media="print" data-late-css>
     <noscript>
         <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Kufi+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
     </noscript>
+    <script src="theme.js"></script>
 
     <title>السجل الذهبي لآل سبال العين | جمال ابن آدم - Jamal Ibn Adam</title>
     <meta name="description"
@@ -129,12 +126,9 @@
 <section id="figures" class="sg-pad sg-sec">
 <h2 class="sg-h2" data-i18n="figures_intro_title">أعلام الأنصار في ليبيا</h2>
 <p class="sg-sec-lede" data-i18n="figures_intro_text">أعلام من الأنصار عاشوا في ليبيا عبر القرون. نذكرهم للتعريف بالحضور الأنصاري في البلاد، لا لإثبات نسب أسرة بعينها.</p>
-<div class="sg-grid" id="more-figures">
-<article class="sg-card"><span class="sg-tag" data-i18n="fig_1_badge"></span><h3 data-i18n="fig_1_name"></h3><p data-i18n="fig_1_desc"></p><p class="sg-meta" data-i18n="fig_1_loc"></p></article>
-<article class="sg-card"><span class="sg-tag" data-i18n="fig_2_badge"></span><h3 data-i18n="fig_2_name"></h3><p data-i18n="fig_2_desc"></p><p class="sg-meta" data-i18n="fig_2_loc"></p></article>
-<article class="sg-card"><span class="sg-tag" data-i18n="fig_3_badge"></span><h3 data-i18n="fig_3_name"></h3><p data-i18n="fig_3_desc"></p><p class="sg-meta" data-i18n="fig_3_loc"></p></article>
-<article class="sg-card"><span class="sg-tag" data-i18n="fig_4_badge"></span><h3 data-i18n="fig_4_name"></h3><p data-i18n="fig_4_desc"></p><p class="sg-meta" data-i18n="fig_4_loc"></p></article>
-</div>
+<p class="sg-sec-lede" id="more-fig-note"></p>
+<nav class="sg-chips" id="more-fig-chips" aria-label="المناطق"></nav>
+<div id="more-figures"></div>
 </section>
 
 <section id="library" class="sg-pad sg-sec">
@@ -152,11 +146,9 @@
 <p data-i18n="doc_1002_desc"></p>
 </a>
 </div>
-<div class="sg-grid" style="margin-top: 20px;">
-<div class="sg-card"><h3 data-i18n="library_methodology_title"></h3><p data-i18n="lib_method_text"></p></div>
-<div class="sg-card"><h3 data-i18n="library_sources_title"></h3><ul class="sg-list"><li data-i18n="library_source_1"></li><li data-i18n="library_source_2"></li><li data-i18n="library_source_3"></li><li data-i18n="library_source_4"></li></ul></div>
-<div class="sg-card"><h3 data-i18n="lib_logic_title"></h3><p data-i18n="lib_logic_text"></p></div>
-</div>
+<p class="sg-card sg-open-q" style="margin-top: 20px;"><span data-i18n="lib_open_question"></span> <a href="#journey" data-i18n="home_nav_journey">رحلة النسب</a></p>
+<h3 class="sg-region-h" style="margin-top: 36px;" data-i18n="home_src_h">المراجع المستخدمة في البحث</h3>
+<div id="more-sources" style="display: flex; flex-wrap: wrap; gap: 40px 56px;"></div>
 </section>
 
 <section id="poem" class="sg-pad sg-sec">
@@ -186,12 +178,15 @@
 <div class="sg-card">
 <h3 data-i18n="author_books_title"></h3>
 <p data-i18n="author_books_intro"></p>
+<ul class="sg-list sg-titles"><li data-i18n="author_title_1"></li><li data-i18n="author_title_2"></li></ul>
 <p data-i18n="author_book_1"></p>
 <p data-i18n="author_book_2"></p>
 <div class="sg-actions">
-<a class="sg-btn" href="https://www.andrewtips.com" target="_blank" rel="noopener noreferrer" data-i18n="btn_visit_books"></a>
+<a class="sg-btn" href="https://jsadamauthor.com/ar/" target="_blank" rel="noopener" lang="ar" dir="rtl">الكتب بالعربية</a>
+<a class="sg-btn" href="https://jsadamauthor.com/" target="_blank" rel="noopener" lang="en" dir="ltr">Books in English</a>
 <a class="sg-btn sg-btn-line" href="https://www.youtube.com/@JamalIbnAdam" target="_blank" rel="noopener noreferrer" data-i18n="btn_visit_youtube"></a>
 </div>
+<p class="sg-meta" data-i18n="author_publisher"></p>
 </div>
 </div>
 <div class="sg-card sg-contact" id="contact" style="margin-top: 20px;">
@@ -207,17 +202,24 @@
 </section>
 </main>
 
+<dialog class="sg-reader" id="more-reader" aria-labelledby="more-reader-title">
+<header><h2 id="more-reader-title"></h2><button type="button" id="more-reader-x" aria-label="إغلاق"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></header>
+<div class="sg-reader-img"><img id="more-reader-img" alt=""></div>
+<div class="sg-reader-text"><p class="sg-quote" id="more-reader-quote"></p><p class="sg-src" id="more-reader-src"></p></div>
+</dialog>
+
 <footer id="contribute" class="sg-pad" style="border-top: 1px solid var(--h-hair); padding: 64px 48px 48px;">
 <div style="max-width: 760px; margin: 0 auto; text-align: center; display: flex; flex-direction: column; gap: 18px; align-items: center;">
 <div class="sg-appeal" data-i18n="tree_credits"><p>نرجو تكرّماً من أصحاب الوثائق المنشورة هنا إرسال صورة ملوّنة واضحة تماماً من النسخة الأصلية لكل وثيقة، حتى نتحقق من قراءتها بدقة أكبر. وسنضيف على كل وثيقة اسم صاحبها، وختم موقع «جمال ابن آدم». تُنشر الوثائق هنا بإذن، مع ذكر مصدر كل وثيقة.</p>
 <p>وشكراً لأبناء العم، أحفاد سيدي الشيخ الفاضل عبد الله سبال العين، رحمه الله رحمةً واسعة وألحقنا به في جنات النعيم.</p></div>
 <a id="home-send" hidden href="#contribute" style="margin-top: 8px; min-height: 48px; padding: 0 26px; border-radius: 12px; background: var(--h-gold); color: var(--h-onGold); text-decoration: none; display: inline-flex; align-items: center; font-weight: 600;" data-i18n="home_send_btn">أرسل وثيقة أو صورة أوضح</a>
-<p style="margin: 24px 0 0; font-size: 13px; color: var(--h-ink2);">jamalibnadam.com · جمال ابن آدم</p>
+<p style="margin: 24px 0 0; font-size: 13px; color: var(--h-ink2);">jamalibnadam.com · جمال ابن آدم · <span data-i18n="footer_books"><a href="https://jsadamauthor.com/ar/" target="_blank" rel="noopener" style="color: var(--h-gold);">كتب المؤلف</a></span></p>
 </div>
 </footer>
 
 </div>
 
+<script src="sources.js" defer></script>
 <script src="more/more.js" defer></script>
 <script src="install.js" defer></script>
 <script src="touch.js" defer></script>

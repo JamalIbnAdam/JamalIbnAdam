@@ -80,33 +80,26 @@ window.FamilyTreeData = {
         modern_era_generation: "Nesil 73: (Güncel nesil - 2026)",
 
         // --- FIGURES TAB (The 4 Cards) ---
+        fig_region_tripoli: "Trablus ve batı kıyısı",
+        fig_region_jabal: "Batı Dağı ve Garyan",
+        fig_region_barqa: "Berka",
+        fig_region_fezzan: "Fizan ve güney",
+        fig_region_unlinked: "Brak eş-Şati’den henüz şecereye bağlanmamış kişiler",
+        fig_evidence: "Kanıtlar ({n})",
+        fig_via: "Şuradan naklen:",
+        fig_in_tree: "Kanıt şeceresinde",
+        fig_page: "s. {p}",
         figures_intro_title: "Libya’daki Ensar ileri gelenleri",
         figures_intro_text:
             "Yüzyıllar boyunca Libya’da yaşamış Ensar ileri gelenleri. Onları ülkedeki Ensar varlığını tanıtmak için anıyoruz; belirli bir ailenin nesebini kanıtlamak için değil.",
 
         // Card 1
-        fig_1_badge: "Birinci Nesil (Sahabeler)",
-        fig_1_name: "Ruwayfi bin Thabit El-Ensari",
-        fig_1_desc: "İslam'ın ilk dönemlerinde Berka ve Trablus Valisi.",
-        fig_1_loc: "📍 Kabri Beyda'dadır",
 
         // Card 2
-        fig_2_badge: "Birinci Nesil (Sahabeler)",
-        fig_2_name: "Munidhir El-Ifriki El-Ensari",
-        fig_2_desc: "'Peygamber'in Berberi' olarak bilinen sahabe.",
-        fig_2_loc: "📍 Kabri Trablus'tadır (Eski Mezarlık)",
 
         // Card 3
-        fig_3_badge: "Veliler ve Alimler",
-        fig_3_name: "Veli Bu Acila El-Ensari",
-        fig_3_desc: "Batı Libya'nın büyük şeyhlerinden biri.",
-        fig_3_loc: "📍 Kabri Acilat'tadır",
 
         // Card 4
-        fig_4_badge: "Veliler ve Alimler",
-        fig_4_name: "Şeyh Abdullah bin Muhammed Kutub",
-        fig_4_desc: "Güneyde ilmi yayan zahid bir alim.",
-        fig_4_loc: "📍 Kabri Çöldedir (Kufra yakınları)",
 
         // --- FADL BRANCHES (The 7 Cards) ---
         branch_1_title: "(1) Salim bin Yusuf Çocukları",
@@ -141,20 +134,7 @@ window.FamilyTreeData = {
         library_book_alt: "Vadi El-Şati'de Ensar Hazrec",
         library_doc_label: "Belge bilgisi (kaynak):",
         library_author: "Yazar: Dr. Muhammed Abdülkadir El-Şeyh El-Ensari (2022)",
-        library_methodology_title: "❖ Bilimsel Belgeleme Metodolojisi",
-        library_sources_title: "📚 Onaylanmış Kaynaklar ve Referanslar:",
         lib_book_info: "Kitap: Vadi El-Şati'de Ensar Hazrec (Dr. Muhammed Abdülkadir, 2022)",
-        lib_method_text: "Bu şecere (73 nesil), kanıtları doğrulama metodolojisine dayanarak belgelenmiştir:",
-        lib_point_1: "<strong>El Yazması Doğrulaması:</strong> Dede Ali'nin soyundan gelenlerin orijinal belgelerine dayanılmıştır.",
-        lib_point_2: "<strong>Medeniyet Kanıtı:</strong> Dede Abdullah tarafından kurulan 'Sebul' su sistemi, Gırnata sulama mühendisliği ile eşleşmektedir.",
-        lib_point_3: "<strong>Kronoloji:</strong> Hesaplanan zaman dilimleri, Dede Ali'nin Endülüs'ün düşüşünden hemen sonra yaşadığını doğrulamaktadır.",
-        library_source_1: "1. <strong>Aile el yazmalar:</strong> (Libya Cihad Merkezi - Trablus'ta muhafaza edilir).",
-        library_source_2: "2. <strong>Fizan Tarihi:</strong> (Yazar: Mustafa Khawjah - Editör: Habib Wada'ah).",
-        library_source_3: "3. <strong>Libya Nüfus Sözlüğü:</strong> (Derleyen: Halife et-Tlissi).",
-        library_source_4: "4. <strong>Libya'daki Arap Soykütükleri:</strong> (Yazar: Muhammed Abd el-Rezzak Manaa).",
-        lib_logic_title: "Bilimsel Bağlantı: Ali neden Beni Seleme soyundandır?",
-        lib_logic_text:
-            "1. <strong>Unvan:</strong> El yazmalarında adı 'El-Sülemi El-Ensari' olarak geçmektedir.<br>2. <strong>Yazı:</strong> Eski belgeler Endülüs yazısıyla yazılmıştır.<br>3. <strong>Zaman Çizelgesi:</strong> Gırnata ailelerinin göçüyle tam uyum (H. 897 sonrası (1492 AD)).",
 
         // --- AUTHOR SECTION ---
         author_channel_title: "Resmi Kanal: Cemal İbn Adem",
@@ -163,11 +143,14 @@ window.FamilyTreeData = {
         author_playlist_title: "Resmi Çalma Listesi",
         author_youtube_title: "Cemal İbn Adem Kanalı",
         author_books_title: "Küresel Yayınlar",
-        author_books_intro: "📚 Kitaplarımız (şu anda Andrew Tips üzerinden İngilizce olarak mevcut):",
+        author_books_intro: "📚 Kitaplarımız Arapça ve İngilizce olarak mevcuttur:",
         author_book_1: "<strong>Breaths of Hope:</strong> Bu kanalın ilham kaynağı olan yoğun bakım hayatta kalma anıları.",
         author_book_2:
             "<strong>The Crypto Mentor:</strong> Yazarın kurtuluşu için Allah'ın vesile kıldığı finansal nedeni açıklayan kitap.",
-        btn_visit_books: "Resmi Kitap Sitesini Ziyaret Et",
+        author_title_1: "«مرشد العملات الرقميّة» (The Crypto Mentor)",
+        author_title_2: "«أنفاس الأمل» (Breaths of Hope)",
+        author_publisher: "Yayıncı: <a href=\"https://www.andrewtips.com\" target=\"_blank\" rel=\"noopener\" style=\"color: var(--h-gold);\">Andrew Tips</a>",
+        footer_books: "<a href=\"https://jsadamauthor.com/\" target=\"_blank\" rel=\"noopener\" style=\"color: var(--h-gold);\">Yazarın kitapları</a>",
         btn_visit_youtube: "Resmi Andrew Tips Kanalı",
 
         // Contact Section
@@ -199,7 +182,8 @@ window.FamilyTreeData = {
         modal_story_fallback: "Miras alınan silsilede bir bağ.",
         modal_logic_fallback: "Nesillerin doğal bir sıralaması.",
         btn_view_doc: "Belgeyi Görüntüle 1002 H",
-        doc_1002_desc: "1002 H tarihli nadir satış senedi. Fadl bin Abdullah'ın ölüm tarihini belirlemek için birincil kanıt olarak kullanılmıştır.",
+        doc_1002_desc: "A deed of sale in Brak al-Shati dated 1002 AH, in which “[to the heirs of?] al-Hajj Fadl” appears. If the reading “to the heirs of” is right, al-Hajj Fadl died before 1002 AH. The document was given by Dr. Muhammad Abd al-Qadir al-Shaykh al-Ansari.", // TODO translate
+        lib_open_question: "Where was the forefather Ali before Wadi al-Shati? It is not settled yet. The two hypotheses (the Hejaz and Jeddah, and al-Andalus) and their evidence are on the home page.", // TODO translate
 
         // Language UI
         lang_loading: "Dil güncelleniyor...",

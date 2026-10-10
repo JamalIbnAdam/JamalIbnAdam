@@ -85,33 +85,26 @@ window.FamilyTreeData = {
         modern_era_generation: "Generación 73: (Generación actual - 2026)",
 
         // --- FIGURES TAB (The 4 Cards) ---
+        fig_region_tripoli: "Trípoli y la costa occidental",
+        fig_region_jabal: "La Montaña Occidental y Gharyan",
+        fig_region_barqa: "Cirenaica (Barqa)",
+        fig_region_fezzan: "Fezán y el sur",
+        fig_region_unlinked: "Figuras de Brak al-Shati aún no enlazadas con el árbol",
+        fig_evidence: "Pruebas ({n})",
+        fig_via: "Citado de:",
+        fig_in_tree: "En el árbol de pruebas",
+        fig_page: "p. {p}",
         figures_intro_title: "Figuras de los Ansar en Libia",
         figures_intro_text:
             "Figuras de los Ansar que vivieron en Libia a lo largo de los siglos. Las mencionamos para dar a conocer la presencia ansarí en el país, no para probar el linaje de ninguna familia en particular.",
 
         // Card 1
-        fig_1_badge: "Primera generación (Compañeros)",
-        fig_1_name: "Ruwayfi bin Thabit Al-Ansari",
-        fig_1_desc: "Gobernador de Barqa y Trípoli en la primera era islámica.",
-        fig_1_loc: "📍 Enterrado en Al-Bayda",
 
         // Card 2
-        fig_2_badge: "Primera generación (Compañeros)",
-        fig_2_name: "Munidhir Al-Ifriqi Al-Ansari",
-        fig_2_desc: "Conocido como el 'barbero del Profeta ﷺ' y su compañero.",
-        fig_2_loc: "📍 Enterrado en Trípoli (cementerio antiguo)",
 
         // Card 3
-        fig_3_badge: "Santos y eruditos",
-        fig_3_name: "El santo Bu Ajila Al-Ansari",
-        fig_3_desc: "Uno de los grandes shuyuj del occidente de Libia.",
-        fig_3_loc: "📍 Enterrado en Al-Ajaylat",
 
         // Card 4
-        fig_4_badge: "Santos y eruditos",
-        fig_4_name: "Sheikh Abdullah bin Mohammed Qutb",
-        fig_4_desc: "Erudito asceta que difundió el conocimiento en el sur.",
-        fig_4_loc: "📍 Enterrado en el desierto (cerca de Kufra)",
 
         // --- FADL BRANCHES (The 7 Cards) ---
         branch_1_title: "(1) Hijos de Salem bin Yusuf",
@@ -148,26 +141,7 @@ window.FamilyTreeData = {
         library_book_alt: "Al-Ansar Al-Khazraj en Wadi Al-Shatii",
         library_doc_label: "Información del documento (fuente):",
         library_author: "Autor: Dr. Mohammed Abdul Qadir Al-Sheikh Al-Ansari (2022)",
-        library_methodology_title: "❖ Metodología científica de documentación",
-        library_sources_title: "📚 Fuentes y referencias aprobadas:",
         lib_book_info: "Libro: Los Ansar Khazraj en Wadi Al-Shatii (Dr. Mohammed Abdul Qadir, 2022)",
-        lib_method_text: "Este linaje (73 generaciones) se documentó mediante una metodología de corroboración de evidencias:",
-        lib_point_1:
-            "<strong>Verificación de manuscritos:</strong> Dependencia de documentos originales de los descendientes del abuelo Ali, escritos en caligrafía magrebí.",
-        lib_point_2:
-            "<strong>Prueba civilizatoria:</strong> El sistema hídrico 'Sabul' establecido por el abuelo Abdullah coincide con la ingeniería de riego granadina.",
-        lib_point_3:
-            "<strong>Cronología:</strong> Los marcos temporales calculados confirman que el abuelo Ali vivió justo después de la caída de Al-Ándalus.",
-        library_source_1:
-            "1. <strong>Manuscritos familiares:</strong> (Conservados en el Centro de la Yihad Libia - Trípoli).",
-        library_source_2:
-            "2. <strong>Historia de Fezzan:</strong> (Autor: Mustafa Khawjah - Editor: Habib Wada'ah).",
-        library_source_3: "3. <strong>Diccionario de la población de Libia:</strong> (Compilado por Khalifa al-Tlissi).",
-        library_source_4:
-            "4. <strong>Genealogías árabes en Libia:</strong> (Autor: Mohammed Abd al-Razzaq Manaa).",
-        lib_logic_title: "Enlace científico: ¿por qué (Ali) desciende de Banu Salma?",
-        lib_logic_text:
-            "1. <strong>Título:</strong> Su nombre aparece en manuscritos como 'Al-Sulami Al-Ansari'.<br>2. <strong>Escritura:</strong> Documentos antiguos escritos en caligrafía andalusí.<br>3. <strong>Línea temporal:</strong> Alineación perfecta con el éxodo de familias granadinas (post 897 AH (1492 d.C.)).",
 
         // --- AUTHOR SECTION ---
         author_channel_title: "Canal oficial: Jamal Ibn Adam",
@@ -176,12 +150,15 @@ window.FamilyTreeData = {
         author_playlist_title: "Lista de reproducción oficial",
         author_youtube_title: "Canal de Jamal Ibn Adam",
         author_books_title: "Publicaciones globales",
-        author_books_intro: "📚 Nuestros libros (actualmente disponibles en inglés a través de Andrew Tips):",
+        author_books_intro: "📚 Nuestros libros están disponibles en árabe y en inglés:",
         author_book_1:
             "<strong>Alientos de esperanza:</strong> memorias de supervivencia en cuidados intensivos que inspiraron este canal.",
         author_book_2:
             "<strong>El mentor cripto:</strong> el libro que explica la causa financiera con la que Dios salvó al autor.",
-        btn_visit_books: "Visitar el sitio oficial de libros",
+        author_title_1: "«مرشد العملات الرقميّة» (The Crypto Mentor)",
+        author_title_2: "«أنفاس الأمل» (Breaths of Hope)",
+        author_publisher: "Editorial: <a href=\"https://www.andrewtips.com\" target=\"_blank\" rel=\"noopener\" style=\"color: var(--h-gold);\">Andrew Tips</a>",
+        footer_books: "<a href=\"https://jsadamauthor.com/\" target=\"_blank\" rel=\"noopener\" style=\"color: var(--h-gold);\">Libros del autor</a>",
         btn_visit_youtube: "Canal oficial de Andrew Tips",
 
         // Contact Section
@@ -352,6 +329,8 @@ window.FamilyTreeData = {
         home_houses_h: "The houses of the family", // TODO translate
         home_src_download: "Download PDF", // TODO translate
         home_src_open: "Open the source", // TODO translate
+        doc_1002_desc: "A deed of sale in Brak al-Shati dated 1002 AH, in which “[to the heirs of?] al-Hajj Fadl” appears. If the reading “to the heirs of” is right, al-Hajj Fadl died before 1002 AH. The document was given by Dr. Muhammad Abd al-Qadir al-Shaykh al-Ansari.", // TODO translate
+        lib_open_question: "Where was the forefather Ali before Wadi al-Shati? It is not settled yet. The two hypotheses (the Hejaz and Jeddah, and al-Andalus) and their evidence are on the home page.", // TODO translate
         home_src_h: "References used in the research", // TODO translate
         home_more_h: "Also on this site", // TODO translate
         home_more_1_t: "Ansar figures in Libya", // TODO translate

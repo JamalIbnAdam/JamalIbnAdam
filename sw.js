@@ -1,4 +1,4 @@
-const CACHE_NAME = 'jamalibnadam-v16';
+const CACHE_NAME = 'jamalibnadam-v17';
 // document scans are not precached: each one is cached the first time it is viewed
 const EVIDENCE_CACHE = 'jamalibnadam-evidence';
 const EVIDENCE_PATH = '/assets/evidence/';
@@ -8,6 +8,8 @@ const ASSETS_TO_CACHE = [
     './index.html',
     './manifest.json',
     './logo.webp',
+    './theme.js',
+    './sources.js',
     './install.js',
     './touch.js',
     './icons/icon-192.png',
@@ -22,7 +24,9 @@ const ASSETS_TO_CACHE = [
     './data/sources.json',
     './data/stats.json',
     './more/',
-    './more/more.js'
+    './more/more.js',
+    './data/ansar-libya.json',
+    './data/figures-unlinked.json'
 ];
 // the evidence tree's own files are fetched only by /tree/: cached there on first use, never from the home page
 const TREE_RUNTIME = [
@@ -92,6 +96,8 @@ function treeCacheFirst(request) {
 
 self.addEventListener('fetch', (event) => {
     const url = new URL(event.request.url);
+    // other sites (fonts, the video, the contact form) are left to the browser, under the page's own rules
+    if (url.origin !== self.location.origin) return;
     if (event.request.method === 'GET' && url.origin === self.location.origin) {
         if (url.pathname.includes(EVIDENCE_PATH)) {
             event.respondWith(evidenceCacheFirst(event.request));

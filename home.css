@@ -79,6 +79,9 @@ body { background: var(--h-bg); }
 .sg-card .sg-quote { font-family: 'Amiri', serif; font-size: 19px; line-height: 1.9; color: var(--h-ink); }
 .sg-shot { display: block; width: 100%; height: 260px; margin-top: 12px; object-fit: cover; object-position: top; border-radius: 12px; border: 1px solid var(--h-hair); }
 .sg-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 15px; color: var(--h-ink2); }
+.sg-titles { margin: 4px 0 12px; font-family: 'Amiri', serif; font-size: 20px; color: var(--h-ink); gap: 2px; }
+.sg-open-q { color: var(--h-ink); font-size: 16px; }
+.sg-open-q a { color: var(--h-gold); }
 .sg-book { text-align: center; }
 .sg-book img { width: 192px; max-width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--h-hair); }
 .sg-book .sg-meta-top { margin: 16px 0 4px; font-size: 13px; }
@@ -103,6 +106,45 @@ body { background: var(--h-bg); }
 .sg-contact button { align-self: flex-start; }
 .sg-ok { margin-bottom: 16px; padding: 14px 16px; border-radius: 12px; border: 1px solid var(--h-gold); color: var(--h-ink); }
 
+/* «الأنصار في ليبيا»: regions, cards with their evidence, and the page reader */
+.sg-chips { display: none; }
+.sg-region { margin-top: 36px; scroll-margin-top: 12px; }
+.sg-region-h { margin: 0 0 16px; padding-bottom: 10px; border-bottom: 1px solid var(--h-hair); font-family: 'Amiri', serif; font-size: 26px; font-weight: 700; line-height: 1.5; color: var(--h-gold); }
+.sg-fig { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+.sg-fig h3, .sg-fig p { margin: 0; }
+.sg-fig .sg-where { font-size: 14px; }
+.sg-fig .sg-claim { font-size: 16px; color: var(--h-ink); }
+.sg-fig .sg-note { font-size: 13px; }
+.sg-ev { align-self: stretch; margin-top: 4px; border-top: 1px solid var(--h-hair); }
+.sg-ev summary { min-height: 44px; display: flex; align-items: center; gap: 8px; cursor: pointer; font-weight: 600; color: var(--h-gold); list-style: none; }
+.sg-ev summary::-webkit-details-marker { display: none; }
+.sg-ev summary::after { content: "▾"; }
+.sg-ev[open] summary::after { content: "▴"; }
+.sg-ev ol { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 16px; }
+.sg-ev li { padding: 14px 16px; border-radius: 12px; border: 1px solid var(--h-hair); display: flex; flex-direction: column; gap: 6px; align-items: flex-start; }
+.sg-card .sg-src { margin: 0; font-size: 13px; color: var(--h-ink2); }
+.sg-thumb { margin-top: 6px; padding: 3px; border-radius: 8px; border: 1px solid var(--h-hair); background: #fff; cursor: zoom-in; line-height: 0; }
+.sg-thumb img { width: 96px; height: 128px; object-fit: cover; object-position: top; border-radius: 5px; }
+.sg-thumb:hover { border-color: var(--h-gold); }
+.sg-reader { width: min(960px, 100vw - 24px); max-width: none; max-height: calc(100vh - 24px); max-height: calc(100dvh - 24px); padding: 0; border: 1px solid var(--h-gold); border-radius: 16px; background: var(--h-surface); color: var(--h-ink); overflow: hidden; }
+.sg-reader[open] { display: flex; flex-direction: column; }
+.sg-reader::backdrop { background: rgba(0, 0, 0, .7); }
+.sg-reader header { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-bottom: 1px solid var(--h-hair); }
+.sg-reader h2 { flex: 1; min-width: 0; margin: 0; font-size: 14px; font-weight: 600; line-height: 1.7; color: var(--h-ink2); }
+.sg-reader header button { flex: none; width: 44px; height: 44px; border-radius: 10px; border: 1px solid var(--h-hair); background: transparent; color: var(--h-ink); cursor: pointer; display: grid; place-items: center; }
+.sg-reader-img { flex: 1 1 auto; min-height: 0; overflow: auto; background: #0b0d0c; text-align: center; }
+.sg-reader-img img { display: block; margin: 0 auto; max-width: 100%; height: auto; cursor: zoom-in; }
+.sg-reader.zoom .sg-reader-img img { max-width: none; width: 200%; cursor: zoom-out; }
+.sg-reader-text { flex: none; max-height: 32vh; overflow: auto; padding: 12px 16px 16px; }
+.sg-reader-text p { margin: 0 0 6px; }
+.sg-reader-text .sg-quote { font-family: 'Amiri', serif; font-size: 19px; line-height: 1.9; }
+.sg-reader-text .sg-src { font-size: 13px; color: var(--h-ink2); }
+@container (max-width:700px) {
+  .sg-chips { display: flex; gap: 8px; margin: 0 0 4px; padding-block: 4px; overflow-x: auto; scrollbar-width: none; white-space: nowrap; }
+  .sg-chips::-webkit-scrollbar { display: none; }
+  .sg-chips a { flex: none; min-height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--h-hair); color: var(--h-ink); font-size: 14px; text-decoration: none; display: inline-flex; align-items: center; }
+}
+
 /* phones: a 16px gutter, and nothing with a fixed width may hold a flex row wider than the screen */
 @media (max-width: 600px) {
   .sg-pad { padding-inline: 16px !important; }   /* the design's paddings are inline styles */
@@ -116,7 +158,7 @@ html, body { overflow-x: clip; }
 body { -webkit-tap-highlight-color: transparent; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
 img { -webkit-user-drag: none; }
 /* the exceptions: the text of a document, a quote, a note and the references; form fields stay editable */
-.ft-reader .tp, .ft-reader .tp *, .ft-panel .qt, .ft-panel .qt *, .ft-panel .note, .ft-panel .note *, #home-sources, #home-sources *,
+.ft-reader .tp, .ft-reader .tp *, .ft-panel .qt, .ft-panel .qt *, .ft-panel .note, .ft-panel .note *, #home-sources, #home-sources *, #more-sources, #more-sources *, .sg-quote, .sg-src,
 input, textarea, [contenteditable], [contenteditable] * {
   -webkit-user-select: text; user-select: text; -webkit-touch-callout: default;
 }

@@ -80,33 +80,26 @@ window.FamilyTreeData = {
         modern_era_generation: "Pokolenie 73: (obecne pokolenie - 2026)",
 
         // --- FIGURES TAB (The 4 Cards) ---
+        fig_region_tripoli: "Trypolis i zachodnie wybrzeże",
+        fig_region_jabal: "Góry Zachodnie i Gharjan",
+        fig_region_barqa: "Cyrenajka (Barka)",
+        fig_region_fezzan: "Fezzan i południe",
+        fig_region_unlinked: "Postacie z Brak al-Szati jeszcze niepowiązane z drzewem",
+        fig_evidence: "Dowody ({n})",
+        fig_via: "Cytowane za:",
+        fig_in_tree: "W drzewie dowodów",
+        fig_page: "s. {p}",
         figures_intro_title: "Postacie Ansarów w Libii",
         figures_intro_text:
             "Postacie Ansarów, które żyły w Libii na przestrzeni wieków. Wymieniamy je, aby przybliżyć obecność Ansarów w kraju, a nie po to, by dowodzić rodowodu jakiejkolwiek konkretnej rodziny.",
 
         // Card 1
-        fig_1_badge: "Pierwsze Pokolenie (Towarzysze)",
-        fig_1_name: "Ruwayfi bin Thabit Al-Ansari",
-        fig_1_desc: "Gubernator Barki i Trypolisu we wczesnej erze islamu.",
-        fig_1_loc: "📍 Pochowany w Al-Bayda",
 
         // Card 2
-        fig_2_badge: "Pierwsze Pokolenie (Towarzysze)",
-        fig_2_name: "Munidhir Al-Ifriqi Al-Ansari",
-        fig_2_desc: "Znany jako 'Fryzjer Proroka ﷺ' i jego towarzysz.",
-        fig_2_loc: "📍 Pochowany w Trypolisie",
 
         // Card 3
-        fig_3_badge: "Święci i Uczeni",
-        fig_3_name: "Święty Bu Ajila Al-Ansari",
-        fig_3_desc: "Jeden z wielkich szejków zachodniej Libii.",
-        fig_3_loc: "📍 Pochowany w Al-Ajaylat",
 
         // Card 4
-        fig_4_badge: "Święci i Uczeni",
-        fig_4_name: "Szejk Abdullah bin Mohammed Qutb",
-        fig_4_desc: "Ascetyczny uczony, który szerzył wiedzę na południu.",
-        fig_4_loc: "📍 Pochowany na pustyni (blisko Kufra)",
 
         // --- FADL BRANCHES (The 7 Cards) ---
         branch_1_title: "(1) Dzieci Salema bin Yusufa",
@@ -141,23 +134,7 @@ window.FamilyTreeData = {
         library_book_alt: "Ansar Khazraj w Wadi Al-Shatii",
         library_doc_label: "Informacje o dokumencie (źródło):",
         library_author: "Autor: Dr. Mohammed Abdul Qadir Al-Sheikh Al-Ansari (2022)",
-        library_methodology_title: "❖ Metodologia Dokumentacji Naukowej",
-        library_sources_title: "📚 Zatwierdzone Źródła i Referencje:",
         lib_book_info: "Książka: Ansar Khazraj w Wadi Al-Shatii (Dr. Mohammed Abdul Qadir, 2022)",
-        lib_method_text: "To drzewo (73 pokolenia) zostało udokumentowane w oparciu o metodologię potwierdzających dowodów:",
-        lib_point_1:
-            "<strong>Weryfikacja Rękopisów:</strong> Oparcie się na oryginalnych dokumentach potomków Dziadka Alego.",
-        lib_point_2:
-            "<strong>Dowody Cywilizacyjne:</strong> System wodny 'Sabul' założony przez Dziadka Abdullaha odpowiada inżynierii Granady.",
-        lib_point_3:
-            "<strong>Chronologia:</strong> Obliczone ramy czasowe potwierdzają, że Dziadek Ali żył bezpośrednio po upadku Andaluzji.",
-        library_source_1: "1. <strong>Rękopisy rodzinne:</strong> (Przechowywane w Libijskim Centrum Dżihadu - Trypolis).",
-        library_source_2: "2. <strong>Historia Fezzanu:</strong> (Autor: Mustafa Khawjah - Redaktor: Habib Wada'ah).",
-        library_source_3: "3. <strong>Słownik Ludności Libii:</strong> (Opracowany przez Khalifa al-Tlissi).",
-        library_source_4: "4. <strong>Arabskie Genealogie w Libii:</strong> (Autor: Mohammed Abd al-Razzaq Manaa).",
-        lib_logic_title: "Naukowe Połączenie: Dlaczego (Ali) jest potomkiem Banu Salma?",
-        lib_logic_text:
-            "1. <strong>Tytuł:</strong> Jego imię pojawia się w rękopisach jako 'Al-Sulami Al-Ansari'.<br>2. <strong>Pismo:</strong> Stare dokumenty napisane pismem andaluzyjskim.<br>3. <strong>Oś Czasu:</strong> Idealne dopasowanie do exodusu rodzin z Granady (po 897 AH (1492 AD)).",
 
         // --- AUTHOR SECTION ---
         author_channel_title: "Oficjalny Kanał: Jamal Ibn Adam",
@@ -166,12 +143,15 @@ window.FamilyTreeData = {
         author_playlist_title: "Oficjalna Playlista",
         author_youtube_title: "Kanał Jamala Ibn Adama",
         author_books_title: "Publikacje Globalne",
-        author_books_intro: "📚 Nasze książki (obecnie dostępne w języku angielskim przez Andrew Tips):",
+        author_books_intro: "📚 Nasze książki są dostępne po arabsku i po angielsku:",
         author_book_1:
             "<strong>Breaths of Hope:</strong> Wspomnienia z intensywnej terapii, które zainspirowały ten kanał.",
         author_book_2:
             "<strong>The Crypto Mentor:</strong> Książka wyjaśniająca finansową przyczynę, której Bóg użył, aby uratować autora.",
-        btn_visit_books: "Odwiedź Oficjalną Stronę Książek",
+        author_title_1: "«مرشد العملات الرقميّة» (The Crypto Mentor)",
+        author_title_2: "«أنفاس الأمل» (Breaths of Hope)",
+        author_publisher: "Wydawca: <a href=\"https://www.andrewtips.com\" target=\"_blank\" rel=\"noopener\" style=\"color: var(--h-gold);\">Andrew Tips</a>",
+        footer_books: "<a href=\"https://jsadamauthor.com/\" target=\"_blank\" rel=\"noopener\" style=\"color: var(--h-gold);\">Książki autora</a>",
         btn_visit_youtube: "Oficjalny Kanał Andrew Tips",
 
         // Contact Section
@@ -203,7 +183,8 @@ window.FamilyTreeData = {
         modal_story_fallback: "Łączące ogniwo w odziedziczonej linii.",
         modal_logic_fallback: "Naturalna sekwencja pokoleń.",
         btn_view_doc: "Zobacz dokument 1002 AH",
-        doc_1002_desc: "Rzadki akt sprzedaży datowany na 1002 AH. Użyty jako główne odniesienie do określenia daty śmierci Fadla ibn Abdullaha.",
+        doc_1002_desc: "A deed of sale in Brak al-Shati dated 1002 AH, in which “[to the heirs of?] al-Hajj Fadl” appears. If the reading “to the heirs of” is right, al-Hajj Fadl died before 1002 AH. The document was given by Dr. Muhammad Abd al-Qadir al-Shaykh al-Ansari.", // TODO translate
+        lib_open_question: "Where was the forefather Ali before Wadi al-Shati? It is not settled yet. The two hypotheses (the Hejaz and Jeddah, and al-Andalus) and their evidence are on the home page.", // TODO translate
 
         // Language UI
         lang_loading: "Aktualizowanie języka...",

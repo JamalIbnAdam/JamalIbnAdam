@@ -84,33 +84,26 @@ window.FamilyTreeData = {
         modern_era_generation: "Generation 73: (Current generation - 2026)",
 
         // --- FIGURES TAB (The 4 Cards) ---
+        fig_region_tripoli: "Tripoli and the western coast",
+        fig_region_jabal: "The Western Mountain and Gharyan",
+        fig_region_barqa: "Cyrenaica (Barqa)",
+        fig_region_fezzan: "Fezzan and the south",
+        fig_region_unlinked: "Figures of Brak al-Shati not yet linked to the tree",
+        fig_evidence: "Evidence ({n})",
+        fig_via: "As cited from:",
+        fig_in_tree: "In the evidence tree",
+        fig_page: "p. {p}",
         figures_intro_title: "Figures of the Ansar in Libya",
         figures_intro_text:
             "Figures of the Ansar who lived in Libya over the centuries. We mention them to introduce the Ansari presence in the country, not to prove the lineage of any particular family.",
 
         // Card 1
-        fig_1_badge: "First Generation (Companions)",
-        fig_1_name: "Ruwayfi bin Thabit Al-Ansari",
-        fig_1_desc: "Governor of Barka and Tripoli in the early Islamic era.",
-        fig_1_loc: "📍 Buried in Al-Bayda",
 
         // Card 2
-        fig_2_badge: "First Generation (Companions)",
-        fig_2_name: "Munidhir Al-Ifriqi Al-Ansari",
-        fig_2_desc: "Known as the 'Barber of the Prophet ﷺ' and his companion.",
-        fig_2_loc: "📍 Buried in Tripoli (Old Cemetery)",
 
         // Card 3
-        fig_3_badge: "Saints & Scholars",
-        fig_3_name: "The Saint Bu Ajila Al-Ansari",
-        fig_3_desc: "One of the great Sheikhs of Western Libya.",
-        fig_3_loc: "📍 Buried in Al-Ajaylat",
 
         // Card 4
-        fig_4_badge: "Saints & Scholars",
-        fig_4_name: "Sheikh Abdullah bin Mohammed Qutb",
-        fig_4_desc: "An ascetic scholar who spread knowledge in the South.",
-        fig_4_loc: "📍 Buried in the Desert (near Kufra)",
 
         // --- FADL BRANCHES (The 7 Cards) ---
         branch_1_title: "(1) Children of Salem bin Yusuf",
@@ -147,26 +140,7 @@ window.FamilyTreeData = {
         library_book_alt: "Al-Ansar Al-Khazraj in Wadi Al-Shatii",
         library_doc_label: "Document info (source):",
         library_author: "Author: Dr. Mohammed Abdul Qadir Al-Sheikh Al-Ansari (2022)",
-        library_methodology_title: "❖ Scientific Documentation Methodology",
-        library_sources_title: "📚 Approved Sources & References:",
         lib_book_info: "Book: The Ansar Khazraj in Wadi Al-Shatii (Dr. Mohammed Abdul Qadir, 2022)",
-        lib_method_text: "This tree (73 generations) was documented based on a methodology of corroborating evidence:",
-        lib_point_1:
-            "<strong>Manuscript Verification:</strong> Reliance on original documents of the descendants of Grandfather Ali, written in Maghrebi script.",
-        lib_point_2:
-            "<strong>Civilizational Evidence:</strong> The 'Sabul' water system established by Grandfather Abdullah matches Granadan irrigation engineering.",
-        lib_point_3:
-            "<strong>Chronology:</strong> Calculated timeframes confirm Grandfather Ali lived immediately after the fall of Andalusia.",
-        library_source_1:
-            "1. <strong>Family manuscripts:</strong> (Preserved at the Libyan Jihad Center - Tripoli).",
-        library_source_2:
-            "2. <strong>History of Fezzan:</strong> (Author: Mustafa Khawjah - Editor: Habib Wada'ah).",
-        library_source_3: "3. <strong>Dictionary of Libya's Population:</strong> (Compiled by Khalifa al-Tlissi).",
-        library_source_4:
-            "4. <strong>Arab Genealogies in Libya:</strong> (Author: Mohammed Abd al-Razzaq Manaa).",
-        lib_logic_title: "Scientific Link: Why is (Ali) a descendant of Banu Salma?",
-        lib_logic_text:
-            "1. <strong>Title:</strong> His name appears in manuscripts as 'Al-Sulami Al-Ansari'.<br>2. <strong>Script:</strong> Old documents written in Andalusian script.<br>3. <strong>Timeline:</strong> Perfect alignment with the exodus of Granadan families (post 897 AH (1492 AD)).",
 
         // --- AUTHOR SECTION ---
         author_channel_title: "Official Channel: Jamal Ibn Adam",
@@ -175,11 +149,14 @@ window.FamilyTreeData = {
         author_playlist_title: "Official Playlist",
         author_youtube_title: "Jamal Ibn Adam Channel",
         author_books_title: "Global Publications",
-        author_books_intro: "📚 Our books (currently available in English via Andrew Tips):",
+        author_books_intro: "📚 Our books are available in Arabic and English:",
         author_book_1: "<strong>Breaths of Hope:</strong> Survival memoirs from intensive care that inspired this channel.",
         author_book_2:
             "<strong>The Crypto Mentor:</strong> The book explaining the financial cause God used to save the author.",
-        btn_visit_books: "Visit Official Books Website",
+        author_title_1: "«مرشد العملات الرقميّة» (The Crypto Mentor)",
+        author_title_2: "«أنفاس الأمل» (Breaths of Hope)",
+        author_publisher: "Publisher: <a href=\"https://www.andrewtips.com\" target=\"_blank\" rel=\"noopener\" style=\"color: var(--h-gold);\">Andrew Tips</a>",
+        footer_books: "<a href=\"https://jsadamauthor.com/\" target=\"_blank\" rel=\"noopener\" style=\"color: var(--h-gold);\">The author's books</a>",
         btn_visit_youtube: "Official Andrew Tips Channel",
         btn_install: "Install App",
         install_instructions: "To install on your computer, click the install icon (+) in the address bar above.",
@@ -213,7 +190,8 @@ window.FamilyTreeData = {
         modal_story_fallback: "A connecting link in the inherited lineage.",
         modal_logic_fallback: "A natural sequence of generations.",
         btn_view_doc: "View Document 1002 AH",
-        doc_1002_desc: "Rare sales deed dated 1002 AH. Used as the primary reference to determine the death era of Fadl ibn Abdullah and confirm his timeline at the turn of the 11th Hijri century.",
+        doc_1002_desc: "A deed of sale in Brak al-Shati dated 1002 AH, in which “[to the heirs of?] al-Hajj Fadl” appears. If the reading “to the heirs of” is right, al-Hajj Fadl died before 1002 AH. The document was given by Dr. Muhammad Abd al-Qadir al-Shaykh al-Ansari.",
+        lib_open_question: "Where was the forefather Ali before Wadi al-Shati? It is not settled yet. The two hypotheses (the Hejaz and Jeddah, and al-Andalus) and their evidence are on the home page.",
 
         // Share
         share_title: "Share with others",
