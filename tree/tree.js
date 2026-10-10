@@ -13,7 +13,8 @@ if (!host || !window.d3) return;
 const d3 = window.d3;
 // this file lives in /tree/, the data and the scans at the site root
 const SITE_ROOT = new URL('../', document.currentScript.src).href;
-const asset = path => /^(?:[a-z]+:|\/)/i.test(path) ? path : SITE_ROOT + path;
+// a file in data/version.js (written by scripts/stamp.mjs) is asked for as file?v=<hash of its content>
+const asset = path => { if (/^(?:[a-z]+:|\/)/i.test(path)) return path; const h = (window.SITE_V || {})[path]; return SITE_ROOT + path + (h ? `?v=${h}` : ''); };
 
 /* ---------- owner configuration ---------- */
 const CONTRIBUTE_URL = '';   // WhatsApp or e-mail link for contributions; the send link stays hidden while this is empty

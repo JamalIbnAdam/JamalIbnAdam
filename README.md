@@ -27,3 +27,19 @@ python3 -m http.server 8080
 Then open http://localhost:8080.
 
 `scripts/build-estimates.mjs` is the PM's tool that wrote the `birth_est` field (estimated birth dates) into `data/tree.json`. It is kept for the record; the site does not run it.
+
+
+## Versions are stamped automatically
+
+No version number is bumped by hand. `scripts/stamp.mjs` hashes every script, style and data file the pages load and writes
+the hash into each reference as `file?v=<hash>` (in the three `index.html` files, in `data/version.js` for the data the
+scripts fetch, and in the precache list of `sw.js`, whose `CACHE_NAME` is made from all the hashes). A changed file
+therefore has a new address, and a phone can never pair an old copy of one file with a new copy of another.
+
+The pre-commit hook in `.githooks/` runs it. Enable the hook once in each clone:
+
+```
+git config core.hooksPath .githooks
+```
+
+`node scripts/stamp.mjs --check` exits with an error if a stamp is stale.

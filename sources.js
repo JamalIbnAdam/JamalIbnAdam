@@ -4,10 +4,12 @@
 'use strict';
 const siteRoot = new URL('./', document.currentScript.src).href;
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+// a data file is asked for as file?v=<hash of its content> (data/version.js, written by scripts/stamp.mjs)
+const ver = (path) => { const h = (window.SITE_V || {})[path]; return h ? `${path}?v=${h}` : path; };
 let sources = null, loading = null;
 
 function load() {
-    if (!loading) loading = fetch(`${siteRoot}data/sources.json`).then((r) => (r.ok ? r.json() : Promise.reject(new Error(`sources.json: HTTP ${r.status}`)))).then((list) => { sources = list; return list; });
+    if (!loading) loading = fetch(`${siteRoot}${ver('data/sources.json')}`).then((r) => (r.ok ? r.json() : Promise.reject(new Error(`sources.json: HTTP ${r.status}`)))).then((list) => { sources = list; return list; });
     return loading;
 }
 

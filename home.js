@@ -12,6 +12,8 @@ const htmlRoot = document.documentElement;
 const missing = new Map();
 const $ = (id) => document.getElementById(id) || missing.get(id) || missing.set(id, document.createElement('div')).get(id);
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+// a data file is asked for as file?v=<hash of its content> (data/version.js, written by scripts/stamp.mjs)
+const ver = (path) => { const h = (window.SITE_V || {})[path]; return h ? `${path}?v=${h}` : path; };
 const strings = () => (window.FamilyTreeData && window.FamilyTreeData.translations) || {};
 const t = (key) => (typeof strings()[key] === 'string' ? strings()[key] : key);
 
@@ -46,7 +48,7 @@ function loadScript(src) {
 
 function loadLanguageScript(langCode) {
     const url = `data/data_${langCode}.js`;
-    return loadScript(`${url}?t=${Date.now()}`).catch(() => loadScript(url));
+    return loadScript(ver(url)).catch(() => loadScript(url));
 }
 
 function applyTranslations() {
@@ -110,7 +112,7 @@ $('home-theme').addEventListener('click', () => {
 /* ---------- the three numbers, computed from the data ---------- */
 // data/stats.json is generated from tree.json and docs.json by scripts/build-stats.mjs
 function loadNumbers() {
-    fetch('data/stats.json').then((r) => (r.ok ? r.json() : Promise.reject(new Error(`stats.json: HTTP ${r.status}`))))
+    fetch(ver('data/stats.json')).then((r) => (r.ok ? r.json() : Promise.reject(new Error(`stats.json: HTTP ${r.status}`))))
         .then((stats) => {
             $('home-st-refs').textContent = stats.references;   // the references list, counted by build-stats
             $('home-st-docs').textContent = stats.documents;

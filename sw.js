@@ -1,4 +1,4 @@
-const CACHE_NAME = 'jamalibnadam-v34';
+const CACHE_NAME = 'jamalibnadam-5d597c37d8';
 // document scans are not precached: each one is cached the first time it is viewed
 const EVIDENCE_CACHE = 'jamalibnadam-evidence';
 const EVIDENCE_PATH = '/assets/evidence/';
@@ -8,25 +8,25 @@ const ASSETS_TO_CACHE = [
     './index.html',
     './manifest.json',
     './logo.webp',
-    './theme.js',
-    './sources.js',
-    './install.js',
-    './touch.js',
+    './theme.js?v=400528e3de',
+    './sources.js?v=5f6f975b6e',
+    './install.js?v=106657188c',
+    './touch.js?v=1347000355',
     './icons/icon-192.png',
-    './data/data_ar.js',
-    './data/data_en.js',
-    './data/data_es.js',
-    './data/data_pl.js',
-    './data/data_tr.js',
+    './data/data_ar.js?v=ce63db1b2d',
+    './data/data_en.js?v=5ffbaed941',
+    './data/data_es.js?v=c2c51309f3',
+    './data/data_pl.js?v=cefe9214eb',
+    './data/data_tr.js?v=81e88305ac',
     './tree/',
-    './home.css',
-    './home.js',
-    './data/sources.json',
-    './data/stats.json',
+    './home.css?v=240886e502',
+    './home.js?v=873fcdf88f',
+    './data/sources.json?v=af366f2bbd',
+    './data/stats.json?v=851fc52dc0',
     './more/',
-    './more/more.js',
-    './data/ansar-libya.json',
-    './data/figures-unlinked.json'
+    './more/more.js?v=92172b951d',
+    './data/ansar-libya.json?v=e3ef693176',
+    './data/figures-unlinked.json?v=d83716b80d'
 ];
 self.addEventListener('install', (event) => {
     self.skipWaiting();
@@ -74,11 +74,30 @@ function evidenceCacheFirst(request) {
     });
 }
 
-// Pages, scripts, styles and data: the network first, so a page and its script always come from the same deploy.
-// The fresh copy is kept (without any ?query) for when there is no network; only then is the kept copy used.
+/* Every script, style and data file is asked for as file?v=<hash of its content> (scripts/stamp.mjs): a changed file has
+   a new address. Such an address never changes its content, so the kept copy is used at once; a page can therefore never
+   get an old file for a new one, and old and new cannot mix. The pages themselves, and anything asked for without a
+   stamp, come from the network first; the kept copy is for when there is no network. */
 const FRESH = /\.(?:html|js|css|json)$/;
+function stamped(request, url) {
+    return caches.open(CACHE_NAME).then((cache) => {
+        return cache.match(url.href).then((kept) => {
+            if (kept) return kept;
+            return fetch(request).then((response) => {
+                if (response.ok) cache.put(url.href, response.clone());
+                return response;
+            }).catch(() => {
+                // no network and this exact version was never kept: an older copy of the file is better than nothing
+                return cache.match(request, { ignoreSearch: true }).then((old) => {
+                    if (old) return old;
+                    throw new Error('offline, and no kept copy of ' + url.pathname);
+                });
+            });
+        });
+    });
+}
 function networkFirst(request, url) {
-    const key = url.origin + url.pathname;
+    const key = url.origin + url.pathname;          // without ?msg= and the like
     return caches.open(CACHE_NAME).then((cache) => {
         return fetch(request, { cache: 'no-cache' }).then((response) => {
             if (response.ok) cache.put(key, response.clone());
@@ -101,7 +120,7 @@ self.addEventListener('fetch', (event) => {
         return;
     }
     if (request.mode === 'navigate' || url.pathname.endsWith('/') || FRESH.test(url.pathname)) {
-        event.respondWith(networkFirst(request, url));
+        event.respondWith(request.mode !== 'navigate' && url.searchParams.has('v') ? stamped(request, url) : networkFirst(request, url));
         return;
     }
     // images, fonts and icons do not change under a name: the kept copy first
