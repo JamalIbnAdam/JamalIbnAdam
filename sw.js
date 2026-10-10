@@ -11,6 +11,7 @@ const ASSETS_TO_CACHE = [
     './manifest.json',
     './logo.webp',
     './install.js',
+    './touch.js',
     './icons/icon-192.png',
     './data/data_ar.js',
     './data/data_en.js',

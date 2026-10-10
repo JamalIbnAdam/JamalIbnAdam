@@ -398,3 +398,14 @@ details.audit > summary { cursor: pointer; font-weight: 700; color: var(--ft-mut
   .ft-svg .node.hit .halo, .ft-svg.sway .L-trunk .leaf, .ft-svg.grow * { animation: none !important; }
 }
 @media print { .ft-panel, .ft-zoom, .ft-bar, .ft-hint, .ft-tip, .ft-rotate, .ft-tools { display: none !important; } }
+
+/* ---------- app-like touch: no selection or long-press callout on the UI, the tree and images ---------- */
+body { -webkit-tap-highlight-color: transparent; }
+header, nav, button, .sg-nav, .ft-stage, .ft-stage *, .ft-fcards, svg, img, .card, .sg-pad h1, .sg-pad h2 {
+  -webkit-user-select: none; user-select: none; -webkit-touch-callout: none;
+}
+img { -webkit-user-drag: none; }
+/* researchers can still select and copy the text of a document, a quote and the references */
+.ft-reader .tp, .ft-reader .tp *, .ft-panel .qt, .ft-panel .note, #home-sources, #home-sources * {
+  -webkit-user-select: text; user-select: text; -webkit-touch-callout: default;
+}

@@ -71,3 +71,14 @@ body { background: var(--h-bg); }
 
 /* safety net (the page already fits without it): clip, not hidden, so position: sticky keeps working */
 html, body { overflow-x: clip; }
+
+/* ---------- app-like touch: no selection or long-press callout on the UI, the tree and images ---------- */
+body { -webkit-tap-highlight-color: transparent; }
+header, nav, button, .sg-nav, .ft-stage, .ft-stage *, .ft-fcards, svg, img, .card, article, .branch-card, .sg-sheet, .sg-pad h1, .sg-pad h2 {
+  -webkit-user-select: none; user-select: none; -webkit-touch-callout: none;
+}
+img { -webkit-user-drag: none; }
+/* researchers can still select and copy the text of a document, a quote and the references */
+.ft-reader .tp, .ft-reader .tp *, .ft-panel .qt, .ft-panel .note, #home-sources, #home-sources * {
+  -webkit-user-select: text; user-select: text; -webkit-touch-callout: default;
+}
