@@ -1197,7 +1197,7 @@ function drawLegend() {
   // no line samples: every line is solid, and the source of each name is written in its card
   const items = ['tree_legend_doc', 'tree_link_civil', 'tree_link_maybe', 'tree_legend_testimony', 'tree_link_trad', 'tree_link_author', 'tree_legend_unknown'];
   $('ft-legend-body').innerHTML = `<p class="lead">${esc(t('tree_legend_intro'))}</p><ul>${items.map(k => `<li><b>${esc(t(k))}</b></li>`).join('')}</ul>` +
-    `<p class="say">${esc(t('tree_legend_say'))}</p><div class="hint">${esc(t('tree_legend_hint'))}</div>`;
+    `<p class="say">${esc(t('tree_legend_say'))}</p><a class="how" href="../more/#methods">${esc(t('methods_h'))}</a><div class="hint">${esc(t('tree_legend_hint'))}</div>`;
 }
 // every number comes from the data
 function drawStats() {

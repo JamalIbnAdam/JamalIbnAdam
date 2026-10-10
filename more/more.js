@@ -85,6 +85,17 @@ function renderPoem() {
     });
 }
 
+// «منهج البحث»: on a phone each card is closed and shows its title and its first line; on a wide screen the cards are open
+let methodsPlaced = false;
+function renderMethods() {
+    document.querySelectorAll('.sg-method').forEach((card) => {
+        const first = card.querySelector('.sg-method-body p, .sg-method-body li');
+        card.querySelector('.sg-teaser').textContent = first ? first.textContent : '';
+        if (!methodsPlaced) card.open = !window.matchMedia('(max-width: 700px)').matches;
+    });
+    methodsPlaced = true;
+}
+
 function applyTranslations() {
     const data = window.FamilyTreeData || {};
     const translations = data.translations || {};
@@ -103,6 +114,7 @@ function applyTranslations() {
     htmlRoot.setAttribute('dir', (data.meta && data.meta.dir) || 'rtl');
     if ($('lang-select')) $('lang-select').value = lang;
     renderPoem();
+    renderMethods();
     renderFigures();
     window.SourcesList.render($('more-sources'), t);
     updateThemeLabel();
