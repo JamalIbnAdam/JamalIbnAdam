@@ -58,7 +58,9 @@ const stKey = s => s === 'ثابت' ? 'ok' : String(s || '').startsWith('محت�
 // the source of a name, in words: documents, an indication, the civil registry, the author's tree, or the elders' account
 const srcKey = s => { const k = stKey(s); return k !== 'trad' ? k : String(s || '').startsWith('السجل المدني') ? 'civil' : String(s || '').startsWith('من شجرة المؤلف') ? 'author' : 'trad'; };
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-const norm = s => String(s || '').replace(/[ً-ٰٟـ]/g, '').replace(/[أإآٱ]/g, 'ا').replace(/ة/g, 'ه').replace(/ى/g, 'ي').replace(/ؤ/g, 'و').replace(/ئ/g, 'ي').replace(/[\[\]()«»…؟?،,.\/:\-—]/g, ' ').replace(/\s+/g, ' ').trim();
+const norm = s => String(s || '').replace(/[ً-ٰٟـ]/g, '').replace(/[أإآٱ]/g, 'ا').replace(/ة/g, 'ه').replace(/ى/g, 'ي').replace(/ؤ/g, 'و').replace(/ئ/g, 'ي').replace(/[\[\]()«»…؟?،,.\/:\-—]/g, ' ').replace(/\s+/g, ' ').trim()
+  // common spellings of three names, and only these («عثمان», «سليمان», «لقمان», «رمضان» keep their alif)
+  .replace(/الرحمان/g, 'الرحمن').replace(/(^| )ابرهيم(?= |$)/g, '$1ابراهيم').replace(/(^| )اسمعيل(?= |$)/g, '$1اسماعيل');
 const store = {
   get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
   set(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* private mode */ } }
@@ -1244,7 +1246,8 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && reader.hid
 // aliases (other names a person is known by) are for searching only: they are never shown as the name
 const index = persons.filter(searchable).map(p => ({ id: p.id, n: norm([p.name_as_written, p.short_name || '', ...(p.aliases || [])].join(' ')), p }));
 /* A chain is revealed only for a three-part name: one's own name, the father's and the grandfather's («جمال عمر أحمد»).
-   Names are compared word by word after folding: no tashkeel, أ/إ/آ → ا, ى → ي, ة → ه (norm), no «بن / ابن / بنت», no titles,
+   Names are compared word by word after folding: no tashkeel, أ/إ/آ → ا, ى → ي, ة → ه, and the spellings «الرحمان» = «الرحمن»,
+   «ابرهيم» = «ابراهيم», «اسمعيل» = «اسماعيل» (all in norm); then no «بن / ابن / بنت», no titles,
    and «عبد الله» = «عبدالله», «أبي بكر» = «أبو بكر» (each is one word). */
 const nameWords = s => norm(s).replace(/(^| )(بن|ابن|بنت|ابنه)(?= |$)/g, ' ').replace(/(^| )(الحاج|الشيخ|الفقيه|المرابط|سيدي)(?= )/g, ' ')
   .replace(/(^| )(ابي|ابا)(?= )/g, '$1ابو').replace(/(^| )(عبد|ابو) +/g, '$1$2').replace(/\s+/g, ' ').trim().split(' ').filter(Boolean);
