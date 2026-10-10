@@ -31,6 +31,7 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
+html, body { overflow-x: clip; }   /* safety net; clip keeps position: sticky working */
 html.ft-noscroll { overflow: hidden; }
 body { margin: 0; min-height: 100vh; background: var(--ft-page); background-color: var(--ft-bg); color: var(--ft-ink); font-family: var(--ft-f-ui); font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
 h1, h2, h3, h4, h5, p, figure, dl, dd, ol, ul, pre { margin: 0; }
