@@ -401,6 +401,8 @@ img { -webkit-user-drag: none; }
 input, textarea, [contenteditable], [contenteditable] * {
   -webkit-user-select: text; user-select: text; -webkit-touch-callout: default;
 }
+.ft-panel .tst { display: grid; gap: 8px; justify-items: start; }
+.ft-panel .tst .who { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; font-family: var(--ft-f-name); font-size: 1.05rem; line-height: 1.8; unicode-bidi: plaintext; }
 /* printing the chain: the lineage in words and its cards, nothing else */
 @media print {
   html.ft-chain-open body > :not(.ft-chain) { display: none !important; }

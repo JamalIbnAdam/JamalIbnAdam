@@ -21,6 +21,8 @@ const CONFIG = {
   spine: ['ali', 'umar', 'abdallah'],          // bottom → top on the trunk; the last one is the medallion
   fanRoot: 'abdallah',
   plaqueAli: 'علي الجداوي الأنصاري',            // the base of the tree, as the tribe's documents name the lineage
+  // the elders named in the book's footnote for each testimony page (the data carries the footnote as one quote)
+  testimonyNames: { 'ansar-p091': ['الحاج محمد القاضي الرشيد الأنصاري', 'الحاج أبو بكر البركولي الأنصاري', 'الحاج المجذوب الأنصاري', 'الحاج النعماني الأنصاري'] },
   posterAli: 'الخزرجي الأنصاري',                 // extra words on the 1987 root plaque, not found in any document
   fanDeg: 250,
   openDepth: 2,                                // generations shown below an opened name; the rest fold into a «+N» chip
@@ -133,7 +135,9 @@ function docsOf(id) {
       if (seen.has(img)) continue; seen.add(img);
       const mine = recs.filter(d => (d.persons || []).some(x => x.tree_id === id));
       const use = mine.length ? mine : recs;
-      if (!use.length) items.push({ img, src: e.image, e, d: null });
+      // the elders' testimony recorded in the book: shown in its own section, opened in the reader, never counted as a document
+      if (e.kind === 'testimony') items.push({ img, src: e.image, e, d: null, testimony: true });
+      else if (!use.length) items.push({ img, src: e.image, e, d: null });
       else use.forEach(d => items.push({ img, src: e.image, e, d }));
     }
     for (const d of docsByPerson.get(id) || []) {
@@ -142,8 +146,9 @@ function docsOf(id) {
       items.push({ img: d.image_id, src: `assets/evidence/${d.image_id}.webp`, e: null, d });
     }
   }
-  const thumbs = []; items.forEach((it, i) => { if (!thumbs.some(th => th.img === it.img)) thumbs.push({ img: it.img, i, it }); });
-  const out = { items, bare, thumbs, count: thumbs.length + bare.length };
+  const thumbs = [], testimony = [];
+  items.forEach((it, i) => { if (it.testimony) testimony.push({ img: it.img, i, it }); else if (!thumbs.some(th => th.img === it.img)) thumbs.push({ img: it.img, i, it }); });
+  const out = { items, bare, thumbs, testimony, count: thumbs.length + bare.length };
   docCache.set(id, out); return out;
 }
 // «📄 N وثائق» / «قرينة من الوثائق» / «رواية الأسرة»: the evidence for the link to the father, as a neutral fact
@@ -862,6 +867,11 @@ function openPerson(id, { center = true } = {}) {
     const S = stripHtml(id);
     // the civil registry needs no document picture: the documents section is shown for it only when there is one
     if (S.count || src !== 'civil') html += `<section class="sec"><h4>${esc(t('tree_docs'))} (${S.count})</h4>${S.count ? S.html : `<p class="muted">${esc(t('tree_docs_none'))}</p>`}</section>`;
+    // the testimony of the tribe's elders: its chip, the elders' names, and the book page in the reader
+    docsOf(id).testimony.forEach(th => {
+      const names = CONFIG.testimonyNames[th.img] || [], page = pageTxt(th.it.e.page);
+      html += `<section class="sec tst"><span class="st">${esc(t('tree_testimony_chip'))}</span>${names.length ? `<ul class="who">${names.map(n => `<li>${esc(n)}</li>`).join('')}</ul>` : ''}<div class="strip"><button type="button" class="th" data-doc="${th.i}" data-of="${esc(id)}" aria-label="${esc(t('tree_open_doc'))}: ${esc(page)}"><img src="${esc(asset(th.it.src))}" alt="" loading="lazy" decoding="async" width="120" height="150"><span class="thp">${esc(page)}</span></button></div><span class="src">${esc(t('tree_source'))}: ${esc(th.it.e.source || page)}</span></section>`;
+    });
     // the civil registry, the author's tree or the elders' account: the notes say where it comes from
     if (k === 'trad' && p.notes) html += `<section class="sec"><h4>${esc(t('tree_link_' + src))}</h4><p class="srcline">${esc(publicNote(p.notes))}</p></section>`;
     const audit = [];
@@ -1044,7 +1054,7 @@ function readerTabs(it) {
 }
 function renderReader() {
   const it = R.list[R.i], d = it.d, e = it.e;
-  $('ft-rTitle').textContent = (d && d.doc_type) || pageTxt(e && e.page) || t('tree_docs');
+  $('ft-rTitle').textContent = it.testimony ? t('tree_legend_testimony') : (d && d.doc_type) || pageTxt(e && e.page) || t('tree_docs');
   const date = d ? [d.date_as_written, d.date_hijri && /^\d+$/.test(String(d.date_hijri)) ? `(${ahTxt(d.date_hijri)})` : ''].filter(Boolean).join(' ') : (e && e.date) || '';
   $('ft-rMeta').innerHTML = `<span class="pg">${esc(pageTxt(d ? d.page : e.page))}</span><span>${esc(date || t('tree_no_date'))}</span>${d ? dotsHtml(d.legibility, t('tree_legibility')) : dotsHtml(e && e.confidence, t('tree_confidence'))}${d && d.needs_better_image ? `<span class="bd need">${esc(t('tree_needs_image'))}</span>` : ''}`;
   $('ft-rCount').textContent = `${R.i + 1} / ${R.list.length}`;
@@ -1187,7 +1197,7 @@ function choose(id) {
 /* ---------- legend and header numbers ---------- */
 function drawLegend() {
   // no line samples: every line is solid, and the source of each name is written in its card
-  const items = ['tree_legend_doc', 'tree_link_civil', 'tree_link_maybe', 'tree_link_trad', 'tree_link_author', 'tree_legend_unknown'];
+  const items = ['tree_legend_doc', 'tree_link_civil', 'tree_link_maybe', 'tree_legend_testimony', 'tree_link_trad', 'tree_link_author', 'tree_legend_unknown'];
   $('ft-legend-body').innerHTML = `<p class="lead">${esc(t('tree_legend_intro'))}</p><ul>${items.map(k => `<li><b>${esc(t(k))}</b></li>`).join('')}</ul>` +
     `<p class="say">${esc(t('tree_legend_say'))}</p><div class="hint">${esc(t('tree_legend_hint'))}</div>`;
 }
