@@ -8,7 +8,9 @@ const themeStorageKey = 'treeTheme';           // shared with /tree/
 const languages = ['ar', 'en', 'tr', 'pl', 'es'];
 const CONTRIBUTE_URL = '';                       // WhatsApp or e-mail link; the send button stays hidden while this is empty
 const htmlRoot = document.documentElement;
-const $ = (id) => document.getElementById(id);
+// an element this script expects but an older kept page does not have is stood in for by a detached one: nothing throws
+const missing = new Map();
+const $ = (id) => document.getElementById(id) || missing.get(id) || missing.set(id, document.createElement('div')).get(id);
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const strings = () => (window.FamilyTreeData && window.FamilyTreeData.translations) || {};
 const t = (key) => (typeof strings()[key] === 'string' ? strings()[key] : key);
@@ -31,7 +33,7 @@ function resolveInitialLanguage() {
 
 function loadScript(src) {
     return new Promise((resolve, reject) => {
-        const existing = $('family-tree-data');
+        const existing = document.getElementById('family-tree-data');
         if (existing) existing.remove();
         const script = document.createElement('script');
         script.id = 'family-tree-data';
@@ -69,7 +71,8 @@ function applyTranslations() {
     $('home-gap-send').href = `more/?msg=${encodeURIComponent(`${t('home_gap_h')}: `)}#contact`;
     $('home-gap-copied').hidden = true;
     $('home-sheet-x').setAttribute('aria-label', t('tree_close'));
-    document.querySelector('label[for="sg-search"]').textContent = t('home_search_label');
+    const searchLabel = document.querySelector('label[for="sg-search"]');
+    if (searchLabel) searchLabel.textContent = t('home_search_label');
     updateThemeLabel();
     renderSources();
     closeSheet();

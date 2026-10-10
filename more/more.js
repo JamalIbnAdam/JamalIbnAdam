@@ -7,7 +7,9 @@ const themeStorageKey = 'treeTheme';           // shared with / and /tree/
 const languages = ['ar', 'en', 'tr', 'pl', 'es'];
 const siteRoot = new URL('../', document.currentScript.src).href;
 const htmlRoot = document.documentElement;
-const $ = (id) => document.getElementById(id);
+// an element this script expects but an older kept page does not have is stood in for by a detached one: nothing throws
+const missing = new Map();
+const $ = (id) => document.getElementById(id) || missing.get(id) || missing.set(id, document.createElement('div')).get(id);
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const strings = () => (window.FamilyTreeData && window.FamilyTreeData.translations) || {};
 const t = (key) => (typeof strings()[key] === 'string' ? strings()[key] : key);
@@ -25,7 +27,8 @@ function goToHash() {
 }
 if ('ResizeObserver' in window) {
     const watch = new ResizeObserver(goToHash);
-    watch.observe(document.getElementById('more-main'));
+    const main = document.getElementById('more-main');
+    if (main) watch.observe(main);
     setTimeout(() => watch.disconnect(), 5000);
 }
 
@@ -47,7 +50,7 @@ function resolveInitialLanguage() {
 
 function loadScript(src) {
     return new Promise((resolve, reject) => {
-        const existing = $('family-tree-data');
+        const existing = document.getElementById('family-tree-data');
         if (existing) existing.remove();
         const script = document.createElement('script');
         script.id = 'family-tree-data';
@@ -206,7 +209,7 @@ function openReader(button) {
 document.addEventListener('click', (event) => {
     const thumb = event.target.closest('.sg-thumb');
     if (thumb) { openReader(thumb); return; }
-    if (event.target.closest('#more-reader-x') || event.target === reader) { reader.close(); return; }
+    if (event.target.closest('#more-reader-x') || event.target === reader) { if (typeof reader.close === 'function') reader.close(); return; }
     if (event.target.id === 'more-reader-img') reader.classList.toggle('zoom');   // a tap enlarges the page; another one fits it again
 });
 
@@ -236,7 +239,7 @@ $('more-video').addEventListener('click', () => {
 /* ---------- contact form; «أرسل بياناتك» on the tree page arrives here with its message ready ---------- */
 const contactForm = $('contactForm'), contactSuccess = $('contactSuccess');
 const preset = new URLSearchParams(location.search).get('msg');
-if (preset) {
+if (preset && contactForm.elements && contactForm.elements.message) {
     contactForm.elements.message.value = preset.slice(0, 2000);
     window.addEventListener('load', () => { $('contact').scrollIntoView({ block: 'start' }); });
 }

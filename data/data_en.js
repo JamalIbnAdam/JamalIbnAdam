@@ -477,6 +477,7 @@ window.FamilyTreeData = {
         tree_legend_chip: "How to read the tree",
         tree_hint_wheel: "To zoom: Ctrl + wheel",
         tree_hint_touch: "Use two fingers to move the tree",
+        tree_reload: "Reload",
         tree_load_error: "The tree data could not be loaded. Please reload the page.",
         tree_credits: "<p>We kindly ask the owners of the documents published here to send a clear, full-colour photo of each original, so we can verify its reading more precisely. We will add the owner's name and the «Jamal Ibn Adam» site seal to each document. The documents are published here with permission, and each one's source is cited.</p><p>With thanks to our cousins, the descendants of the venerable Shaykh Abdullah Sabal al-Ayn — may God grant him His vast mercy and join us with him in the Gardens of Bliss.</p>"
     },
