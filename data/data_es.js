@@ -326,7 +326,7 @@ window.FamilyTreeData = {
         home_h1: "Descendants of Abdullah Sabal Al-Ain", // TODO translate
         home_lede: "The lineage of the Ansar tribe of Wadi al-Shati in Fezzan: lineages that meet in Zawiyat Brak al-Shati, Aqar, Ishkeda and Dabdab, and go back to Abdullah Sabal Al-Ain. Every name in the tree is tied to its document where one exists, or to the oral account of some of the tribe's notables and elders where one does not exist yet.", // TODO translate
         home_search_label: "Search for a name in the tree", // TODO translate
-        home_search_ph: "Type your name or your grandfather's name", // TODO translate
+        home_search_ph: "Escribe tu nombre en tres partes", // TODO translate
         home_search_btn: "Show my chain", // TODO translate
         home_med_sub: "Zawiyat Brak al-Shati, 10th century AH", // TODO translate
         home_tree_p: "Tap any name to see its document: the image, the text as written, a plain explanation, and the source. Tap “Show my chain” to see your forefathers one by one, down to Abdullah Sabal Al-Ain.", // TODO translate
@@ -408,6 +408,7 @@ window.FamilyTreeData = {
         tree_chain_n_est: "about {n} generations", // TODO translate
         tree_aria: "Al-Sabal Al-Ain family tree", // TODO translate
         tree_search_placeholder: "Search for a name…", // TODO translate
+        tree_search_hint: "Escribe tu nombre en tres partes: tu nombre, el de tu padre y el de tu abuelo, por ejemplo: جمال عمر أحمد",
         tree_nf_text: "Todavía no hemos encontrado este nombre en el árbol. Si eres descendiente de Abdullah Sibal al-Ayn ibn Umar ibn Ali al-Jaddawi al-Ansari, envía tus datos; el propietario del sitio se pondrá en contacto contigo para verificarlos y después se añadirá tu nombre.",
         tree_nf_btn: "Envía tus datos",
         tree_nf_msg: "Me gustaría que mi nombre se añadiera al árbol. El nombre que busqué: {q}. Mi linaje: … Contacto: …",

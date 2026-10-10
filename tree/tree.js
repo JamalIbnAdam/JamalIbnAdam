@@ -1154,22 +1154,42 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && reader.hid
 
 /* ---------- search ---------- */
 const index = persons.filter(searchable).map(p => ({ id: p.id, n: norm(p.name_as_written + ' ' + (p.short_name || '')), p }));
-let hits = [], cursor = 0;
+/* A chain is revealed only for a three-part name: one's own name, the father's and the grandfather's («جمال عمر أحمد»).
+   Names are compared word by word after folding: no tashkeel, أ/إ/آ → ا, ى → ي, ة → ه (norm), no «بن / ابن / بنت», no titles,
+   and «عبد الله» = «عبدالله», «أبي بكر» = «أبو بكر» (each is one word). */
+const nameWords = s => norm(s).replace(/(^| )(بن|ابن|بنت|ابنه)(?= |$)/g, ' ').replace(/(^| )(الحاج|الشيخ|الفقيه|المرابط|سيدي)(?= )/g, ' ')
+  .replace(/(^| )(ابي|ابا)(?= )/g, '$1ابو').replace(/(^| )(عبد|ابو) +/g, '$1$2').replace(/\s+/g, ' ').trim().split(' ').filter(Boolean);
+const coreKey = p => nameWords(shortNameOf(p.name_as_written || ''))[0] || '';   // the person's own name: nothing in brackets, nothing after «بن»
+const keyOf = new Map(persons.map(p => [p.id, p.placeholder ? '' : coreKey(p)]));
+// word 1 is the person, word 2 the father, word 3 the grandfather; any further word goes on up the line
+function matchesLine(p, words) {
+  let x = p;
+  for (const w of words) { if (!x || keyOf.get(x.id) !== w) return false; x = byId.get(x.father_id); }
+  return true;
+}
+let hits = [], cursor = 0, fullMatch = false, wordCount = 0;
 // a name that is not in the tree yet: an invitation to send it; the button opens the contact form with the typed text in the message
 function notFoundHtml() {
   const msg = t('tree_nf_msg', { q: q.value.trim() });
   return `<li class="empty nf"><p>${esc(t('tree_nf_text'))}</p><a class="nf-btn" href="../more/?msg=${encodeURIComponent(msg)}#contact">${esc(t('tree_nf_btn'))}</a></li>`;
 }
 function renderHits() {
-  results.innerHTML = hits.length ? hits.map((h, i) => `<li role="option" id="ft-opt${i}" aria-selected="${i === cursor}" data-go="${esc(h.id)}"><span class="rn">${esc(h.p.name_as_written)}</span><span class="rm">${esc(nasabText(h.id))}</span></li>`).join('')
-    : notFoundHtml();
+  // the full chain is written only under a three-part match; otherwise the name and its generation
+  const list = hits.map((h, i) => `<li role="option" id="ft-opt${i}" aria-selected="${i === cursor}" data-go="${esc(h.id)}"><span class="rn">${esc(h.p.name_as_written)}</span><span class="rm">${esc(fullMatch ? nasabText(h.id) : genText(h.p))}</span></li>`).join('');
+  const hint = `<li class="empty hint">${esc(t('tree_search_hint'))}</li>`;
+  results.innerHTML = fullMatch ? list : wordCount < 3 ? list + hint : list || notFoundHtml();
   results.hidden = false; q.setAttribute('aria-expanded', 'true');
 }
 q.addEventListener('input', () => {
   const s = norm(q.value);
   if (!s) { results.hidden = true; q.setAttribute('aria-expanded', 'false'); return; }
-  const toks = s.split(' ');
-  hits = index.filter(x => toks.every(tok => x.n.includes(tok))).sort((a, b) => (a.n.startsWith(s) ? 0 : 1) - (b.n.startsWith(s) ? 0 : 1) || a.n.length - b.n.length).slice(0, 10);
+  const toks = s.split(' '), words = nameWords(q.value);
+  wordCount = words.length;
+  // three words or more: the persons whose own name, father and grandfather are these words
+  hits = wordCount >= 3 ? index.filter(x => matchesLine(x.p, words)).slice(0, 10) : [];
+  fullMatch = hits.length > 0;
+  // otherwise, for research: those who have died can be found by any part of the name. The living appear only on a three-part match.
+  if (!fullMatch) hits = index.filter(x => !x.p.living && toks.every(tok => x.n.includes(tok))).sort((a, b) => (a.n.startsWith(s) ? 0 : 1) - (b.n.startsWith(s) ? 0 : 1) || a.n.length - b.n.length).slice(0, 10);
   cursor = 0; renderHits();
 });
 q.addEventListener('keydown', e => {

@@ -90,6 +90,9 @@ img { max-width: 100%; height: auto; }
 .ft-results .rn { font-family: var(--ft-f-name); font-weight: 700; font-size: 1.05rem; }
 .ft-results .rm { font-size: .8rem; line-height: 1.8; color: var(--ft-muted); white-space: normal; overflow-wrap: anywhere; unicode-bidi: plaintext; }   /* the full chain, wrapped, never cut */
 .ft-results .empty { color: var(--ft-muted); cursor: default; }
+.ft-results .hint { padding: 8px 12px; font-size: .86rem; line-height: 1.8; color: var(--ft-ink2); border-top: 1px solid var(--ft-line); }
+.ft-results .hint:first-child { border-top: 0; }
+.ft-results .hint:hover { background: none; }
 .ft-results .nf { display: grid; gap: 10px; padding: 10px 12px; color: var(--ft-ink); line-height: 1.8; }
 .ft-results .nf:hover { background: none; }
 .ft-results .nf-btn { justify-self: start; min-height: 44px; padding: 0 20px; border-radius: 10px; background: var(--ft-gold); color: var(--ft-bg); font-weight: 700; display: inline-flex; align-items: center; text-decoration: none; cursor: pointer; }
