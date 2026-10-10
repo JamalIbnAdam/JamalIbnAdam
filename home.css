@@ -148,6 +148,7 @@ body { background: var(--h-bg); }
 /* phones: a 16px gutter, and nothing with a fixed width may hold a flex row wider than the screen */
 @media (max-width: 600px) {
   .sg-pad { padding-inline: 16px !important; }   /* the design's paddings are inline styles */
+  .sg-gapcard { padding: 18px 16px !important; }   /* the research card keeps its width for the text on a phone */
   .sg-root :is(section, figure, article, form, dl, ol, ul, div) { min-width: 0; max-width: 100%; }
 }
 

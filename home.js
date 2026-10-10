@@ -65,7 +65,9 @@ function applyTranslations() {
     htmlRoot.setAttribute('dir', (data.meta && data.meta.dir) || 'rtl');
     if ($('lang-select')) $('lang-select').value = lang;
     $('home-preview').setAttribute('aria-label', t('home_tree_aria'));
-    $('home-gap').setAttribute('aria-label', t('home_gap_aria'));
+    // «أرسل وثيقة» opens the contact form with the card's title as the subject of the message
+    $('home-gap-send').href = `more/?msg=${encodeURIComponent(`${t('home_gap_h')}: `)}#contact`;
+    $('home-gap-copied').hidden = true;
     $('home-sheet-x').setAttribute('aria-label', t('tree_close'));
     document.querySelector('label[for="sg-search"]').textContent = t('home_search_label');
     updateThemeLabel();
@@ -154,6 +156,35 @@ function renderSources() { window.SourcesList.render($('home-sources'), t); }
 function loadSources() {
     window.SourcesList.load().then(renderSources).catch((error) => console.warn('Unable to load the sources list', error));
 }
+
+/* ---------- «شارك هذه الصفحة»: the phone's own share sheet, or the link copied ---------- */
+$('home-gap-share').addEventListener('click', async () => {
+    const url = 'https://jamalibnadam.com/', title = document.title;
+    if (navigator.share) {
+        try { await navigator.share({ title, url }); return; } catch (error) {
+            if (error && error.name === 'AbortError') return;   // the visitor closed the sheet
+        }
+    }
+    // no share sheet here (or it failed): copy the link and say so
+    let copied = false;
+    try {
+        await navigator.clipboard.writeText(url);
+        copied = true;
+    } catch (error) {
+        // older browsers, or a page the browser will not let write to the clipboard directly
+        const field = document.createElement('textarea');
+        field.value = url;
+        field.setAttribute('readonly', '');
+        field.style.cssText = 'position: fixed; top: 0; opacity: 0;';
+        document.body.appendChild(field);
+        field.select();
+        try { copied = document.execCommand('copy'); } catch (e) { copied = false; }
+        field.remove();
+    }
+    if (!copied) { console.warn('Unable to copy the link'); return; }
+    $('home-gap-copied').hidden = false;
+    setTimeout(() => { $('home-gap-copied').hidden = true; }, 4000);
+});
 
 /* ---------- boot ---------- */
 if (CONTRIBUTE_URL) { $('home-send').href = CONTRIBUTE_URL; $('home-send').hidden = false; }
