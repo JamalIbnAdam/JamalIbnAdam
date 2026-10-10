@@ -240,7 +240,7 @@ window.FamilyTreeData = {
         tree_legend_say: "Any family that holds a document can send it so that its branch is documented.",
         tree_legend_intro: "The source of each name is written in its card when you tap it:",
         tree_legend_doc: "📄 Document",
-        tree_link_civil: "🏛 Civil registry",
+        tree_link_civil: "🏛 Civil registry and the tribe’s own record",
         tree_link_author: "From the author's tree",
         tree_legend_unknown: "? Under research",
         tree_legend_testimony: "🗣 Testimony of the tribe's elders",

@@ -240,7 +240,7 @@ window.FamilyTreeData = {
         tree_legend_say: "Cualquier familia que tenga un documento puede enviarlo para documentar su rama.",
         tree_legend_intro: "La fuente de cada nombre está escrita en su ficha al pulsarlo:",
         tree_legend_doc: "📄 Documento",
-        tree_link_civil: "🏛 Registro civil",
+        tree_link_civil: "🏛 Registro civil y memoria de la tribu",
         tree_link_author: "Del árbol del autor",
         tree_legend_unknown: "? En estudio",
         tree_legend_testimony: "🗣 Testimonio de los notables de la tribu",

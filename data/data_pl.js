@@ -228,7 +228,7 @@ window.FamilyTreeData = {
         tree_legend_say: "Każda rodzina, która ma dokument, może go przesłać, aby udokumentować swoją gałąź.",
         tree_legend_intro: "Źródło każdego imienia jest zapisane w jego karcie po dotknięciu:",
         tree_legend_doc: "📄 Dokument",
-        tree_link_civil: "🏛 Rejestr stanu cywilnego",
+        tree_link_civil: "🏛 Rejestr stanu cywilnego i pamięć plemienia",
         tree_link_author: "Z drzewa autora",
         tree_legend_unknown: "? W trakcie badań",
         tree_legend_testimony: "🗣 Świadectwo starszyzny plemienia",

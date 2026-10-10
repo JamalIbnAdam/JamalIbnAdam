@@ -227,7 +227,7 @@ window.FamilyTreeData = {
         tree_legend_say: "Belgesi olan her aile, kolunun belgelenmesi için onu gönderebilir.",
         tree_legend_intro: "Her adın kaynağı, üzerine dokunulduğunda kartında yazılıdır:",
         tree_legend_doc: "📄 Belge",
-        tree_link_civil: "🏛 Nüfus kaydı",
+        tree_link_civil: "🏛 Nüfus kaydı ve kabilenin hafızası",
         tree_link_author: "Yazarın şeceresinden",
         tree_legend_unknown: "? Araştırılıyor",
         tree_legend_testimony: "🗣 Kabile ileri gelenlerinin tanıklığı",

@@ -153,7 +153,17 @@ function docsOf(id) {
 }
 // «📄 N وثائق» / «قرينة من الوثائق» / «رواية الأسرة»: the evidence for the link to the father, as a neutral fact
 function docsLabel(n) { return n <= 1 ? t('tree_docs_1') : n === 2 ? t('tree_docs_2') : n <= 10 ? t('tree_docs_few', { n }) : t('tree_docs_many', { n }); }
-function linkLabel(p) { const k = srcKey(p.status); return k === 'ok' ? docsLabel(docsOf(p.id).count) : t('tree_link_' + k); }
+// The labels of a link, documents first: «📄 N وثائق», then «🏛 السجل المدني وحفظ القبيلة» when the person is also in the
+// civil registry (status, or the also_civil flag). The other sources are one label each, as before.
+function linkLabels(p) {
+  const k = srcKey(p.status), n = docsOf(p.id).count;
+  if (k === 'ok') return [docsLabel(n), ...(p.also_civil ? [t('tree_link_civil')] : [])];
+  if (k === 'civil') return [...(n ? [docsLabel(n)] : []), t('tree_link_civil')];
+  return [t('tree_link_' + k)];
+}
+const linkLabel = p => linkLabels(p).join(' · ');
+// for the chain's counts: a generation with documents is counted as documented, even if it is also in the civil registry
+const countKey = p => { const k = srcKey(p.status); return k === 'civil' && docsOf(p.id).count ? 'ok' : k; };
 
 const mqMobile = window.matchMedia('(max-width:720px)');
 const isMobile = () => mqMobile.matches;
@@ -786,7 +796,7 @@ t87.addEventListener('change', () => {
 });
 
 /* ---------- person panel ---------- */
-const stPill = (p, label) => `<span class="st ${stKey(p.status)}">${esc(label || linkLabel(p))}</span>`;
+const stPill = (p, label) => (label ? [label] : linkLabels(p)).map(x => `<span class="st ${stKey(p.status)}">${esc(x)}</span>`).join('');
 const personBtn = id => { const p = byId.get(id); return p ? `<button type="button" class="pl" data-go="${esc(id)}">${esc(nameOf(p))}</button>` : ''; };
 const level = c => { const s = String(c || ''); return s.startsWith('عالية') ? 3 : s.startsWith('متوسطة') ? 2 : s.startsWith('منخفضة') ? 1 : 0; };
 const dotsHtml = (c, title, withText = true) => { const n = level(c); return c ? `<span class="conf" title="${esc(title)}: ${esc(c)}">${n ? [1, 2, 3].map(i => `<i class="${i <= n ? 'on' : ''}"></i>`).join('') : ''}${withText ? ' ' + esc(c) : ''}</span>` : ''; };
@@ -1096,7 +1106,7 @@ let chainId = null, chainIO = null, chainPushed = false;
 function renderChain(id) {
   const p = byId.get(id); if (!p) return false;
   const line = [p, ...ancestors(id)];   // down to the oldest known ancestor
-  const c = { ok: 0, maybe: 0, civil: 0, author: 0, trad: 0 }; line.forEach(x => { if (!x.placeholder && x.father_id && byId.has(x.father_id)) c[srcKey(x.status)]++; });   // every link to a father
+  const c = { ok: 0, maybe: 0, civil: 0, author: 0, trad: 0 }; line.forEach(x => { if (!x.placeholder && x.father_id && byId.has(x.father_id)) c[countKey(x)]++; });   // every link to a father
   $('ft-cTitle').textContent = t('tree_chain_title');
   $('ft-cSum').textContent = [t(line.some(x => x.placeholder) ? 'tree_chain_n_est' : 'tree_chain_n', { n: line.length }), t('tree_chain_ok', { n: c.ok }), ...['maybe', 'civil', 'author', 'trad'].map(k => c[k] ? t('tree_chain_' + k, { n: c[k] }) : '')].filter(Boolean).join(' · ');
   $('ft-cNasab').textContent = nasabText(id);
@@ -1112,7 +1122,7 @@ function renderChain(id) {
     if (cd.ph) { const es = x.estimate || {}; return `<li class="cc ph"><div class="card"><b class="nm">${esc(t('tree_unknown_chain', { n: cd.n }))}${es.min != null ? ` <span class="muted">${esc(t('tree_unknown_range', { min: es.min, max: es.max }))}</span>` : ''}</b>${es.basis ? `<p class="basis">${esc(es.basis)}</p>` : ''}</div><i class="ln trad"></i></li>`; }
     const D = x.living ? { thumbs: [], count: 0 } : docsOf(x.id), k = stKey(x.status);
     const thumbs = D.thumbs.slice(0, 5).map(th => `<button type="button" class="th" data-doc="${th.i}" data-of="${esc(x.id)}" aria-label="${esc(t('tree_open_doc'))}: ${esc(pageTxt(th.it.d ? th.it.d.page : th.it.e.page))}"><img src="${esc(asset(th.it.src))}" alt="" loading="lazy" decoding="async" width="60" height="76"></button>`).join('') + (D.thumbs.length > 5 ? `<span class="more">+${D.thumbs.length - 5}</span>` : '');
-    return `<li class="cc${x.id === ROOT ? ' root' : ''}"><div class="card"><span class="gen">${esc(genText(x))}</span><b class="nm">${esc(x.id === CONFIG.spine[0] ? CONFIG.plaqueAli : nameOf(x))}</b>${thumbs ? `<div class="strip">${thumbs}</div>` : ''}</div>${last ? '' : `<i class="ln ${k}"></i><span class="lb">${esc(srcKey(x.status) === 'trad' ? t('tree_link_trad_short') : linkLabel(x))}</span>`}</li>`;
+    return `<li class="cc${x.id === ROOT ? ' root' : ''}"><div class="card"><span class="gen">${esc(genText(x))}</span><b class="nm">${esc(x.id === CONFIG.spine[0] ? CONFIG.plaqueAli : nameOf(x))}</b>${thumbs ? `<div class="strip">${thumbs}</div>` : ''}</div>${last ? '' : `<i class="ln ${k}"></i><span class="lb">${(srcKey(x.status) === 'trad' ? [t('tree_link_trad_short')] : linkLabels(x)).map(l => `<span>${esc(l)}</span>`).join('')}</span>`}</li>`;
   }).join('');
   if (chainIO) chainIO.disconnect();
   const items = [...chainEl.querySelectorAll('.cc')];

@@ -326,9 +326,10 @@ details.audit > summary { cursor: pointer; font-weight: 700; color: var(--ft-mut
 .ft-chain .th img { height: 72px; }
 .ft-chain .more { font-size: .8rem; color: var(--ft-muted); direction: ltr; }
 /* the thin gold line that draws from card to card as the reader scrolls */
-.ft-chain .ln { display: block; width: 2px; height: 58px; background: var(--ft-gold); transform: scaleY(0); transform-origin: top; transition: transform .6s ease-out .1s; }
+.ft-chain .ln { display: block; width: 2px; height: 64px; background: var(--ft-gold); transform: scaleY(0); transform-origin: top; transition: transform .6s ease-out .1s; }
 .ft-chain .cc.in .ln { transform: scaleY(1); }
-.ft-chain .lb { position: absolute; bottom: 17px; inset-inline-start: calc(50% + 14px); font-size: .8rem; font-weight: 700; color: var(--ft-ink2); white-space: nowrap; }
+.ft-chain .lb { position: absolute; bottom: 8px; inset-inline-start: calc(50% + 14px); max-width: calc(50% - 18px); display: grid; gap: 0; font-size: .8rem; line-height: 1.5; font-weight: 700; color: var(--ft-ink2); }   /* one line per label: documents, then the civil registry */
+.ft-chain .lb > span { unicode-bidi: plaintext; }
 .ft-chain .cc.root .card { width: 190px; height: 190px; border-radius: 50%; border: 3px solid var(--ft-gold); place-content: center; text-align: center; box-shadow: 0 0 0 6px color-mix(in srgb, var(--ft-gold) 14%, transparent); }
 .ft-chain .cc.root .strip { justify-content: center; grid-template-columns: repeat(3, 34px); }
 .ft-chain .cc.root .th:nth-child(n+4), .ft-chain .cc.root .more { display: none; }

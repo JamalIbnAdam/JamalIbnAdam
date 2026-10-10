@@ -298,7 +298,7 @@ window.FamilyTreeData = {
         tree_legend_say: "أي أسرة تملك وثيقة يمكنها إرسالها ليُوثَّق فرعها.",
         tree_legend_intro: "مصدر كل اسم مكتوب في بطاقته عند الضغط عليه:",
         tree_legend_doc: "📄 وثيقة",
-        tree_link_civil: "🏛 السجل المدني",
+        tree_link_civil: "🏛 السجل المدني وحفظ القبيلة",
         tree_link_author: "من شجرة المؤلف",
         tree_legend_unknown: "؟ قيد البحث",
         tree_legend_testimony: "🗣 شهادة أعيان القبيلة",
