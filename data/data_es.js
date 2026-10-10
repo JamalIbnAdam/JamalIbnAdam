@@ -176,12 +176,15 @@ window.FamilyTreeData = {
         author_playlist_title: "Lista de reproducción oficial",
         author_youtube_title: "Canal de Jamal Ibn Adam",
         author_books_title: "Publicaciones globales",
-        author_books_intro: "📚 Nuestros libros (actualmente disponibles en inglés a través de Andrew Tips):",
+        author_books_intro: "📚 Nuestros libros están disponibles en árabe y en inglés:",
         author_book_1:
             "<strong>Alientos de esperanza:</strong> memorias de supervivencia en cuidados intensivos que inspiraron este canal.",
         author_book_2:
             "<strong>El mentor cripto:</strong> el libro que explica la causa financiera con la que Dios salvó al autor.",
-        btn_visit_books: "Visitar el sitio oficial de libros",
+        author_title_1: "«مرشد العملات الرقميّة» (The Crypto Mentor)",
+        author_title_2: "«أنفاس الأمل» (Breaths of Hope)",
+        author_publisher: "Editorial: <a href=\"https://www.andrewtips.com\" target=\"_blank\" rel=\"noopener\" style=\"color: var(--h-gold);\">Andrew Tips</a>",
+        footer_books: "<a href=\"https://jsadamauthor.com/\" target=\"_blank\" rel=\"noopener\" style=\"color: var(--h-gold);\">Libros del autor</a>",
         btn_visit_youtube: "Canal oficial de Andrew Tips",
 
         // Contact Section

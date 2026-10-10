@@ -163,11 +163,14 @@ window.FamilyTreeData = {
         author_playlist_title: "Resmi Çalma Listesi",
         author_youtube_title: "Cemal İbn Adem Kanalı",
         author_books_title: "Küresel Yayınlar",
-        author_books_intro: "📚 Kitaplarımız (şu anda Andrew Tips üzerinden İngilizce olarak mevcut):",
+        author_books_intro: "📚 Kitaplarımız Arapça ve İngilizce olarak mevcuttur:",
         author_book_1: "<strong>Breaths of Hope:</strong> Bu kanalın ilham kaynağı olan yoğun bakım hayatta kalma anıları.",
         author_book_2:
             "<strong>The Crypto Mentor:</strong> Yazarın kurtuluşu için Allah'ın vesile kıldığı finansal nedeni açıklayan kitap.",
-        btn_visit_books: "Resmi Kitap Sitesini Ziyaret Et",
+        author_title_1: "«مرشد العملات الرقميّة» (The Crypto Mentor)",
+        author_title_2: "«أنفاس الأمل» (Breaths of Hope)",
+        author_publisher: "Yayıncı: <a href=\"https://www.andrewtips.com\" target=\"_blank\" rel=\"noopener\" style=\"color: var(--h-gold);\">Andrew Tips</a>",
+        footer_books: "<a href=\"https://jsadamauthor.com/\" target=\"_blank\" rel=\"noopener\" style=\"color: var(--h-gold);\">Yazarın kitapları</a>",
         btn_visit_youtube: "Resmi Andrew Tips Kanalı",
 
         // Contact Section

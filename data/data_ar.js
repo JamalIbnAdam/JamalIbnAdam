@@ -237,12 +237,15 @@ window.FamilyTreeData = {
         author_playlist_title: "قائمة التشغيل الرسمية",
         author_youtube_title: "قناة جمال ابن آدم",
         author_books_title: "المؤلفات العالمية (Global Publications)",
-        author_books_intro: "📚 كتبنا (متوفرة حالياً بالإنجليزية عبر دار Andrew Tips):",
+        author_books_intro: "📚 كتبنا متوفرة بالعربية والإنجليزية:",
         author_book_1:
             "<strong>Breaths of Hope:</strong> مذكرات النجاة من العناية المركزة التي ألهمت قصائد هذه القناة.",
         author_book_2:
             "<strong>The Crypto Mentor:</strong> الكتاب الذي يشرح 'السبب المالي' الذي سخر الله لإنقاذ الكاتب.",
-        btn_visit_books: "زيارة الموقع الرسمي للكتب",
+        author_title_1: "«مرشد العملات الرقميّة» (The Crypto Mentor)",
+        author_title_2: "«أنفاس الأمل» (Breaths of Hope)",
+        author_publisher: "الناشر: <a href=\"https://www.andrewtips.com\" target=\"_blank\" rel=\"noopener\" style=\"color: var(--h-gold);\">Andrew Tips</a>",
+        footer_books: "<a href=\"https://jsadamauthor.com/ar/\" target=\"_blank\" rel=\"noopener\" style=\"color: var(--h-gold);\">كتب المؤلف</a>",
         btn_visit_youtube: "قناة Andrew Tips الرسمية",
         btn_install: "تثبيت التطبيق",
         install_instructions: "لتثبيت التطبيق على الكمبيوتر، انقر على أيقونة التثبيت (+) في شريط العنوان بالأعلى.",

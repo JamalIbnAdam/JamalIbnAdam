@@ -166,12 +166,15 @@ window.FamilyTreeData = {
         author_playlist_title: "Oficjalna Playlista",
         author_youtube_title: "Kanał Jamala Ibn Adama",
         author_books_title: "Publikacje Globalne",
-        author_books_intro: "📚 Nasze książki (obecnie dostępne w języku angielskim przez Andrew Tips):",
+        author_books_intro: "📚 Nasze książki są dostępne po arabsku i po angielsku:",
         author_book_1:
             "<strong>Breaths of Hope:</strong> Wspomnienia z intensywnej terapii, które zainspirowały ten kanał.",
         author_book_2:
             "<strong>The Crypto Mentor:</strong> Książka wyjaśniająca finansową przyczynę, której Bóg użył, aby uratować autora.",
-        btn_visit_books: "Odwiedź Oficjalną Stronę Książek",
+        author_title_1: "«مرشد العملات الرقميّة» (The Crypto Mentor)",
+        author_title_2: "«أنفاس الأمل» (Breaths of Hope)",
+        author_publisher: "Wydawca: <a href=\"https://www.andrewtips.com\" target=\"_blank\" rel=\"noopener\" style=\"color: var(--h-gold);\">Andrew Tips</a>",
+        footer_books: "<a href=\"https://jsadamauthor.com/\" target=\"_blank\" rel=\"noopener\" style=\"color: var(--h-gold);\">Książki autora</a>",
         btn_visit_youtube: "Oficjalny Kanał Andrew Tips",
 
         // Contact Section
