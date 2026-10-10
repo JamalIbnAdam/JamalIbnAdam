@@ -87,6 +87,8 @@ img { max-width: 100%; height: auto; }
 .ft-results { position: absolute; inset-inline: 0; top: calc(100% + 4px); z-index: 30; padding: 4px; background: var(--ft-sheet); border: 1px solid var(--ft-line); border-radius: 10px; box-shadow: var(--ft-shadow); max-height: min(60vh, 380px); overflow: auto; }
 .ft-results li { padding: 6px 10px; border-radius: 7px; cursor: pointer; display: grid; }
 .ft-results li[aria-selected="true"], .ft-results li:hover { background: var(--ft-quote); }
+/* names without a text node (tree.js, tAttr): the text is drawn here, so there is no word in the page for «Touch to Search» */
+[data-t]::before { content: attr(data-t); }
 .ft-results .rn { font-family: var(--ft-f-name); font-weight: 700; font-size: 1.05rem; }
 .ft-results .rm { font-size: .8rem; line-height: 1.8; color: var(--ft-muted); white-space: normal; overflow-wrap: anywhere; unicode-bidi: plaintext; }   /* the full chain, wrapped, never cut */
 .ft-results .empty { color: var(--ft-muted); cursor: default; }
