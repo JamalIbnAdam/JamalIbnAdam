@@ -39,8 +39,9 @@ function loadScript(src) {
 
 // fresh copy first, as on the home page; the plain URL is the one the service worker keeps for offline use
 function loadLanguageScript(langCode) {
-    const url = `${siteRoot}data/data_${langCode}.js`;
-    return loadScript(`${url}?t=${Date.now()}`).catch(() => loadScript(url));
+    const file = `data/data_${langCode}.js`, hash = (window.SITE_V || {})[file];
+    // asked for as file?v=<hash of its content> (data/version.js, written by scripts/stamp.mjs)
+    return loadScript(siteRoot + file + (hash ? `?v=${hash}` : '')).catch(() => loadScript(siteRoot + file));
 }
 
 function applyTranslations() {

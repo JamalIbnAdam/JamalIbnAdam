@@ -11,6 +11,8 @@ const htmlRoot = document.documentElement;
 const missing = new Map();
 const $ = (id) => document.getElementById(id) || missing.get(id) || missing.set(id, document.createElement('div')).get(id);
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+// a data file is asked for as file?v=<hash of its content> (data/version.js, written by scripts/stamp.mjs)
+const ver = (path) => { const h = (window.SITE_V || {})[path]; return h ? `${path}?v=${h}` : path; };
 const strings = () => (window.FamilyTreeData && window.FamilyTreeData.translations) || {};
 const t = (key) => (typeof strings()[key] === 'string' ? strings()[key] : key);
 
@@ -62,8 +64,8 @@ function loadScript(src) {
 }
 
 function loadLanguageScript(langCode) {
-    const url = `${siteRoot}data/data_${langCode}.js`;
-    return loadScript(`${url}?t=${Date.now()}`).catch(() => loadScript(url));
+    const file = `data/data_${langCode}.js`;
+    return loadScript(siteRoot + ver(file)).catch(() => loadScript(siteRoot + file));
 }
 
 // the poem: one verse per line — its first half, a gap, then its second half. The verses are Arabic in every language.
@@ -190,7 +192,7 @@ function renderFigures() {
     goToHash();
 }
 function loadFigures() {
-    const get = (file) => fetch(`${siteRoot}data/${file}`).then((r) => (r.ok ? r.json() : Promise.reject(new Error(`${file}: HTTP ${r.status}`))));
+    const get = (file) => fetch(siteRoot + ver(`data/${file}`)).then((r) => (r.ok ? r.json() : Promise.reject(new Error(`${file}: HTTP ${r.status}`))));
     get('ansar-libya.json').then((data) => { figures = data; renderFigures(); }).catch((error) => console.warn('Unable to load the figures', error));
     get('figures-unlinked.json').then((list) => { unlinked = list; renderFigures(); }).catch(() => { });
 }

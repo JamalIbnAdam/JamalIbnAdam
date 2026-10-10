@@ -13,7 +13,8 @@ if (!host || !window.d3) return;
 const d3 = window.d3;
 // this file lives in /tree/, the data and the scans at the site root
 const SITE_ROOT = new URL('../', document.currentScript.src).href;
-const asset = path => /^(?:[a-z]+:|\/)/i.test(path) ? path : SITE_ROOT + path;
+// a file in data/version.js (written by scripts/stamp.mjs) is asked for as file?v=<hash of its content>
+const asset = path => { if (/^(?:[a-z]+:|\/)/i.test(path)) return path; const h = (window.SITE_V || {})[path]; return SITE_ROOT + path + (h ? `?v=${h}` : ''); };
 
 /* ---------- owner configuration ---------- */
 const CONTRIBUTE_URL = '';   // WhatsApp or e-mail link for contributions; the send link stays hidden while this is empty
@@ -546,6 +547,11 @@ function draw() {
 }
 
 /* ---------- names inside the fruits (fitted with the fonts that are loaded) ---------- */
+// the date under a name in the tree: the middle of the estimate, to the nearest ten («~1170هـ»); an exact year as it is
+function birthMark(p) {
+  const b = p && p.birth_est && !p.living && !p.placeholder ? p.birth_est : null; if (!b) return '';
+  return b.h[0] === b.h[1] ? t('tree_birth_node_year', { h: b.h[0] }) : t('tree_birth_node', { h: Math.round((b.h[0] + b.h[1]) / 20) * 10 });
+}
 function fitLabels() {
   const nameFont = cssVar('--ft-f-name');
   const width = (l, f) => measure(l, `700 100px ${nameFont}`) * f / 100;   // one measurement per name, scaled
@@ -555,11 +561,16 @@ function fitLabels() {
     if (byId.get(id).placeholder) { n.t.textContent = ''; n.t.setAttribute('font-size', 15); el('tspan', { x: 0, dy: 1 }, n.t).textContent = '؟'; n.fs = 99; continue; }
     const opts = [[n.label]], words = n.label.split(/\s+/);
     if (words.length > 1) { opts.push(splitLines(n.label)); if (words.length === 2) opts.push(words); }
-    let best = null;
-    for (const lines of opts) {
-      let fs = Math.min(lines.length > 1 ? n.r * 0.5 : n.r * 0.58, 20);
-      while (fs > 9 && !fitsIn(lines, fs, n.r)) fs -= 0.5;
-      if (!best || fs > best.fs + 0.4) best = { fs, lines };
+    const pick = r => { let best = null; for (const lines of opts) { let fs = Math.min(lines.length > 1 ? n.r * 0.5 : n.r * 0.58, 20); while (fs > 9 && !fitsIn(lines, fs, r)) fs -= 0.5; if (!best || fs > best.fs + 0.4) best = { fs, lines }; } return best; };
+    let best = pick(n.r), mark = birthMark(byId.get(id)), df = 0, up = 0;
+    // the date goes under the name only where the fruit has room for both: the name is fitted in a smaller circle, moved up
+    // a little, and the date must fit the chord at its own height. Otherwise the name keeps the whole fruit, as before.
+    if (mark) {
+      const d0 = Math.min(11, Math.max(6.5, n.r * 0.24)), withDate = pick(n.r - d0 * 0.95);
+      const dfTry = Math.min(d0, withDate.fs * 0.72), upTry = dfTry * 0.8;
+      const yDate = (withDate.lines.length === 1 ? 0.78 * withDate.fs : 0.63 * withDate.fs + 0.78 * withDate.fs) + dfTry * 0.75 - upTry;   // clear of the letters' tails
+      const chord = 2 * Math.sqrt(Math.max(0, n.r * n.r - (yDate + dfTry * 0.55) * (yDate + dfTry * 0.55))) - 6;
+      if (withDate.fs >= 9.5 && fitsIn(withDate.lines, withDate.fs, n.r - d0 * 0.95) && width(mark, dfTry) * 0.74 <= chord) { best = withDate; df = dfTry; up = upTry; n.dateDy = yDate; }
     }
     let { fs, lines } = best;
     // never let a name spill out of its fruit: at the smallest size, shorten it (the tooltip and the panel carry the full name)
@@ -571,8 +582,10 @@ function fitLabels() {
     }
     n.t.textContent = '';
     n.t.setAttribute('font-size', fs);
+    n.t.setAttribute('y', f1(-up));
     lines.forEach((l, i) => el('tspan', { x: 0, dy: lines.length === 1 ? 1 : (i === 0 ? f1(-0.55 * fs) : f1(1.18 * fs)) }, n.t).textContent = l);
-    n.fs = fs;
+    if (df) el('tspan', { class: 'bm', x: 0, dy: f1(0.78 * fs + df * 0.75), 'font-size': f1(df) }, n.t).textContent = mark;
+    n.fs = fs; n.mark = mark;
   }
   buildKeyLabels();
 }
@@ -584,7 +597,7 @@ function buildKeyLabels() {
   L.klabs.textContent = ''; keyLabels = [];
   for (const [id, n] of nodeEls) {
     const f = fan.get(id); if (!f || byId.get(id).placeholder) continue;
-    keyLabels.push({ id, n, t: null, x: n.x, y: n.y, r: n.r, w: measure(n.label, `700 12px ${nameFont}`) + 8, d: f.d, ux: Math.sin(f.a), uy: -Math.cos(f.a), shown: null });
+    keyLabels.push({ id, n, t: null, x: n.x, y: n.y, r: n.r, mark: n.mark || '', w: Math.max(measure(n.label, `700 12px ${nameFont}`), n.mark ? measure(n.mark, `500 10px ${nameFont}`) : 0) + 8, d: f.d, ux: Math.sin(f.a), uy: -Math.cos(f.a), shown: null });
   }
   lastLodK = 0; applyLOD(currentK, true);
 }
@@ -634,7 +647,7 @@ function applyLOD(k, force) {
   }
   const show = (kl, mode, x, y) => {
     if (!kl.t) { if (!mode) return; kl.t = el('text', { class: 'klab' }, L.klabs); }
-    if (kl.shown !== mode) { kl.t.textContent = mode === 'name' ? kl.n.label : mode === 'dots' ? '…' : ''; if (mode) kl.t.removeAttribute('display'); else kl.t.setAttribute('display', 'none'); kl.shown = mode; }
+    if (kl.shown !== mode) { kl.t.textContent = mode === 'dots' ? '…' : ''; if (mode === 'name') { el('tspan', { x: 0, dy: kl.mark ? -6 : 0 }, kl.t).textContent = kl.n.label; if (kl.mark) el('tspan', { class: 'bm', x: 0, dy: 13 }, kl.t).textContent = kl.mark; } if (mode) kl.t.removeAttribute('display'); else kl.t.setAttribute('display', 'none'); kl.shown = mode; }
     if (mode) { kl.t.setAttribute('x', f1(x)); kl.t.setAttribute('y', f1(y)); kl.t.setAttribute('transform', `translate(${f1(kl.x)},${f1(kl.y)}) scale(${(1 / k).toFixed(4)})`); }
   };
   if (outside) {
@@ -642,7 +655,8 @@ function applyLOD(k, force) {
     for (const kl of order) {
       // phones: no names outside the fruits; a name too small to read becomes «…», with the name in the tooltip and the panel
       if (phone) { show(kl, kl.r * k >= 5 ? 'dots' : '', 0, 0); continue; }
-      const hw = kl.w / 2, hh = 8, gap = kl.r * k + 3, nx = kl.x * k, ny = kl.y * k;
+      const hw = kl.w / 2, hh = kl.mark ? 14 : 8, gap = kl.r * k + 3,   // two lines when the name has a date under it
+       nx = kl.x * k, ny = kl.y * k;
       let at = null;
       for (const [ux, uy] of [[kl.ux, kl.uy], [0, 1], [0, -1], [kl.ux >= 0 ? 1 : -1, 0]]) {   // outward, below, above, beside
         const d = gap + Math.abs(ux) * hw + Math.abs(uy) * hh, cx = nx + ux * d, cy = ny + uy * d;

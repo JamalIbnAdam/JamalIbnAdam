@@ -12,6 +12,8 @@ const htmlRoot = document.documentElement;
 const missing = new Map();
 const $ = (id) => document.getElementById(id) || missing.get(id) || missing.set(id, document.createElement('div')).get(id);
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+// a data file is asked for as file?v=<hash of its content> (data/version.js, written by scripts/stamp.mjs)
+const ver = (path) => { const h = (window.SITE_V || {})[path]; return h ? `${path}?v=${h}` : path; };
 const strings = () => (window.FamilyTreeData && window.FamilyTreeData.translations) || {};
 const t = (key) => (typeof strings()[key] === 'string' ? strings()[key] : key);
 
@@ -46,7 +48,7 @@ function loadScript(src) {
 
 function loadLanguageScript(langCode) {
     const url = `data/data_${langCode}.js`;
-    return loadScript(`${url}?t=${Date.now()}`).catch(() => loadScript(url));
+    return loadScript(ver(url)).catch(() => loadScript(url));
 }
 
 function applyTranslations() {
@@ -75,6 +77,7 @@ function applyTranslations() {
     if (searchLabel) searchLabel.textContent = t('home_search_label');
     updateThemeLabel();
     renderSources();
+    renderBeadDates();
     closeSheet();
 }
 
@@ -110,7 +113,7 @@ $('home-theme').addEventListener('click', () => {
 /* ---------- the three numbers, computed from the data ---------- */
 // data/stats.json is generated from tree.json and docs.json by scripts/build-stats.mjs
 function loadNumbers() {
-    fetch('data/stats.json').then((r) => (r.ok ? r.json() : Promise.reject(new Error(`stats.json: HTTP ${r.status}`))))
+    fetch(ver('data/stats.json')).then((r) => (r.ok ? r.json() : Promise.reject(new Error(`stats.json: HTTP ${r.status}`))))
         .then((stats) => {
             $('home-st-refs').textContent = stats.references;   // the references list, counted by build-stats
             $('home-st-docs').textContent = stats.documents;
@@ -140,17 +143,28 @@ function closeSheet() {
     sheet.hidden = true;
     if (sheetOpener && sheetOpener.isConnected) sheetOpener.focus();
 }
+// the 35 beads are the 35 timeline nodes, in order
+const timeline = () => (window.FamilyTreeData && window.FamilyTreeData.nodes) || [];
+const nodeName = (node) => String(node.name || '').replace(/^\d+\.\s*/, '');
 function openSheet(bead) {
-    const beads = [...document.querySelectorAll('.sg-bead')];
-    // the timeline nodes p_001–p_033 follow the beads in order; the two names under review have no node yet
-    const index = beads.slice(0, beads.indexOf(bead)).filter((b) => !b.dataset.verify).length;
-    const node = bead.dataset.verify ? null : ((window.FamilyTreeData && window.FamilyTreeData.nodes) || [])[index];
-    $('home-sheet-name').textContent = bead.dataset.bead;
+    const node = timeline()[[...document.querySelectorAll('.sg-bead')].indexOf(bead)];
+    $('home-sheet-name').textContent = node ? nodeName(node) : bead.dataset.bead;
     $('home-sheet-src').textContent = node ? [node.src ? `${t('tree_source')}: ${node.src}` : '', node.date || ''].filter(Boolean).join(' · ') : '';
-    $('home-sheet-story').textContent = node ? node.story || node.logic || '' : t('home_verify_note');
+    $('home-sheet-story').textContent = node ? node.story || node.logic || '' : '';
     sheetOpener = bead;
     sheet.hidden = false;
     $('home-sheet-x').focus();
+}
+// the date is on the bead itself, not only in its sheet: a small second line, in Gregorian years (none for the ancient names)
+function renderBeadDates() {
+    const nodes = timeline();
+    document.querySelectorAll('.sg-bead').forEach((bead, i) => {
+        const short = nodes[i] && nodes[i].date_short;
+        let line = bead.querySelector('.sg-bead-date');
+        if (!short) { if (line) line.remove(); return; }
+        if (!line) { line = document.createElement('small'); line.className = 'sg-bead-date'; bead.appendChild(line); }
+        line.textContent = short;
+    });
 }
 document.addEventListener('click', (event) => {
     const bead = event.target.closest('.sg-bead');

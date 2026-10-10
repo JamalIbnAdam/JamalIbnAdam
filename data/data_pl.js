@@ -211,11 +211,13 @@ window.FamilyTreeData = {
         tree_birth_year: "born {h} AH ({g} CE)", // TODO translate
         tree_birth_short_range: "c. {h0}–{h1} AH · {g0}–{g1} CE", // TODO translate
         tree_birth_short_year: "{h} AH · {g} CE", // TODO translate
+        tree_birth_node: "~{h} AH",
+        tree_birth_node_year: "{h} AH",
         tree_birth_doc: "from a document", // TODO translate
         tree_birth_calc: "computed", // TODO translate
         tree_birth_gen: "estimated by generations", // TODO translate
         m7_h: "How did we estimate the birth dates?", // TODO translate
-        m7_p: "Every birth date in the tree is an estimate unless stated otherwise. We start with those whom the documents show to have been alive and adult in a known year: he bought, or witnessed, or the sultan wrote to him. Then we work out the fathers and the sons, with 18 to 60 years between a father and his son. Someone with no nearby document is measured against his generation in the documented line, at about 30 to 35 years a generation. Before Islam we rely on two fixed points: the birth of the Companion Jabir ibn Abdullah about 16 BH, and the settling of the Aws and the Khazraj in Yathrib early in the fourth century CE; we spread the generations between them. Before the Azd left Yemen, counting is not sound.", // TODO translate
+        m7_p: "Every birth date in the tree is an estimate unless stated otherwise. We start with those whom the documents show to have been alive and adult in a known year: he bought, or witnessed, or the sultan wrote to him. Then we work out the fathers and the sons, with 18 to 60 years between a father and his son. Someone with no nearby document is measured against his generation in the documented line, at about 30 to 35 years a generation. Before Islam we count the generations back from the birth of the Companion Jabir ibn Abdullah about 16 BH, at 25 to 35 years a generation, as far as Amr Muzayqiya. This count agrees with the date at which he led the Azd out of Yemen: about 120 CE according to Muir, and about 200 CE according to Hamza al-Isfahani. Earlier than that, counting is not sound.", // TODO translate
         tree_stat_refs: "references used so far", // TODO translate
         tree_stat_docs: "documents published so far", // TODO translate
         tree_stat_oldest: "oldest dated document", // TODO translate
@@ -334,9 +336,7 @@ window.FamilyTreeData = {
         home_j_p: "Three stages, each with its own degree of certainty. The golden thread is solid where the evidence is continuous, and dotted where the research is still under way.", // TODO translate
         home_s1_k: "Stage one", // TODO translate
         home_s1_h: "The origin, as in the books of genealogy", // TODO translate
-        home_s1_p: "From Qahtan to the Companion Jabir ibn Abdullah al-Ansari, as told in Ibn Hazm's Jamhara, Ibn Sa'd's Tabaqat and Ibn al-Kalbi's Nasab. Two names carry the mark “under review” because the old site had dropped them and we are checking them in the sources.", // TODO translate
-        home_verify: "under review", // TODO translate
-        home_verify_note: "A name under review in the sources: the old site had dropped it from the chain.", // TODO translate
+        home_s1_p: "From Qahtan to the Companion Jabir ibn Abdullah al-Ansari, as told in Ibn Hazm's Jamhara, Ibn Sa'd's Tabaqat and Ibn al-Kalbi's Nasab. We have restored two names that the old site had dropped: Ka'b ibn Salimah and Haram ibn Ka'b, as in Jabir's lineage in Ibn Sa'd and Ibn Hajar.", // TODO translate
         home_s2_k: "Stage two", // TODO translate
         home_s2_h: "Eight centuries under research", // TODO translate
         home_hyp1_h: "The Hejaz and Jeddah hypothesis", // TODO translate
@@ -506,6 +506,7 @@ window.FamilyTreeData = {
             name: "4. Saba'",
             type: "epoch-1",
             date: "The kingdom of Saba in inscriptions from about the 8th century BCE",
+            date_short: "8th c. BCE",
             badge: "Archeologiczno-historyczny",
             src: "Musnad inscriptions",
             logic: "Założyciel królestwa",
@@ -626,7 +627,8 @@ window.FamilyTreeData = {
             id: "p_016",
             name: "16. Amr (Muzayqiya)",
             type: "epoch-1",
-            date: "He led the Azd out of Yemen about 120 CE according to Muir, or about 200 CE according to Hamza al-Isfahani (“about 400 years before Islam”)",
+            date: "c. 60 BCE–135 CE, estimated · he led the Azd out of Yemen about 120 CE according to Muir, or about 200 CE according to Hamza al-Isfahani",
+            date_short: "60 BCE–135 CE",
             badge: "Historyczny",
             src: "Jamharat Ibn Hazm",
             logic: "Przywódca migracji",
@@ -636,7 +638,8 @@ window.FamilyTreeData = {
             id: "p_017",
             name: "17. Tha'labah (Al-'Anqa')",
             type: "epoch-1",
-            date: "c. 160–260 CE, estimated",
+            date: "c. 25 BCE–160 CE, estimated",
+            date_short: "25 BCE–160 CE",
             badge: "Słynny tytuł",
             src: "Al-Inbah (Ibn Abd al-Barr)",
             logic: "Ojciec Harithaha, ojciec Ansarów",
@@ -647,7 +650,8 @@ window.FamilyTreeData = {
             id: "p_018",
             name: "18. Harithah (Ojciec Ansarów)",
             type: "epoch-1",
-            date: "c. 200–280 CE, estimated",
+            date: "c. 10–185 CE, estimated",
+            date_short: "10–185 CE",
             badge: "From the books of genealogy",
             src: "Jamharat Ibn Hazm",
             logic: "Ojciec Aws i Khazradża",
@@ -657,7 +661,8 @@ window.FamilyTreeData = {
             id: "p_019",
             name: "19. Al-Khazraj",
             type: "epoch-1",
-            date: "c. 240–300 CE (395–330 BH) · his people settled in Yathrib early in the 4th century CE",
+            date: "c. 45–210 CE (595–420 BH), estimated · his tribe settled in Yathrib early in the 4th century CE",
+            date_short: "45–210 CE",
             badge: "From the books of genealogy",
             src: "Al-Isabah",
             logic: "Przodek plemienny",
@@ -667,7 +672,8 @@ window.FamilyTreeData = {
             id: "p_020",
             name: "20. Jusham ibn al-Khazraj",
             type: "epoch-1",
-            date: "c. 260–340 CE (375–290 BH), estimated",
+            date: "c. 80–235 CE (560–395 BH), estimated",
+            date_short: "80–235 CE",
             badge: "Głowa klanu",
             src: "Jamharat Ansab al-Arab (Ibn Hazm - p330)",
             logic: "Przodek klanu",
@@ -677,7 +683,8 @@ window.FamilyTreeData = {
             id: "p_021",
             name: "21. Tazid ibn Jusham",
             type: "epoch-1",
-            date: "c. 280–370 CE (355–260 BH), estimated",
+            date: "c. 115–260 CE (525–370 BH), estimated",
+            date_short: "115–260 CE",
             badge: "From the books of genealogy",
             src: "Nasab Ma'add wa al-Yaman al-Kabir (Al-Kalbi)",
             logic: "Ogniwo rodowodowe",
@@ -687,7 +694,8 @@ window.FamilyTreeData = {
             id: "p_022",
             name: "22. Sardah ibn Tazid",
             type: "epoch-1",
-            date: "c. 300–390 CE (335–235 BH), estimated",
+            date: "c. 150–285 CE (490–345 BH), estimated",
+            date_short: "150–285 CE",
             badge: "From the books of genealogy",
             src: "Jamharat Ansab al-Arab (Ibn Hazm)",
             logic: "Ogniwo rodowodowe",
@@ -697,7 +705,8 @@ window.FamilyTreeData = {
             id: "p_023",
             name: "23. Asad ibn Sardah",
             type: "epoch-1",
-            date: "c. 320–410 CE (315–215 BH), estimated",
+            date: "c. 185–310 CE (455–320 BH), estimated",
+            date_short: "185–310 CE",
             badge: "Udokumentowana linia",
             src: "Al-Tabaqat al-Kubra (Ibn Sa'd - vol 1)",
             logic: "Przodek przedislamski",
@@ -707,7 +716,8 @@ window.FamilyTreeData = {
             id: "p_024",
             name: "24. Ali ibn Asad",
             type: "epoch-1",
-            date: "c. 340–430 CE (295–195 BH), estimated",
+            date: "c. 220–335 CE (415–295 BH), estimated",
+            date_short: "220–335 CE",
             badge: "From the books of genealogy",
             src: "Mukhtalif al-Qaba'il (Ibn Habib)",
             logic: "Ogniwo rodowodowe",
@@ -717,7 +727,8 @@ window.FamilyTreeData = {
             id: "p_025",
             name: "25. Sa'd ibn Ali",
             type: "epoch-1",
-            date: "c. 360–450 CE (270–175 BH), estimated",
+            date: "c. 255–360 CE (380–270 BH), estimated",
+            date_short: "255–360 CE",
             badge: "Ojciec przodka",
             src: "Sirat Ibn Hisham",
             logic: "Bezpośredni przodek Salimah",
@@ -725,19 +736,32 @@ window.FamilyTreeData = {
         },
         {
             id: "p_026",
-            name: "26. Salimah",
+            name: "26. Salimah ibn Sa'd",
             type: "epoch-1",
-            date: "c. 380–470 CE (250–155 BH), estimated",
+            date: "c. 290–385 CE (345–240 BH), estimated",
+            date_short: "290–385 CE",
             badge: "From the books of genealogy",
             src: "Sirat Ibn Hisham",
             logic: "Przodek Banu Salimah",
             story: "Banu Salimah pragnęli przenieść się bliżej meczetu Proroka; powiedział im, że ich kroki są zapisywane."
         },
         {
-            id: "p_027",
-            name: "27. Ghanm ibn Salimah",
+            id: "p_026a",
+            name: "27. Ka'b ibn Salimah",
             type: "epoch-1",
-            date: "c. 400–490 CE (230–135 BH), estimated",
+            date: "c. 325–410 CE (310–215 BH), estimated",
+            date_short: "325–410 CE",
+            badge: "Agreed by the genealogists",
+            src: "Al-Tabaqat al-Kubra (Ibn Sa'd); Al-Isabah (Ibn Hajar)",
+            logic: "",
+            story: "A link in the lineage of the Companion Jabir ibn Abdullah as Ibn Sa'd and Ibn Hajar give it; the old site had dropped it."
+        },
+        {
+            id: "p_027",
+            name: "28. Ghanm ibn Ka'b",
+            type: "epoch-1",
+            date: "c. 360–435 CE (275–190 BH), estimated",
+            date_short: "360–435 CE",
             badge: "Głowa klanu",
             src: "Jamharat Ansab al-Arab (Ibn Hazm - p358)",
             logic: "Przodek klanu",
@@ -745,19 +769,32 @@ window.FamilyTreeData = {
         },
         {
             id: "p_028",
-            name: "28. Ka'b ibn Ghanm",
+            name: "29. Ka'b ibn Ghanm",
             type: "epoch-1",
-            date: "c. 420–510 CE (210–115 BH), estimated",
+            date: "c. 395–460 CE (235–165 BH), estimated",
+            date_short: "395–460 CE",
             badge: "Udokumentowana linia",
             src: "Al-Tabaqat al-Kubra (Ibn Sa'd)",
             logic: "Ogniwo rodowodowe",
             story: "Ogniwo w łańcuchu przywoływanym w rodowodzie Jabira ibn Abdullaha."
         },
         {
-            id: "p_029",
-            name: "29. Tha'labah ibn Ka'b",
+            id: "p_028a",
+            name: "30. Haram ibn Ka'b",
             type: "epoch-1",
-            date: "c. 445–530 CE (185–95 BH), estimated",
+            date: "c. 430–485 CE (200–140 BH), estimated",
+            date_short: "430–485 CE",
+            badge: "Agreed by the genealogists",
+            src: "Al-Tabaqat al-Kubra (Ibn Sa'd); Al-Isabah (Ibn Hajar)",
+            logic: "",
+            story: "A link in the lineage of the Companion Jabir ibn Abdullah as Ibn Sa'd and Ibn Hajar give it; the old site had dropped it."
+        },
+        {
+            id: "p_029",
+            name: "31. Tha'labah ibn Haram",
+            type: "epoch-1",
+            date: "c. 465–510 CE (165–115 BH), estimated",
+            date_short: "465–510 CE",
             badge: "From the books of genealogy",
             src: "Nasab Ma'add wa al-Yaman al-Kabir (Al-Kalbi)",
             logic: "Przodek przedislamski",
@@ -765,9 +802,10 @@ window.FamilyTreeData = {
         },
         {
             id: "p_030",
-            name: "30. Haram ibn Tha'labah",
+            name: "32. Haram ibn Tha'labah",
             type: "epoch-1",
-            date: "c. 485–550 CE (145–70 BH), estimated",
+            date: "c. 500–535 CE (130–85 BH), estimated",
+            date_short: "500–535 CE",
             badge: "Ojciec towarzysza",
             src: "Al-Isabah fi Tamyiz al-Sahabah",
             logic: "Ojciec Amra ibn Harama",
@@ -775,9 +813,10 @@ window.FamilyTreeData = {
         },
         {
             id: "p_031",
-            name: "31. Amr ibn Haram",
+            name: "33. Amr ibn Haram",
             type: "epoch-2",
-            date: "c. 525–570 CE (100–50 BH), estimated · died before Uhud",
+            date: "c. 535–560 CE (90–60 BH), estimated · died before Uhud",
+            date_short: "535–560 CE",
             badge: "Towarzysz",
             src: "Al-Isabah (vol 1)",
             logic: "--",
@@ -785,9 +824,10 @@ window.FamilyTreeData = {
         },
         {
             id: "p_032",
-            name: "32. Abdullah (Męczennik)",
+            name: "34. Abdullah (Męczennik)",
             type: "epoch-2",
-            date: "c. 565–590 CE (60–30 BH) · martyred at Uhud 3 AH (625 CE)",
+            date: "c. 560–590 CE (65–30 BH) · martyred at Uhud 3 AH (625 CE)",
+            date_short: "560–590 CE",
             badge: "Męczennik Uhud",
             src: "Al-Isabah",
             logic: "Ojciec Jabira",
@@ -795,9 +835,10 @@ window.FamilyTreeData = {
         },
         {
             id: "p_033",
-            name: "33. Jabir ibn Abdullah",
+            name: "35. Jabir ibn Abdullah",
             type: "epoch-2",
             date: "born c. 16 BH (607 CE) · died 78 AH (697 CE)",
+            date_short: "607–697 CE",
             badge: "Wielki towarzysz",
             src: "Al-Isabah (1022)",
             logic: "Głowa linii",
