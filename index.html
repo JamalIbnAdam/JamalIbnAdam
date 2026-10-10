@@ -8,9 +8,6 @@
         // theme before first paint: the stored choice (shared with /tree/), otherwise dark
         (function () { try { var t = localStorage.getItem('treeTheme'); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) { } })();
     </script>
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="JamalIbnAdam">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet"
@@ -28,9 +25,13 @@
     <link rel="icon" type="image/webp" href="logo.webp">
     <link rel="shortcut icon" href="logo.webp">
     <link rel="preload" as="image" href="logo.webp">
-    <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" href="Official_Authorization_Document_optimized.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/icons/apple-touch-180.png">
     <meta name="theme-color" content="#121614">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="السجل الذهبي">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://jamalibnadam.com/">
@@ -79,7 +80,8 @@
 <a href="more/#author" style="text-decoration: none; color: var(--h-ink2);" data-i18n="home_nav_author">المؤلف</a>
 <a href="#sources" style="text-decoration: none; color: var(--h-ink2);" data-i18n="home_nav_sources">المراجع</a>
 </nav>
-<div style="display: flex; gap: 10px; align-items: center;">
+<div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
+<span data-install-slot></span>
 <label for="lang-select" class="sg-sr">Select Language</label><select id="lang-select" class="sg-lang" style="min-height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid var(--h-hair); background: transparent; color: var(--h-ink); font: inherit; font-size: 14px; cursor: pointer;"><option value="ar">العربية</option><option value="en">English</option><option value="tr">Türkçe</option><option value="pl">Polski</option><option value="es">Español</option></select>
 <button type="button" id="home-theme" aria-label="التبديل إلى الوضع الفاتح" style="width: 44px; height: 44px; border-radius: 10px; border: 1px solid var(--h-hair); background: transparent; color: var(--h-gold); cursor: pointer; display: grid; place-items: center;">
 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"></circle><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"></path></svg>
@@ -756,6 +758,7 @@
 </div>
 
 <script src="home.js" defer></script>
+<script src="install.js" defer></script>
 </body>
 
 </html>

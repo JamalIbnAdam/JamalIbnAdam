@@ -5,9 +5,6 @@
     <meta charset="UTF-8">
     <base href="../">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="JamalIbnAdam">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -32,9 +29,13 @@
     <link rel="preload" as="image" href="logo.webp">
 
     <!-- PWA Settings -->
-    <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" href="Official_Authorization_Document_optimized.png">
-    <meta name="theme-color" content="#0f172a">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/icons/apple-touch-180.png">
+    <meta name="theme-color" content="#121614">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="السجل الذهبي">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://jamalibnadam.com/">
@@ -108,11 +109,7 @@
         <div class="container mx-auto px-4 py-6 relative">
 
             <div class="absolute top-0 ltr:right-0 rtl:left-0 mt-2 mx-4 z-50 flex gap-2 items-center">
-                <!-- Install App Button -->
-                <button id="install-btn"
-                    class="hidden appearance-none bg-amber-500/90 backdrop-blur-md text-white text-xs font-bold border border-amber-400 rounded-lg py-1.5 px-3 focus:outline-none cursor-pointer shadow-lg hover:bg-amber-400 transition-all items-center gap-1">
-                    <span>📲</span> <span data-i18n="btn_install">Install App</span>
-                </button>
+                <span data-install-slot class="text-white"></span>
 
                 <label for="lang-select" class="sr-only">Select Language</label>
                 <select id="lang-select" onchange="changeLanguage(this.value)" aria-label="Select Language"
@@ -936,6 +933,7 @@
     </div>
 
     <script src="main.js?v=1.8" defer></script>
+    <script src="install.js" defer></script>
     <script>
         // /more/#library etc.: open the named tab
         function openTabFromHash() {
@@ -946,11 +944,6 @@
         window.addEventListener('hashchange', openTabFromHash);
     </script>
 
-    <div id="install-guide"
-        style="display:none; position:fixed; bottom:0; width:100%; background:white; padding:20px; z-index:9999; border-top:2px solid #d4af37; text-align:center;">
-        <p>لتثبيت السجل على هاتفك: اضغط على زر <b>المشاركة</b> ثم <b>"إضافة إلى الشاشة الرئيسية"</b></p>
-        <button onclick="this.parentElement.style.display='none'">إغلاق</button>
-    </div>
 
     <script>
         // Register Service Worker
@@ -964,39 +957,6 @@
                     });
             });
         }
-
-        // PWA Installation Logic
-        let deferredPrompt;
-        const installBtn = document.getElementById('install-btn');
-
-        // Check if app is already installed
-        const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
-
-        // Force show button for desktop users (if not already installed)
-        if (!isStandalone) {
-            installBtn.classList.remove('hidden');
-            installBtn.classList.add('flex');
-        }
-
-        window.addEventListener('beforeinstallprompt', (e) => {
-            // Prevent Chrome 67 and earlier from automatically showing the prompt
-            e.preventDefault();
-            // Stash the event so it can be triggered later.
-            deferredPrompt = e;
-            // Ensure button is visible
-            installBtn.classList.remove('hidden');
-            installBtn.classList.add('flex');
-        });
-
-        function triggerInstall() {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-            } else {
-                document.getElementById('install-guide').style.display = 'block';
-            }
-        }
-
-        installBtn.addEventListener('click', triggerInstall);
     </script>
 </body>
 

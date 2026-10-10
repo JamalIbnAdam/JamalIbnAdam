@@ -421,6 +421,25 @@ window.FamilyTreeData = {
         home_see_chain: "انظر سلسلتك في شجرة الأدلة",
         home_badge_books: "من كتب الأنساب",
 
+
+        // Install UI (install.js)
+        install_btn: "ثبّت التطبيق",
+        install_bar: "ثبّت السجل الذهبي على هاتفك — يفتح كتطبيق بلا متصفح",
+        install_now: "تثبيت",
+        install_later: "لاحقاً",
+        install_close: "إغلاق",
+        install_ios_title: "أضِف التطبيق إلى شاشتك في 3 خطوات",
+        install_ios_1: "اضغط زر المشاركة",
+        install_ios_1_note: "في سفاري أسفل الشاشة، وفي الآيباد أعلاها",
+        install_ios_2: "مرّر للأسفل واختر \"إضافة إلى الشاشة الرئيسية\"",
+        install_ios_3: "اضغط \"إضافة\" في الزاوية العليا",
+        install_ios_add: "إضافة",
+        install_ios_other: "إن لم تجد الخيار فافتح الموقع في سفاري",
+        install_and_title: "ثبّت التطبيق من قائمة المتصفح",
+        install_and_1: "اضغط زر القائمة ☰ أسفل الشاشة",
+        install_and_2: "اختر \"إضافة الصفحة إلى\" ثم \"الشاشة الرئيسية\"",
+        install_ff: "⋮ ← تثبيت",
+
         tree_aria: "شجرة آل سبال العين",
         tree_search_placeholder: "ابحث عن اسم…",
         tree_search_empty: "لا اسم مطابق",

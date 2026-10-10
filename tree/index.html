@@ -29,8 +29,13 @@
 
     <link rel="icon" type="image/webp" href="../logo.webp">
     <link rel="shortcut icon" href="../logo.webp">
-    <link rel="manifest" href="../manifest.json">
-    <meta name="theme-color" content="#0f172a">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/icons/apple-touch-180.png">
+    <meta name="theme-color" content="#121614">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="السجل الذهبي">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://jamalibnadam.com/tree/">
@@ -60,6 +65,7 @@
         </div>
         <nav class="ft-tools">
             <a href="../" class="ft-home" data-i18n="tree_back_home">→ العودة إلى السجل الذهبي</a>
+            <span data-install-slot></span>
             <label for="lang-select" class="ft-sr">Select Language</label>
             <select id="lang-select" aria-label="Select Language">
                 <option value="ar">🇸🇦 العربية</option>
@@ -154,6 +160,7 @@
     <script src="../assets/vendor/d3.v7.9.0.min.js" defer></script>
     <script src="tree.js" defer></script>
     <script src="page.js" defer></script>
+    <script src="../install.js" defer></script>
 </body>
 
 </html>

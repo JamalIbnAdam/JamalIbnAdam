@@ -358,6 +358,25 @@ window.FamilyTreeData = {
         home_see_chain: "See your chain in the evidence tree",
         home_badge_books: "From the books of genealogy",
 
+
+        // Install UI (install.js)
+        install_btn: "Install the app",
+        install_bar: "Install the Golden Record on your phone — it opens as an app, without the browser",
+        install_now: "Install",
+        install_later: "Later",
+        install_close: "Close",
+        install_ios_title: "Add the app to your screen in 3 steps",
+        install_ios_1: "Tap the Share button",
+        install_ios_1_note: "In Safari it is at the bottom of the screen; on iPad, at the top",
+        install_ios_2: "Scroll down and choose “Add to Home Screen”",
+        install_ios_3: "Tap “Add” in the top corner",
+        install_ios_add: "Add",
+        install_ios_other: "If you cannot find the option, open the site in Safari",
+        install_and_title: "Install the app from the browser menu",
+        install_and_1: "Tap the menu button ☰ at the bottom of the screen",
+        install_and_2: "Choose “Add page to”, then “Home screen”",
+        install_ff: "⋮ → Install",
+
         tree_aria: "Al-Sabal Al-Ain family tree",
         tree_search_placeholder: "Search for a name…",
         tree_search_empty: "No matching name",

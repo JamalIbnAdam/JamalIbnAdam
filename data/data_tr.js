@@ -336,6 +336,25 @@ window.FamilyTreeData = {
         home_see_chain: "See your chain in the evidence tree", // TODO translate
         home_badge_books: "From the books of genealogy", // TODO translate
 
+
+        // Install UI (install.js)
+        install_btn: "Uygulamayı yükle",
+        install_bar: "Altın Kayıt’ı telefonuna yükle — tarayıcı olmadan uygulama gibi açılır",
+        install_now: "Yükle",
+        install_later: "Sonra",
+        install_close: "Kapat",
+        install_ios_title: "Uygulamayı 3 adımda ekranına ekle",
+        install_ios_1: "Paylaş düğmesine dokun",
+        install_ios_1_note: "Safari’de ekranın altında, iPad’de üstünde",
+        install_ios_2: "Aşağı kaydır ve “Ana Ekrana Ekle”yi seç",
+        install_ios_3: "Üst köşedeki “Ekle”ye dokun",
+        install_ios_add: "Ekle",
+        install_ios_other: "Seçeneği bulamazsan siteyi Safari’de aç",
+        install_and_title: "Uygulamayı tarayıcı menüsünden yükle",
+        install_and_1: "Ekranın altındaki ☰ menü düğmesine dokun",
+        install_and_2: "“Sayfayı şuraya ekle”yi, sonra “Ana ekran”ı seç",
+        install_ff: "⋮ → Yükle",
+
         tree_aria: "Al-Sabal Al-Ain family tree", // TODO translate
         tree_search_placeholder: "Search for a name…", // TODO translate
         tree_search_empty: "No matching name", // TODO translate

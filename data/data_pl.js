@@ -340,6 +340,25 @@ window.FamilyTreeData = {
         home_see_chain: "See your chain in the evidence tree", // TODO translate
         home_badge_books: "From the books of genealogy", // TODO translate
 
+
+        // Install UI (install.js)
+        install_btn: "Zainstaluj aplikację",
+        install_bar: "Zainstaluj Złoty Rejestr na telefonie — otwiera się jak aplikacja, bez przeglądarki",
+        install_now: "Zainstaluj",
+        install_later: "Później",
+        install_close: "Zamknij",
+        install_ios_title: "Dodaj aplikację do ekranu w 3 krokach",
+        install_ios_1: "Stuknij przycisk Udostępnij",
+        install_ios_1_note: "W Safari jest na dole ekranu, na iPadzie u góry",
+        install_ios_2: "Przewiń w dół i wybierz „Do ekranu początkowego”",
+        install_ios_3: "Stuknij „Dodaj” w górnym rogu",
+        install_ios_add: "Dodaj",
+        install_ios_other: "Jeśli nie widzisz tej opcji, otwórz stronę w Safari",
+        install_and_title: "Zainstaluj aplikację z menu przeglądarki",
+        install_and_1: "Stuknij przycisk menu ☰ na dole ekranu",
+        install_and_2: "Wybierz „Dodaj stronę do”, a potem „Ekran startowy”",
+        install_ff: "⋮ → Zainstaluj",
+
         tree_aria: "Al-Sabal Al-Ain family tree", // TODO translate
         tree_search_placeholder: "Search for a name…", // TODO translate
         tree_search_empty: "No matching name", // TODO translate

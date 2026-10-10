@@ -1,20 +1,33 @@
 {
-    "name": "السجل الذهبي - آل سبال العين",
+    "id": "/",
+    "name": "السجل الذهبي لآل سبال العين",
     "short_name": "السجل الذهبي",
-    "start_url": ".",
+    "start_url": "/",
+    "scope": "/",
     "display": "standalone",
-    "background_color": "#0f172a",
-    "theme_color": "#0f172a",
+    "orientation": "any",
+    "dir": "rtl",
+    "lang": "ar",
+    "background_color": "#121614",
+    "theme_color": "#121614",
     "icons": [
         {
-            "src": "Official_Authorization_Document_optimized.png",
+            "src": "/icons/icon-192.png",
             "sizes": "192x192",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any"
         },
         {
-            "src": "Official_Authorization_Document_optimized.png",
+            "src": "/icons/icon-512.png",
             "sizes": "512x512",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/icons/icon-maskable-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
         }
     ]
 }
