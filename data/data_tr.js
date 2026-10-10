@@ -46,7 +46,7 @@ window.FamilyTreeData = {
         ],
         poem_ch4_title: "🌴 Bölüm IV: Fazl'ın Şeceresi (Altı Kol)",
         poem_ch4_body: [
-            "Abdullah Sebal el-Ayn'dan Fadl'ın soyuna ve altı ana kola ulaşıldı.",
+            "Abdullah Sebal el-Ayn'dan, onun soyundan gelen kollar doğdu.",
             "Agar, Aşkeda, Dabdab, Brak ve Osman, Kasım, Ebubekir, Salim, Abdülvahid aileleri bu mirası şekillendirdi."
         ],
         poem_ch5_title: "🤝 Bölüm V: Yardım ve Himaye",

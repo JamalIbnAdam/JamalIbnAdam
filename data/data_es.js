@@ -49,7 +49,7 @@ window.FamilyTreeData = {
         ],
         poem_ch4_title: "🌴 Capítulo IV: El árbol de Fadl (seis ramas)",
         poem_ch4_body: [
-            "De Abdullah Sabal al-Ain surgió el linaje de Fadl y las seis ramas principales.",
+            "De Abdullah Sabal al-Ain surgieron las ramas que descienden de él.",
             "Agar, Ashkedah, Dabdab, Brak y las familias de Uthman, Qasim, Abu Bakr, Salem y Abdul Wahid forjaron el legado.",
             "Su honor se preserva a través de las generaciones en Wadi Al-Shatii."
         ],
