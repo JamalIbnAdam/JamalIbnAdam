@@ -383,7 +383,9 @@ function draw() {
     el('path', { class: 'plaque ' + stKey(ali.status), d: `M${-w / 2 + n},${y - h / 2} H${w / 2 - n} L${w / 2},${y} L${w / 2 - n},${y + h / 2} H${-w / 2 + n} L${-w / 2},${y} Z` }, g);
     el('path', { class: 'plaque-in', d: `M${-w / 2 + n + 6},${y - h / 2 + 7} H${w / 2 - n - 6} L${w / 2 - 9},${y} L${w / 2 - n - 6},${y + h / 2 - 7} H${-w / 2 + n + 6} L${-w / 2 + 9},${y} Z` }, g);
     el('text', { class: 'ptxt', x: 0, y: y - 12, 'font-size': 30, 'font-weight': 700 }, g).textContent = CONFIG.plaqueAli;
-    el('text', { class: 'psub', x: 0, y: y + 22 }, g).textContent = t('tree_poster_only', { x: CONFIG.posterAli });
+    // the line under the name is shrunk when a translation is too long for the plaque
+    const sub = t('tree_poster_only', { x: CONFIG.posterAli }), subW = measure(sub, `400 12px ${uiFont}`);
+    el('text', { class: 'psub', x: 0, y: y + 22, style: `font-size:${f1(Math.min(12, 12 * (w - 2 * n - 28) / subW))}px` }, g).textContent = sub;
   })();
 
   // tulip plaque with the verse

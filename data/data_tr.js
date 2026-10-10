@@ -351,9 +351,9 @@ window.FamilyTreeData = {
         tree_gen_unknown: "Generation not determined", // TODO translate
         tree_gen_zero: "Generation 0 (above Abdullah)", // TODO translate
         tree_gen_top: "Generation {n} (top of the chain)", // TODO translate
-        tree_poster_only: "In the 1987 poster only: “{x}”", // TODO translate
+        tree_poster_only: "“al-Jaddawi al-Ansari” in the tribe's deeds since 1174 AH", // TODO translate
         tree_poster_title: "In the 1987 poster", // TODO translate
-        tree_poster_note: "The lowest plaque on the poster reads “{name} {x}”. The last two attributions do not appear with him in any document.", // TODO translate
+        tree_poster_note: "The name “al-Jaddawi” is attested in the habs deed: “Umar ibn Ali al-Jaddawi”. The tribe's Ansari affiliation is written in its deeds from 1174 AH: “al-Jaddawi al-Ansari”. “al-Khazraji” appears on the 1987 tree label and on an undated paper: “al-Ansari al-Jabiri al-Khazraji”.", // TODO translate
         tree_r87_callout_1: "The 1987 tree reading, later covered over.", // TODO translate
         tree_r87_callout_2: "No document places Fadl and al-Hajj Muhammad", // TODO translate
         tree_r87_callout_3: "between Umar and Abdullah. Tap for details.", // TODO translate
