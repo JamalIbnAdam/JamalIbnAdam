@@ -244,15 +244,16 @@ const edgeW = n => Math.min(19, 1.5 + 1.55 * Math.sqrt(Math.max(0, n)));
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // rebuilt by draw()
-let L = {}, nodeEls = new Map(), spineEls = new Map(), keyLabels = [], pillItems = [], solidBoxes = [], chipBoxesNow = [];
+let L = {}, nodeEls = new Map(), spineEls = new Map(), keyLabels = [], pillItems = [], solidBoxes = [], chipBoxesNow = [], trunkHalf = () => 100;
 let selected = null, currentK = 1, grown = false;
 
 // the branch from a father to a child: [start, control, control, end]
 function edgePts(pid, cid) {
   const p = fan.get(pid), c = fan.get(cid);
   if (pid === ROOT) {
-    const lim = A / 2 - 0.05, sa = Math.max(-1.35, Math.min(1.35, c.a * 0.85)), wide = x => Math.max(-lim, Math.min(lim, x));
-    return [pt(MED_R - 6, sa), pt(c.r * 0.5, wide(c.a * 1.3)), pt(c.r * 0.82, wide(c.a * 1.12)), [c.x, c.y]];
+    // the limbs leave the medallion low on its flanks and swing wide before they rise, like an olive crown
+    const lim = A / 2 - 0.05, sa = Math.max(-1.75, Math.min(1.75, c.a * 1.3 + Math.sign(c.a) * 0.18)), wide = x => Math.max(-lim, Math.min(lim, x));
+    return [pt(MED_R - 6, sa), pt(Math.max(MED_R + 30, c.r * 0.42), Math.max(-1.75, Math.min(1.75, c.a * 1.45 + Math.sign(c.a) * 0.12))), pt(c.r * 0.8, wide(c.a * 1.12)), [c.x, c.y]];
   }
   const rm = (p.r + c.r) / 2;
   return [[p.x, p.y], pt(rm, p.a), pt(rm, c.a), [c.x, c.y]];
@@ -363,21 +364,62 @@ function draw() {
 
   /* trunk, roots, leaves, laurel */
   (function drawTrunk() {
-    const T = L.trunk, top = -10, base = SLOT.ali + 30, H = base - top;
-    // an old olive trunk: it stands on علي's plaque (nothing is drawn beneath him) and is a little wider at the base
-    const half = y => 44 + 30 * Math.pow((y - top) / H, 1.6);
+    const T = L.trunk, top = -22, base = SLOT.ali + 4, H = base - top;
+    /* An old olive trunk, drawn with paths only. It is stout and uneven, with a burl on each flank, and flares where it
+       meets علي's plaque (it ends behind the plaque: nothing is drawn beneath him, and there are no roots). Three strands
+       wind around each other up the trunk — lighter where one passes in front, darker behind — and fuse under عبد الله. */
+    const ss = (a, b, x) => { const u = Math.max(0, Math.min(1, (x - a) / (b - a))); return u * u * (3 - 2 * u); };
+    const bump = (v, at, w) => Math.exp(-((v - at) / w) * ((v - at) / w));
+    trunkHalf = (y, sg) => {
+      const v = Math.max(0, Math.min(1, (y - top) / H));
+      const body = 88 + 6 * Math.sin(v * 3.1) + 16 * ss(0.3, 0.8, v) + 36 * Math.pow(v, 5);              // shoulders, belly, flare
+      const rough = sg < 0 ? 5 * Math.sin(v * 17 + 0.6) + 3 * Math.sin(v * 41 + 2) + 13 * bump(v, 0.44, 0.07) - 7 * bump(v, 0.63, 0.05)
+        : 5 * Math.sin(v * 19 + 3.4) + 3 * Math.sin(v * 37 + 1) + 12 * bump(v, 0.7, 0.06) - 6 * bump(v, 0.36, 0.05);
+      return body + rough * ss(0, 0.08, v) * (1 - ss(0.93, 1, v));
+    };
     const spline = pts => { let d = `M${f1(pts[0][0])},${f1(pts[0][1])}`; for (let i = 0; i < pts.length - 1; i++) { const p0 = pts[Math.max(0, i - 1)], p1 = pts[i], p2 = pts[i + 1], p3 = pts[Math.min(pts.length - 1, i + 2)]; d += ` C${f1(p1[0] + (p2[0] - p0[0]) / 6)},${f1(p1[1] + (p2[1] - p0[1]) / 6)} ${f1(p2[0] - (p3[0] - p1[0]) / 6)},${f1(p2[1] - (p3[1] - p1[1]) / 6)} ${f1(p2[0])},${f1(p2[1])}`; } return d; };
-    const side = sgn => Array.from({ length: 9 }, (_, i) => { const y = top + H * i / 8; return [sgn * (half(y) + (i > 0 && i < 8 ? (i % 2 ? 4 : -3) : 0)), y]; });
+    const N = 40, yAt = v => top + v * H;
+    const side = sg => Array.from({ length: N + 1 }, (_, i) => [sg * trunkHalf(yAt(i / N), sg), yAt(i / N)]);
     el('path', { class: 'trunk', d: spline(side(-1)) + ' L' + spline(side(1).reverse()).slice(1) + ' Z' }, T);
-    // three strands twist around each other and fuse higher up
-    const strand = (phase, amp, dx) => spline(Array.from({ length: 15 }, (_, i) => { const u = i / 14, y = base - u * H * 0.9; return [Math.sin(u * Math.PI * 2.3 + phase) * amp * Math.pow(1 - u, 0.9) * (half(y) / 74) + dx, y]; }));
-    [[0, 36], [2.1, 32], [4.2, 28]].forEach(([phase, amp]) => { el('path', { class: 'strand', d: strand(phase, amp, 0) }, T); el('path', { class: 'groove', d: strand(phase, amp, 8) }, T); });
-    // bark: short strokes along the grain, and two old knots
-    for (let i = 0; i < 26; i++) { const h = seed('bark' + i), y = top + 30 + (h % 1000) / 1000 * (H - 60), x = (((h >>> 10) % 1000) / 1000 - 0.5) * 1.5 * half(y), len = 14 + (h >>> 20) % 16; el('path', { class: 'bark', d: `M${f1(x)},${f1(y)} q${(h >>> 5) % 2 ? 2.5 : -2.5},${f1(-len / 2)} 0,${-len}` }, T); }
-    [[-0.36, 0.66, 9, 13], [0.34, 0.36, 7, 10]].forEach(([fx, fy, rx, ry]) => { const y = top + H * fy, x = fx * half(y); el('ellipse', { class: 'knot', cx: f1(x), cy: f1(y), rx, ry }, T); el('ellipse', { class: 'knot-ring', cx: f1(x), cy: f1(y), rx: rx + 4, ry: ry + 5 }, T); });
+    // the shadow of a strand that passes behind fades in and out along it, so there is no hard step at the flank
+    const grad = el('linearGradient', { id: 'ft-strand-shade', x1: 0, y1: 0, x2: 0, y2: 1 }, el('defs', {}, T));
+    [[0, 0], [0.42, 1], [0.58, 1], [1, 0]].forEach(([o, a]) => el('stop', { class: 'shade-stop', offset: o, 'stop-opacity': a }, grad));
+    // the three strands
+    const TURNS = 1.55, PH = [0.5, 0.5 + 2 * Math.PI / 3, 0.5 + 4 * Math.PI / 3];
+    const mid = v => (trunkHalf(yAt(v), 1) - trunkHalf(yAt(v), -1)) / 2, wide = v => (trunkHalf(yAt(v), 1) + trunkHalf(yAt(v), -1)) / 2;
+    const fuse = v => ss(0.1, 0.4, v);                                                    // 0 under the medallion (one stem), 1 lower down
+    const cx = (j, v) => mid(v) + Math.sin(2 * Math.PI * TURNS * v + PH[j]) * wide(v) * 0.5 * fuse(v);
+    const sw = (j, v) => wide(v) * (0.62 + 0.55 * (1 - fuse(v)) + 0.07 * Math.sin(v * 23 + j * 2));
+    const depth = (j, v) => Math.cos(2 * Math.PI * TURNS * v + PH[j]);
+    const M = 120, runs = [];
+    PH.forEach((_, j) => { let from = 0, front = depth(j, 0) >= 0; for (let i = 1; i <= M; i++) { const f = depth(j, i / M) >= 0; if (f !== front || i === M) { runs.push({ j, a: Math.max(0, from / M - 0.012), b: Math.min(1, i / M + 0.012), front }); from = i; front = f; } } });
+    const edge = (r, sg) => { const n = Math.max(4, Math.round((r.b - r.a) * 46)); return Array.from({ length: n + 1 }, (_, i) => { const v = r.a + (r.b - r.a) * i / n; return [cx(r.j, v) + sg * sw(r.j, v) / 2, yAt(v)]; }); };
+    runs.sort((x, y) => x.front - y.front || y.a - x.a).forEach(r => {
+      if (fuse(r.b) < 0.05) return;                                                        // fused: the plain stem shows
+      const l = edge(r, -1), rt = edge(r, 1), k = r.front ? 'front' : 'back';
+      const body = spline(l) + ' L' + spline(rt.slice().reverse()).slice(1) + ' Z';
+      el('path', { class: 'strand', d: body }, T);
+      if (!r.front) el('path', { class: 'strand-shade', d: body, fill: 'url(#ft-strand-shade)' }, T);   // in shadow where it passes behind
+      el('path', { class: 'strand-edge ' + k, d: spline(l) }, T); el('path', { class: 'strand-edge ' + k, d: spline(rt) }, T);
+      // bark: a few darker curved strokes along the grain of the strand, and one lighter ridge where it faces the light
+      if (r.front) el('path', { class: 'ridge', d: spline(edge(r, -1).map((pt0, i) => [pt0[0] + (rt[i][0] - pt0[0]) * 0.3, pt0[1]]).slice(2, -2)) }, T);
+      const h = seed('bark' + r.j + Math.round(r.a * 100));
+      for (let b = 0; b < (r.front ? 3 : 1); b++) {
+        const u0 = 0.12 + ((h >>> (b * 7)) % 50) / 100, len = 0.18 + ((h >>> (b * 5 + 3)) % 14) / 100, across = 0.5 + ((h >>> (b * 4 + 9)) % 30) / 100;
+        const pts = Array.from({ length: 6 }, (_, i) => { const u = Math.min(0.96, u0 + len * i / 5), k2 = Math.min(l.length - 1, Math.round(u * (l.length - 1))); return [l[k2][0] + (rt[k2][0] - l[k2][0]) * (across + 0.05 * Math.sin(i * 1.7 + b)), l[k2][1]]; });
+        el('path', { class: 'bark', d: spline(pts) }, T);
+      }
+    });
+    // an old hollow and a knot, on the open bark between the plaques
+    const g0 = SLOT.tulip + 44, g1 = SLOT.ali - 46;
+    [[-0.5, 0.66, 9, 17, -12], [0.74, 0.2, 7, 10, 14]].forEach(([fx, fg, rx, ry, rot]) => {
+      const y = g0 + (g1 - g0) * fg, x = fx * trunkHalf(y, fx);
+      const g = el('g', { transform: `translate(${f1(x)},${f1(y)}) rotate(${rot})` }, T);
+      el('ellipse', { class: 'knot-ring', rx: rx + 5, ry: ry + 6 }, g); el('ellipse', { class: 'knot-ring in', rx: rx + 2, ry: ry + 2.5 }, g); el('ellipse', { class: 'knot', rx, ry }, g);
+    });
     // leaves on the trunk flanks
     [[0.1, -1], [0.22, 1], [0.34, -1], [0.46, 1], [0.66, -1], [0.65, 1], [0.86, -1], [0.88, 1]].forEach(([fy, sg], i) => {
-      const y = top + H * fy, xEdge = sg * (half(y) + 3);
+      const y = top + H * fy, xEdge = sg * (trunkHalf(y, sg) + 1);
       leaf(xEdge, y, sg > 0 ? -0.55 - (i % 2) * 0.25 : Math.PI + 0.55 + (i % 2) * 0.25, 40, 11, T);
       leaf(xEdge, y + 14, sg > 0 ? -0.05 : Math.PI + 0.05, 28, 8, T);
     });
@@ -405,8 +447,9 @@ function draw() {
     const k = stKey(status);
     el('path', { class: `conn ${k}`, d: `M0,${y0} L0,${y1}` }, S);
     const ym = (y0 + y1) / 2;
-    el('path', { class: 'void-line', d: `M${side * 52},${ym} L${side * 84},${ym}` }, S);
-    pill(side * (88 + pillW(label) / 2), ym, label, k, S);
+    const out = trunkHalf(ym, side) + 8;   // the label stands clear of the bark
+    el('path', { class: 'void-line', d: `M${side * 52},${ym} L${side * (out + 26)},${ym}` }, S);
+    pill(side * (out + 30 + pillW(label) / 2), ym, label, k, S);
   }
   function spineItem(id) { const g = el('g', { class: 'spine-item', tabindex: '0', role: 'button', 'data-id': id, 'aria-label': byId.get(id)?.name_as_written || id }, S); spineEls.set(id, g); return g; }
 
