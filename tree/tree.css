@@ -1,7 +1,7 @@
 /* Evidence tree page (/tree/). Self-contained: this page does not load the site's styles.css.
    Two themes on <html data-theme>: dark (default, from the prototype) and a warm paper light theme.
    One ink for every branch: how a link to the father is known is said by the line style only
-   (solid = a document, dashed = an indication, dotted = family tradition). */
+   (every stroke is solid: how a name is known is written in words, in its card). */
 :root {
   --color-gold: #d4af37; --color-paper: #fdfbf7;
   --ft-gold: var(--color-gold);
@@ -63,7 +63,7 @@ img { max-width: 100%; height: auto; }
 .ftree { position: relative; width: min(1400px, 100%); margin-inline: auto; }
 /* the widget stays RTL in every language; text-only elements are ordered by their own first strong letter,
    so translated (Latin) UI strings keep their punctuation in place next to the Arabic names */
-.ft-credits p, .ft-btn, .ft-switch span, .ft-legend > summary, .ft-legend small, .ft-legend .say, .ft-hint, .ft-tip b, .ft-floats > h2, .ft-floats > p,
+.ft-credits p, .ft-btn, .ft-switch span, .ft-legend > summary, .ft-legend .say, .ft-hint, .ft-tip b, .ft-floats > h2, .ft-floats > p,
 .ft-fcard figcaption, .ft-legend .hint, .ft-legend b, .ft-results .rn, .ft-results .empty, .ft-error, .ft-stats span, .ft-rotate span,
 .ft-panel .eyebrow, .ft-panel h2, .ft-panel h4, .ft-panel h5, .ft-panel .qt, .ft-panel .note, .ft-panel .muted, .ft-panel .st, .ft-panel .bd, .ft-panel .pl,
 .ft-panel summary, .ft-panel .src, .ft-panel .srcline, .ft-panel .cta, .ft-panel .add, .ft-reader h2, .ft-reader .rm > span, .ft-reader [role=tab],
@@ -90,6 +90,12 @@ img { max-width: 100%; height: auto; }
 .ft-results .rn { font-family: var(--ft-f-name); font-weight: 700; font-size: 1.05rem; }
 .ft-results .rm { font-size: .8rem; color: var(--ft-muted); }
 .ft-results .empty { color: var(--ft-muted); cursor: default; }
+.ft-results .nf { display: grid; gap: 10px; padding: 10px 12px; color: var(--ft-ink); line-height: 1.8; }
+.ft-results .nf:hover { background: none; }
+.ft-results .nf-btn { justify-self: start; min-height: 44px; padding: 0 20px; border-radius: 10px; background: var(--ft-gold); color: var(--ft-bg); font-weight: 700; display: inline-flex; align-items: center; text-decoration: none; cursor: pointer; }
+.ft-results .ft-nf { display: grid; gap: 6px; }
+.ft-results .ft-nf .msg { padding: 10px 12px; border-radius: 8px; background: var(--ft-quote); }
+.ft-results .ft-nf .soon { color: var(--ft-muted); font-size: .84rem; }
 .ft-switch { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-size: .86rem; user-select: none; -webkit-user-select: none; }
 .ft-switch input { appearance: none; -webkit-appearance: none; width: 34px; height: 20px; border-radius: 999px; background: var(--ft-line); border: 1px solid var(--ft-muted); position: relative; cursor: pointer; flex: none; margin: 0; }
 .ft-switch input::after { content: ""; position: absolute; top: 2px; right: 2px; width: 14px; height: 14px; border-radius: 50%; background: var(--ft-ink); transition: right .15s ease-out; }
@@ -115,14 +121,9 @@ img { max-width: 100%; height: auto; }
 .ft-legend > summary::after { content: " ▾"; }
 .ft-legend[open] > summary::after { content: " ▴"; }
 .ft-legend-body { display: grid; gap: 7px; padding: 2px 12px 10px; }
-.ft-legend .row { display: flex; align-items: center; gap: 10px; }
-.ft-legend .row > span { display: grid; }
+.ft-legend .lead { font-size: .8rem; color: var(--ft-ink2); }
+.ft-legend ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
 .ft-legend b { font-weight: 700; }
-.ft-legend small { color: var(--ft-muted); font-size: .8rem; }
-.ft-legend svg { width: 46px; height: 14px; flex: none; overflow: visible; }
-.ft-legend .lg { fill: none; stroke: var(--ft-branch); stroke-width: 3.2; stroke-linecap: round; }
-.ft-legend .lg.maybe { stroke-dasharray: 7 5; stroke-linecap: butt; }
-.ft-legend .lg.trad { stroke-dasharray: .1 7; }
 .ft-legend .say { font-size: .8rem; line-height: 1.75; color: var(--ft-ink2); border-top: 1px solid var(--ft-line); padding-top: 6px; }
 .ft-legend .hint { color: var(--ft-muted); font-size: .8rem; }
 .ft-hint { position: absolute; left: 50%; top: 50%; translate: -50% -50%; z-index: 6; pointer-events: none; background: rgb(10 12 11 / .88); color: #fff; padding: 10px 18px; border-radius: 999px; font-size: .95rem; white-space: nowrap; max-width: calc(100% - 24px); }
@@ -141,7 +142,6 @@ img { max-width: 100%; height: auto; }
 .ft-svg .fs0 { stop-color: var(--ft-fruit0); }
 .ft-svg .fs1 { stop-color: var(--ft-fruit1); }
 .ft-svg .edge { fill: none; stroke: var(--ft-branch); stroke-linecap: round; }
-.ft-svg .edge.maybe { stroke-linecap: butt; }
 .ft-svg .node { cursor: pointer; }
 .ft-svg .node circle.c { fill: url(#ft-fruit); stroke: var(--ft-gold); stroke-width: 1; }
 .ft-svg .node .stem { stroke: var(--ft-leaf); stroke-width: 3; stroke-linecap: round; fill: none; transition: opacity .2s ease-out; }
@@ -151,13 +151,13 @@ img { max-width: 100%; height: auto; }
 .ft-svg .node .halo { fill: none; stroke: var(--ft-gold); stroke-width: 3; opacity: 0; }
 .ft-svg .node.sel .halo { opacity: .35; }
 .ft-svg .node.hit .halo { opacity: 1; animation: ft-pulse 1.6s ease-out 2; }
-.ft-svg .node.ph circle.c { fill: var(--ft-bg); stroke: var(--ft-branch); stroke-width: 1.4; stroke-dasharray: none; }   /* hollow, same ink as the branches */
+.ft-svg .node.ph circle.c { fill: var(--ft-bg); stroke: var(--ft-branch); stroke-width: 1.4; }   /* hollow, same ink as the branches */
 @keyframes ft-pulse { 0% { stroke-width: 14; opacity: 0; } 30% { opacity: .7; } 100% { stroke-width: 3; opacity: 1; } }
 .ft-svg .node:focus, .ft-svg .spine-item:focus, .ft-svg .chip:focus { outline: none; }
 .ft-svg .spine-item:focus-visible .plaque, .ft-svg .node:focus-visible circle.c, .ft-svg .chip:focus-visible rect { stroke: var(--ft-gold); stroke-width: 4; }
 .ft-svg .node.ext .nl { display: none; }
 .ft-svg .klab { font: 700 12px var(--ft-f-name); fill: var(--ft-ink); text-anchor: middle; dominant-baseline: central; paint-order: stroke; stroke: var(--ft-bg); stroke-width: 3.5px; stroke-linejoin: round; pointer-events: none; }
-.ft-svg .phpill rect { fill: var(--ft-bg); stroke: var(--ft-branch); stroke-dasharray: 2 4; stroke-linecap: round; }
+.ft-svg .phpill rect { fill: var(--ft-bg); stroke: var(--ft-branch); }
 .ft-svg .phpill text { font: 600 12px var(--ft-f-ui); fill: var(--ft-ink2); direction: inherit; unicode-bidi: plaintext; }
 .ft-svg .node.ph text { font-family: var(--ft-f-name); }
 .ft-svg .chip { cursor: pointer; }
@@ -182,40 +182,34 @@ img { max-width: 100%; height: auto; }
 .ft-svg .L-leaves { transition: opacity .2s ease-out; }
 .ft-svg.lod-low .L-leaves, .ft-svg.lod-low .node .stem { opacity: 0; }
 .ft-svg .plaque { fill: var(--ft-plaque); stroke: var(--ft-ink); stroke-width: 2.5; }
-.ft-svg .plaque.maybe { stroke-dasharray: 9 5; }
-.ft-svg .plaque.trad { stroke-dasharray: 1 6; stroke-linecap: round; }
 .ft-svg .plaque-in { fill: none; stroke: var(--ft-gold); stroke-width: 1; }
 .ft-svg .spine-item { cursor: pointer; }
 .ft-svg .spine-item[data-id="abdallah"] .plaque { stroke: var(--ft-gold); stroke-width: 3.5; }
 .ft-svg .spine-item:hover .plaque { stroke-width: 4; }
-.ft-svg .spine-item.sel .plaque { stroke: var(--ft-gold); stroke-width: 5; stroke-dasharray: none; }
+.ft-svg .spine-item.sel .plaque { stroke: var(--ft-gold); stroke-width: 5; }
 .ft-svg .ptxt { font-family: var(--ft-f-name); fill: var(--ft-ink); text-anchor: middle; dominant-baseline: central; }
 .ft-svg .psub { font: 400 12px var(--ft-f-ui); fill: var(--ft-muted); text-anchor: middle; dominant-baseline: central; }
 .ft-svg .verse { font-family: var(--ft-f-name); fill: var(--ft-ink); text-anchor: middle; dominant-baseline: central; }
 .ft-svg .conn { fill: none; stroke: var(--ft-on-trunk); stroke-width: 2.5; }
-.ft-svg .conn.maybe { stroke-dasharray: 7 6; }
-.ft-svg .conn.trad { stroke-dasharray: 1 6; stroke-linecap: round; }
 .ft-svg .pill rect { fill: var(--ft-sheet); stroke: var(--ft-branch); stroke-width: 1.4; }
-.ft-svg .pill.maybe rect { stroke-dasharray: 4 3; }
-.ft-svg .pill.trad rect { stroke-dasharray: 1 4; stroke-linecap: round; }
 .ft-svg .pill text { font: 600 15px var(--ft-f-ui); fill: var(--ft-ink); text-anchor: middle; dominant-baseline: central; }
 .ft-svg .base-line { font: 600 15px var(--ft-f-ui); fill: var(--ft-ink2); text-anchor: middle; }
 .ft-svg .void-note { font: 500 13px var(--ft-f-ui); fill: var(--ft-muted); text-anchor: middle; paint-order: stroke; stroke: var(--ft-bg); stroke-width: 4px; stroke-linejoin: round; }
-.ft-svg .void-line { fill: none; stroke: var(--ft-muted); stroke-width: 1.4; stroke-dasharray: 2 5; }
+.ft-svg .void-line { fill: none; stroke: var(--ft-muted); stroke-width: 1.4; }
 .ft-svg .r87 { display: none; }
 .ft-svg.show87 .r87 { display: inline; }
-.ft-svg .r87 .plaque { stroke: var(--ft-branch); stroke-dasharray: 1 6; stroke-linecap: round; fill: var(--ft-bg); }
+.ft-svg .r87 .plaque { stroke: var(--ft-branch); fill: var(--ft-bg); }
 .ft-svg .r87 .ptxt { fill: var(--ft-ink2); }
-.ft-svg .r87 .callout { fill: var(--ft-sheet); stroke: var(--ft-branch); stroke-dasharray: 4 3; }
+.ft-svg .r87 .callout { fill: var(--ft-sheet); stroke: var(--ft-branch); }
 .ft-svg .r87 .ctxt { font: 500 12.5px var(--ft-f-ui); fill: var(--ft-ink); text-anchor: middle; }
-.ft-svg .r87 .lead { fill: none; stroke: var(--ft-branch); stroke-width: 1.2; stroke-dasharray: 3 3; }
+.ft-svg .r87 .lead { fill: none; stroke: var(--ft-branch); stroke-width: 1.2; }
 /* thousands of names: plain discs and plain lines when a fruit is only a few pixels wide, and while a very large tree is moving */
 .ft-svg.lod-far .node circle.c, .ft-svg.moving .node circle.c { fill: var(--ft-fruit0); stroke: none; }
-.ft-svg.lod-far .edge, .ft-svg.moving .edge { stroke-dasharray: none !important; stroke-linecap: butt; shape-rendering: optimizeSpeed; }
+.ft-svg.lod-far .edge, .ft-svg.moving .edge { stroke-linecap: butt; shape-rendering: optimizeSpeed; }
 .ft-svg.lod-far .L-leaves, .ft-svg.lod-far .node .stem, .ft-svg.lod-far .node .nl, .ft-svg.moving .L-leaves, .ft-svg.moving .node .stem, .ft-svg.moving .node .nl, .ft-svg.moving .L-klabs, .ft-svg.moving .L-chips { display: none; }
 /* allowed motion: the branches grow once on first load; the trunk's leaves sway a little */
-.ft-svg.grow .edge.ok { stroke-dasharray: 1; stroke-dashoffset: 1; animation: ft-grow 1.1s ease-out forwards; }
-.ft-svg.grow .edge.maybe, .ft-svg.grow .edge.trad, .ft-svg.grow .L-nodes, .ft-svg.grow .L-leaves, .ft-svg.grow .L-chips { animation: ft-fade 1.1s ease-out both; }
+.ft-svg.grow .edge { stroke-dasharray: 1; stroke-dashoffset: 1; animation: ft-grow 1.1s ease-out forwards; }
+.ft-svg.grow .L-nodes, .ft-svg.grow .L-leaves, .ft-svg.grow .L-chips { animation: ft-fade 1.1s ease-out both; }
 @keyframes ft-grow { to { stroke-dashoffset: 0; } }
 @keyframes ft-fade { 0%, 35% { opacity: 0; } 100% { opacity: 1; } }
 .ft-svg.sway .L-trunk .leaf { transform-box: fill-box; transform-origin: center; animation: ft-sway 5.5s ease-in-out infinite alternate; }
@@ -244,8 +238,6 @@ img { max-width: 100%; height: auto; }
 .ft-panel .sec > h4 { font-size: .8rem; font-weight: 700; color: var(--ft-muted); }
 .ft-panel h5 { font-size: .8rem; font-weight: 700; color: var(--ft-muted); margin-top: 8px; }
 .st, .bd { display: inline-flex; align-items: center; gap: 6px; font-size: .8rem; font-weight: 700; padding: 2px 11px; border-radius: 999px; white-space: nowrap; border: 1.4px solid var(--ft-branch); color: var(--ft-ink); }
-.st.maybe { border-style: dashed; }
-.st.trad { border-style: dotted; }
 .bd { border-color: var(--ft-line); font-weight: 600; color: var(--ft-ink2); }
 .bd.need { border-color: var(--ft-hair); }
 .ft-panel .chips { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -253,7 +245,7 @@ img { max-width: 100%; height: auto; }
 .ft-panel .pl:hover { border-color: var(--ft-gold); }
 .cta { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid var(--ft-gold); border-radius: 10px; padding: 9px 14px; font-weight: 700; font-size: .92rem; color: var(--ft-ink); background: color-mix(in srgb, var(--ft-gold) 12%, transparent); text-decoration: none; }
 .cta:hover { background: color-mix(in srgb, var(--ft-gold) 22%, transparent); }
-.ft-panel .add { justify-self: start; border: 1px dashed var(--ft-hair); border-radius: 999px; padding: 4px 14px; font-size: .84rem; color: var(--ft-ink2); }
+.ft-panel .add { justify-self: start; border: 1px solid var(--ft-hair); border-radius: 999px; padding: 4px 14px; font-size: .84rem; color: var(--ft-ink2); }
 .ft-panel .add:hover { border-color: var(--ft-gold); color: var(--ft-ink); }
 .ft-panel .addbox { border: 1px solid var(--ft-hair); border-radius: 10px; padding: 10px 12px; display: grid; gap: 6px; }
 .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .8rem; color: var(--ft-ink2); direction: ltr; text-align: end; }
@@ -332,8 +324,6 @@ details.audit > summary { cursor: pointer; font-weight: 700; color: var(--ft-mut
 .ft-chain .more { font-size: .8rem; color: var(--ft-muted); direction: ltr; }
 /* the thin gold line that draws from card to card as the reader scrolls */
 .ft-chain .ln { display: block; width: 2px; height: 58px; background: var(--ft-gold); transform: scaleY(0); transform-origin: top; transition: transform .6s ease-out .1s; }
-.ft-chain .ln.maybe { background: repeating-linear-gradient(to bottom, var(--ft-gold) 0 7px, transparent 7px 12px); }
-.ft-chain .ln.trad { background: repeating-linear-gradient(to bottom, var(--ft-gold) 0 2px, transparent 2px 7px); }
 .ft-chain .cc.in .ln { transform: scaleY(1); }
 .ft-chain .lb { position: absolute; bottom: 17px; inset-inline-start: calc(50% + 14px); font-size: .8rem; font-weight: 700; color: var(--ft-ink2); white-space: nowrap; }
 .ft-chain .cc.root .card { width: 190px; height: 190px; border-radius: 50%; border: 3px solid var(--ft-gold); place-content: center; text-align: center; box-shadow: 0 0 0 6px color-mix(in srgb, var(--ft-gold) 14%, transparent); }

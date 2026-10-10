@@ -255,11 +255,12 @@ window.FamilyTreeData = {
         tree_docs_many: "📄 {n} documents", // TODO translate
         tree_link_maybe: "Indication from the documents", // TODO translate
         tree_link_trad: "Oral account of tribal elders", // TODO translate
-        tree_legend_ok: "📄 Documents", // TODO translate
-        tree_explain_ok: "A document names him with his father", // TODO translate
-        tree_explain_maybe: "A strong indication, without explicit text", // TODO translate
-        tree_explain_trad: "No document yet", // TODO translate
-        tree_legend_say: "A solid line means a document names the person together with his father. Any family that holds a document can send it so that its branch is documented.", // TODO translate
+        tree_legend_say: "Cualquier familia que tenga un documento puede enviarlo para documentar su rama.",
+        tree_legend_intro: "La fuente de cada nombre está escrita en su ficha al pulsarlo:",
+        tree_legend_doc: "📄 Documento",
+        tree_link_civil: "🏛 Registro civil",
+        tree_link_author: "Del árbol del autor",
+        tree_legend_unknown: "? En estudio",
         tree_unknown_chain: "Under research — an estimated {n} generations", // TODO translate
         tree_unknown_range: "(between {min} and {max})", // TODO translate
         tree_unknown_basis: "An ancestor whose name is not yet known.", // TODO translate
@@ -272,6 +273,8 @@ window.FamilyTreeData = {
         tree_chain_ok: "{n} of them documented", // TODO translate
         tree_chain_maybe: "{n} by indication from the documents", // TODO translate
         tree_chain_trad: "{n} by oral account of tribal elders", // TODO translate
+        tree_chain_civil: "{n} del registro civil",
+        tree_chain_author: "{n} del árbol del autor",
         tree_open_doc: "Open the document", // TODO translate
         tree_img_unpublished: "The image of this document has not been published yet", // TODO translate
         tree_have_image: "Do you have its image?", // TODO translate
@@ -312,9 +315,6 @@ window.FamilyTreeData = {
         home_search_btn: "Show my chain", // TODO translate
         home_med_sub: "Zawiyat Brak al-Shati, 10th century AH", // TODO translate
         home_tree_p: "Tap any name to see its document: the image, the text as written, a plain explanation, and the source. Tap “Show my chain” to see your forefathers one by one, down to Abdullah Sabal Al-Ain.", // TODO translate
-        home_leg_ok: "A document names the person with his father", // TODO translate
-        home_leg_maybe: "An indication from the documents, without explicit text", // TODO translate
-        home_leg_trad: "Oral account of tribal elders; no document yet", // TODO translate
         home_tree_ansar: "The tribe's attribution to the Ansar is written in its own documents: “al-Jaddawi al-Ansari” in a document from Ishkeda dated 1174 AH, then in documents of 1261 and 1276 AH.", // TODO translate
         home_tree_btn: "Open the evidence tree", // TODO translate
         home_tree_aria: "A preview of the evidence tree: Ali al-Jaddawi al-Ansari, his son Umar, then Abdullah Sabal Al-Ain, his son al-Hajj Fadl, and his grandsons Muhammad, Belqasim and Qasim with their sons", // TODO translate
@@ -387,7 +387,9 @@ window.FamilyTreeData = {
         tree_chain_n_est: "about {n} generations", // TODO translate
         tree_aria: "Al-Sabal Al-Ain family tree", // TODO translate
         tree_search_placeholder: "Search for a name…", // TODO translate
-        tree_search_empty: "No matching name", // TODO translate
+        tree_nf_text: "Todavía no hemos encontrado este nombre en el árbol. Si eres descendiente de Abdullah Sibal al-Ayn ibn Umar ibn Ali al-Jaddawi al-Ansari, envía tus datos; el propietario del sitio se pondrá en contacto contigo para verificarlos y después se añadirá tu nombre.",
+        tree_nf_btn: "Envía tus datos",
+        tree_nf_msg: "Me gustaría que mi nombre se añadiera al árbol. El nombre que busqué: {q}. Mi linaje: … Contacto: …",
         tree_toggle_1987: "Show the 1987 tree reading", // TODO translate
         tree_zoom_in: "Zoom in", // TODO translate
         tree_zoom_out: "Zoom out", // TODO translate

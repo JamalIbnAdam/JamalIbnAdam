@@ -53,6 +53,8 @@ const t = (key, vars) => {
 
 // the status of a person describes the evidence for the link to the father; it is shown as a neutral fact
 const stKey = s => s === 'ثابت' ? 'ok' : String(s || '').startsWith('محتمل') ? 'maybe' : 'trad';
+// the source of a name, in words: documents, an indication, the civil registry, the author's tree, or the elders' account
+const srcKey = s => { const k = stKey(s); return k !== 'trad' ? k : String(s || '').startsWith('السجل المدني') ? 'civil' : String(s || '').startsWith('من شجرة المؤلف') ? 'author' : 'trad'; };
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const norm = s => String(s || '').replace(/[ً-ٰٟـ]/g, '').replace(/[أإآٱ]/g, 'ا').replace(/ة/g, 'ه').replace(/ى/g, 'ي').replace(/ؤ/g, 'و').replace(/ئ/g, 'ي').replace(/[\[\]()«»…؟?،,.\/:\-—]/g, ' ').replace(/\s+/g, ' ').trim();
 const store = {
@@ -146,8 +148,7 @@ function docsOf(id) {
 }
 // «📄 N وثائق» / «قرينة من الوثائق» / «رواية الأسرة»: the evidence for the link to the father, as a neutral fact
 function docsLabel(n) { return n <= 1 ? t('tree_docs_1') : n === 2 ? t('tree_docs_2') : n <= 10 ? t('tree_docs_few', { n }) : t('tree_docs_many', { n }); }
-function linkLabel(p) { const k = stKey(p.status); return k === 'ok' ? docsLabel(docsOf(p.id).count) : k === 'maybe' ? t('tree_link_maybe') : t('tree_link_trad'); }
-const linkExplain = p => t('tree_explain_' + stKey(p.status));
+function linkLabel(p) { const k = srcKey(p.status); return k === 'ok' ? docsLabel(docsOf(p.id).count) : t('tree_link_' + k); }
 
 const mqMobile = window.matchMedia('(max-width:720px)');
 const isMobile = () => mqMobile.matches;
@@ -266,13 +267,9 @@ function bez(P, u) {
   const dy = 3 * v * v * (P[1][1] - P[0][1]) + 6 * v * u * (P[2][1] - P[1][1]) + 3 * u * u * (P[3][1] - P[2][1]);
   return [x, y, Math.atan2(dy, dx)];
 }
-// one ink for every branch; only the line style says how the link to the father is known
+// one ink and one solid line for every branch: how the link to the father is known is written in the person's card
 function drawEdge(d, status, w, parent) {
-  const k = stKey(status), a = { class: `edge ${k}`, d, 'stroke-width': f1(w) };
-  if (k === 'ok') a.pathLength = 1;
-  else if (k === 'maybe') a['stroke-dasharray'] = `${f1(Math.max(7, w * 1.7))} ${f1(Math.max(5, w * 1.2))}`;
-  else a['stroke-dasharray'] = `0.1 ${f1(Math.max(5, w * 1.9))}`;
-  return el('path', a, parent);
+  return el('path', { class: `edge ${stKey(status)}`, d, 'stroke-width': f1(w), pathLength: 1 }, parent);
 }
 // a name is a fruit on the branch: a soft disc with a gold hairline rim and a tiny stem towards the father
 function makeNode(id, x, y, r, parent, toward) {
@@ -784,7 +781,7 @@ t87.addEventListener('change', () => {
 });
 
 /* ---------- person panel ---------- */
-const stPill = (p, label) => `<span class="st ${stKey(p.status)}" title="${esc(linkExplain(p))}">${esc(label || linkLabel(p))}</span>`;
+const stPill = (p, label) => `<span class="st ${stKey(p.status)}">${esc(label || linkLabel(p))}</span>`;
 const personBtn = id => { const p = byId.get(id); return p ? `<button type="button" class="pl" data-go="${esc(id)}">${esc(nameOf(p))}</button>` : ''; };
 const level = c => { const s = String(c || ''); return s.startsWith('عالية') ? 3 : s.startsWith('متوسطة') ? 2 : s.startsWith('منخفضة') ? 1 : 0; };
 const dotsHtml = (c, title, withText = true) => { const n = level(c); return c ? `<span class="conf" title="${esc(title)}: ${esc(c)}">${n ? [1, 2, 3].map(i => `<i class="${i <= n ? 'on' : ''}"></i>`).join('') : ''}${withText ? ' ' + esc(c) : ''}</span>` : ''; };
@@ -808,6 +805,8 @@ function betweenHtml(info) {
   const link = a => `<button type="button" class="lk" data-go="${esc(a.id)}">${esc(plainName(a))}</button>`;
   return esc(t('tree_unknown_between')).replace('{a}', link(e.above)).replace('{b}', e.heads.map(link).join(esc(t('tree_and'))));
 }
+// the data keeps its own audit trail («التصنيف السابق: …») at the end of a note; it is not part of the public source line
+const publicNote = s => String(s || '').replace(/\s*\|?\s*التصنيف السابق:[^.|]*\.?\s*$/, '').trim();
 function stripHtml(id) {
   const D = docsOf(id);
   const thumbs = D.thumbs.map(th => {
@@ -838,7 +837,7 @@ function openPerson(id, { center = true } = {}) {
     pBody.innerHTML = `<section class="sec"><p class="note">${esc(info.estimate.basis || t('tree_unknown_basis'))}</p></section>` + (info.heads.length ? `<section class="sec"><div class="chips">${info.heads.map(personBtn).join('')}</div></section>` : '');
     showPanel(id); if (center) requestAnimationFrame(() => centerOn(id)); return;
   }
-  const f = p.father_id && byId.get(p.father_id), ks = kids.get(id) || [], k = stKey(p.status);
+  const f = p.father_id && byId.get(p.father_id), ks = kids.get(id) || [], k = stKey(p.status), src = srcKey(p.status);
   pBadges.innerHTML = (f ? stPill(p) : '') + (!p.living && p.earliest_doc_date ? `<span class="bd">${esc(t('tree_earliest'))}: ${esc(ahTxt(p.earliest_doc_date))}</span>` : '');
   let html = '';
   const chain = ancestors(id, ROOT);
@@ -847,9 +846,10 @@ function openPerson(id, { center = true } = {}) {
   if (ks.length) html += `<section class="sec"><h4>${esc(t('tree_children'))} (${ks.length})</h4><div class="chips">${ks.map(personBtn).join('')}</div></section>`;
   if (!p.living) {
     const S = stripHtml(id);
-    html += `<section class="sec"><h4>${esc(t('tree_docs'))} (${S.count})</h4>${S.count ? S.html : `<p class="muted">${esc(t('tree_docs_none'))}</p>`}</section>`;
-    // family tradition: the notes say who told it
-    if (k === 'trad' && p.notes) html += `<section class="sec"><h4>${esc(t('tree_link_trad'))}</h4><p class="srcline">${esc(p.notes)}</p></section>`;
+    // the civil registry needs no document picture: the documents section is shown for it only when there is one
+    if (S.count || src !== 'civil') html += `<section class="sec"><h4>${esc(t('tree_docs'))} (${S.count})</h4>${S.count ? S.html : `<p class="muted">${esc(t('tree_docs_none'))}</p>`}</section>`;
+    // the civil registry, the author's tree or the elders' account: the notes say where it comes from
+    if (k === 'trad' && p.notes) html += `<section class="sec"><h4>${esc(t('tree_link_' + src))}</h4><p class="srcline">${esc(publicNote(p.notes))}</p></section>`;
     const audit = [];
     if (id === CONFIG.spine[0] && CONFIG.posterAli) audit.push(`<h5>${esc(t('tree_poster_title'))}</h5><p class="note">${esc(t('tree_poster_note', { name: p.name_as_written, x: CONFIG.posterAli }))}</p>`);
     if (k !== 'trad' && p.notes) audit.push(`<p class="note">${esc(p.notes)}</p>`);
@@ -1073,9 +1073,9 @@ let chainId = null, chainIO = null, chainPushed = false;
 function renderChain(id) {
   const p = byId.get(id); if (!p) return false;
   const line = [p, ...ancestors(id, ROOT)];
-  const c = { ok: 0, maybe: 0, trad: 0 }; line.forEach(x => { if (!x.placeholder && (x.id !== ROOT || x.father_id)) c[stKey(x.status)]++; });
+  const c = { ok: 0, maybe: 0, civil: 0, author: 0, trad: 0 }; line.forEach(x => { if (!x.placeholder && (x.id !== ROOT || x.father_id)) c[srcKey(x.status)]++; });
   $('ft-cTitle').textContent = t('tree_chain_title');
-  $('ft-cSum').textContent = [t(line.some(x => x.placeholder) ? 'tree_chain_n_est' : 'tree_chain_n', { n: line.length }), t('tree_chain_ok', { n: c.ok }), c.maybe ? t('tree_chain_maybe', { n: c.maybe }) : '', t('tree_chain_trad', { n: c.trad })].filter(Boolean).join(' · ');
+  $('ft-cSum').textContent = [t(line.some(x => x.placeholder) ? 'tree_chain_n_est' : 'tree_chain_n', { n: line.length }), t('tree_chain_ok', { n: c.ok }), ...['maybe', 'civil', 'author', 'trad'].map(k => c[k] ? t('tree_chain_' + k, { n: c[k] }) : '')].filter(Boolean).join(' · ');
   $('ft-cClose').setAttribute('aria-label', t('tree_close'));
   // a run of unknown ancestors is one card
   const cards = [];
@@ -1088,7 +1088,7 @@ function renderChain(id) {
     if (cd.ph) { const es = x.estimate || {}; return `<li class="cc ph"><div class="card"><b class="nm">${esc(t('tree_unknown_chain', { n: cd.n }))}${es.min != null ? ` <span class="muted">${esc(t('tree_unknown_range', { min: es.min, max: es.max }))}</span>` : ''}</b>${es.basis ? `<p class="basis">${esc(es.basis)}</p>` : ''}</div><i class="ln trad"></i></li>`; }
     const D = x.living ? { thumbs: [], count: 0 } : docsOf(x.id), k = stKey(x.status);
     const thumbs = D.thumbs.slice(0, 5).map(th => `<button type="button" class="th" data-doc="${th.i}" data-of="${esc(x.id)}" aria-label="${esc(t('tree_open_doc'))}: ${esc(pageTxt(th.it.d ? th.it.d.page : th.it.e.page))}"><img src="${esc(asset(th.it.src))}" alt="" loading="lazy" decoding="async" width="60" height="76"></button>`).join('') + (D.thumbs.length > 5 ? `<span class="more">+${D.thumbs.length - 5}</span>` : '');
-    return `<li class="cc${last && x.id === ROOT ? ' root' : ''}"><div class="card"><span class="gen">${esc(genText(x))}</span><b class="nm">${esc(nameOf(x))}</b>${thumbs ? `<div class="strip">${thumbs}</div>` : ''}</div>${last ? '' : `<i class="ln ${k}"></i><span class="lb" title="${esc(linkExplain(x))}">${esc(k === 'trad' ? t('tree_link_trad_short') : linkLabel(x))}</span>`}</li>`;
+    return `<li class="cc${last && x.id === ROOT ? ' root' : ''}"><div class="card"><span class="gen">${esc(genText(x))}</span><b class="nm">${esc(nameOf(x))}</b>${thumbs ? `<div class="strip">${thumbs}</div>` : ''}</div>${last ? '' : `<i class="ln ${k}"></i><span class="lb">${esc(srcKey(x.status) === 'trad' ? t('tree_link_trad_short') : linkLabel(x))}</span>`}</li>`;
   }).join('');
   if (chainIO) chainIO.disconnect();
   const items = [...chainEl.querySelectorAll('.cc')];
@@ -1131,9 +1131,15 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && reader.hid
 /* ---------- search ---------- */
 const index = persons.filter(searchable).map(p => ({ id: p.id, n: norm(p.name_as_written + ' ' + (p.short_name || '')), p }));
 let hits = [], cursor = 0;
+// a name that is not in the tree yet: an invitation to send it, with the typed text already in the message
+function notFoundHtml(sending) {
+  const msg = t('tree_nf_msg', { q: q.value.trim() });
+  return `<li class="empty nf"><p>${esc(t('tree_nf_text'))}</p>` + (!sending ? `<button type="button" class="nf-btn" data-send>${esc(t('tree_nf_btn'))}</button>`
+    : `<div class="ft-nf"><p class="msg">${esc(msg)}</p>${CONTRIBUTE_URL ? `<a class="nf-btn" href="${esc(contributeHref(msg))}" target="_blank" rel="noopener">${esc(t('tree_add_send'))}</a>` : `<p class="soon">${esc(t('tree_add_soon'))}</p>`}<p class="soon">${esc(t('tree_add_moderation'))}</p></div>`) + '</li>';
+}
 function renderHits() {
   results.innerHTML = hits.length ? hits.map((h, i) => `<li role="option" id="ft-opt${i}" aria-selected="${i === cursor}" data-go="${esc(h.id)}"><span class="rn">${esc(h.p.name_as_written)}</span><span class="rm">${esc(lineage(h.id))}</span></li>`).join('')
-    : `<li class="empty">${esc(t('tree_search_empty'))}</li>`;
+    : notFoundHtml(false);
   results.hidden = false; q.setAttribute('aria-expanded', 'true');
 }
 q.addEventListener('input', () => {
@@ -1150,7 +1156,11 @@ q.addEventListener('keydown', e => {
   else if (e.key === 'Enter') { choose(hits[cursor].id); e.preventDefault(); }
   else if (e.key === 'Escape') { results.hidden = true; }
 });
-results.addEventListener('mousedown', e => { const li = e.target.closest('[data-go]'); if (li) { e.preventDefault(); choose(li.dataset.go); } });
+results.addEventListener('mousedown', e => {
+  const li = e.target.closest('[data-go]'); if (li) { e.preventDefault(); choose(li.dataset.go); return; }
+  if (e.target.closest('.nf')) e.preventDefault();   // keep the box open while the invitation is read
+});
+results.addEventListener('click', e => { if (e.target.closest('[data-send]')) results.innerHTML = notFoundHtml(true); });
 q.addEventListener('blur', () => setTimeout(() => { results.hidden = true; q.setAttribute('aria-expanded', 'false'); }, 120));
 function choose(id) {
   results.hidden = true; q.blur();
@@ -1162,8 +1172,9 @@ function choose(id) {
 
 /* ---------- legend and header numbers ---------- */
 function drawLegend() {
-  const line = k => `<svg viewBox="0 0 46 14" aria-hidden="true"><path d="M2 7H44" class="lg ${k}"/></svg>`;
-  $('ft-legend-body').innerHTML = ['ok', 'maybe', 'trad'].map(k => `<div class="row">${line(k)}<span><b>${esc(k === 'ok' ? t('tree_legend_ok') : t('tree_link_' + k))}</b><small>${esc(t('tree_explain_' + k))}</small></span></div>`).join('') +
+  // no line samples: every line is solid, and the source of each name is written in its card
+  const items = ['tree_legend_doc', 'tree_link_civil', 'tree_link_maybe', 'tree_link_trad', 'tree_link_author', 'tree_legend_unknown'];
+  $('ft-legend-body').innerHTML = `<p class="lead">${esc(t('tree_legend_intro'))}</p><ul>${items.map(k => `<li><b>${esc(t(k))}</b></li>`).join('')}</ul>` +
     `<p class="say">${esc(t('tree_legend_say'))}</p><div class="hint">${esc(t('tree_legend_hint'))}</div>`;
 }
 // every number comes from the data
