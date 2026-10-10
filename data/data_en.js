@@ -150,6 +150,9 @@ window.FamilyTreeData = {
         author_channel_title: "Official Channel: Jamal Ibn Adam",
         author_bio:
             "Welcome to the official channel of the thinker 'Jamal Ibn Adam' (known globally as J.S. Adam). This channel documents a profound human journey from the darkness of tribulation to the light of wisdom...",
+        copy_btn: "Copy",
+        copy_done: "Copied ✓",
+        author_playlist_card: "Official playlist — Jamal Ibn Adam",
         author_playlist_title: "Official Playlist",
         author_youtube_title: "Jamal Ibn Adam Channel",
         author_books_title: "Global Publications",

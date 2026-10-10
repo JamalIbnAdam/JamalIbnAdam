@@ -307,6 +307,8 @@ details.audit > summary { cursor: pointer; font-weight: 700; color: var(--ft-mut
 .ft-reader .rm .pg { font-weight: 700; color: var(--ft-ink); }
 .ft-reader .rnav { display: flex; align-items: center; gap: 6px; flex: none; direction: ltr; }
 .ft-reader .rnav span { font-size: .82rem; font-variant-numeric: tabular-nums; color: var(--ft-ink2); min-width: 3.2em; text-align: center; }
+/* the copy button in the reader's tab row copies the text of the open tab */
+.ft-reader [role=tablist] .cp, .ft-reader .rt .cp { margin: -6px 0; margin-inline-start: auto; color: var(--ft-gold-ink); }
 .ft-reader .rnav button, .ft-reader .rtools button, .ft-chain .ch button { width: 38px; height: 38px; border: 1px solid var(--ft-line); border-radius: 8px; background: var(--ft-sheet); display: grid; place-items: center; }
 .ft-reader .rnav button:disabled { opacity: .35; cursor: default; }
 .ft-reader svg, .ft-chain .ch svg { width: 16px; height: 16px; stroke: var(--ft-ink); stroke-width: 1.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
@@ -336,7 +338,7 @@ details.audit > summary { cursor: pointer; font-weight: 700; color: var(--ft-mut
 .ft-chain .ch > div { flex: 1; min-width: 0; }
 .ft-chain h2 { font-family: var(--ft-f-name); font-size: 1.5rem; line-height: 1.4; color: var(--ft-gold-ink); }
 .ft-chain .ch p { font-size: .88rem; color: var(--ft-ink2); }
-.ft-chain .nasab { width: min(560px, 100% - 32px); margin: 18px auto 0; font-family: var(--ft-f-name); font-size: 1.12rem; line-height: 2; color: var(--ft-ink); unicode-bidi: plaintext; user-select: text; -webkit-user-select: text; }
+.ft-chain .nasab { width: min(560px, 100% - 32px); margin: 18px auto 0; font-family: var(--ft-f-name); font-size: 1.12rem; line-height: 2; color: var(--ft-ink); unicode-bidi: plaintext; }
 .ft-chain .cl { width: min(560px, 100% - 32px); margin: 22px auto 64px; display: grid; }
 .ft-chain .cc { display: grid; justify-items: center; position: relative; }
 .ft-chain .card { width: 100%; border: 1px solid var(--ft-hair); border-radius: 12px; background: var(--ft-sheet); padding: 12px 16px; display: grid; gap: 6px; opacity: 0; transform: translateY(10px); transition: opacity .25s ease-out, transform .25s ease-out; }
@@ -431,8 +433,7 @@ details.audit > summary { cursor: pointer; font-weight: 700; color: var(--ft-mut
 /* ---------- app-like touch: no text selection or long-press pop-up anywhere on the page ---------- */
 body { -webkit-tap-highlight-color: transparent; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
 img { -webkit-user-drag: none; }
-/* the exceptions: the text of a document, a quote, a note and the references; form fields stay editable */
-.ft-reader .tp, .ft-reader .tp *, .ft-panel .qt, .ft-panel .qt *, .ft-panel .note, .ft-panel .note *, #home-sources, #home-sources *,
+/* the only exception: form fields stay editable. Copying is done with the «نسخ» buttons (home.css, touch.js). */
 input, textarea, [contenteditable], [contenteditable] * {
   -webkit-user-select: text; user-select: text; -webkit-touch-callout: default;
 }

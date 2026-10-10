@@ -113,9 +113,6 @@ body { background: var(--h-bg); }
   .sg-poem .verse-part { display: block; text-align: start !important; }
   .sg-poem .verse-part:last-child { padding-inline-start: 2.4em; }
 }
-.sg-video { position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; padding: 0; overflow: hidden; border-radius: 12px; border: 1px solid var(--h-hair); background: #000; cursor: pointer; }
-.sg-video img, .sg-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; object-fit: cover; }
-.sg-video img { opacity: .55; }
 .sg-play { position: absolute; inset: 0; margin: auto; width: 64px; height: 64px; border-radius: 50%; background: var(--h-gold); color: var(--h-onGold); display: grid; place-items: center; }
 /* the nasheed card: dark, gold frame, the title and a large play button; after the click the player takes its place */
 .sg-nasheed-box { max-width: 880px; margin: 0 auto; aspect-ratio: 16 / 9; border-radius: 16px; border: 1px solid var(--h-gold); background: var(--h-bg); overflow: hidden; }
@@ -123,6 +120,13 @@ body { background: var(--h-bg); }
 .sg-nasheed { position: relative; width: 100%; height: 100%; padding: 16px; border: 0; background: radial-gradient(circle at 50% 42%, var(--h-surface), var(--h-bg)); color: var(--h-gold); font: inherit; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; }
 .sg-nasheed-title { font-family: 'Amiri', serif; font-size: clamp(20px, 4.4cqi, 34px); font-weight: 700; line-height: 1.5; text-align: center; }
 .sg-nasheed .sg-play { position: static; margin: 0; flex: none; width: 84px; height: 84px; }
+/* the playlist card sits in a narrower column: smaller pieces, and never shorter than its content */
+.sg-playlist-box { min-height: 184px; }
+.sg-nasheed-logo { flex: none; width: 40px; height: 40px; border-radius: 50%; }
+.sg-playlist { gap: 8px; padding: 12px; }
+.sg-nasheed.sg-playlist .sg-play { width: 54px; height: 54px; }
+.sg-playlist .sg-play svg { width: 26px; height: 26px; }
+.sg-playlist .sg-nasheed-title { font-size: clamp(15px, 3.4cqi, 22px); line-height: 1.5; }
 .sg-root .sg-nasheed-link { max-width: 880px; margin: 10px auto 28px; font-size: 14px; line-height: 2.2; unicode-bidi: normal; }   /* follows the page's direction */
 .sg-nasheed-link a { color: var(--h-gold); }
 .sg-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
@@ -219,8 +223,16 @@ html, body { overflow-x: clip; }
 /* ---------- app-like touch: no text selection or long-press pop-up anywhere on the page ---------- */
 body { -webkit-tap-highlight-color: transparent; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
 img { -webkit-user-drag: none; }
-/* the exceptions: the text of a document, a quote, a note and the references; form fields stay editable */
-.ft-reader .tp, .ft-reader .tp *, .ft-panel .qt, .ft-panel .qt *, .ft-panel .note, .ft-panel .note *, #home-sources, #home-sources *, #more-sources, #more-sources *, .sg-quote, .sg-src,
+/* the only exception: form fields stay editable. Copying is done with the «نسخ» buttons below. */
 input, textarea, [contenteditable], [contenteditable] * {
   -webkit-user-select: text; user-select: text; -webkit-touch-callout: default;
 }
+
+/* a name or heading drawn with no text node (data-t): the browser finds no word under the finger */
+[data-t]::before { content: attr(data-t); }
+
+/* the copy button: a small icon with a 44px tap area; «نُسخ ✓» shows beside it for a moment after copying */
+.cp { position: relative; flex: none; display: inline-grid; place-items: center; width: 44px; height: 44px; margin: -12px 0; padding: 0; border: 0; border-radius: 10px; background: transparent; color: var(--h-gold, #d4af37); cursor: pointer; vertical-align: middle; }
+.cp svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.cp:hover { background: color-mix(in srgb, currentColor 12%, transparent); }
+.cp[data-done]::after { content: attr(data-done); position: absolute; top: 50%; inset-inline-start: 100%; translate: 0 -50%; z-index: 3; padding: 3px 10px; border-radius: 999px; background: var(--h-gold, #d4af37); color: var(--h-onGold, #1a1608); font: 600 12px/1.6 'Noto Kufi Arabic', sans-serif; white-space: nowrap; }

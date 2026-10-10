@@ -52,7 +52,7 @@ const t87 = $('ft-t1987');
 const strings = () => (window.FamilyTreeData && window.FamilyTreeData.translations) || {};
 const hasStrings = () => typeof strings().tree_h1 === 'string';
 // the few texts that may be needed before the strings have arrived; a missing string is never shown as its raw key
-const DEFAULTS = { tree_load_error: 'تعذّر تحميل الشجرة. أعد التحميل.', tree_reload: 'أعد التحميل', tree_close: 'إغلاق' };
+const DEFAULTS = { tree_load_error: 'تعذّر تحميل الشجرة. أعد التحميل.', tree_reload: 'أعد التحميل', tree_close: 'إغلاق', copy_btn: 'نسخ' };
 const t = (key, vars) => {
   const s = strings()[key];
   const out = typeof s === 'string' ? s : (DEFAULTS[key] || '');
@@ -1144,7 +1144,9 @@ function renderReader() {
   const src = asset(it.src);
   if (rImg.getAttribute('src') !== src) { V.rot = 0; rImg.removeAttribute('src'); rImg.src = src; rImg.alt = `${t('tree_img_alt')} ${pageTxt(d ? d.page : e.page)}`; }
   const tabs = readerTabs(it); if (!tabs.some(x => x[0] === R.tab)) R.tab = tabs[0][0];
-  rTabs.innerHTML = tabs.map(([k, label]) => `<button type="button" role="tab" data-tab="${k}" aria-selected="${k === R.tab}" tabindex="${k === R.tab ? 0 : -1}">${esc(label)}</button>`).join('');
+  rTabs.innerHTML = tabs.map(([k, label]) => `<button type="button" role="tab" data-tab="${k}" aria-selected="${k === R.tab}" tabindex="${k === R.tab ? 0 : -1}">${esc(label)}</button>`).join('') +
+    // the text is not selectable (no search bar under the finger): this button copies the open tab's text
+    `<button type="button" class="cp" data-copy-from="ft-rPane" aria-label="${esc(t('copy_btn'))}"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8.5" y="8.5" width="11" height="11" rx="2"></rect><path d="M15.5 8.5V6a1.5 1.5 0 0 0-1.5-1.5H6A1.5 1.5 0 0 0 4.5 6v8A1.5 1.5 0 0 0 6 15.5h2.5"></path></svg></button>`;
   rPane.innerHTML = tabs.find(x => x[0] === R.tab)[2]; rPane.scrollTop = 0;
   [['ft-rPrev', 'tree_prev_doc'], ['ft-rNext', 'tree_next_doc'], ['ft-rClose', 'tree_close'], ['ft-rIn', 'tree_zoom_in'], ['ft-rOut', 'tree_zoom_out'], ['ft-rFit', 'tree_fit_image'], ['ft-rRot', 'tree_rotate'], ['ft-rGrab', 'tree_sheet_handle']].forEach(([id, key]) => { $(id).setAttribute('aria-label', t(key)); $(id).title = t(key); });
 }
